@@ -6,6 +6,7 @@
         "dev": "next dev",
         "build": "next build",
         "start": "next start",
+        "type:check": "tsc",
         "lint": "eslint ./components/**/* ./pages/**/*",
         "lint:fix": "eslint ./components/**/* ./pages/**/* --fix",
         "prettier": "prettier --check --config package.json ./components/**/* ./pages/**/*",
@@ -47,11 +48,13 @@
         "husky": "4.3.0",
         "prettier": "^2.3.2",
         "typescript": "^4.4.2",
-        "lint-staged": "^10.5.4"
+        "lint-staged": "^10.5.4",
+        "enforce-branch-name": "^1.0.1"
     },
     "husky": {
         "hooks": {
-            "pre-commit": "lint-staged"
+            "pre-commit": "npm run type:check && lint-staged",
+            "pre-push": "enforce-branch-name '^(ft|ch|bg)-[a-z]+(-[a-z]+)*$'"
         }
     },
     "lint-staged": {
