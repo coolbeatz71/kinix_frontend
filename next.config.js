@@ -22,7 +22,7 @@ const pwaConfig = {
 };
 
 const antdLessConfig = {
-    lessVarsFilePath: './theme/index.less',
+    lessVarsFilePath: './theme/variables.less',
 };
 
 module.exports = withPlugins([

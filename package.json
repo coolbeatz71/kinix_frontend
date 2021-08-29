@@ -13,22 +13,34 @@
         "prettier:fix": "prettier --write --config package.json ./components/**/* ./pages/**/*"
     },
     "dependencies": {
+        "antd": "^4.14.2",
+        "axios": "^0.19.2",
         "babel-plugin-import": "^1.13.3",
         "babel-plugin-istanbul": "^6.0.0",
-        "next": "11.1.0",
+        "dayjs": "^1.10.4",
+        "lodash": "^4.17.15",
+        "next": "^11.1.0",
         "next-compose-plugins": "^2.2.1",
         "next-optimized-images": "^3.0.0-canary.10",
         "next-plugin-antd-less": "^1.4.2",
         "next-pwa": "5.0.3",
+        "nprogress": "^0.2.0",
+        "numeral": "^2.0.6",
         "react": "17.0.2",
         "react-dom": "17.0.2",
-        "sass": "^1.26.5"
+        "sass": "^1.26.5",
+        "validator": "^13.1.1"
     },
     "devDependencies": {
         "@next/eslint-plugin-next": "^11.1.0",
+        "@types/lodash": "^4.14.154",
+        "@types/nprogress": "^0.2.0",
+        "@types/numeral": "0.0.28",
         "@types/react": "17.0.19",
+        "@types/validator": "^13.1.0",
         "@typescript-eslint/eslint-plugin": "^4.29.3",
         "@typescript-eslint/parser": "^4.29.3",
+        "enforce-branch-name": "^1.0.1",
         "eslint": "^7.32.0",
         "eslint-config-prettier": "^8.3.0",
         "eslint-config-prettier-react": "^0.0.24",
@@ -46,15 +58,14 @@
         "eslint-plugin-react": "^7.23.2",
         "eslint-plugin-react-hooks": "^4.2.0",
         "husky": "4.3.0",
-        "prettier": "^2.3.2",
-        "typescript": "^4.4.2",
         "lint-staged": "^10.5.4",
-        "enforce-branch-name": "^1.0.1"
+        "prettier": "^2.3.2",
+        "typescript": "^4.4.2"
     },
     "husky": {
         "hooks": {
             "pre-commit": "npm run type:check && lint-staged",
-            "pre-push": "enforce-branch-name '^(ft|ch|bg)-[a-z]+(-[a-z]+)*$'"
+            "pre-push": "enforce-branch-name '^(ft|ch|bg)-[a-z]+(-[a-z]+)*$' --ignore 'develop'"
         }
     },
     "lint-staged": {
