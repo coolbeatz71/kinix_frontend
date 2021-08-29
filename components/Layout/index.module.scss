@@ -1,0 +1,16 @@
+@import 'styles/colors.scss';
+
+.layout {
+    min-height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    overflow-y: auto;
+
+    [data-theme='light'] {
+        background-color: $bg-primary-light;
+    }
+
+    [data-theme='dark'] {
+        background-color: $bg-primary-dark;
+    }
+}
