@@ -1,0 +1,3 @@
+User-agent: *
+
+Sitemap: https://kiinix.io/sitemap.xml
