@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { Layout, Menu } from 'antd';
 import { UserOutlined, VideoCameraOutlined, UploadOutlined } from '@ant-design/icons';
-import { MAX_SIDENAV_WIDTH, MIN_SIDENAV_WIDTH } from 'constants/sidenav';
+import getSideNavWidth from '@helpers/getSideNavWidth';
 
 const { Sider } = Layout;
 const { Item } = Menu;
@@ -17,22 +17,20 @@ const SideNav: FC<ISideNavProps> = ({ open, collapsed, setCollapsed }) => {
         setCollapsed(collapsed);
     };
 
-    const getCollapsedWidth = (open: boolean, collapsed: boolean): number => {
-        if (open && !collapsed) return MAX_SIDENAV_WIDTH;
-        if (open && collapsed) return MIN_SIDENAV_WIDTH;
-
-        return 0;
-    };
-
     return (
         <Sider
             collapsible
             collapsed={collapsed}
             onCollapse={onCollapse}
             zeroWidthTriggerStyle={{ display: 'none' }}
-            collapsedWidth={getCollapsedWidth(open, collapsed)}
+            collapsedWidth={getSideNavWidth(open, collapsed)}
         >
-            <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
+            <Menu
+                theme="dark"
+                mode="inline"
+                defaultSelectedKeys={['1']}
+                style={{ position: 'fixed', width: getSideNavWidth(open, collapsed) }}
+            >
                 <Item key="1" icon={<UserOutlined />}>
                     nav 1
                 </Item>
