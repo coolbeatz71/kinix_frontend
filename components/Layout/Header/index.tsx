@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 import { Button, Layout } from 'antd';
 import { MenuOutlined } from '@ant-design/icons';
 import getSideNavWidth from '@helpers/getSideNavWidth';
+import styles from './index.module.scss';
 
 const { Header: AntHeader } = Layout;
 
@@ -23,15 +24,12 @@ const Header: FC<IHeaderProps> = ({ open, collapsed, setOpen, setCollapsed }) =>
         }
     };
 
+    const headerStyles = {
+        left: getSideNavWidth(open, collapsed),
+    };
+
     return (
-        <AntHeader
-            style={{
-                width: '100vw',
-                position: 'fixed',
-                left: getSideNavWidth(open, collapsed),
-                transition: 'left .3s ease-in-out',
-            }}
-        >
+        <AntHeader hasSider className={styles.header} style={headerStyles}>
             <Button type="link" size="large" onClick={handleToggle} icon={<MenuOutlined />} />
         </AntHeader>
     );

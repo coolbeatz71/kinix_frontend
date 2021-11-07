@@ -3,6 +3,11 @@ import { Layout, Menu } from 'antd';
 import { UserOutlined, VideoCameraOutlined, UploadOutlined } from '@ant-design/icons';
 import getSideNavWidth from '@helpers/getSideNavWidth';
 
+import styles from './index.module.scss';
+import Logo from '@components/common/Logo';
+import MenuTitle from './MenuTitle';
+import { POPULAR_SECTIONS } from './data';
+
 const { Sider } = Layout;
 const { Item } = Menu;
 
@@ -17,30 +22,33 @@ const SideNav: FC<ISideNavProps> = ({ open, collapsed, setCollapsed }) => {
         setCollapsed(collapsed);
     };
 
+    const sideNavWidth = getSideNavWidth(open, collapsed);
+    const menuStyles = { width: sideNavWidth };
+
+    const menuGroupStyles = !collapsed ? { marginTop: '2rem' } : {};
+
     return (
         <Sider
             collapsible
+            data-theme="light"
             collapsed={collapsed}
             onCollapse={onCollapse}
+            className={styles.sidenav}
+            collapsedWidth={sideNavWidth}
             zeroWidthTriggerStyle={{ display: 'none' }}
-            collapsedWidth={getSideNavWidth(open, collapsed)}
+            data-collapsed={collapsed}
         >
-            <Menu
-                theme="dark"
-                mode="inline"
-                defaultSelectedKeys={['1']}
-                style={{ position: 'fixed', width: getSideNavWidth(open, collapsed) }}
-            >
-                <Item key="1" icon={<UserOutlined />}>
-                    nav 1
-                </Item>
-                <Item key="2" icon={<VideoCameraOutlined />}>
-                    nav 2
-                </Item>
-                <Item key="3" icon={<UploadOutlined />}>
-                    nav 3
-                </Item>
-            </Menu>
+            <Logo canRedirect className={styles.sidenav__logo} />
+            <div style={menuGroupStyles}>
+                {!collapsed && <MenuTitle value={'Popular sections'} />}
+                <Menu style={menuStyles} defaultSelectedKeys={['1']} className={styles.sidenav__menu}>
+                    {POPULAR_SECTIONS.map((item, index) => (
+                        <Item className={styles.sidenav__menu__items} key={index} icon={item.icon}>
+                            {item.text}
+                        </Item>
+                    ))}
+                </Menu>
+            </div>
         </Sider>
     );
 };

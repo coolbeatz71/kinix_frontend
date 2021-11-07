@@ -1,0 +1,17 @@
+@import 'styles/colors.scss';
+@import 'styles/dimensions.scss';
+
+.header {
+    width: 100vw;
+    height: $header-height;
+    position: fixed;
+    transition: left 0.2s ease-in-out;
+
+    [data-theme='light'] {
+        background-color: $bg-primary-light;
+    }
+
+    [data-theme='dark'] {
+        background-color: $bg-primary-dark;
+    }
+}
