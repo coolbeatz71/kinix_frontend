@@ -6,7 +6,10 @@ import { useRouter } from 'next/router';
 import getImageUrl from '@helpers/getImageUrl';
 import Head from 'next/head';
 import styles from './index.module.scss';
+import SideNav from './SideNav';
+import Header from './Header';
 
+const { Footer, Content } = AntLayout;
 interface ILayoutProps {
     children: ReactElement;
     isHome?: boolean;
@@ -32,7 +35,8 @@ const Layout: FC<ILayoutProps> = ({
 }) => {
     const router = useRouter();
 
-    const { Footer, Content } = AntLayout;
+    const [open, setOpen] = useState<boolean>(true);
+    const [collapsedSidenav, setCollapsedSidenav] = useState<boolean>(false);
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [_scrolled, setScrolled] = useState<string>('');
@@ -96,6 +100,9 @@ const Layout: FC<ILayoutProps> = ({
                 <link rel="manifest" href="/manifest.json" />
                 <link rel="apple-touch-icon" href="icons/apple-icon.png" />
             </Head>
+
+            <SideNav open={open} collapsed={collapsedSidenav} setCollapsed={setCollapsedSidenav} />
+            <Header open={open} setOpen={setOpen} collapsed={collapsedSidenav} setCollapsed={setCollapsedSidenav} />
 
             <Content className={styles.layout__content}>{children}</Content>
 
