@@ -1,0 +1,100 @@
+@import 'styles/colors.scss';
+@import 'styles/dimensions.scss';
+
+.sidenav {
+    [class~='ant-layout-sider-children'] {
+        //sider children
+        position: fixed;
+    }
+
+    &__logo {
+        height: $header-height;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+    &[data-theme='light'] {
+        background-color: $white;
+
+        &[data-collapsed='false'] {
+            .sidenav__logo {
+                width: $max_sidenav_width;
+                background-size: 78%;
+                background-image: url('/logo/large_light.svg');
+            }
+        }
+
+        &[data-collapsed='true'] {
+            .sidenav__logo {
+                width: $min_sidenav_width;
+                background-size: 64%;
+                background-image: url('/logo/short_light.svg');
+            }
+        }
+
+        [class~='ant-menu-item-selected'] {
+            background-color: $bg-primary-dark;
+
+            span,
+            svg {
+                color: $white;
+                font-weight: 600;
+            }
+        }
+
+        .sidenav__menu__items {
+            display: flex;
+            align-items: center;
+        }
+        .sidenav__menu__items:hover {
+            background-color: $bg-warning-fade;
+
+            span,
+            svg {
+                color: $black;
+            }
+        }
+        [class~='ant-layout-sider-trigger'] {
+            background: $bg-sidenav-triger;
+            span {
+                color: $dark;
+                font-weight: bold;
+            }
+        }
+    }
+
+    [data-theme='dark'] {
+        background-color: $bg-primary-dark;
+    }
+
+    [class~='ant-layout-sider-children'] {
+        .sidenav__menu {
+            position: fixed;
+
+            &__items {
+                border-radius: $border-radius;
+                margin: 0.5rem;
+            }
+        }
+    }
+
+    &[data-collapsed='false'] {
+        // sider bottom trigger
+        [class~='ant-layout-sider-trigger'] {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding: 0.5rem;
+        }
+    }
+    &[data-collapsed='true'] {
+        .sidenav__menu__items {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            span {
+                line-height: 0;
+            }
+        }
+    }
+}
