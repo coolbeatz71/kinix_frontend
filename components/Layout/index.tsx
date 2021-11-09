@@ -54,11 +54,11 @@ const Layout: FC<ILayoutProps> = ({
 
     const _url = `${getPlatformUrl()}${router.asPath}`;
     const _description = description || 'Kinshasa Urban Music at his best';
-    const _siteName = 'Kiinix';
-    const _author = 'Kiinix LTD';
+    const _siteName = 'Kiinox';
+    const _author = 'Kiinox LTD';
     const _image = image ? `${getImageUrl()}/${image}` : `${getPlatformUrl()}/download.png`;
     const _title = title || '';
-    const _twitterHandle = '@KiinixHQ';
+    const _twitterHandle = '@KiinoxHQ';
 
     return (
         <AntLayout className={styles.layout}>
@@ -88,13 +88,7 @@ const Layout: FC<ILayoutProps> = ({
                 <meta name="twitter:image" content={_image} key="twitter:image" />
                 <meta name="author" content={_author} />
                 <meta name="theme-color" content="#ffffff" />
-                <link
-                    id="favicon"
-                    rel="icon"
-                    href="/icons/favicon-32x32.png"
-                    sizes="16x16 32x32 48x48"
-                    type="image/png"
-                />
+                <link id="favicon" rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48" type="image/png" />
                 <link href="/robots.txt" />
                 <link rel="preconnect" href={getImageUrl()} />
                 <link rel="manifest" href="/manifest.json" />

@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
 import { Layout, Menu } from 'antd';
-import { UserOutlined, VideoCameraOutlined, UploadOutlined } from '@ant-design/icons';
 import getSideNavWidth from '@helpers/getSideNavWidth';
 
 import styles from './index.module.scss';

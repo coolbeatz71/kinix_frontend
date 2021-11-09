@@ -38,7 +38,7 @@ const Header: FC<IHeaderProps> = ({ open, collapsed, setOpen, setCollapsed }) =>
                 <Col flex={1}>
                     <Button
                         type="text"
-                        // size="large"
+                        size="large"
                         onClick={handleToggle}
                         icon={<CustomIcon type="hamburger-menu" className="hamburger-menu" />}
                     />
