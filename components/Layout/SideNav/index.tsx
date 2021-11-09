@@ -38,17 +38,21 @@ const SideNav: FC<ISideNavProps> = ({ open, collapsed, setCollapsed }) => {
             zeroWidthTriggerStyle={{ display: 'none' }}
             data-collapsed={collapsed}
         >
-            <Logo canRedirect className={styles.sidenav__logo} />
-            <div style={menuGroupStyles}>
-                {!collapsed && <MenuTitle value={'Popular sections'} />}
-                <Menu style={menuStyles} defaultSelectedKeys={['1']} className={styles.sidenav__menu}>
-                    {POPULAR_SECTIONS.map((item, index) => (
-                        <Item className={styles.sidenav__menu__items} key={index} icon={item.icon}>
-                            {item.text}
-                        </Item>
-                    ))}
-                </Menu>
-            </div>
+            {open && (
+                <>
+                    <Logo canRedirect className={styles.sidenav__logo} />
+                    <div style={menuGroupStyles}>
+                        {!collapsed && <MenuTitle value={'Popular sections'} />}
+                        <Menu style={menuStyles} defaultSelectedKeys={['1']} className={styles.sidenav__menu}>
+                            {POPULAR_SECTIONS.map((item, index) => (
+                                <Item className={styles.sidenav__menu__items} key={index} icon={item.icon}>
+                                    {item.text}
+                                </Item>
+                            ))}
+                        </Menu>
+                    </div>
+                </>
+            )}
         </Sider>
     );
 };

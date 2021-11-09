@@ -1,8 +1,10 @@
 import React, { FC } from 'react';
-import { Button, Layout } from 'antd';
-import { MenuOutlined } from '@ant-design/icons';
+import { Button, Col, Layout, Row } from 'antd';
 import getSideNavWidth from '@helpers/getSideNavWidth';
 import styles from './index.module.scss';
+import SearchInput from '@components/common/SearchInput';
+import CustomIcon from '@components/common/CustomIcon';
+import social from '@constants/social';
 
 const { Header: AntHeader } = Layout;
 
@@ -28,9 +30,46 @@ const Header: FC<IHeaderProps> = ({ open, collapsed, setOpen, setCollapsed }) =>
         left: getSideNavWidth(open, collapsed),
     };
 
+    const authBtnStyles = { marginLeft: 20 };
+
     return (
-        <AntHeader hasSider className={styles.header} style={headerStyles}>
-            <Button type="link" size="large" onClick={handleToggle} icon={<MenuOutlined />} />
+        <AntHeader data-theme="light" className={styles.header} style={headerStyles}>
+            <Row align="middle" className={styles.header__row}>
+                <Col flex={1}>
+                    <Button
+                        type="text"
+                        // size="large"
+                        onClick={handleToggle}
+                        icon={<CustomIcon type="hamburger-menu" className="hamburger-menu" />}
+                    />
+                </Col>
+
+                <Col flex={2}>
+                    <SearchInput />
+                </Col>
+
+                <Col flex={2} className={styles.header__row__auth}>
+                    <Button style={authBtnStyles} type="primary" ghost>
+                        Sign In
+                    </Button>
+                    <Button style={authBtnStyles} type="primary">
+                        Sign Up
+                    </Button>
+                </Col>
+
+                <Col flex={2}>
+                    {social.map((item) => (
+                        <Button
+                            type="text"
+                            size="large"
+                            key={item.name}
+                            icon={item.icon}
+                            className={styles.header__row__social}
+                            onClick={() => window?.open(item.url, '_blank')}
+                        />
+                    ))}
+                </Col>
+            </Row>
         </AntHeader>
     );
 };

@@ -69,11 +69,12 @@
 
     [class~='ant-layout-sider-children'] {
         .sidenav__menu {
+            border: none;
             position: fixed;
 
             &__items {
-                border-radius: $border-radius;
                 margin: 0.5rem;
+                border-radius: $border-radius;
             }
         }
     }
