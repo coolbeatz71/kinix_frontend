@@ -1,0 +1,29 @@
+@import 'styles/colors.scss';
+@import 'styles/dimensions.scss';
+
+.search {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    background-color: unset !important;
+
+    &[data-theme='light'] {
+        [class~='ant-input-group-addon'] {
+            button {
+                border: none;
+                color: $white;
+                background: $primary;
+            }
+        }
+    }
+
+    &[data-theme='dark'] {
+        [class~='ant-input-group-addon'] {
+            button {
+                border: none;
+                color: $dark;
+                background: $warning;
+            }
+        }
+    }
+}

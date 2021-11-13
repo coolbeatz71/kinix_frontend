@@ -3,14 +3,14 @@ $success: #1dd3b0;
 $error: #ef476f;
 $warning: #f07f34;
 $neutral: #b0d7ff;
+$white: #ffffff;
+$black: #000000;
 
 $bg-warning-fade: rgba(
     $color: $warning,
     $alpha: 0.5,
 );
 
-$white: #ffffff;
-$black: #000000;
 $dark: rgba(
     $color: $black,
     $alpha: 0.65,

@@ -20,8 +20,10 @@
             "@constants/*": ["constants/*"],
             "@hooks/*": ["hooks/*"],
             "@styles/*": ["styles/*"],
-            "@context/*": ["context/*"]
-        }
+            "@context/*": ["context/*"],
+            "@type/*": ["type/*"]
+        },
+        "incremental": true
     },
     "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
     "exclude": ["node_modules"]

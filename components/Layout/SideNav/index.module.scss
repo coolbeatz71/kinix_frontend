@@ -27,7 +27,7 @@
         &[data-collapsed='true'] {
             .sidenav__logo {
                 width: $min_sidenav_width;
-                background-size: 64%;
+                background-size: 74%;
                 background-image: url('/logo/short_light.svg');
             }
         }
@@ -69,11 +69,11 @@
 
     [class~='ant-layout-sider-children'] {
         .sidenav__menu {
-            position: fixed;
+            border: none;
 
             &__items {
-                border-radius: $border-radius;
                 margin: 0.5rem;
+                border-radius: $border-radius;
             }
         }
     }
