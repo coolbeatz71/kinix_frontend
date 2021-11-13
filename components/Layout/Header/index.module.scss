@@ -2,7 +2,6 @@
 @import 'styles/dimensions.scss';
 
 .header {
-    width: 100vw;
     position: fixed;
     transition: all 0.2s;
     height: $header-height;
@@ -21,8 +20,8 @@
         align-items: center;
         justify-content: center;
         svg {
-            width: 1.5rem;
-            height: 1.5rem;
+            width: 1.4rem;
+            height: 1.4rem;
         }
     }
 
@@ -51,25 +50,18 @@
     }
 
     &__row {
-        width: 100%;
         height: 100%;
-        display: flex;
-        justify-content: space-between;
+        width: 100%;
 
         [class~='ant-col'] {
             display: flex;
             align-items: center;
         }
 
-        &__auth {
-            justify-content: center;
-        }
-
         &__social {
             width: 48px;
-            span {
-                font-size: 20px !important;
-            }
+            display: flex;
+            align-items: center;
             &:hover {
                 [class~='twitter'] {
                     color: $twitter;

@@ -3,6 +3,8 @@ import { AppProps } from 'next/app';
 import NProgress from 'nprogress';
 import { Router } from 'next/router';
 
+import 'styles/coreui.min.css';
+
 type AppPropsWithError = AppProps & { err: unknown };
 
 const config = {

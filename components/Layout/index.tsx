@@ -96,11 +96,11 @@ const Layout: FC<ILayoutProps> = ({
             </Head>
 
             <SideNav open={open} collapsed={collapsedSidenav} setCollapsed={setCollapsedSidenav} />
-            <Header open={open} setOpen={setOpen} collapsed={collapsedSidenav} setCollapsed={setCollapsedSidenav} />
-
-            <Content className={styles.layout__content}>{children}</Content>
-
-            {showFooter && <Footer className={styles.layout__footer}>footer</Footer>}
+            <AntLayout>
+                <Header open={open} setOpen={setOpen} collapsed={collapsedSidenav} setCollapsed={setCollapsedSidenav} />
+                <Content className={styles.layout__content}>{children}</Content>
+                {showFooter && <Footer className={styles.layout__footer}>footer</Footer>}
+            </AntLayout>
         </AntLayout>
     );
 };

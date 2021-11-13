@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Button, Col, Layout, Row } from 'antd';
+import { Button, Col, Layout, Row, Space } from 'antd';
 import getSideNavWidth from '@helpers/getSideNavWidth';
 import styles from './index.module.scss';
 import SearchInput from '@components/common/SearchInput';
@@ -26,48 +26,52 @@ const Header: FC<IHeaderProps> = ({ open, collapsed, setOpen, setCollapsed }) =>
         }
     };
 
-    const headerStyles = {
-        left: getSideNavWidth(open, collapsed),
-    };
+    const sideNavWidth = getSideNavWidth(open, collapsed);
 
-    const authBtnStyles = { marginLeft: 20 };
+    const headerStyles = {
+        left: sideNavWidth,
+        width: `calc(100% - ${sideNavWidth}px)`,
+    };
 
     return (
         <AntHeader data-theme="light" className={styles.header} style={headerStyles}>
-            <Row align="middle" className={styles.header__row}>
-                <Col flex={1}>
+            <Row align="middle" className={styles.header__row} justify="space-between" gutter={24}>
+                <Col span={6} className="p-0">
                     <Button
                         type="text"
-                        size="large"
                         onClick={handleToggle}
                         icon={<CustomIcon type="hamburger-menu" className="hamburger-menu" />}
                     />
                 </Col>
 
-                <Col flex={2}>
+                <Col span={8}>
                     <SearchInput />
                 </Col>
 
-                <Col flex={2} className={styles.header__row__auth}>
-                    <Button style={authBtnStyles} type="primary" ghost>
-                        Sign In
-                    </Button>
-                    <Button style={authBtnStyles} type="primary">
-                        Sign Up
-                    </Button>
-                </Col>
+                <Col span={10} className="d-flex flex-row-reverse">
+                    <Row justify="space-between" gutter={[24, 0]}>
+                        <Col span={12}>
+                            <Space size="middle">
+                                <Button type="primary" ghost>
+                                    Sign In
+                                </Button>
+                                <Button type="primary">Sign Up</Button>
+                            </Space>
+                        </Col>
 
-                <Col flex={2}>
-                    {social.map((item) => (
-                        <Button
-                            type="text"
-                            size="large"
-                            key={item.name}
-                            icon={item.icon}
-                            className={styles.header__row__social}
-                            onClick={() => window?.open(item.url, '_blank')}
-                        />
-                    ))}
+                        <Col span={12}>
+                            {social.map((item) => (
+                                <Button
+                                    type="text"
+                                    size="large"
+                                    key={item.name}
+                                    icon={item.icon}
+                                    className={styles.header__row__social}
+                                    onClick={() => window?.open(item.url, '_blank')}
+                                />
+                            ))}
+                        </Col>
+                    </Row>
                 </Col>
             </Row>
         </AntHeader>
