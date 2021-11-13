@@ -32,7 +32,7 @@ module.exports = {
             rules: {
                 'react/prop-types': 'off',
                 'react/react-in-jsx-scope': 'off',
-                '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_', ignoreRestSiblings: false }],
+                '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_', ignoreRestSiblings: false }],
                 'no-nested-ternary': 'off',
                 'no-irregular-whitespace': 'off',
                 'react/no-children-prop': 'off',
