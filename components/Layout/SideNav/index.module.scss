@@ -7,6 +7,31 @@
         position: fixed;
     }
 
+    &__divider {
+        padding: 0 0.5rem;
+        [class~='ant-divider'] {
+            margin: 0;
+        }
+    }
+
+    &__menu_divider {
+        margin: 0.5rem 0;
+    }
+
+    &__menu__sub {
+        font-size: 11px;
+
+        [class~='ant-menu-inline'] {
+            border-radius: $border-radius;
+        }
+
+        [class~='ant-menu-submenu-title'] {
+            padding-right: 0;
+            padding-left: 1rem !important;
+            border-radius: $border-radius;
+        }
+    }
+
     &__logo {
         height: $header-height;
         background-position: center;
@@ -29,6 +54,17 @@
                 width: $min_sidenav_width;
                 background-size: 74%;
                 background-image: url('/logo/short_light.svg');
+            }
+
+            .sidenav__menu__items {
+                &:hover {
+                    background-color: $bg-warning-fade;
+                    -webkit-backdrop-filter: saturate(180%) blur(20px);
+                    backdrop-filter: saturate(180%) blur(20px);
+                    span {
+                        font-weight: 600;
+                    }
+                }
             }
         }
 
@@ -70,10 +106,19 @@
     [class~='ant-layout-sider-children'] {
         .sidenav__menu {
             border: none;
+            padding: 0.5rem;
 
             &__items {
-                margin: 0.5rem;
                 border-radius: $border-radius;
+                padding: 0 1rem !important;
+
+                &::after {
+                    content: none;
+                }
+
+                & > svg:first-child {
+                    transform: scale(1.2);
+                }
             }
         }
     }
@@ -94,6 +139,19 @@
             align-items: center;
             span {
                 line-height: 0;
+            }
+
+            &:hover {
+                justify-content: flex-start;
+                width: $max_sidenav_width;
+                padding-left: 0 !important;
+
+                span,
+                & > svg:first-child {
+                    opacity: 1;
+                    line-height: 0;
+                    margin-left: 0.8rem;
+                }
             }
         }
     }
