@@ -4,8 +4,8 @@ import getSideNavWidth from '@helpers/getSideNavWidth';
 
 import styles from './index.module.scss';
 import Logo from '@components/common/Logo';
-import MenuTitle from './MenuTitle';
-import { POPULAR_SECTIONS } from './data';
+import MenuTitle from './menu-title';
+import { POPULAR_SECTIONS } from '@constants/popular-section';
 
 const { Sider } = Layout;
 const { Item } = Menu;
