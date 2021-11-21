@@ -63,7 +63,6 @@ const Header: FC<IHeaderProps> = ({ open, collapsed, setOpen, setCollapsed }) =>
                             {social.map((item) => (
                                 <Button
                                     type="text"
-                                    size="large"
                                     key={item.name}
                                     icon={item.icon}
                                     className={styles.header__row__social}

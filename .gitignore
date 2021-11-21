@@ -41,3 +41,4 @@ coverage/
 report*
 **/public/workbox-*.js
 **/public/sw.js
+tsconfig.tsbuildinfo

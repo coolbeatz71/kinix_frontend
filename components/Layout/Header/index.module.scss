@@ -59,9 +59,10 @@
         }
 
         &__social {
-            width: 48px;
+            width: 2.6rem;
             display: flex;
             align-items: center;
+            justify-content: center;
             &:hover {
                 [class~='twitter'] {
                     color: $twitter;
