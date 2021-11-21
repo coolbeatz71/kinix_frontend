@@ -5,6 +5,7 @@ import styles from './index.module.scss';
 import SearchInput from '@components/common/SearchInput';
 import CustomIcon from '@components/common/CustomIcon';
 import social from '@constants/social';
+import useDarkLight from '@hooks/useDarkLight';
 
 const { Header: AntHeader } = Layout;
 
@@ -16,6 +17,8 @@ interface IHeaderProps {
 }
 
 const Header: FC<IHeaderProps> = ({ open, collapsed, setOpen, setCollapsed }) => {
+    const { value } = useDarkLight();
+
     const handleToggle = (): void => {
         if (collapsed === open) {
             setCollapsed(collapsed);
@@ -34,7 +37,7 @@ const Header: FC<IHeaderProps> = ({ open, collapsed, setOpen, setCollapsed }) =>
     };
 
     return (
-        <AntHeader data-theme="light" className={styles.header} style={headerStyles}>
+        <AntHeader data-theme={value} className={styles.header} style={headerStyles}>
             <Row align="middle" className={styles.header__row} justify="space-between" gutter={24}>
                 <Col span={6} className="p-0">
                     <Button

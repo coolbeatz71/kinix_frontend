@@ -8,6 +8,7 @@ import Head from 'next/head';
 import styles from './index.module.scss';
 import SideNav from './SideNav';
 import Header from './Header';
+import DarkModeToggler from '@components/common/DarkModeToggler';
 
 const { Footer, Content } = AntLayout;
 interface ILayoutProps {
@@ -99,6 +100,8 @@ const Layout: FC<ILayoutProps> = ({
                 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#0C2346" />
                 <meta name="msapplication-TileColor" content="#f07f34" />
             </Head>
+
+            <DarkModeToggler />
 
             <SideNav open={open} collapsed={collapsedSidenav} setCollapsed={setCollapsedSidenav} />
             <AntLayout>

@@ -1,0 +1,39 @@
+@import 'styles/colors.scss';
+
+.toggler {
+    &[data-theme='light'] {
+        svg {
+            color: $primary;
+        }
+    }
+
+    &[data-theme='dark'] {
+        background: $primary;
+        svg {
+            color: $yellow;
+        }
+    }
+
+    &[class~='ant-btn'] {
+        height: 3rem;
+        width: 3rem;
+
+        box-shadow: 0px 8px 16px rgba($color: $primary, $alpha: 0.3);
+        transition: all 0.3s ease 0s;
+        cursor: pointer;
+        border: none;
+        outline: none;
+
+        svg {
+            width: 1.2rem;
+            height: 1.2rem;
+        }
+
+        &:hover,
+        &:focus,
+        &:active {
+            border: none;
+            outline: none;
+        }
+    }
+}
