@@ -1,4 +1,4 @@
-import React, { FC, useState, ReactNode, Key } from 'react';
+import React, { FC, useState, ReactNode, Key, Fragment } from 'react';
 import { Divider, Layout, Menu } from 'antd';
 import getSideNavWidth from '@helpers/getSideNavWidth';
 
@@ -40,26 +40,28 @@ const SideNav: FC<ISideNavProps> = ({ open, collapsed, setCollapsed }) => {
     };
 
     const renderSections = (): ReactNode => {
-        return sectionList.map((section) =>
-            collapsed ? (
-                section.sub.map((item) => (
-                    <Item title={null} className={styles.sidenav__menu__items} key={item.text} icon={item.icon}>
-                        {item.text}
-                    </Item>
-                ))
-            ) : (
-                <>
-                    <Divider className={styles.sidenav__menu_divider} />
-                    <SubMenu key={section.key} title={section.title} className={styles.sidenav__menu__sub}>
-                        {section.sub.map((item) => (
-                            <Item className={styles.sidenav__menu__items} key={item.text} icon={item.icon}>
-                                {item.text}
-                            </Item>
-                        ))}
-                    </SubMenu>
-                </>
-            ),
-        );
+        return sectionList.map((section) => (
+            <Fragment key={section.key}>
+                {collapsed ? (
+                    section.sub.map((item) => (
+                        <Item title={null} className={styles.sidenav__menu__items} key={item.text} icon={item.icon}>
+                            {item.text}
+                        </Item>
+                    ))
+                ) : (
+                    <Fragment key={section.key}>
+                        <Divider className={styles.sidenav__menu_divider} />
+                        <SubMenu key={section.key} title={section.title} className={styles.sidenav__menu__sub}>
+                            {section.sub.map((item) => (
+                                <Item className={styles.sidenav__menu__items} key={item.text} icon={item.icon}>
+                                    {item.text}
+                                </Item>
+                            ))}
+                        </SubMenu>
+                    </Fragment>
+                )}
+            </Fragment>
+        ));
     };
 
     return (
