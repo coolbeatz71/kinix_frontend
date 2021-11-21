@@ -53,7 +53,7 @@ const Layout: FC<ILayoutProps> = ({
     }, [scrollHandler]);
 
     const _url = `${getPlatformUrl()}${router.asPath}`;
-    const _description = description || 'Kinshasa Urban Music at his best';
+    const _description = description || 'When words stop coming out, music pop up';
     const _siteName = 'Kiinox';
     const _author = 'Kiinox LTD';
     const _image = image ? `${getImageUrl()}/${image}` : `${getPlatformUrl()}/download.png`;
@@ -87,12 +87,17 @@ const Layout: FC<ILayoutProps> = ({
                 <meta name="twitter:description" content={_description} key="twitter:desc" />
                 <meta name="twitter:image" content={_image} key="twitter:image" />
                 <meta name="author" content={_author} />
-                <meta name="theme-color" content="#ffffff" />
-                <link id="favicon" rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48" type="image/png" />
+                <meta name="theme-color" content="#f07f34" />
                 <link href="/robots.txt" />
                 <link rel="preconnect" href={getImageUrl()} />
-                <link rel="manifest" href="/manifest.json" />
+
+                <link rel="manifest" href="/site.webmanifest" />
                 <link rel="apple-touch-icon" href="icons/apple-icon.png" />
+                <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+                <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+                <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+                <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#0C2346" />
+                <meta name="msapplication-TileColor" content="#f07f34" />
             </Head>
 
             <SideNav open={open} collapsed={collapsedSidenav} setCollapsed={setCollapsedSidenav} />
