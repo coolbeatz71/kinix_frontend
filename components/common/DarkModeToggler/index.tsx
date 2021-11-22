@@ -8,7 +8,7 @@ const DarkModeToggler = () => {
     const { value, toggle } = useDarkLight();
 
     return (
-        <Affix style={{ position: 'fixed', bottom: 50, right: 50 }}>
+        <Affix style={{ position: 'fixed', bottom: 50, right: 20 }}>
             <Button
                 size="large"
                 shape="circle"
