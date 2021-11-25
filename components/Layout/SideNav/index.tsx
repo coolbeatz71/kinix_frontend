@@ -8,6 +8,7 @@ import Logo from '@components/common/Logo';
 import sectionList from '@constants/sidenav-section';
 import { BulbFilled, HomeFilled } from '@ant-design/icons';
 import Link from 'next/link';
+import useDarkLight from '@hooks/useDarkLight';
 
 const { Sider } = Layout;
 const { Item, SubMenu } = Menu;
@@ -21,6 +22,8 @@ interface ISideNavProps {
 const defaultOpen = [sectionList[0].key];
 
 const SideNav: FC<ISideNavProps> = ({ open, collapsed, setCollapsed }) => {
+    const { value } = useDarkLight();
+
     const [openSections, setOpenSections] = useState(defaultOpen);
 
     const onCollapse = (collapsed: boolean): void => {
@@ -67,7 +70,7 @@ const SideNav: FC<ISideNavProps> = ({ open, collapsed, setCollapsed }) => {
     return (
         <Sider
             collapsible
-            data-theme="light"
+            data-theme={value}
             collapsed={collapsed}
             onCollapse={onCollapse}
             className={styles.sidenav}

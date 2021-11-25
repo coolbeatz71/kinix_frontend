@@ -1,6 +1,7 @@
 @import 'styles/colors.scss';
 
 .toggler {
+    background: $white !important;
     &[data-theme='light'] {
         svg {
             color: $primary;

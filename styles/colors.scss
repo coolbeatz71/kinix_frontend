@@ -17,6 +17,16 @@ $dark: rgba(
     $alpha: 0.65,
 );
 
+$light: rgba(
+    $color: $white,
+    $alpha: 0.65,
+);
+
+$light50: rgba(
+    $color: $white,
+    $alpha: 0.5,
+);
+
 $bg-primary-light: rgba(
     $color: $neutral,
     $alpha: 0.5,

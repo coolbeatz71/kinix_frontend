@@ -6,6 +6,7 @@ import SearchInput from '@components/common/SearchInput';
 import CustomIcon from '@components/common/CustomIcon';
 import social from '@constants/social';
 import useDarkLight from '@hooks/useDarkLight';
+import { isDark } from '@constants/colors';
 
 const { Header: AntHeader } = Layout;
 
@@ -55,10 +56,10 @@ const Header: FC<IHeaderProps> = ({ open, collapsed, setOpen, setCollapsed }) =>
                     <Row justify="space-between" gutter={[24, 0]}>
                         <Col span={12}>
                             <Space size="middle">
-                                <Button type="primary" ghost>
+                                <Button type={isDark(value) ? 'default' : 'primary'} ghost>
                                     Sign In
                                 </Button>
-                                <Button type="primary">Sign Up</Button>
+                                <Button type={isDark(value) ? 'default' : 'primary'}>Sign Up</Button>
                             </Space>
                         </Col>
 
