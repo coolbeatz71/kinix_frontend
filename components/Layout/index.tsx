@@ -54,7 +54,7 @@ const Layout: FC<ILayoutProps> = ({
     }, [scrollHandler]);
 
     const _url = `${getPlatformUrl()}${router.asPath}`;
-    const _description = description || 'When words stop coming out, music pop up';
+    const _description = description || 'When words stop coming out, music pops up';
     const _siteName = 'Kiinox';
     const _author = 'Kiinox LTD';
     const _image = image ? `${getImageUrl()}/${image}` : `${getPlatformUrl()}/download.png`;
