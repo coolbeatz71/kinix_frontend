@@ -6,8 +6,48 @@
     overflow: hidden;
     overflow-y: auto;
 
-    &__content {
-        padding: $padding;
-        margin-top: $header-height;
+    background: url('/bg.svg');
+    background-repeat: repeat-y;
+
+    &[data-theme~='dark'] {
+        .layout__main {
+            background-color: $bg-primary-dark;
+            background-size: cover;
+
+            &__content {
+                background: $bg-primary-dark url('/bg-pattern-dark.svg');
+
+                background-attachment: fixed;
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+        }
+    }
+
+    &[data-theme~='light'] {
+        .layout__main {
+            background-color: $bg-primary-light;
+            background-size: cover;
+
+            &__content {
+                background: $bg-primary-light url('/bg-pattern-light.svg');
+
+                background-attachment: fixed;
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+        }
+    }
+
+    &__main {
+        width: 100%;
+
+        &__content {
+            padding: $padding;
+            margin-top: $header-height;
+
+            -webkit-backdrop-filter: saturate(180%) blur(10px);
+            backdrop-filter: saturate(180%) blur(10px);
+        }
     }
 }

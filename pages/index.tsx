@@ -1,12 +1,11 @@
+import React, { Fragment } from 'react';
+import { NextPage } from 'next';
 import Layout from '@components/Layout';
-import type { NextPage } from 'next';
-import Head from 'next/head';
-import React from 'react';
 
 const Home: NextPage = () => {
     return (
         <Layout title="Home">
-            <main>
+            <Fragment>
                 <h1>
                     Welcome to <a href="https://nextjs.org">Next.js!</a>
                 </h1>
@@ -20,7 +19,7 @@ const Home: NextPage = () => {
                         Sequi quisquam error accusamus, explicabo nisi dolorem. Esse, voluptatum!
                     </p>
                 ))}
-            </main>
+            </Fragment>
         </Layout>
     );
 };

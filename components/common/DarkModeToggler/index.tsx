@@ -1,14 +1,14 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { Affix, Button } from 'antd';
 import { BsFillSunFill, BsMoonStarsFill } from 'react-icons/bs';
 import styles from './index.module.scss';
 import useDarkLight from '@hooks/useDarkLight';
 
-const DarkModeToggler = () => {
+const DarkModeToggler: FC = () => {
     const { value, toggle } = useDarkLight();
 
     return (
-        <Affix style={{ position: 'fixed', bottom: 50, right: 20 }}>
+        <Affix style={{ position: 'fixed', bottom: 50, right: 20, zIndex: 1 }}>
             <Button
                 size="large"
                 shape="circle"

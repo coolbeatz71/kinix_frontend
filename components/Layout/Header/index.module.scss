@@ -3,7 +3,7 @@
 
 .header {
     position: fixed;
-    transition: all 0.2s;
+    transition: ease-out all 0.05s;
     height: $header-height;
 
     z-index: 99;
@@ -26,7 +26,7 @@
     }
 
     &[data-theme='light'] {
-        background-color: $bg-primary-light;
+        background-color: $light;
 
         [class~='hamburger-menu'] {
             svg {

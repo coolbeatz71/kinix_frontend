@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-page-custom-font */
 import React, { FC, ReactElement, useCallback, useEffect, useState } from 'react';
 import { Layout as AntLayout } from 'antd';
 import getPlatformUrl from '@helpers/getPlatformUrl';
@@ -9,6 +8,8 @@ import styles from './index.module.scss';
 import SideNav from './SideNav';
 import Header from './Header';
 import DarkModeToggler from '@components/common/DarkModeToggler';
+import useDarkLight from '@hooks/useDarkLight';
+import { PRIMARY, WARNING } from '@constants/colors';
 
 const { Footer, Content } = AntLayout;
 interface ILayoutProps {
@@ -35,6 +36,7 @@ const Layout: FC<ILayoutProps> = ({
     children,
 }) => {
     const router = useRouter();
+    const { value } = useDarkLight();
 
     const [open, setOpen] = useState<boolean>(true);
     const [collapsedSidenav, setCollapsedSidenav] = useState<boolean>(false);
@@ -62,16 +64,12 @@ const Layout: FC<ILayoutProps> = ({
     const _twitterHandle = '@KiinoxHQ';
 
     return (
-        <AntLayout className={styles.layout}>
+        <AntLayout className={styles.layout} data-theme={value}>
             <Head>
                 <title>
                     {title ? `${_title} | ` : ''}
                     {_siteName}
                 </title>
-                <link
-                    href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap"
-                    rel="stylesheet"
-                />
                 <link rel="canonical" href={_url} />
                 <meta name="description" content={_description} />
                 <meta property="og:type" content="website" key="og:type" />
@@ -88,7 +86,7 @@ const Layout: FC<ILayoutProps> = ({
                 <meta name="twitter:description" content={_description} key="twitter:desc" />
                 <meta name="twitter:image" content={_image} key="twitter:image" />
                 <meta name="author" content={_author} />
-                <meta name="theme-color" content="#f07f34" />
+                <meta name="theme-color" content={WARNING} />
                 <link href="/robots.txt" />
                 <link rel="preconnect" href={getImageUrl()} />
 
@@ -97,18 +95,18 @@ const Layout: FC<ILayoutProps> = ({
                 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
                 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
                 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-                <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#0C2346" />
-                <meta name="msapplication-TileColor" content="#f07f34" />
+                <link rel="mask-icon" href="/safari-pinned-tab.svg" color={PRIMARY} />
+                <meta name="msapplication-TileColor" content={WARNING} />
             </Head>
 
             <DarkModeToggler />
 
             <SideNav open={open} collapsed={collapsedSidenav} setCollapsed={setCollapsedSidenav} />
-            <AntLayout>
+            <div className={styles.layout__main}>
                 <Header open={open} setOpen={setOpen} collapsed={collapsedSidenav} setCollapsed={setCollapsedSidenav} />
-                <Content className={styles.layout__content}>{children}</Content>
+                <Content className={styles.layout__main__content}>{children}</Content>
                 {showFooter && <Footer className={styles.layout__footer}>footer</Footer>}
-            </AntLayout>
+            </div>
         </AntLayout>
     );
 };
