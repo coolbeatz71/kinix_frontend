@@ -3,7 +3,7 @@
 
 .header {
     position: fixed;
-    transition: all 0.2s;
+    transition: ease-out all 0.05s;
     height: $header-height;
 
     z-index: 99;
@@ -26,7 +26,7 @@
     }
 
     &[data-theme='light'] {
-        background-color: $bg-primary-light;
+        background-color: $light;
 
         [class~='hamburger-menu'] {
             svg {
@@ -47,6 +47,10 @@
                 }
             }
         }
+
+        .header__row__social {
+            color: $light;
+        }
     }
 
     &__row {
@@ -59,7 +63,7 @@
         }
 
         &__social {
-            width: 2.6rem;
+            width: 2.5rem;
             display: flex;
             align-items: center;
             justify-content: center;

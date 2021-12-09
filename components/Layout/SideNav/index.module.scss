@@ -2,6 +2,16 @@
 @import 'styles/dimensions.scss';
 
 .sidenav {
+    // prevent text selection
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    transition: ease-out all 0.05s;
+
     [class~='ant-layout-sider-children'] {
         //sider children
         position: fixed;
@@ -38,8 +48,21 @@
         background-repeat: no-repeat;
     }
 
+    .sidenav__menu__items {
+        display: flex;
+        align-items: center;
+    }
+
     &[data-theme='light'] {
         background-color: $white;
+
+        .sidenav__menu {
+            &__sub {
+                [class~='ant-menu-inline'] {
+                    background-color: unset;
+                }
+            }
+        }
 
         &[data-collapsed='false'] {
             .sidenav__logo {
@@ -78,10 +101,6 @@
             }
         }
 
-        .sidenav__menu__items {
-            display: flex;
-            align-items: center;
-        }
         .sidenav__menu__items:hover {
             background-color: $bg-warning-fade;
 
@@ -99,8 +118,107 @@
         }
     }
 
-    [data-theme='dark'] {
-        background-color: $bg-primary-dark;
+    &[data-theme='dark'] {
+        .sidenav__menu {
+            background-color: $bg-primary-dark;
+            &_divider {
+                background-color: $light50;
+            }
+            &__sub {
+                [class~='ant-menu-inline'] {
+                    background-color: $bg-primary-dark;
+                }
+                [class~='ant-menu-submenu-title'] {
+                    color: $light50;
+
+                    i {
+                        color: $light50;
+                    }
+                }
+            }
+        }
+
+        .sidenav__divider {
+            [class~='ant-divider'] {
+                background-color: $light50;
+            }
+        }
+
+        &[data-collapsed='false'] {
+            .sidenav__logo {
+                width: $max_sidenav_width;
+                background-size: 78%;
+                background-image: url('/logo/large_dark.svg');
+            }
+
+            .sidenav__menu__items {
+                svg,
+                span,
+                a {
+                    color: $white;
+                }
+                &:hover {
+                    background-color: $bg-warning-fade;
+                    -webkit-backdrop-filter: saturate(180%) blur(20px);
+                    backdrop-filter: saturate(180%) blur(20px);
+                    svg,
+                    span,
+                    a {
+                        color: $white;
+                        font-weight: 600;
+                    }
+                }
+            }
+        }
+
+        &[data-collapsed='true'] {
+            .sidenav__logo {
+                width: $min_sidenav_width;
+                background-size: 74%;
+                background-image: url('/logo/short_dark.svg');
+            }
+
+            .sidenav__menu__items {
+                svg,
+                span {
+                    color: $white;
+                }
+                &:hover {
+                    background-color: $bg-warning-fade;
+                    -webkit-backdrop-filter: saturate(180%) blur(20px);
+                    backdrop-filter: saturate(180%) blur(20px);
+                    span {
+                        font-weight: 600;
+                    }
+                }
+            }
+        }
+
+        [class~='ant-menu-item-selected'] {
+            background-color: $bg-primary-dark;
+
+            span,
+            svg {
+                color: $white;
+                font-weight: 600;
+            }
+        }
+
+        .sidenav__menu__items:hover {
+            background-color: $bg-warning-fade;
+
+            span,
+            svg {
+                color: $black;
+            }
+        }
+        [class~='ant-layout-sider-trigger'] {
+            background: $bg-sidenav-triger;
+            span {
+                color: $white;
+                font-weight: bold;
+            }
+        }
     }
 
     [class~='ant-layout-sider-children'] {

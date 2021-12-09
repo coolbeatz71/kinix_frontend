@@ -2,9 +2,10 @@ $primary: #0c2346;
 $success: #1dd3b0;
 $error: #ef476f;
 $warning: #f07f34;
-$neutral: #b0d7ff;
+$neutral: #f9fcff;
 $white: #ffffff;
 $black: #000000;
+$yellow: #ffc300;
 
 $bg-warning-fade: rgba(
     $color: $warning,
@@ -16,13 +17,23 @@ $dark: rgba(
     $alpha: 0.65,
 );
 
+$light: rgba(
+    $color: $white,
+    $alpha: 0.65,
+);
+
+$light50: rgba(
+    $color: $white,
+    $alpha: 0.5,
+);
+
 $bg-primary-light: rgba(
     $color: $neutral,
-    $alpha: 0.5,
+    $alpha: 0.65,
 );
 $bg-primary-dark: rgba(
     $color: #0c2346,
-    $alpha: 0.5,
+    $alpha: 0.65,
 );
 
 $twitter: #1da1f2;
