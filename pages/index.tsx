@@ -1,25 +1,12 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { NextPage } from 'next';
 import Layout from '@components/Layout';
+import HomeContainer from '@containers/Home';
 
 const Home: NextPage = () => {
     return (
         <Layout title="Home">
-            <Fragment>
-                <h1>
-                    Welcome to <a href="https://nextjs.org">Next.js!</a>
-                </h1>
-                {Array.from(Array(100).keys()).map((item) => (
-                    <p key={item}>
-                        Get started by editing <code>pages/index.js</code>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem molestias est nemo! Nemo,
-                        delectus. Neque officiis ab deleniti earum minima repellendus excepturi voluptas? Incidunt
-                        maxime excepturi eum ut laboriosam eaque. Lorem ipsum, dolor sit amet consectetur adipisicing
-                        elit. Omnis vel vitae, impedit, magni ab ullam veniam, sapiente iste tempore consectetur ea.
-                        Sequi quisquam error accusamus, explicabo nisi dolorem. Esse, voluptatum!
-                    </p>
-                ))}
-            </Fragment>
+            <HomeContainer />
         </Layout>
     );
 };
