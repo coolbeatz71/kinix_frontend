@@ -10,11 +10,12 @@
     -ms-user-select: none;
     user-select: none;
 
-    transition: ease-out all 0.05s;
+    transition: ease-out all 0.005s;
 
     [class~='ant-layout-sider-children'] {
         //sider children
         position: fixed;
+        z-index: 1;
     }
 
     &__divider {
@@ -195,11 +196,11 @@
         }
 
         [class~='ant-menu-item-selected'] {
-            background-color: $bg-primary-dark;
+            background-color: $bg-primary-light;
 
             span,
             svg {
-                color: $white;
+                color: $dark;
                 font-weight: 600;
             }
         }
