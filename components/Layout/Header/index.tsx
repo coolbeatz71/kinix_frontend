@@ -40,7 +40,7 @@ const Header: FC<IHeaderProps> = ({ open, collapsed, setOpen, setCollapsed }) =>
 
     return (
         <AntHeader data-theme={value} className={styles.header} style={headerStyles}>
-            <Row align="middle" className={styles.header__row} justify="space-between" gutter={24}>
+            <Row align="middle" className={styles.header__row} justify="space-between">
                 <Col span={1} className="p-0">
                     <Button
                         type="text"
@@ -48,19 +48,20 @@ const Header: FC<IHeaderProps> = ({ open, collapsed, setOpen, setCollapsed }) =>
                         icon={<CustomIcon type="hamburger-menu" className="hamburger-menu" />}
                     />
                 </Col>
+
                 {!open && (
                     <Col span={5}>
                         <Logo canRedirect className={styles.header__row__logo} />
                     </Col>
                 )}
 
-                <Col span={8}>
+                <Col span={7}>
                     <SearchInput />
                 </Col>
 
                 <Col span={10} className="d-flex flex-row-reverse">
-                    <Row justify="space-between" gutter={[24, 0]}>
-                        <Col span={12}>
+                    <Row justify="space-between" gutter={[32, 0]}>
+                        <Col span={12} className="d-flex justify-content-center">
                             <Space size="middle">
                                 <Button type={isDark(value) ? 'default' : 'primary'} ghost>
                                     Sign In
@@ -69,7 +70,7 @@ const Header: FC<IHeaderProps> = ({ open, collapsed, setOpen, setCollapsed }) =>
                             </Space>
                         </Col>
 
-                        <Col span={12}>
+                        <Col span={12} className="d-flex justify-content-end">
                             {social.map((item) => (
                                 <Button
                                     type="text"
