@@ -66,16 +66,16 @@
 
         &[data-collapsed='false'] {
             .sidenav__logo {
-                width: $max_sidenav_width;
-                background-size: 78%;
+                width: $max-sidenav-width;
+                background-size: $logo-bg-size;
                 background-image: url('/logo/large_light.svg');
             }
         }
 
         &[data-collapsed='true'] {
             .sidenav__logo {
-                width: $min_sidenav_width;
-                background-size: 74%;
+                width: $min-sidenav-width;
+                background-size: $logo-bg-size;
                 background-image: url('/logo/short_light.svg');
             }
 
@@ -146,8 +146,8 @@
 
         &[data-collapsed='false'] {
             .sidenav__logo {
-                width: $max_sidenav_width;
-                background-size: 78%;
+                width: $max-sidenav-width;
+                background-size: $logo-bg-size;
                 background-image: url('/logo/large_dark.svg');
             }
 
@@ -173,8 +173,8 @@
 
         &[data-collapsed='true'] {
             .sidenav__logo {
-                width: $min_sidenav_width;
-                background-size: 74%;
+                width: $min-sidenav-width;
+                background-size: $logo-bg-size;
                 background-image: url('/logo/short_dark.svg');
             }
 
@@ -261,7 +261,7 @@
 
             &:hover {
                 justify-content: flex-start;
-                width: $max_sidenav_width;
+                width: $max-sidenav-width;
                 padding-left: 0 !important;
 
                 span,

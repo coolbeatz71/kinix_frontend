@@ -7,6 +7,7 @@ import CustomIcon from '@components/common/CustomIcon';
 import social from '@constants/social';
 import useDarkLight from '@hooks/useDarkLight';
 import { isDark } from '@constants/colors';
+import Logo from '@components/common/Logo';
 
 const { Header: AntHeader } = Layout;
 
@@ -40,13 +41,18 @@ const Header: FC<IHeaderProps> = ({ open, collapsed, setOpen, setCollapsed }) =>
     return (
         <AntHeader data-theme={value} className={styles.header} style={headerStyles}>
             <Row align="middle" className={styles.header__row} justify="space-between" gutter={24}>
-                <Col span={6} className="p-0">
+                <Col span={1} className="p-0">
                     <Button
                         type="text"
                         onClick={handleToggle}
                         icon={<CustomIcon type="hamburger-menu" className="hamburger-menu" />}
                     />
                 </Col>
+                {!open && (
+                    <Col span={5}>
+                        <Logo canRedirect className={styles.header__row__logo} />
+                    </Col>
+                )}
 
                 <Col span={8}>
                     <SearchInput />
