@@ -17,6 +17,16 @@ $dark: rgba(
     $alpha: 0.65,
 );
 
+$dark50: rgba(
+    $color: $black,
+    $alpha: 0.5,
+);
+
+$dark10: rgba(
+    $color: $black,
+    $alpha: 0.08,
+);
+
 $light: rgba(
     $color: $white,
     $alpha: 0.65,
@@ -27,10 +37,16 @@ $light50: rgba(
     $alpha: 0.5,
 );
 
+$light10: rgba(
+    $color: $white,
+    $alpha: 0.08,
+);
+
 $bg-primary-light: rgba(
     $color: $neutral,
     $alpha: 0.65,
 );
+
 $bg-primary-dark: rgba(
     $color: #0c2346,
     $alpha: 0.65,

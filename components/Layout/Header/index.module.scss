@@ -44,10 +44,23 @@
                 background-position: left center;
             }
         }
+
+        [class~='ant-btn-text']:hover {
+            background: $dark10;
+        }
     }
 
     &[data-theme='dark'] {
         background-color: $bg-primary-dark;
+
+        [class~='ant-btn-default']:hover {
+            border-color: $white;
+            color: $white;
+        }
+
+        [class~='ant-btn-text']:hover {
+            background: $light10;
+        }
 
         [class~='hamburger-menu'] {
             svg {
