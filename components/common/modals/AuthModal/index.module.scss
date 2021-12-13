@@ -1,0 +1,77 @@
+@import 'styles/dimensions.scss';
+
+.modal_icon {
+    [class~='ant-modal-content'] {
+        padding-top: 160px;
+    }
+    &__icon {
+        height: 120px;
+        width: auto;
+        position: absolute;
+        top: 40px;
+        left: 0;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+@media screen and (min-width: #{$lg-size}) {
+    .modal {
+        display: flex !important;
+        width: calc(#{$modal-padding} * 10) !important;
+        justify-content: center;
+    }
+}
+
+.modal,
+.modal_icon {
+    [class~='ant-modal-content'] {
+        @media screen and (min-width: #{$lg-size}) {
+            width: calc(#{$modal-padding} * 8);
+        }
+
+        background-repeat: no-repeat;
+        background-size: 400px, 400px, 200px, 200px;
+        background-position: -200px -200px, calc(100% + 200px) clamp(200px, calc(100% + 100px), calc(100% + 100px)),
+            0px clamp(200px, 100%, 100%), 100% 0px;
+        [class~='ant-modal-close'] {
+            width: $modal-padding;
+            height: calc(#{$modal-padding} * 0.66);
+            margin-top: calc(#{$padding} / 2);
+
+            @media screen and (max-width: #{$lg-size}) {
+                width: calc(#{$padding} * 2);
+            }
+
+            [class~='ant-modal-close-x'] {
+                height: 100%;
+                width: 100%;
+                line-height: calc(#{$modal-padding} * 0.66);
+            }
+        }
+        [class~='ant-modal-header'] {
+            text-align: center;
+            padding: calc(#{$padding} / 2) $modal-padding;
+            @media screen and (max-width: #{$lg-size}) {
+                padding: $padding calc(#{$padding} * 2);
+            }
+            background-color: transparent;
+            [class~='ant-modal-title'] {
+                height: calc(#{$modal-padding} * 0.66);
+                line-height: calc(#{$modal-padding} * 0.66);
+                font-size: calc(#{$modal-padding} * 0.44);
+                [class~='ant-typography'] {
+                    margin-bottom: 0px;
+                    line-height: inherit;
+                }
+            }
+        }
+        [class~='ant-modal-body'] {
+            padding: calc(#{$padding} * 2) $modal-padding;
+            @media screen and (max-width: #{$lg-size}) {
+                padding: calc(#{$padding} * 2);
+            }
+        }
+    }
+}

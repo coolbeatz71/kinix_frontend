@@ -1,5 +1,5 @@
-import React, { FC } from 'react';
-import { Button, Col, Layout, Row, Space } from 'antd';
+import React, { FC, useState } from 'react';
+import { Button, Col, Form, Input, Layout, Row, Space } from 'antd';
 import getSideNavWidth from '@helpers/getSideNavWidth';
 import styles from './index.module.scss';
 import SearchInput from '@components/common/SearchInput';
@@ -8,6 +8,8 @@ import social from '@constants/social';
 import useDarkLight from '@hooks/useDarkLight';
 import { isDark } from '@constants/colors';
 import Logo from '@components/common/Logo';
+import AuthModal from '@components/common/modals/AuthModal';
+import FloatTextInput from '@components/common/TextInput';
 
 const { Header: AntHeader } = Layout;
 
@@ -20,6 +22,8 @@ interface IHeaderProps {
 
 const Header: FC<IHeaderProps> = ({ open, collapsed, setOpen, setCollapsed }) => {
     const { value } = useDarkLight();
+
+    const [openLoginModal, setOpenLoginModal] = useState<boolean>(false);
 
     const handleToggle = (): void => {
         if (collapsed === open) {
@@ -40,6 +44,15 @@ const Header: FC<IHeaderProps> = ({ open, collapsed, setOpen, setCollapsed }) =>
 
     return (
         <AntHeader data-theme={value} className={styles.header} style={headerStyles}>
+            <AuthModal title="Login" visible={openLoginModal} onCloseClick={() => setOpenLoginModal(false)}>
+                <Form size="large" name="user_login" className="login-form" layout="vertical">
+                    <Form.Item name="email">
+                        <FloatTextInput label="Email" placeholder="Email here please" required>
+                            <Input size="large" />
+                        </FloatTextInput>
+                    </Form.Item>
+                </Form>
+            </AuthModal>
             <Row align="middle" className={styles.header__row} justify="space-between">
                 <Col span={1} className="p-0">
                     <Button
@@ -64,7 +77,11 @@ const Header: FC<IHeaderProps> = ({ open, collapsed, setOpen, setCollapsed }) =>
                     <Row justify="space-between" gutter={[32, 0]}>
                         <Col span={12} className="d-flex justify-content-center">
                             <Space size="middle">
-                                <Button type={isDark(value) ? 'default' : 'primary'} ghost>
+                                <Button
+                                    type={isDark(value) ? 'default' : 'primary'}
+                                    ghost
+                                    onClick={() => setOpenLoginModal(true)}
+                                >
                                     Sign In
                                 </Button>
                                 <Button type={isDark(value) ? 'default' : 'primary'}>Sign Up</Button>
