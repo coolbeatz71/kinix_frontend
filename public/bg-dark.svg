@@ -1,6 +1,4 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- Created with Inkscape (http://www.inkscape.org/) -->
-
 <svg
      xmlns:dc="http://purl.org/dc/elements/1.1/"
      xmlns:cc="http://creativecommons.org/ns#"
@@ -70,7 +68,7 @@
              inkscape:connector-curvature="0"
              id="path4232"
              d="M 1330.0782,3316.6316 C 1304.7953,3314.2555 1228.0535,3307.4963 1196.3361,3394.8646 L 1209.6228,3429.7133 C 1223.1285,3413.8872 1246.0929,3403.1019 1273.9922,3402.1096 1267.5447,3368.5317 1288.2557,3330.6591 1330.0782,3316.6316 z"
-             style="color:#000000;fill:#968abb;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+             style="color:#000000;fill:#1890ff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
              inkscape:transform-center-x="-169.55982"
              inkscape:transform-center-y="40.544415" />
         <path
@@ -78,7 +76,7 @@
              inkscape:connector-curvature="0"
              id="path4234"
              d="M 1326.2031,3317.4408 C 1308.9378,3322.483 1267.265,3344.5156 1273.0642,3401.2682 L 1293.7689,3416.8903 C 1296.6804,3402.9972 1304.6471,3393.0806 1321.0282,3383.3624 1306.1866,3365.3651 1305.7481,3339.5175 1326.2031,3317.4408 z"
-             style="color:#000000;fill:#62549e;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+             style="color:#000000;fill:#ef476f;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
              inkscape:transform-center-x="-205.71184"
              inkscape:transform-center-y="34.962077" />
         <path
@@ -94,7 +92,7 @@
              inkscape:connector-curvature="0"
              id="path4238"
              d="M 1354.352,3402.0358 C 1424.7668,3270.39 1582.495,2844.4075 1236.1594,2554.3027 L 1001.8669,2543.6425 C 1045.1771,2645.844 1080.8287,2768.6955 1007.9776,2914.283 1206.2518,2963.4589 1369.4378,3175.7848 1354.352,3402.0358 z"
-             style="color:#000000;fill:#4cb5bc;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
+             style="color:#000000;fill:#FF00C8;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
         <path
              sodipodi:nodetypes="ccccc"
              inkscape:connector-curvature="0"
@@ -120,7 +118,7 @@
              inkscape:connector-curvature="0"
              id="path4234-1"
              d="M 1349.5017,2329.7518 C 1331.7305,2332.5266 1287.5655,2349.0041 1286.0014,2406.0308 L 1304.5199,2424.1913 C 1309.1978,2410.7893 1318.3762,2401.9823 1335.8733,2394.4565 1323.4751,2374.6964 1326.3718,2349.0079 1349.5017,2329.7518 z"
-             style="color:#000000;fill:#62549e;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+             style="color:#000000;fill:#ef476f;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
              inkscape:transform-center-x="-205.71184"
              inkscape:transform-center-y="34.962077" />
         <path
@@ -182,7 +180,7 @@
             <path
                  inkscape:transform-center-y="34.962077"
                  inkscape:transform-center-x="-205.71184"
-                 style="color:#000000;fill:#62549e;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+                 style="color:#000000;fill:#ef476f;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
                  d="M 642.6598,2388.1078 C 660.60443,2389.3347 707.32095,2383.0398 721.46679,2327.7734 L 707.42663,2305.965 C 699.89872,2317.9993 688.99884,2324.5567 670.27012,2328.0236 677.98768,2350.0376 669.47772,2374.448 642.6598,2388.1078 z"
                  id="path4234-1-1"
                  inkscape:connector-curvature="0"
@@ -201,7 +199,7 @@
              inkscape:connector-curvature="0"
              id="path4442"
              d="M -403.85426,3324.9127 C -160.24798,3311.1938 492.12287,3193.8874 619.021,2527.369 L 459.92465,2184.9737 C 410.10557,2276.7664 137.35257,2529.1856 -50.80337,2525.1196 43.621321,2851.9843 -108.56156,3174.5374 -403.85426,3324.9127 z"
-             style="color:#000000;fill:#3996b1;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
+             style="color:#000000;fill:#0066FF;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
         <path
              sodipodi:nodetypes="ccccc"
              inkscape:connector-curvature="0"
@@ -215,7 +213,7 @@
              inkscape:connector-curvature="0"
              id="path4234-1-1-6"
              d="M 587.84128,3058.424 C 605.21376,3053.7644 647.36313,3032.6578 642.81912,2975.791 L 622.4646,2959.7153 C 619.24688,2973.5407 611.06305,2983.2788 594.47126,2992.6328 608.91164,3010.9536 608.77901,3036.8045 587.84128,3058.424 z"
-             style="color:#000000;fill:#62549e;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+             style="color:#000000;fill:#ef476f;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
              inkscape:transform-center-x="-205.71184"
              inkscape:transform-center-y="34.962077" />
         <path

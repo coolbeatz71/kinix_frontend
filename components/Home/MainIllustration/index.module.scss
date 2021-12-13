@@ -6,7 +6,7 @@
 
 .illustration {
     border-radius: $border-radius;
-    padding: $content-padding;
+    padding: calc(#{$content-padding} / 1.4) $content-padding;
 
     &[data-theme='light'] {
         background: $light50;
@@ -60,7 +60,7 @@
         &__subscribe {
             border-radius: $border-radius;
 
-            width: 80%;
+            width: 70%;
 
             padding: calc(#{$padding}/ 1.5);
             margin-top: $content-padding;
