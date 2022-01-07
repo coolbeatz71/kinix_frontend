@@ -1,4 +1,6 @@
+@import 'styles/colors.scss';
 @import 'styles/dimensions.scss';
+@import 'styles/_mixins.scss';
 
 .modal_icon {
     [class~='ant-modal-content'] {
@@ -31,10 +33,11 @@
             width: calc(#{$modal-padding} * 8);
         }
 
+        background: url('/bg-pattern-light.svg') $white;
+
         background-repeat: no-repeat;
-        background-size: 400px, 400px, 200px, 200px;
-        background-position: -200px -200px, calc(100% + 200px) clamp(200px, calc(100% + 100px), calc(100% + 100px)),
-            0px clamp(200px, 100%, 100%), 100% 0px;
+        background-size: cover;
+
         [class~='ant-modal-close'] {
             width: $modal-padding;
             height: calc(#{$modal-padding} * 0.66);
@@ -50,18 +53,24 @@
                 line-height: calc(#{$modal-padding} * 0.66);
             }
         }
+
         [class~='ant-modal-header'] {
             text-align: center;
             padding: calc(#{$padding} / 2) $modal-padding;
+            background-color: transparent;
+            @include preventTextSelection;
+
             @media screen and (max-width: #{$lg-size}) {
                 padding: $padding calc(#{$padding} * 2);
             }
-            background-color: transparent;
+
             [class~='ant-modal-title'] {
                 height: calc(#{$modal-padding} * 0.66);
                 line-height: calc(#{$modal-padding} * 0.66);
                 font-size: calc(#{$modal-padding} * 0.44);
+
                 [class~='ant-typography'] {
+                    font-family: Poppins;
                     margin-bottom: 0px;
                     line-height: inherit;
                 }
@@ -69,6 +78,7 @@
         }
         [class~='ant-modal-body'] {
             padding: calc(#{$padding} * 2) $modal-padding;
+
             @media screen and (max-width: #{$lg-size}) {
                 padding: calc(#{$padding} * 2);
             }

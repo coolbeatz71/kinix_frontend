@@ -6,16 +6,18 @@ import { CloseCircleOutlined } from '@ant-design/icons';
 import styles from './index.module.scss';
 import { APP_NAME } from '@constants/platform';
 
+const { Title } = Typography;
+
 interface Props {
     title?: string | string[];
     trigger?: ReactElement;
-    visible?: boolean;
+    open?: boolean;
     titleLevel?: 1 | 2 | 3 | 4;
     titleType?: 'danger' | 'secondary' | 'warning';
     noTitle?: boolean;
     icon?: string;
     iconStyle?: CSSProperties;
-    onVisible?: () => void;
+    onOpen?: () => void;
     onCancel?: () => void;
     onCloseClick?: () => void;
     children: string | string[] | ReactElement | ReactElement[];
@@ -24,12 +26,12 @@ interface Props {
 const AuthModal: FC<Props> = ({
     title = ` `,
     trigger,
-    visible: vs = false,
+    open: visible = false,
     titleLevel = 2,
     titleType,
     noTitle = false,
     icon,
-    onVisible = () => {
+    onOpen = () => {
         //
     },
     onCancel = () => {
@@ -38,38 +40,40 @@ const AuthModal: FC<Props> = ({
     onCloseClick,
     children,
 }) => {
-    const [visible, setVisible] = useState(vs);
+    const [open, setOpen] = useState(visible);
 
     useEffect(() => {
-        if (visible !== vs) setVisible(vs);
-    }, [visible, vs]);
+        if (open !== visible) setOpen(visible);
+    }, [open, visible]);
 
     const _title = noTitle ? (
         <div />
     ) : (
-        <Typography.Title level={titleLevel} ellipsis type={titleType}>
+        <Title level={titleLevel} ellipsis type={titleType}>
             {title}
-        </Typography.Title>
+        </Title>
     );
+
+    const closeIcon = <CloseCircleOutlined style={{ fontSize: '22px' }} />;
 
     return (
         <>
             {trigger &&
                 cloneElement(trigger, {
                     onClick: () => {
-                        setVisible(true);
-                        onVisible();
+                        setOpen(true);
+                        onOpen();
                     },
                 })}
             <Modal
                 footer={null}
                 destroyOnClose
                 title={_title}
-                visible={visible}
+                visible={open}
+                closeIcon={closeIcon}
                 className={styles[icon ? 'modal_icon' : 'modal']}
-                closeIcon={<CloseCircleOutlined style={{ fontSize: '22px' }} />}
                 onCancel={() => {
-                    setVisible(false);
+                    setOpen(false);
                     if (onCloseClick) onCloseClick();
                     else onCancel();
                 }}
