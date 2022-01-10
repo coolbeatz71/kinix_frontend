@@ -77,7 +77,7 @@
             }
         }
         [class~='ant-modal-body'] {
-            padding: calc(#{$padding} * 2) $modal-padding;
+            padding: calc(#{$padding} * 1.2) $modal-padding;
 
             @media screen and (max-width: #{$lg-size}) {
                 padding: calc(#{$padding} * 2);

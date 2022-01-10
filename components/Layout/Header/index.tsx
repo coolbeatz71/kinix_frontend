@@ -10,6 +10,7 @@ import { isDark } from '@constants/colors';
 import Logo from '@components/common/Logo';
 
 import LoginModal from '@components/Auth/Login';
+import SignUpModal from '@components/Auth/SignUp';
 
 const { Header: AntHeader } = Layout;
 
@@ -24,6 +25,8 @@ const Header: FC<IHeaderProps> = ({ open, collapsed, setOpen, setCollapsed }) =>
     const { value } = useDarkLight();
 
     const [openLoginModal, setOpenLoginModal] = useState<boolean>(false);
+    const [openSignUpModal, setOpenSignUpModal] = useState<boolean>(false);
+    const [, setOpenForgotPasswordModal] = useState<boolean>(false);
 
     const handleToggle = (): void => {
         if (collapsed === open) {
@@ -44,7 +47,26 @@ const Header: FC<IHeaderProps> = ({ open, collapsed, setOpen, setCollapsed }) =>
 
     return (
         <AntHeader data-theme={value} className={styles.header} style={headerStyles}>
-            <LoginModal open={openLoginModal} onCloseClick={() => setOpenLoginModal(false)} />
+            <LoginModal
+                open={openLoginModal}
+                onCloseClick={() => setOpenLoginModal(false)}
+                openSignUp={() => {
+                    setOpenLoginModal(false);
+                    setOpenSignUpModal(true);
+                }}
+                openForgotPassword={() => {
+                    setOpenLoginModal(false);
+                    setOpenForgotPasswordModal(true);
+                }}
+            />
+            <SignUpModal
+                open={openSignUpModal}
+                onCloseClick={() => setOpenSignUpModal(false)}
+                openLogin={() => {
+                    setOpenSignUpModal(false);
+                    setOpenLoginModal(true);
+                }}
+            />
 
             <Row align="middle" className={styles.header__row} justify="space-between">
                 <Col span={1} className="p-0">
@@ -72,12 +94,17 @@ const Header: FC<IHeaderProps> = ({ open, collapsed, setOpen, setCollapsed }) =>
                             <Space size="middle">
                                 <Button
                                     ghost
-                                    type={isDark(value) ? 'default' : 'primary'}
                                     onClick={() => setOpenLoginModal(true)}
+                                    type={isDark(value) ? 'default' : 'primary'}
                                 >
                                     Sign In
                                 </Button>
-                                <Button type={isDark(value) ? 'default' : 'primary'}>Sign Up</Button>
+                                <Button
+                                    onClick={() => setOpenSignUpModal(true)}
+                                    type={isDark(value) ? 'default' : 'primary'}
+                                >
+                                    Sign Up
+                                </Button>
                             </Space>
                         </Col>
 

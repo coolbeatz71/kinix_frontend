@@ -11,12 +11,14 @@ const { Password } = Input;
 
 interface ILoginProps {
     open: boolean;
+    openSignUp: () => void;
     onCloseClick: () => void;
+    openForgotPassword: () => void;
 }
 
 const btnStyles = `d-flex align-items-center justify-content-center`;
 
-const LoginModal: FC<ILoginProps> = ({ open, onCloseClick }) => {
+const LoginModal: FC<ILoginProps> = ({ open, openSignUp, onCloseClick, openForgotPassword }) => {
     return (
         <AuthModal title="Login" open={open} onCloseClick={onCloseClick}>
             <Form size="large" name="user_login" className={styles.loginForm} layout="vertical">
@@ -28,7 +30,7 @@ const LoginModal: FC<ILoginProps> = ({ open, onCloseClick }) => {
                 <Divider className="my-4 py-2">OR</Divider>
 
                 <Item name="email">
-                    <FloatTextInput label="Email" placeholder="Email Address" required>
+                    <FloatTextInput label="Email or Username" placeholder="Email or Username" required>
                         <Input size="large" />
                     </FloatTextInput>
                 </Item>
@@ -39,16 +41,22 @@ const LoginModal: FC<ILoginProps> = ({ open, onCloseClick }) => {
                     </FloatTextInput>
                 </Item>
 
-                <Button block size="large" type="primary" className={`mt-2 py-4 ${btnStyles}`}>
+                <Button block size="large" type="primary" className={`mt-2 ${btnStyles}`}>
                     Login
                 </Button>
 
                 <div className="mt-4">
-                    <Button block type="text" className={`mb-1 ${styles.loginForm__footer__btn}`}>
+                    <Button block type="text" className={`mb-1 ${styles.loginForm__footer__btn}`} onClick={openSignUp}>
                         Do not have an account? Sign Up
                     </Button>
 
-                    <Button block type="text" ghost className={styles.loginForm__footer__btn}>
+                    <Button
+                        block
+                        type="text"
+                        ghost
+                        className={styles.loginForm__footer__btn}
+                        onClick={openForgotPassword}
+                    >
                         Forgot Password?
                     </Button>
                 </div>

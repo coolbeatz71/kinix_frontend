@@ -8,6 +8,8 @@ import { APP_NAME } from '@constants/platform';
 
 const { Title } = Typography;
 
+// TODO: handle the open and close context inside redux, instead of using internal state
+
 interface Props {
     title?: string | string[];
     trigger?: ReactElement;
@@ -71,6 +73,7 @@ const AuthModal: FC<Props> = ({
                 title={_title}
                 visible={open}
                 closeIcon={closeIcon}
+                style={{ top: 16 }}
                 className={styles[icon ? 'modal_icon' : 'modal']}
                 onCancel={() => {
                     setOpen(false);

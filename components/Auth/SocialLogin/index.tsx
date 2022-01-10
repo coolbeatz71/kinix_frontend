@@ -2,21 +2,26 @@ import React, { FC, Fragment } from 'react';
 import { Button } from 'antd';
 
 import { GoogleOutlined, FacebookFilled } from '@ant-design/icons';
+import { EAuthContext } from '@constants/auth-context';
 
 interface ISocialLoginProps {
+    context?: EAuthContext;
     googleClassName: string;
     facebookClassName: string;
 }
 
-const SocialLogin: FC<ISocialLoginProps> = ({ googleClassName, facebookClassName }) => {
+const SocialLogin: FC<ISocialLoginProps> = ({ context = EAuthContext.LOGIN, googleClassName, facebookClassName }) => {
+    const isLogin = context === EAuthContext.LOGIN;
+    const contextType = isLogin ? 'In' : 'Up';
+
     return (
         <Fragment>
             <Button block type="text" size="large" icon={<GoogleOutlined />} className={googleClassName}>
-                Sign In with Google
+                Sign {contextType} with Google
             </Button>
 
             <Button block type="text" size="large" icon={<FacebookFilled />} className={facebookClassName}>
-                Sign In with Facebook
+                Sign {contextType} with Facebook
             </Button>
         </Fragment>
     );
