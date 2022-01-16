@@ -6,10 +6,10 @@
     overflow: hidden;
     overflow-y: auto;
 
-    background: url('/bg.svg');
-    background-repeat: repeat-y;
-
     &[data-theme~='dark'] {
+        background: url('/bg-dark.svg');
+        background-repeat: repeat-y;
+
         .layout__main {
             background-color: $bg-primary-dark;
             background-size: cover;
@@ -25,6 +25,9 @@
     }
 
     &[data-theme~='light'] {
+        background: url('/bg-light.svg');
+        background-repeat: repeat-y;
+
         .layout__main {
             background-color: $bg-primary-light;
             background-size: cover;
@@ -46,8 +49,8 @@
             padding: $padding;
             margin-top: $header-height;
 
-            -webkit-backdrop-filter: saturate(180%) blur(10px);
-            backdrop-filter: saturate(180%) blur(10px);
+            -webkit-backdrop-filter: saturate(180%) blur(50px);
+            backdrop-filter: saturate(180%) blur(50px);
         }
     }
 }

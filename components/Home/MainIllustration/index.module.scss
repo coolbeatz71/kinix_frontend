@@ -1,0 +1,92 @@
+@import 'styles/colors.scss';
+@import 'styles/dimensions.scss';
+@import 'styles/_mixins.scss';
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900');
+
+.illustration {
+    border-radius: $border-radius;
+    padding: calc(#{$content-padding} / 1.4) $content-padding;
+
+    &[data-theme='light'] {
+        background: $light50;
+
+        .illustration__legend {
+            &__text {
+                color: $primary !important;
+            }
+
+            &__subscribe {
+                background: $light;
+
+                &__text {
+                    color: $primary;
+                }
+            }
+        }
+    }
+
+    &[data-theme='dark'] {
+        background: $bg-primary-dark;
+
+        .illustration__legend {
+            &__text {
+                color: $white !important;
+            }
+
+            &__subscribe {
+                background: $primary;
+
+                &__text {
+                    color: $light;
+                }
+            }
+        }
+    }
+
+    &__legend {
+        display: flex;
+        flex-flow: column;
+        justify-content: center;
+
+        &__text {
+            @include preventTextSelection;
+            font-weight: 900 !important;
+            font-family: Poppins;
+            font-size: 3.3rem !important;
+            line-height: 1.5 !important;
+        }
+
+        &__subscribe {
+            border-radius: $border-radius;
+
+            width: 70%;
+
+            padding: calc(#{$padding}/ 1.5);
+            margin-top: $content-padding;
+
+            &__text {
+                font-weight: 700;
+                font-size: 17px;
+                @include preventTextSelection;
+            }
+
+            [class~='ant-btn'] {
+                display: flex;
+                align-items: center;
+                background: $youtube;
+            }
+        }
+    }
+
+    &__slider {
+        width: 512px;
+        height: 512px;
+        background: url('/vector_music.svg');
+    }
+
+    [class~='ant-carousel'] {
+        display: flex;
+        justify-content: flex-end;
+    }
+}

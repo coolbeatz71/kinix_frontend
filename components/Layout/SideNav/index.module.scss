@@ -1,20 +1,15 @@
 @import 'styles/colors.scss';
 @import 'styles/dimensions.scss';
+@import 'styles/_mixins.scss';
 
 .sidenav {
-    // prevent text selection
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-
-    transition: ease-out all 0.05s;
+    @include preventTextSelection;
+    transition: ease-out all 0.005s;
 
     [class~='ant-layout-sider-children'] {
         //sider children
         position: fixed;
+        z-index: 1;
     }
 
     &__divider {
@@ -66,16 +61,16 @@
 
         &[data-collapsed='false'] {
             .sidenav__logo {
-                width: $max_sidenav_width;
-                background-size: 78%;
+                width: $max-sidenav-width;
+                background-size: $logo-bg-size;
                 background-image: url('/logo/large_light.svg');
             }
         }
 
         &[data-collapsed='true'] {
             .sidenav__logo {
-                width: $min_sidenav_width;
-                background-size: 74%;
+                width: $min-sidenav-width;
+                background-size: $logo-bg-size;
                 background-image: url('/logo/short_light.svg');
             }
 
@@ -146,8 +141,8 @@
 
         &[data-collapsed='false'] {
             .sidenav__logo {
-                width: $max_sidenav_width;
-                background-size: 78%;
+                width: $max-sidenav-width;
+                background-size: $logo-bg-size;
                 background-image: url('/logo/large_dark.svg');
             }
 
@@ -173,8 +168,8 @@
 
         &[data-collapsed='true'] {
             .sidenav__logo {
-                width: $min_sidenav_width;
-                background-size: 74%;
+                width: $min-sidenav-width;
+                background-size: $logo-bg-size;
                 background-image: url('/logo/short_dark.svg');
             }
 
@@ -195,11 +190,11 @@
         }
 
         [class~='ant-menu-item-selected'] {
-            background-color: $bg-primary-dark;
+            background-color: $bg-primary-light;
 
             span,
             svg {
-                color: $white;
+                color: $dark;
                 font-weight: 600;
             }
         }
@@ -261,7 +256,7 @@
 
             &:hover {
                 justify-content: flex-start;
-                width: $max_sidenav_width;
+                width: $max-sidenav-width;
                 padding-left: 0 !important;
 
                 span,

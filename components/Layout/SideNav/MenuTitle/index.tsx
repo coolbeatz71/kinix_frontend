@@ -9,8 +9,8 @@ interface IMenuTitle {
 }
 const MenuTitle: FC<IMenuTitle> = ({ value }) => {
     return (
-        <div className={styles.menu_title}>
-            <Text className={styles.menu_title__text}>{value}</Text>
+        <div className={styles.menuTitle}>
+            <Text className={styles.menuTitle__text}>{value}</Text>
         </div>
     );
 };

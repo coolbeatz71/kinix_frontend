@@ -3,10 +3,11 @@ import { SearchOutlined } from '@ant-design/icons';
 import { Input } from 'antd';
 import styles from './index.module.scss';
 import useDarkLight from '@hooks/useDarkLight';
+import { IUnknownObject } from '@type/app';
 
 const { Search } = Input;
 
-const SearchInput: FC<any> = () => {
+const SearchInput: FC<IUnknownObject> = () => {
     const { value } = useDarkLight();
 
     return (
@@ -16,10 +17,10 @@ const SearchInput: FC<any> = () => {
                 enterButton="Search"
                 placeholder="Input search text"
                 prefix={<SearchOutlined />}
-                onChange={(_e: any) => {
+                onChange={(_e: IUnknownObject) => {
                     //
                 }}
-                onKeyPress={(e: any) => {
+                onKeyPress={(e: IUnknownObject) => {
                     if (e.key === 'Enter') {
                         //
                     }

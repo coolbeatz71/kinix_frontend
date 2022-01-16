@@ -35,10 +35,32 @@
                 }
             }
         }
+
+        .header__row {
+            &__logo {
+                background-image: url('/logo/large_light.svg');
+                background-size: $logo-bg-size;
+                background-repeat: no-repeat;
+                background-position: left center;
+            }
+        }
+
+        [class~='ant-btn-text']:hover {
+            background: $dark10;
+        }
     }
 
     &[data-theme='dark'] {
         background-color: $bg-primary-dark;
+
+        [class~='ant-btn-default']:hover {
+            border-color: $white;
+            color: $white;
+        }
+
+        [class~='ant-btn-text']:hover {
+            background: $light10;
+        }
 
         [class~='hamburger-menu'] {
             svg {
@@ -48,18 +70,34 @@
             }
         }
 
-        .header__row__social {
-            color: $light;
+        .header__row {
+            &__logo {
+                background-image: url('/logo/large_dark.svg');
+                background-size: $logo-bg-size;
+                background-repeat: no-repeat;
+                background-position: left center;
+            }
+
+            &__social {
+                color: $light;
+            }
         }
     }
 
     &__row {
         height: 100%;
         width: 100%;
+        display: flex;
+        align-items: center;
 
         [class~='ant-col'] {
             display: flex;
             align-items: center;
+        }
+
+        &__logo {
+            width: $max-sidenav-width;
+            height: $min-sidenav-width;
         }
 
         &__social {

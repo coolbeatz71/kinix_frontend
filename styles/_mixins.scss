@@ -62,3 +62,12 @@
 @mixin animation($animation) {
     animation: $animation 0.3s ease-in-out;
 }
+
+@mixin preventTextSelection {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
