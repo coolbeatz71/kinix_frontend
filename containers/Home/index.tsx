@@ -1,10 +1,20 @@
 import React, { Fragment, FC } from 'react';
-import MainIllustration from '@components/Home/MainIllustration';
+import HomeIllustration from '@components/Home/MainIllustration';
+import HomeSection from '@components/Home/Section';
+import { BulbFilled } from '@ant-design/icons';
 
 const HomeContainer: FC = () => {
     return (
         <Fragment>
-            <MainIllustration />
+            <HomeIllustration />
+            <HomeSection
+                fetched
+                title="Discovery"
+                icon={<BulbFilled />}
+                error={null}
+                data={[]}
+                linkHasMore="/videos?"
+            />
         </Fragment>
     );
 };

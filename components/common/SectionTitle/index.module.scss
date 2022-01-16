@@ -1,0 +1,48 @@
+@import 'styles/colors.scss';
+@import 'styles/dimensions.scss';
+
+.sectionTitle {
+    margin: $padding 0;
+    padding: calc(#{$padding}/ 1.2) 0;
+
+    h3 {
+        margin-bottom: 0;
+        display: inline-block;
+        font-family: Poppins;
+    }
+
+    [class~='anticon'] {
+        font-size: 18px;
+        margin-right: 0.5rem;
+        line-height: 0;
+    }
+
+    &[data-theme='light'] {
+        border-bottom: 1px solid $dark20;
+
+        h3 {
+            color: $primary;
+        }
+
+        [class~='anticon'] {
+            color: $primary;
+        }
+    }
+
+    &[data-theme='dark'] {
+        border-bottom: 1px solid $light20;
+
+        h3 {
+            color: $light;
+        }
+
+        [class~='anticon'] {
+            color: $light;
+        }
+
+        [class~='ant-btn-default']:hover {
+            border-color: $white;
+            color: $white;
+        }
+    }
+}

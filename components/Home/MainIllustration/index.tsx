@@ -14,7 +14,7 @@ const { Title, Text } = Typography;
 
 const animationList: IUnknownObject[] = [music, office, podcast];
 
-const MainIllustration: FC = () => {
+const HomeIllustration: FC = () => {
     const { value } = useDarkLight();
 
     const defaultOptions = (animationData: IUnknownObject): Options => ({
@@ -64,4 +64,4 @@ const MainIllustration: FC = () => {
     );
 };
 
-export default MainIllustration;
+export default HomeIllustration;
