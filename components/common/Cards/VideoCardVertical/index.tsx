@@ -4,11 +4,21 @@ import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/ico
 
 const { Meta } = Card;
 
-const VideoCardVertical: FC = () => {
+const VideoCardVertical: FC<{ size: number }> = ({ size }) => {
     return (
         <Card
             hoverable
-            cover={<img alt="example" src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png" />}
+            // bordered={false}
+            cover={
+                <img
+                    alt="example"
+                    src={`https://picsum.photos/200/300?random=${size}`}
+                    style={{
+                        aspectRatio: '16 / 9',
+                        objectFit: 'cover',
+                    }}
+                />
+            }
             actions={[
                 <SettingOutlined key="setting" />,
                 <EditOutlined key="edit" />,
@@ -17,8 +27,8 @@ const VideoCardVertical: FC = () => {
         >
             <Meta
                 avatar={<Avatar src="https://joeschmoe.io/api/v1/random" />}
-                title="Card title"
-                description="This is the description"
+                title="The Internet's Own Boy: The Story of Aaron Swartz | full movie (2014)"
+                description="moviemaniacsDE"
             />
         </Card>
     );

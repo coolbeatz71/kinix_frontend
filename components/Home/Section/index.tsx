@@ -1,4 +1,4 @@
-import React, { FC, Fragment, ReactElement } from 'react';
+import React, { FC, ReactElement } from 'react';
 import SectionTitle from '@components/common/SectionTitle';
 import { IUnknownObject } from '@type/app';
 import VideoList from '@components/common/VideoList';
@@ -15,10 +15,17 @@ interface IHomeSectionProps {
 
 const HomeSection: FC<IHomeSectionProps> = ({ title, icon, linkHasMore, fetched, error, data, myVideos }) => {
     return (
-        <Fragment>
+        <div
+            style={{
+                padding: '72px',
+                margin: '24px 0',
+                background: 'white',
+                borderRadius: '4px',
+            }}
+        >
             <SectionTitle title={title} icon={icon} linkHasMore={linkHasMore} />;
             <VideoList fetched={fetched} error={error} data={data} myVideos={myVideos} />
-        </Fragment>
+        </div>
     );
 };
 
