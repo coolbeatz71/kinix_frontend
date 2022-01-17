@@ -40,8 +40,8 @@ const Layout: FC<ILayoutProps> = ({
     const router = useRouter();
     const { value } = useDarkLight();
 
-    const [open, setOpen] = useState<boolean>(true);
-    const [collapsedSidenav, setCollapsedSidenav] = useState<boolean>(false);
+    const [openSidenav, setOpenSidenav] = useState<boolean>(false);
+    const [collapsedSidenav, setCollapsedSidenav] = useState<boolean>(true);
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [_scrolled, setScrolled] = useState<string>('');
@@ -100,9 +100,14 @@ const Layout: FC<ILayoutProps> = ({
 
             <DarkModeToggler />
 
-            <SideNav open={open} collapsed={collapsedSidenav} setCollapsed={setCollapsedSidenav} />
+            <SideNav open={openSidenav} collapsed={collapsedSidenav} setCollapsed={setCollapsedSidenav} />
             <div className={styles.layout__main}>
-                <Header open={open} setOpen={setOpen} collapsed={collapsedSidenav} setCollapsed={setCollapsedSidenav} />
+                <Header
+                    open={openSidenav}
+                    setOpen={setOpenSidenav}
+                    collapsed={collapsedSidenav}
+                    setCollapsed={setCollapsedSidenav}
+                />
                 <Content className={styles.layout__main__content}>{children}</Content>
                 {showFooter && <Footer className={styles.layout__footer}>footer</Footer>}
             </div>
