@@ -1,9 +1,15 @@
 @import 'styles/colors.scss';
 @import 'styles/dimensions.scss';
+@import 'styles/_mixins.scss';
 
 .sectionTitle {
     margin: $padding 0;
     padding: calc(#{$padding}/ 1.2) 0;
+
+    padding-top: 0;
+    margin-top: 0;
+
+    @include preventTextSelection;
 
     h3 {
         margin-bottom: 0;
@@ -11,10 +17,16 @@
         font-family: Poppins;
     }
 
-    [class~='anticon'] {
-        font-size: 18px;
-        margin-right: 0.5rem;
-        line-height: 0;
+    [data-icon='true'] {
+        & > svg:first-child {
+            margin-right: 0.5rem;
+            transform: scale(1.4);
+        }
+        [class~='anticon'] {
+            margin-right: 0.5rem;
+            font-size: 18px;
+            line-height: 0;
+        }
     }
 
     &[data-theme='light'] {
@@ -24,8 +36,11 @@
             color: $primary;
         }
 
-        [class~='anticon'] {
-            color: $primary;
+        [data-icon='true'] {
+            & > svg:first-child,
+            [class~='anticon'] {
+                color: $primary;
+            }
         }
     }
 
@@ -36,8 +51,11 @@
             color: $light;
         }
 
-        [class~='anticon'] {
-            color: $light;
+        [data-icon='true'] {
+            & > svg:first-child,
+            [class~='anticon'] {
+                color: $light;
+            }
         }
 
         [class~='ant-btn-default']:hover {

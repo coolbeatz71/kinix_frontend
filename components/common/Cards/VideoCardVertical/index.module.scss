@@ -1,0 +1,70 @@
+@import 'styles/colors.scss';
+
+.videoCardVertical {
+    &[data-theme='light'] {
+        [class~='ant-card'] {
+            background: $light !important;
+        }
+
+        [class~='ant-card-meta-title'] {
+            color: $black;
+        }
+
+        [class~='ant-card-meta-description'] {
+            color: $dark50;
+        }
+
+        [class~='ant-card-actions'] {
+            border-top: 1px solid $dark10 !important;
+
+            & > li:not(:last-child) {
+                border-right: 1px solid $dark10;
+            }
+        }
+    }
+
+    &[data-theme='dark'] {
+        [class~='ant-card'] {
+            background: $primary !important;
+        }
+
+        [class~='ant-card-meta-title'] {
+            color: $white;
+        }
+
+        [class~='ant-card-meta-description'] {
+            color: $light50;
+        }
+
+        [class~='ant-card-actions'] {
+            background: unset;
+            border-top: 1px solid $light10 !important;
+
+            & > li:not(:last-child) {
+                border-right: 1px solid $light10;
+            }
+        }
+    }
+
+    [class~='ant-card-meta-title'] {
+        white-space: unset;
+        font-size: 14px;
+        height: 3rem;
+    }
+
+    [class~='ant-card-meta-description'] {
+        font-size: 13px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+
+    [class~='ant-avatar-circle'] {
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+
+    [class~='ant-card-actions'] {
+        background: unset;
+    }
+}
