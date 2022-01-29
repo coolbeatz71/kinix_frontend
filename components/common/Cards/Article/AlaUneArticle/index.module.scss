@@ -64,10 +64,6 @@
         [class~='ant-typography'] {
             color: $white;
         }
-        [class~='ant-btn']:hover {
-            border-color: $white;
-            color: $white;
-        }
     }
 
     [data-priority='SECOND'] {
@@ -97,15 +93,23 @@
     }
 
     &[data-theme='dark'] {
+        [class~='ant-btn']:hover {
+            border-color: $white;
+            color: $white;
+        }
+
         [data-priority='SECOND'] {
             background: $bg-primary-dark90;
             [class~='ant-typography'] {
                 color: $white;
             }
         }
-        [class~='ant-btn-background-ghost']:hover {
-            border-color: $white;
-            color: $white;
+
+        [data-priority='FIRST'] {
+            background: $bg-primary-dark90;
+            [class~='ant-typography'] {
+                color: $white;
+            }
         }
     }
 }

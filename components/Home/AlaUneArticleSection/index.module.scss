@@ -2,8 +2,10 @@
 @import 'styles/dimensions.scss';
 
 .alaUneArticleSection {
-    [class~='ant-btn']:hover {
-        border-color: $white;
-        color: $white;
+    &[data-theme='dark'] {
+        [class~='ant-btn']:hover {
+            border-color: $white;
+            color: $white;
+        }
     }
 }
