@@ -20,7 +20,7 @@ const VideoCardVertical: FC<{ size: number }> = ({ size }) => {
                 cover={
                     <img
                         alt="example"
-                        src={`https://picsum.photos/200/300?random=${size}`}
+                        src={`https://picsum.photos/1024/300?random=${size}`}
                         style={{
                             aspectRatio: '16 / 9',
                             objectFit: 'cover',

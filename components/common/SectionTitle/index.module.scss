@@ -15,6 +15,7 @@
         margin-bottom: 0;
         display: inline-block;
         font-family: Poppins;
+        font-size: 28px;
     }
 
     [data-icon='true'] {
@@ -24,7 +25,7 @@
         }
         [class~='anticon'] {
             margin-right: 0.5rem;
-            font-size: 18px;
+            font-size: 28px;
             line-height: 0;
         }
     }

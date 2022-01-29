@@ -1,12 +1,12 @@
 import React, { FC } from 'react';
 import { Col, Row } from 'antd';
-import VideoCardVertical from '@components/common/Cards/VideoCardVertical';
+import VideoCardVertical from '@components/common/Cards/Video/VideoCardVertical';
 import { IUnknownObject } from '@type/app';
 
 interface IVideoListProps {
     fetched: boolean;
     error: string | null;
-    data: IUnknownObject[];
+    videos: IUnknownObject[];
     myVideos?: boolean;
 }
 

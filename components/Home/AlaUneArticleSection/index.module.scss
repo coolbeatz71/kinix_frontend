@@ -1,0 +1,9 @@
+@import 'styles/colors.scss';
+@import 'styles/dimensions.scss';
+
+.alaUneArticleSection {
+    [class~='ant-btn']:hover {
+        border-color: $white;
+        color: $white;
+    }
+}

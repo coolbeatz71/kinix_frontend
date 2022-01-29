@@ -71,3 +71,7 @@
     -ms-user-select: none;
     user-select: none;
 }
+
+@mixin cardContentPadding {
+    padding: calc(#{$padding} * 1.2);
+}

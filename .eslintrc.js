@@ -31,6 +31,7 @@ module.exports = {
             ],
             rules: {
                 'react/prop-types': 'off',
+                'react/no-unescaped-entities': 'off',
                 'react/react-in-jsx-scope': 'off',
                 '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_', ignoreRestSiblings: false }],
                 'no-nested-ternary': 'off',

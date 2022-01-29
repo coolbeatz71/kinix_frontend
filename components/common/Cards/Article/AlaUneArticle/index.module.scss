@@ -1,0 +1,111 @@
+@import 'styles/dimensions.scss';
+@import 'styles/colors.scss';
+@import 'styles/_mixins.scss';
+
+.alaUneArticleCardStyles {
+    cursor: pointer;
+
+    &__overlay {
+        position: relative;
+        left: 0;
+        right: 0;
+        z-index: -1;
+        height: 100%;
+
+        img {
+            width: 100%;
+            height: 100%;
+
+            border-radius: $border-radius;
+        }
+    }
+
+    &__cover {
+        @include cardContentPadding;
+        border-radius: $border-radius;
+
+        img {
+            width: 100%;
+            height: 100%;
+
+            aspect-ratio: 16 / 9;
+            border-radius: $border-radius;
+        }
+    }
+
+    [data-priority='FIRST'] {
+        height: 33rem;
+        background: $bg-primary-dark;
+        transition: background ease-in-out 0.2s;
+
+        &:hover {
+            background: $bg-primary-dark90;
+        }
+
+        [class~='ant-card-body'] {
+            padding: 0;
+            height: 100%;
+        }
+
+        .alaUneArticleCardStyles__content {
+            position: absolute;
+            bottom: 0;
+            @include cardContentPadding;
+
+            &__header {
+                position: relative;
+                top: -8rem;
+
+                display: flex;
+                justify-content: space-between;
+            }
+        }
+
+        [class~='ant-typography'] {
+            color: $white;
+        }
+        [class~='ant-btn']:hover {
+            border-color: $white;
+            color: $white;
+        }
+    }
+
+    [data-priority='SECOND'] {
+        height: 33rem;
+        [class~='ant-card-body'] {
+            padding: 0;
+            height: 100%;
+        }
+
+        .alaUneArticleCardStyles__header {
+            padding: 0 calc(#{$padding} * 1.2);
+        }
+
+        .alaUneArticleCardStyles__content {
+            @include cardContentPadding;
+            padding-top: 3rem;
+        }
+    }
+
+    &[data-theme='light'] {
+        [data-priority='SECOND'] {
+            background: $white;
+            [class~='ant-typography'] {
+                color: $dark;
+            }
+        }
+    }
+
+    &[data-theme='dark'] {
+        [data-priority='SECOND'] {
+            background: $bg-primary-dark90;
+            [class~='ant-typography'] {
+                color: $white;
+            }
+        }
+        [class~='ant-btn-background-ghost']:hover {
+            border-color: $white;
+            color: $white;
+        }
+    }
+}

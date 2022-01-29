@@ -108,7 +108,9 @@ const Layout: FC<ILayoutProps> = ({
                     collapsed={collapsedSidenav}
                     setCollapsed={setCollapsedSidenav}
                 />
-                <Content className={styles.layout__main__content}>{children}</Content>
+                <Content className={styles.layout__main__content} data-sidenav-close={!openSidenav || collapsedSidenav}>
+                    {children}
+                </Content>
                 {showFooter && <Footer className={styles.layout__footer}>footer</Footer>}
             </div>
         </AntLayout>
