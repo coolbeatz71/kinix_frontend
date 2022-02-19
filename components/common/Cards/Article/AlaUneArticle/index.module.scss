@@ -54,7 +54,7 @@
 
             &__header {
                 position: relative;
-                top: -8rem;
+                top: -10rem;
 
                 display: flex;
                 justify-content: space-between;
@@ -79,7 +79,7 @@
 
         .alaUneArticleCardStyles__content {
             @include cardContentPadding;
-            padding-top: 3rem;
+            padding-top: 2.2rem;
         }
     }
 

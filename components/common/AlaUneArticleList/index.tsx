@@ -14,7 +14,7 @@ interface IAlaUneArticleListProps {
 const AlaUneArticleList: FC<IAlaUneArticleListProps> = () => {
     return (
         <>
-            <Row gutter={[32, 48]}>
+            <Row gutter={[16, 48]}>
                 <Col span={8}>
                     <AlaUneArticleCard size={1} priority={EnumAlaUnePriority.FIRST} />
                 </Col>

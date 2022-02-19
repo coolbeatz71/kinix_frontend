@@ -14,7 +14,7 @@ const VideoList: FC<IVideoListProps> = () => {
     return (
         <Row gutter={[16, 48]}>
             {[0, 1, 2, 3, 4, 5, 6, 7].map((el) => (
-                <Col span={6} key={el}>
+                <Col xs={24} sm={12} md={12} lg={8} xl={6} key={el}>
                     <VideoCardVertical size={el} />
                 </Col>
             ))}

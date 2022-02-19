@@ -2,14 +2,4 @@
 @import 'styles/dimensions.scss';
 
 .homeVideoSection {
-    padding: $padding * 1.2;
-    border-radius: $border-radius;
-
-    &[data-theme='light'] {
-        background: $light50;
-    }
-
-    &[data-theme='dark'] {
-        background: $bg-primary-dark;
-    }
 }

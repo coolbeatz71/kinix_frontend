@@ -50,7 +50,7 @@
                 padding: $padding;
             }
             &[data-sidenav-close='true'] {
-                padding: calc(#{$content-padding} / 1.4) calc(#{$content-padding} * 1.3);
+                padding: calc(#{$content-padding} / 1.4) calc(#{$content-padding} * 1.44);
             }
 
             margin-top: $header-height;

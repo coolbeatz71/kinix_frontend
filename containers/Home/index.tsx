@@ -6,11 +6,15 @@ import { FaMicrophoneAlt, FaPodcast } from 'react-icons/fa';
 import { RiFocusLine } from 'react-icons/ri';
 import { BsFillSpeakerFill } from 'react-icons/bs';
 import AlaUneArticleSection from '@components/Home/AlaUneArticleSection';
+import AdsCarousel from '@components/AdsCarousel';
 
 const HomeContainer: FC = () => {
     return (
         <Fragment>
             <HomeIllustration />
+            <div className="mt-5" style={{ width: '100%' }}>
+                <AdsCarousel />
+            </div>
 
             <div className="mt-5">
                 <AlaUneArticleSection fetched error={null} articles={[]} />

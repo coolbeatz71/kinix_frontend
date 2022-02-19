@@ -15,7 +15,8 @@
         margin-bottom: 0;
         display: inline-block;
         font-family: Poppins;
-        font-size: 28px;
+        font-size: 32px;
+        text-transform: uppercase;
     }
 
     [data-icon='true'] {
@@ -49,13 +50,13 @@
         border-bottom: 1px solid $light20;
 
         h3 {
-            color: $light;
+            color: $white;
         }
 
         [data-icon='true'] {
             & > svg:first-child,
             [class~='anticon'] {
-                color: $light;
+                color: $white;
             }
         }
 

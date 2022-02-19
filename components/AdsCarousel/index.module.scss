@@ -1,0 +1,43 @@
+@import 'styles/colors.scss';
+@import 'styles/dimensions.scss';
+
+.adsCarousel {
+    height: 38rem;
+    border-radius: $border-radius;
+
+    [class~='slick-track'] {
+        width: 100% !important;
+    }
+
+    &__left {
+        height: 38rem;
+        background-color: $black;
+
+        border-radius: $border-radius;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+
+    &__right {
+        height: 38rem;
+
+        &::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 60%;
+            height: 100%;
+            background: linear-gradient(to right, $black, transparent);
+        }
+        img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+
+            border-radius: $border-radius;
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+    }
+}
