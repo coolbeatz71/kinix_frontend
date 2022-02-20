@@ -15,6 +15,7 @@
     "dependencies": {
         "@types/react-lottie": "^1.2.6",
         "@types/react-star-rating-component": "^1.4.1",
+        "@types/styled-components": "^5.1.23",
         "antd": "4.15.2",
         "axios": "^0.19.2",
         "babel-plugin-import": "^1.13.3",
@@ -33,6 +34,7 @@
         "react-lottie": "^1.2.3",
         "react-star-rating-component": "^1.4.1",
         "sass": "^1.26.5",
+        "styled-components": "^5.3.3",
         "use-dark-mode": "^2.3.1",
         "validator": "^13.1.1"
     },
