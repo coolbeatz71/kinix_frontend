@@ -43,14 +43,16 @@ const HomeVideoSection: FC<IHomeVideoSectionProps> = ({
             <SectionTitle title={title} icon={icon} linkHasMore={linkHasMore} />
 
             {hasExclusive && exclusive && (
-                <ExclusiveSection
-                    tag="exclusive"
-                    desc={exclusive.desc}
-                    link={exclusive.link}
-                    title={exclusive.title}
-                    imgSrc={exclusive.imgSrc}
-                    videos={exclusive.videos}
-                />
+                <div className="mb-5">
+                    <ExclusiveSection
+                        tag="exclusive"
+                        desc={exclusive.desc}
+                        link={exclusive.link}
+                        title={exclusive.title}
+                        imgSrc={exclusive.imgSrc}
+                        videos={exclusive.videos}
+                    />
+                </div>
             )}
 
             <VideoList
