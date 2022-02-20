@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { Col, Row } from 'antd';
-import { IUnknownObject } from '@type/app';
+import { IUnknownObject } from 'interfaces/app';
 import AlaUneArticleCard from '../Cards/Article/AlaUneArticle';
 import { EnumAlaUnePriority } from '@constants/alaune-article';
 import TrendingArticleCard from '../Cards/Article/TrendingArticle';

@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { IUnknownObject } from '@type/app';
+import { IUnknownObject } from 'interfaces/app';
 import useDarkLight from '@hooks/useDarkLight';
 
 import styles from './index.module.scss';

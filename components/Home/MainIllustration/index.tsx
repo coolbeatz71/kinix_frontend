@@ -3,7 +3,7 @@ import { Row, Col, Typography, Button, Carousel } from 'antd';
 import { YoutubeFilled } from '@ant-design/icons';
 import Lottie, { Options } from 'react-lottie';
 import styles from './index.module.scss';
-import { IUnknownObject } from '@type/app';
+import { IUnknownObject } from 'interfaces/app';
 import useDarkLight from '@hooks/useDarkLight';
 
 import music from 'public/listen_music_anim.json';

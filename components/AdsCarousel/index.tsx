@@ -1,7 +1,8 @@
 import React, { FC } from 'react';
-import { Carousel } from 'antd';
-import styles from './index.module.scss';
+import Carousel from 'nuka-carousel';
 import SliderContent from './SliderContent';
+
+import styles from './index.module.scss';
 
 const sliders = [
     {
@@ -13,7 +14,8 @@ const sliders = [
         Facilis eligendi assumenda incidunt minus laudantium odio, iste veniam.`,
         hasButton: true,
         link: 'https://www.google.com',
-        bgColor: '#6d597a',
+        bgColor: '#6C4586',
+        imgSrc: '',
     },
     {
         tag: 'Brand news',
@@ -25,6 +27,7 @@ const sliders = [
         hasButton: true,
         link: 'https://www.google.com',
         bgColor: '#a01a58',
+        imgSrc: '',
     },
     {
         tag: 'Brand news',
@@ -36,6 +39,7 @@ const sliders = [
         hasButton: true,
         link: 'https://www.google.com',
         bgColor: '#0582ca',
+        imgSrc: '',
     },
     {
         tag: 'Brand news',
@@ -46,7 +50,8 @@ const sliders = [
         Facilis eligendi assumenda incidunt minus laudantium odio, iste veniam.`,
         hasButton: true,
         link: 'https://www.google.com',
-        bgColor: '#0db39e',
+        bgColor: '#0B5A49',
+        imgSrc: '',
     },
     {
         tag: 'Brand news',
@@ -58,24 +63,27 @@ const sliders = [
         hasButton: true,
         link: 'https://www.google.com',
         bgColor: '#023047',
+        imgSrc: '',
     },
 ];
 
 const AdsCarousel: FC = () => {
     return (
         <div className={styles.adsCarousel}>
-            <Carousel autoplay dots effect="fade">
-                {sliders.map((slider) => (
-                    <SliderContent
-                        hasButton
-                        key={slider.title}
-                        tag={slider.tag}
-                        link={slider.link}
-                        title={slider.title}
-                        subtitle={slider.subtitle}
-                        bgColor={slider.bgColor}
-                        desc={slider.desc}
-                    />
+            <Carousel autoplay wrapAround withoutControls>
+                {sliders.map((slider, i) => (
+                    <div key={slider.title}>
+                        <SliderContent
+                            hasButton
+                            tag={slider.tag}
+                            link={slider.link}
+                            title={slider.title}
+                            subtitle={slider.subtitle}
+                            bgColor={slider.bgColor}
+                            desc={slider.desc}
+                            imgSrc={`https://picsum.photos/1024/1024?random=${i + 1}`}
+                        />
+                    </div>
                 ))}
             </Carousel>
         </div>

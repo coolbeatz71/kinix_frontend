@@ -2,8 +2,8 @@ import React, { FC } from 'react';
 import Icon from '@ant-design/icons';
 
 import hamburgerMenu from './svg/hamburger-menu';
-import { IUnknownObject } from 'type/app';
-import { CustomIconComponentProps } from '@type/icon';
+import { IUnknownObject } from 'interfaces/app';
+import { CustomIconComponentProps } from 'interfaces/icon';
 
 const icons: IUnknownObject = {
     'hamburger-menu': hamburgerMenu,

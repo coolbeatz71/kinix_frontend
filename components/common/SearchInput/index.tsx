@@ -3,7 +3,7 @@ import { SearchOutlined } from '@ant-design/icons';
 import { Input } from 'antd';
 import styles from './index.module.scss';
 import useDarkLight from '@hooks/useDarkLight';
-import { IUnknownObject } from '@type/app';
+import { IUnknownObject } from 'interfaces/app';
 
 const { Search } = Input;
 

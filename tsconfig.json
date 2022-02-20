@@ -22,7 +22,7 @@
             "@hooks/*": ["hooks/*"],
             "@styles/*": ["styles/*"],
             "@context/*": ["context/*"],
-            "@type/*": ["type/*"]
+            "@interfaces/*": ["interfaces/*"]
         },
         "incremental": true
     },

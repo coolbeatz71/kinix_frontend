@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { Button, Col, Row, Tag, Typography } from 'antd';
-import styled from 'styled-components';
+import Style from 'style-it';
 
 import styles from './../index.module.scss';
 
@@ -15,6 +15,7 @@ export interface ISliderContentProps {
     buttonText?: string;
     link?: string;
     bgColor: string;
+    imgSrc: string;
 }
 
 const SliderContent: FC<ISliderContentProps> = ({
@@ -26,53 +27,51 @@ const SliderContent: FC<ISliderContentProps> = ({
     buttonText,
     link = '',
     bgColor,
+    imgSrc,
 }) => {
-    const StyledRight = styled(Col)`
-        ::after {
+    const carouselRightContent = Style.it(
+        `
+        .right::after {
             content: '';
             position: absolute;
             left: 0;
             top: 0;
             width: 60%;
             height: 100%;
-            background: linear-gradient(to right, ${bgColor}, transparent) !important;
+            background: linear-gradient(to right, ${bgColor}, transparent);
         }
-    `;
+        `,
+        <Col span={12} className="right">
+            <img src={imgSrc} alt="" />
+        </Col>,
+    );
 
     return (
-        <div
-            style={{
-                width: '100%',
-            }}
-        >
-            <Row justify="space-between">
-                <Col
-                    span={12}
-                    className={styles.adsCarousel__left}
-                    style={{
-                        background: `${bgColor} !important`,
-                    }}
-                >
-                    <div>
-                        <Tag data-tag>{tag}</Tag>
-                        <Title data-title>{title}</Title>
-                        <Text strong data-subtitle>
-                            {subtitle}
-                        </Text>
-                    </div>
-                    <Paragraph data-desc>{desc}</Paragraph>
+        <Row justify="space-between">
+            <Col
+                span={12}
+                className={styles.adsCarousel__left}
+                style={{
+                    background: `${bgColor} !important`,
+                }}
+            >
+                <div>
+                    <Tag data-tag>{tag}</Tag>
+                    <Title data-title>{title}</Title>
+                    <Text strong data-subtitle>
+                        {subtitle}
+                    </Text>
+                </div>
+                <Paragraph data-desc>{desc}</Paragraph>
 
-                    {hasButton && (
-                        <Button size="large" className="mt-4" href={link}>
-                            {buttonText || 'Visit Now'}
-                        </Button>
-                    )}
-                </Col>
-                <StyledRight span={12} className={styles.adsCarousel__right}>
-                    <img src={`https://picsum.photos/1024/1024?random`} alt="" />
-                </StyledRight>
-            </Row>
-        </div>
+                {hasButton && (
+                    <Button size="large" className="mt-4" href={link} target="_blank">
+                        {buttonText || 'Visit Now'}
+                    </Button>
+                )}
+            </Col>
+            {carouselRightContent}
+        </Row>
     );
 };
 

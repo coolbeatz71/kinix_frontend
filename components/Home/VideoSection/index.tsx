@@ -1,6 +1,6 @@
 import React, { FC, ReactElement } from 'react';
 import SectionTitle from '@components/common/SectionTitle';
-import { IUnknownObject } from '@type/app';
+import { IUnknownObject } from 'interfaces/app';
 import VideoList from '@components/common/VideoList';
 import useDarkLight from '@hooks/useDarkLight';
 

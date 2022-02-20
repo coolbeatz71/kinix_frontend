@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { Col, Row } from 'antd';
 import VideoCardVertical from '@components/common/Cards/Video/VideoCardVertical';
-import { IUnknownObject } from '@type/app';
+import { IUnknownObject } from 'interfaces/app';
 
 interface IVideoListProps {
     fetched: boolean;
