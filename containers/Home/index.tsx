@@ -6,7 +6,7 @@ import { FaMicrophoneAlt, FaPodcast } from 'react-icons/fa';
 import { RiFocusLine } from 'react-icons/ri';
 import { BsFillSpeakerFill } from 'react-icons/bs';
 import AlaUneArticleSection from '@components/Home/AlaUneArticleSection';
-import AdsCarousel from '@components/AdsCarousel';
+import AdsCarousel from '@components/Home/AdsCarousel';
 
 const HomeContainer: FC = () => {
     return (
@@ -38,6 +38,7 @@ const HomeContainer: FC = () => {
                     icon={<VideoCameraFilled />}
                     error={null}
                     videos={[]}
+                    hasExclusive
                     linkHasMore="/videos?"
                 />
             </div>
@@ -50,6 +51,14 @@ const HomeContainer: FC = () => {
                     error={null}
                     videos={[]}
                     linkHasMore="/videos?"
+                    hasExclusive
+                    exclusive={{
+                        link: '/videos?',
+                        desc: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste, ex sapiente dignissimos aspernatur ipsam voluptas quam omnis qui corporis ducimus. Qui aperiam earum necessitatibus placeat maiores obcaecati cupiditate quas animi.`,
+                        title: 'This week on Flex&Beatz',
+                        imgSrc: 'https://picsum.photos/1024/1024',
+                        videos: [],
+                    }}
                 />
             </div>
 
@@ -83,6 +92,7 @@ const HomeContainer: FC = () => {
                     error={null}
                     videos={[]}
                     linkHasMore="/videos?"
+                    hasExclusive
                 />
             </div>
         </Fragment>

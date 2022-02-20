@@ -1,0 +1,97 @@
+@import 'styles/colors.scss';
+@import 'styles/dimensions.scss';
+
+.exclusive {
+    border-radius: $border-radius;
+
+    &__top {
+        &__left {
+            border-radius: $border-radius;
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+
+            padding: $content-padding;
+            color: $white;
+
+            display: flex;
+            flex-flow: column;
+            justify-content: space-between;
+            align-items: flex-start;
+
+            [data-tag='true'] {
+                color: $black;
+                font-weight: 900;
+                background-color: $yellow;
+                border-color: transparent;
+                margin-bottom: 0.5rem;
+            }
+
+            [data-title='true'] {
+                font-family: Poppins;
+                font-weight: 800;
+                font-size: 3rem;
+                text-align: start;
+                color: $white;
+                margin-bottom: 1rem;
+            }
+
+            [data-desc='true'] {
+                text-align: start;
+                color: $white;
+                font-size: 15px;
+            }
+
+            [data-watch-now='true'] {
+                padding: 1.5rem !important;
+                display: flex;
+                align-items: center;
+
+                &:hover,
+                &:active,
+                &:focus {
+                    border-color: $white;
+                    color: $white;
+                }
+
+                span {
+                    font-size: 16px;
+                    text-transform: uppercase;
+                    margin-left: 0;
+                }
+
+                [class~='anticon'] {
+                    margin-right: 5px;
+                    font-size: 20px;
+                    margin-bottom: 0.1rem;
+                }
+            }
+
+            [data-share='true'] {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: $white;
+
+                [class~='anticon'] {
+                    font-size: 1.5rem;
+                }
+            }
+        }
+
+        [class~='right'] {
+            height: 32rem;
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                aspect-ratio: 1;
+                border-radius: 4px;
+                border-top-left-radius: 0;
+                border-bottom-left-radius: 0;
+            }
+        }
+    }
+
+    &__bottom {
+    }
+}

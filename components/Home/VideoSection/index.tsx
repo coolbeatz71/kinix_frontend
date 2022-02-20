@@ -5,6 +5,7 @@ import VideoList from '@components/common/VideoList';
 import useDarkLight from '@hooks/useDarkLight';
 
 import styles from './index.module.scss';
+import ExclusiveSection from '../ExclusiveSection';
 
 interface IHomeVideoSectionProps {
     title: string;
@@ -14,6 +15,14 @@ interface IHomeVideoSectionProps {
     videos: IUnknownObject[];
     myVideos?: boolean;
     linkHasMore: string;
+    hasExclusive?: boolean;
+    exclusive?: {
+        link: string;
+        desc: string;
+        title: string;
+        imgSrc: string;
+        videos: IUnknownObject[];
+    };
 }
 
 const HomeVideoSection: FC<IHomeVideoSectionProps> = ({
@@ -24,13 +33,33 @@ const HomeVideoSection: FC<IHomeVideoSectionProps> = ({
     error,
     videos,
     myVideos,
+    hasExclusive = false,
+    exclusive,
 }) => {
     const { value } = useDarkLight();
 
     return (
         <div data-theme={value} className={styles.homeVideoSection}>
             <SectionTitle title={title} icon={icon} linkHasMore={linkHasMore} />
-            <VideoList fetched={fetched} error={error} videos={videos} myVideos={myVideos} />
+
+            {hasExclusive && exclusive && (
+                <ExclusiveSection
+                    tag="exclusive"
+                    desc={exclusive.desc}
+                    link={exclusive.link}
+                    title={exclusive.title}
+                    imgSrc={exclusive.imgSrc}
+                    videos={exclusive.videos}
+                />
+            )}
+
+            <VideoList
+                fetched={fetched}
+                error={error}
+                videos={videos}
+                myVideos={myVideos}
+                hasExclusive={hasExclusive}
+            />
         </div>
     );
 };

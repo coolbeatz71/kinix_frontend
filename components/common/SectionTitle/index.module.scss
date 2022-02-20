@@ -22,12 +22,14 @@
     [data-icon='true'] {
         & > svg:first-child {
             margin-right: 0.5rem;
-            transform: scale(1.4);
+            transform: scale(1.5);
+            margin-bottom: 0.2rem;
         }
         [class~='anticon'] {
             margin-right: 0.5rem;
-            font-size: 28px;
+            font-size: 24px;
             line-height: 0;
+            margin-bottom: 0.2rem;
         }
     }
 

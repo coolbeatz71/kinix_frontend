@@ -70,7 +70,7 @@ const sliders = [
 const AdsCarousel: FC = () => {
     return (
         <div className={styles.adsCarousel}>
-            <Carousel autoplay wrapAround withoutControls>
+            <Carousel autoplay wrapAround withoutControls transitionMode="fade">
                 {sliders.map((slider, i) => (
                     <div key={slider.title}>
                         <SliderContent

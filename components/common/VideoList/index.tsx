@@ -8,12 +8,15 @@ interface IVideoListProps {
     error: string | null;
     videos: IUnknownObject[];
     myVideos?: boolean;
+    hasExclusive?: boolean;
 }
 
-const VideoList: FC<IVideoListProps> = () => {
+const VideoList: FC<IVideoListProps> = ({ hasExclusive = false }) => {
+    const elements = hasExclusive ? [0, 1, 2, 3] : [0, 1, 2, 3, 4, 5, 6, 7];
+
     return (
         <Row gutter={[16, 48]}>
-            {[0, 1, 2, 3, 4, 5, 6, 7].map((el) => (
+            {elements.map((el) => (
                 <Col xs={24} sm={12} md={12} lg={8} xl={6} key={el}>
                     <VideoCardVertical size={el} />
                 </Col>
