@@ -1,21 +1,24 @@
 import React, { FC } from 'react';
 import { Col, Row } from 'antd';
-import VideoCardVertical from '@components/common/Cards/VideoCardVertical';
-import { IUnknownObject } from '@type/app';
+import VideoCardVertical from '@components/common/Cards/Video/VideoCardVertical';
+import { IUnknownObject } from 'interfaces/app';
 
 interface IVideoListProps {
     fetched: boolean;
     error: string | null;
-    data: IUnknownObject[];
+    videos: IUnknownObject[];
     myVideos?: boolean;
+    hasExclusive?: boolean;
 }
 
-const VideoList: FC<IVideoListProps> = () => {
+const VideoList: FC<IVideoListProps> = ({ hasExclusive = false }) => {
+    const elements = hasExclusive ? [0, 1, 2, 3] : [0, 1, 2, 3, 4, 5, 6, 7];
+
     return (
-        <Row gutter={[24, 48]}>
-            {[0, 1, 2, 3].map((el) => (
-                <Col span={6} key={el}>
-                    <VideoCardVertical />
+        <Row gutter={[16, 48]}>
+            {elements.map((el) => (
+                <Col xs={24} sm={12} md={12} lg={8} xl={6} key={el}>
+                    <VideoCardVertical size={el} />
                 </Col>
             ))}
         </Row>

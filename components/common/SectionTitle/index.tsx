@@ -19,7 +19,7 @@ const SectionTitle: FC<ISectionTitle> = ({ title, icon, linkHasMore }) => {
     return (
         <div data-theme={value} className={styles.sectionTitle}>
             <Row justify="space-between" align="middle">
-                <Col flex={1} className="d-flex align-items-center">
+                <Col flex={1} className="d-flex align-items-center" data-icon>
                     {icon}
                     <Title level={3}>{title}</Title>
                 </Col>

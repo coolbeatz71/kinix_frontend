@@ -1,0 +1,19 @@
+@import 'styles/colors.scss';
+@import 'styles/dimensions.scss';
+
+.videoViewRating {
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &[data-theme='dark']:hover {
+        background: $dark10;
+    }
+
+    & > [class~='dv-star-rating'] {
+        label {
+            font-size: 0.9rem;
+        }
+    }
+}

@@ -54,8 +54,13 @@
         background-color: $bg-primary-dark;
 
         [class~='ant-btn-default']:hover {
-            border-color: $white;
             color: $white;
+            border-color: $white;
+        }
+
+        [class~='ant-btn-background-ghost'] {
+            color: $warning;
+            border-color: $warning;
         }
 
         [class~='ant-btn-text']:hover {
@@ -98,6 +103,8 @@
         &__logo {
             width: $max-sidenav-width;
             height: $min-sidenav-width;
+            position: relative;
+            right: 1rem;
         }
 
         &__social {

@@ -5,12 +5,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900');
 
 .illustration {
-    border-radius: $border-radius;
-    padding: calc(#{$content-padding} / 1.4) $content-padding;
-
     &[data-theme='light'] {
-        background: $light50;
-
         .illustration__legend {
             &__text {
                 color: $primary !important;
@@ -27,8 +22,6 @@
     }
 
     &[data-theme='dark'] {
-        background: $bg-primary-dark;
-
         .illustration__legend {
             &__text {
                 color: $white !important;
@@ -53,7 +46,7 @@
             @include preventTextSelection;
             font-weight: 900 !important;
             font-family: Poppins;
-            font-size: 3.3rem !important;
+            font-size: 4rem !important;
             line-height: 1.5 !important;
         }
 

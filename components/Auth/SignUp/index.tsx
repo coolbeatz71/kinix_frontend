@@ -5,7 +5,7 @@ import FloatTextInput from '@components/common/TextInput';
 import SocialLogin from '../SocialLogin';
 
 import styles from './index.module.scss';
-import { EAuthContext } from '@constants/auth-context';
+import { EnumAuthContext } from '@constants/auth-context';
 
 const { Item } = Form;
 const { Password } = Input;
@@ -41,7 +41,7 @@ const SignUpModal: FC<ISignUpProps> = ({ open, openLogin, onCloseClick }) => {
         <AuthModal title="Create account" open={open} onCloseClick={onCloseClick}>
             <Form size="large" name="user_signup" className={styles.signupFormForm} layout="vertical">
                 <SocialLogin
-                    context={EAuthContext.SIGNUP}
+                    context={EnumAuthContext.SIGNUP}
                     googleClassName={`mb-2 ${btnStyles} ${styles.signupForm__social__google}`}
                     facebookClassName={`${btnStyles} ${styles.signupForm__social__facebook}`}
                 />

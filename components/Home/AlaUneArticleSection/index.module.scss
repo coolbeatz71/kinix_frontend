@@ -1,0 +1,11 @@
+@import 'styles/colors.scss';
+@import 'styles/dimensions.scss';
+
+.alaUneArticleSection {
+    &[data-theme='dark'] {
+        [class~='ant-btn']:hover {
+            border-color: $white;
+            color: $white;
+        }
+    }
+}

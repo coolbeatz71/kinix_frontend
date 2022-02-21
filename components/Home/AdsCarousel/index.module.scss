@@ -1,0 +1,89 @@
+@import 'styles/colors.scss';
+@import 'styles/dimensions.scss';
+
+.adsCarousel {
+    height: 38rem;
+    border-radius: $border-radius;
+    box-shadow: 0px 8px 12px rgb(0 0 0 / 20%);
+
+    &__left {
+        height: 38rem;
+        border-radius: $border-radius;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+
+        padding: $content-padding;
+        color: $white;
+
+        display: flex;
+        flex-flow: column;
+        justify-content: space-between;
+        align-items: flex-start;
+
+        [data-tag='true'] {
+            border-color: $light;
+            background: transparent;
+            color: $white;
+            margin-bottom: 1rem;
+        }
+
+        [data-title='true'] {
+            font-family: Poppins;
+            font-weight: 800;
+            font-size: 3rem;
+            text-transform: uppercase;
+            text-align: start;
+            color: $white;
+            margin-bottom: 0;
+        }
+
+        [data-subtitle='true'] {
+            text-align: start;
+            color: $white;
+            font-size: 13px;
+            display: inline-block;
+            margin-bottom: 2rem;
+        }
+
+        [data-desc='true'] {
+            text-align: start;
+            color: $white;
+            font-size: 15px;
+        }
+
+        [class~='ant-btn'] {
+            padding: 1.5rem !important;
+            display: flex;
+            align-items: center;
+
+            &:hover,
+            &:active,
+            &:focus {
+                border-color: $white;
+                color: $white;
+            }
+
+            span {
+                font-size: 16px;
+                text-transform: uppercase;
+            }
+        }
+    }
+
+    [class~='right'] {
+        height: 38rem;
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            aspect-ratio: 1;
+            border-radius: 4px;
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+    }
+
+    [class~='slider-frame'] {
+        border-radius: $border-radius;
+    }
+}
