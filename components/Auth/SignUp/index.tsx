@@ -17,7 +17,7 @@ interface ISignUpProps {
     onCloseClick: () => void;
 }
 
-const btnStyles = `d-flex align-items-center justify-content-center`;
+const btnStyles = 'd-flex align-items-center justify-content-center';
 
 const UserAgreement: FC = () => {
     return (

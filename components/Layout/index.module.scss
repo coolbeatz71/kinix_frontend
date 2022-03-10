@@ -3,8 +3,7 @@
 
 .layout {
     min-height: 100vh;
-    // overflow: hidden;
-    overflow-y: auto;
+    overflow: hidden;
 
     &[data-theme~='dark'] {
         background: url('/bg-dark.svg');

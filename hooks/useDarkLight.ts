@@ -9,7 +9,7 @@ const useDarkLight = () => {
         setDark(value);
     }, [value]);
 
-    return { value: isDark ? 'dark' : 'light', toggle };
+    return { value: isDark ? 'dark' : 'light', toggle, isDark };
 };
 
 export default useDarkLight;
