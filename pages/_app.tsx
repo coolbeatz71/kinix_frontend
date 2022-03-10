@@ -4,6 +4,7 @@ import NProgress from 'nprogress';
 import { Router } from 'next/router';
 
 import 'styles/coreui.min.css';
+import 'styles/global.scss';
 
 type AppPropsWithError = AppProps & { err: unknown };
 

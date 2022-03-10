@@ -1,0 +1,28 @@
+@import 'styles/colors.scss';
+
+textarea {
+    &::-webkit-input-placeholder {
+        font-size: 14px;
+        color: $dark50 !important;
+    }
+
+    &:-moz-placeholder {
+        font-size: 14px;
+        color: $dark50 !important;
+    }
+
+    &::-moz-placeholder {
+        font-size: 14px;
+        color: $dark50 !important;
+    }
+
+    &:-ms-input-placeholder {
+        font-size: 14px;
+        color: $dark50 !important;
+    }
+
+    &::placeholder {
+        font-size: 14px;
+        color: $dark50 !important;
+    }
+}

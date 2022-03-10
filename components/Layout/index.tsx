@@ -12,8 +12,9 @@ import { PRIMARY, WARNING } from '@constants/colors';
 import { APP_AUTHOR, APP_DESCRIPTION, APP_NAME, APP_TWITTER_HANDLE } from '@constants/platform';
 
 import styles from './index.module.scss';
+import Footer from './Footer';
 
-const { Footer, Content } = AntLayout;
+const { Content } = AntLayout;
 interface ILayoutProps {
     children: ReactElement;
     isHome?: boolean;
@@ -33,7 +34,7 @@ const Layout: FC<ILayoutProps> = ({
     description,
     isHome: _isHome = false,
     showHeader: _showHeader = false,
-    showFooter = false,
+    showFooter = true,
     isArticle = false,
     children,
 }) => {
@@ -61,6 +62,8 @@ const Layout: FC<ILayoutProps> = ({
     const _description = description || APP_DESCRIPTION;
     const _image = image ? `${getImageUrl()}/${image}` : `${getPlatformUrl()}/download.png`;
     const _title = title || '';
+
+    const isSidenavClose = !openSidenav || collapsedSidenav;
 
     return (
         <AntLayout className={styles.layout} data-theme={value}>
@@ -108,10 +111,10 @@ const Layout: FC<ILayoutProps> = ({
                     collapsed={collapsedSidenav}
                     setCollapsed={setCollapsedSidenav}
                 />
-                <Content className={styles.layout__main__content} data-sidenav-close={!openSidenav || collapsedSidenav}>
+                <Content className={styles.layout__main__content} data-sidenav-close={isSidenavClose}>
                     {children}
                 </Content>
-                {showFooter && <Footer className={styles.layout__footer}>footer</Footer>}
+                {showFooter && <Footer isSidenavClose={isSidenavClose} />}
             </div>
         </AntLayout>
     );
