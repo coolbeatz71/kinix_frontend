@@ -41,6 +41,7 @@ const AlaUneArticleCard: FC<IAlaUeArticleProps> = ({ size, priority = EnumAlaUne
                         <div className={styles.alaUneArticleCardStyles__overlay}>
                             <img alt="example" src={`https://picsum.photos/200/300?random=${size}`} />
                         </div>
+
                         <div className={styles.alaUneArticleCardStyles__content}>
                             <div className={styles.alaUneArticleCardStyles__content__header}>
                                 <Text data-text="header">
@@ -53,19 +54,20 @@ const AlaUneArticleCard: FC<IAlaUeArticleProps> = ({ size, priority = EnumAlaUne
                                     &nbsp; 1 hour ago
                                 </Text>
                             </div>
+                            <div>
+                                <Title level={2} data-text="title">
+                                    {truncate(title, {
+                                        length: 90,
+                                    })}
+                                </Title>
+                                <Paragraph data-text="description">
+                                    {truncate(description, {
+                                        length: 180,
+                                    })}
+                                </Paragraph>
 
-                            <Title level={2} data-text="title">
-                                {truncate(title, {
-                                    length: 90,
-                                })}
-                            </Title>
-                            <Paragraph data-text="description">
-                                {truncate(description, {
-                                    length: 180,
-                                })}
-                            </Paragraph>
-
-                            <Button size="large">Read More</Button>
+                                <Button size="large">Read More</Button>
+                            </div>
                         </div>
                     </Fragment>
                 ) : (

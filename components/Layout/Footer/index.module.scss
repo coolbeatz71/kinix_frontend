@@ -2,8 +2,12 @@
 @import 'styles/dimensions.scss';
 
 .footer {
+    [data-title='true'] {
+        margin-bottom: calc(#{$content-padding} / 2);
+    }
+
     &[data-theme~='dark'] {
-        background-color: $bg-primary-dark90;
+        background-color: $bg-primary-dark;
         background-size: cover;
 
         .footer__content {
@@ -68,7 +72,7 @@
     }
 
     &[data-theme~='light'] {
-        background-color: $bg-primary-light90;
+        background-color: $bg-primary-light;
         background-size: cover;
 
         .footer__content {
@@ -125,6 +129,10 @@
     }
 
     &__content {
+        [data-row] {
+            margin-bottom: calc(#{$content-padding} / 1.2);
+        }
+
         &[data-sidenav-close='false'] {
             padding: $padding;
         }
@@ -140,38 +148,34 @@
             margin-bottom: calc(#{$content-padding} / 1.5);
         }
 
-        [class~='ant-anchor-wrapper'] {
-            [class~='ant-anchor-link'] {
-                padding-top: 1.2rem;
-
-                [class~='ant-anchor-link-title'] {
-                    font-size: 15px;
-                    font-weight: 600;
-                }
-            }
-        }
-
         &__address {
-            background: transparent;
+            display: flex;
+            flex-flow: column;
+            justify-content: space-between;
+
+            [class~='ant-anchor-wrapper'] {
+                background: transparent;
+            }
 
             &__value {
                 margin: 0 $padding;
 
                 [data-contact-address='true'] {
-                    font-size: 14pt;
+                    font-size: 12pt;
                     display: flex;
                     align-items: center;
-                    margin-top: 1rem;
+                    margin-bottom: 1rem;
                     cursor: pointer;
                 }
             }
         }
 
         &__social {
-            margin: calc(#{$padding} * 2.4) 0;
+            margin: calc(#{$padding}) 0;
+            margin-bottom: 0;
 
             [data-contact-address='true'] {
-                font-size: 14pt;
+                font-size: 12pt;
             }
 
             &__icon {
@@ -185,7 +189,6 @@
                 [class~='anticon'] {
                     font-size: 1.8rem;
                 }
-
                 [class~='twitter'] {
                     color: $twitter;
                 }
