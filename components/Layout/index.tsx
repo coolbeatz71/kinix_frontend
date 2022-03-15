@@ -21,6 +21,7 @@ interface ILayoutProps {
     showFooter?: boolean;
     showHeader?: boolean;
     isArticle?: boolean;
+    isVideoCategory?: boolean;
     title?: string;
     image?: string;
     description?: string;
@@ -32,10 +33,11 @@ const Layout: FC<ILayoutProps> = ({
     title,
     image,
     description,
+    showHeader = true,
     isHome: _isHome = false,
-    showHeader: _showHeader = false,
     showFooter = true,
     isArticle = false,
+    isVideoCategory = false,
     children,
 }) => {
     const router = useRouter();
@@ -105,15 +107,20 @@ const Layout: FC<ILayoutProps> = ({
 
             <SideNav open={openSidenav} collapsed={collapsedSidenav} setCollapsed={setCollapsedSidenav} />
             <div className={styles.layout__main}>
-                <Header
-                    open={openSidenav}
-                    setOpen={setOpenSidenav}
-                    collapsed={collapsedSidenav}
-                    setCollapsed={setCollapsedSidenav}
-                />
+                {showHeader && (
+                    <Header
+                        open={openSidenav}
+                        setOpen={setOpenSidenav}
+                        collapsed={collapsedSidenav}
+                        setCollapsed={setCollapsedSidenav}
+                        isVideoCategory={isVideoCategory}
+                    />
+                )}
+
                 <Content className={styles.layout__main__content} data-sidenav-close={isSidenavClose}>
                     {children}
                 </Content>
+
                 {showFooter && <Footer isSidenavClose={isSidenavClose} />}
             </div>
         </AntLayout>

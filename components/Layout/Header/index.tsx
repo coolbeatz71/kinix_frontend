@@ -19,9 +19,10 @@ interface IHeaderProps {
     collapsed: boolean;
     setOpen: (open: boolean) => void;
     setCollapsed: (collapsed: boolean) => void;
+    isVideoCategory: boolean;
 }
 
-const Header: FC<IHeaderProps> = ({ open, collapsed, setOpen, setCollapsed }) => {
+const Header: FC<IHeaderProps> = ({ open, collapsed, setOpen, setCollapsed, isVideoCategory }) => {
     const { value } = useDarkLight();
 
     const [openLoginModal, setOpenLoginModal] = useState<boolean>(false);
@@ -84,9 +85,7 @@ const Header: FC<IHeaderProps> = ({ open, collapsed, setOpen, setCollapsed }) =>
                     </Col>
                 )}
 
-                <Col span={7}>
-                    <SearchInput />
-                </Col>
+                <Col span={7}>{!isVideoCategory && <SearchInput />}</Col>
 
                 <Col span={10} className="d-flex flex-row-reverse">
                     <Row justify="space-between" gutter={[32, 0]}>
