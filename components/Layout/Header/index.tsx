@@ -11,18 +11,20 @@ import Logo from '@components/common/Logo';
 
 import LoginModal from '@components/Auth/Login';
 import SignUpModal from '@components/Auth/SignUp';
+import CategoryBar from '../CategoryBar';
 
 const { Header: AntHeader } = Layout;
 
 interface IHeaderProps {
     open: boolean;
+    scrolled: string;
     collapsed: boolean;
     setOpen: (open: boolean) => void;
     setCollapsed: (collapsed: boolean) => void;
     isVideoCategory: boolean;
 }
 
-const Header: FC<IHeaderProps> = ({ open, collapsed, setOpen, setCollapsed, isVideoCategory }) => {
+const Header: FC<IHeaderProps> = ({ open, collapsed, setOpen, setCollapsed, isVideoCategory, scrolled }) => {
     const { value } = useDarkLight();
 
     const [openLoginModal, setOpenLoginModal] = useState<boolean>(false);
@@ -53,6 +55,8 @@ const Header: FC<IHeaderProps> = ({ open, collapsed, setOpen, setCollapsed, isVi
             data-theme={value}
             style={headerStyles}
             className={styles.header}
+            data-scroll={scrolled}
+            data-is-category={isVideoCategory}
             data-sidenav-close={isSidenavClose}
         >
             <LoginModal
@@ -127,6 +131,18 @@ const Header: FC<IHeaderProps> = ({ open, collapsed, setOpen, setCollapsed, isVi
                     </Row>
                 </Col>
             </Row>
+            {isVideoCategory && (
+                <Row
+                    align="middle"
+                    data-row-category
+                    justify="space-between"
+                    className={styles.header__row__categories}
+                >
+                    <Col span={24}>
+                        <CategoryBar categories={[]} scrolled={scrolled} />
+                    </Col>
+                </Row>
+            )}
         </AntHeader>
     );
 };

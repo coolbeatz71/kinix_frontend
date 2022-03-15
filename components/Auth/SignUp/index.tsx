@@ -25,11 +25,11 @@ const UserAgreement: FC = () => {
             <Text className={styles.signupForm__userAgreement__text}>
                 By clicking “Create account”, you agree to our{' '}
                 <Link href="/user-agreement" target="blank">
-                    User agreement
+                    Terms of service
                 </Link>{' '}
                 and{' '}
                 <Link href="/privacy-policy" target="blank">
-                    Privacy policy
+                    Privacy policies
                 </Link>{' '}
             </Text>
         </Form.Item>

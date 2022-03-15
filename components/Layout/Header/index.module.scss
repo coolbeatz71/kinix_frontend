@@ -3,16 +3,43 @@
 
 .header {
     position: fixed;
-    transition: ease-out all 0.05s;
+    transition: ease-out all 0.15s, ease-in-out height 0.2s;
+
     height: $header-height;
 
     z-index: 99;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
 
     -webkit-backdrop-filter: saturate(180%) blur(20px);
     backdrop-filter: saturate(180%) blur(20px);
+
+    &[data-scroll='scrolled'],
+    &[data-scroll='over'] {
+        &[data-is-category='true'] {
+            height: calc(#{$header-height} * 1.5);
+        }
+        [data-row-category] {
+            height: calc(#{$header-height} / 2);
+        }
+    }
+    &[data-scroll='scrolled'] {
+        background-color: rgba($bg-primary-light, 0.72);
+        &[data-backdrop-not-supported='true'] {
+            background-color: rgba($bg-primary-light, 0.98);
+        }
+    }
+    &[data-scroll='over'] {
+        background-color: rgba($white, 0.72);
+        &[data-backdrop-not-supported='true'] {
+            background-color: rgba($white, 0.98);
+        }
+    }
+
+    &[data-is-category='true'] {
+        height: calc(#{$header-height} * 2);
+    }
 
     &[data-sidenav-close='false'] {
         padding: 0 $padding;
@@ -96,14 +123,29 @@
     }
 
     &__row {
-        height: 100%;
         width: 100%;
+        height: 100%;
         display: flex;
         align-items: center;
 
         [class~='ant-col'] {
             display: flex;
             align-items: center;
+        }
+
+        &__category {
+            width: 100%;
+            height: $header-height;
+            transition: height 0.6s;
+            [class~='ant-menu'] {
+                background-color: transparent;
+                border-bottom: none;
+                & > li {
+                    height: calc(#{$header-height} / 2);
+                    line-height: calc(#{$header-height} / 2);
+                    margin-left: 0px !important;
+                }
+            }
         }
 
         &__logo {

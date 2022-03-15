@@ -46,8 +46,7 @@ const Layout: FC<ILayoutProps> = ({
     const [openSidenav, setOpenSidenav] = useState<boolean>(false);
     const [collapsedSidenav, setCollapsedSidenav] = useState<boolean>(true);
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const [_scrolled, setScrolled] = useState<string>('');
+    const [scrolled, setScrolled] = useState<string>('');
 
     const scrollHandler = useCallback(() => {
         setScrolled(window.pageYOffset > 640 ? 'over' : window.pageYOffset > 80 ? 'scrolled' : '');
@@ -109,6 +108,7 @@ const Layout: FC<ILayoutProps> = ({
             <div className={styles.layout__main}>
                 {showHeader && (
                     <Header
+                        scrolled={scrolled}
                         open={openSidenav}
                         setOpen={setOpenSidenav}
                         collapsed={collapsedSidenav}
