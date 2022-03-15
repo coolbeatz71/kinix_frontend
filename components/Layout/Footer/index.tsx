@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
 import { Col, Layout, Row, Typography, Anchor, Button, Form, Input, Divider } from 'antd';
-import Logo from '@components/common/Logo';
 import useDarkLight from '@hooks/useDarkLight';
 import { MdLocationOn, MdPhone, MdEmail } from 'react-icons/md';
 
@@ -27,9 +26,6 @@ export const Footer: FC<IFooterProps> = ({ isSidenavClose }) => {
     return (
         <div className={styles.footer} data-theme={value}>
             <AntFooter className={styles.footer__content} data-sidenav-close={isSidenavClose}>
-                <Row>
-                    <Logo canRedirect className={styles.footer__content__logo} />
-                </Row>
                 <Row justify="space-between" data-row>
                     <Col span={10} className={styles.footer__content__address}>
                         <div>

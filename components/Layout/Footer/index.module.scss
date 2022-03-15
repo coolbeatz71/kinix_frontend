@@ -25,13 +25,6 @@
                 border-top-color: $light10;
             }
 
-            &__logo {
-                background-image: url('/logo/large_dark.svg');
-                background-size: $logo-bg-size;
-                background-repeat: no-repeat;
-                background-position: left center;
-            }
-
             &__address {
                 [class~='ant-anchor-ink']::before {
                     background-color: $light20;
@@ -90,13 +83,6 @@
                 border-top-color: $dark10;
             }
 
-            &__logo {
-                background-image: url('/logo/large_light.svg');
-                background-size: $logo-bg-size;
-                background-repeat: no-repeat;
-                background-position: left center;
-            }
-
             &__address__value {
                 [data-contact-address='true'] {
                     color: $dark;
@@ -141,12 +127,6 @@
         }
 
         padding-bottom: calc(#{$content-padding} / 2) !important;
-
-        &__logo {
-            width: $max-sidenav-width;
-            height: $min-sidenav-width;
-            margin-bottom: calc(#{$content-padding} / 1.5);
-        }
 
         &__address {
             display: flex;
