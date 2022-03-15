@@ -46,8 +46,15 @@ const Header: FC<IHeaderProps> = ({ open, collapsed, setOpen, setCollapsed, isVi
         width: `calc(100% - ${sideNavWidth}px)`,
     };
 
+    const isSidenavClose = !open || collapsed;
+
     return (
-        <AntHeader data-theme={value} className={styles.header} style={headerStyles}>
+        <AntHeader
+            data-theme={value}
+            style={headerStyles}
+            className={styles.header}
+            data-sidenav-close={isSidenavClose}
+        >
             <LoginModal
                 open={openLoginModal}
                 onCloseClick={() => setOpenLoginModal(false)}
@@ -73,7 +80,6 @@ const Header: FC<IHeaderProps> = ({ open, collapsed, setOpen, setCollapsed, isVi
                 <Col span={1} className="p-0">
                     <Button
                         type="text"
-                        size="large"
                         onClick={handleToggle}
                         icon={<CustomIcon type="hamburger-menu" className="hamburger-menu" />}
                     />
