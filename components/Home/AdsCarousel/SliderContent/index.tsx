@@ -34,7 +34,7 @@ const SliderContent: FC<ISliderContentProps> = ({
         .right::after {
             content: '';
             position: absolute;
-            left: 0;
+            left: -1px;
             top: 0;
             width: 60%;
             height: 100%;
