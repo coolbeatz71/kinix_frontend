@@ -1,30 +1,41 @@
-import React, { FC } from 'react';
+import React, { ChangeEventHandler, FC, KeyboardEventHandler } from 'react';
 import { SearchOutlined } from '@ant-design/icons';
 import { Input } from 'antd';
 import styles from './index.module.scss';
 import useDarkLight from '@hooks/useDarkLight';
-import { IUnknownObject } from 'interfaces/app';
+
+import { SizeType } from 'antd/lib/config-provider/SizeContext';
 
 const { Search } = Input;
 
-const SearchInput: FC<IUnknownObject> = () => {
-    const { value } = useDarkLight();
+export interface ISearchInputProps {
+    size?: SizeType;
+    allowClear?: boolean;
+    value?: string | string[];
+    onChange?: ChangeEventHandler<HTMLInputElement> | undefined;
+    onKeyPress?: KeyboardEventHandler<HTMLInputElement> | undefined;
+}
+
+const SearchInput: FC<ISearchInputProps> = ({
+    size = 'middle',
+    allowClear = true,
+    value = '',
+    onChange,
+    onKeyPress,
+}) => {
+    const { value: darkLight } = useDarkLight();
 
     return (
-        <div data-theme={value} className={styles.search}>
+        <div data-theme={darkLight} className={styles.search}>
             <Search
-                allowClear
+                size={size}
+                value={value}
                 enterButton="Search"
+                allowClear={allowClear}
                 placeholder="Input search text"
                 prefix={<SearchOutlined />}
-                onChange={(_e: IUnknownObject) => {
-                    //
-                }}
-                onKeyPress={(e: IUnknownObject) => {
-                    if (e.key === 'Enter') {
-                        //
-                    }
-                }}
+                onChange={onChange}
+                onKeyPress={onKeyPress}
             />
         </div>
     );

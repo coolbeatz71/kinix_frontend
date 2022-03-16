@@ -110,6 +110,23 @@
         }
 
         .header__row {
+            &__categories {
+                [class~='ant-menu-item-only-child'] {
+                    color: $light;
+                }
+
+                [class~='ant-menu-item-selected'],
+                [class~='ant-menu-item-active'],
+                [class~='ant-menu-item-only-child']:hover {
+                    color: $white;
+                    border-color: $white;
+                }
+
+                [class~='ant-menu-item-selected'] {
+                    color: $white;
+                }
+            }
+
             &__logo {
                 background-image: url('/logo/large_dark.svg');
                 background-size: $logo-bg-size;
@@ -143,6 +160,16 @@
                 border-bottom: none;
                 display: flex;
 
+                [class~='ant-menu-item-selected'],
+                [class~='ant-menu-item-active'],
+                [class~='ant-menu-item-only-child']:hover {
+                    border-width: 3px;
+                }
+
+                [class~='ant-menu-item-selected'] {
+                    font-weight: 600;
+                }
+
                 & > li {
                     line-height: calc(#{$header-height} / 2);
                     margin-left: 0.5rem !important;
@@ -160,6 +187,10 @@
             display: flex;
             align-items: center;
             justify-content: center;
+
+            border: 0;
+            color: $white !important;
+
             &:hover {
                 [class~='twitter'] {
                     color: $twitter;
@@ -173,6 +204,19 @@
                 [class~='youtube'] {
                     color: $youtube;
                 }
+            }
+
+            &[data-platform='twitter'] {
+                background: $twitter;
+            }
+            &[data-platform='instagram'] {
+                background: $instagram;
+            }
+            &[data-platform='facebook'] {
+                background: $facebook;
+            }
+            &[data-platform='youtube'] {
+                background: $youtube;
             }
         }
     }

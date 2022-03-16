@@ -118,15 +118,18 @@ const Header: FC<IHeaderProps> = ({ open, collapsed, setOpen, setCollapsed, isVi
                         </Col>
 
                         <Col span={12} className="d-flex justify-content-end">
-                            {social.map((item) => (
-                                <Button
-                                    type="text"
-                                    key={item.name}
-                                    icon={item.icon}
-                                    className={styles.header__row__social}
-                                    onClick={() => window?.open(item.url, '_blank')}
-                                />
-                            ))}
+                            <Space>
+                                {social.map((item) => (
+                                    <Button
+                                        type="text"
+                                        key={item.name}
+                                        icon={item.icon}
+                                        data-platform={item.name}
+                                        className={styles.header__row__social}
+                                        onClick={() => window?.open(item.url, '_blank')}
+                                    />
+                                ))}
+                            </Space>
                         </Col>
                     </Row>
                 </Col>
@@ -137,28 +140,24 @@ const Header: FC<IHeaderProps> = ({ open, collapsed, setOpen, setCollapsed, isVi
                         <CategoryBar
                             categories={[
                                 {
+                                    id: 0,
+                                    title: 'music video',
+                                },
+                                {
                                     id: 1,
-                                    title: 'music',
+                                    title: 'interview',
                                 },
                                 {
                                     id: 2,
-                                    title: 'music',
+                                    title: 'podcast',
                                 },
                                 {
                                     id: 3,
-                                    title: 'music',
+                                    title: 'LeFocus',
                                 },
                                 {
                                     id: 4,
-                                    title: 'music',
-                                },
-                                {
-                                    id: 5,
-                                    title: 'music',
-                                },
-                                {
-                                    id: 6,
-                                    title: 'music',
+                                    title: 'Flex&Beatz',
                                 },
                             ]}
                             scrolled={scrolled}

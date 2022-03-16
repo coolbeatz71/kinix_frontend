@@ -5,6 +5,7 @@ import { Row, Grid, Dropdown, Button, Col, Menu } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 import { ALL_VIDEOS_PATH } from '@constants/paths';
 import { CatType } from '@context/video-categories';
+import SearchInput from '@components/common/SearchInput';
 
 export interface ICategoryBarProps {
     categories: CatType[];
@@ -55,6 +56,19 @@ const CategoryBar: FC<ICategoryBarProps> = ({ categories, baseUrl = ALL_VIDEOS_P
                         ))}
                     </Menu>
                 </Wrapper>
+            </Col>
+            <Col data-search-col={scrolled !== '' ? 'scrolled' : ''}>
+                <SearchInput
+                    value=""
+                    allowClear={screens.lg}
+                    size={scrolled !== '' ? 'small' : 'middle'}
+                    onChange={(_e) => {
+                        //
+                    }}
+                    onKeyPress={(_e) => {
+                        //
+                    }}
+                />
             </Col>
         </Row>
     );
