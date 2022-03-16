@@ -1,7 +1,10 @@
-import React, { FC } from 'react';
-import { CatType } from '@context/video-categories';
+import React, { FC, ReactElement } from 'react';
+import { capitalize } from 'lodash';
+import { useRouter } from 'next/router';
+import { Row, Grid, Dropdown, Button, Col, Menu } from 'antd';
+import { DownOutlined } from '@ant-design/icons';
 import { ALL_VIDEOS_PATH } from '@constants/paths';
-import { Row } from 'antd';
+import { CatType } from '@context/video-categories';
 
 export interface ICategoryBarProps {
     categories: CatType[];
@@ -9,12 +12,52 @@ export interface ICategoryBarProps {
     scrolled: string;
 }
 
-const CategoryBar: FC<ICategoryBarProps> = ({
-    categories: _cat,
-    baseUrl: _baseUrl = ALL_VIDEOS_PATH,
-    scrolled: _scroll,
-}) => {
-    return <Row gutter={24} align="middle"></Row>;
+const { useBreakpoint } = Grid;
+
+const CategoryBar: FC<ICategoryBarProps> = ({ categories, baseUrl = ALL_VIDEOS_PATH, scrolled }) => {
+    const { query } = useRouter();
+    const screens = useBreakpoint();
+
+    const categoryId: string | string[] = query?.category_id || baseUrl;
+    const categoryTitles = { [baseUrl]: capitalize('all') };
+
+    const Wrapper: FC<{ children: ReactElement }> = ({ children }) =>
+        screens.lg ? (
+            children
+        ) : (
+            <Dropdown
+                arrow
+                overlay={children}
+                trigger={['click']}
+                placement="bottomLeft"
+                overlayStyle={{ position: 'fixed' }}
+            >
+                <Button size={scrolled !== '' ? 'small' : 'middle'} type="primary" ghost={`${categoryId}` === baseUrl}>
+                    {capitalize(categoryTitles[`${categoryId}`])} <DownOutlined />
+                </Button>
+            </Dropdown>
+        );
+
+    return (
+        <Row align="middle">
+            <Col flex={1}>
+                <Wrapper>
+                    <Menu
+                        mode="horizontal"
+                        selectedKeys={[`${categoryId}`]}
+                        onClick={({ key }) => {
+                            console.log('key', key);
+                        }}
+                    >
+                        <Menu.Item key={baseUrl}>{capitalize(categoryTitles[baseUrl])}</Menu.Item>
+                        {categories.map(({ id, title }) => (
+                            <Menu.Item key={id}>{capitalize(title)}</Menu.Item>
+                        ))}
+                    </Menu>
+                </Wrapper>
+            </Col>
+        </Row>
+    );
 };
 
 export default CategoryBar;

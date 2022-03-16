@@ -132,14 +132,37 @@ const Header: FC<IHeaderProps> = ({ open, collapsed, setOpen, setCollapsed, isVi
                 </Col>
             </Row>
             {isVideoCategory && (
-                <Row
-                    align="middle"
-                    data-row-category
-                    justify="space-between"
-                    className={styles.header__row__categories}
-                >
+                <Row align="bottom" data-row-category className={styles.header__row__categories}>
                     <Col span={24}>
-                        <CategoryBar categories={[]} scrolled={scrolled} />
+                        <CategoryBar
+                            categories={[
+                                {
+                                    id: 1,
+                                    title: 'music',
+                                },
+                                {
+                                    id: 2,
+                                    title: 'music',
+                                },
+                                {
+                                    id: 3,
+                                    title: 'music',
+                                },
+                                {
+                                    id: 4,
+                                    title: 'music',
+                                },
+                                {
+                                    id: 5,
+                                    title: 'music',
+                                },
+                                {
+                                    id: 6,
+                                    title: 'music',
+                                },
+                            ]}
+                            scrolled={scrolled}
+                        />
                     </Col>
                 </Row>
             )}
