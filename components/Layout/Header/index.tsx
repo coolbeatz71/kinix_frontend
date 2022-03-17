@@ -135,7 +135,12 @@ const Header: FC<IHeaderProps> = ({ open, collapsed, setOpen, setCollapsed, isVi
                 </Col>
             </Row>
             {isVideoCategory && (
-                <Row align="bottom" data-row-category className={styles.header__row__categories}>
+                <Row
+                    align="bottom"
+                    data-row-category
+                    justify="space-between"
+                    className={styles.header__row__categories}
+                >
                     <Col span={24}>
                         <CategoryBar
                             categories={[

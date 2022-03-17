@@ -40,7 +40,7 @@ const CategoryBar: FC<ICategoryBarProps> = ({ categories, baseUrl = ALL_VIDEOS_P
         );
 
     return (
-        <Row align="middle">
+        <Row align="middle" justify="space-between">
             <Col flex={1}>
                 <Wrapper>
                     <Menu

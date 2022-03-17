@@ -1,0 +1,39 @@
+@import 'styles/dimensions.scss';
+@import 'styles/colors.scss';
+
+.tags {
+    margin: $padding 0;
+    [class~='ant-tag'] {
+        padding: 5px 0.6rem;
+    }
+
+    &[data-theme='light'] {
+        [class~='ant-tag-checkable'] {
+            border-color: $grey;
+            background: $default;
+        }
+
+        [class~='ant-tag-checkable-checked'] {
+            color: $white;
+            background: $primary;
+            border-color: transparent;
+        }
+    }
+
+    &[data-theme='dark'] {
+        [class~='ant-tag-checkable'] {
+            color: $dark;
+            background: $light;
+        }
+
+        [class~='ant-tag-checkable-checked'] {
+            color: $black;
+            background: $warning;
+            border-color: transparent;
+        }
+    }
+
+    [class~='ant-tag-checkable-checked'] {
+        font-weight: 600;
+    }
+}
