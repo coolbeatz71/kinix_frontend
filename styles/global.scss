@@ -29,7 +29,7 @@ textarea {
 }
 
 [data-content-padding] {
-    padding: calc(#{$padding} * 1.2) 0;
+    padding: calc(#{$content-padding} / 2) 0;
 }
 
 .react-horizontal-scrolling-menu--scroll-container::-webkit-scrollbar {
@@ -39,4 +39,10 @@ textarea {
 .react-horizontal-scrolling-menu--scroll-container {
     -ms-overflow-style: none;
     scrollbar-width: none;
+}
+
+.react-horizontal-scrolling-menu--wrapper {
+    position: absolute;
+    right: 0;
+    left: 0;
 }

@@ -2,7 +2,10 @@
 @import 'styles/colors.scss';
 
 .tags {
+    width: 100%;
+    height: 2rem;
     margin: $padding 0;
+
     [class~='ant-tag'] {
         padding: 5px 0.6rem;
     }
