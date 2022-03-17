@@ -2,8 +2,12 @@
 @import 'styles/dimensions.scss';
 
 .footer {
+    [data-title='true'] {
+        margin-bottom: calc(#{$content-padding} / 2);
+    }
+
     &[data-theme~='dark'] {
-        background-color: $bg-primary-dark90;
+        background-color: $bg-primary-dark;
         background-size: cover;
 
         .footer__content {
@@ -19,13 +23,6 @@
 
             [class~='ant-divider'] {
                 border-top-color: $light10;
-            }
-
-            &__logo {
-                background-image: url('/logo/large_dark.svg');
-                background-size: $logo-bg-size;
-                background-repeat: no-repeat;
-                background-position: left center;
             }
 
             &__address {
@@ -68,7 +65,7 @@
     }
 
     &[data-theme~='light'] {
-        background-color: $bg-primary-light90;
+        background-color: $bg-primary-light;
         background-size: cover;
 
         .footer__content {
@@ -84,13 +81,6 @@
 
             [class~='ant-divider'] {
                 border-top-color: $dark10;
-            }
-
-            &__logo {
-                background-image: url('/logo/large_light.svg');
-                background-size: $logo-bg-size;
-                background-repeat: no-repeat;
-                background-position: left center;
             }
 
             &__address__value {
@@ -125,53 +115,47 @@
     }
 
     &__content {
+        [data-row] {
+            margin-bottom: calc(#{$content-padding} / 1.2);
+        }
+
         &[data-sidenav-close='false'] {
             padding: $padding;
         }
         &[data-sidenav-close='true'] {
-            padding: calc(#{$content-padding} / 1.4) calc(#{$content-padding} * 1.44);
+            padding: calc(#{$content-padding} / 1.4) $content-padding;
         }
 
         padding-bottom: calc(#{$content-padding} / 2) !important;
 
-        &__logo {
-            width: $max-sidenav-width;
-            height: $min-sidenav-width;
-            margin-bottom: calc(#{$content-padding} / 1.5);
-        }
-
-        [class~='ant-anchor-wrapper'] {
-            [class~='ant-anchor-link'] {
-                padding-top: 1.2rem;
-
-                [class~='ant-anchor-link-title'] {
-                    font-size: 15px;
-                    font-weight: 600;
-                }
-            }
-        }
-
         &__address {
-            background: transparent;
+            display: flex;
+            flex-flow: column;
+            justify-content: space-between;
+
+            [class~='ant-anchor-wrapper'] {
+                background: transparent;
+            }
 
             &__value {
                 margin: 0 $padding;
 
                 [data-contact-address='true'] {
-                    font-size: 14pt;
+                    font-size: 10pt;
                     display: flex;
                     align-items: center;
-                    margin-top: 1rem;
+                    margin-bottom: 1rem;
                     cursor: pointer;
                 }
             }
         }
 
         &__social {
-            margin: calc(#{$padding} * 2.4) 0;
+            margin: calc(#{$padding}) 0;
+            margin-bottom: 0;
 
             [data-contact-address='true'] {
-                font-size: 14pt;
+                font-size: 11pt;
             }
 
             &__icon {
@@ -180,12 +164,11 @@
                 justify-content: center;
 
                 margin-top: 2rem;
-                margin-right: 1.8rem;
+                margin-right: 1.5rem;
 
                 [class~='anticon'] {
-                    font-size: 1.8rem;
+                    font-size: 1.5rem;
                 }
-
                 [class~='twitter'] {
                     color: $twitter;
                 }
@@ -210,12 +193,12 @@
             margin-top: calc(#{$content-padding} / 2);
 
             [data-copyright='true'] {
-                font-size: 11.5pt;
+                font-size: 11pt;
             }
 
             [data-links='true'] {
                 a {
-                    font-size: 11.5pt;
+                    font-size: 11pt;
                     margin-left: $padding;
                 }
             }

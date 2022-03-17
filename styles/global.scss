@@ -1,4 +1,5 @@
-@import 'styles/colors.scss';
+@import 'colors.scss';
+@import 'dimensions.scss';
 
 textarea {
     &::-webkit-input-placeholder {
@@ -25,4 +26,23 @@ textarea {
         font-size: 14px;
         color: $dark50 !important;
     }
+}
+
+[data-content-padding] {
+    padding: calc(#{$content-padding} / 2) 0;
+}
+
+.react-horizontal-scrolling-menu--scroll-container::-webkit-scrollbar {
+    display: none;
+}
+
+.react-horizontal-scrolling-menu--scroll-container {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.react-horizontal-scrolling-menu--wrapper {
+    position: absolute;
+    right: 0;
+    left: 0;
 }

@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
 import { Col, Layout, Row, Typography, Anchor, Button, Form, Input, Divider } from 'antd';
-import Logo from '@components/common/Logo';
 import useDarkLight from '@hooks/useDarkLight';
 import { MdLocationOn, MdPhone, MdEmail } from 'react-icons/md';
 
@@ -27,32 +26,31 @@ export const Footer: FC<IFooterProps> = ({ isSidenavClose }) => {
     return (
         <div className={styles.footer} data-theme={value}>
             <AntFooter className={styles.footer__content} data-sidenav-close={isSidenavClose}>
-                <Row>
-                    <Logo canRedirect className={styles.footer__content__logo} />
-                </Row>
-                <Row justify="space-between">
-                    <Col span={10}>
-                        <Title level={3} data-title>
-                            Addresses
-                        </Title>
-                        <Anchor affix={false} className={styles.footer__content__address}>
-                            <div className={styles.footer__content__address__value}>
-                                <Text data-contact-address>
-                                    <MdLocationOn />
-                                    &nbsp; 151 New Park Ave, KN 134 St, Kigali/Rwanda
-                                </Text>
+                <Row justify="space-between" data-row>
+                    <Col span={10} className={styles.footer__content__address}>
+                        <div>
+                            <Title level={3} data-title>
+                                Address
+                            </Title>
+                            <Anchor affix={false}>
+                                <div className={styles.footer__content__address__value}>
+                                    <Text data-contact-address>
+                                        <MdLocationOn />
+                                        &nbsp; 151 New Park Ave, KN 134 St, Kigali/Rwanda
+                                    </Text>
 
-                                <TextLink data-contact-address href="tel:(+250) 078 071 2761">
-                                    <MdPhone />
-                                    &nbsp; (+250) 078 07 12 761
-                                </TextLink>
+                                    <TextLink data-contact-address href="tel:(+250) 078 071 2761">
+                                        <MdPhone />
+                                        &nbsp; (+250) 078 07 12 761
+                                    </TextLink>
 
-                                <TextLink data-contact-address href="mailto:sigmacool@gmail.com" target="_blank">
-                                    <MdEmail />
-                                    &nbsp; sigmacool@gmail.com
-                                </TextLink>
-                            </div>
-                        </Anchor>
+                                    <TextLink data-contact-address href="mailto:sigmacool@gmail.com" target="_blank">
+                                        <MdEmail />
+                                        &nbsp; sigmacool@gmail.com
+                                    </TextLink>
+                                </div>
+                            </Anchor>
+                        </div>
                         <div className={styles.footer__content__social}>
                             <Text data-contact-address>
                                 Follow us on social media to find out <br /> the latest updates on our progress

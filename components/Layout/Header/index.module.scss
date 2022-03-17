@@ -3,17 +3,51 @@
 
 .header {
     position: fixed;
-    transition: ease-out all 0.05s;
+    transition: ease-out all 0.15s, ease-in-out height 0.2s;
+
     height: $header-height;
 
     z-index: 99;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     align-items: center;
 
-    padding: 0 $padding;
     -webkit-backdrop-filter: saturate(180%) blur(20px);
     backdrop-filter: saturate(180%) blur(20px);
+
+    &[data-scroll='scrolled'],
+    &[data-scroll='over'] {
+        &[data-is-category='true'] {
+            height: calc(#{$header-height} * 1.6);
+        }
+        [data-row-category] {
+            height: $header-height;
+        }
+    }
+    &[data-scroll='scrolled'] {
+        background-color: rgba($bg-primary-light, 0.72);
+        &[data-backdrop-not-supported='true'] {
+            background-color: rgba($bg-primary-light, 0.98);
+        }
+    }
+    &[data-scroll='over'] {
+        background-color: rgba($white, 0.72);
+        &[data-backdrop-not-supported='true'] {
+            background-color: rgba($white, 0.98);
+        }
+    }
+
+    &[data-is-category='true'] {
+        height: calc(#{$header-height} * 2);
+    }
+
+    &[data-sidenav-close='false'] {
+        padding: 0 $padding;
+    }
+    &[data-sidenav-close='true'] {
+        padding: 0 $content-padding;
+    }
 
     [class~='hamburger-menu'] {
         display: flex;
@@ -76,6 +110,23 @@
         }
 
         .header__row {
+            &__categories {
+                [class~='ant-menu-item-only-child'] {
+                    color: $light;
+                }
+
+                [class~='ant-menu-item-selected'],
+                [class~='ant-menu-item-active'],
+                [class~='ant-menu-item-only-child']:hover {
+                    color: $white;
+                    border-color: $white;
+                }
+
+                [class~='ant-menu-item-selected'] {
+                    color: $white;
+                }
+            }
+
             &__logo {
                 background-image: url('/logo/large_dark.svg');
                 background-size: $logo-bg-size;
@@ -90,7 +141,6 @@
     }
 
     &__row {
-        height: 100%;
         width: 100%;
         display: flex;
         align-items: center;
@@ -100,11 +150,36 @@
             align-items: center;
         }
 
+        &__categories {
+            width: 100%;
+            transition: height 0.2s;
+            padding-bottom: 0.25rem;
+
+            [class~='ant-menu'] {
+                background-color: transparent;
+                border-bottom: none;
+                display: flex;
+
+                [class~='ant-menu-item-selected'],
+                [class~='ant-menu-item-active'],
+                [class~='ant-menu-item-only-child']:hover {
+                    border-width: 3px;
+                }
+
+                [class~='ant-menu-item-selected'] {
+                    font-weight: 600;
+                }
+
+                & > li {
+                    line-height: calc(#{$header-height} / 2);
+                    margin-left: 0.5rem !important;
+                }
+            }
+        }
+
         &__logo {
             width: $max-sidenav-width;
             height: $min-sidenav-width;
-            position: relative;
-            right: 1rem;
         }
 
         &__social {
@@ -112,6 +187,10 @@
             display: flex;
             align-items: center;
             justify-content: center;
+
+            border: 0;
+            color: $white !important;
+
             &:hover {
                 [class~='twitter'] {
                     color: $twitter;
@@ -125,6 +204,19 @@
                 [class~='youtube'] {
                     color: $youtube;
                 }
+            }
+
+            &[data-platform='twitter'] {
+                background: $twitter;
+            }
+            &[data-platform='instagram'] {
+                background: $instagram;
+            }
+            &[data-platform='facebook'] {
+                background: $facebook;
+            }
+            &[data-platform='youtube'] {
+                background: $youtube;
             }
         }
     }

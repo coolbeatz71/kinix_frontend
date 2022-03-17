@@ -34,7 +34,7 @@ const SliderContent: FC<ISliderContentProps> = ({
         .right::after {
             content: '';
             position: absolute;
-            left: 0;
+            left: -1px;
             top: 0;
             width: 60%;
             height: 100%;
@@ -46,30 +46,33 @@ const SliderContent: FC<ISliderContentProps> = ({
         </Col>,
     );
 
+    const carouselLeftContent = Style.it(
+        `
+        .left {
+            background: ${bgColor} !important;
+        }
+        `,
+        <Col span={12} className={`${styles.adsCarousel__left} left`}>
+            <div>
+                <Tag data-tag>{tag}</Tag>
+                <Title data-title>{title}</Title>
+                <Text strong data-subtitle>
+                    {subtitle}
+                </Text>
+            </div>
+            <Paragraph data-desc>{desc}</Paragraph>
+
+            {hasButton && (
+                <Button size="large" className="mt-4" href={link} target="_blank">
+                    {buttonText || 'Visit Now'}
+                </Button>
+            )}
+        </Col>,
+    );
+
     return (
         <Row justify="space-between">
-            <Col
-                span={12}
-                className={styles.adsCarousel__left}
-                style={{
-                    background: `${bgColor} !important`,
-                }}
-            >
-                <div>
-                    <Tag data-tag>{tag}</Tag>
-                    <Title data-title>{title}</Title>
-                    <Text strong data-subtitle>
-                        {subtitle}
-                    </Text>
-                </div>
-                <Paragraph data-desc>{desc}</Paragraph>
-
-                {hasButton && (
-                    <Button size="large" className="mt-4" href={link} target="_blank">
-                        {buttonText || 'Visit Now'}
-                    </Button>
-                )}
-            </Col>
+            {carouselLeftContent}
             {carouselRightContent}
         </Row>
     );
