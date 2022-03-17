@@ -2,6 +2,8 @@ import React, { FC, useContext } from 'react';
 import { Tag as AntTag } from 'antd';
 import { VisibilityContext } from 'react-horizontal-scrolling-menu';
 
+import styles from './index.module.scss';
+
 const { CheckableTag } = AntTag;
 
 export interface ITagProps {
@@ -10,11 +12,10 @@ export interface ITagProps {
 }
 
 const Tag: FC<ITagProps> = ({ itemId, value }) => {
-    const visibility = useContext(VisibilityContext);
-    visibility.isItemVisible(itemId);
+    useContext(VisibilityContext).isItemVisible(itemId);
 
     return (
-        <CheckableTag style={{ margin: '0 0.5rem' }} checked={itemId === '0'}>
+        <CheckableTag className={styles.tag} checked={itemId === '0'} data-is-first={itemId === '0'}>
             {value}
         </CheckableTag>
     );

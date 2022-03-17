@@ -1,4 +1,4 @@
-import TagsBar from '@components/common/TagsBar';
+import TagsBar from '@components/Layout/TagsBar';
 import React, { FC } from 'react';
 
 const VideoContainer: FC = () => {

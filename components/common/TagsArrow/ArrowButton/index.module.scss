@@ -1,0 +1,29 @@
+@import 'styles/colors.scss';
+
+.arrowButton {
+    display: flex;
+
+    [class~='ant-btn'] {
+        background: $grey;
+    }
+
+    &[data-placement='LEFT']::after,
+    &[data-placement='RIGHT']::before {
+        width: 0.5rem;
+        content: '';
+        pointer-events: none;
+    }
+
+    &[data-placement='LEFT'] {
+        button {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+    }
+    &[data-placement='RIGHT'] {
+        button {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+    }
+}

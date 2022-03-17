@@ -1,0 +1,7 @@
+.tag {
+    margin: 0 0.5rem;
+
+    &[data-is-first='true'] {
+        margin-left: 0;
+    }
+}
