@@ -6,6 +6,9 @@ import { Router } from 'next/router';
 import 'styles/coreui.min.css';
 import 'styles/global.scss';
 
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+
 type AppPropsWithError = AppProps & { err: unknown };
 
 const config = {

@@ -5,6 +5,8 @@ import useDarkLight from '@hooks/useDarkLight';
 import styles from './index.module.scss';
 import AlaUneArticleList from '@components/common/AlaUneArticleList';
 import { Button, Row } from 'antd';
+import Link from 'next/link';
+import { ALL_ARTICLE_PATH } from '@constants/paths';
 
 interface IAlaUneArticleSectionProps {
     fetched: boolean;
@@ -20,7 +22,9 @@ const AlaUneArticleSection: FC<IAlaUneArticleSectionProps> = ({ fetched, error, 
             <AlaUneArticleList fetched={fetched} error={error} articles={articles} />
 
             <Row justify="end">
-                <Button size="large">View All</Button>
+                <Link href={ALL_ARTICLE_PATH} passHref>
+                    <Button size="large">View All</Button>
+                </Link>
             </Row>
         </div>
     );
