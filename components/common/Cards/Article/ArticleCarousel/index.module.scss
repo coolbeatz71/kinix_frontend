@@ -1,8 +1,8 @@
-.mainArticle {
-    article {
-        height: 25rem;
-    }
+@import 'styles/dimensions.scss';
+@import 'styles/colors.scss';
+@import 'styles/_mixins.scss';
 
+.articleCarousel {
     [class~='slider-control-bottomcenter'] {
         display: none;
     }
@@ -11,10 +11,22 @@
     [class~='slider-control-centerright'] {
         top: 100% !important;
         transform: translateY(-100%) !important;
-        padding: 0.5rem;
+        padding: 2rem;
+
+        button {
+            background: $warning !important;
+            color: $dark !important;
+            border-radius: $border-radius;
+            font-weight: 600;
+        }
     }
 
     [class~='slider-control-centerleft'] {
+        left: auto !important;
         right: 70px !important;
+    }
+
+    [class~='slider-list'] {
+        width: 100% !important;
     }
 }

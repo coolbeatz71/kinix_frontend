@@ -3,14 +3,15 @@ import React, { FC } from 'react';
 import Carousel from 'nuka-carousel';
 
 import styles from './index.module.scss';
+import MainArticle from '@components/common/Cards/Article/MainArticle';
 
 const ArticleCarousel: FC = () => {
     return (
-        <div className={styles.mainArticle}>
-            <Carousel wrapAround dragging slidesToShow={2} cellSpacing={10} cellAlign="center">
+        <div className={styles.articleCarousel}>
+            <Carousel wrapAround dragging slidesToShow={1} slidesToScroll={1} cellSpacing={10} cellAlign="left">
                 {sliders.map((slider) => (
                     <article key={slider.title}>
-                        <div style={{ width: '100%', height: '100%', background: slider.bgColor }}></div>
+                        <MainArticle />
                     </article>
                 ))}
             </Carousel>

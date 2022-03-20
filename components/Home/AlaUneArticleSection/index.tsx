@@ -12,20 +12,23 @@ interface IAlaUneArticleSectionProps {
     fetched: boolean;
     error: string | null;
     articles: IUnknownObject[];
+    canViewAll?: boolean;
 }
 
-const AlaUneArticleSection: FC<IAlaUneArticleSectionProps> = ({ fetched, error, articles }) => {
+const AlaUneArticleSection: FC<IAlaUneArticleSectionProps> = ({ fetched, error, articles, canViewAll = true }) => {
     const { value } = useDarkLight();
 
     return (
         <div data-theme={value} className={styles.alaUneArticleSection}>
             <AlaUneArticleList fetched={fetched} error={error} articles={articles} />
 
-            <Row justify="end">
-                <Link href={ALL_ARTICLE_PATH} passHref>
-                    <Button size="large">View All</Button>
-                </Link>
-            </Row>
+            {canViewAll && (
+                <Row justify="end">
+                    <Link href={ALL_ARTICLE_PATH} passHref>
+                        <Button size="large">View All</Button>
+                    </Link>
+                </Row>
+            )}
         </div>
     );
 };
