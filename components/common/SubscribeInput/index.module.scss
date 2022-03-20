@@ -1,0 +1,10 @@
+@import 'styles/dimensions.scss';
+
+.subscribeInput {
+    padding-top: calc(#{$padding} * 1.2);
+
+    [class~='ant-btn'] {
+        border-bottom-left-radius: 0;
+        border-top-left-radius: 0;
+    }
+}

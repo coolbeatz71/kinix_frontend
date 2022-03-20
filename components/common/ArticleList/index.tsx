@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { Col, Row } from 'antd';
-import ArticleCardVertical from '@components/common/Cards/Article/ArticleCardVertical';
+import ArticleCardVertical from '@components/common/Cards/Article/ArticleVertical';
 import { IUnknownObject } from 'interfaces/app';
 
 interface IArticleListProps {

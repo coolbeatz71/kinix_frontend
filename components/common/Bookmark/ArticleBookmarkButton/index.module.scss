@@ -5,6 +5,7 @@
     margin: auto;
     display: flex;
     align-items: center;
+    justify-content: center;
 
     &[data-theme='dark'] {
         color: $light50;
