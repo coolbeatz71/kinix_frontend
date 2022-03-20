@@ -57,7 +57,7 @@ const SideNav: FC<ISideNavProps> = ({ open, collapsed, setCollapsed }) => {
                         <SubMenu key={section.key} title={section.title} className={styles.sidenav__menu__sub}>
                             {section.sub.map((item) => (
                                 <Item className={styles.sidenav__menu__items} key={item.text} icon={item.icon}>
-                                    {item.text}
+                                    <Link href={item.href}>{item.text}</Link>
                                 </Item>
                             ))}
                         </SubMenu>
