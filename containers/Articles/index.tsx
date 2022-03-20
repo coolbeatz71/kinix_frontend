@@ -1,8 +1,9 @@
 import React, { FC } from 'react';
-import MainArticle from '@components/common/Cards/Article/ArticleCarousel';
+import MainArticle from '@components/common/ArticleCarousel';
 import TagsBar from '@components/Layout/TagsBar';
 import { EnumTagsContext } from '@constants/tags-context';
 import AlaUneArticleSection from '@components/Home/AlaUneArticleSection';
+import ArticleList from '@components/common/ArticleList';
 
 const ArticleContainer: FC = () => {
     return (
@@ -13,6 +14,10 @@ const ArticleContainer: FC = () => {
             </div>
             <div className="mt-5">
                 <AlaUneArticleSection fetched error={null} articles={[]} canViewAll={false} />
+            </div>
+
+            <div className="mt-5">
+                <ArticleList fetched={true} error={null} articles={[]} myArticles={false} />
             </div>
         </div>
     );
