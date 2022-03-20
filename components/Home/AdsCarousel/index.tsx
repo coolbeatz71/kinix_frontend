@@ -4,7 +4,7 @@ import SliderContent from './SliderContent';
 
 import styles from './index.module.scss';
 
-const sliders = [
+export const sliders = [
     {
         tag: 'Brand news',
         title: 'ALBUM "Mother of Brooklyn" on stores now',

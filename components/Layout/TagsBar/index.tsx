@@ -8,15 +8,22 @@ import { RightArrow } from '@components/common/TagsArrow/RightArrow';
 import Tag from '@components/common/Tag';
 import onWheel, { getId } from '@helpers/tagBarOnWheel';
 import { Col, Row } from 'antd';
+import { EnumTagsContext } from '@constants/tags-context';
 
-const TagsBar: FC = () => {
+export interface ITagsBarProps {
+    context: EnumTagsContext;
+}
+
+const TagsBar: FC<ITagsBarProps> = ({ context }) => {
     const { value } = useDarkLight();
     const items = Array(15)
         .fill(0)
         .map((_, i) => ({ id: getId(i), value: `tag number ${i}` }));
 
+    const isArticleContext = context === EnumTagsContext.ARTICLE;
+
     return (
-        <Row className={styles.tags} data-theme={value}>
+        <Row className={styles.tags} data-theme={value} data-article-context={isArticleContext}>
             <Col span={24}>
                 <ScrollMenu LeftArrow={LeftArrow} RightArrow={RightArrow} onWheel={onWheel}>
                     {items.map((tag) => (

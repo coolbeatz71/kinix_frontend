@@ -6,6 +6,10 @@
     height: 2rem;
     margin: $padding 0;
 
+    &[data-article-context='true'] {
+        margin: 0 !important;
+    }
+
     [class~='ant-tag'] {
         padding: 5px 0.6rem;
     }

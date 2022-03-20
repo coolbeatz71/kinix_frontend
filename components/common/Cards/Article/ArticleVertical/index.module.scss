@@ -1,8 +1,22 @@
 @import 'styles/colors.scss';
 @import 'styles/dimensions.scss';
 
-.videoCardVertical {
+.articleCardVertical {
+    height: 25rem;
+
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: $padding;
+        [class~='ant-typography'] {
+            font-size: 8.5pt;
+        }
+    }
+
     [class~='ant-card-cover'] {
+        margin: calc(#{$padding} / 1.5);
+        margin-bottom: 0;
+
         cursor: pointer;
         display: flex;
         align-items: center;
@@ -10,10 +24,8 @@
         overflow: hidden;
         border-radius: $border-radius;
 
-        border-bottom-left-radius: 0;
-        border-bottom-right-radius: 0;
-
         img {
+            height: 100%;
             transition: transform 0.5s ease;
         }
 
@@ -59,13 +71,24 @@
         }
     }
 
+    [class~='ant-card'] {
+        height: 25rem;
+        display: flex;
+        flex-flow: column;
+        justify-content: space-between;
+
+        [class~='ant-card-body'] {
+            padding: calc(#{$padding} / 1.5);
+        }
+    }
+
     &[data-theme='light'] {
         [class~='ant-card'] {
             background: $light;
         }
 
         [class~='ant-card-meta-title'] {
-            color: $black;
+            color: $dark;
         }
 
         [class~='ant-card-meta-description'] {
@@ -102,24 +125,26 @@
                 border-right: 1px solid $light10;
             }
         }
+
+        .articleCardVertical__header {
+            [class~='ant-typography'] {
+                color: $light;
+            }
+        }
     }
 
     [class~='ant-card-meta-title'] {
         white-space: unset;
         font-size: 14px;
         height: 3rem;
+        font-weight: 600;
+        margin-bottom: 4px !important;
     }
 
     [class~='ant-card-meta-description'] {
         font-size: 13px;
         overflow: hidden;
-        white-space: nowrap;
         text-overflow: ellipsis;
-    }
-
-    [class~='ant-avatar-circle'] {
-        width: 1.5rem;
-        height: 1.5rem;
     }
 
     [class~='ant-card-actions'] {

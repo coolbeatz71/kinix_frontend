@@ -3,7 +3,7 @@ import { NextPage } from 'next';
 import Layout from '@components/Layout';
 import VideoContainer from '@containers/Videos';
 
-const Videos: NextPage = () => {
+const VideosPage: NextPage = () => {
     return (
         <Layout title="Videos" showFooter={false} isVideoCategory>
             <VideoContainer />
@@ -11,4 +11,4 @@ const Videos: NextPage = () => {
     );
 };
 
-export default Videos;
+export default VideosPage;
