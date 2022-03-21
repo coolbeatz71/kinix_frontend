@@ -41,7 +41,6 @@ const AlaUneArticleCard: FC<IAlaUeArticleProps> = ({ size, priority = EnumAlaUne
                         <div className={styles.alaUneArticleCardStyles__overlay}>
                             <img alt="example" src={`https://picsum.photos/200/300?random=${size}`} />
                         </div>
-
                         <div className={styles.alaUneArticleCardStyles__content}>
                             <div className={styles.alaUneArticleCardStyles__content__header}>
                                 <Text data-text="header">

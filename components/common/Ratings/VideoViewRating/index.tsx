@@ -19,7 +19,7 @@ const VideoViewRating: FC<IVideoViewRatingProps> = ({ count }) => {
             className={styles.videoViewRating}
             onClick={() => console.log('clicked')}
         >
-            <StarRatingComponent name="rate1" starCount={5} value={count} />
+            <StarRatingComponent name="video-rate" starCount={5} value={count} />
         </Button>
     );
 };
