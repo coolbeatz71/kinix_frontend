@@ -1,0 +1,30 @@
+@import 'dimensions.scss';
+
+.notFound {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    height: 100vh;
+
+    background: url('/bg-pattern-light.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    [data-text='title'] {
+        font-family: Poppins;
+        font-size: 39pt;
+    }
+
+    [class~='ant-btn'] {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0 $padding;
+
+        [class~='anticon'] {
+            margin-bottom: 0.3rem;
+        }
+    }
+}
