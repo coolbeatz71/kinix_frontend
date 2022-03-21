@@ -1,8 +1,14 @@
+@import 'styles/dimensions.scss';
+
 .articleBody {
+    &__content {
+        padding: 0 $padding;
+    }
+
     [data-paragraph='true'] {
         font-family: Poppins;
         line-height: 1.7;
-        font-size: 15pt;
+        font-size: 13pt;
         font-weight: 300;
     }
 }

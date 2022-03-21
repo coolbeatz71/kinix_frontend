@@ -1,5 +1,9 @@
 import React, { FC } from 'react';
-import { Col, Row, Typography } from 'antd';
+import { BackTop, Col, Row, Typography } from 'antd';
+import ArticleHeader from '@components/common/ArticleHeader';
+import ArticleFooter from '@components/common/ArticleFooter';
+import ArticleShare from '@components/common/Sharings/ArticleShare';
+
 import styles from './index.module.scss';
 
 const { Paragraph } = Typography;
@@ -7,8 +11,11 @@ const { Paragraph } = Typography;
 const ArticleBody: FC = () => {
     return (
         <Row justify="space-between" className={styles.articleBody}>
-            <Col span={6}></Col>
-            <Col span={12}>
+            <Col span={6}>
+                <ArticleShare />
+            </Col>
+            <Col span={12} className={styles.articleBody__content}>
+                <ArticleHeader />
                 <Paragraph data-paragraph>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum maiores repellat autem iusto quibusdam
                     fugit error illo eius architecto animi eligendi iste consequuntur nam explicabo, fuga iure, sit ad
@@ -37,6 +44,8 @@ const ArticleBody: FC = () => {
                     quo. Voluptas, dicta recusandae laudantium totam cupiditate saepe vel fuga sunt perspiciatis,
                     blanditiis voluptate numquam!
                 </Paragraph>
+                <ArticleFooter />
+                <BackTop />
             </Col>
             <Col span={6}></Col>
         </Row>

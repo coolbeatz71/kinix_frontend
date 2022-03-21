@@ -1,6 +1,8 @@
 import React from 'react';
 
 import { TwitterOutlined, InstagramFilled, FacebookFilled, YoutubeFilled } from '@ant-design/icons';
+import { MdEmail } from 'react-icons/md';
+import { HiOutlineLink } from 'react-icons/hi';
 
 const social = [
     {
@@ -22,6 +24,19 @@ const social = [
         name: 'youtube',
         icon: <YoutubeFilled className="youtube" />,
         url: 'link',
+    },
+];
+
+export const socialShare = [
+    social[0],
+    social[2],
+    {
+        name: 'email',
+        icon: <MdEmail className="email" />,
+    },
+    {
+        name: 'copy',
+        icon: <HiOutlineLink className="copy" />,
     },
 ];
 
