@@ -19,7 +19,7 @@
     &[data-scroll='scrolled'],
     &[data-scroll='over'] {
         &[data-is-category='true'] {
-            height: calc(#{$header-height} * 1.6);
+            height: calc(#{$header-height} * 1.8);
         }
         [data-row-category] {
             height: $header-height;
@@ -39,7 +39,7 @@
     }
 
     &[data-is-category='true'] {
-        height: calc(#{$header-height} * 2);
+        height: calc(#{$header-height} * 2.2);
     }
 
     &[data-sidenav-close='false'] {
@@ -153,7 +153,7 @@
         &__categories {
             width: 100%;
             transition: height 0.2s;
-            padding-bottom: 0.25rem;
+            padding-bottom: 0.5rem;
 
             [class~='ant-menu'] {
                 background-color: transparent;
