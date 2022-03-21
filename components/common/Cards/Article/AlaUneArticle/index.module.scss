@@ -2,7 +2,7 @@
 @import 'styles/colors.scss';
 @import 'styles/_mixins.scss';
 
-.alaUneArticleCardStyles {
+.alaUneArticleCard {
     cursor: pointer;
 
     &__overlay {
@@ -66,7 +66,7 @@
             height: 100%;
         }
 
-        .alaUneArticleCardStyles__content {
+        .alaUneArticleCard__content {
             position: absolute;
             top: 0;
             bottom: 0;
@@ -97,11 +97,11 @@
             @include cardContentPadding;
         }
 
-        .alaUneArticleCardStyles__header {
+        .alaUneArticleCard__header {
             padding: 0 calc(#{$padding} * 1.2);
         }
 
-        .alaUneArticleCardStyles__content {
+        .alaUneArticleCard__content {
             @include cardContentPadding;
             padding-top: 2.35rem;
         }

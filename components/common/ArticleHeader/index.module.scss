@@ -1,0 +1,64 @@
+@import 'styles/colors.scss';
+@import 'styles/dimensions.scss';
+
+.articleHeader {
+    margin-bottom: calc(#{$padding} * 1.2);
+
+    [data-author='true'] {
+        font-weight: 600;
+
+        a {
+            color: $black;
+            &:hover,
+            &:active {
+                color: $link;
+            }
+        }
+    }
+
+    button {
+        padding: 0 !important;
+        color: $dark;
+
+        &[data-comment='true'] {
+            display: flex;
+            align-items: center;
+            flex-flow: row-reverse;
+        }
+
+        [data-count='true'] {
+            font-size: 12pt;
+        }
+
+        [class~='anticon'] {
+            font-size: 22pt;
+        }
+
+        &[class~='ant-btn-icon-only'] {
+            margin-left: 1rem;
+            svg {
+                font-size: 25pt;
+            }
+        }
+    }
+
+    &[data-theme='dark'] {
+        [data-author='true'] {
+            a {
+                color: $white;
+            }
+        }
+
+        [class~='ant-breadcrumb-separator'],
+        [class~='ant-breadcrumb-link'] {
+            color: $light;
+        }
+
+        button {
+            color: $white;
+            &:hover {
+                color: $light;
+            }
+        }
+    }
+}

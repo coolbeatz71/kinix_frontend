@@ -9,28 +9,31 @@ const { Title } = Typography;
 
 export interface ISectionTitle {
     title: string;
-    icon: ReactElement;
-    linkHasMore: string;
+    icon?: ReactElement;
+    linkHasMore?: string;
+    isRelated?: boolean;
 }
 
-const SectionTitle: FC<ISectionTitle> = ({ title, icon, linkHasMore }) => {
+const SectionTitle: FC<ISectionTitle> = ({ title, icon, linkHasMore, isRelated = false }) => {
     const { value } = useDarkLight();
 
     return (
-        <div data-theme={value} className={styles.sectionTitle}>
+        <div data-theme={value} className={styles.sectionTitle} data-related={isRelated}>
             <Row justify="space-between" align="middle">
                 <Col flex={1} className="d-flex align-items-center" data-icon>
                     {icon}
                     <Title level={3}>{title}</Title>
                 </Col>
 
-                <Col flex={4} className="d-flex justify-content-end">
-                    <Link href={linkHasMore} passHref>
-                        <Button ghost type={isDark(value) ? 'default' : 'primary'}>
-                            View More
-                        </Button>
-                    </Link>
-                </Col>
+                {linkHasMore && (
+                    <Col flex={4} className="d-flex justify-content-end">
+                        <Link href={linkHasMore} passHref>
+                            <Button ghost type={isDark(value) ? 'default' : 'primary'}>
+                                View More
+                            </Button>
+                        </Link>
+                    </Col>
+                )}
             </Row>
         </div>
     );

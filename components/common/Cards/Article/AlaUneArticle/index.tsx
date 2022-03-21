@@ -23,14 +23,14 @@ const AlaUneArticleCard: FC<IAlaUeArticleProps> = ({ size, priority = EnumAlaUne
     const { value } = useDarkLight();
 
     return (
-        <div data-theme={value} className={styles.alaUneArticleCardStyles}>
+        <div data-theme={value} className={styles.alaUneArticleCard}>
             <Card
                 hoverable
                 bordered={false}
                 data-priority={priority}
                 cover={
                     priority !== EnumAlaUnePriority.FIRST && (
-                        <div className={styles.alaUneArticleCardStyles__cover}>
+                        <div className={styles.alaUneArticleCard__cover}>
                             <img alt="example" src={`https://picsum.photos/1024/300?random=${size}`} />
                         </div>
                     )
@@ -38,12 +38,11 @@ const AlaUneArticleCard: FC<IAlaUeArticleProps> = ({ size, priority = EnumAlaUne
             >
                 {priority === EnumAlaUnePriority.FIRST ? (
                     <Fragment>
-                        <div className={styles.alaUneArticleCardStyles__overlay}>
+                        <div className={styles.alaUneArticleCard__overlay}>
                             <img alt="example" src={`https://picsum.photos/200/300?random=${size}`} />
                         </div>
-
-                        <div className={styles.alaUneArticleCardStyles__content}>
-                            <div className={styles.alaUneArticleCardStyles__content__header}>
+                        <div className={styles.alaUneArticleCard__content}>
+                            <div className={styles.alaUneArticleCard__content__header}>
                                 <Text data-text="header">
                                     {truncate('By Redaction', {
                                         length: 90,
@@ -72,7 +71,7 @@ const AlaUneArticleCard: FC<IAlaUeArticleProps> = ({ size, priority = EnumAlaUne
                     </Fragment>
                 ) : (
                     <Fragment>
-                        <div className={styles.alaUneArticleCardStyles__header}>
+                        <div className={styles.alaUneArticleCard__header}>
                             <div className="d-flex justify-content-between">
                                 <Text data-text="header">
                                     {truncate('By Redaction', {
@@ -85,7 +84,7 @@ const AlaUneArticleCard: FC<IAlaUeArticleProps> = ({ size, priority = EnumAlaUne
                                 </Text>
                             </div>
                         </div>
-                        <div className={styles.alaUneArticleCardStyles__content}>
+                        <div className={styles.alaUneArticleCard__content}>
                             <Title level={5} data-text="title">
                                 {truncate(title, {
                                     length: 60,
