@@ -5,7 +5,7 @@
     display: flex;
     flex-flow: column;
     align-items: flex-end;
-    margin-right: $padding;
+    margin-right: calc(#{$padding} * 2);
 
     &__button {
         margin-bottom: calc(#{$padding} / 2);

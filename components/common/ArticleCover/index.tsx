@@ -13,12 +13,12 @@ const ArticleCover: FC = () => {
                 <img src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png" />
             </div>
             <Row justify="space-between" align="middle" className={styles.articleCover__content}>
-                <Col span={4} className={styles.articleCover__content__rating}>
+                <Col span={3} className={styles.articleCover__content__rating}>
                     <Title data-title>4.4</Title>
                     <StarRatingComponent emptyStarColor={LIGHT} name="video-rate" starCount={5} value={3} />
                     <Text data-read>10 min read</Text>
                 </Col>
-                <Col span={20} className={styles.articleCover__content__title}>
+                <Col span={21} className={styles.articleCover__content__title}>
                     <Title>
                         Artificial Intelligence in our homes For the next years. Artificial Intelligence in our homes
                     </Title>

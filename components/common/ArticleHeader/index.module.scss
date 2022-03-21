@@ -41,4 +41,24 @@
             }
         }
     }
+
+    &[data-theme='dark'] {
+        [data-author='true'] {
+            a {
+                color: $white;
+            }
+        }
+
+        [class~='ant-breadcrumb-separator'],
+        [class~='ant-breadcrumb-link'] {
+            color: $light;
+        }
+
+        button {
+            color: $white;
+            &:hover {
+                color: $light;
+            }
+        }
+    }
 }

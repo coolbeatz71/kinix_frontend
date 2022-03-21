@@ -21,7 +21,6 @@ const ArticleFooter: FC = () => {
                 <Tag>#NodeJS</Tag>
                 <Tag>#Java</Tag>
                 <Tag>#Java</Tag>
-                <Tag>#React-native</Tag>
             </Space>
         </div>
     );

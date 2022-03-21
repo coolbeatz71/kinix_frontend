@@ -22,9 +22,9 @@ const TrendingArticleCard: FC<ITrendingArticleProps> = () => {
     const { value } = useDarkLight();
 
     return (
-        <div data-theme={value} className={styles.trendingArticleCardStyles}>
+        <div data-theme={value} className={styles.trendingArticleCard}>
             <Card bordered={false} hoverable>
-                <div className={styles.trendingArticleCardStyles__header}>
+                <div className={styles.trendingArticleCard__header}>
                     <div className="d-flex justify-content-between">
                         <Text data-text="header">
                             {truncate('By Redaction', {
@@ -37,7 +37,7 @@ const TrendingArticleCard: FC<ITrendingArticleProps> = () => {
                         </Text>
                     </div>
                 </div>
-                <div className={styles.trendingArticleCardStyles__content}>
+                <div className={styles.trendingArticleCard__content}>
                     <Title level={5} data-text="title">
                         {truncate(title, {
                             length: 50,

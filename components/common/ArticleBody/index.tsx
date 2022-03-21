@@ -3,18 +3,29 @@ import { BackTop, Col, Row, Typography } from 'antd';
 import ArticleHeader from '@components/common/ArticleHeader';
 import ArticleFooter from '@components/common/ArticleFooter';
 import ArticleShare from '@components/common/Sharings/ArticleShare';
+import useDarkLight from '@hooks/useDarkLight';
+import RelatedArticleList from '@components/common/RelatedArticleList';
+import { IUnknownObject } from '@interfaces/app';
 
 import styles from './index.module.scss';
 
 const { Paragraph } = Typography;
 
 const ArticleBody: FC = () => {
+    const { value } = useDarkLight();
+
+    const backToStyle: IUnknownObject = {
+        position: 'fixed',
+        right: 20,
+        zIndex: 1,
+    };
+
     return (
-        <Row justify="space-between" className={styles.articleBody}>
-            <Col span={6}>
+        <Row data-theme={value} justify="space-between" className={styles.articleBody}>
+            <Col span={5}>
                 <ArticleShare />
             </Col>
-            <Col span={12} className={styles.articleBody__content}>
+            <Col span={11} className={styles.articleBody__content}>
                 <ArticleHeader />
                 <Paragraph data-paragraph>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum maiores repellat autem iusto quibusdam
@@ -43,11 +54,22 @@ const ArticleBody: FC = () => {
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit numquam id nemo corporis alias ipsa
                     quo. Voluptas, dicta recusandae laudantium totam cupiditate saepe vel fuga sunt perspiciatis,
                     blanditiis voluptate numquam!
+                    <br />
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit numquam id nemo corporis alias ipsa
+                    quo. Voluptas, dicta recusandae laudantium totam cupiditate saepe vel fuga sunt perspiciatis,
+                    blanditiis voluptate numquam!
+                    <br />
+                    <br />
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit numquam id nemo corporis alias ipsa
+                    quo. Voluptas, dicta recusandae laudantium totam cupiditate saepe vel fuga sunt perspiciatis,
+                    blanditiis voluptate numquam!
                 </Paragraph>
                 <ArticleFooter />
-                <BackTop />
+                <BackTop style={backToStyle} data-back-top />
             </Col>
-            <Col span={6}></Col>
+            <Col span={8}>
+                <RelatedArticleList fetched error={null} articles={[]} />
+            </Col>
         </Row>
     );
 };

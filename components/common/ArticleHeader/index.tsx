@@ -3,14 +3,17 @@ import { Breadcrumb, Button, Col, Row } from 'antd';
 import Link from 'next/link';
 import { CommentOutlined } from '@ant-design/icons';
 import { MdOutlineBookmarkAdd } from 'react-icons/md';
+import useDarkLight from '@hooks/useDarkLight';
 
 import styles from './index.module.scss';
 
 const { Item } = Breadcrumb;
 
 const ArticleHeader: FC = () => {
+    const { value } = useDarkLight();
+
     return (
-        <div className={styles.articleHeader}>
+        <div data-theme={value} className={styles.articleHeader}>
             <Row justify="space-between" align="middle">
                 <Col span={8}>
                     <Breadcrumb>
