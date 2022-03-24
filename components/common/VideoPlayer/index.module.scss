@@ -1,0 +1,90 @@
+@import 'styles/dimensions.scss';
+@import 'styles/colors.scss';
+
+.videoPlayer {
+    border-radius: $border-radius;
+    transition: box-shadow ease-in-out 0.2s;
+
+    &:hover {
+        box-shadow: 0 1px 2px -2px rgb(0 0 0 / 16%), 0 3px 6px 0 rgb(0 0 0 / 12%), 0 5px 12px 4px rgb(0 0 0 / 9%);
+    }
+
+    &__container {
+        position: relative;
+        padding-top: 56.25%;
+
+        &__player {
+            position: absolute;
+            top: 0;
+            left: 0;
+
+            iframe {
+                border-radius: $border-radius;
+                border-bottom-left-radius: 0;
+                border-bottom-right-radius: 0;
+            }
+        }
+    }
+    &__footer {
+        cursor: pointer;
+        background-color: $white;
+
+        border-radius: $border-radius;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+
+        padding: 1rem 1.65rem;
+
+        [class~='ant-typography'] {
+            font-family: Poppins;
+            display: flex;
+        }
+
+        [data-title='true'] {
+            margin-top: 1rem !important;
+            font-size: 12pt;
+            color: $black;
+        }
+
+        [data-views='true'] {
+            font-size: 10pt;
+            color: $dark50;
+        }
+
+        [class~='dv-star-rating-star'] {
+            font-size: 15pt;
+        }
+
+        button {
+            padding: 0 !important;
+            color: $dark;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            &[data-like='true'],
+            &[data-comment='true'] {
+                display: flex;
+                align-items: center;
+                flex-flow: row-reverse;
+                margin-right: 1rem;
+            }
+
+            [data-count='true'] {
+                font-size: 12pt;
+                margin-right: 0.3rem;
+            }
+
+            [class~='anticon'] {
+                font-size: 14pt;
+            }
+
+            &[class~='ant-btn-icon-only'] {
+                margin-left: 1rem;
+                svg {
+                    font-size: 16pt;
+                }
+            }
+        }
+    }
+}

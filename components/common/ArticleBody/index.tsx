@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, Fragment } from 'react';
 import { BackTop, Col, Row, Typography } from 'antd';
 import ArticleHeader from '@components/common/ArticleHeader';
 import ArticleShare from '@components/common/Sharings/ArticleShare';
@@ -23,7 +23,7 @@ const ArticleBody: FC = () => {
     };
 
     return (
-        <>
+        <Fragment>
             <Row data-theme={value} justify="space-between" className={styles.articleBody}>
                 <Col span={5}>
                     <ArticleShare />
@@ -77,7 +77,7 @@ const ArticleBody: FC = () => {
             <Row className="mt-5">
                 <PopularArticleList fetched error={null} articles={[]} />
             </Row>
-        </>
+        </Fragment>
     );
 };
 
