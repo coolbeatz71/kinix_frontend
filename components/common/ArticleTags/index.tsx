@@ -4,9 +4,9 @@ import { Space, Tag } from 'antd';
 import styles from './index.module.scss';
 import Link from 'next/link';
 
-const ArticleFooter: FC = () => {
+const ArticleTags: FC = () => {
     return (
-        <div className={styles.articleFooter}>
+        <div className={styles.articleTags}>
             <Space>
                 <Tag>
                     <Link href="#java">#Java</Link>
@@ -26,4 +26,4 @@ const ArticleFooter: FC = () => {
     );
 };
 
-export default ArticleFooter;
+export default ArticleTags;
