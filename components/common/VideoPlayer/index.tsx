@@ -1,5 +1,5 @@
-import React, { FC } from 'react';
-import { Button, Col, Row, Tag, Typography, Divider, Avatar, Space } from 'antd';
+import React, { FC, useState } from 'react';
+import { Button, Col, Row, Tag, Typography, Divider, Avatar, Space, Spin } from 'antd';
 import ReactPlayer from 'react-player';
 import StarRatingComponent from 'react-star-rating-component';
 import { CommentOutlined, HeartOutlined } from '@ant-design/icons';
@@ -10,14 +10,18 @@ import styles from './index.module.scss';
 const { Text } = Typography;
 
 const VideoPlayer: FC = () => {
+    const [videoLoaded, setVideoLoaded] = useState<boolean>(false);
+
     return (
         <Row className={styles.videoPlayer}>
-            <Col span={24} className={styles.videoPlayer__container}>
+            <Col span={24} className={styles.videoPlayer__container} data-loaded={videoLoaded}>
+                {videoLoaded === false ? <Spin size="large" /> : null}
                 <ReactPlayer
                     playing
                     controls
                     width={'100%'}
                     height={'100%'}
+                    onReady={() => setVideoLoaded(true)}
                     url="https://www.youtube.com/watch?v=Z9HoTDMEKdk"
                     className={styles.videoPlayer__container__player}
                     config={{

@@ -12,6 +12,42 @@
     &__container {
         position: relative;
         padding-top: 56.25%;
+        background-color: $gray;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        border-radius: $border-radius;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+
+        &[data-loaded='false'] {
+            background-image: linear-gradient(to right, $gray 0%, $dark10 20%, $neutral 40%, $gray 100%);
+            background-repeat: no-repeat;
+            background-size: cover;
+
+            animation-duration: 1.3s;
+            animation-fill-mode: forwards;
+            animation-iteration-count: infinite;
+            animation-name: placeholderShimmer;
+            animation-timing-function: ease-out;
+        }
+
+        @keyframes placeholderShimmer {
+            0% {
+                background-position: -468px 0;
+            }
+
+            100% {
+                background-position: 468px 0;
+            }
+        }
+
+        [class~='ant-spin'] {
+            position: absolute;
+            top: 50%;
+        }
 
         &__player {
             position: absolute;
