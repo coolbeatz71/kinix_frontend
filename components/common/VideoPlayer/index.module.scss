@@ -36,7 +36,6 @@
         padding: 1rem 1.65rem;
 
         [class~='ant-typography'] {
-            font-family: Poppins;
             display: flex;
         }
 
@@ -44,6 +43,7 @@
             margin-top: 1rem !important;
             font-size: 12pt;
             color: $black;
+            font-weight: 600;
         }
 
         [data-views='true'] {
@@ -85,6 +85,20 @@
                     font-size: 16pt;
                 }
             }
+        }
+
+        [class~='ant-divider'] {
+            margin: 1rem 0;
+        }
+
+        [data-channel='true'] {
+            font-weight: 600;
+            font-size: 10.5pt;
+        }
+
+        [data-subscribers='true'] {
+            font-size: 10pt;
+            color: $dark50;
         }
     }
 }

@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Button, Col, Row, Tag, Typography } from 'antd';
+import { Button, Col, Row, Tag, Typography, Divider, Avatar, Space } from 'antd';
 import ReactPlayer from 'react-player';
 import StarRatingComponent from 'react-star-rating-component';
 import { CommentOutlined, HeartOutlined } from '@ant-design/icons';
@@ -9,7 +9,6 @@ import styles from './index.module.scss';
 
 const { Text } = Typography;
 
-// TODO refactor/split the component and add the user (channel) info
 const VideoPlayer: FC = () => {
     return (
         <Row className={styles.videoPlayer}>
@@ -21,6 +20,13 @@ const VideoPlayer: FC = () => {
                     height={'100%'}
                     url="https://www.youtube.com/watch?v=Z9HoTDMEKdk"
                     className={styles.videoPlayer__container__player}
+                    config={{
+                        youtube: {
+                            playerVars: {
+                                autoplay: true,
+                            },
+                        },
+                    }}
                 />
             </Col>
             <Col span={24} className={styles.videoPlayer__footer}>
@@ -46,6 +52,16 @@ const VideoPlayer: FC = () => {
                         <Button type="link" icon={<RiPlayListAddFill />} />
                     </Col>
                 </Row>
+                <Divider />
+                <div>
+                    <Space>
+                        <Avatar size={48} src={'https://i.pravatar.cc/300'} />
+                        <div>
+                            <Text data-channel>Derrière La Caméra</Text>
+                            <Text data-subscribers>87.5K subscribers</Text>
+                        </div>
+                    </Space>
+                </div>
             </Col>
         </Row>
     );
