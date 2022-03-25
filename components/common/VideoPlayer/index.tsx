@@ -1,20 +1,30 @@
 import React, { FC, useState } from 'react';
-import { Button, Col, Row, Tag, Typography, Divider, Avatar, Space, Spin } from 'antd';
+import { Button, Col, Row, Typography, Divider, Avatar, Space, Spin } from 'antd';
 import ReactPlayer from 'react-player';
 import StarRatingComponent from 'react-star-rating-component';
 import { CommentOutlined, HeartOutlined } from '@ant-design/icons';
 import { RiPlayListAddFill } from 'react-icons/ri';
+import VideoTagsList from '../VideoTagsList';
 
 import styles from './index.module.scss';
+import useDarkLight from '@hooks/useDarkLight';
 
 const { Text } = Typography;
+
+const tagsList = [
+    { value: 'Music videos', link: '/videos?tag=music_videos' },
+    { value: 'Music', link: '/videos?tag=music' },
+    { value: 'Kinshasa', link: '/videos?tag=kinshasa' },
+];
 
 const VideoPlayer: FC = () => {
     const [videoLoaded, setVideoLoaded] = useState<boolean>(false);
 
+    const { value } = useDarkLight();
+
     return (
-        <Row className={styles.videoPlayer}>
-            <Col span={24} className={styles.videoPlayer__container} data-loaded={videoLoaded}>
+        <Row data-theme={value} className={styles.videoPlayer}>
+            <Col span={24} className={styles.videoPlayer__container} data-video-loaded={videoLoaded}>
                 {videoLoaded === false ? <Spin size="large" /> : null}
                 <ReactPlayer
                     playing
@@ -24,19 +34,10 @@ const VideoPlayer: FC = () => {
                     onReady={() => setVideoLoaded(true)}
                     url="https://www.youtube.com/watch?v=Z9HoTDMEKdk"
                     className={styles.videoPlayer__container__player}
-                    config={{
-                        youtube: {
-                            playerVars: {
-                                autoplay: true,
-                            },
-                        },
-                    }}
                 />
             </Col>
             <Col span={24} className={styles.videoPlayer__footer}>
-                <Tag>#music video</Tag>
-                <Tag>#kinshasa</Tag>
-                <Tag>#music</Tag>
+                <VideoTagsList tags={tagsList} />
                 <Text data-title>T.I. - “Hit Dogs Holla” feat. Tokyo Jetz (Official Music Video - WSHH Exclusive)</Text>
                 <Text data-views className="my-2">
                     288,065 views - Jan 1, 2022
