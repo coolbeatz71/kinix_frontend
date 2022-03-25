@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react';
-import { Button, Col, Row, Typography, Divider, Avatar, Space, Spin } from 'antd';
+import { Button, Col, Row, Typography, Divider, Spin } from 'antd';
 import ReactPlayer from 'react-player';
 import StarRatingComponent from 'react-star-rating-component';
 import { CommentOutlined, HeartOutlined } from '@ant-design/icons';
@@ -8,6 +8,7 @@ import VideoTagsList from '../VideoTagsList';
 
 import styles from './index.module.scss';
 import useDarkLight from '@hooks/useDarkLight';
+import VideoOwnerProfile from '../VideoOwnerProfile';
 
 const { Text } = Typography;
 
@@ -58,15 +59,11 @@ const VideoPlayer: FC = () => {
                     </Col>
                 </Row>
                 <Divider />
-                <div>
-                    <Space>
-                        <Avatar size={48} src={'https://i.pravatar.cc/300'} />
-                        <div>
-                            <Text data-channel>Derrière La Caméra</Text>
-                            <Text data-subscribers>87.5K subscribers</Text>
-                        </div>
-                    </Space>
-                </div>
+                <VideoOwnerProfile
+                    subscribers={87.5}
+                    channel="Derrière La Caméra"
+                    avatarLink="https://i.pravatar.cc/300"
+                />
             </Col>
         </Row>
     );
