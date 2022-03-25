@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { Breadcrumb, Button, Col, Row } from 'antd';
 import Link from 'next/link';
-import { CommentOutlined } from '@ant-design/icons';
+import { CommentOutlined, HeartOutlined } from '@ant-design/icons';
 import { MdOutlineBookmarkAdd } from 'react-icons/md';
 import useDarkLight from '@hooks/useDarkLight';
 
@@ -24,8 +24,11 @@ const ArticleHeader: FC = () => {
                     </Breadcrumb>
                 </Col>
                 <Col span={16} className="d-flex justify-content-end">
+                    <Button data-like type="link" icon={<HeartOutlined />}>
+                        <span data-count>12.3k</span>
+                    </Button>
                     <Button data-comment type="link" icon={<CommentOutlined />}>
-                        <span data-count>120k &nbsp;</span>
+                        <span data-count>120k</span>
                     </Button>
                     <Button type="link" icon={<MdOutlineBookmarkAdd />} />
                 </Col>

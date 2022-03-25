@@ -20,14 +20,17 @@
         padding: 0 !important;
         color: $dark;
 
-        &[data-comment='true'] {
+        &[data-comment='true'],
+        &[data-like='true'] {
             display: flex;
             align-items: center;
             flex-flow: row-reverse;
+            margin-right: 0.5rem;
         }
 
         [data-count='true'] {
             font-size: 12pt;
+            margin-right: 0.2rem;
         }
 
         [class~='anticon'] {

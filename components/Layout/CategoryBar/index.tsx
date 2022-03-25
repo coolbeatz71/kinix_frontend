@@ -22,6 +22,9 @@ const CategoryBar: FC<ICategoryBarProps> = ({ categories, baseUrl = ALL_VIDEOS_P
     const categoryId: string | string[] = query?.category_id || baseUrl;
     const categoryTitles = { [baseUrl]: capitalize('all') };
 
+    const sizeBreakpoint = scrolled !== '' ? 'small' : 'middle';
+    const spanBreakpoint = scrolled !== '' ? 6 : 7;
+
     const Wrapper: FC<{ children: ReactElement }> = ({ children }) =>
         screens.lg ? (
             children
@@ -33,15 +36,15 @@ const CategoryBar: FC<ICategoryBarProps> = ({ categories, baseUrl = ALL_VIDEOS_P
                 placement="bottomLeft"
                 overlayStyle={{ position: 'fixed' }}
             >
-                <Button size={scrolled !== '' ? 'small' : 'middle'} type="primary" ghost={`${categoryId}` === baseUrl}>
+                <Button size={sizeBreakpoint} type="primary" ghost={`${categoryId}` === baseUrl}>
                     {capitalize(categoryTitles[`${categoryId}`])} <DownOutlined />
                 </Button>
             </Dropdown>
         );
 
     return (
-        <Row align="middle" justify="space-between">
-            <Col flex={1}>
+        <Row align="middle" justify="space-between" gutter={[39, 0]}>
+            <Col flex={1} span={15}>
                 <Wrapper>
                     <Menu
                         mode="horizontal"
@@ -57,11 +60,11 @@ const CategoryBar: FC<ICategoryBarProps> = ({ categories, baseUrl = ALL_VIDEOS_P
                     </Menu>
                 </Wrapper>
             </Col>
-            <Col data-search-col={scrolled !== '' ? 'scrolled' : ''}>
+            <Col span={spanBreakpoint} data-search-col={scrolled !== '' ? 'scrolled' : ''}>
                 <SearchInput
                     value=""
                     allowClear={screens.lg}
-                    size={scrolled !== '' ? 'small' : 'middle'}
+                    size={sizeBreakpoint}
                     onChange={(_e) => {
                         //
                     }}

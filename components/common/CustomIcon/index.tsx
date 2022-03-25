@@ -1,12 +1,14 @@
 import React, { FC } from 'react';
 import Icon from '@ant-design/icons';
 
-import hamburgerMenu from './svg/hamburger-menu';
+import HamburgerMenuSvg from './svg/hamburger-menu';
+import LikedHeartSvg from './svg/liked-heart';
 import { IUnknownObject } from 'interfaces/app';
 import { CustomIconComponentProps } from 'interfaces/icon';
 
 const icons: IUnknownObject = {
-    'hamburger-menu': hamburgerMenu,
+    'hamburger-menu': HamburgerMenuSvg,
+    'liked-heart': LikedHeartSvg,
 };
 
 interface Props {
