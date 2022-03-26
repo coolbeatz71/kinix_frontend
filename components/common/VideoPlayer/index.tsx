@@ -1,14 +1,12 @@
 import React, { FC, useState } from 'react';
-import { Button, Col, Row, Typography, Divider, Spin } from 'antd';
 import ReactPlayer from 'react-player';
-import StarRatingComponent from 'react-star-rating-component';
-import { CommentOutlined, HeartOutlined } from '@ant-design/icons';
-import { RiPlayListAddFill } from 'react-icons/ri';
+import { Col, Row, Typography, Divider, Spin } from 'antd';
+import useDarkLight from '@hooks/useDarkLight';
 import VideoTagsList from '../VideoTagsList';
+import VideoOwnerProfile from '../VideoOwnerProfile';
+import SingleVideoAction from '../Actions/SingleVideoAction';
 
 import styles from './index.module.scss';
-import useDarkLight from '@hooks/useDarkLight';
-import VideoOwnerProfile from '../VideoOwnerProfile';
 
 const { Text } = Typography;
 
@@ -43,22 +41,10 @@ const VideoPlayer: FC = () => {
                 <Text data-views className="my-2">
                     288,065 views - Jan 1, 2022
                 </Text>
+                <SingleVideoAction commentCount={1200} likeCount={3.5} />
 
-                <Row justify="space-between" align="middle">
-                    <Col span={12}>
-                        <StarRatingComponent name="video-rate" starCount={5} value={3} />
-                    </Col>
-                    <Col span={12} className="d-flex justify-content-end">
-                        <Button data-like type="link" icon={<HeartOutlined />}>
-                            <span data-count>12.3k</span>
-                        </Button>
-                        <Button data-comment type="link" icon={<CommentOutlined />}>
-                            <span data-count>120k</span>
-                        </Button>
-                        <Button type="link" icon={<RiPlayListAddFill />} />
-                    </Col>
-                </Row>
                 <Divider />
+
                 <VideoOwnerProfile
                     subscribers={87.5}
                     channel="Derrière La Caméra"
