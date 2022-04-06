@@ -1,5 +1,5 @@
 import React, { FC, useState, ReactNode, Key, Fragment } from 'react';
-import { Divider, Layout, Menu } from 'antd';
+import { Divider, Layout, Menu, Grid, Drawer } from 'antd';
 import getSideNavWidth from '@helpers/getSideNavWidth';
 
 import { DISCOVER_PATH, HOME_PATH } from '@constants/paths';
@@ -9,20 +9,24 @@ import sectionList from '@constants/sidenav-section';
 import { BulbFilled, HomeFilled } from '@ant-design/icons';
 import Link from 'next/link';
 import useDarkLight from '@hooks/useDarkLight';
+import CustomIcon from '@components/common/CustomIcon';
 
 const { Sider } = Layout;
 const { Item, SubMenu } = Menu;
+const { useBreakpoint } = Grid;
 
 interface ISideNavProps {
     open: boolean;
     collapsed: boolean;
+    setOpen: (open: boolean) => void;
     setCollapsed: (collapsed: boolean) => void;
 }
 
 const defaultOpen = [sectionList[0].key];
 
-const SideNav: FC<ISideNavProps> = ({ open, collapsed, setCollapsed }) => {
+const SideNav: FC<ISideNavProps> = ({ open, collapsed, setOpen, setCollapsed }) => {
     const { value } = useDarkLight();
+    const { lg } = useBreakpoint();
 
     const [openSections, setOpenSections] = useState(defaultOpen);
 
@@ -42,7 +46,7 @@ const SideNav: FC<ISideNavProps> = ({ open, collapsed, setCollapsed }) => {
         else setOpenSections(lastOpenKey ? [lastOpenKey as string] : []);
     };
 
-    const renderSections = (): ReactNode => {
+    const renderSections = (collapsed: boolean): ReactNode => {
         return sectionList.map((section) => (
             <Fragment key={section.key}>
                 {collapsed ? (
@@ -67,23 +71,16 @@ const SideNav: FC<ISideNavProps> = ({ open, collapsed, setCollapsed }) => {
         ));
     };
 
-    return (
-        <Sider
-            collapsible
-            data-theme={value}
-            collapsed={collapsed}
-            onCollapse={onCollapse}
-            className={styles.sidenav}
-            data-collapsed={collapsed}
-            collapsedWidth={sideNavWidth}
-            zeroWidthTriggerStyle={{ display: 'none' }}
-        >
-            {open && (
+    const sideNavContent = (open: boolean): ReactNode => {
+        return (
+            open && (
                 <>
-                    <Logo canRedirect className={styles.sidenav__logo} />
-                    <div className={styles.sidenav__divider}>
-                        <Divider />
-                    </div>
+                    {lg && <Logo canRedirect className={styles.sidenav__logo} />}
+                    {lg && (
+                        <div className={styles.sidenav__divider}>
+                            <Divider />
+                        </div>
+                    )}
                     <Menu
                         mode="inline"
                         style={menuStyles}
@@ -98,11 +95,41 @@ const SideNav: FC<ISideNavProps> = ({ open, collapsed, setCollapsed }) => {
                             <Link href={DISCOVER_PATH}>Discover</Link>
                         </Item>
 
-                        {renderSections()}
+                        {renderSections(collapsed)}
                     </Menu>
                 </>
-            )}
+            )
+        );
+    };
+
+    return lg ? (
+        <Sider
+            collapsible
+            data-theme={value}
+            collapsed={collapsed}
+            onCollapse={onCollapse}
+            className={styles.sidenav}
+            data-collapsed={collapsed}
+            collapsedWidth={sideNavWidth}
+            zeroWidthTriggerStyle={{ display: 'none' }}
+        >
+            {sideNavContent(open)}
         </Sider>
+    ) : (
+        <Drawer
+            placement="left"
+            data-theme={value}
+            data-collapsed={open}
+            closeIcon={<CustomIcon type="hamburger-menu" />}
+            title={'Dawer'}
+            visible={open}
+            onClose={() => {
+                setOpen(false);
+                setCollapsed(false);
+            }}
+        >
+            {sideNavContent(open)}
+        </Drawer>
     );
 };
 

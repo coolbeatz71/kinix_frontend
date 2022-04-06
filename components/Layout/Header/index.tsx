@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react';
-import { Button, Col, Layout, Row, Space } from 'antd';
+import { Button, Col, Layout, Row, Space, Grid } from 'antd';
 import getSideNavWidth from '@helpers/getSideNavWidth';
 import styles from './index.module.scss';
 import SearchInput from '@components/common/SearchInput';
@@ -14,6 +14,7 @@ import SignUpModal from '@components/Auth/SignUp';
 import CategoryBar from '../CategoryBar';
 
 const { Header: AntHeader } = Layout;
+const { useBreakpoint } = Grid;
 
 interface IHeaderProps {
     open: boolean;
@@ -21,16 +22,27 @@ interface IHeaderProps {
     collapsed: boolean;
     setOpen: (open: boolean) => void;
     setCollapsed: (collapsed: boolean) => void;
+    setOpenSideDrawer: (openSideDrawer: boolean) => void;
     isVideoCategory: boolean;
 }
 
-const Header: FC<IHeaderProps> = ({ open, collapsed, setOpen, setCollapsed, isVideoCategory, scrolled }) => {
+const Header: FC<IHeaderProps> = ({
+    open,
+    collapsed,
+    setOpen,
+    setCollapsed,
+    isVideoCategory,
+    scrolled,
+    setOpenSideDrawer,
+}) => {
     const { value } = useDarkLight();
+    const { lg } = useBreakpoint();
 
     const [openLoginModal, setOpenLoginModal] = useState<boolean>(false);
     const [openSignUpModal, setOpenSignUpModal] = useState<boolean>(false);
     const [, setOpenForgotPasswordModal] = useState<boolean>(false);
 
+    const openSideDrawer = (): void => setOpenSideDrawer(true);
     const handleToggle = (): void => {
         if (collapsed === open) {
             setCollapsed(collapsed);
@@ -53,9 +65,9 @@ const Header: FC<IHeaderProps> = ({ open, collapsed, setOpen, setCollapsed, isVi
     return (
         <AntHeader
             data-theme={value}
-            style={headerStyles}
-            className={styles.header}
             data-scroll={scrolled}
+            className={styles.header}
+            style={lg ? headerStyles : undefined}
             data-is-category={isVideoCategory}
             data-sidenav-close={isSidenavClose}
         >
@@ -84,7 +96,8 @@ const Header: FC<IHeaderProps> = ({ open, collapsed, setOpen, setCollapsed, isVi
                 <Col span={1} className="p-0">
                     <Button
                         type="text"
-                        onClick={handleToggle}
+                        size="large"
+                        onClick={lg ? handleToggle : openSideDrawer}
                         icon={<CustomIcon type="hamburger-menu" className="hamburger-menu" />}
                     />
                 </Col>

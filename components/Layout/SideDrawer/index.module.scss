@@ -1,0 +1,82 @@
+@import 'styles/colors.scss';
+@import 'styles/dimensions.scss';
+@import 'styles/_mixins.scss';
+
+.sidedrawer {
+    @include preventTextSelection;
+    transition: ease-out all 0.005s;
+
+    &__divider {
+        padding: 0 0.5rem;
+        [class~='ant-divider'] {
+            margin: 0;
+        }
+    }
+
+    &__menu {
+        &_divider {
+            margin: 0.5rem 0;
+        }
+
+        &__sub {
+            font-size: 11px;
+
+            [class~='ant-menu-inline'] {
+                border-radius: $border-radius;
+            }
+
+            [class~='ant-menu-submenu-title'] {
+                padding-right: 0;
+                padding-left: 1rem !important;
+                border-radius: $border-radius;
+            }
+
+            &__items {
+                padding-left: 1.5rem !important;
+            }
+        }
+
+        &__items {
+            padding-left: 1rem !important;
+        }
+    }
+
+    &__header {
+        &__divider {
+            margin: 0;
+        }
+
+        &__logo {
+            height: $header-height;
+            background-position: center;
+            background-repeat: no-repeat;
+            width: $max-sidenav-width;
+            background-size: $logo-bg-size;
+            background-image: url('/logo/large_light.svg');
+            background-position: calc(#{$padding} / 2);
+        }
+
+        &__closeBtn {
+            [class~='anticon'] {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: $primary !important;
+                svg {
+                    width: 1.4rem;
+                    height: 1.4rem;
+                }
+            }
+        }
+    }
+
+    [class~='ant-menu'] {
+        border-right: 0;
+    }
+
+    [class~='ant-drawer-body'] {
+        padding-left: 0;
+        padding-top: 0;
+        padding-right: 1rem;
+    }
+}
