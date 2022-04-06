@@ -6,12 +6,13 @@ import { CaretRightFilled, ShareAltOutlined } from '@ant-design/icons';
 
 import styles from './index.module.scss';
 import { PRIMARY, WHITE } from '@constants/colors';
-import { Button, Col, Row, Space, Tag, Typography } from 'antd';
+import { Button, Col, Row, Space, Tag, Typography, Grid } from 'antd';
 import Link from 'next/link';
 import { truncate } from 'lodash';
 import VideoCardVertical from '@components/common/Cards/Video/VideoCardVertical';
 
 const { Title, Paragraph } = Typography;
+const { useBreakpoint } = Grid;
 
 export interface IExclusiveSectionProps {
     tag: string;
@@ -25,6 +26,7 @@ export interface IExclusiveSectionProps {
 const ExclusiveSection: FC<IExclusiveSectionProps> = ({ tag, title, desc, imgSrc, link }) => {
     const { value } = useDarkLight();
     const isDark = value === 'dark';
+    const { md } = useBreakpoint();
 
     const colStyles = !isDark
         ? {
@@ -56,7 +58,7 @@ const ExclusiveSection: FC<IExclusiveSectionProps> = ({ tag, title, desc, imgSrc
             background: linear-gradient(to top, ${!isDark ? PRIMARY : WHITE}, transparent);
         }
         `,
-        <Col span={12} className="right">
+        <Col xs={24} sm={24} span={12} className="right">
             <img src={imgSrc} alt="" />
         </Col>,
     );
@@ -64,7 +66,7 @@ const ExclusiveSection: FC<IExclusiveSectionProps> = ({ tag, title, desc, imgSrc
     return (
         <div data-theme={value} className={styles.exclusive}>
             <Row justify="space-between" className={styles.exclusive__top}>
-                <Col span={12} className={styles.exclusive__top__left} style={colStyles}>
+                <Col xs={24} sm={24} md={12} className={styles.exclusive__top__left} style={colStyles}>
                     <div>
                         <Tag data-tag>{tag}</Tag>
                         <Title data-title>{title}</Title>
@@ -91,7 +93,7 @@ const ExclusiveSection: FC<IExclusiveSectionProps> = ({ tag, title, desc, imgSrc
                 </Col>
                 {rightContent}
             </Row>
-            <Row gutter={[24, 0]} className={styles.exclusive__bottom} style={colStyles}>
+            <Row gutter={md ? [24, 0] : undefined} className={styles.exclusive__bottom} style={colStyles}>
                 {[0, 1, 2, 3].map((el) => (
                     <Col xs={24} sm={12} md={12} lg={8} xl={6} key={el}>
                         <VideoCardVertical size={el} isExclusive />

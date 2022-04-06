@@ -15,13 +15,13 @@ const AlaUneArticleList: FC<IAlaUneArticleListProps> = () => {
     return (
         <>
             <Row gutter={[16, 48]}>
-                <Col span={8}>
+                <Col xs={24} sm={24} md={8}>
                     <AlaUneArticleCard size={1} priority={EnumAlaUnePriority.FIRST} />
                 </Col>
-                <Col span={8}>
+                <Col xs={24} sm={24} md={8}>
                     <AlaUneArticleCard size={2} priority={EnumAlaUnePriority.SECOND} />
                 </Col>
-                <Col span={8}>
+                <Col xs={24} sm={24} md={8}>
                     <TrendingArticleCard />
                     <TrendingArticleCard />
                     <TrendingArticleCard />

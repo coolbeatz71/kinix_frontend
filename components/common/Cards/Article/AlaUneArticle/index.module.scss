@@ -136,4 +136,11 @@
             }
         }
     }
+
+    @include mediaXS {
+        [data-priority='FIRST'],
+        [data-priority='SECOND'] {
+            height: unset;
+        }
+    }
 }

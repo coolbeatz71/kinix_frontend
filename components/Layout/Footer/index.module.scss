@@ -1,5 +1,6 @@
 @import 'styles/colors.scss';
 @import 'styles/dimensions.scss';
+@import 'styles/_mixins.scss';
 
 .footer {
     [data-title='true'] {
@@ -199,7 +200,28 @@
             [data-links='true'] {
                 a {
                     font-size: 11pt;
-                    margin-left: $padding;
+                }
+            }
+        }
+    }
+
+    @include mediaXS {
+        &__content {
+            padding: $mobile-content-padding !important;
+
+            &__contact {
+                padding: 0 !important;
+                margin-top: calc(#{$content-padding} / 2);
+            }
+
+            &__copyright {
+                [data-copyright-container='true'] {
+                    display: flex;
+                    justify-content: center;
+                }
+                [data-copyright='true'] {
+                    text-align: center;
+                    font-size: 14pt;
                 }
             }
         }

@@ -82,4 +82,42 @@
         display: flex;
         justify-content: flex-end;
     }
+
+    @include mediaXS {
+        &__legend {
+            &__text {
+                font-size: 2.5rem !important;
+                text-align: center;
+            }
+
+            &__subscribe {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                margin-top: $padding;
+
+                &__text {
+                    font-size: 1.2rem;
+                    display: flex;
+                    justify-content: center;
+                    margin-bottom: 1rem;
+                }
+
+                [class~='ant-btn'] {
+                    display: flex;
+                    justify-content: center;
+                }
+            }
+        }
+    }
+
+    @include mediaSM {
+        &__legend {
+        }
+    }
+
+    @include mediaSM {
+        &__legend {
+        }
+    }
 }

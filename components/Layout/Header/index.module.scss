@@ -1,5 +1,6 @@
 @import 'styles/colors.scss';
 @import 'styles/dimensions.scss';
+@import '/styles/_mixins.scss';
 
 .header {
     position: fixed;
@@ -219,5 +220,44 @@
                 background: $youtube;
             }
         }
+    }
+
+    @include mediaXS {
+        padding: 0 $mobile-content-padding !important;
+
+        &[data-theme='light'] {
+            .header__row {
+                &__logo {
+                    background-image: url('/logo/short_light.svg');
+                    background-size: $logo-bg-size;
+                    background-repeat: no-repeat;
+                    background-position: left center;
+                }
+            }
+        }
+
+        &[data-theme='dark'] {
+            .header__row {
+                &__logo {
+                    background-image: url('/logo/short_dark.svg');
+                    background-size: $logo-bg-size;
+                    background-repeat: no-repeat;
+                    background-position: left center;
+                }
+            }
+        }
+
+        &__row__logo {
+            width: $min-sidenav-width;
+            margin-left: 1rem;
+        }
+    }
+
+    @include mediaSM {
+        padding: 0 $mobile-content-padding !important;
+    }
+
+    @include mediaMD {
+        padding: 0 $mobile-content-padding !important;
     }
 }
