@@ -1,0 +1,33 @@
+@import 'styles/colors.scss';
+
+.userVatar {
+    [data-text='true'] {
+        padding-left: 0.8rem;
+    }
+
+    [data-setting='true'] {
+        svg {
+            font-size: 24px;
+        }
+    }
+
+    &[data-theme='light'] {
+        [data-avatar='true'] {
+            border: 1px solid $dark;
+        }
+
+        [data-text='true'] {
+            color: $dark;
+        }
+    }
+    &[data-theme='dark'] {
+        [data-avatar='true'] {
+            border: 1px solid $light;
+        }
+
+        [data-text='true'],
+        [data-setting='true'] {
+            color: $white;
+        }
+    }
+}

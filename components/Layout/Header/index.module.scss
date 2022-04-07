@@ -225,6 +225,12 @@
     @include mediaXS {
         padding: 0 $mobile-content-padding !important;
 
+        display: flex;
+        align-content: center;
+        align-items: center;
+        flex-flow: row;
+        width: 100%;
+
         &[data-theme='light'] {
             .header__row {
                 &__logo {

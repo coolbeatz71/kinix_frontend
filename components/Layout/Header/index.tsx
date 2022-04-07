@@ -12,6 +12,7 @@ import Logo from '@components/common/Logo';
 import LoginModal from '@components/Auth/Login';
 import SignUpModal from '@components/Auth/SignUp';
 import CategoryBar from '../CategoryBar';
+import { BsFillGridFill } from 'react-icons/bs';
 
 const { Header: AntHeader } = Layout;
 const { useBreakpoint } = Grid;
@@ -93,59 +94,69 @@ const Header: FC<IHeaderProps> = ({
             />
 
             <Row align="middle" className={styles.header__row} justify="space-between">
-                <Col span={1} className="p-0">
+                <Col xs={2} sm={2} lg={1} className="p-0">
                     <Button
                         type="text"
-                        size="large"
+                        size={lg ? 'large' : 'middle'}
                         onClick={lg ? handleToggle : openSideDrawer}
                         icon={<CustomIcon type="hamburger-menu" className="hamburger-menu" />}
                     />
                 </Col>
 
-                {!open && (
-                    <Col span={5}>
+                {!open && lg && (
+                    <Col xs={2} sm={2} lg={5}>
                         <Logo canRedirect className={styles.header__row__logo} />
                     </Col>
                 )}
 
-                <Col span={7}>{!isVideoCategory && <SearchInput />}</Col>
-
-                <Col span={10} className="d-flex flex-row-reverse">
-                    <Row justify="space-between" gutter={[32, 0]}>
-                        <Col span={12} className="d-flex justify-content-center">
-                            <Space size="middle">
-                                <Button
-                                    ghost
-                                    onClick={() => setOpenLoginModal(true)}
-                                    type={isDark(value) ? 'default' : 'primary'}
-                                >
-                                    Sign In
-                                </Button>
-                                <Button
-                                    onClick={() => setOpenSignUpModal(true)}
-                                    type={isDark(value) ? 'default' : 'primary'}
-                                >
-                                    Sign Up
-                                </Button>
-                            </Space>
-                        </Col>
-
-                        <Col span={12} className="d-flex justify-content-end">
-                            <Space>
-                                {social.map((item) => (
-                                    <Button
-                                        type="text"
-                                        key={item.name}
-                                        icon={item.icon}
-                                        data-platform={item.name}
-                                        className={styles.header__row__social}
-                                        onClick={() => window?.open(item.url, '_blank')}
-                                    />
-                                ))}
-                            </Space>
-                        </Col>
-                    </Row>
+                <Col xs={18} sm={18} lg={7}>
+                    {!isVideoCategory && <SearchInput />}
                 </Col>
+
+                {lg && (
+                    <Col span={10} className="d-flex flex-row-reverse">
+                        <Row justify="space-between" gutter={[32, 0]}>
+                            <Col span={12} className="d-flex justify-content-center">
+                                <Space size="middle">
+                                    <Button
+                                        ghost
+                                        onClick={() => setOpenLoginModal(true)}
+                                        type={isDark(value) ? 'default' : 'primary'}
+                                    >
+                                        Sign In
+                                    </Button>
+                                    <Button
+                                        onClick={() => setOpenSignUpModal(true)}
+                                        type={isDark(value) ? 'default' : 'primary'}
+                                    >
+                                        Sign Up
+                                    </Button>
+                                </Space>
+                            </Col>
+
+                            <Col span={12} className="d-flex justify-content-end">
+                                <Space>
+                                    {social.map((item) => (
+                                        <Button
+                                            type="text"
+                                            key={item.name}
+                                            icon={item.icon}
+                                            data-platform={item.name}
+                                            className={styles.header__row__social}
+                                            onClick={() => window?.open(item.url, '_blank')}
+                                        />
+                                    ))}
+                                </Space>
+                            </Col>
+                        </Row>
+                    </Col>
+                )}
+
+                {!lg && (
+                    <Col xs={2} sm={2} className="p-0">
+                        <Button type="text" icon={<BsFillGridFill />} />
+                    </Col>
+                )}
             </Row>
             {isVideoCategory && (
                 <Row

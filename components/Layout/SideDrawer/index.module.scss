@@ -6,6 +6,22 @@
     @include preventTextSelection;
     transition: ease-out all 0.005s;
 
+    [class~='ant-btn'] {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    [class~='ant-menu'] {
+        border-right: 0;
+    }
+    [class~='ant-drawer-body'] {
+        padding: 0 0.5rem;
+    }
+    [class='ant-drawer-footer'] {
+        margin: 0 0.5rem;
+        padding: 1rem 0;
+    }
+
     &__divider {
         padding: 0 0.5rem;
         [class~='ant-divider'] {
@@ -32,12 +48,18 @@
             }
 
             &__items {
+                display: flex;
+                align-items: center;
                 padding-left: 1.5rem !important;
+                border-radius: $border-radius;
             }
         }
 
         &__items {
+            display: flex;
+            align-items: center;
             padding-left: 1rem !important;
+            border-radius: $border-radius;
         }
     }
 
@@ -50,33 +72,204 @@
             height: $header-height;
             background-position: center;
             background-repeat: no-repeat;
-            width: $max-sidenav-width;
+            width: $min-sidenav-width;
             background-size: $logo-bg-size;
-            background-image: url('/logo/large_light.svg');
             background-position: calc(#{$padding} / 2);
         }
 
-        &__closeBtn {
-            [class~='anticon'] {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                color: $primary !important;
-                svg {
-                    width: 1.4rem;
-                    height: 1.4rem;
-                }
+        [class~='hamburger-menu'] {
+            svg {
+                width: 1.4rem;
+                height: 1.4rem;
+            }
+        }
+
+        &__themeToggle {
+            svg {
+                width: 1.4rem;
+                height: 1.4rem;
             }
         }
     }
 
-    [class~='ant-menu'] {
-        border-right: 0;
+    &[data-theme='light'] {
+        .sidedrawer__header {
+            &__logo {
+                background-image: url('/logo/short_light.svg');
+            }
+
+            [class~='hamburger-menu'] {
+                svg {
+                    rect {
+                        fill: $dark;
+                    }
+                }
+            }
+
+            [class~='ant-btn-text']:hover {
+                background: $dark10;
+            }
+
+            &__themeToggle {
+                svg {
+                    color: $primary;
+                }
+            }
+        }
+
+        .sidedrawer__menu {
+            background-color: $white;
+            &__items {
+                svg,
+                span,
+                a {
+                    color: $dark;
+                }
+                &:hover {
+                    background-color: $bg-warning-fade;
+                    -webkit-backdrop-filter: saturate(180%) blur(20px);
+                    backdrop-filter: saturate(180%) blur(20px);
+
+                    svg,
+                    span,
+                    a {
+                        color: $black;
+                        font-weight: 600;
+                    }
+                }
+            }
+
+            &__sub {
+                [class~='ant-menu-inline'] {
+                    background-color: $light;
+                }
+                [class~='ant-menu-submenu-title'] {
+                    color: $dark50;
+
+                    i {
+                        color: $dark50;
+                    }
+                }
+
+                &__items {
+                    svg,
+                    span,
+                    a {
+                        color: $dark;
+                    }
+                    &:hover {
+                        background-color: $bg-warning-fade;
+                        -webkit-backdrop-filter: saturate(180%) blur(20px);
+                        backdrop-filter: saturate(180%) blur(20px);
+                        svg,
+                        span,
+                        a {
+                            color: $black;
+                            font-weight: 600;
+                        }
+                    }
+                }
+            }
+        }
+
+        [class~='ant-drawer-wrapper-body'] {
+            background: $light;
+        }
     }
 
-    [class~='ant-drawer-body'] {
-        padding-left: 0;
-        padding-top: 0;
-        padding-right: 1rem;
+    &[data-theme='dark'] {
+        .sidedrawer__header {
+            &__logo {
+                background-image: url('/logo/short_dark.svg');
+            }
+
+            &__divider {
+                background-color: $light20;
+            }
+
+            [class~='hamburger-menu'] {
+                svg {
+                    rect {
+                        fill: $white;
+                    }
+                }
+            }
+
+            [class~='ant-btn-text']:hover {
+                background: $light10;
+            }
+
+            &__themeToggle {
+                svg {
+                    color: $yellow;
+                }
+            }
+        }
+
+        .sidedrawer__menu {
+            background-color: $bg-primary-dark;
+            &_divider {
+                background-color: $light20;
+            }
+
+            &__items {
+                svg,
+                span,
+                a {
+                    color: $white;
+                }
+                &:hover {
+                    background-color: $bg-warning-fade;
+                    -webkit-backdrop-filter: saturate(180%) blur(20px);
+                    backdrop-filter: saturate(180%) blur(20px);
+                    svg,
+                    span,
+                    a {
+                        color: $white;
+                        font-weight: 600;
+                    }
+                }
+            }
+
+            &__sub {
+                [class~='ant-menu-inline'] {
+                    background-color: $bg-primary-dark;
+                }
+                [class~='ant-menu-submenu-title'] {
+                    color: $light50;
+
+                    i {
+                        color: $light50;
+                    }
+                }
+
+                &__items {
+                    svg,
+                    span,
+                    a {
+                        color: $white;
+                    }
+                    &:hover {
+                        background-color: $bg-warning-fade;
+                        -webkit-backdrop-filter: saturate(180%) blur(20px);
+                        backdrop-filter: saturate(180%) blur(20px);
+                        svg,
+                        span,
+                        a {
+                            color: $white;
+                            font-weight: 600;
+                        }
+                    }
+                }
+            }
+        }
+
+        [class~='ant-drawer-wrapper-body'] {
+            background: $primary;
+        }
+
+        [class~='ant-drawer-footer'] {
+            border-color: $light20;
+        }
     }
 }

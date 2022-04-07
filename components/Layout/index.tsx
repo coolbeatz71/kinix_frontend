@@ -106,7 +106,7 @@ const Layout: FC<ILayoutProps> = ({
                 <meta name="msapplication-TileColor" content={WARNING} />
             </Head>
 
-            <DarkModeToggler />
+            {lg && <DarkModeToggler />}
 
             {lg ? (
                 <SideNav
