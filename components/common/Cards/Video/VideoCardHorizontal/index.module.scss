@@ -1,7 +1,7 @@
 @import 'styles/dimensions.scss';
 @import 'styles/colors.scss';
 
-.relatedVideoCard {
+.videoCardHorinzontal {
     cursor: pointer;
     margin-bottom: 1rem;
     border-radius: $border-radius;
@@ -38,12 +38,53 @@
         padding: calc(#{$padding} / 1.5);
         padding-right: 0;
 
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
         img {
             width: 100%;
             height: 100%;
             aspect-ratio: 16 / 9;
             object-fit: cover;
             border-radius: $border-radius;
+        }
+
+        [class~='overlay'] {
+            cursor: pointer;
+            position: absolute;
+            z-index: 1;
+            transition: opacity ease-in-out 0.2s;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            [class~='ant-btn'] {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 1.5rem;
+
+                [class~='anticon'] {
+                    font-size: 1.5rem;
+                    background: $warning;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    border-radius: 80px;
+                    box-shadow: 0px 0px 60px $primary;
+
+                    svg {
+                        path {
+                            fill: $warning;
+                            &:last-of-type {
+                                fill: $white;
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 

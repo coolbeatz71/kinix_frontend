@@ -1,5 +1,5 @@
-import React, { FC, useState } from 'react';
-import { Card, Avatar, Button } from 'antd';
+import React, { FC, useEffect, useState } from 'react';
+import { Card, Avatar, Button, Grid } from 'antd';
 import { PlayCircleTwoTone } from '@ant-design/icons';
 
 import styles from './index.module.scss';
@@ -8,21 +8,38 @@ import VideoViewRating from '@components/common/Ratings/VideoViewRating';
 import VideoShareButton from '@components/common/Sharings/VideoShareButton';
 import VideoAction from '@components/common/Actions/VideoAction';
 import { WARNING } from '@constants/colors';
+import { isBoolean } from 'lodash';
 
 const { Meta } = Card;
+const { useBreakpoint } = Grid;
 
-const VideoCardVertical: FC<{ size: number; isExclusive?: boolean }> = ({ size, isExclusive = false }) => {
+export interface IVideoCardVerticalProps {
+    size: number;
+    isExclusive?: boolean;
+}
+
+const VideoCardVertical: FC<IVideoCardVerticalProps> = ({ size, isExclusive = false }) => {
     const { value } = useDarkLight();
+    const { lg } = useBreakpoint();
 
     const [showOverLay, setShowOverLay] = useState<boolean>(false);
     const overLayStyles = showOverLay ? { opacity: 1 } : { opacity: 0 };
+
+    const handleShowOverlay = (): void => {
+        if (lg) setShowOverLay(!showOverLay);
+        else setShowOverLay(true);
+    };
+
+    useEffect(() => {
+        if (isBoolean(lg) && !lg) setShowOverLay(true);
+    }, [lg]);
 
     return (
         <div
             data-theme={value}
             className={styles.videoCardVertical}
-            onMouseEnter={() => setShowOverLay(true)}
-            onMouseLeave={() => setShowOverLay(false)}
+            onMouseEnter={handleShowOverlay}
+            onMouseLeave={handleShowOverlay}
         >
             <Card
                 bordered={false}
