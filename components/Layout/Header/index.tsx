@@ -94,13 +94,14 @@ const Header: FC<IHeaderProps> = ({
             />
 
             <Row align="middle" className={styles.header__row} justify="space-between">
-                <Col xs={2} sm={2} lg={1} className="p-0">
+                <Col xs={12} sm={12} lg={1} className="p-0">
                     <Button
                         type="text"
                         size={lg ? 'large' : 'middle'}
                         onClick={lg ? handleToggle : openSideDrawer}
                         icon={<CustomIcon type="hamburger-menu" className="hamburger-menu" />}
                     />
+                    <Logo canRedirect className={styles.header__row__logo} />
                 </Col>
 
                 {lg && !open && (
@@ -155,7 +156,7 @@ const Header: FC<IHeaderProps> = ({
                 )}
 
                 {!lg && (
-                    <Col xs={2} sm={2} className="d-flex justify-content-end">
+                    <Col xs={12} sm={12} className="d-flex justify-content-end">
                         <Button ghost type="primary" icon={<BsFillGridFill />} />
                     </Col>
                 )}

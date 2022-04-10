@@ -30,6 +30,18 @@
     }
 }
 
+@mixin mediaMaxLG {
+    @media screen and (max-width: #{$lg-size}) {
+        @content;
+    }
+}
+
+@mixin mediaMaxMD {
+    @media screen and (max-width: #{$md-size}) {
+        @content;
+    }
+}
+
 @mixin keyframe($animation_name) {
     @keyframes #{$animation_name} {
         0% {
