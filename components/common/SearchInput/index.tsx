@@ -11,6 +11,7 @@ const { Search } = Input;
 export interface ISearchInputProps {
     size?: SizeType;
     allowClear?: boolean;
+    isCategory?: boolean;
     value?: string | string[];
     onChange?: ChangeEventHandler<HTMLInputElement> | undefined;
     onKeyPress?: KeyboardEventHandler<HTMLInputElement> | undefined;
@@ -19,6 +20,7 @@ export interface ISearchInputProps {
 const SearchInput: FC<ISearchInputProps> = ({
     size = 'middle',
     allowClear = true,
+    isCategory = false,
     value = '',
     onChange,
     onKeyPress,
@@ -27,16 +29,28 @@ const SearchInput: FC<ISearchInputProps> = ({
 
     return (
         <div data-theme={darkLight} className={styles.search}>
-            <Search
-                size={size}
-                value={value}
-                enterButton="Search"
-                allowClear={allowClear}
-                placeholder="Input search text"
-                prefix={<SearchOutlined />}
-                onChange={onChange}
-                onKeyPress={onKeyPress}
-            />
+            {isCategory ? (
+                <Input
+                    size={size}
+                    placeholder="Search"
+                    prefix={<SearchOutlined />}
+                    allowClear={allowClear}
+                    value={value}
+                    onChange={onChange}
+                    onKeyPress={onKeyPress}
+                />
+            ) : (
+                <Search
+                    size={size}
+                    value={value}
+                    enterButton="Search"
+                    allowClear={allowClear}
+                    placeholder="Input search text"
+                    prefix={<SearchOutlined />}
+                    onChange={onChange}
+                    onKeyPress={onKeyPress}
+                />
+            )}
         </div>
     );
 };

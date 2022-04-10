@@ -17,16 +17,16 @@ const { useBreakpoint } = Grid;
 
 const CategoryBar: FC<ICategoryBarProps> = ({ categories, baseUrl = ALL_VIDEOS_PATH, scrolled }) => {
     const { query } = useRouter();
-    const screens = useBreakpoint();
+    const { lg, md } = useBreakpoint();
 
     const categoryId: string | string[] = query?.category_id || baseUrl;
     const categoryTitles = { [baseUrl]: capitalize('all') };
 
-    const sizeBreakpoint = scrolled !== '' ? 'small' : 'middle';
-    const spanBreakpoint = scrolled !== '' ? 6 : 7;
+    const sizeBreakpoint = md && scrolled !== '' ? 'small' : 'middle';
+    const spanBreakpoint = md && scrolled !== '' ? 6 : 7;
 
     const Wrapper: FC<{ children: ReactElement }> = ({ children }) =>
-        screens.lg ? (
+        lg ? (
             children
         ) : (
             <Dropdown
@@ -63,7 +63,8 @@ const CategoryBar: FC<ICategoryBarProps> = ({ categories, baseUrl = ALL_VIDEOS_P
             <Col span={spanBreakpoint} data-search-col={scrolled !== '' ? 'scrolled' : ''}>
                 <SearchInput
                     value=""
-                    allowClear={screens.lg}
+                    isCategory
+                    allowClear={lg}
                     size={sizeBreakpoint}
                     onChange={(_e) => {
                         //

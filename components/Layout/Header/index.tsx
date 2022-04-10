@@ -37,7 +37,7 @@ const Header: FC<IHeaderProps> = ({
     setOpenSideDrawer,
 }) => {
     const { value } = useDarkLight();
-    const { lg } = useBreakpoint();
+    const { lg, md } = useBreakpoint();
 
     const [openLoginModal, setOpenLoginModal] = useState<boolean>(false);
     const [openSignUpModal, setOpenSignUpModal] = useState<boolean>(false);
@@ -103,15 +103,17 @@ const Header: FC<IHeaderProps> = ({
                     />
                 </Col>
 
-                {!open && lg && (
+                {lg && !open && (
                     <Col xs={2} sm={2} lg={5}>
                         <Logo canRedirect className={styles.header__row__logo} />
                     </Col>
                 )}
 
-                <Col xs={18} sm={18} lg={7}>
-                    {!isVideoCategory && <SearchInput />}
-                </Col>
+                {md && (
+                    <Col xs={18} sm={18} lg={7}>
+                        {!isVideoCategory && <SearchInput />}
+                    </Col>
+                )}
 
                 {lg && (
                     <Col span={10} className="d-flex flex-row-reverse">
@@ -153,8 +155,8 @@ const Header: FC<IHeaderProps> = ({
                 )}
 
                 {!lg && (
-                    <Col xs={2} sm={2} className="p-0">
-                        <Button type="text" icon={<BsFillGridFill />} />
+                    <Col xs={2} sm={2} className="d-flex justify-content-end">
+                        <Button ghost type="primary" icon={<BsFillGridFill />} />
                     </Col>
                 )}
             </Row>

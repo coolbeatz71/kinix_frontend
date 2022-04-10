@@ -138,7 +138,9 @@
     }
 
     @include mediaXS {
-        [data-priority='FIRST'],
+        [data-priority='FIRST'] {
+            height: 28rem;
+        }
         [data-priority='SECOND'] {
             height: unset;
         }
