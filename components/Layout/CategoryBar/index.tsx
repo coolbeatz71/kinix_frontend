@@ -7,6 +7,8 @@ import { ALL_VIDEOS_PATH } from '@constants/paths';
 import { CatType } from '@context/video-categories';
 import SearchInput from '@components/common/SearchInput';
 
+import styles from './index.module.scss';
+
 export interface ICategoryBarProps {
     categories: CatType[];
     baseUrl?: string;
@@ -35,6 +37,7 @@ const CategoryBar: FC<ICategoryBarProps> = ({ categories, baseUrl = ALL_VIDEOS_P
                 trigger={['click']}
                 placement="bottomLeft"
                 overlayStyle={{ position: 'fixed' }}
+                overlayClassName={styles.categoryBar__dropdown}
             >
                 <Button size={sizeBreakpoint} type="primary" ghost={`${categoryId}` === baseUrl}>
                     {capitalize(categoryTitles[`${categoryId}`])} <DownOutlined />
@@ -43,7 +46,7 @@ const CategoryBar: FC<ICategoryBarProps> = ({ categories, baseUrl = ALL_VIDEOS_P
         );
 
     return (
-        <Row align="middle" justify="space-between" gutter={[39, 0]}>
+        <Row align="middle" justify="space-between" gutter={[39, 0]} className={styles.categoryBar}>
             <Col flex={1} span={15}>
                 <Wrapper>
                     <Menu

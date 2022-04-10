@@ -101,7 +101,7 @@ const Header: FC<IHeaderProps> = ({
                         onClick={lg ? handleToggle : openSideDrawer}
                         icon={<CustomIcon type="hamburger-menu" className="hamburger-menu" />}
                     />
-                    <Logo canRedirect className={styles.header__row__logo} />
+                    {!md && <Logo canRedirect className={styles.header__row__logo} />}
                 </Col>
 
                 {lg && !open && (
