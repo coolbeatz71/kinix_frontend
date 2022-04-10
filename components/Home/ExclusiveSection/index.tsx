@@ -58,7 +58,7 @@ const ExclusiveSection: FC<IExclusiveSectionProps> = ({ tag, title, desc, imgSrc
             background: linear-gradient(to top, ${!isDark ? PRIMARY : WHITE}, transparent);
         }
         `,
-        <Col xs={24} sm={24} span={12} className="right">
+        <Col xs={24} sm={24} md={12} className="right">
             <img src={imgSrc} alt="" />
         </Col>,
     );
@@ -91,7 +91,7 @@ const ExclusiveSection: FC<IExclusiveSectionProps> = ({ tag, title, desc, imgSrc
                         <Button size="large" shape="circle" data-share type="text" icon={<ShareAltOutlined />} />
                     </Space>
                 </Col>
-                {rightContent}
+                {md && rightContent}
             </Row>
             <Row gutter={md ? [24, 0] : undefined} className={styles.exclusive__bottom} style={colStyles}>
                 {[0, 1, 2, 3].map((el) => (
