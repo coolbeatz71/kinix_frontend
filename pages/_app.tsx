@@ -3,12 +3,13 @@ import { AppProps } from 'next/app';
 import NProgress from 'nprogress';
 import { Router } from 'next/router';
 
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+
 import 'styles/coreui.min.css';
 import 'styles/global.scss';
 import 'styles/404.scss';
-
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
+import 'styles/nprogress.scss';
 
 type AppPropsWithError = AppProps & { err: unknown };
 

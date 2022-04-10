@@ -73,4 +73,10 @@
             color: $white;
         }
     }
+
+    @include mediaXS {
+        h3 {
+            font-size: 16pt !important;
+        }
+    }
 }

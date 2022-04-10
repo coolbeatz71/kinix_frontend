@@ -1,31 +1,43 @@
 @import 'dimensions.scss';
 
 @mixin mediaXS {
-    @media (max-width: #{$sm-size}-1) {
+    @media (max-width: $sm-size - 1) {
         @content;
     }
 }
 
 @mixin mediaSM {
-    @media (min-width: $sm-size) and (max-width: #{$md-size}-1) {
+    @media (min-width: $sm-size) and (max-width: $md-size - 1) {
         @content;
     }
 }
 
 @mixin mediaMD {
-    @media (min-width: $md-size) and (max-width: #{$lg-size}-1) {
+    @media (min-width: $md-size) and (max-width: $lg-size - 1) {
         @content;
     }
 }
 
 @mixin mediaLG {
-    @media (min-width: $lg-size) and (max-width: #{$xl-size}-1) {
+    @media (min-width: $lg-size) and (max-width: $xl-size - 1) {
         @content;
     }
 }
 
 @mixin mediaXL {
     @media (min-width: $xl-size) {
+        @content;
+    }
+}
+
+@mixin mediaMaxLG {
+    @media screen and (max-width: #{$lg-size}) {
+        @content;
+    }
+}
+
+@mixin mediaMaxMD {
+    @media screen and (max-width: #{$md-size}) {
         @content;
     }
 }

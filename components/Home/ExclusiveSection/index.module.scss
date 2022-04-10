@@ -175,4 +175,31 @@
             color: $black !important;
         }
     }
+
+    @include mediaXS {
+        &__top {
+            &__left {
+                border-radius: $border-radius;
+                border-bottom-left-radius: 0;
+                border-bottom-right-radius: 0;
+
+                padding: $mobile-content-padding !important;
+                justify-content: center;
+
+                [data-title='true'] {
+                    font-size: 2.8rem;
+                    margin-bottom: 1rem !important;
+                    margin-top: 1rem !important;
+                }
+            }
+        }
+
+        &__bottom {
+            padding: $mobile-content-padding !important;
+
+            [class^='VideoCardVertical'] {
+                margin-bottom: 2.5rem;
+            }
+        }
+    }
 }

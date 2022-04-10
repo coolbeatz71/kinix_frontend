@@ -1,10 +1,11 @@
 import React, { FC, ReactElement, useCallback, useEffect, useState } from 'react';
-import { Layout as AntLayout } from 'antd';
+import { Layout as AntLayout, Grid } from 'antd';
 import getPlatformUrl from '@helpers/getPlatformUrl';
 import { useRouter } from 'next/router';
 import getImageUrl from '@helpers/getImageUrl';
 import Head from 'next/head';
 import SideNav from './SideNav';
+import SideDrawer from './SideDrawer';
 import Header from './Header';
 import DarkModeToggler from '@components/common/DarkModeToggler';
 import useDarkLight from '@hooks/useDarkLight';
@@ -15,6 +16,7 @@ import styles from './index.module.scss';
 import Footer from './Footer';
 
 const { Content } = AntLayout;
+const { useBreakpoint } = Grid;
 interface ILayoutProps {
     children: ReactElement;
     isHome?: boolean;
@@ -42,8 +44,10 @@ const Layout: FC<ILayoutProps> = ({
 }) => {
     const router = useRouter();
     const { value } = useDarkLight();
+    const { lg } = useBreakpoint();
 
     const [openSidenav, setOpenSidenav] = useState<boolean>(false);
+    const [openSideDrawer, setOpenSideDrawer] = useState<boolean>(false);
     const [collapsedSidenav, setCollapsedSidenav] = useState<boolean>(true);
 
     const [scrolled, setScrolled] = useState<string>('');
@@ -102,9 +106,19 @@ const Layout: FC<ILayoutProps> = ({
                 <meta name="msapplication-TileColor" content={WARNING} />
             </Head>
 
-            <DarkModeToggler />
+            {lg && <DarkModeToggler />}
 
-            <SideNav open={openSidenav} collapsed={collapsedSidenav} setCollapsed={setCollapsedSidenav} />
+            {lg ? (
+                <SideNav
+                    open={openSidenav}
+                    collapsed={collapsedSidenav}
+                    setCollapsed={setCollapsedSidenav}
+                    setOpen={setOpenSidenav}
+                />
+            ) : (
+                <SideDrawer open={openSideDrawer} setOpen={setOpenSideDrawer} />
+            )}
+
             <div className={styles.layout__main}>
                 {showHeader && (
                     <Header
@@ -113,6 +127,7 @@ const Layout: FC<ILayoutProps> = ({
                         setOpen={setOpenSidenav}
                         collapsed={collapsedSidenav}
                         setCollapsed={setCollapsedSidenav}
+                        setOpenSideDrawer={setOpenSideDrawer}
                         isVideoCategory={isVideoCategory}
                     />
                 )}

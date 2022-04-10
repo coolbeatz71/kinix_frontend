@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { Col, Row } from 'antd';
-import RelatedVideoCard from '@components/common/Cards/Video/RelatedVideo';
+import RelatedVideoCard from '@components/common/Cards/Video/VideoCardHorizontal';
 import { IUnknownObject } from 'interfaces/app';
 import SectionTitle from '@components/common/SectionTitle';
 

@@ -7,6 +7,8 @@ import { ALL_VIDEOS_PATH } from '@constants/paths';
 import { CatType } from '@context/video-categories';
 import SearchInput from '@components/common/SearchInput';
 
+import styles from './index.module.scss';
+
 export interface ICategoryBarProps {
     categories: CatType[];
     baseUrl?: string;
@@ -17,16 +19,16 @@ const { useBreakpoint } = Grid;
 
 const CategoryBar: FC<ICategoryBarProps> = ({ categories, baseUrl = ALL_VIDEOS_PATH, scrolled }) => {
     const { query } = useRouter();
-    const screens = useBreakpoint();
+    const { lg, md } = useBreakpoint();
 
     const categoryId: string | string[] = query?.category_id || baseUrl;
     const categoryTitles = { [baseUrl]: capitalize('all') };
 
-    const sizeBreakpoint = scrolled !== '' ? 'small' : 'middle';
-    const spanBreakpoint = scrolled !== '' ? 6 : 7;
+    const sizeBreakpoint = md && scrolled !== '' ? 'small' : 'middle';
+    const spanBreakpoint = md && scrolled !== '' ? 6 : 7;
 
     const Wrapper: FC<{ children: ReactElement }> = ({ children }) =>
-        screens.lg ? (
+        lg ? (
             children
         ) : (
             <Dropdown
@@ -35,6 +37,7 @@ const CategoryBar: FC<ICategoryBarProps> = ({ categories, baseUrl = ALL_VIDEOS_P
                 trigger={['click']}
                 placement="bottomLeft"
                 overlayStyle={{ position: 'fixed' }}
+                overlayClassName={styles.categoryBar__dropdown}
             >
                 <Button size={sizeBreakpoint} type="primary" ghost={`${categoryId}` === baseUrl}>
                     {capitalize(categoryTitles[`${categoryId}`])} <DownOutlined />
@@ -43,7 +46,7 @@ const CategoryBar: FC<ICategoryBarProps> = ({ categories, baseUrl = ALL_VIDEOS_P
         );
 
     return (
-        <Row align="middle" justify="space-between" gutter={[39, 0]}>
+        <Row align="middle" justify="space-between" gutter={[39, 0]} className={styles.categoryBar}>
             <Col flex={1} span={15}>
                 <Wrapper>
                     <Menu
@@ -63,7 +66,8 @@ const CategoryBar: FC<ICategoryBarProps> = ({ categories, baseUrl = ALL_VIDEOS_P
             <Col span={spanBreakpoint} data-search-col={scrolled !== '' ? 'scrolled' : ''}>
                 <SearchInput
                     value=""
-                    allowClear={screens.lg}
+                    isCategory
+                    allowClear={lg}
                     size={sizeBreakpoint}
                     onChange={(_e) => {
                         //

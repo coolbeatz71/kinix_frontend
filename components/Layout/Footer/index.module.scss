@@ -1,5 +1,6 @@
 @import 'styles/colors.scss';
 @import 'styles/dimensions.scss';
+@import 'styles/_mixins.scss';
 
 .footer {
     [data-title='true'] {
@@ -199,7 +200,32 @@
             [data-links='true'] {
                 a {
                     font-size: 11pt;
-                    margin-left: $padding;
+                }
+            }
+        }
+    }
+
+    @include mediaXS {
+        &__content {
+            padding: $mobile-content-padding !important;
+
+            &__contact {
+                padding: 0 !important;
+                margin-top: calc(#{$content-padding} / 2);
+            }
+
+            &__copyright {
+                margin-top: calc(#{$mobile-content-padding} / 2);
+                padding: $mobile-content-padding 0;
+                [data-copyright-container='true'] {
+                    display: flex;
+                    justify-content: center;
+                    margin-bottom: calc(#{$mobile-content-padding} / 2);
+                }
+                [data-copyright='true'] {
+                    font-weight: 600;
+                    text-align: center;
+                    font-size: 12pt;
                 }
             }
         }

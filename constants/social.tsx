@@ -4,26 +4,31 @@ import { TwitterOutlined, InstagramFilled, FacebookFilled, YoutubeFilled } from 
 import { MdEmail } from 'react-icons/md';
 import { HiOutlineLink } from 'react-icons/hi';
 
+const TWITTER_URL = 'https://twitter.com/coolbeatz71';
+const INSTAGRAM_URL = 'https://www.instagram.com/glodymutomboriy/';
+const FACEBOOK_URL = 'https://www.facebook.com/coolbeatzofficiel';
+const YOUTUBE_URL = 'https://www.youtube.com/channel/UChOt1KgBvYF3cVdQ5WFkXYQ?sub_confirmation=1';
+
 const social = [
     {
         name: 'twitter',
         icon: <TwitterOutlined className="twitter" />,
-        url: 'link',
+        url: TWITTER_URL,
     },
     {
         name: 'instagram',
         icon: <InstagramFilled className="instagram" />,
-        url: 'link',
+        url: INSTAGRAM_URL,
     },
     {
         name: 'facebook',
         icon: <FacebookFilled className="facebook" />,
-        url: 'link',
+        url: FACEBOOK_URL,
     },
     {
         name: 'youtube',
         icon: <YoutubeFilled className="youtube" />,
-        url: 'link',
+        url: YOUTUBE_URL,
     },
 ];
 

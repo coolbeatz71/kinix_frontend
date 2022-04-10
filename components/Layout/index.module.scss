@@ -1,5 +1,6 @@
 @import 'styles/colors.scss';
 @import 'styles/dimensions.scss';
+@import '/styles/_mixins.scss';
 
 .layout {
     min-height: 100vh;
@@ -56,6 +57,18 @@
 
             -webkit-backdrop-filter: saturate(180%) blur(50px);
             backdrop-filter: saturate(180%) blur(50px);
+
+            @include mediaXS {
+                padding: $mobile-content-padding !important;
+            }
+
+            @include mediaSM {
+                padding: $mobile-content-padding !important;
+            }
+
+            @include mediaSM {
+                padding: $mobile-content-padding !important;
+            }
         }
     }
 }

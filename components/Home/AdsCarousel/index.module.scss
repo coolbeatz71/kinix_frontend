@@ -1,5 +1,6 @@
 @import 'styles/colors.scss';
 @import 'styles/dimensions.scss';
+@import 'styles/_mixins.scss';
 
 .adsCarousel {
     height: 38rem;
@@ -85,5 +86,15 @@
 
     [class~='slider-frame'] {
         border-radius: $border-radius;
+
+        [data-title='true'] {
+            font-size: 2.4rem;
+        }
+    }
+
+    @include mediaXS {
+        &__left {
+            padding: $padding;
+        }
     }
 }

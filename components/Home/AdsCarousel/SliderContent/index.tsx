@@ -1,10 +1,12 @@
 import React, { FC } from 'react';
-import { Button, Col, Row, Tag, Typography } from 'antd';
+import { Button, Col, Row, Tag, Typography, Grid } from 'antd';
 import Style from 'style-it';
 
 import styles from './../index.module.scss';
 
 const { Text, Title, Paragraph } = Typography;
+
+const { useBreakpoint } = Grid;
 
 export interface ISliderContentProps {
     tag: string;
@@ -29,6 +31,7 @@ const SliderContent: FC<ISliderContentProps> = ({
     bgColor,
     imgSrc,
 }) => {
+    const { md } = useBreakpoint();
     const carouselRightContent = Style.it(
         `
         .right::after {
@@ -52,7 +55,7 @@ const SliderContent: FC<ISliderContentProps> = ({
             background: ${bgColor} !important;
         }
         `,
-        <Col span={12} className={`${styles.adsCarousel__left} left`}>
+        <Col xs={24} sm={24} md={12} className={`${styles.adsCarousel__left} left`}>
             <div>
                 <Tag data-tag>{tag}</Tag>
                 <Title data-title>{title}</Title>
@@ -73,7 +76,7 @@ const SliderContent: FC<ISliderContentProps> = ({
     return (
         <Row justify="space-between">
             {carouselLeftContent}
-            {carouselRightContent}
+            {md && carouselRightContent}
         </Row>
     );
 };

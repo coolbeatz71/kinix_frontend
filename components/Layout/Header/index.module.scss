@@ -1,5 +1,6 @@
 @import 'styles/colors.scss';
 @import 'styles/dimensions.scss';
+@import '/styles/_mixins.scss';
 
 .header {
     position: fixed;
@@ -9,7 +10,6 @@
 
     z-index: 99;
     display: flex;
-    flex-direction: column;
     justify-content: space-between;
     align-items: center;
 
@@ -21,7 +21,7 @@
         &[data-is-category='true'] {
             height: calc(#{$header-height} * 1.8);
         }
-        [data-row-category] {
+        [data-row-category='true'] {
             height: $header-height;
         }
     }
@@ -39,6 +39,7 @@
     }
 
     &[data-is-category='true'] {
+        flex-direction: column;
         height: calc(#{$header-height} * 2.2);
     }
 
@@ -57,6 +58,12 @@
             width: 1.4rem;
             height: 1.4rem;
         }
+    }
+
+    [class~='ant-btn'] {
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     &[data-theme='light'] {
@@ -218,6 +225,124 @@
             &[data-platform='youtube'] {
                 background: $youtube;
             }
+        }
+    }
+
+    @include mediaMaxLG {
+        [data-search-col] {
+            width: 64px;
+            position: relative;
+            height: 32px;
+
+            [class~='ant-input-affix-wrapper'] {
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                right: 20px;
+                width: 40px;
+                padding: 4px 12px;
+                [class~='ant-input-suffix'] {
+                    display: none;
+                }
+                &[class~='ant-input-affix-wrapper-focused'] {
+                    width: calc(33.33vw - (#{$content-padding} + 20px));
+                    @include mediaMaxLG {
+                        width: calc(50vw - (#{$content-padding} + 20px));
+                    }
+                    @include mediaMaxMD {
+                        width: calc(100vw - (#{$padding} * 1.8));
+                    }
+                    [class~='ant-input-suffix'] {
+                        display: flex;
+                    }
+                }
+            }
+        }
+
+        &[data-theme='light'] {
+            .header__row__logo {
+                background-image: url('/logo/large_light.svg') !important;
+            }
+        }
+
+        &[data-theme='dark'] {
+            .header__row__logo {
+                background-image: url('/logo/large_dark.svg') !important;
+            }
+        }
+
+        .header__row__logo {
+            background-size: cover !important;
+            background-repeat: no-repeat;
+            background-position: left center;
+
+            height: calc(#{$min-sidenav-width} / 1.6);
+            width: calc(#{$max-sidenav-width} / 1.8);
+        }
+    }
+
+    @include mediaSM {
+        padding: 0 $mobile-content-padding !important;
+    }
+
+    @include mediaMD {
+        padding: 0 $mobile-content-padding !important;
+    }
+
+    @include mediaXS {
+        padding: $mobile-content-padding !important;
+
+        display: flex;
+        align-content: center;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+
+        &[data-is-category='true'] {
+            height: calc(#{$header-height} * 1.8) !important;
+
+            .header__row__categories {
+                padding-bottom: 0 !important;
+            }
+        }
+
+        &[data-scroll='scrolled'],
+        &[data-scroll='over'] {
+            &[data-is-category='true'],
+            [data-row-category='true'] {
+                height: calc(#{$header-height} * 1.6) !important;
+
+                .header__row__categories {
+                    margin-top: 0.6rem;
+                }
+            }
+        }
+
+        &[data-theme='light'] {
+            .header__row {
+                &__logo {
+                    background-image: url('/logo/short_light.svg');
+                    background-size: $logo-bg-size;
+                    background-repeat: no-repeat;
+                    background-position: left center;
+                }
+            }
+        }
+
+        &[data-theme='dark'] {
+            .header__row {
+                &__logo {
+                    background-image: url('/logo/short_dark.svg');
+                    background-size: $logo-bg-size;
+                    background-repeat: no-repeat;
+                    background-position: left center;
+                }
+            }
+        }
+
+        &__row__logo {
+            width: $min-sidenav-width;
+            margin-left: 1rem;
         }
     }
 }
