@@ -16,7 +16,7 @@ const { useBreakpoint } = Grid;
 
 const ArticleBody: FC = () => {
     const { value } = useDarkLight();
-    const { lg } = useBreakpoint();
+    const { lg, md } = useBreakpoint();
     const [scrolled, setScrolled] = useState<string>('');
 
     const backToStyle: IUnknownObject = {
@@ -27,8 +27,9 @@ const ArticleBody: FC = () => {
     };
 
     const scrollHandler = useCallback(() => {
-        setScrolled(window.pageYOffset > 640 ? 'over' : '');
-    }, []);
+        if (lg) setScrolled(window.pageYOffset > 640 && window.pageYOffset < 1500 ? 'over' : '');
+        else setScrolled(window.pageYOffset < 1500 ? 'over' : '');
+    }, [lg]);
 
     useEffect(() => {
         window.addEventListener('scroll', scrollHandler, { passive: true });
@@ -38,18 +39,18 @@ const ArticleBody: FC = () => {
     }, [scrollHandler]);
 
     const ActionWrapper: FC<{ children: ReactElement }> = ({ children }) => (
-        <Fragment>{scrolled !== 'over' ? <Affix offsetTop={80}>{children}</Affix> : children}</Fragment>
+        <Fragment>{scrolled === 'over' ? <Affix offsetTop={80}>{children}</Affix> : children}</Fragment>
     );
 
     return (
         <Fragment>
             <Row data-theme={value} justify="space-between" className={styles.articleBody}>
-                <Col xs={3} sm={3} lg={5}>
+                <Col xs={3} sm={2} lg={5}>
                     <ActionWrapper>
                         <ArticleShare />
                     </ActionWrapper>
                 </Col>
-                <Col xs={21} sm={21} lg={11} className={styles.articleBody__content}>
+                <Col xs={21} sm={22} lg={11} className={styles.articleBody__content}>
                     <ArticleHeader />
                     <Paragraph data-paragraph>
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum maiores repellat autem iusto
@@ -88,14 +89,21 @@ const ArticleBody: FC = () => {
                         ipsa quo. Voluptas, dicta recusandae laudantium totam cupiditate saepe vel fuga sunt
                         perspiciatis, blanditiis voluptate numquam!
                     </Paragraph>
+
                     {lg && <ArticleAction />}
-                    <ArticleTags />
+                    {lg && <ArticleTags />}
                     <BackTop style={backToStyle} data-back-top />
                 </Col>
 
                 {lg && (
                     <Col sm={24} lg={8}>
                         <RelatedArticleList fetched error={null} articles={[]} />
+                    </Col>
+                )}
+
+                {md && !lg && (
+                    <Col sm={24} lg={8}>
+                        <ArticleTags />
                     </Col>
                 )}
             </Row>

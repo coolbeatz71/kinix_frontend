@@ -21,8 +21,8 @@ const ArticleCover: FC<IArticleCoverProps> = ({ myLike = true }) => {
                 <img src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png" />
             </div>
             <Row justify="space-between" align="middle" className={styles.articleCover__content}>
-                <Col md={24} lg={3} className={styles.articleCover__content__like}>
-                    {lg && (
+                {lg && (
+                    <Col md={24} lg={3} className={styles.articleCover__content__like}>
                         <>
                             {myLike ? (
                                 <CustomIcon type="liked-heart" data-is-my-like={myLike} />
@@ -32,8 +32,8 @@ const ArticleCover: FC<IArticleCoverProps> = ({ myLike = true }) => {
                             <Text data-likes-value>12.3k</Text>
                             <Text data-read>10 min read</Text>
                         </>
-                    )}
-                </Col>
+                    </Col>
+                )}
                 <Col md={24} lg={21} className={styles.articleCover__content__title}>
                     <Title>
                         Artificial Intelligence in our homes For the next years. Artificial Intelligence in our homes

@@ -49,6 +49,13 @@
     @include mediaXS {
         margin-right: 0;
         align-items: flex-start;
+
+        &__button {
+            margin-bottom: calc(#{$padding} / 2);
+
+            width: 2.2rem;
+            height: 2.2rem;
+        }
     }
 
     @include mediaSM {

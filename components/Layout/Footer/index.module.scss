@@ -233,7 +233,7 @@
 
     @include mediaSM {
         &__content {
-            padding: $mobile-content-padding !important;
+            padding: calc(#{$mobile-content-padding} * 2) !important;
 
             &__contact {
                 padding: 0 !important;
@@ -242,7 +242,7 @@
 
             &__copyright {
                 margin-top: calc(#{$mobile-content-padding} / 2);
-                padding: $mobile-content-padding 0;
+                padding: $mobile-content-padding calc(#{$content-padding} * 2);
                 [data-copyright-container='true'] {
                     display: flex;
                     justify-content: center;
@@ -251,7 +251,7 @@
                 [data-copyright='true'] {
                     font-weight: 600;
                     text-align: center;
-                    font-size: 12pt;
+                    font-size: 13pt;
                 }
             }
         }

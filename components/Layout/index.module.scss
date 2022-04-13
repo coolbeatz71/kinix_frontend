@@ -64,11 +64,7 @@
             }
 
             @include mediaSM {
-                padding: $mobile-content-padding !important;
-            }
-
-            @include mediaSM {
-                padding: $mobile-content-padding !important;
+                padding: calc(#{$mobile-content-padding} * 2) !important;
             }
         }
     }

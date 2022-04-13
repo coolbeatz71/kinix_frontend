@@ -343,7 +343,7 @@
     }
 
     @include mediaSM {
-        padding: $mobile-content-padding !important;
+        padding: calc(#{$mobile-content-padding} * 2) !important;
 
         display: flex;
         align-content: center;
@@ -395,7 +395,7 @@
 
         &__row__logo {
             width: $min-sidenav-width;
-            margin-left: 1rem;
+            margin-left: 1.2rem;
         }
     }
 }

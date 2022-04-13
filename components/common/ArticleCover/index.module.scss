@@ -97,10 +97,11 @@
     }
 
     @include mediaXS {
-        height: 18rem;
+        height: 20rem;
 
         &__content {
-            padding: calc(#{$mobile-content-padding} * 2);
+            flex-flow: column;
+            padding: calc(#{$mobile-content-padding} * 1.5);
 
             &__title {
                 padding-right: 0;
@@ -108,7 +109,7 @@
 
                 [class~='ant-typography'] {
                     border: 0;
-                    font-size: 22pt;
+                    font-size: 20pt;
                     font-weight: 700;
                     line-height: 1.5;
                     padding: 0;
@@ -135,15 +136,10 @@
 
                 &__left {
                     button {
-                        color: $white;
+                        color: $white !important;
                         &:hover {
-                            color: $light;
+                            color: $light !important;
                         }
-                    }
-
-                    [data-like='true'],
-                    [data-comment='true'] {
-                        align-items: flex-end !important;
                     }
                 }
 
@@ -153,7 +149,7 @@
 
                     [data-read='true'] {
                         color: $white;
-                        font-size: 12pt;
+                        font-size: 10.5pt;
                     }
                 }
             }
@@ -164,6 +160,7 @@
         height: 18rem;
 
         &__content {
+            flex-flow: column;
             padding: calc(#{$mobile-content-padding} * 2);
 
             &__title {
@@ -199,9 +196,9 @@
 
                 &__left {
                     button {
-                        color: $white;
+                        color: $white !important;
                         &:hover {
-                            color: $light;
+                            color: $light !important;
                         }
                     }
 

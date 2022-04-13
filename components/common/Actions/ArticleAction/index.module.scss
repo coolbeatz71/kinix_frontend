@@ -1,5 +1,6 @@
 @import 'styles/colors.scss';
 @import 'styles/dimensions.scss';
+@import 'styles/_mixins.scss';
 
 .articleAction {
     margin: calc(#{$padding} * 1.2) 0;
@@ -66,6 +67,24 @@
             color: $white;
             &:hover {
                 color: $light;
+            }
+        }
+    }
+
+    @include mediaXS {
+        button {
+            [class~='anticon'] {
+                font-size: 16pt;
+            }
+
+            &[class~='ant-btn-icon-only'] {
+                svg {
+                    font-size: 18pt;
+                }
+            }
+            [data-count='true'] {
+                font-size: 10pt;
+                margin-right: 0.1rem;
             }
         }
     }
