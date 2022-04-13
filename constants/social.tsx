@@ -32,13 +32,13 @@ const social = [
     },
 ];
 
-export const socialShare = [
-    social[0],
-    social[2],
+export const shareList = [
     {
         name: 'email',
         icon: <MdEmail className="email" />,
     },
+    social[0],
+    social[2],
     {
         name: 'copy',
         icon: <HiOutlineLink className="copy" />,

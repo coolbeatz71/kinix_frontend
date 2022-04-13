@@ -44,11 +44,19 @@
             </cc:Work>
         </rdf:RDF>
     </metadata>
+
+     <defs>
+          <filter id="blur">
+               <feGaussianBlur stdDeviation="45" />
+          </filter>
+     </defs>
     <g
+         id="layer1"
+         filter="url(#blur)"
          inkscape:label="Layer 1"
          inkscape:groupmode="layer"
-         id="layer1"
-         transform="translate(-98.452026,-2217.2859)">
+         transform="translate(-98.452026,-2217.2859)"
+         >
         <rect
              y="2217.2859"
              x="-1439.3611"

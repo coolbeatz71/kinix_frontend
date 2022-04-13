@@ -16,35 +16,6 @@
         }
     }
 
-    button {
-        padding: 0 !important;
-        color: $dark;
-
-        &[data-comment='true'],
-        &[data-like='true'] {
-            display: flex;
-            align-items: center;
-            flex-flow: row-reverse;
-            margin-right: 0.5rem;
-        }
-
-        [data-count='true'] {
-            font-size: 12pt;
-            margin-right: 0.2rem;
-        }
-
-        [class~='anticon'] {
-            font-size: 22pt;
-        }
-
-        &[class~='ant-btn-icon-only'] {
-            margin-left: 1rem;
-            svg {
-                font-size: 25pt;
-            }
-        }
-    }
-
     &[data-theme='dark'] {
         [data-author='true'] {
             a {
@@ -55,13 +26,6 @@
         [class~='ant-breadcrumb-separator'],
         [class~='ant-breadcrumb-link'] {
             color: $light;
-        }
-
-        button {
-            color: $white;
-            &:hover {
-                color: $light;
-            }
         }
     }
 }

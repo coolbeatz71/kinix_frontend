@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { Button } from 'antd';
-import { socialShare } from '@constants/social';
+import { shareList } from '@constants/social';
 import useDarkLight from '@hooks/useDarkLight';
 
 import styles from './index.module.scss';
@@ -10,7 +10,7 @@ const ArticleShare: FC = () => {
 
     return (
         <div className={styles.articleShare}>
-            {socialShare.map((item) => (
+            {shareList.map((item) => (
                 <Button
                     shape="circle"
                     key={item.name}
