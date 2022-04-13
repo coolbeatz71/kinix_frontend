@@ -44,12 +44,12 @@ const ArticleBody: FC = () => {
     return (
         <Fragment>
             <Row data-theme={value} justify="space-between" className={styles.articleBody}>
-                <Col xs={3} lg={5}>
+                <Col xs={3} sm={3} lg={5}>
                     <ActionWrapper>
                         <ArticleShare />
                     </ActionWrapper>
                 </Col>
-                <Col xs={21} lg={11} className={styles.articleBody__content}>
+                <Col xs={21} sm={21} lg={11} className={styles.articleBody__content}>
                     <ArticleHeader />
                     <Paragraph data-paragraph>
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum maiores repellat autem iusto
@@ -88,7 +88,7 @@ const ArticleBody: FC = () => {
                         ipsa quo. Voluptas, dicta recusandae laudantium totam cupiditate saepe vel fuga sunt
                         perspiciatis, blanditiis voluptate numquam!
                     </Paragraph>
-                    <ArticleAction />
+                    {lg && <ArticleAction />}
                     <ArticleTags />
                     <BackTop style={backToStyle} data-back-top />
                 </Col>

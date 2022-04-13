@@ -45,4 +45,11 @@
             padding-left: 0;
         }
     }
+
+    @include mediaSM {
+        &__content {
+            padding-right: 0;
+            padding-left: 0;
+        }
+    }
 }
