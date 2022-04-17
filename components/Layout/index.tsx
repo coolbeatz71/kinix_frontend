@@ -109,12 +109,7 @@ const Layout: FC<ILayoutProps> = ({
             {lg && <DarkModeToggler />}
 
             {lg ? (
-                <SideNav
-                    open={openSidenav}
-                    collapsed={collapsedSidenav}
-                    setCollapsed={setCollapsedSidenav}
-                    setOpen={setOpenSidenav}
-                />
+                <SideNav open={openSidenav} collapsed={collapsedSidenav} setCollapsed={setCollapsedSidenav} />
             ) : (
                 <SideDrawer open={openSideDrawer} setOpen={setOpenSideDrawer} />
             )}

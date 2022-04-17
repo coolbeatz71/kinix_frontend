@@ -53,10 +53,12 @@
     [class~='hamburger-menu'] {
         display: flex;
         align-items: center;
-        justify-content: center;
-        svg {
-            width: 1.4rem;
-            height: 1.4rem;
+        justify-content: flex-start !important;
+
+        background: transparent !important;
+        border-color: transparent !important;
+        span {
+            font-size: 16pt;
         }
     }
 
@@ -197,6 +199,10 @@
 
             border: 0;
             color: $white !important;
+
+            [class~='anticon'] {
+                line-height: 0;
+            }
 
             &:hover {
                 [class~='twitter'] {

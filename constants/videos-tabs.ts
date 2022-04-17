@@ -1,16 +1,22 @@
+export enum ETabTitle {
+    POPULAR = 'POPULAR',
+    RATINGS = 'RATINGS',
+    LYRICS = 'LYRICS',
+}
+
 export interface IVideoTab {
-    title: string;
+    title: ETabTitle;
 }
 
 const videosTabs: IVideoTab[] = [
     {
-        title: 'popular',
+        title: ETabTitle.POPULAR,
     },
     {
-        title: 'ratings',
+        title: ETabTitle.RATINGS,
     },
     {
-        title: 'lyrics',
+        title: ETabTitle.LYRICS,
     },
 ];
 

@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import videosTabs from '@constants/videos-tabs';
+import videosTabs, { ETabTitle } from '@constants/videos-tabs';
 import { Tabs } from 'antd';
 import PopularVideoList from '../PopularVideoList';
 import { upperFirst } from 'lodash';
@@ -14,7 +14,11 @@ const VideosTabs: FC = () => {
 
     const getTabsContent = (title: string): JSX.Element => {
         switch (title) {
-            case 'popular':
+            case ETabTitle.POPULAR:
+                return <PopularVideoList fetched error={null} videos={[]} />;
+            case ETabTitle.RATINGS:
+                return <PopularVideoList fetched error={null} videos={[]} />;
+            case ETabTitle.LYRICS:
                 return <PopularVideoList fetched error={null} videos={[]} />;
             default:
                 return <PopularVideoList fetched error={null} videos={[]} />;

@@ -3,13 +3,13 @@ import { Menu, Drawer, Divider, Row, Col, Button, Space } from 'antd';
 
 import { DISCOVER_PATH, HOME_PATH } from '@constants/paths';
 import sectionList from '@constants/sidenav-section';
+import { MenuOutlined } from '@ant-design/icons';
 import { BulbFilled, HomeFilled } from '@ant-design/icons';
 import { BsFillSunFill, BsMoonStarsFill } from 'react-icons/bs';
 
 import Link from 'next/link';
 import useDarkLight from '@hooks/useDarkLight';
 import Logo from '@components/common/Logo';
-import CustomIcon from '@components/common/CustomIcon';
 import UserAvatar from '@components/common/Profile/UserAvatar';
 
 import styles from './index.module.scss';
@@ -77,7 +77,8 @@ const SideDrawer: FC<ISideDrawerProps> = ({ open, setOpen }) => {
                             <Button
                                 type="text"
                                 size="large"
-                                icon={<CustomIcon type="hamburger-menu" className="hamburger-menu" />}
+                                className="hamburger-menu"
+                                icon={<MenuOutlined />}
                                 onClick={handleCloseDrawer}
                             />
                         </Space>

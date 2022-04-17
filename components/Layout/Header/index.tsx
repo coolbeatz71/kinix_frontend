@@ -1,9 +1,8 @@
 import React, { FC, useState } from 'react';
 import { Button, Col, Layout, Row, Space, Grid } from 'antd';
 import getSideNavWidth from '@helpers/getSideNavWidth';
-import styles from './index.module.scss';
 import SearchInput from '@components/common/SearchInput';
-import CustomIcon from '@components/common/CustomIcon';
+import { MenuOutlined } from '@ant-design/icons';
 import social from '@constants/social';
 import useDarkLight from '@hooks/useDarkLight';
 import { isDark } from '@constants/colors';
@@ -13,6 +12,8 @@ import LoginModal from '@components/Auth/Login';
 import SignUpModal from '@components/Auth/SignUp';
 import CategoryBar from '../CategoryBar';
 import { BsFillGridFill } from 'react-icons/bs';
+
+import styles from './index.module.scss';
 
 const { Header: AntHeader } = Layout;
 const { useBreakpoint } = Grid;
@@ -97,9 +98,10 @@ const Header: FC<IHeaderProps> = ({
                 <Col xs={12} sm={12} lg={1} className="p-0">
                     <Button
                         type="text"
+                        className="hamburger-menu"
                         size={lg ? 'large' : 'middle'}
                         onClick={lg ? handleToggle : openSideDrawer}
-                        icon={<CustomIcon type="hamburger-menu" className="hamburger-menu" />}
+                        icon={<MenuOutlined />}
                     />
                     {!md && <Logo canRedirect className={styles.header__row__logo} />}
                 </Col>
