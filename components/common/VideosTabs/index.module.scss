@@ -1,0 +1,58 @@
+@import 'styles/colors.scss';
+
+.videosTabs {
+    [class~='ant-tabs-ink-bar'] {
+        height: 0.2rem !important;
+    }
+
+    [class~='ant-tabs-tab-btn'] {
+        font-weight: 500;
+        font-size: 13pt;
+    }
+
+    [class~='ant-tabs-nav'] {
+        margin-bottom: 2rem;
+    }
+
+    &[data-theme='light'] {
+        [class~='ant-tabs-nav']:before {
+            border-bottom: 1px solid $dark10;
+        }
+
+        [class~='ant-tabs-ink-bar'] {
+            background: $primary;
+        }
+    }
+
+    &[data-theme='dark'] {
+        [class~='ant-tabs-nav']:before {
+            border-bottom: 1px solid $light10;
+        }
+
+        [class~='ant-tabs-ink-bar'] {
+            background: $warning;
+        }
+
+        [class~='ant-tabs-tab-btn'] {
+            color: $light;
+        }
+
+        [class~='ant-tabs-tab']:hover {
+            [class~='ant-tabs-tab-btn'] {
+                color: $white;
+            }
+        }
+
+        [class~='ant-tabs-tab-active'] {
+            [class~='ant-tabs-tab-btn'] {
+                color: $warning;
+            }
+        }
+    }
+
+    [class~='ant-tabs-tab-active'] {
+        [class~='ant-tabs-tab-btn'] {
+            font-weight: 600;
+        }
+    }
+}

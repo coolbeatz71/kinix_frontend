@@ -9,7 +9,13 @@ const INSTAGRAM_URL = 'https://www.instagram.com/glodymutomboriy/';
 const FACEBOOK_URL = 'https://www.facebook.com/coolbeatzofficiel';
 const YOUTUBE_URL = 'https://www.youtube.com/channel/UChOt1KgBvYF3cVdQ5WFkXYQ?sub_confirmation=1';
 
-const social = [
+export interface ISocialIcon {
+    name: string;
+    icon: JSX.Element;
+    url?: string;
+}
+
+const social: ISocialIcon[] = [
     {
         name: 'twitter',
         icon: <TwitterOutlined className="twitter" />,
@@ -32,7 +38,7 @@ const social = [
     },
 ];
 
-export const shareList = [
+export const shareList: ISocialIcon[] = [
     {
         name: 'email',
         icon: <MdEmail className="email" />,

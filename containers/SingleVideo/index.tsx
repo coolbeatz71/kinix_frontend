@@ -2,8 +2,8 @@ import React, { FC, Fragment } from 'react';
 import { Col, Row } from 'antd';
 import useDarkLight from '@hooks/useDarkLight';
 import VideoPlayer from '@components/common/VideoPlayer';
-import PopularVideoList from '@components/common/PopularVideoList';
 import RelatedVideoList from '@components/common/RelatedVideoList';
+import VideosTabs from '@components/common/VideosTabs';
 
 const SingleVideoContainer: FC = () => {
     const { value } = useDarkLight();
@@ -14,7 +14,7 @@ const SingleVideoContainer: FC = () => {
                 <Col span={16}>
                     <VideoPlayer />
                     <div className="mt-5">
-                        <PopularVideoList fetched error={null} videos={[]} />
+                        <VideosTabs />
                     </div>
                 </Col>
                 <Col span={8} className="ps-3">
