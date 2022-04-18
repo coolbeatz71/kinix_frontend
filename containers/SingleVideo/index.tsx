@@ -16,7 +16,7 @@ const SingleVideoContainer: FC = () => {
             <Row data-theme={value} justify="space-between" gutter={[0, 0]}>
                 <Col xs={24} sm={24} md={24} lg={16}>
                     <VideoPlayer />
-                    <div className="mt-5">
+                    <div className={lg ? 'mt-5' : 'mt-3'}>
                         <VideosTabs />
                     </div>
                 </Col>

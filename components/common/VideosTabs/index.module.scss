@@ -1,4 +1,5 @@
 @import 'styles/colors.scss';
+@import 'styles/_mixins.scss';
 
 .videosTabs {
     [class~='ant-tabs-ink-bar'] {
@@ -53,6 +54,12 @@
     [class~='ant-tabs-tab-active'] {
         [class~='ant-tabs-tab-btn'] {
             font-weight: 600;
+        }
+    }
+
+    @include mediaXS {
+        [class~='ant-tabs-tab-btn'] {
+            font-size: 10pt;
         }
     }
 }
