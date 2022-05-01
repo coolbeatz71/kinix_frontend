@@ -66,10 +66,10 @@
     }
 
     &[data-theme='light'] {
-        color: $primary;
         background-color: $light;
 
         [class~='hamburger-menu'] {
+            color: $primary;
             svg {
                 rect {
                     fill: $primary;
