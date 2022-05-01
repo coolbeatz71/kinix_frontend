@@ -3,9 +3,10 @@ import { Avatar, Col, Row, Typography } from 'antd';
 import { truncate } from 'lodash';
 import useDarkLight from '@hooks/useDarkLight';
 import { SettingOutlined } from '@ant-design/icons';
+import Link from 'next/link';
+import { HOME_PATH } from '@constants/paths';
 
 import styles from './index.module.scss';
-import Link from 'next/link';
 
 const { Text } = Typography;
 
@@ -30,7 +31,7 @@ const UserAvatar: FC<IUserAvatarProps> = ({ userName }) => {
                 </Text>
             </Col>
             <Col span={3} className="d-flex justify-content-center">
-                <Link href="/" passHref>
+                <Link href={HOME_PATH} passHref>
                     <SettingOutlined data-setting />
                 </Link>
             </Col>

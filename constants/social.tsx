@@ -5,9 +5,9 @@ import { MdEmail } from 'react-icons/md';
 import { HiOutlineLink } from 'react-icons/hi';
 
 const TWITTER_URL = 'https://twitter.com/coolbeatz71';
-const INSTAGRAM_URL = 'https://www.instagram.com/glodymutomboriy/';
-const FACEBOOK_URL = 'https://www.facebook.com/coolbeatzofficiel';
-const YOUTUBE_URL = 'https://www.youtube.com/channel/UChOt1KgBvYF3cVdQ5WFkXYQ?sub_confirmation=1';
+const INSTAGRAM_URL = 'https://www.instagram.com/kinshas_art/';
+const FACEBOOK_URL = 'https://www.facebook.com/kinshasart';
+const YOUTUBE_URL = 'https://www.youtube.com/channel/UCu-5xpKCQmOtTMPN5CeW-hg?sub_confirmation=1';
 
 export interface ISocialIcon {
     name: string;
