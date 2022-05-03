@@ -31,7 +31,7 @@ const MainArticle: FC = () => {
                         &nbsp; 1 hour ago
                     </Text>
                 </div>
-                <div>
+                <div className={styles.mainArticle__content__text}>
                     <Title level={1} data-text="title">
                         {truncate(title, {
                             length: 90,

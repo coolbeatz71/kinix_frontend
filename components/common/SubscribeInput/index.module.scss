@@ -1,4 +1,7 @@
 @import 'styles/dimensions.scss';
+@import 'styles/_mixins.scss';
+
+$btn-width: 200px;
 
 .subscribeInput {
     padding-top: calc(#{$padding} * 1.2);
@@ -6,5 +9,23 @@
     [class~='ant-btn'] {
         border-bottom-left-radius: 0;
         border-top-left-radius: 0;
+        width: $btn-width;
+    }
+
+    [class~='ant-input'] {
+        width: calc(100% - $btn-width);
+    }
+
+    @include mediaXS {
+        [class~='ant-input'] {
+            width: calc(100% - #{$btn-width / 2.2});
+        }
+
+        [class~='ant-btn'] {
+            width: calc(#{$btn-width / 2.2});
+
+            padding-left: 0.5rem;
+            padding-right: 0.5rem;
+        }
     }
 }

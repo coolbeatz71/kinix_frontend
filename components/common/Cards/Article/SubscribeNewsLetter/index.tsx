@@ -10,7 +10,7 @@ const SubscribeNewsLetter: FC = () => {
     return (
         <div className={styles.subscribeNewsLetter}>
             <Row justify="space-between">
-                <Col span={10}>
+                <Col sm={24} md={24} lg={10}>
                     <Title data-title>Subscribe and Stay Informed</Title>
                     <Text data-desc>
                         Signup for our weekly newsletter to get the latest news, updates and amazing offers delivered
