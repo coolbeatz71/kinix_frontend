@@ -1,8 +1,7 @@
 import React, { FC } from 'react';
-import { Breadcrumb, Button, Col, Row } from 'antd';
+import { Breadcrumb, Col, Row } from 'antd';
 import Link from 'next/link';
-import { CommentOutlined, HeartOutlined } from '@ant-design/icons';
-import { MdOutlineBookmarkAdd } from 'react-icons/md';
+
 import useDarkLight from '@hooks/useDarkLight';
 
 import styles from './index.module.scss';
@@ -15,22 +14,13 @@ const ArticleHeader: FC = () => {
     return (
         <div data-theme={value} className={styles.articleHeader}>
             <Row justify="space-between" align="middle">
-                <Col span={8}>
+                <Col span={24} className="d-flex justify-content-start">
                     <Breadcrumb>
                         <Item data-author>
                             <Link href="link to author page">By Redaction</Link>
                         </Item>
                         <Item>1 hour ago</Item>
                     </Breadcrumb>
-                </Col>
-                <Col span={16} className="d-flex justify-content-end">
-                    <Button data-like type="link" icon={<HeartOutlined />}>
-                        <span data-count>12.3k</span>
-                    </Button>
-                    <Button data-comment type="link" icon={<CommentOutlined />}>
-                        <span data-count>120k</span>
-                    </Button>
-                    <Button type="link" icon={<MdOutlineBookmarkAdd />} />
                 </Col>
             </Row>
         </div>

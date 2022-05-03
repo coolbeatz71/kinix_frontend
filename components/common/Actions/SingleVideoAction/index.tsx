@@ -12,7 +12,7 @@ export interface ISingleVideoActionProps {
 const SingleVideoAction: FC<ISingleVideoActionProps> = ({ likeCount, commentCount }) => {
     return (
         <Row justify="space-between" align="middle">
-            <Col span={12}>
+            <Col span={12} className="d-flex align-content-center">
                 <StarRatingComponent name="video-rate" starCount={5} value={3} />
             </Col>
             <Col span={12} className="d-flex justify-content-end">

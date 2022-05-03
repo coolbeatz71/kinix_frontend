@@ -69,4 +69,17 @@
             margin-bottom: 0;
         }
     }
+
+    @include mediaXS {
+        &__content {
+            right: 0;
+            margin: 1rem;
+            padding: 1rem;
+            padding-bottom: 5rem;
+
+            [data-text='title'] {
+                font-size: 2rem;
+            }
+        }
+    }
 }

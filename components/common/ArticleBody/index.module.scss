@@ -1,5 +1,6 @@
 @import 'styles/dimensions.scss';
 @import 'styles/colors.scss';
+@import 'styles/_mixins.scss';
 
 .articleBody {
     &[data-theme='dark'] {
@@ -35,6 +36,25 @@
             margin-top: 0.8rem;
             align-items: center;
             justify-content: center;
+        }
+    }
+
+    @include mediaXS {
+        &__content {
+            padding-right: 0;
+            padding-left: 0;
+
+            [data-paragraph='true'] {
+                line-height: 1.6;
+                font-size: 11.5pt;
+            }
+        }
+    }
+
+    @include mediaSM {
+        &__content {
+            padding-right: 0;
+            padding-left: 0;
         }
     }
 }

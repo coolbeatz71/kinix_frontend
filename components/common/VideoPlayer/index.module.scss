@@ -1,5 +1,6 @@
 @import 'styles/dimensions.scss';
 @import 'styles/colors.scss';
+@import 'styles/_mixins.scss';
 
 .videoPlayer {
     border-radius: $border-radius;
@@ -197,6 +198,65 @@
 
         100% {
             background-position: 468px 0;
+        }
+    }
+
+    @include mediaXS {
+        &__footer {
+            padding: 0.8rem 1rem;
+
+            [data-title='true'] {
+                margin-top: 0.8rem !important;
+                font-size: 11.5pt;
+                font-weight: 600;
+            }
+
+            [data-views='true'] {
+                font-size: 9pt;
+            }
+
+            [class~='dv-star-rating-star'] {
+                font-size: 14pt;
+            }
+
+            button {
+                padding: 0 !important;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                &[data-like='true'],
+                &[data-comment='true'] {
+                    margin-right: 0.5rem;
+                }
+
+                [data-count='true'] {
+                    font-size: 12pt;
+                    margin-right: 0.2rem;
+                }
+
+                [class~='anticon'] {
+                    font-size: 12pt;
+                }
+
+                &[class~='ant-btn-icon-only'] {
+                    svg {
+                        font-size: 13pt;
+                    }
+                }
+            }
+
+            [class~='ant-divider'] {
+                margin: 0.8rem 0;
+            }
+
+            [data-channel='true'] {
+                font-size: 10pt;
+            }
+
+            [data-subscribers='true'] {
+                font-size: 9pt;
+            }
         }
     }
 }

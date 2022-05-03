@@ -10,10 +10,11 @@ export interface IVideoOwnerProfileProps {
 }
 
 const VideoOwnerProfile: FC<IVideoOwnerProfileProps> = ({ channel, subscribers, avatarLink }) => {
+    const size = { xs: 36, sm: 42, md: 48 };
     return (
         <Fragment>
             <Space>
-                <Avatar size={48} src={avatarLink} />
+                <Avatar size={size} src={avatarLink} />
                 <div>
                     <Text data-channel>{channel}</Text>
                     <Text data-subscribers>{subscribers} subscribers</Text>

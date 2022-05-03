@@ -1,5 +1,6 @@
 @import 'styles/dimensions.scss';
 @import 'styles/colors.scss';
+@import 'styles/_mixins.scss';
 
 .articleShare {
     display: flex;
@@ -31,6 +32,7 @@
             [class~='email'] {
                 color: $google;
             }
+            color: $primary !important;
         }
 
         &[data-platform='twitter'] {
@@ -42,5 +44,27 @@
         &[data-platform='email'] {
             background: $google;
         }
+    }
+
+    @include mediaXS {
+        margin-right: 0;
+        align-items: flex-start;
+
+        &__button {
+            margin-bottom: calc(#{$padding} / 2);
+
+            width: 2.2rem;
+            height: 2.2rem;
+        }
+    }
+
+    @include mediaSM {
+        margin-right: 0;
+        align-items: flex-start;
+    }
+
+    @include mediaMD {
+        margin-right: 0;
+        align-items: flex-start;
     }
 }

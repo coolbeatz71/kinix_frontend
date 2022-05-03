@@ -9,6 +9,8 @@
     &[data-theme~='dark'] {
         background: url('/bg-dark.svg');
         background-repeat: repeat-y;
+        background-size: cover;
+        background-attachment: fixed;
 
         .layout__main {
             background-color: $bg-primary-dark;
@@ -27,6 +29,8 @@
     &[data-theme~='light'] {
         background: url('/bg-light.svg');
         background-repeat: repeat-y;
+        background-size: cover;
+        background-attachment: fixed;
 
         .layout__main {
             background-color: $bg-primary-light;
@@ -55,19 +59,12 @@
 
             margin-top: $header-height;
 
-            -webkit-backdrop-filter: saturate(180%) blur(50px);
-            backdrop-filter: saturate(180%) blur(50px);
-
             @include mediaXS {
                 padding: $mobile-content-padding !important;
             }
 
             @include mediaSM {
-                padding: $mobile-content-padding !important;
-            }
-
-            @include mediaSM {
-                padding: $mobile-content-padding !important;
+                padding: calc(#{$mobile-content-padding} * 2) !important;
             }
         }
     }

@@ -1,9 +1,8 @@
 import React, { FC, useState } from 'react';
 import ReactPlayer from 'react-player';
-import { Col, Row, Typography, Divider, Spin } from 'antd';
+import { Col, Row, Typography, Spin } from 'antd';
 import useDarkLight from '@hooks/useDarkLight';
 import VideoTagsList from '../VideoTagsList';
-import VideoOwnerProfile from '../VideoOwnerProfile';
 import SingleVideoAction from '../Actions/SingleVideoAction';
 
 import styles from './index.module.scss';
@@ -42,14 +41,14 @@ const VideoPlayer: FC = () => {
                     288,065 views - Jan 1, 2022
                 </Text>
                 <SingleVideoAction commentCount={1200} likeCount={3.5} />
-
-                <Divider />
+                {/* // TODO: must think about adding channel info or no */}
+                {/* <Divider />
 
                 <VideoOwnerProfile
                     subscribers={87.5}
                     channel="Derrière La Caméra"
                     avatarLink="https://i.pravatar.cc/300"
-                />
+                /> */}
             </Col>
         </Row>
     );

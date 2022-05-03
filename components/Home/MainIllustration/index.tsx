@@ -10,15 +10,14 @@ import music from 'public/listen_music_anim.json';
 import office from 'public/listen_office_anim.json';
 import podcast from 'public/listen_podcast_anim.json';
 
+const { useBreakpoint } = Grid;
 const { Title, Text } = Typography;
 
 const animationList: IUnknownObject[] = [music, office, podcast];
 
-const { useBreakpoint } = Grid;
-
 const HomeIllustration: FC = () => {
-    const { value } = useDarkLight();
     const { md } = useBreakpoint();
+    const { value } = useDarkLight();
 
     const defaultOptions = (animationData: IUnknownObject): Options => ({
         loop: true,
@@ -45,7 +44,7 @@ const HomeIllustration: FC = () => {
                         <Col xs={24} sm={24} md={12}>
                             <Text className={styles.illustration__legend__subscribe__text}>To get the latest news</Text>
                         </Col>
-                        <Col xs={24} sm={24} md={12}>
+                        <Col xs={24} sm={24} md={12} className="d-flex justify-content-end">
                             <Button type="primary" block={!md} size="large" danger icon={<YoutubeFilled />}>
                                 Subscribe
                             </Button>

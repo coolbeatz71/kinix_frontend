@@ -1,5 +1,6 @@
 @import 'styles/dimensions.scss';
 @import 'styles/colors.scss';
+@import 'styles/_mixins.scss';
 
 .articleCover {
     height: 35rem;
@@ -9,7 +10,6 @@
         position: relative;
         left: 0;
         right: 0;
-        z-index: -1;
         height: 100%;
         width: 100%;
 
@@ -92,6 +92,131 @@
                 font-weight: 900;
                 margin: 0;
                 text-align: start;
+            }
+        }
+    }
+
+    @include mediaXS {
+        height: 20rem;
+
+        &__content {
+            flex-flow: column;
+            padding: calc(#{$mobile-content-padding} * 1.5);
+
+            &__title {
+                padding-right: 0;
+                margin-bottom: 1rem;
+
+                [class~='ant-typography'] {
+                    border: 0;
+                    font-size: 20pt;
+                    font-weight: 700;
+                    line-height: 1.5;
+                    padding: 0;
+                }
+            }
+            &__like {
+                width: 100%;
+                justify-content: flex-start;
+            }
+
+            &__action {
+                width: 100%;
+                padding-top: 1rem !important;
+                align-items: center;
+
+                border-top: 1px solid $light20;
+
+                [class~='ant-row'] {
+                    border: 0 !important;
+                    margin: 0 !important;
+                    padding: 0 !important;
+                    justify-content: flex-start !important;
+                }
+
+                &__left {
+                    button {
+                        color: $white !important;
+                        &:hover {
+                            color: $light !important;
+                        }
+                    }
+                }
+
+                &__right {
+                    display: flex;
+                    justify-content: flex-end;
+
+                    [data-read='true'] {
+                        color: $white;
+                        font-size: 10.5pt;
+                    }
+                }
+            }
+        }
+    }
+
+    @include mediaSM {
+        height: 18rem;
+
+        &__content {
+            flex-flow: column;
+            padding: calc(#{$mobile-content-padding} * 2);
+
+            &__title {
+                padding-right: 0;
+                margin-bottom: 1rem;
+
+                [class~='ant-typography'] {
+                    border: 0;
+                    font-size: 22pt;
+                    font-weight: 700;
+                    line-height: 1.5;
+                    padding: 0;
+                }
+            }
+            &__like {
+                width: 100%;
+                justify-content: flex-start;
+            }
+
+            &__action {
+                width: 100%;
+                padding-top: 1rem !important;
+                align-items: center;
+
+                border-top: 1px solid $light20;
+
+                [class~='ant-row'] {
+                    border: 0 !important;
+                    margin: 0 !important;
+                    padding: 0 !important;
+                    justify-content: flex-start !important;
+                }
+
+                &__left {
+                    button {
+                        color: $white !important;
+                        &:hover {
+                            color: $light !important;
+                        }
+                    }
+
+                    [data-like='true'],
+                    [data-comment='true'] {
+                        align-items: flex-end !important;
+                    }
+                }
+
+                &__right {
+                    display: flex;
+                    justify-content: flex-end;
+
+                    [data-read='true'] {
+                        color: $white;
+                        font-size: 12pt;
+                    }
+                }
             }
         }
     }

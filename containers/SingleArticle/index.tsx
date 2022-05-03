@@ -1,11 +1,11 @@
 import React, { FC, Fragment } from 'react';
-import ArticleOverlay from '@components/common/ArticleCover';
+import ArticleCover from '@components/common/ArticleCover';
 import ArticleBody from '@components/common/ArticleBody';
 
 const SingleArticleContainer: FC = () => {
     return (
         <Fragment>
-            <ArticleOverlay />
+            <ArticleCover />
 
             <div className="mt-5">
                 <ArticleBody />
