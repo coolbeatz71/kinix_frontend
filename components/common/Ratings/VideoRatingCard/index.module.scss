@@ -1,0 +1,50 @@
+@import 'styles/colors.scss';
+
+.videoRatingCard {
+    [class~='ant-btn'] {
+        margin: 0;
+    }
+
+    &[data-theme='light'] {
+        [data-comment='true'] {
+            color: $dark;
+        }
+        [data-user='true'] {
+            color: $primary;
+        }
+
+        [class~='ant-divider'] {
+            border-color: $dark10;
+        }
+    }
+
+    &[data-theme='dark'] {
+        [data-comment='true'] {
+            color: $light;
+        }
+        [data-user='true'] {
+            color: $white;
+        }
+
+        [class~='dv-star-rating-empty-star'] {
+            color: $grey !important;
+        }
+
+        [class~='ant-divider'] {
+            border-color: $light10;
+        }
+    }
+
+    [data-user='true'] {
+        cursor: pointer;
+        font-size: 14pt;
+    }
+
+    [data-comment='true'] {
+        font-size: 12pt;
+    }
+
+    [class~='dv-star-rating-star'] {
+        font-size: 14pt !important;
+    }
+}

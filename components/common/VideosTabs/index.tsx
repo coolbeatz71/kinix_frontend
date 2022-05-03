@@ -7,6 +7,7 @@ import useDarkLight from '@hooks/useDarkLight';
 
 import styles from './index.module.scss';
 import Lyrics from '../Lyrics';
+import RatingsList from '../RatingsList';
 
 const { TabPane } = Tabs;
 
@@ -18,7 +19,7 @@ const VideosTabs: FC = () => {
             case ETabTitle.POPULAR:
                 return <PopularVideoList fetched error={null} videos={[]} />;
             case ETabTitle.RATINGS:
-                return <PopularVideoList fetched error={null} videos={[]} />;
+                return <RatingsList fetched error={null} ratings={[]} />;
             case ETabTitle.LYRICS:
                 return <Lyrics content={''} />;
             default:
