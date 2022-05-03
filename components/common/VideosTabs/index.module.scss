@@ -2,6 +2,7 @@
 @import 'styles/_mixins.scss';
 
 .videosTabs {
+    padding-bottom: $padding;
     [class~='ant-tabs-ink-bar'] {
         height: 0.2rem !important;
     }

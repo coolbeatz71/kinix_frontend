@@ -1,0 +1,19 @@
+@import 'styles/colors.scss';
+
+.lyrics {
+    [data-text='true'] {
+        font-size: 12.5pt;
+    }
+
+    &[data-theme='light'] {
+        [data-text='true'] {
+            color: $dark;
+        }
+    }
+
+    &[data-theme='dark'] {
+        [data-text='true'] {
+            color: $light;
+        }
+    }
+}

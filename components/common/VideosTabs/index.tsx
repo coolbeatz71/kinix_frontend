@@ -6,6 +6,7 @@ import { upperFirst } from 'lodash';
 import useDarkLight from '@hooks/useDarkLight';
 
 import styles from './index.module.scss';
+import Lyrics from '../Lyrics';
 
 const { TabPane } = Tabs;
 
@@ -19,7 +20,7 @@ const VideosTabs: FC = () => {
             case ETabTitle.RATINGS:
                 return <PopularVideoList fetched error={null} videos={[]} />;
             case ETabTitle.LYRICS:
-                return <PopularVideoList fetched error={null} videos={[]} />;
+                return <Lyrics content={''} />;
             default:
                 return <PopularVideoList fetched error={null} videos={[]} />;
         }
