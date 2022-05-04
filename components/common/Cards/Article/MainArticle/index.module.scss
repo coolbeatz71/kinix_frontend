@@ -41,9 +41,9 @@
         margin: 2rem;
         border-radius: $border-radius;
 
-        background: $light50;
-        -webkit-backdrop-filter: saturate(180%) blur(50px);
-        backdrop-filter: saturate(180%) blur(50px);
+        background: $dark50;
+        -webkit-backdrop-filter: saturate(180%) blur(10px);
+        backdrop-filter: saturate(180%) blur(10px);
 
         display: flex;
         flex-flow: column;
