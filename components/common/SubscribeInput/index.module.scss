@@ -9,11 +9,11 @@ $btn-width: 200px;
     [class~='ant-btn'] {
         border-bottom-left-radius: 0;
         border-top-left-radius: 0;
-        width: $btn-width;
+        width: calc(#{$btn-width / 1.8});
     }
 
     [class~='ant-input'] {
-        width: calc(100% - $btn-width);
+        width: calc(100% - #{$btn-width / 1.8});
     }
 
     @include mediaXS {

@@ -1,4 +1,5 @@
 import React from 'react';
+import Wrapper from 'redux/store';
 import { AppProps } from 'next/app';
 import NProgress from 'nprogress';
 import { Router } from 'next/router';
@@ -19,6 +20,7 @@ const config = {
     speed: 800,
 };
 
+const { withRedux } = Wrapper;
 const nProgress = NProgress.configure(config);
 
 Router.events.on('routeChangeStart', () => nProgress.set(0.9).start());
@@ -34,4 +36,4 @@ Router.events.on('routeChangeError', () => nProgress.done());
 const MyApp = ({ Component, pageProps }: AppPropsWithError): JSX.Element => {
     return <Component {...pageProps} />;
 };
-export default MyApp;
+export default withRedux(MyApp);
