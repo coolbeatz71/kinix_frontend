@@ -54,3 +54,36 @@ export const BasicResetAction = (state: IBasicInitialState): void => {
     state.loading = false;
     state.data = {};
 };
+
+export const ActionWrapperPending = (state: IUnknownObject, action: PayloadAction<unknown>): void => {
+    const childStore = action.type.split('/')[1];
+    state[childStore].error = null;
+    state[childStore].loading = true;
+    state[childStore].fetched = false;
+};
+
+export const ActionWrapperFulfilled = (state: IUnknownObject, action: PayloadAction<unknown>): void => {
+    const childStore = action.type.split('/')[1];
+    state[childStore].error = null;
+    state[childStore].loading = false;
+    state[childStore].fetched = true;
+    state[childStore].data = action.payload;
+};
+
+export const ActionWrapperRejected = (state: IUnknownObject, action: PayloadAction<unknown>): void => {
+    const childStore = action.type.split('/')[1];
+    state[childStore].error = action.payload;
+    state[childStore].loading = false;
+    state[childStore].fetched = false;
+    state[childStore].data = null;
+};
+
+export const ActionWrapperReset = (state: IUnknownObject, action: PayloadAction<unknown>): void => {
+    const childStore = action.type?.split('/')?.[1];
+    if (state[childStore]) {
+        state[childStore].error = null;
+        state[childStore].fetched = false;
+        state[childStore].loading = false;
+        state[childStore].data = Array.isArray(state[childStore]?.data) ? [] : {};
+    }
+};
