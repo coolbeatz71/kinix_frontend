@@ -29,26 +29,26 @@ export const BasicInitialStateList: IBasicInitialStateList = {
     error: null,
 };
 
-export const basicActionPending = (state: IBasicInitialState): void => {
+export const BasicActionPending = (state: IBasicInitialState): void => {
     state.error = null;
     state.loading = true;
     state.fetched = false;
 };
 
-export const basicActionFulfilled = (state: IBasicInitialState, action: PayloadAction<IUnknownObject>): void => {
+export const BasicActionFulfilled = (state: IBasicInitialState, action: PayloadAction<IUnknownObject>): void => {
     state.error = null;
     state.fetched = true;
     state.loading = false;
     state.data = action.payload;
 };
 
-export const basicActionRejected = (state: IBasicInitialState, action: PayloadAction<IUnknownObject>): void => {
+export const BasicActionRejected = (state: IBasicInitialState, action: PayloadAction<IUnknownObject>): void => {
     state.loading = false;
     state.fetched = false;
     state.error = action.payload;
 };
 
-export const basicResetAction = (state: IBasicInitialState): void => {
+export const BasicResetAction = (state: IBasicInitialState): void => {
     state.error = null;
     state.fetched = false;
     state.loading = false;
