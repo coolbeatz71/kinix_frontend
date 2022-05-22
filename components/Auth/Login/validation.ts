@@ -1,6 +1,6 @@
 import validator from 'validator';
 import { Rule } from 'antd/lib/form';
-import i18n from '@l10n/';
+import i18n from '@l10n/index';
 import { minmax, required } from '@helpers/validators';
 
 const emailUserNameValidator = (name: string): Rule[] => [
@@ -18,5 +18,15 @@ const emailUserNameValidator = (name: string): Rule[] => [
         },
     },
 ];
+
+export const passwordValidator = (name: string): Rule[] => {
+    return [
+        required(name),
+        {
+            pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{6,})/,
+            message: `${name} ${i18n.t('password')}`,
+        },
+    ];
+};
 
 export default emailUserNameValidator;

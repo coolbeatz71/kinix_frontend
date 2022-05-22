@@ -3,6 +3,7 @@ import { Button, Divider, Form, Input } from 'antd';
 import AuthModal from '@components/common/Modals/AuthModal';
 import FloatTextInput from '@components/common/TextInput';
 import SocialLogin from '../SocialLogin';
+import emailUserNameValidator, { passwordValidator } from './validation';
 
 import styles from './index.module.scss';
 
@@ -33,13 +34,17 @@ const LoginModal: FC<ILoginProps> = ({ open, openSignUp, onCloseClick, openForgo
 
                 <Divider className="my-4 py-2">OR</Divider>
 
-                <Item name="email" validateTrigger={['onSubmit', 'onBlur']}>
-                    <FloatTextInput label="Email or Username" placeholder="Email or Username" required>
+                <Item
+                    name="email"
+                    validateTrigger={['onSubmit', 'onBlur']}
+                    rules={emailUserNameValidator('Email or username')}
+                >
+                    <FloatTextInput label="Email or Username" placeholder="Email or username" required>
                         <Input size="large" />
                     </FloatTextInput>
                 </Item>
 
-                <Item name="password" validateTrigger={['onSubmit', 'onBlur']}>
+                <Item name="password" validateTrigger={['onSubmit', 'onBlur']} rules={passwordValidator('password')}>
                     <FloatTextInput label="Password" placeholder="Password" required>
                         <Password size="large" visibilityToggle={false} />
                     </FloatTextInput>
