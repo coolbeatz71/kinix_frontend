@@ -8,7 +8,7 @@ export interface IDialogInitialState {
 
 const DialogInitialState: IDialogInitialState = {
     context: EnumAuthContext.LOGIN,
-    isOpen: true,
+    isOpen: false,
 };
 
 export type IAuthState = {

@@ -12,7 +12,7 @@ const emailUserNameValidator = (name: string): Rule[] => [
     {
         validator(_rule: unknown, value: string) {
             if ([null, undefined, ''].includes(value) || validator.isEmail(name)) return Promise.resolve();
-            else if (!validator.isAlphanumeric(name)) return Promise.reject(`${name} ${i18n.t('alphanumeric')}`);
+            else if (!validator.isAlphanumeric(name)) return Promise.reject(`${name} ${i18n.t('alphanumericErr')}`);
 
             return Promise.resolve();
         },
@@ -24,7 +24,7 @@ export const passwordValidator = (name: string): Rule[] => {
         required(name),
         {
             pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{6,})/,
-            message: `${name} ${i18n.t('password')}`,
+            message: `${name} ${i18n.t('passwordErr')}`,
         },
     ];
 };

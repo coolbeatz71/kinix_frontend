@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import { Button, Col, Layout, Row, Space, Grid } from 'antd';
 import getSideNavWidth from '@helpers/getSideNavWidth';
 import SearchInput from '@components/common/SearchInput';
@@ -14,6 +14,9 @@ import CategoryBar from '../CategoryBar';
 import { BsFillGridFill } from 'react-icons/bs';
 
 import styles from './index.module.scss';
+import { showAuthDialogAction } from 'redux/auth/showDialog';
+import { EnumAuthContext } from '@constants/auth-context';
+import { useDispatch } from 'react-redux';
 
 const { Header: AntHeader } = Layout;
 const { useBreakpoint } = Grid;
@@ -40,9 +43,7 @@ const Header: FC<IHeaderProps> = ({
     const { value } = useDarkLight();
     const { lg, md } = useBreakpoint();
 
-    const [openLoginModal, setOpenLoginModal] = useState<boolean>(false);
-    const [openSignUpModal, setOpenSignUpModal] = useState<boolean>(false);
-    const [, setOpenForgotPasswordModal] = useState<boolean>(false);
+    const dispatch = useDispatch();
 
     const openSideDrawer = (): void => setOpenSideDrawer(true);
     const handleToggle = (): void => {
@@ -73,26 +74,8 @@ const Header: FC<IHeaderProps> = ({
             data-is-category={isVideoCategory}
             data-sidenav-close={isSidenavClose}
         >
-            <LoginModal
-                open={openLoginModal}
-                onCloseClick={() => setOpenLoginModal(false)}
-                openSignUp={() => {
-                    setOpenLoginModal(false);
-                    setOpenSignUpModal(true);
-                }}
-                openForgotPassword={() => {
-                    setOpenLoginModal(false);
-                    setOpenForgotPasswordModal(true);
-                }}
-            />
-            <SignUpModal
-                open={openSignUpModal}
-                onCloseClick={() => setOpenSignUpModal(false)}
-                openLogin={() => {
-                    setOpenSignUpModal(false);
-                    setOpenLoginModal(true);
-                }}
-            />
+            <LoginModal />
+            <SignUpModal />
 
             <Row align="middle" className={styles.header__row} justify="space-between">
                 <Col xs={12} sm={12} lg={1} className="p-0">
@@ -125,14 +108,22 @@ const Header: FC<IHeaderProps> = ({
                                 <Space size="middle">
                                     <Button
                                         ghost
-                                        onClick={() => setOpenLoginModal(true)}
                                         type={isDark(value) ? 'default' : 'primary'}
+                                        onClick={() =>
+                                            showAuthDialogAction({ isOpen: true, context: EnumAuthContext.LOGIN })(
+                                                dispatch,
+                                            )
+                                        }
                                     >
                                         Sign In
                                     </Button>
                                     <Button
-                                        onClick={() => setOpenSignUpModal(true)}
                                         type={isDark(value) ? 'default' : 'primary'}
+                                        onClick={() =>
+                                            showAuthDialogAction({ isOpen: true, context: EnumAuthContext.SIGNUP })(
+                                                dispatch,
+                                            )
+                                        }
                                     >
                                         Sign Up
                                     </Button>

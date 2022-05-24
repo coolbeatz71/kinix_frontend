@@ -1,0 +1,17 @@
+export const form = {
+    login: 'Connexion',
+    or: 'OU',
+    and: 'et',
+    email: 'Adresse e-mail',
+    signUp: "S'inscrire",
+    createAccount: 'Créer un compte',
+    userName: "Nom d'utilisateur",
+    emailUserName: "Email ou nom d'utilisateur",
+    password: 'Mot de passe',
+    forgotPassword: 'Mot de passe oublié?',
+    dontHaveAccount: "Vous n'avez pas de compte? S'inscrire",
+    alreadyHaveAccount: 'Vous avez déjà un compte? Connexion',
+    byClickingCreateAccount: 'En cliquant sur "Créer un compte", vous acceptez nos',
+    termsOfService: "Conditions d'utilisation",
+    privacyPolicies: 'Politiques de confidentialité',
+};

@@ -8,13 +8,13 @@ interface IMinMax {
 
 export const required = (name: string): Rule => ({
     required: true,
-    message: `${name} ${i18n.t('required')}`,
+    message: `${name} ${i18n.t('requiredErr')}`,
 });
 
 export const minmax = (name: string, len: IMinMax): Rule => {
     const rule = { min: len.min, max: len.max };
     return {
         ...rule,
-        message: `${name} ${i18n.t('minmax', rule)}`,
+        message: `${name} ${i18n.t('minmaxErr', rule)}`,
     };
 };
