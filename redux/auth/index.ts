@@ -13,6 +13,10 @@ export const authSlice = createSlice({
     initialState: authInitialState,
     reducers: {
         clear: ActionWrapperReset,
+        showDialog: (state, { payload }) => {
+            state.dialog.context = payload.context;
+            state.dialog.isOpen = payload.isOpen;
+        },
     },
     extraReducers: (builder) => {
         builder
