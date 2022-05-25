@@ -11,6 +11,7 @@ import { showAuthDialogAction } from 'redux/auth/showDialog';
 import { useTranslation } from 'react-i18next';
 import styles from './index.module.scss';
 import UserAgreement from '@components/common/UserAgreement';
+import { emailValidator, passwordMatchValidator, passwordValidator, userNameValidator } from './validator';
 
 const { Item } = Form;
 const { Password } = Input;
@@ -38,11 +39,12 @@ const SignUpModal: FC = () => {
         })(dispatch);
     };
 
-    const createAccount = t('createAccount');
     const email = t('email');
+    const signUp = t('signUp');
     const userName = t('userName');
     const password = t('password');
-    const signUp = t('signUp');
+    const confPassword = t('confPassword');
+    const createAccount = t('createAccount');
     const alreadyHaveAccount = t('alreadyHaveAccount');
 
     return (
@@ -56,27 +58,37 @@ const SignUpModal: FC = () => {
 
                 <Divider className="my-4 py-2">{t('or')}</Divider>
 
-                <Item name="username">
+                <Item name="userName" validateTrigger={['onSubmit', 'onBlur']} rules={userNameValidator(userName)}>
                     <FloatTextInput label={userName} placeholder={userName} required>
                         <Input size="large" />
                     </FloatTextInput>
                 </Item>
 
-                <Item name="email">
+                <Item name="email" validateTrigger={['onSubmit', 'onBlur']} rules={emailValidator()}>
                     <FloatTextInput label={email} placeholder={email} required>
                         <Input size="large" />
                     </FloatTextInput>
                 </Item>
 
-                <Item name="password">
+                <Item name="password" validateTrigger={['onSubmit', 'onBlur']} rules={passwordValidator(password)}>
                     <FloatTextInput label={password} placeholder={password} required>
+                        <Password size="large" visibilityToggle={false} />
+                    </FloatTextInput>
+                </Item>
+
+                <Item
+                    name="confPassword"
+                    validateTrigger={['onSubmit', 'onBlur']}
+                    rules={passwordMatchValidator(confPassword)}
+                >
+                    <FloatTextInput label={confPassword} placeholder={confPassword} required>
                         <Password size="large" visibilityToggle={false} />
                     </FloatTextInput>
                 </Item>
 
                 <UserAgreement styles={styles} />
 
-                <Button block size="large" type="primary" className={`mt-2 ${btnStyles}`}>
+                <Button block size="large" type="primary" htmlType="submit" className={`mt-2 ${btnStyles}`}>
                     {signUp}
                 </Button>
 
@@ -84,8 +96,8 @@ const SignUpModal: FC = () => {
                     <Button
                         block
                         type="text"
-                        className={`mb-1 ${styles.signupForm__footer__btn}`}
                         onClick={onOpenLogin}
+                        className={`mb-1 ${styles.signupForm__footer__btn}`}
                     >
                         {alreadyHaveAccount}
                     </Button>

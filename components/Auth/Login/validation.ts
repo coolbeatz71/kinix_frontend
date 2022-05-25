@@ -1,6 +1,5 @@
-import validator from 'validator';
-import { Rule } from 'antd/lib/form';
 import i18n from '@l10n/index';
+import { Rule } from 'antd/lib/form';
 import { minmax, required } from '@helpers/validators';
 
 const emailUserNameValidator = (name: string): Rule[] => [
@@ -9,14 +8,6 @@ const emailUserNameValidator = (name: string): Rule[] => [
         min: 3,
         max: 20,
     }),
-    {
-        validator(_rule: unknown, value: string) {
-            if ([null, undefined, ''].includes(value) || validator.isEmail(name)) return Promise.resolve();
-            else if (!validator.isAlphanumeric(name)) return Promise.reject(`${name} ${i18n.t('alphanumericErr')}`);
-
-            return Promise.resolve();
-        },
-    },
 ];
 
 export const passwordValidator = (name: string): Rule[] => {

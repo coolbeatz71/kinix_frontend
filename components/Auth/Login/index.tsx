@@ -6,11 +6,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import FloatTextInput from '@components/common/TextInput';
 import SocialLogin from '../SocialLogin';
 import emailUserNameValidator, { passwordValidator } from './validation';
-
-import styles from './index.module.scss';
 import { showAuthDialogAction } from 'redux/auth/showDialog';
 import { EnumAuthContext } from '@constants/auth-context';
 import { IRootState } from 'redux/reducers';
+import { IUnknownObject } from '@interfaces/app';
+
+import styles from './index.module.scss';
 
 const { Item } = Form;
 const { Password } = Input;
@@ -23,8 +24,8 @@ const LoginModal: FC = () => {
     const dispatch = useDispatch();
     const { isOpen, context } = useSelector(({ auth: { dialog } }: IRootState) => dialog);
 
-    const onSubmit = (): void => {
-        console.log('submit');
+    const onSubmit = (form: IUnknownObject): void => {
+        console.log('submit', form);
     };
 
     const openLogin = isOpen && context === EnumAuthContext.LOGIN;

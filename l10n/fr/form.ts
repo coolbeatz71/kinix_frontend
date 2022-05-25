@@ -8,6 +8,7 @@ export const form = {
     userName: "Nom d'utilisateur",
     emailUserName: "Email ou nom d'utilisateur",
     password: 'Mot de passe',
+    confPassword: 'Confirmer le mot de passe',
     forgotPassword: 'Mot de passe oublié?',
     dontHaveAccount: "Vous n'avez pas de compte? S'inscrire",
     alreadyHaveAccount: 'Vous avez déjà un compte? Connexion',
