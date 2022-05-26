@@ -72,7 +72,7 @@ const SignUpModal: FC = () => {
 
                 <Item name="password" validateTrigger={['onSubmit', 'onBlur']} rules={passwordValidator(password)}>
                     <FloatTextInput label={password} placeholder={password} required>
-                        <Password size="large" visibilityToggle={false} />
+                        <Password size="large" visibilityToggle />
                     </FloatTextInput>
                 </Item>
 
@@ -82,7 +82,7 @@ const SignUpModal: FC = () => {
                     rules={passwordMatchValidator(confPassword)}
                 >
                     <FloatTextInput label={confPassword} placeholder={confPassword} required>
-                        <Password size="large" visibilityToggle={false} />
+                        <Password size="large" visibilityToggle />
                     </FloatTextInput>
                 </Item>
 

@@ -87,7 +87,7 @@ const LoginModal: FC = () => {
 
                 <Item name="password" validateTrigger={['onSubmit', 'onBlur']} rules={passwordValidator(password)}>
                     <FloatTextInput label={password} placeholder={password} required>
-                        <Password size="large" visibilityToggle={true} />
+                        <Password size="large" visibilityToggle />
                     </FloatTextInput>
                 </Item>
 

@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Button, Col, Layout, Row, Space, Grid } from 'antd';
+import { Button, Col, Layout, Row, Space, Grid, Dropdown, Menu } from 'antd';
 import getSideNavWidth from '@helpers/getSideNavWidth';
 import SearchInput from '@components/common/SearchInput';
 import { MenuOutlined } from '@ant-design/icons';
@@ -17,9 +17,13 @@ import styles from './index.module.scss';
 import { showAuthDialogAction } from 'redux/auth/showDialog';
 import { EnumAuthContext } from '@constants/auth-context';
 import { useDispatch } from 'react-redux';
+import { languageList } from '../../../constants/language';
+import CustomIcon from '@components/common/CustomIcon';
+import { upperFirst } from 'lodash';
 
 const { Header: AntHeader } = Layout;
 const { useBreakpoint } = Grid;
+const { Item } = Menu;
 
 interface IHeaderProps {
     open: boolean;
@@ -65,6 +69,25 @@ const Header: FC<IHeaderProps> = ({
 
     const isSidenavClose = !open || collapsed;
 
+    const updateLanguage = (lang: string): void => {
+        console.log(lang);
+    };
+
+    const LanguageMenu = (
+        <Menu className={styles.header__row__language__menu}>
+            {languageList.map((lang) => (
+                <Item
+                    key={lang}
+                    onClick={() => {
+                        updateLanguage(lang);
+                    }}
+                >
+                    <CustomIcon type={`${lang}-flag`} /> {upperFirst(lang)}
+                </Item>
+            ))}
+        </Menu>
+    );
+
     return (
         <AntHeader
             data-theme={value}
@@ -102,7 +125,25 @@ const Header: FC<IHeaderProps> = ({
                 )}
 
                 {lg && (
-                    <Col span={10} className="d-flex flex-row-reverse">
+                    <Col span={2} className="d-flex justify-content-end">
+                        <Dropdown
+                            overlay={LanguageMenu}
+                            placement="bottomLeft"
+                            className={styles.header__row__language}
+                        >
+                            <Button
+                                ghost
+                                icon={<CustomIcon type={`english-flag`} />}
+                                type={isDark(value) ? 'default' : 'primary'}
+                            >
+                                <span data-lang>EN</span>
+                            </Button>
+                        </Dropdown>
+                    </Col>
+                )}
+
+                {lg && (
+                    <Col span={8} className="d-flex flex-row-reverse">
                         <Row justify="space-between" gutter={[32, 0]}>
                             <Col span={12} className="d-flex justify-content-center">
                                 <Space size="middle">
