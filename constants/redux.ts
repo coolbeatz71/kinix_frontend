@@ -78,8 +78,8 @@ export const ActionWrapperRejected = (state: IUnknownObject, action: PayloadActi
     state[childStore].data = null;
 };
 
-export const ActionWrapperReset = (state: IUnknownObject, action: PayloadAction<unknown>): void => {
-    const childStore = action.type?.split('/')?.[1];
+export const ActionWrapperReset = (state: IUnknownObject, action: PayloadAction<IUnknownObject>): void => {
+    const childStore = action?.payload?.context?.split('/')?.[1];
     if (state[childStore]) {
         state[childStore].error = null;
         state[childStore].fetched = false;

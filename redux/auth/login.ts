@@ -1,15 +1,19 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
+import { AnyAction, createAsyncThunk } from '@reduxjs/toolkit';
 import { ILoginData } from '@interfaces/auth';
 import api from 'services/axios';
+import { authSlice } from '.';
+import { AppDispatch } from 'redux/store';
 
-export interface ILoginActionPayload {
-    data: ILoginData;
-}
+export const resetLoginAction =
+    () =>
+    (dispatch: AppDispatch): AnyAction => {
+        return dispatch(authSlice.actions.clear({ context: 'auth/login' }));
+    };
 
-const loginAction = createAsyncThunk('auth/login', async ({ data }: ILoginActionPayload, { rejectWithValue }) => {
+const loginAction = createAsyncThunk('auth/login', async (params: ILoginData, { rejectWithValue }) => {
     try {
-        const { data: response } = await api.post('/auth/login', data);
-        return response;
+        const { data } = await api.post('/auth/login', params);
+        return data;
     } catch (error) {
         return rejectWithValue(error);
     }

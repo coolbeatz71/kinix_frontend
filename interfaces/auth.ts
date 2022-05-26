@@ -1,4 +1,4 @@
 export interface ILoginData {
-    credentials: string;
+    credential: string;
     password: string;
 }

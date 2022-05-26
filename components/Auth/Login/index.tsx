@@ -1,15 +1,17 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Button, Divider, Form, Input } from 'antd';
+import { Alert, Button, Divider, Form, Input } from 'antd';
 import AuthModal from '@components/common/Modals/AuthModal';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import FloatTextInput from '@components/common/TextInput';
 import SocialLogin from '../SocialLogin';
 import emailUserNameValidator, { passwordValidator } from './validation';
 import { showAuthDialogAction } from 'redux/auth/showDialog';
 import { EnumAuthContext } from '@constants/auth-context';
 import { IRootState } from 'redux/reducers';
-import { IUnknownObject } from '@interfaces/app';
+import loginAction, { resetLoginAction } from 'redux/auth/login';
+import { ILoginData } from '@interfaces/auth';
+import { useAppDispatch } from 'redux/store';
 
 import styles from './index.module.scss';
 
@@ -21,11 +23,17 @@ const btnStyles = `d-flex align-items-center justify-content-center`;
 const LoginModal: FC = () => {
     const { t } = useTranslation();
 
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
+    const { error, loading } = useSelector(({ auth: { login } }: IRootState) => login);
     const { isOpen, context } = useSelector(({ auth: { dialog } }: IRootState) => dialog);
 
-    const onSubmit = (form: IUnknownObject): void => {
-        console.log('submit', form);
+    useEffect(() => {
+        if (error) resetLoginAction()(dispatch);
+    }, [dispatch, error]);
+
+    const onSubmit = (formValues: ILoginData): void => {
+        const { credential, password } = formValues;
+        dispatch(loginAction({ credential, password }));
     };
 
     const openLogin = isOpen && context === EnumAuthContext.LOGIN;
@@ -82,10 +90,22 @@ const LoginModal: FC = () => {
                     </FloatTextInput>
                 </Item>
 
-                <Button block size="large" type="primary" htmlType="submit" className={`mt-2 ${btnStyles}`}>
+                {error && (
+                    <Item>
+                        <Alert message={error?.message} type="error" showIcon closable banner />
+                    </Item>
+                )}
+
+                <Button
+                    block
+                    size="large"
+                    type="primary"
+                    htmlType="submit"
+                    loading={loading}
+                    className={`mt-2 ${btnStyles}`}
+                >
                     {login}
                 </Button>
-
                 <div className="mt-4">
                     <Button
                         block
@@ -96,13 +116,7 @@ const LoginModal: FC = () => {
                         {dontHaveAccount}
                     </Button>
 
-                    <Button
-                        block
-                        type="text"
-                        ghost
-                        className={styles.loginForm__footer__btn}
-                        onClick={onOpenForgotPassword}
-                    >
+                    <Button block type="text" className={styles.loginForm__footer__btn} onClick={onOpenForgotPassword}>
                         {forgotPassword}
                     </Button>
                 </div>
