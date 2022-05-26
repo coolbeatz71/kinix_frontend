@@ -165,8 +165,23 @@ const Header: FC<IHeaderProps> = ({
                 {lg && (
                     <Col span={8} className="d-flex flex-row-reverse">
                         <Row justify="space-between" gutter={[32, 0]}>
+                            <Col span={12} className="d-flex justify-content-end">
+                                <Space>
+                                    {social.map((item) => (
+                                        <Button
+                                            type="text"
+                                            key={item.name}
+                                            icon={item.icon}
+                                            data-platform={item.name}
+                                            className={styles.header__row__social}
+                                            onClick={() => window?.open(item.url, '_blank')}
+                                        />
+                                    ))}
+                                </Space>
+                            </Col>
+
                             <Col span={12} className="d-flex justify-content-center">
-                                {currentUser?.isLoggedIn && (
+                                {!currentUser?.isLoggedIn && (
                                     <Space size="middle">
                                         <Button
                                             ghost
@@ -192,7 +207,7 @@ const Header: FC<IHeaderProps> = ({
                                     </Space>
                                 )}
 
-                                {true && (
+                                {currentUser?.isLoggedIn && (
                                     <Space size="middle">
                                         <Button
                                             type="text"
@@ -223,21 +238,6 @@ const Header: FC<IHeaderProps> = ({
                                         </Dropdown>
                                     </Space>
                                 )}
-                            </Col>
-
-                            <Col span={12} className="d-flex justify-content-end">
-                                <Space>
-                                    {social.map((item) => (
-                                        <Button
-                                            type="text"
-                                            key={item.name}
-                                            icon={item.icon}
-                                            data-platform={item.name}
-                                            className={styles.header__row__social}
-                                            onClick={() => window?.open(item.url, '_blank')}
-                                        />
-                                    ))}
-                                </Space>
                             </Col>
                         </Row>
                     </Col>
