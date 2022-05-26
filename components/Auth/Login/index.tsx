@@ -1,6 +1,6 @@
 import React, { FC, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Alert, Button, Divider, Form, Input } from 'antd';
+import { Button, Divider, Form, Input } from 'antd';
 import AuthModal from '@components/common/Modals/AuthModal';
 import { useSelector } from 'react-redux';
 import FloatTextInput from '@components/common/TextInput';
@@ -14,6 +14,7 @@ import { ILoginData } from '@interfaces/auth';
 import { useAppDispatch } from 'redux/store';
 
 import styles from './index.module.scss';
+import ErrorAlert from '@components/common/ErrorAlert';
 
 const { Item } = Form;
 const { Password } = Input;
@@ -86,15 +87,11 @@ const LoginModal: FC = () => {
 
                 <Item name="password" validateTrigger={['onSubmit', 'onBlur']} rules={passwordValidator(password)}>
                     <FloatTextInput label={password} placeholder={password} required>
-                        <Password size="large" visibilityToggle={false} />
+                        <Password size="large" visibilityToggle={true} />
                     </FloatTextInput>
                 </Item>
 
-                {error && (
-                    <Item>
-                        <Alert message={error?.message} type="error" showIcon closable banner />
-                    </Item>
-                )}
+                <ErrorAlert error={error} showIcon closable banner />
 
                 <Button
                     block
