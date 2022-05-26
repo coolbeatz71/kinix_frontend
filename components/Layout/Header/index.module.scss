@@ -258,6 +258,15 @@
                 }
             }
         }
+
+        &__profile {
+            [class~='ant-avatar'] {
+                margin-right: 0.4rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        }
     }
 
     @include mediaMaxLG {
