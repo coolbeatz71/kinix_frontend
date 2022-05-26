@@ -14,6 +14,12 @@ import { APP_AUTHOR, APP_DESCRIPTION, APP_NAME, APP_TWITTER_HANDLE } from '@cons
 
 import styles from './index.module.scss';
 import Footer from './Footer';
+import { isEmpty } from 'lodash';
+import { IRootState } from 'redux/reducers';
+import { useSelector } from 'react-redux';
+import { useAppDispatch } from 'redux/store';
+import getCurrentUserAction from 'redux/user/getCurrentUser';
+import { ICurrentUser } from '@interfaces/user';
 
 const { Content } = AntLayout;
 const { useBreakpoint } = Grid;
@@ -46,6 +52,9 @@ const Layout: FC<ILayoutProps> = ({
     const { value } = useDarkLight();
     const { lg } = useBreakpoint();
 
+    const dispatch = useAppDispatch();
+    const { data: userData } = useSelector(({ user }: IRootState) => user?.currentUser);
+
     const [openSidenav, setOpenSidenav] = useState<boolean>(false);
     const [openSideDrawer, setOpenSideDrawer] = useState<boolean>(false);
     const [collapsedSidenav, setCollapsedSidenav] = useState<boolean>(true);
@@ -62,6 +71,11 @@ const Layout: FC<ILayoutProps> = ({
             window.removeEventListener('scroll', scrollHandler);
         };
     }, [scrollHandler]);
+
+    useEffect(() => {
+        if (isEmpty(userData)) dispatch(getCurrentUserAction());
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [dispatch]);
 
     const _url = `${getPlatformUrl()}${router.asPath}`;
     const _description = description || APP_DESCRIPTION;
@@ -121,9 +135,10 @@ const Layout: FC<ILayoutProps> = ({
                         open={openSidenav}
                         setOpen={setOpenSidenav}
                         collapsed={collapsedSidenav}
+                        isVideoCategory={isVideoCategory}
                         setCollapsed={setCollapsedSidenav}
                         setOpenSideDrawer={setOpenSideDrawer}
-                        isVideoCategory={isVideoCategory}
+                        currentUser={userData as ICurrentUser}
                     />
                 )}
 

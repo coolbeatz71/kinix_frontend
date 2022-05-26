@@ -231,6 +231,42 @@
                 background: $youtube;
             }
         }
+
+        &__language {
+            [class~='anticon'] {
+                width: 1rem;
+            }
+
+            [data-lang='true'] {
+                font-weight: 700;
+                font-size: 1rem;
+            }
+
+            &__menu {
+                [class~='ant-dropdown-menu-item'] {
+                    padding: 0.5rem 1rem;
+                    margin: 0.5rem 0.6rem;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    font-size: 0.95rem;
+                    border-radius: $border-radius;
+
+                    [class~='anticon'] {
+                        width: 1rem;
+                    }
+                }
+            }
+        }
+
+        &__profile {
+            [class~='ant-avatar'] {
+                margin-right: 0.4rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        }
     }
 
     @include mediaMaxLG {

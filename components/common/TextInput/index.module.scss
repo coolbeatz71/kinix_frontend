@@ -3,9 +3,20 @@
 .textInput {
     position: relative;
 
+    [class~='ant-input-password'] {
+        [class~='ant-input'] {
+            padding-right: 10px !important;
+        }
+    }
+
+    [class~='ant-input-affix-wrapper'] {
+        padding: 0 !important;
+        padding-right: 0.8rem !important;
+    }
+
     [class~='ant-input'] {
         font-size: 14px;
-        padding: 16px 12px 4px 12px;
+        padding: 16px 12px 4px 12px !important;
     }
 
     [class~='ant-select'] [class~='ant-select-selector'] {
@@ -33,6 +44,7 @@
     [class~='asPlaceholder'] {
         font-size: 14px;
         color: $dark50;
+        z-index: 1;
     }
 
     [class~='asLabel'] {
@@ -42,5 +54,6 @@
         padding: 0 4px;
         margin-left: -4px;
         color: $primary;
+        z-index: 1;
     }
 }
