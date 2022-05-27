@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import loginAction from './login';
+import signUpAction from './signup';
 import {
     ActionWrapperFulfilled,
     ActionWrapperPending,
@@ -20,10 +21,14 @@ export const authSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
+            // login
             .addCase(loginAction.pending, ActionWrapperPending)
             .addCase(loginAction.fulfilled, ActionWrapperFulfilled)
-            .addCase(loginAction.rejected, ActionWrapperRejected);
-        // login
+            .addCase(loginAction.rejected, ActionWrapperRejected)
+            // signUp
+            .addCase(signUpAction.pending, ActionWrapperPending)
+            .addCase(signUpAction.fulfilled, ActionWrapperFulfilled)
+            .addCase(signUpAction.rejected, ActionWrapperRejected);
     },
 });
 
