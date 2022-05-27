@@ -29,8 +29,8 @@ const LoginModal: FC = () => {
     const { isOpen, context } = useSelector(({ auth: { dialog } }: IRootState) => dialog);
 
     useEffect(() => {
-        if (error) resetLoginAction()(dispatch);
-    }, [dispatch, error]);
+        if (isOpen) resetLoginAction()(dispatch);
+    }, [dispatch, isOpen]);
 
     const onSubmit = (formValues: ILoginData): void => {
         const { credential, password } = formValues;
