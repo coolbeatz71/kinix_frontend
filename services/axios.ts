@@ -3,6 +3,7 @@ import { API_TOKEN, API_URL, PLATFORM_NAME } from '@constants/platform';
 import getToken from '@helpers/getToken';
 import { HOME_PATH } from '@constants/paths';
 import { TOKEN_INVALID_EXPIRED } from '@constants/api';
+import { isServer } from '@constants/app';
 
 const token = getToken();
 
@@ -18,7 +19,7 @@ const responseHandler = (response: AxiosResponse): AxiosResponse => response.dat
 const errorHandler = async (error: AxiosError): Promise<AxiosError> => {
     if (error?.message === TOKEN_INVALID_EXPIRED) {
         if (process.browser) {
-            localStorage.removeItem(API_TOKEN);
+            !isServer && localStorage.removeItem(API_TOKEN);
             window.location.href = HOME_PATH;
         }
     }

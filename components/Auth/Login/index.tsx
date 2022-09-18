@@ -34,7 +34,7 @@ const LoginModal: FC = () => {
 
     const onSubmit = (formValues: ILoginData): void => {
         const { credential, password } = formValues;
-        dispatch(loginAction({ credential, password }));
+        dispatch(loginAction({ data: { credential, password }, dispatch }));
     };
 
     const openLogin = isOpen && context === EnumAuthContext.LOGIN;

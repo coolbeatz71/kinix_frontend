@@ -10,7 +10,7 @@ import Header from './Header';
 import DarkModeToggler from '@components/common/DarkModeToggler';
 import useDarkLight from '@hooks/useDarkLight';
 import { PRIMARY, WARNING } from '@constants/colors';
-import { APP_AUTHOR, APP_DESCRIPTION, APP_NAME, APP_TWITTER_HANDLE } from '@constants/platform';
+import { APP_AUTHOR, APP_NAME, APP_TWITTER_HANDLE } from '@constants/platform';
 
 import styles from './index.module.scss';
 import Footer from './Footer';
@@ -20,6 +20,7 @@ import { useSelector } from 'react-redux';
 import { useAppDispatch } from 'redux/store';
 import getCurrentUserAction from 'redux/user/getCurrentUser';
 import { ICurrentUser } from '@interfaces/user';
+import { useTranslation } from 'react-i18next';
 
 const { Content } = AntLayout;
 const { useBreakpoint } = Grid;
@@ -51,6 +52,7 @@ const Layout: FC<ILayoutProps> = ({
     const router = useRouter();
     const { value } = useDarkLight();
     const { lg } = useBreakpoint();
+    const { t } = useTranslation();
 
     const dispatch = useAppDispatch();
     const { data: userData } = useSelector(({ user }: IRootState) => user?.currentUser);
@@ -78,7 +80,7 @@ const Layout: FC<ILayoutProps> = ({
     }, [dispatch]);
 
     const _url = `${getPlatformUrl()}${router.asPath}`;
-    const _description = description || APP_DESCRIPTION;
+    const _description = description || t('app_description');
     const _image = image ? `${getImageUrl()}/${image}` : `${getPlatformUrl()}/download.png`;
     const _title = title || '';
 

@@ -20,6 +20,7 @@
             "@helpers/*": ["helpers/*"],
             "@constants/*": ["constants/*"],
             "@hooks/*": ["hooks/*"],
+            "@redux/*": ["redux/*"],
             "@styles/*": ["styles/*"],
             "@context/*": ["context/*"],
             "@interfaces/*": ["interfaces/*"],

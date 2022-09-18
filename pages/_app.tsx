@@ -1,8 +1,10 @@
 import React from 'react';
-import Wrapper from 'redux/store';
 import { AppProps } from 'next/app';
 import NProgress from 'nprogress';
 import { Router } from 'next/router';
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
+import store, { persistor } from '@redux/store';
 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -20,7 +22,6 @@ const config = {
     speed: 800,
 };
 
-const { withRedux } = Wrapper;
 const nProgress = NProgress.configure(config);
 
 Router.events.on('routeChangeStart', () => nProgress.set(0.9).start());
@@ -34,6 +35,12 @@ Router.events.on('routeChangeComplete', () => {
 Router.events.on('routeChangeError', () => nProgress.done());
 
 const MyApp = ({ Component, pageProps }: AppPropsWithError): JSX.Element => {
-    return <Component {...pageProps} />;
+    return (
+        <Provider store={store}>
+            <PersistGate loading={null} persistor={persistor}>
+                <Component {...pageProps} />
+            </PersistGate>
+        </Provider>
+    );
 };
-export default withRedux(MyApp);
+export default MyApp;
