@@ -1,13 +1,13 @@
-import { useTranslation } from 'react-i18next';
 import React, { Fragment, FC } from 'react';
-import HomeIllustration from '@components/Home/MainIllustration';
-import HomeVideoSection from '@components/Home/VideoSection';
+import { useTranslation } from 'react-i18next';
+import HomeIllustration from '@components/home/MainIllustration';
+import HomeVideoSection from '@components/home/VideoSection';
 import { BulbFilled, VideoCameraFilled } from '@ant-design/icons';
 import { FaMicrophoneAlt, FaPodcast } from 'react-icons/fa';
 import { RiFocusLine } from 'react-icons/ri';
 import { BsFillSpeakerFill } from 'react-icons/bs';
-import AlaUneArticleSection from '@components/Home/AlaUneArticleSection';
-import AdsCarousel from '@components/Home/AdsCarousel';
+import AlaUneArticleSection from '@components/home/AlaUneArticleSection';
+import AdsCarousel from '@components/home/AdsCarousel';
 
 const HomeContainer: FC = () => {
     const { t } = useTranslation();

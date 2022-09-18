@@ -13,4 +13,11 @@ export const general = {
     contactUs: 'Contactez-nous',
     sendMessage: 'Envoyer Message',
     allRightReserved: 'Tous les droits sont réservés.',
+    home: 'Accueil',
+    videos: 'Vidéos',
+    articles: 'Articles',
+    notFound: 'Oops! Page non trouvée',
+    backHome: "Retour à la page d'accueil",
+    confirmationSent: 'Confirmation Envoyée',
+    confirmationEmailSent: 'Un e-mail vous a été envoyé pour la confirmation de votre compte',
 };

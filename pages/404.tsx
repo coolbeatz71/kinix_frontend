@@ -1,5 +1,6 @@
 import React from 'react';
 import { NextPage } from 'next';
+import { useTranslation } from 'react-i18next';
 import Lottie, { Options } from 'react-lottie';
 import notFound from 'public/404_anim.json';
 import { Button, Typography } from 'antd';
@@ -10,6 +11,7 @@ import { HOME_PATH } from '@constants/paths';
 const { Title } = Typography;
 
 const Custom404: NextPage = () => {
+    const { t } = useTranslation();
     const defaultOptions: Options = {
         loop: true,
         autoplay: true,
@@ -23,11 +25,11 @@ const Custom404: NextPage = () => {
         <div className="notFound">
             <Lottie width={512} height={512} options={defaultOptions} />
             <Title className="text-center" data-text="title">
-                Oops! Page not found
+                {t('notFound')}
             </Title>
             <Link href={HOME_PATH} passHref>
                 <Button className="text-center" size="large" type="primary" icon={<HomeOutlined />}>
-                    Back to home
+                    {t('backHome')}
                 </Button>
             </Link>
         </div>

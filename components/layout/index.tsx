@@ -1,9 +1,10 @@
 import React, { FC, ReactElement, useCallback, useEffect, useState } from 'react';
+import Head from 'next/head';
 import { Layout as AntLayout, Grid } from 'antd';
 import getPlatformUrl from '@helpers/getPlatformUrl';
+import { isEmpty } from 'lodash';
 import { useRouter } from 'next/router';
 import getImageUrl from '@helpers/getImageUrl';
-import Head from 'next/head';
 import SideNav from './SideNav';
 import SideDrawer from './SideDrawer';
 import Header from './Header';
@@ -11,19 +12,19 @@ import DarkModeToggler from '@components/common/DarkModeToggler';
 import useDarkLight from '@hooks/useDarkLight';
 import { PRIMARY, WARNING } from '@constants/colors';
 import { APP_AUTHOR, APP_NAME, APP_TWITTER_HANDLE } from '@constants/platform';
-
-import styles from './index.module.scss';
+import { useTranslation } from 'react-i18next';
 import Footer from './Footer';
-import { isEmpty } from 'lodash';
 import { IRootState } from 'redux/reducers';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from 'redux/store';
 import getCurrentUserAction from 'redux/user/getCurrentUser';
 import { ICurrentUser } from '@interfaces/user';
-import { useTranslation } from 'react-i18next';
+
+import styles from './index.module.scss';
 
 const { Content } = AntLayout;
 const { useBreakpoint } = Grid;
+
 interface ILayoutProps {
     children: ReactElement;
     isHome?: boolean;
@@ -130,7 +131,7 @@ const Layout: FC<ILayoutProps> = ({
                 <SideDrawer open={openSideDrawer} setOpen={setOpenSideDrawer} />
             )}
 
-            <div className={styles.layout__main}>
+            <div className={styles.layout__main} data-show-header={showHeader}>
                 {showHeader && (
                     <Header
                         scrolled={scrolled}

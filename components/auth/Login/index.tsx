@@ -12,9 +12,9 @@ import { IRootState } from 'redux/reducers';
 import loginAction, { resetLoginAction } from 'redux/auth/login';
 import { ILoginData } from '@interfaces/auth';
 import { useAppDispatch } from 'redux/store';
+import ErrorAlert from '@components/common/ErrorAlert';
 
 import styles from './index.module.scss';
-import ErrorAlert from '@components/common/ErrorAlert';
 
 const { Item } = Form;
 const { Password } = Input;

@@ -12,8 +12,8 @@ import useDarkLight from '@hooks/useDarkLight';
 import { isDark } from '@constants/colors';
 import Logo from '@components/common/Logo';
 import { getLanguage } from '@helpers/getLanguage';
-import LoginModal from '@components/Auth/Login';
-import SignUpModal from '@components/Auth/SignUp';
+import LoginModal from '@components/auth/Login';
+import SignUpModal from '@components/auth/SignUp';
 import CategoryBar from '../CategoryBar';
 import { BsFillGridFill } from 'react-icons/bs';
 import { showAuthDialogAction } from 'redux/auth/showDialog';
@@ -28,9 +28,9 @@ import locales from '@locales/index';
 
 import styles from './index.module.scss';
 
-const { Header: AntHeader } = Layout;
-const { useBreakpoint } = Grid;
 const { Item } = Menu;
+const { useBreakpoint } = Grid;
+const { Header: AntHeader } = Layout;
 
 interface IHeaderProps {
     open: boolean;
