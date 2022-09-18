@@ -7,6 +7,8 @@ export const form = {
     createAccount: 'Create an account',
     userName: 'Username',
     emailUserName: 'Email or username',
+    firstLastName: 'First and Last name',
+    names: 'Names',
     password: 'Password',
     confPassword: 'Confirm password',
     forgotPassword: 'Forgot Password?',
@@ -15,4 +17,8 @@ export const form = {
     byClickingCreateAccount: 'By clicking “Create account”, you agree to our',
     termsOfService: 'Terms of service',
     privacyPolicies: 'Privacy policies',
+    security: 'Security',
+    writeMessageHere: 'Write your message here',
+    search: 'Search',
+    searchText: 'Type the search text',
 };

@@ -7,6 +7,7 @@ import AlaUneArticleList from '@components/common/AlaUneArticleList';
 import { Button, Row } from 'antd';
 import Link from 'next/link';
 import { ALL_ARTICLE_PATH } from '@constants/paths';
+import { useTranslation } from 'react-i18next';
 
 interface IAlaUneArticleSectionProps {
     fetched: boolean;
@@ -16,6 +17,7 @@ interface IAlaUneArticleSectionProps {
 }
 
 const AlaUneArticleSection: FC<IAlaUneArticleSectionProps> = ({ fetched, error, articles, canViewAll = true }) => {
+    const { t } = useTranslation();
     const { value } = useDarkLight();
 
     return (
@@ -25,7 +27,7 @@ const AlaUneArticleSection: FC<IAlaUneArticleSectionProps> = ({ fetched, error, 
             {canViewAll && (
                 <Row justify="end">
                     <Link href={ALL_ARTICLE_PATH} passHref>
-                        <Button size="large">View All</Button>
+                        <Button size="large">{t('viewAll')}</Button>
                     </Link>
                 </Row>
             )}

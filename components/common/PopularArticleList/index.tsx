@@ -3,6 +3,7 @@ import { Col, Row } from 'antd';
 import ArticleCardVertical from '@components/common/Cards/Article/ArticleVertical';
 import SectionTitle from '@components/common/SectionTitle';
 import { IUnknownObject } from 'interfaces/app';
+import { useTranslation } from 'react-i18next';
 
 interface IPopularArticleListProps {
     fetched: boolean;
@@ -13,12 +14,13 @@ interface IPopularArticleListProps {
 
 const PopularArticleList: FC<IPopularArticleListProps> = () => {
     const elements = [0, 1, 2, 3];
+    const { t } = useTranslation();
 
     return (
         <Col span={24}>
             <Row>
                 <Col span={24}>
-                    <SectionTitle title="Popular articles" isRelated />
+                    <SectionTitle title={t('popularArticles')} isRelated />
                 </Col>
             </Row>
             <Row gutter={[16, 48]}>

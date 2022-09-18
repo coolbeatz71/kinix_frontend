@@ -1,9 +1,11 @@
 import React, { FC, ReactElement } from 'react';
 import { Button, Col, Row, Typography } from 'antd';
-import styles from './index.module.scss';
+import Link from 'next/link';
+import { useTranslation } from 'react-i18next';
 import useDarkLight from '@hooks/useDarkLight';
 import { isDark } from '@constants/colors';
-import Link from 'next/link';
+
+import styles from './index.module.scss';
 
 const { Title } = Typography;
 
@@ -16,6 +18,7 @@ export interface ISectionTitle {
 
 const SectionTitle: FC<ISectionTitle> = ({ title, icon, linkHasMore, isRelated = false }) => {
     const { value } = useDarkLight();
+    const { t } = useTranslation();
 
     return (
         <div data-theme={value} className={styles.sectionTitle} data-related={isRelated}>
@@ -29,7 +32,7 @@ const SectionTitle: FC<ISectionTitle> = ({ title, icon, linkHasMore, isRelated =
                     <Col flex={4} className="d-flex justify-content-end">
                         <Link href={linkHasMore} passHref>
                             <Button ghost type={isDark(value) ? 'default' : 'primary'}>
-                                View More
+                                {t('viewMore')}
                             </Button>
                         </Link>
                     </Col>

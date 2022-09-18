@@ -24,7 +24,7 @@
             "@styles/*": ["styles/*"],
             "@context/*": ["context/*"],
             "@interfaces/*": ["interfaces/*"],
-            "@l10n/*": ["l10n/*"]
+            "@locales/*": ["locales/*"]
         },
         "incremental": true
     },

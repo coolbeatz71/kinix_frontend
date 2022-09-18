@@ -1,19 +1,20 @@
 import React, { FC } from 'react';
+import Link from 'next/link';
+import { useTranslation } from 'react-i18next';
 import { Col, Layout, Row, Typography, Anchor, Button, Form, Input, Divider, Space, Grid } from 'antd';
 import useDarkLight from '@hooks/useDarkLight';
 import { MdLocationOn, MdPhone, MdEmail } from 'react-icons/md';
-
-import styles from './index.module.scss';
 import social from '@constants/social';
 import FloatTextInput from '@components/common/TextInput';
 import { APP_AUTHOR } from '@constants/platform';
-import Link from 'next/link';
 
-const { Footer: AntFooter } = Layout;
-const { Title, Text, Link: TextLink } = Typography;
+import styles from './index.module.scss';
+
 const { Item } = Form;
 const { TextArea } = Input;
 const { useBreakpoint } = Grid;
+const { Footer: AntFooter } = Layout;
+const { Title, Text, Link: TextLink } = Typography;
 
 export interface IFooterProps {
     isSidenavClose: boolean;
@@ -22,8 +23,9 @@ export interface IFooterProps {
 const btnStyles = 'd-flex align-items-center justify-content-center';
 
 export const Footer: FC<IFooterProps> = ({ isSidenavClose }) => {
-    const { value, isDark } = useDarkLight();
     const { md } = useBreakpoint();
+    const { t } = useTranslation();
+    const { value, isDark } = useDarkLight();
 
     return (
         <div className={styles.footer} data-theme={value}>
@@ -32,7 +34,7 @@ export const Footer: FC<IFooterProps> = ({ isSidenavClose }) => {
                     <Col xs={24} sm={24} md={10} className={styles.footer__content__address}>
                         <div>
                             <Title level={3} data-title>
-                                Address
+                                {t('address')}
                             </Title>
                             <Anchor affix={false}>
                                 <div className={styles.footer__content__address__value}>
@@ -55,7 +57,7 @@ export const Footer: FC<IFooterProps> = ({ isSidenavClose }) => {
                         </div>
                         <div className={styles.footer__content__social}>
                             <Text data-contact-address>
-                                Follow us on social media to find out <br /> the latest updates on our progress
+                                {t('followUsOne')} <br /> {t('followUsTwo')}
                             </Text>
                             <Row>
                                 {social.map((item) => (
@@ -72,23 +74,23 @@ export const Footer: FC<IFooterProps> = ({ isSidenavClose }) => {
                     </Col>
                     <Col xs={24} sm={24} md={14} className={styles.footer__content__contact}>
                         <Title level={3} data-title>
-                            Contact Us
+                            {t('contactUs')}
                         </Title>
                         <Form name="contact_us" layout="vertical" className={styles.footer__content__contact__form}>
                             <Item name="names">
-                                <FloatTextInput label="Names" placeholder="First and Last name" required>
+                                <FloatTextInput label={t('names')} placeholder={t('firstLastName')} required>
                                     <Input size="large" />
                                 </FloatTextInput>
                             </Item>
 
                             <Item name="email">
-                                <FloatTextInput label="Email" placeholder="Email Address" required>
+                                <FloatTextInput label="Email" placeholder={t('email')} required>
                                     <Input size="large" />
                                 </FloatTextInput>
                             </Item>
 
                             <Item name="message">
-                                <TextArea size="large" placeholder="Type your message here" rows={4} autoSize={false} />
+                                <TextArea size="large" placeholder={t('writeMessageHere')} rows={4} autoSize={false} />
                             </Item>
 
                             <Button
@@ -97,7 +99,7 @@ export const Footer: FC<IFooterProps> = ({ isSidenavClose }) => {
                                 type={isDark ? 'default' : 'primary'}
                                 className={`mt-2 ${btnStyles}`}
                             >
-                                Send Message
+                                {t('sendMessage')}
                             </Button>
                         </Form>
                     </Col>
@@ -105,13 +107,15 @@ export const Footer: FC<IFooterProps> = ({ isSidenavClose }) => {
                 <Divider />
                 <Row justify="space-between" className={styles.footer__content__copyright}>
                     <Col xs={24} sm={24} md={12} data-copyright-container>
-                        <Text data-copyright>© 2022 {APP_AUTHOR}. All rights reserved.</Text>
+                        <Text data-copyright>
+                            © 2022 {APP_AUTHOR}. {t('allRightReserved')}
+                        </Text>
                     </Col>
                     <Col xs={24} sm={24} md={12} data-links>
                         <Space size={24} className={`d-flex ${md ? 'justify-content-end' : 'justify-content-between'}`}>
-                            <Link href="">Terms of Service</Link>
-                            <Link href="">Privacy Policies</Link>
-                            <Link href="">Security</Link>
+                            <Link href="">{t('termsOfService')}</Link>
+                            <Link href="">{t('privacyPolicies')}</Link>
+                            <Link href="">{t('security')}</Link>
                         </Space>
                     </Col>
                 </Row>

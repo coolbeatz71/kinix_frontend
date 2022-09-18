@@ -38,7 +38,7 @@ export const GENERAL_SECTIONS: ISideNavSection[] = [
     },
     {
         icon: <BsFillSpeakerFill />,
-        text: 'Flex&Beatz',
+        text: 'FlexNBeatz',
         href: '/videos?category=flex&beatz',
     },
 ];

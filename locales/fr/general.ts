@@ -1,0 +1,16 @@
+export const general = {
+    viewMore: 'Voir Plus',
+    viewAll: 'Voir Tout',
+    readMore: 'Lire Plus',
+    popularArticles: 'Articles populaires',
+    relatedArticles: 'Articles similaires',
+    relatedVideos: 'Vidéos similaires',
+    discovery: 'Découverte',
+    musicVideos: 'Clip vidéos',
+    address: 'Adresse',
+    followUsOne: 'Suivez-nous sur les réseaux sociaux pour obtenir',
+    followUsTwo: 'les dernières mises à jour sur nos progrès',
+    contactUs: 'Contactez-nous',
+    sendMessage: 'Envoyer Message',
+    allRightReserved: 'Tous les droits sont réservés.',
+};

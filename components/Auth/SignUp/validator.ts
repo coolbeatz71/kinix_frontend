@@ -1,6 +1,6 @@
 import validator from 'validator';
 import { Rule } from 'antd/lib/form';
-import i18n from '@l10n/index';
+import i18n from 'locales/index';
 import { minmax, required } from '@helpers/validators';
 import { IUnknownObject } from '@interfaces/app';
 

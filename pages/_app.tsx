@@ -1,4 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import dayjs from 'dayjs';
+import en from 'dayjs/locale/en';
+import fr from 'dayjs/locale/fr';
 import { AppProps } from 'next/app';
 import NProgress from 'nprogress';
 import { Router } from 'next/router';
@@ -13,6 +16,9 @@ import 'styles/coreui.min.css';
 import 'styles/global.scss';
 import 'styles/404.scss';
 import 'styles/nprogress.scss';
+
+import { getLanguage } from '@helpers/getLanguage';
+import locales from '@locales/index';
 
 type AppPropsWithError = AppProps & { err: unknown };
 
@@ -35,6 +41,17 @@ Router.events.on('routeChangeComplete', () => {
 Router.events.on('routeChangeError', () => nProgress.done());
 
 const MyApp = ({ Component, pageProps }: AppPropsWithError): JSX.Element => {
+    const userLang = getLanguage();
+
+    const initLanguage = (lang: string): void => {
+        locales.changeLanguage(lang);
+        dayjs.locale(lang === 'en' ? en : fr);
+    };
+
+    useEffect(() => {
+        initLanguage(userLang);
+    }, [userLang]);
+
     return (
         <Provider store={store}>
             <PersistGate loading={null} persistor={persistor}>

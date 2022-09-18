@@ -1,0 +1,16 @@
+export const general = {
+    viewMore: 'View More',
+    viewAll: 'View All',
+    readMore: 'Read More',
+    popularArticles: 'Popular articles',
+    relatedArticles: 'Related articles',
+    relatedVideos: 'Related videos',
+    discovery: 'Discovery',
+    musicVideos: 'Music videos',
+    address: 'Address',
+    followUsOne: 'Follow us on social media to find out',
+    followUsTwo: 'the latest updates on our progress',
+    contactUs: 'Contact Us',
+    sendMessage: 'Send Message',
+    allRightReserved: 'All rights reserved.',
+};

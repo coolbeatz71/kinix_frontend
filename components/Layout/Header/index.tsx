@@ -1,4 +1,8 @@
 import React, { FC } from 'react';
+import dayjs from 'dayjs';
+import en from 'dayjs/locale/en';
+import fr from 'dayjs/locale/fr';
+import { useTranslation } from 'react-i18next';
 import { Button, Col, Layout, Row, Space, Grid, Dropdown, Menu, Avatar, Badge } from 'antd';
 import getSideNavWidth from '@helpers/getSideNavWidth';
 import SearchInput from '@components/common/SearchInput';
@@ -7,20 +11,22 @@ import social from '@constants/social';
 import useDarkLight from '@hooks/useDarkLight';
 import { isDark } from '@constants/colors';
 import Logo from '@components/common/Logo';
-
+import { getLanguage } from '@helpers/getLanguage';
 import LoginModal from '@components/Auth/Login';
 import SignUpModal from '@components/Auth/SignUp';
 import CategoryBar from '../CategoryBar';
 import { BsFillGridFill } from 'react-icons/bs';
-
-import styles from './index.module.scss';
 import { showAuthDialogAction } from 'redux/auth/showDialog';
 import { EnumAuthContext } from '@constants/auth-context';
 import { useDispatch } from 'react-redux';
-import { languageList } from '../../../constants/language';
+import { languageList } from '@constants/language';
 import CustomIcon from '@components/common/CustomIcon';
 import { upperFirst, truncate } from 'lodash';
 import { ICurrentUser } from '@interfaces/user';
+import { isServer } from '@constants/app';
+import locales from '@locales/index';
+
+import styles from './index.module.scss';
 
 const { Header: AntHeader } = Layout;
 const { useBreakpoint } = Grid;
@@ -49,10 +55,13 @@ const Header: FC<IHeaderProps> = ({
     isVideoCategory,
     setOpenSideDrawer,
 }) => {
+    const { t } = useTranslation();
     const { value } = useDarkLight();
     const { lg, md } = useBreakpoint();
 
     const dispatch = useDispatch();
+
+    const userLang: 'en' | 'fr' | string = getLanguage();
 
     const openSideDrawer = (): void => setOpenSideDrawer(true);
     const handleToggle = (): void => {
@@ -75,19 +84,21 @@ const Header: FC<IHeaderProps> = ({
     const isSidenavClose = !open || collapsed;
 
     const updateLanguage = (lang: string): void => {
-        console.log(lang);
+        locales.changeLanguage(lang);
+        dayjs.locale(lang === 'en' ? en : fr);
+        !isServer && localStorage.setItem('USER_LANG', lang);
     };
 
     const LanguageMenu = (
         <Menu className={styles.header__row__language__menu}>
             {languageList.map((lang) => (
                 <Item
-                    key={lang}
+                    key={lang.key}
                     onClick={() => {
-                        updateLanguage(lang);
+                        updateLanguage(lang.key);
                     }}
                 >
-                    <CustomIcon type={`${lang}-flag`} /> {upperFirst(lang)}
+                    <CustomIcon type={`${lang.name}-flag`} /> {upperFirst(lang.name)}
                 </Item>
             ))}
         </Menu>
@@ -147,16 +158,17 @@ const Header: FC<IHeaderProps> = ({
                 {lg && (
                     <Col span={2} className="d-flex justify-content-end">
                         <Dropdown
+                            arrow
                             overlay={LanguageMenu}
                             placement="bottomLeft"
                             className={styles.header__row__language}
                         >
                             <Button
                                 ghost
-                                icon={<CustomIcon type={`english-flag`} />}
                                 type={isDark(value) ? 'default' : 'primary'}
+                                icon={<CustomIcon type={userLang === 'en' ? 'english-flag' : 'french-flag'} />}
                             >
-                                <span data-lang>EN</span>
+                                <span data-lang>{userLang?.toUpperCase()}</span>
                             </Button>
                         </Dropdown>
                     </Col>
@@ -192,7 +204,7 @@ const Header: FC<IHeaderProps> = ({
                                                 )
                                             }
                                         >
-                                            Sign In
+                                            {t('login')}
                                         </Button>
                                         <Button
                                             type={isDark(value) ? 'default' : 'primary'}
@@ -202,7 +214,7 @@ const Header: FC<IHeaderProps> = ({
                                                 )
                                             }
                                         >
-                                            Sign Up
+                                            {t('signUp')}
                                         </Button>
                                     </Space>
                                 )}
@@ -219,8 +231,8 @@ const Header: FC<IHeaderProps> = ({
                                             }
                                         />
                                         <Dropdown
-                                            overlay={UserProfileMenu}
                                             placement="bottomLeft"
+                                            overlay={UserProfileMenu}
                                             className={styles.header__row__profile}
                                         >
                                             <Button
@@ -277,7 +289,7 @@ const Header: FC<IHeaderProps> = ({
                                 },
                                 {
                                     id: 4,
-                                    title: 'Flex&Beatz',
+                                    title: 'FlexNBeatz',
                                 },
                             ]}
                             scrolled={scrolled}

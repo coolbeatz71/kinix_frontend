@@ -3,6 +3,7 @@ import { Col, Row } from 'antd';
 import RelatedArticleCard from '@components/common/Cards/Article/RelatedArticle';
 import { IUnknownObject } from 'interfaces/app';
 import SectionTitle from '@components/common/SectionTitle';
+import { useTranslation } from 'react-i18next';
 
 interface IRelatedArticleListProps {
     fetched: boolean;
@@ -12,11 +13,12 @@ interface IRelatedArticleListProps {
 
 const RelatedArticleList: FC<IRelatedArticleListProps> = () => {
     const elements = [0, 1, 2, 3];
+    const { t } = useTranslation();
 
     return (
         <Row>
             <Col span={24}>
-                <SectionTitle title="Related articles" isRelated />
+                <SectionTitle title={t('relatedArticles')} isRelated />
             </Col>
             {elements.map((el) => (
                 <Col key={el}>

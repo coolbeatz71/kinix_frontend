@@ -1,4 +1,4 @@
-import i18n from '@l10n/index';
+import i18n from 'locales/index';
 import { Rule } from 'antd/lib/form';
 import { minmax, required } from '@helpers/validators';
 
