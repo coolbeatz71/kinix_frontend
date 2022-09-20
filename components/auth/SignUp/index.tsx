@@ -1,21 +1,21 @@
 import React, { FC, useEffect } from 'react';
 import { Button, Divider, Form, Input } from 'antd';
+import { useTranslation } from 'react-i18next';
 import AuthModal from '@components/common/Modals/AuthModal';
 import FloatTextInput from '@components/common/TextInput';
 import SocialLogin from '../SocialLogin';
-
-import { EnumAuthContext } from '@constants/auth-context';
-import { useAppDispatch } from 'redux/store';
-import { IRootState } from 'redux/reducers';
-import { useSelector } from 'react-redux';
-import { showAuthDialogAction } from 'redux/auth/showDialog';
-import { useTranslation } from 'react-i18next';
-import styles from './index.module.scss';
 import UserAgreement from '@components/common/UserAgreement';
 import { emailValidator, passwordMatchValidator, passwordValidator, userNameValidator } from './validator';
 import signUpAction, { resetSignUpAction } from 'redux/auth/signup';
 import { ISignUpData } from '@interfaces/auth';
 import ErrorAlert from '@components/common/ErrorAlert';
+import { EnumAuthContext } from '@constants/auth-context';
+import { useAppDispatch } from 'redux/store';
+import { IRootState } from 'redux/reducers';
+import { useSelector } from 'react-redux';
+import { showAuthDialogAction } from 'redux/auth/showDialog';
+
+import styles from './index.module.scss';
 
 const { Item } = Form;
 const { Password } = Input;

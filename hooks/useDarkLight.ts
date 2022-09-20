@@ -1,7 +1,13 @@
 import { useEffect, useState } from 'react';
 import useDarkMode from 'use-dark-mode';
 
-const useDarkLight = () => {
+interface IDarkLightData {
+    value: string;
+    toggle: () => void;
+    isDark: boolean;
+}
+
+const useDarkLight = (): IDarkLightData => {
     const [isDark, setDark] = useState(false);
     const { value, toggle } = useDarkMode();
 

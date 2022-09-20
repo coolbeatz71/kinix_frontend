@@ -7,10 +7,10 @@
         "build": "next build",
         "start": "next start",
         "type:check": "tsc",
-        "lint": "eslint ./components/**/* ./pages/**/*",
-        "lint:fix": "eslint ./components/**/* ./pages/**/* --fix",
-        "prettier": "prettier --check --config package.json ./components/**/* ./pages/**/*",
-        "prettier:fix": "prettier --write --config package.json ./components/**/* ./pages/**/*"
+        "lint": "eslint **/*.tsx **/*.ts",
+        "lint:fix": "eslint **/*.tsx **/*.ts --fix",
+        "prettier": "prettier --check --config package.json **/*.tsx **/*.ts",
+        "prettier:fix": "prettier --write **/*.tsx **/*.ts"
     },
     "dependencies": {
         "@reduxjs/toolkit": "^1.8.1",
