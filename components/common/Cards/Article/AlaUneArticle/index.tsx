@@ -1,9 +1,11 @@
 import React, { FC, Fragment } from 'react';
+import { useTranslation } from 'react-i18next';
 import { truncate } from 'lodash';
 import useDarkLight from '@hooks/useDarkLight';
 import { Button, Card, Typography } from 'antd';
 import { EnumAlaUnePriority } from '@constants/alaune-article';
 import { ClockCircleOutlined } from '@ant-design/icons';
+
 import styles from './index.module.scss';
 
 const { Title, Paragraph, Text } = Typography;
@@ -21,6 +23,7 @@ molestiae itaque suscipit maiores aliquid ex!`;
 
 const AlaUneArticleCard: FC<IAlaUeArticleProps> = ({ size, priority = EnumAlaUnePriority.FIRST }) => {
     const { value } = useDarkLight();
+    const { t } = useTranslation();
 
     return (
         <div data-theme={value} className={styles.alaUneArticleCard}>
@@ -65,7 +68,7 @@ const AlaUneArticleCard: FC<IAlaUeArticleProps> = ({ size, priority = EnumAlaUne
                                     })}
                                 </Paragraph>
 
-                                <Button size="large">Read More</Button>
+                                <Button size="large">{t('readMore')}</Button>
                             </div>
                         </div>
                     </Fragment>
@@ -97,7 +100,7 @@ const AlaUneArticleCard: FC<IAlaUeArticleProps> = ({ size, priority = EnumAlaUne
                             </Paragraph>
 
                             <Button size="large" ghost>
-                                Read More
+                                {t('readMore')}
                             </Button>
                         </div>
                     </Fragment>

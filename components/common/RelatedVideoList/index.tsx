@@ -3,6 +3,7 @@ import { Col, Row } from 'antd';
 import RelatedVideoCard from '@components/common/Cards/Video/VideoCardHorizontal';
 import { IUnknownObject } from 'interfaces/app';
 import SectionTitle from '@components/common/SectionTitle';
+import { useTranslation } from 'react-i18next';
 
 interface IRelatedVideoListProps {
     fetched: boolean;
@@ -12,11 +13,12 @@ interface IRelatedVideoListProps {
 
 const RelatedVideoList: FC<IRelatedVideoListProps> = () => {
     const elements = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+    const { t } = useTranslation();
 
     return (
         <Row>
             <Col span={24}>
-                <SectionTitle title="Related videos" isRelated />
+                <SectionTitle title={t('relatedVideos')} isRelated />
             </Col>
             {elements.map((el) => (
                 <Col key={el}>

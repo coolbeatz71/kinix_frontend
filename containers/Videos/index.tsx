@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import VideoList from '@components/common/VideoList';
-import TagsBar from '@components/Layout/TagsBar';
+import TagsBar from '@components/layout/TagsBar';
 import { EnumTagsContext } from '@constants/tags-context';
 
 const VideoContainer: FC = () => {

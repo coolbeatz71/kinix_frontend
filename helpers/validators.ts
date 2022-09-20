@@ -1,5 +1,5 @@
 import { Rule } from 'antd/lib/form';
-import i18n from '@l10n/index';
+import i18n from '@locales/index';
 
 interface IMinMax {
     min: number;

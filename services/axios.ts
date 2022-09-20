@@ -1,28 +1,39 @@
 import axios, { AxiosError, AxiosResponse } from 'axios';
-import { API_TOKEN, API_URL, PLATFORM_NAME } from '@constants/platform';
+import { API_TOKEN, API_URL, PLATFORM_NAME, USER_DATA } from '@constants/platform';
 import getToken from '@helpers/getToken';
 import { HOME_PATH } from '@constants/paths';
-import { TOKEN_INVALID_EXPIRED } from '@constants/api';
+import { LOGIN_REQUIRED, TOKEN_INVALID_EXPIRED } from '@constants/api';
+import { isServer } from '@constants/app';
+import { persistor } from '@redux/store';
+import { getLanguage } from '@helpers/getLanguage';
 
 const token = getToken();
+const lang = getLanguage();
 
 const api = axios.create({
     baseURL: API_URL,
     headers: {
         platform: PLATFORM_NAME,
+        'Accept-Language': lang,
         Authorization: `Bearer ${token}`,
     },
 });
 
 const responseHandler = (response: AxiosResponse): AxiosResponse => response.data;
 const errorHandler = async (error: AxiosError): Promise<AxiosError> => {
-    if (error?.message === TOKEN_INVALID_EXPIRED) {
-        if (process.browser) {
-            localStorage.removeItem(API_TOKEN);
-            window.location.href = HOME_PATH;
-        }
+    let errorResponse;
+    if ([LOGIN_REQUIRED, TOKEN_INVALID_EXPIRED].includes(error.response?.data.code)) {
+        persistor.purge();
+        !isServer && localStorage.removeItem(USER_DATA);
+        !isServer && localStorage.removeItem(API_TOKEN);
+        window.location.href = HOME_PATH;
     }
-    const errorResponse = error.response ? error.response.data : error.message;
+
+    if (error.response) {
+        const msg = error.response.data.message;
+        errorResponse = typeof msg !== 'string' ? { message: msg[0]?.msg } : error.response.data;
+    } else errorResponse = error.message;
+
     return await Promise.reject(errorResponse);
 };
 

@@ -1,14 +1,16 @@
 import React, { Fragment, FC } from 'react';
-import HomeIllustration from '@components/Home/MainIllustration';
-import HomeVideoSection from '@components/Home/VideoSection';
+import { useTranslation } from 'react-i18next';
+import HomeIllustration from '@components/home/MainIllustration';
+import HomeVideoSection from '@components/home/VideoSection';
 import { BulbFilled, VideoCameraFilled } from '@ant-design/icons';
 import { FaMicrophoneAlt, FaPodcast } from 'react-icons/fa';
 import { RiFocusLine } from 'react-icons/ri';
 import { BsFillSpeakerFill } from 'react-icons/bs';
-import AlaUneArticleSection from '@components/Home/AlaUneArticleSection';
-import AdsCarousel from '@components/Home/AdsCarousel';
+import AlaUneArticleSection from '@components/home/AlaUneArticleSection';
+import AdsCarousel from '@components/home/AdsCarousel';
 
 const HomeContainer: FC = () => {
+    const { t } = useTranslation();
     return (
         <Fragment>
             <HomeIllustration />
@@ -23,7 +25,7 @@ const HomeContainer: FC = () => {
             <div className="mt-5">
                 <HomeVideoSection
                     fetched
-                    title="Discovery"
+                    title={t('discovery')}
                     icon={<BulbFilled />}
                     error={null}
                     videos={[]}
@@ -34,7 +36,7 @@ const HomeContainer: FC = () => {
             <div className="mt-5">
                 <HomeVideoSection
                     fetched
-                    title="Music Videos"
+                    title={t('musicVideos')}
                     icon={<VideoCameraFilled />}
                     error={null}
                     videos={[]}
@@ -46,7 +48,7 @@ const HomeContainer: FC = () => {
             <div className="mt-5">
                 <HomeVideoSection
                     fetched
-                    title="Flex&Beatz"
+                    title="FlexNBeatz"
                     icon={<BsFillSpeakerFill />}
                     error={null}
                     videos={[]}
@@ -55,7 +57,7 @@ const HomeContainer: FC = () => {
                     exclusive={{
                         link: '/videos?',
                         desc: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste, ex sapiente dignissimos aspernatur ipsam voluptas quam omnis qui corporis ducimus. Qui aperiam earum necessitatibus placeat maiores obcaecati cupiditate quas animi.`,
-                        title: 'This week on Flex&Beatz',
+                        title: 'This week on FlexNBeatz',
                         imgSrc: 'https://picsum.photos/1024/1024',
                         videos: [],
                     }}

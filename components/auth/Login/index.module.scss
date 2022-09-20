@@ -1,0 +1,39 @@
+@import 'styles/colors.scss';
+
+.loginForm {
+    &__social {
+        &__google,
+        &__facebook {
+            color: $white;
+            &:hover,
+            &:active,
+            &:focus {
+                color: $white;
+            }
+        }
+
+        &__google {
+            background: rgba($color: $google, $alpha: 0.85);
+            &:hover,
+            &:active,
+            &:focus {
+                background: $google;
+            }
+        }
+        &__facebook {
+            background: rgba($color: $facebook, $alpha: 0.85);
+            &:hover,
+            &:active,
+            &:focus {
+                background: $facebook;
+            }
+        }
+    }
+
+    &__footer {
+        &__btn {
+            font-size: 13px;
+            color: $primary;
+        }
+    }
+}

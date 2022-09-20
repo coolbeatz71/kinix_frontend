@@ -1,10 +1,11 @@
 import React, { ChangeEventHandler, FC, KeyboardEventHandler } from 'react';
-import { SearchOutlined } from '@ant-design/icons';
 import { Input } from 'antd';
-import styles from './index.module.scss';
+import { useTranslation } from 'react-i18next';
+import { SearchOutlined } from '@ant-design/icons';
+import { SizeType } from 'antd/lib/config-provider/SizeContext';
 import useDarkLight from '@hooks/useDarkLight';
 
-import { SizeType } from 'antd/lib/config-provider/SizeContext';
+import styles from './index.module.scss';
 
 const { Search } = Input;
 
@@ -18,13 +19,14 @@ export interface ISearchInputProps {
 }
 
 const SearchInput: FC<ISearchInputProps> = ({
+    onChange,
+    onKeyPress,
+    value = '',
     size = 'middle',
     allowClear = true,
     isCategory = false,
-    value = '',
-    onChange,
-    onKeyPress,
 }) => {
+    const { t } = useTranslation();
     const { value: darkLight } = useDarkLight();
 
     return (
@@ -32,23 +34,23 @@ const SearchInput: FC<ISearchInputProps> = ({
             {isCategory ? (
                 <Input
                     size={size}
-                    placeholder="Search"
-                    prefix={<SearchOutlined />}
-                    allowClear={allowClear}
                     value={value}
                     onChange={onChange}
+                    allowClear={allowClear}
                     onKeyPress={onKeyPress}
+                    placeholder={t('search')}
+                    prefix={<SearchOutlined />}
                 />
             ) : (
                 <Search
                     size={size}
                     value={value}
-                    enterButton="Search"
-                    allowClear={allowClear}
-                    placeholder="Input search text"
-                    prefix={<SearchOutlined />}
                     onChange={onChange}
+                    allowClear={allowClear}
                     onKeyPress={onKeyPress}
+                    enterButton={t('search')}
+                    prefix={<SearchOutlined />}
+                    placeholder={t('searchText')}
                 />
             )}
         </div>

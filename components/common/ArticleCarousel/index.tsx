@@ -1,4 +1,4 @@
-import { sliders } from '@components/Home/AdsCarousel';
+import { sliders } from '@components/home/AdsCarousel';
 import React, { FC } from 'react';
 import Carousel from 'nuka-carousel';
 

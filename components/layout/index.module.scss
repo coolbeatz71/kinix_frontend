@@ -1,0 +1,79 @@
+@import 'styles/colors.scss';
+@import 'styles/dimensions.scss';
+@import '/styles/_mixins.scss';
+
+.layout {
+    min-height: 100vh;
+    overflow: hidden;
+
+    &[data-theme~='dark'] {
+        background: url('/bg-dark.svg');
+        background-repeat: repeat-y;
+        background-size: cover;
+        background-attachment: fixed;
+
+        .layout__main {
+            background-color: $bg-primary-dark;
+            background-size: cover;
+
+            &__content {
+                background: $bg-primary-dark url('/bg-pattern-dark.svg');
+
+                background-attachment: fixed;
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+        }
+    }
+
+    &[data-theme~='light'] {
+        background: url('/bg-light.svg');
+        background-repeat: repeat-y;
+        background-size: cover;
+        background-attachment: fixed;
+
+        .layout__main {
+            background-color: $bg-primary-light;
+            background-size: cover;
+
+            &__content {
+                background: $bg-primary-light url('/bg-pattern-light.svg');
+
+                background-attachment: fixed;
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+        }
+    }
+
+    &__main {
+        width: 100%;
+        &[data-show-header='true'] {
+            .layout__main__content {
+                margin-top: $header-height;
+            }
+        }
+        &[data-show-header='false'] {
+            .layout__main__content {
+                height: 100vh;
+            }
+        }
+
+        &__content {
+            &[data-sidenav-close='false'] {
+                padding: $padding;
+            }
+            &[data-sidenav-close='true'] {
+                padding: calc(#{$content-padding} / 1.4) $content-padding;
+            }
+
+            @include mediaXS {
+                padding: $mobile-content-padding !important;
+            }
+
+            @include mediaSM {
+                padding: calc(#{$mobile-content-padding} * 2) !important;
+            }
+        }
+    }
+}

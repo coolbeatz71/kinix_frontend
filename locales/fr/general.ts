@@ -1,0 +1,26 @@
+import { APP_NAME } from '@constants/platform';
+
+export const general = {
+    viewMore: 'Voir Plus',
+    viewAll: 'Voir Tout',
+    readMore: 'Lire Plus',
+    popularArticles: 'Articles populaires',
+    relatedArticles: 'Articles similaires',
+    relatedVideos: 'Vidéos similaires',
+    discovery: 'Découverte',
+    musicVideos: 'Clip vidéos',
+    address: 'Adresse',
+    followUsOne: 'Suivez-nous sur les réseaux sociaux pour obtenir',
+    followUsTwo: 'les dernières mises à jour sur nos progrès',
+    contactUs: 'Contactez-nous',
+    sendMessage: 'Envoyer Message',
+    allRightReserved: 'Tous les droits sont réservés.',
+    home: 'Accueil',
+    videos: 'Vidéos',
+    articles: 'Articles',
+    notFound: 'Oops! Page non trouvée',
+    backHome: "Retour à la page d'accueil",
+    confirmationSent: 'Confirmation Envoyée',
+    confirmationEmailSent: 'Un code de vérification a été envoyé à votre e-mail.',
+    enterVerificationCode: `Veuillez saisir le code de vérification ci-dessous pour vérifier votre adresse e-mail. Si vous ne voyez pas l'e-mail de "${APP_NAME}" dans votre boîte de réception, veuillez de vérifier votre dossier spam.`,
+};

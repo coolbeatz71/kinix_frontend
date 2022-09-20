@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import MainArticle from '@components/common/ArticleCarousel';
-import TagsBar from '@components/Layout/TagsBar';
+import TagsBar from '@components/layout/TagsBar';
 import { EnumTagsContext } from '@constants/tags-context';
-import AlaUneArticleSection from '@components/Home/AlaUneArticleSection';
+import AlaUneArticleSection from '@components/home/AlaUneArticleSection';
 import ArticleList from '@components/common/ArticleList';
 import SubscribeNewsLetter from '@components/common/Cards/Article/SubscribeNewsLetter';
 

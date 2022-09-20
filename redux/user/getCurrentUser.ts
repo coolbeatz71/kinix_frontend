@@ -1,10 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import api from 'services/axios';
-import getToken from '@helpers/getToken';
+import { verifyToken } from '@helpers/getToken';
 
-const getCurrentUserAction = createAsyncThunk('user/currentUser', async (_, { rejectWithValue }) => {
-    const token = getToken();
-
+const getCurrentUserAction = createAsyncThunk('users/currentUser', async (_, { rejectWithValue }) => {
+    const token = verifyToken();
     if (token) {
         try {
             const { data } = await api.get('/auth/user');
