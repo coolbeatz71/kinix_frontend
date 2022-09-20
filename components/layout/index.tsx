@@ -21,6 +21,7 @@ import getCurrentUserAction from 'redux/user/getCurrentUser';
 import { ICurrentUser } from '@interfaces/user';
 
 import styles from './index.module.scss';
+import getLocalUserData from '@helpers/getLocalUserData';
 
 const { Content } = AntLayout;
 const { useBreakpoint } = Grid;
@@ -56,6 +57,7 @@ const Layout: FC<ILayoutProps> = ({
     const { t } = useTranslation();
 
     const dispatch = useAppDispatch();
+    const userLocalData = getLocalUserData();
     const { data: userData } = useSelector(({ user }: IRootState) => user?.currentUser);
 
     const [openSidenav, setOpenSidenav] = useState<boolean>(false);
@@ -76,7 +78,7 @@ const Layout: FC<ILayoutProps> = ({
     }, [scrollHandler]);
 
     useEffect(() => {
-        if (isEmpty(userData)) dispatch(getCurrentUserAction());
+        if (isEmpty(userData) || isEmpty(userLocalData)) dispatch(getCurrentUserAction());
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [dispatch]);
 
@@ -141,7 +143,7 @@ const Layout: FC<ILayoutProps> = ({
                         isVideoCategory={isVideoCategory}
                         setCollapsed={setCollapsedSidenav}
                         setOpenSideDrawer={setOpenSideDrawer}
-                        currentUser={userData as ICurrentUser}
+                        currentUser={(userLocalData || userData) as ICurrentUser}
                     />
                 )}
 

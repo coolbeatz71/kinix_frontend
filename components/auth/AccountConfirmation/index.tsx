@@ -2,6 +2,7 @@ import React, { FC, useEffect, useState, Fragment } from 'react';
 import { Button, Col, Form, Input, notification, Row, Typography } from 'antd';
 import { useTranslation } from 'react-i18next';
 import ErrorAlert from '@components/common/ErrorAlert';
+import { IUnknownObject } from '@interfaces/app';
 import FloatTextInput from '@components/common/TextInput';
 import otpValidator from './validator';
 import { useAppDispatch } from '@redux/store';
@@ -29,11 +30,9 @@ const AccountConfirmation: FC<IAccountConfirmationProps> = ({ credential, onClos
         error: errConfirm,
         loading: loadConfirm,
     } = useSelector(({ auth: { confirm } }: IRootState) => confirm);
-    const {
-        error: errResendOtp,
-        data: dataResendOtp,
-        loading: loadResendOtp,
-    } = useSelector(({ auth: { resendOtp } }: IRootState) => resendOtp);
+    const { error: errResendOtp, loading: loadResendOtp } = useSelector(
+        ({ auth: { resendOtp } }: IRootState) => resendOtp,
+    );
 
     const error = errConfirm || errResendOtp;
 
@@ -51,7 +50,7 @@ const AccountConfirmation: FC<IAccountConfirmationProps> = ({ credential, onClos
                     key: 'success',
                     placement: 'topRight',
                     message: 'Confirmation',
-                    description: dataResendOtp.message,
+                    description: (res.payload as IUnknownObject).message,
                 });
             }
         });
@@ -76,7 +75,7 @@ const AccountConfirmation: FC<IAccountConfirmationProps> = ({ credential, onClos
             ) : (
                 <Fragment>
                     <Text className="text-center">
-                        <strong>{t('confirmationcredentialSent')}</strong>
+                        <strong>{t('confirmationEmailSent')}</strong>
                     </Text>
                     <Text className="text-center">{t('enterVerificationCode')}</Text>
                     <br />
