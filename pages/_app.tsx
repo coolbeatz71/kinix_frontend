@@ -2,12 +2,12 @@ import React, { useEffect } from 'react';
 import dayjs from 'dayjs';
 import en from 'dayjs/locale/en';
 import fr from 'dayjs/locale/fr';
+import Wrapper from 'redux/store';
 import { AppProps } from 'next/app';
 import NProgress from 'nprogress';
 import { Router } from 'next/router';
-import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
-import store, { persistor } from '@redux/store';
+import { persistor } from '@redux/store';
 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -28,6 +28,7 @@ const config = {
     speed: 800,
 };
 
+const { withRedux } = Wrapper;
 const nProgress = NProgress.configure(config);
 
 Router.events.on('routeChangeStart', () => nProgress.set(0.9).start());
@@ -49,15 +50,13 @@ const MyApp = ({ Component, pageProps }: AppPropsWithError): JSX.Element => {
     };
 
     useEffect(() => {
-        initLanguage(userLang);
+        initLanguage(userLang as string);
     }, [userLang]);
 
     return (
-        <Provider store={store}>
-            <PersistGate loading={null} persistor={persistor}>
-                <Component {...pageProps} />
-            </PersistGate>
-        </Provider>
+        <PersistGate loading={null} persistor={persistor}>
+            <Component {...pageProps} />
+        </PersistGate>
     );
 };
-export default MyApp;
+export default withRedux(MyApp);

@@ -25,7 +25,7 @@ export const userNameValidator = (name: string): Rule[] => {
             validator(_rule: unknown, value: string) {
                 const regex = new RegExp(`.{${min},${max}}$`);
 
-                if (!validator.isAlpha(value) && regex.test(value)) {
+                if (!validator.isAlphanumeric(value) && regex.test(value)) {
                     return Promise.reject(`${name} ${i18n.t('alphaErr')}`);
                 }
                 return Promise.resolve();

@@ -1,56 +1,110 @@
-import React, { FC } from 'react';
-import { Button, Col, Form, Input, Row, Typography } from 'antd';
+import React, { FC, useEffect, useState, Fragment } from 'react';
+import { Button, Col, Form, Input, notification, Row, Typography } from 'antd';
 import { useTranslation } from 'react-i18next';
+import ErrorAlert from '@components/common/ErrorAlert';
 import FloatTextInput from '@components/common/TextInput';
+import otpValidator from './validator';
+import { useAppDispatch } from '@redux/store';
+import { useSelector } from 'react-redux';
+import { IRootState } from '@redux/reducers';
+import confirmAccountAction, { resetConfirmAccountAction } from '@redux/auth/confirm';
+import resendOTPAction, { resetResendOTPAction } from '@redux/auth/resentOtp';
 
 import styles from './index.module.scss';
-import otpValidator from './validator';
 
 const { Item } = Form;
-const { Text } = Typography;
+const { Text, Title } = Typography;
 
 export interface IAccountConfirmationProps {
-    email: string;
+    credential: string;
+    onCloseModal: () => void;
 }
 
-const AccountConfirmation: FC<IAccountConfirmationProps> = ({ email }) => {
+const AccountConfirmation: FC<IAccountConfirmationProps> = ({ credential, onCloseModal }) => {
     const { t } = useTranslation();
+    const dispatch = useAppDispatch();
+    const [onSuccess, setOnSuccess] = useState(false);
+    const {
+        data: dataConfirm,
+        error: errConfirm,
+        loading: loadConfirm,
+    } = useSelector(({ auth: { confirm } }: IRootState) => confirm);
+    const {
+        error: errResendOtp,
+        data: dataResendOtp,
+        loading: loadResendOtp,
+    } = useSelector(({ auth: { resendOtp } }: IRootState) => resendOtp);
+
+    const error = errConfirm || errResendOtp;
 
     const onSubmit = (formValues: { otp: string }): void => {
         const { otp } = formValues;
-        console.log(otp, email);
-        // dispatch(signUpAction({ userName, email, password })).then((res) => {
-        //     if (res.type === 'auth/signup/fulfilled') {
-        //         setCanVerify(true);
-        //     }
-        // });
+        dispatch(confirmAccountAction({ data: { credential, otp }, dispatch })).then((res) => {
+            if (res.type === 'auth/confirm/fulfilled') setOnSuccess(true);
+        });
     };
+
+    const onResendOtp = (): void => {
+        dispatch(resendOTPAction({ credential })).then((res) => {
+            if (res.type === 'auth/resendOtp/fulfilled') {
+                notification.success({
+                    key: 'success',
+                    placement: 'topRight',
+                    message: 'Confirmation',
+                    description: dataResendOtp.message,
+                });
+            }
+        });
+    };
+
+    useEffect(() => {
+        resetResendOTPAction()(dispatch);
+        resetConfirmAccountAction()(dispatch);
+    }, [dispatch]);
 
     return (
         <div className={styles.accountConf}>
-            <Text className="text-center">
-                <strong>{t('confirmationEmailSent')}</strong>
-            </Text>
-            <Text className="text-center">{t('enterVerificationCode')}</Text>
-            <br />
-            <Form size="large" name="account_confirmation" layout="vertical" onFinish={onSubmit}>
-                <Item name="otp" validateTrigger={['onSubmit', 'onBlur']} rules={otpValidator(t('otp'))}>
-                    <FloatTextInput label={t('otp')} placeholder={t('otp')} required>
-                        <Input size="large" />
-                    </FloatTextInput>
-                </Item>
+            {onSuccess ? (
+                <Fragment>
+                    <Title level={5} className="text-center fw-medium">
+                        {dataConfirm.message}
+                    </Title>
+                    <div className="d-flex justify-content-center">
+                        <Button onClick={onCloseModal}>OK</Button>
+                    </div>
+                </Fragment>
+            ) : (
+                <Fragment>
+                    <Text className="text-center">
+                        <strong>{t('confirmationcredentialSent')}</strong>
+                    </Text>
+                    <Text className="text-center">{t('enterVerificationCode')}</Text>
+                    <br />
 
-                <Row justify="space-between" align="middle">
-                    <Col>
-                        <Button size="large" type="primary" htmlType="submit">
-                            {t('confirm')}
-                        </Button>
-                    </Col>
-                    <Col>
-                        <Button size="large">{t('resentOtp')}</Button>
-                    </Col>
-                </Row>
-            </Form>
+                    <ErrorAlert error={error} showIcon closable banner />
+
+                    <Form size="large" name="account_confirmation" layout="vertical" onFinish={onSubmit}>
+                        <Item name="otp" validateTrigger={['onSubmit', 'onBlur']} rules={otpValidator(t('otp'))}>
+                            <FloatTextInput label={t('otp')} placeholder={t('otp')} required>
+                                <Input size="large" maxLength={6} />
+                            </FloatTextInput>
+                        </Item>
+
+                        <Row justify="space-between" align="middle" className="mb-3">
+                            <Col>
+                                <Button size="large" type="primary" htmlType="submit" loading={loadConfirm}>
+                                    {t('confirm')}
+                                </Button>
+                            </Col>
+                            <Col>
+                                <Button size="large" onClick={onResendOtp} loading={loadResendOtp}>
+                                    {t('resentOtp')}
+                                </Button>
+                            </Col>
+                        </Row>
+                    </Form>
+                </Fragment>
+            )}
         </div>
     );
 };

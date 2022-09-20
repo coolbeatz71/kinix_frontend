@@ -8,6 +8,8 @@ import {
     ActionWrapperReset,
 } from 'constants/redux';
 import { authInitialState } from './types';
+import confirmAccountAction from './confirm';
+import resendOTPAction from './resentOtp';
 
 export const authSlice = createSlice({
     name: 'auth',
@@ -28,7 +30,15 @@ export const authSlice = createSlice({
             // signUp
             .addCase(signUpAction.pending, ActionWrapperPending)
             .addCase(signUpAction.fulfilled, ActionWrapperFulfilled)
-            .addCase(signUpAction.rejected, ActionWrapperRejected);
+            .addCase(signUpAction.rejected, ActionWrapperRejected)
+            // confirm account
+            .addCase(confirmAccountAction.pending, ActionWrapperPending)
+            .addCase(confirmAccountAction.fulfilled, ActionWrapperFulfilled)
+            .addCase(confirmAccountAction.rejected, ActionWrapperRejected)
+            // resend verification code
+            .addCase(resendOTPAction.pending, ActionWrapperPending)
+            .addCase(resendOTPAction.fulfilled, ActionWrapperFulfilled)
+            .addCase(resendOTPAction.rejected, ActionWrapperRejected);
     },
 });
 

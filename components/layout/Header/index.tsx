@@ -21,9 +21,11 @@ import { EnumAuthContext } from '@constants/auth-context';
 import { useDispatch } from 'react-redux';
 import { languageList } from '@constants/language';
 import CustomIcon from '@components/common/CustomIcon';
+import api from 'services/axios';
 import { upperFirst, truncate } from 'lodash';
 import { ICurrentUser } from '@interfaces/user';
 import { isServer } from '@constants/app';
+import { USER_LANG } from '@constants/platform';
 import locales from '@locales/index';
 
 import styles from './index.module.scss';
@@ -86,7 +88,8 @@ const Header: FC<IHeaderProps> = ({
     const updateLanguage = (lang: string): void => {
         locales.changeLanguage(lang);
         dayjs.locale(lang === 'en' ? en : fr);
-        !isServer && localStorage.setItem('USER_LANG', lang);
+        api.defaults.headers['Accept-Language'] = lang;
+        !isServer && localStorage.setItem(USER_LANG, lang);
     };
 
     const LanguageMenu = (

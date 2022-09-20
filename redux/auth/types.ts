@@ -15,10 +15,14 @@ export type IAuthState = {
     login: IBasicInitialState;
     signup: IBasicInitialState;
     dialog: IDialogInitialState;
+    confirm: IBasicInitialState;
+    resendOtp: IBasicInitialState;
 };
 
 export const authInitialState: IAuthState = {
     login: BasicInitialState,
     signup: BasicInitialState,
     dialog: DialogInitialState,
+    confirm: BasicInitialState,
+    resendOtp: BasicInitialState,
 };

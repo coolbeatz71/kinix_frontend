@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Button, Divider, Form, Input } from 'antd';
 import AuthModal from '@components/common/Modals/AuthModal';
@@ -9,6 +9,9 @@ import emailUserNameValidator, { passwordValidator } from './validation';
 import { showAuthDialogAction } from 'redux/auth/showDialog';
 import { EnumAuthContext } from '@constants/auth-context';
 import { IRootState } from 'redux/reducers';
+import { IUnknownObject } from '@interfaces/app';
+import { CHECK_CONFIRM_EMAIL } from '@constants/api';
+import AccountConfirmation from '../AccountConfirmation';
 import loginAction, { resetLoginAction } from 'redux/auth/login';
 import { ILoginData } from '@interfaces/auth';
 import { useAppDispatch } from 'redux/store';
@@ -23,6 +26,7 @@ const btnStyles = `d-flex align-items-center justify-content-center`;
 
 const LoginModal: FC = () => {
     const { t } = useTranslation();
+    const [currentCredential, setCurrentCredential] = useState<string>('');
 
     const dispatch = useAppDispatch();
     const { error, loading } = useSelector(({ auth: { login } }: IRootState) => login);
@@ -34,7 +38,10 @@ const LoginModal: FC = () => {
 
     const onSubmit = (formValues: ILoginData): void => {
         const { credential, password } = formValues;
-        dispatch(loginAction({ data: { credential, password }, dispatch }));
+        dispatch(loginAction({ data: { credential, password }, dispatch })).then((res) => {
+            if (res.type === 'auth/login/rejected') setCurrentCredential(credential);
+            if (res.type === 'auth/login/fulfilled') onCloseLogin();
+        });
     };
 
     const openLogin = isOpen && context === EnumAuthContext.LOGIN;
@@ -67,57 +74,66 @@ const LoginModal: FC = () => {
 
     return (
         <AuthModal title={login} open={openLogin} onCloseClick={onCloseLogin}>
-            <Form size="large" name="user_login" className={styles.loginForm} layout="vertical" onFinish={onSubmit}>
-                <SocialLogin
-                    googleClassName={`mb-2 ${btnStyles} ${styles.loginForm__social__google}`}
-                    facebookClassName={`${btnStyles} ${styles.loginForm__social__facebook}`}
-                />
+            {(error as IUnknownObject)?.code === CHECK_CONFIRM_EMAIL ? (
+                <AccountConfirmation credential={currentCredential} onCloseModal={onCloseLogin} />
+            ) : (
+                <Form size="large" name="user_login" className={styles.loginForm} layout="vertical" onFinish={onSubmit}>
+                    <SocialLogin
+                        googleClassName={`mb-2 ${btnStyles} ${styles.loginForm__social__google}`}
+                        facebookClassName={`${btnStyles} ${styles.loginForm__social__facebook}`}
+                    />
 
-                <Divider className="my-2 py-2">{t('or')}</Divider>
+                    <Divider className="my-2 py-2">{t('or')}</Divider>
 
-                <Item
-                    name="credential"
-                    validateTrigger={['onSubmit', 'onBlur']}
-                    rules={emailUserNameValidator(emailUserName)}
-                >
-                    <FloatTextInput label={emailUserName} placeholder={emailUserName} required>
-                        <Input size="large" />
-                    </FloatTextInput>
-                </Item>
+                    <Item
+                        name="credential"
+                        validateTrigger={['onSubmit', 'onBlur']}
+                        rules={emailUserNameValidator(emailUserName)}
+                    >
+                        <FloatTextInput label={emailUserName} placeholder={emailUserName} required>
+                            <Input size="large" />
+                        </FloatTextInput>
+                    </Item>
 
-                <Item name="password" validateTrigger={['onSubmit', 'onBlur']} rules={passwordValidator(password)}>
-                    <FloatTextInput label={password} placeholder={password} required>
-                        <Password size="large" visibilityToggle />
-                    </FloatTextInput>
-                </Item>
+                    <Item name="password" validateTrigger={['onSubmit', 'onBlur']} rules={passwordValidator(password)}>
+                        <FloatTextInput label={password} placeholder={password} required>
+                            <Password size="large" visibilityToggle />
+                        </FloatTextInput>
+                    </Item>
 
-                <ErrorAlert error={error} showIcon closable banner />
+                    <ErrorAlert error={error} showIcon closable banner />
 
-                <Button
-                    block
-                    size="large"
-                    type="primary"
-                    htmlType="submit"
-                    loading={loading}
-                    className={`mt-2 ${btnStyles}`}
-                >
-                    {login}
-                </Button>
-                <div className="mt-4">
                     <Button
                         block
-                        type="text"
-                        className={`mb-1 ${styles.loginForm__footer__btn}`}
-                        onClick={onOpenSignUp}
+                        size="large"
+                        type="primary"
+                        htmlType="submit"
+                        loading={loading}
+                        className={`mt-2 ${btnStyles}`}
                     >
-                        {dontHaveAccount}
+                        {login}
                     </Button>
+                    <div className="mt-4">
+                        <Button
+                            block
+                            type="text"
+                            className={`mb-1 ${styles.loginForm__footer__btn}`}
+                            onClick={onOpenSignUp}
+                        >
+                            {dontHaveAccount}
+                        </Button>
 
-                    <Button block type="text" className={styles.loginForm__footer__btn} onClick={onOpenForgotPassword}>
-                        {forgotPassword}
-                    </Button>
-                </div>
-            </Form>
+                        <Button
+                            block
+                            type="text"
+                            className={styles.loginForm__footer__btn}
+                            onClick={onOpenForgotPassword}
+                        >
+                            {forgotPassword}
+                        </Button>
+                    </div>
+                </Form>
+            )}
         </AuthModal>
     );
 };

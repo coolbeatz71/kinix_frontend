@@ -1,7 +1,8 @@
+import { USER_LANG } from '@constants/platform';
+
 export const getLanguage = (): string => {
     if (process.browser) {
-        const language = localStorage.getItem('USER_LANG') || 'fr';
-        return language;
+        return localStorage.getItem(USER_LANG) || 'fr';
     }
 
     return 'fr';

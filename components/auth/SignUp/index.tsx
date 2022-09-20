@@ -28,8 +28,8 @@ const SignUpModal: FC = () => {
     const [canVerify, setCanVerify] = useState(false);
 
     const dispatch = useAppDispatch();
-    const { error, loading } = useSelector(({ auth: { signup } }: IRootState) => signup);
     const { isOpen, context } = useSelector(({ auth: { dialog } }: IRootState) => dialog);
+    const { error, loading, data } = useSelector(({ auth: { signup } }: IRootState) => signup);
 
     useEffect(() => {
         if (isOpen) resetSignUpAction()(dispatch);
@@ -38,9 +38,7 @@ const SignUpModal: FC = () => {
     const onSubmit = (formValues: ISignUpData): void => {
         const { userName, email, password } = formValues;
         dispatch(signUpAction({ userName, email, password })).then((res) => {
-            if (res.type === 'auth/signup/fulfilled') {
-                setCanVerify(true);
-            }
+            if (res.type === 'auth/signup/fulfilled') setCanVerify(true);
         });
     };
 
@@ -69,8 +67,8 @@ const SignUpModal: FC = () => {
 
     return (
         <AuthModal title={createAccount} open={openSignUp} onCloseClick={onCloseSignUp}>
-            {!canVerify ? (
-                <AccountConfirmation email="sigmacool@gmail.com" />
+            {canVerify ? (
+                <AccountConfirmation credential={data.email} onCloseModal={onCloseSignUp} />
             ) : (
                 <Form
                     size="large"
