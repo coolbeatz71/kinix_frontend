@@ -51,3 +51,9 @@ textarea {
 [class~='ant-form-item-has-error'] {
     margin-bottom: 1rem !important;
 }
+
+[class~='ant-form-item-explain-error'] {
+    * {
+        font-size: 12px;
+    }
+}

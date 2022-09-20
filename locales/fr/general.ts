@@ -22,5 +22,5 @@ export const general = {
     backHome: "Retour à la page d'accueil",
     confirmationSent: 'Confirmation Envoyée',
     confirmationEmailSent: 'Un code de vérification a été envoyé à votre e-mail.',
-    enterVerificationCode: `Veuillez saisir le code de vérification ci-dessous pour vérifier votre adresse e-mail. Si vous ne voyez pas l'e-mail de "${APP_NAME}" dans votre boîte de réception, assurez-vous de vérifier votre dossier spam.`,
+    enterVerificationCode: `Veuillez saisir le code de vérification ci-dessous pour vérifier votre adresse e-mail. Si vous ne voyez pas l'e-mail de "${APP_NAME}" dans votre boîte de réception, veuillez de vérifier votre dossier spam.`,
 };

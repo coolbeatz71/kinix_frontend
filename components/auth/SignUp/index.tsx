@@ -74,10 +74,10 @@ const SignUpModal: FC = () => {
             ) : (
                 <Form
                     size="large"
-                    name="user_signup"
-                    className={styles.signupFormForm}
                     layout="vertical"
+                    name="user_signup"
                     onFinish={onSubmit}
+                    className={styles.signupForm}
                 >
                     <SocialLogin
                         context={EnumAuthContext.SIGNUP}

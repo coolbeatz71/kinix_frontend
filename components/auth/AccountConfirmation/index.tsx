@@ -1,12 +1,12 @@
 import React, { FC } from 'react';
-import { Typography } from 'antd';
+import { Button, Col, Form, Input, Row, Typography } from 'antd';
 import { useTranslation } from 'react-i18next';
-import Lottie, { Options } from 'react-lottie';
-import { IUnknownObject } from '@interfaces/app';
-import emailSendAnim from 'public/email_sent_anim.json';
+import FloatTextInput from '@components/common/TextInput';
 
 import styles from './index.module.scss';
+import otpValidator from './validator';
 
+const { Item } = Form;
 const { Text } = Typography;
 
 export interface IAccountConfirmationProps {
@@ -16,25 +16,41 @@ export interface IAccountConfirmationProps {
 const AccountConfirmation: FC<IAccountConfirmationProps> = ({ email }) => {
     const { t } = useTranslation();
 
-    console.log(email);
-
-    const options = (animationData: IUnknownObject): Options => ({
-        loop: true,
-        autoplay: true,
-        animationData,
-        rendererSettings: {
-            preserveAspectRatio: 'xMidYMid slice',
-        },
-    });
+    const onSubmit = (formValues: { otp: string }): void => {
+        const { otp } = formValues;
+        console.log(otp, email);
+        // dispatch(signUpAction({ userName, email, password })).then((res) => {
+        //     if (res.type === 'auth/signup/fulfilled') {
+        //         setCanVerify(true);
+        //     }
+        // });
+    };
 
     return (
         <div className={styles.accountConf}>
-            <Lottie width={150} height={150} options={options(emailSendAnim)} />
-            <br />
             <Text className="text-center">
                 <strong>{t('confirmationEmailSent')}</strong>
             </Text>
             <Text className="text-center">{t('enterVerificationCode')}</Text>
+            <br />
+            <Form size="large" name="account_confirmation" layout="vertical" onFinish={onSubmit}>
+                <Item name="otp" validateTrigger={['onSubmit', 'onBlur']} rules={otpValidator(t('otp'))}>
+                    <FloatTextInput label={t('otp')} placeholder={t('otp')} required>
+                        <Input size="large" />
+                    </FloatTextInput>
+                </Item>
+
+                <Row justify="space-between" align="middle">
+                    <Col>
+                        <Button size="large" type="primary" htmlType="submit">
+                            {t('confirm')}
+                        </Button>
+                    </Col>
+                    <Col>
+                        <Button size="large">{t('resentOtp')}</Button>
+                    </Col>
+                </Row>
+            </Form>
         </div>
     );
 };

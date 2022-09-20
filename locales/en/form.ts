@@ -23,4 +23,7 @@ export const form = {
     searchText: 'Type the search text',
     socialSignUp: 'Sign Up with {{ platform }}',
     socialSignIn: 'Sign In with {{ platform }}',
+    otp: 'Verification code',
+    confirm: 'Confirm',
+    resentOtp: 'Resend verification code',
 };
