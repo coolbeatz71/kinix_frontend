@@ -1,4 +1,5 @@
 @import 'styles/colors.scss';
+@import 'styles/dimensions.scss';
 
 .signupForm {
     &__social {
@@ -32,14 +33,14 @@
 
     &__footer {
         &__btn {
-            font-size: 13.5px;
+            font-size: 13px;
             color: $primary;
         }
     }
 
     &__userAgreement {
         text-align: center;
-        padding: 0 1.5rem;
+        padding: 0 $padding;
 
         &__text {
             font-size: 13px;

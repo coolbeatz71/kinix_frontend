@@ -1,6 +1,6 @@
 import React, { FC, Fragment } from 'react';
 import { Button } from 'antd';
-
+import { useTranslation } from 'react-i18next';
 import { GoogleOutlined, FacebookFilled } from '@ant-design/icons';
 import { EnumAuthContext } from '@constants/auth-context';
 
@@ -15,17 +15,17 @@ const SocialLogin: FC<ISocialLoginProps> = ({
     googleClassName,
     facebookClassName,
 }) => {
+    const { t } = useTranslation();
     const isLogin = context === EnumAuthContext.LOGIN;
-    const contextType = isLogin ? 'In' : 'Up';
 
     return (
         <Fragment>
-            <Button block type="text" size="large" icon={<GoogleOutlined />} className={googleClassName}>
-                Sign {contextType} with Google
+            <Button block type="text" size="middle" icon={<GoogleOutlined />} className={googleClassName}>
+                {isLogin ? t('socialSignIn', { platform: 'Google' }) : t('socialSignUp', { platform: 'Google' })}
             </Button>
 
-            <Button block type="text" size="large" icon={<FacebookFilled />} className={facebookClassName}>
-                Sign {contextType} with Facebook
+            <Button block type="text" size="middle" icon={<FacebookFilled />} className={facebookClassName}>
+                {isLogin ? t('socialSignIn', { platform: 'Facebook' }) : t('socialSignUp', { platform: 'Facebook' })}
             </Button>
         </Fragment>
     );

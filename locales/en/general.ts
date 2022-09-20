@@ -1,3 +1,4 @@
+import { APP_NAME } from '@constants/platform';
 export const general = {
     viewMore: 'View More',
     viewAll: 'View All',
@@ -19,5 +20,6 @@ export const general = {
     notFound: 'Oops! Page not found',
     backHome: 'Back to homepage',
     confirmationSent: 'Confirmation Sent',
-    confirmationEmailSent: 'An email was sent to you for account confirmation',
+    confirmationEmailSent: 'A verification code was sent to your email.',
+    enterVerificationCode: `Please enter the verification code below to verify your email. If you cannot see the email from "${APP_NAME}" in your inbox, make sure to check your spam folder.`,
 };

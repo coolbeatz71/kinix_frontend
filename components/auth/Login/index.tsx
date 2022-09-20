@@ -73,7 +73,7 @@ const LoginModal: FC = () => {
                     facebookClassName={`${btnStyles} ${styles.loginForm__social__facebook}`}
                 />
 
-                <Divider className="my-4 py-2">{t('or')}</Divider>
+                <Divider className="my-2 py-2">{t('or')}</Divider>
 
                 <Item
                     name="credential"

@@ -21,4 +21,6 @@ export const form = {
     writeMessageHere: 'Write your message here',
     search: 'Search',
     searchText: 'Type the search text',
+    socialSignUp: 'Sign Up with {{ platform }}',
+    socialSignIn: 'Sign In with {{ platform }}',
 };

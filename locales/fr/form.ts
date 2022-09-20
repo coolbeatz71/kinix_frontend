@@ -21,4 +21,6 @@ export const form = {
     security: 'Securité',
     search: 'Recherche',
     searchText: 'Tapez le texte de recherche',
+    socialSignUp: "S'inscrire avec {{ platform }}",
+    socialSignIn: 'Connexion avec {{ platform }}',
 };
