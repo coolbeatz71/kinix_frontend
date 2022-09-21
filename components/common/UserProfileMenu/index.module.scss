@@ -21,7 +21,7 @@
         }
     }
 
-    [class~='ant-menu-item'] {
+    [class~='ant-dropdown-menu-item'] {
         margin: 0.5rem 0;
         font-size: 14px;
         font-weight: 600;
@@ -58,7 +58,7 @@
             border: 4px solid $default;
         }
 
-        [class~='ant-menu-item'] {
+        [class~='ant-dropdown-menu-item'] {
             background: $dark10;
 
             &:hover,
@@ -72,6 +72,11 @@
 
             &[data-signout='true'] {
                 color: $error !important;
+
+                &:hover,
+                &:active {
+                    background: $error !important;
+                }
             }
         }
     }
@@ -88,7 +93,7 @@
             color: $light;
         }
 
-        [class~='ant-menu-item'] {
+        [class~='ant-dropdown-menu-item'] {
             color: $light;
             background: $light10;
             a {

@@ -4,32 +4,31 @@ import Style from 'style-it';
 
 import styles from './../index.module.scss';
 
-const { Text, Title, Paragraph } = Typography;
-
 const { useBreakpoint } = Grid;
+const { Text, Title, Paragraph } = Typography;
 
 export interface ISliderContentProps {
     tag: string;
-    title: string;
-    subtitle: string;
     desc: string;
+    title: string;
+    link?: string;
+    imgSrc: string;
+    bgColor: string;
+    subtitle: string;
     hasButton?: boolean;
     buttonText?: string;
-    link?: string;
-    bgColor: string;
-    imgSrc: string;
 }
 
 const SliderContent: FC<ISliderContentProps> = ({
     tag,
-    title,
-    subtitle,
     desc,
-    hasButton = false,
-    buttonText,
-    link = '',
-    bgColor,
+    title,
     imgSrc,
+    bgColor,
+    subtitle,
+    link = '',
+    buttonText,
+    hasButton = false,
 }) => {
     const { md } = useBreakpoint();
     const carouselRightContent = Style.it(

@@ -1,4 +1,4 @@
 export const languageList = [
-    { name: 'french', key: 'fr' },
     { name: 'english', key: 'en' },
+    { name: 'francais', key: 'fr' },
 ];

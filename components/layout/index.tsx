@@ -19,9 +19,9 @@ import { useSelector } from 'react-redux';
 import { useAppDispatch } from 'redux/store';
 import getCurrentUserAction from 'redux/user/getCurrentUser';
 import { ICurrentUser } from '@interfaces/user';
+import getLocalUserData from '@helpers/getLocalUserData';
 
 import styles from './index.module.scss';
-import getLocalUserData from '@helpers/getLocalUserData';
 
 const { Content } = AntLayout;
 const { useBreakpoint } = Grid;

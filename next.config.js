@@ -16,9 +16,22 @@ const pwaConfig = {
 
 const antdLessConfig = {
     lessVarsFilePath: './theme/variables.less',
+    cssLoaderOptions: {
+        mode: 'local',
+        localIdentName: !isProduction ? '[local]--[hash:base64:4]' : '[hash:base64:8]',
+        exportLocalsConvention: 'camelCase',
+        exportOnlyLocals: false,
+    },
 };
 
-module.exports = withPlugins([
-    [withPWA, pwaConfig],
-    [withAntdLess, antdLessConfig],
-]);
+module.exports = withPlugins(
+    [
+        [withPWA, pwaConfig],
+        [withAntdLess, antdLessConfig],
+    ],
+    {
+        webpack(config) {
+            return config;
+        },
+    },
+);
