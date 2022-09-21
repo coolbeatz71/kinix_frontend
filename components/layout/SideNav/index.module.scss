@@ -46,6 +46,10 @@
     .sidenav__menu__items {
         display: flex;
         align-items: center;
+
+        a {
+            text-transform: capitalize;
+        }
     }
 
     &[data-theme='light'] {
