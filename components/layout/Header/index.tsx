@@ -1,34 +1,23 @@
 import React, { FC, useState } from 'react';
-import dayjs from 'dayjs';
-import en from 'dayjs/locale/en';
-import fr from 'dayjs/locale/fr';
-import { Button, Col, Layout, Row, Space, Grid, Dropdown, Menu } from 'antd';
+import { Button, Col, Layout, Row, Space, Grid } from 'antd';
 import getSideNavWidth from '@helpers/getSideNavWidth';
 import SearchInput from '@components/common/SearchInput';
 import { MenuOutlined } from '@ant-design/icons';
+import { ICurrentUser } from '@interfaces/user';
 import social from '@constants/social';
 import useDarkLight from '@hooks/useDarkLight';
-import { isDark } from '@constants/colors';
 import Logo from '@components/common/Logo';
 import { getLanguage } from '@helpers/getLanguage';
 import LoginModal from '@components/auth/Login';
 import SignUpModal from '@components/auth/SignUp';
 import CategoryBar from '../CategoryBar';
 import { BsFillGridFill } from 'react-icons/bs';
-import { languageList } from '@constants/language';
-import CustomIcon from '@components/common/CustomIcon';
-import api from 'services/axios';
 import UserProfileDropDown from '@components/layout/UserProfileDropDown';
 import UserAuthSection from '@components/layout/UserAuthSection';
-import { upperFirst } from 'lodash';
-import { ICurrentUser } from '@interfaces/user';
-import { isServer } from '@constants/app';
-import { USER_LANG } from '@constants/platform';
-import locales from '@locales/index';
+import LanguageDropDown from '@components/layout/LanguageDropDown';
 
 import styles from './index.module.scss';
 
-const { Item } = Menu;
 const { useBreakpoint } = Grid;
 const { Header: AntHeader } = Layout;
 
@@ -79,28 +68,6 @@ const Header: FC<IHeaderProps> = ({
 
     const isSidenavClose = !open || collapsed;
 
-    const updateLanguage = (lang: string): void => {
-        locales.changeLanguage(lang);
-        dayjs.locale(lang === 'en' ? en : fr);
-        api.defaults.headers['Accept-Language'] = lang;
-        !isServer && localStorage.setItem(USER_LANG, lang);
-    };
-
-    const LanguageMenu = (
-        <Menu className={styles.header__row__language__menu}>
-            {languageList.map((lang) => (
-                <Item
-                    key={lang.key}
-                    onClick={() => {
-                        updateLanguage(lang.key);
-                    }}
-                >
-                    <CustomIcon type={`${lang.name}-flag`} /> {upperFirst(lang.name)}
-                </Item>
-            ))}
-        </Menu>
-    );
-
     return (
         <AntHeader
             data-theme={value}
@@ -139,20 +106,7 @@ const Header: FC<IHeaderProps> = ({
 
                 {lg && (
                     <Col span={2} className="d-flex justify-content-end">
-                        <Dropdown
-                            arrow
-                            overlay={LanguageMenu}
-                            placement="bottomLeft"
-                            className={styles.header__row__language}
-                        >
-                            <Button
-                                ghost
-                                type={isDark(value) ? 'default' : 'primary'}
-                                icon={<CustomIcon type={userLang === 'en' ? 'english-flag' : 'french-flag'} />}
-                            >
-                                <span data-lang>{userLang?.toUpperCase()}</span>
-                            </Button>
-                        </Dropdown>
+                        <LanguageDropDown userLang={userLang} />
                     </Col>
                 )}
 

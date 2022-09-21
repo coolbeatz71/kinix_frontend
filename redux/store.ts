@@ -37,7 +37,7 @@ const store = configureStore({
             serializableCheck: {
                 ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
             },
-        }).concat(logger),
+        }).concat(isDevMode ? [logger] : []),
 });
 
 const setupStore = (_ctx?: Context): EnhancedStore => store;
@@ -47,10 +47,10 @@ export const wrapper = createWrapper(makeStore, {
     debug: isDevMode,
 });
 
-export type AppThunk = ThunkAction<void, IRootState, null, Action>;
 export type AppDispatch = typeof store.dispatch;
+export type AppThunk = ThunkAction<void, IRootState, null, Action>;
 
-export const useAppDispatch = (): IAppDispatch => useDispatch<AppDispatch>();
 export const persistor = persistStore(store);
+export const useAppDispatch = (): IAppDispatch => useDispatch<AppDispatch>();
 
 export default wrapper;
