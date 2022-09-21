@@ -1,12 +1,11 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import dayjs from 'dayjs';
 import en from 'dayjs/locale/en';
 import fr from 'dayjs/locale/fr';
-import { useTranslation } from 'react-i18next';
-import { Button, Col, Layout, Row, Space, Grid, Dropdown, Menu, Avatar, Badge } from 'antd';
+import { Button, Col, Layout, Row, Space, Grid, Dropdown, Menu } from 'antd';
 import getSideNavWidth from '@helpers/getSideNavWidth';
 import SearchInput from '@components/common/SearchInput';
-import { MenuOutlined, BellFilled, UserOutlined } from '@ant-design/icons';
+import { MenuOutlined } from '@ant-design/icons';
 import social from '@constants/social';
 import useDarkLight from '@hooks/useDarkLight';
 import { isDark } from '@constants/colors';
@@ -16,13 +15,12 @@ import LoginModal from '@components/auth/Login';
 import SignUpModal from '@components/auth/SignUp';
 import CategoryBar from '../CategoryBar';
 import { BsFillGridFill } from 'react-icons/bs';
-import { showAuthDialogAction } from 'redux/auth/showDialog';
-import { EnumAuthContext } from '@constants/auth-context';
-import { useDispatch } from 'react-redux';
 import { languageList } from '@constants/language';
 import CustomIcon from '@components/common/CustomIcon';
 import api from 'services/axios';
-import { upperFirst, truncate } from 'lodash';
+import UserProfileDropDown from '@components/layout/UserProfileDropDown';
+import UserAuthSection from '@components/layout/UserAuthSection';
+import { upperFirst } from 'lodash';
 import { ICurrentUser } from '@interfaces/user';
 import { isServer } from '@constants/app';
 import { USER_LANG } from '@constants/platform';
@@ -45,8 +43,6 @@ interface IHeaderProps {
     setOpenSideDrawer: (openSideDrawer: boolean) => void;
 }
 
-const userName = 'mutombo jean-vincent';
-
 const Header: FC<IHeaderProps> = ({
     open,
     setOpen,
@@ -57,11 +53,9 @@ const Header: FC<IHeaderProps> = ({
     isVideoCategory,
     setOpenSideDrawer,
 }) => {
-    const { t } = useTranslation();
     const { value } = useDarkLight();
     const { lg, md } = useBreakpoint();
-
-    const dispatch = useDispatch();
+    const [openDropdown, setOpenDropdown] = useState(false);
 
     const userLang: 'en' | 'fr' | string = getLanguage();
 
@@ -107,29 +101,14 @@ const Header: FC<IHeaderProps> = ({
         </Menu>
     );
 
-    const UserProfileMenu = (
-        <Menu>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis enim, suscipit culpa deserunt similique
-            adipisci ducimus quisquam expedita, quod temporibus doloremque cupiditate optio vero porro dolorem
-            voluptatem omnis, quis nulla.
-        </Menu>
-    );
-
-    const formattedUserName = (name: string): string =>
-        upperFirst(
-            truncate(name, {
-                length: 10,
-            }),
-        );
-
     return (
         <AntHeader
             data-theme={value}
             data-scroll={scrolled}
             className={styles.header}
-            style={lg ? headerStyles : undefined}
             data-is-category={isVideoCategory}
             data-sidenav-close={isSidenavClose}
+            style={lg ? headerStyles : undefined}
         >
             <LoginModal />
             <SignUpModal />
@@ -196,62 +175,15 @@ const Header: FC<IHeaderProps> = ({
                             </Col>
 
                             <Col span={12} className="d-flex justify-content-center">
-                                {!currentUser?.isLoggedIn && (
-                                    <Space size="middle">
-                                        <Button
-                                            ghost
-                                            type={isDark(value) ? 'default' : 'primary'}
-                                            onClick={() =>
-                                                showAuthDialogAction({ isOpen: true, context: EnumAuthContext.LOGIN })(
-                                                    dispatch,
-                                                )
-                                            }
-                                        >
-                                            {t('login')}
-                                        </Button>
-                                        <Button
-                                            type={isDark(value) ? 'default' : 'primary'}
-                                            onClick={() =>
-                                                showAuthDialogAction({ isOpen: true, context: EnumAuthContext.SIGNUP })(
-                                                    dispatch,
-                                                )
-                                            }
-                                        >
-                                            {t('signUp')}
-                                        </Button>
-                                    </Space>
-                                )}
+                                {!currentUser?.isLoggedIn && <UserAuthSection />}
 
                                 {currentUser?.isLoggedIn && (
-                                    <Space size="middle">
-                                        <Button
-                                            type="text"
-                                            shape="circle"
-                                            icon={
-                                                <Badge count={1}>
-                                                    <BellFilled />
-                                                </Badge>
-                                            }
-                                        />
-                                        <Dropdown
-                                            placement="bottomLeft"
-                                            overlay={UserProfileMenu}
-                                            className={styles.header__row__profile}
-                                        >
-                                            <Button
-                                                type="text"
-                                                icon={
-                                                    <Avatar
-                                                        size="small"
-                                                        icon={<UserOutlined />}
-                                                        style={{ backgroundColor: '#87d068' }}
-                                                    />
-                                                }
-                                            >
-                                                {formattedUserName(userName)}
-                                            </Button>
-                                        </Dropdown>
-                                    </Space>
+                                    <UserProfileDropDown
+                                        currentUser={currentUser}
+                                        openDropdown={openDropdown}
+                                        setOpenDropdown={setOpenDropdown}
+                                        className={styles.header__row__profile}
+                                    />
                                 )}
                             </Col>
                         </Row>

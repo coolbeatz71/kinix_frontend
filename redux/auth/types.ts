@@ -13,6 +13,7 @@ const DialogInitialState: IDialogInitialState = {
 
 export type IAuthState = {
     login: IBasicInitialState;
+    logout: IBasicInitialState;
     signup: IBasicInitialState;
     dialog: IDialogInitialState;
     confirm: IBasicInitialState;
@@ -21,6 +22,7 @@ export type IAuthState = {
 
 export const authInitialState: IAuthState = {
     login: BasicInitialState,
+    logout: BasicInitialState,
     signup: BasicInitialState,
     dialog: DialogInitialState,
     confirm: BasicInitialState,
