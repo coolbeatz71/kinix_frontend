@@ -1,0 +1,111 @@
+@import 'styles/colors.scss';
+@import 'styles/dimensions.scss';
+
+.profile {
+    border: none;
+    border-radius: $border-radius;
+    padding: $padding $mobile-content-padding;
+    a {
+        text-decoration: none !important;
+    }
+
+    &__avatar {
+        display: flex;
+        justify-content: center;
+
+        [class~='ant-avatar'] {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 4px solid $dark10;
+        }
+    }
+
+    [class~='ant-menu-item'] {
+        margin: 0.5rem 0;
+        font-size: 14px;
+        font-weight: 600;
+        border-radius: $border-radius;
+
+        display: flex;
+        align-items: center;
+
+        &:hover,
+        &:active {
+            border: unset;
+            font-weight: 700;
+            border-radius: $border-radius;
+        }
+
+        &[data-signout='true'] {
+            margin-bottom: 0;
+
+            [class~='ant-spin'] {
+                display: flex;
+                padding: 0.2rem;
+            }
+        }
+
+        [class~='anticon'] {
+            font-size: 14px;
+        }
+    }
+
+    &[data-theme='light'] {
+        background: $white;
+
+        [class~='ant-avatar'] {
+            border: 4px solid $default;
+        }
+
+        [class~='ant-menu-item'] {
+            background: $dark10;
+
+            &:hover,
+            &:active {
+                background: $bg-primary-dark50 !important;
+
+                * {
+                    color: $white !important;
+                }
+            }
+
+            &[data-signout='true'] {
+                color: $error !important;
+            }
+        }
+    }
+
+    &[data-theme='dark'] {
+        color: $white;
+        background: $black;
+
+        [class~='ant-avatar'] {
+            border: 4px solid $dark10;
+        }
+
+        [class~='ant-typography'] {
+            color: $light;
+        }
+
+        [class~='ant-menu-item'] {
+            color: $light;
+            background: $light10;
+            a {
+                color: $light;
+            }
+            &:hover,
+            &:active {
+                color: $white !important;
+                background: $primary !important;
+            }
+
+            &[data-signout='true'] {
+                color: $error !important;
+                [class~='ant-spin'] {
+                    color: $white;
+                }
+            }
+        }
+    }
+}

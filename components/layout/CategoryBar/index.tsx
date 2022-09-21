@@ -10,9 +10,9 @@ import SearchInput from '@components/common/SearchInput';
 import styles from './index.module.scss';
 
 export interface ICategoryBarProps {
-    categories: CatType[];
     baseUrl?: string;
     scrolled: string;
+    categories: CatType[];
 }
 
 const { useBreakpoint } = Grid;
