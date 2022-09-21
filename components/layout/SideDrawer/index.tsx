@@ -1,13 +1,12 @@
 import React, { FC, useState, ReactNode, Key, Fragment } from 'react';
 import { Menu, Drawer, Divider, Row, Col, Button, Space } from 'antd';
-
+import { useTranslation } from 'react-i18next';
+import Link from 'next/link';
 import { DISCOVER_PATH, HOME_PATH } from '@constants/paths';
 import sectionList from '@constants/sidenav-section';
 import { MenuOutlined } from '@ant-design/icons';
 import { BulbFilled, HomeFilled } from '@ant-design/icons';
 import { BsFillSunFill, BsMoonStarsFill } from 'react-icons/bs';
-
-import Link from 'next/link';
 import useDarkLight from '@hooks/useDarkLight';
 import Logo from '@components/common/Logo';
 import UserAvatar from '@components/common/Profile/UserAvatar';
@@ -23,6 +22,7 @@ interface ISideDrawerProps {
 const defaultOpen = [sectionList[0].key];
 
 const SideDrawer: FC<ISideDrawerProps> = ({ open, setOpen }) => {
+    const { t } = useTranslation();
     const { value, toggle } = useDarkLight();
 
     const [openSections, setOpenSections] = useState(defaultOpen);
@@ -41,15 +41,15 @@ const SideDrawer: FC<ISideDrawerProps> = ({ open, setOpen }) => {
         return sectionList.map((section) => (
             <Fragment key={section.key}>
                 <Divider className={styles.sidedrawer__menu_divider} />
-                <SubMenu key={section.key} title={section.title} className={styles.sidedrawer__menu__sub}>
+                <SubMenu key={section.key} title={t(section.title)} className={styles.sidedrawer__menu__sub}>
                     {section.sub.map((item) => (
                         <Item
-                            className={styles.sidedrawer__menu__sub__items}
                             key={item.text}
                             icon={item.icon}
                             onClick={handleCloseDrawer}
+                            className={styles.sidedrawer__menu__sub__items}
                         >
-                            <Link href={item.href}>{item.text}</Link>
+                            <Link href={item.href}>{t(item.text)}</Link>
                         </Item>
                     ))}
                 </SubMenu>
@@ -77,8 +77,8 @@ const SideDrawer: FC<ISideDrawerProps> = ({ open, setOpen }) => {
                             <Button
                                 type="text"
                                 size="large"
-                                className="hamburger-menu"
                                 icon={<MenuOutlined />}
+                                className="hamburger-menu"
                                 onClick={handleCloseDrawer}
                             />
                         </Space>
@@ -114,7 +114,7 @@ const SideDrawer: FC<ISideDrawerProps> = ({ open, setOpen }) => {
                     className={styles.sidedrawer__menu__items}
                     icon={<HomeFilled />}
                 >
-                    <Link href={HOME_PATH}>Home</Link>
+                    <Link href={HOME_PATH}>{t('home')}</Link>
                 </Item>
                 <Item
                     title={null}
@@ -122,7 +122,7 @@ const SideDrawer: FC<ISideDrawerProps> = ({ open, setOpen }) => {
                     className={styles.sidedrawer__menu__items}
                     icon={<BulbFilled />}
                 >
-                    <Link href={DISCOVER_PATH}>Discover</Link>
+                    <Link href={DISCOVER_PATH}>{t('discovery')}</Link>
                 </Item>
 
                 {renderSections()}

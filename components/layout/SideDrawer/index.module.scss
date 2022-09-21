@@ -60,6 +60,10 @@
             align-items: center;
             padding-left: 1rem !important;
             border-radius: $border-radius;
+
+            a {
+                text-transform: capitalize;
+            }
         }
     }
 
@@ -96,6 +100,7 @@
             }
 
             [class~='hamburger-menu'] {
+                color: $dark;
                 svg {
                     rect {
                         fill: $dark;
@@ -185,6 +190,7 @@
             }
 
             [class~='hamburger-menu'] {
+                color: $white;
                 svg {
                     rect {
                         fill: $white;

@@ -53,7 +53,7 @@
         }
 
         [class~='ant-btn'] {
-            padding: 1.5rem !important;
+            padding: $padding !important;
             display: flex;
             align-items: center;
 
@@ -95,6 +95,10 @@
     @include mediaXS {
         &__left {
             padding: $padding;
+
+            [class~='ant-btn'] {
+                margin-top: 0 !important;
+            }
         }
     }
 }

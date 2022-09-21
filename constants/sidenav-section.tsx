@@ -13,32 +13,32 @@ interface ISideNavSection {
 export const GENERAL_SECTIONS: ISideNavSection[] = [
     {
         icon: <VideoCameraFilled />,
-        text: 'Music Video',
+        text: 'musicVideos',
         href: '/videos?category=music-videos',
     },
     {
         icon: <RiArticleLine />,
-        text: 'Article',
+        text: 'article',
         href: '/articles',
     },
     {
         icon: <FaMicrophoneAlt />,
-        text: 'Interview',
+        text: 'interview',
         href: '/videos?category=interviews',
     },
     {
         icon: <FaPodcast />,
-        text: 'Podcast',
+        text: 'podcast',
         href: '/videos?category=podcast',
     },
     {
         icon: <RiFocusLine />,
-        text: 'LeFocus',
+        text: 'lefocus',
         href: '/videos?category=lefocus',
     },
     {
         icon: <BsFillSpeakerFill />,
-        text: 'FlexNBeatz',
+        text: 'flexBeatz',
         href: '/videos?category=flex&beatz',
     },
 ];
@@ -46,32 +46,32 @@ export const GENERAL_SECTIONS: ISideNavSection[] = [
 export const FAVORITE_SECTIONS: ISideNavSection[] = [
     {
         icon: <RiPlayList2Fill />,
-        text: 'Playlists',
+        text: 'playlist',
         href: '/user/playlist',
     },
     {
         icon: <RiBookmark3Fill />,
-        text: 'Bookmarks',
+        text: 'bookmarks',
         href: '/user/article?category=bookmarked',
     },
     {
         icon: <LikeFilled />,
-        text: 'Liked Articles',
+        text: 'likedArticle',
         href: '/user/article?category=liked',
     },
     {
         icon: <ShareAltOutlined />,
-        text: 'Shared Videos',
+        text: 'sharedVideo',
         href: '/user/videos?category=shared',
     },
     {
         icon: <StarFilled />,
-        text: 'Rated Videos',
+        text: 'ratedVideo',
         href: '/user/videos?category=shared',
     },
 ];
 
 export default [
-    { key: 'general', title: 'GENERAL SECTION', sub: GENERAL_SECTIONS },
-    { key: 'favorite', title: 'FAVORITE SECTION', sub: FAVORITE_SECTIONS },
+    { key: 'general', title: 'generalSection', sub: GENERAL_SECTIONS },
+    { key: 'favorite', title: 'favoriteSection', sub: FAVORITE_SECTIONS },
 ];

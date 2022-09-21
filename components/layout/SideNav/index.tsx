@@ -1,14 +1,15 @@
 import React, { FC, useState, ReactNode, Key, Fragment } from 'react';
 import { Divider, Layout, Menu, Grid } from 'antd';
+import { useTranslation } from 'react-i18next';
 import getSideNavWidth from '@helpers/getSideNavWidth';
-
-import { DISCOVER_PATH, HOME_PATH } from '@constants/paths';
-import styles from './index.module.scss';
 import Logo from '@components/common/Logo';
 import sectionList from '@constants/sidenav-section';
 import { BulbFilled, HomeFilled } from '@ant-design/icons';
 import Link from 'next/link';
 import useDarkLight from '@hooks/useDarkLight';
+import { DISCOVER_PATH, HOME_PATH } from '@constants/paths';
+
+import styles from './index.module.scss';
 
 const { Sider } = Layout;
 const { Item, SubMenu } = Menu;
@@ -23,8 +24,9 @@ interface ISideNavProps {
 const defaultOpen = [sectionList[0].key];
 
 const SideNav: FC<ISideNavProps> = ({ open, collapsed, setCollapsed }) => {
-    const { value } = useDarkLight();
+    const { t } = useTranslation();
     const { lg } = useBreakpoint();
+    const { value } = useDarkLight();
 
     const [openSections, setOpenSections] = useState(defaultOpen);
 
@@ -50,16 +52,16 @@ const SideNav: FC<ISideNavProps> = ({ open, collapsed, setCollapsed }) => {
                 {collapsed ? (
                     section.sub.map((item) => (
                         <Item title={null} className={styles.sidenav__menu__items} key={item.text} icon={item.icon}>
-                            {item.text}
+                            {t(item.text)}
                         </Item>
                     ))
                 ) : (
                     <Fragment key={section.key}>
                         <Divider className={styles.sidenav__menu_divider} />
-                        <SubMenu key={section.key} title={section.title} className={styles.sidenav__menu__sub}>
+                        <SubMenu key={section.key} title={t(section.title)} className={styles.sidenav__menu__sub}>
                             {section.sub.map((item) => (
                                 <Item className={styles.sidenav__menu__items} key={item.text} icon={item.icon}>
-                                    <Link href={item.href}>{item.text}</Link>
+                                    <Link href={item.href}>{t(item.text)}</Link>
                                 </Item>
                             ))}
                         </SubMenu>
@@ -72,7 +74,7 @@ const SideNav: FC<ISideNavProps> = ({ open, collapsed, setCollapsed }) => {
     const sideNavContent = (open: boolean): ReactNode => {
         return (
             open && (
-                <>
+                <Fragment>
                     {lg && <Logo canRedirect className={styles.sidenav__logo} />}
                     {lg && (
                         <div className={styles.sidenav__divider}>
@@ -87,15 +89,15 @@ const SideNav: FC<ISideNavProps> = ({ open, collapsed, setCollapsed }) => {
                         className={styles.sidenav__menu}
                     >
                         <Item title={null} className={styles.sidenav__menu__items} icon={<HomeFilled />}>
-                            <Link href={HOME_PATH}>Home</Link>
+                            <Link href={HOME_PATH}>{t('home')}</Link>
                         </Item>
                         <Item title={null} className={styles.sidenav__menu__items} icon={<BulbFilled />}>
-                            <Link href={DISCOVER_PATH}>Discover</Link>
+                            <Link href={DISCOVER_PATH}>{t('discovery')}</Link>
                         </Item>
 
                         {renderSections(collapsed)}
                     </Menu>
-                </>
+                </Fragment>
             )
         );
     };
