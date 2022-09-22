@@ -33,5 +33,8 @@ module.exports = withPlugins(
         webpack(config) {
             return config;
         },
+        images: {
+            domains: ['res.cloudinary.com'],
+        },
     },
 );

@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { IRootState } from '@redux/reducers';
-import { getAvatarColor } from '@helpers/getAvatarColor';
+import { getBgColor } from '@helpers/getBgColor';
 import logoutAction from '@redux/auth/logout';
 import { useAppDispatch } from '@redux/store';
 import { HOME_PATH, SETTING_PATH } from '@constants/paths';
@@ -58,7 +58,7 @@ const UserProfileMenu: FC<IUserProfileMenuProps> = ({ avatar, email, phoneNumber
                         size={98}
                         src={avatar}
                         icon={<UserOutlined />}
-                        style={{ backgroundColor: getAvatarColor(userName) }}
+                        style={{ backgroundColor: getBgColor(userName) }}
                     />
                 </Col>
                 <Col span={24} className="text-center my-3">
