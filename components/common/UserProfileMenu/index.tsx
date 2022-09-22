@@ -2,6 +2,7 @@ import React, { FC, useEffect } from 'react';
 import { Avatar, Col, Menu, Row, Typography, Spin, notification } from 'antd';
 import { UserOutlined, SettingOutlined, LogoutOutlined, LoadingOutlined } from '@ant-design/icons';
 import Link from 'next/link';
+import useDarkLight from '@hooks/useDarkLight';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { IRootState } from '@redux/reducers';
@@ -11,7 +12,6 @@ import { useAppDispatch } from '@redux/store';
 import { HOME_PATH, SETTING_PATH } from '@constants/paths';
 
 import styles from './index.module.scss';
-import useDarkLight from '@hooks/useDarkLight';
 
 const { Item } = Menu;
 const { Text } = Typography;

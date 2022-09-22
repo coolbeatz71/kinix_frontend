@@ -128,7 +128,7 @@ const Header: FC<IHeaderProps> = ({
                                 </Space>
                             </Col>
 
-                            <Col span={12} className="d-flex justify-content-center">
+                            <Col span={12} className="d-flex justify-content-center pe-0">
                                 {!currentUser?.isLoggedIn && <UserAuthSection />}
 
                                 {currentUser?.isLoggedIn && (

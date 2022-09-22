@@ -45,7 +45,7 @@ const UserProfileDropDown: FC<IUserProfileDropDownProps> = ({
                 }
             >
                 <Button
-                    type="text"
+                    type="link"
                     onClick={() => setOpenDropdown(!openDropdown)}
                     icon={
                         <Avatar
