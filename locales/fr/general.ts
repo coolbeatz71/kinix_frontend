@@ -23,4 +23,8 @@ export const general = {
     confirmationSent: 'Confirmation Envoyée',
     confirmationEmailSent: 'Un code de vérification a été envoyé à votre e-mail.',
     enterVerificationCode: `Veuillez saisir le code de vérification ci-dessous pour vérifier votre adresse e-mail. Si vous ne voyez pas l'e-mail de "${APP_NAME}" dans votre boîte de réception, veuillez de vérifier votre dossier spam.`,
+    adsLegend: 'Telechargement',
+    adsTitle: 'Application disponible en téléchargement sur IOS et Android',
+    adsBody:
+        "Téléchargez gratuitement notre application officielle pour vous tenir au courant des dernières nouvelles et profiter d'une programmation de divertissement, de musique, d'actualités, de mode et d'affaires publiques de qualité.",
 };

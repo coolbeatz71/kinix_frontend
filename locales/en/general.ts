@@ -22,4 +22,8 @@ export const general = {
     confirmationSent: 'Confirmation Sent',
     confirmationEmailSent: 'A verification code was sent to your email.',
     enterVerificationCode: `Please enter the verification code below to verify your email. If you cannot see the email from "${APP_NAME}" in your inbox, please check your spam folder.`,
+    adsLegend: 'Download',
+    adsTitle: 'Application available for download on IOS and Android',
+    adsBody:
+        'Download our official application for free to get up to date with the latest news and enjoy quality entertainment, music, news, fashion and public affairs programming',
 };

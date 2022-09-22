@@ -4,6 +4,7 @@
 
 .adsCarousel {
     height: 38rem;
+    background: $bg-warning-fade;
     border-radius: $border-radius;
     box-shadow: 0px 8px 12px rgb(0 0 0 / 20%);
 
@@ -21,11 +22,11 @@
         justify-content: space-between;
         align-items: flex-start;
 
-        [data-tag='true'] {
-            border-color: $light;
-            background: transparent;
+        [data-legend='true'] {
             color: $white;
             margin-bottom: 1rem;
+            border-color: $light;
+            background: transparent;
         }
 
         [data-title='true'] {
@@ -46,26 +47,25 @@
             margin-bottom: 2rem;
         }
 
-        [data-desc='true'] {
+        [data-body='true'] {
             text-align: start;
             color: $white;
-            font-size: 15px;
+            font-size: 13pt;
         }
 
         [class~='ant-btn'] {
-            padding: $padding !important;
             display: flex;
             align-items: center;
+            padding: $padding !important;
 
             &:hover,
             &:active,
             &:focus {
-                border-color: $white;
                 color: $white;
+                border-color: $white;
             }
 
             span {
-                font-size: 16px;
                 text-transform: uppercase;
             }
         }

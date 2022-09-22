@@ -2,16 +2,16 @@ import React, { FC, useEffect } from 'react';
 import { Avatar, Col, Menu, Row, Typography, Spin, notification } from 'antd';
 import { UserOutlined, SettingOutlined, LogoutOutlined, LoadingOutlined } from '@ant-design/icons';
 import Link from 'next/link';
+import useDarkLight from '@hooks/useDarkLight';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { IRootState } from '@redux/reducers';
-import { getAvatarColor } from '@helpers/getAvatarColor';
+import { getBgColor } from '@helpers/getBgColor';
 import logoutAction from '@redux/auth/logout';
 import { useAppDispatch } from '@redux/store';
 import { HOME_PATH, SETTING_PATH } from '@constants/paths';
 
 import styles from './index.module.scss';
-import useDarkLight from '@hooks/useDarkLight';
 
 const { Item } = Menu;
 const { Text } = Typography;
@@ -58,7 +58,7 @@ const UserProfileMenu: FC<IUserProfileMenuProps> = ({ avatar, email, phoneNumber
                         size={98}
                         src={avatar}
                         icon={<UserOutlined />}
-                        style={{ backgroundColor: getAvatarColor(userName) }}
+                        style={{ backgroundColor: getBgColor(userName) }}
                     />
                 </Col>
                 <Col span={24} className="text-center my-3">

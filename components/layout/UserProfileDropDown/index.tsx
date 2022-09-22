@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { BellFilled, UserOutlined } from '@ant-design/icons';
-import { getAvatarColor } from '@helpers/getAvatarColor';
+import { getBgColor } from '@helpers/getBgColor';
 import { Space, Button, Badge, Dropdown, Avatar } from 'antd';
 import UserProfileMenu from '@components/common/UserProfileMenu';
 import { ICurrentUser } from '@interfaces/user';
@@ -45,7 +45,7 @@ const UserProfileDropDown: FC<IUserProfileDropDownProps> = ({
                 }
             >
                 <Button
-                    type="text"
+                    type="link"
                     onClick={() => setOpenDropdown(!openDropdown)}
                     icon={
                         <Avatar
@@ -53,7 +53,7 @@ const UserProfileDropDown: FC<IUserProfileDropDownProps> = ({
                             icon={<UserOutlined />}
                             src={currentUser.image}
                             style={{
-                                backgroundColor: getAvatarColor(currentUser.userName),
+                                backgroundColor: getBgColor(currentUser.userName),
                             }}
                         />
                     }

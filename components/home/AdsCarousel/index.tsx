@@ -1,87 +1,57 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
+import { isEmpty } from 'lodash';
 import Carousel from 'nuka-carousel';
+import { getBgColor } from '@helpers/getBgColor';
+import { useSelector } from 'react-redux';
 import SliderContent from './SliderContent';
+import { IRootState } from '@redux/reducers';
+import { useTranslation } from 'react-i18next';
+import getAllAdsAction from '@redux/ads/getAll';
+import { useAppDispatch } from '@redux/store';
+import { IAdsData } from '@interfaces/api';
+import { IUnknownObject } from '@interfaces/app';
+import { PRIMARY } from '@constants/colors';
 
 import styles from './index.module.scss';
 
-export const sliders = [
-    {
-        tag: 'Brand news',
-        title: 'ALBUM "Mother of Brooklyn" on stores now',
-        subtitle: 'Release Date 12th january 2022',
-        desc: `Lorem ipsum dolor, sit amet consectetur adipisicing elit. Consequatur rerum optio
-        consectetur expedita, cumque, tenetur doloribus velit recusandae non quis aspernatur.
-        Facilis eligendi assumenda incidunt minus laudantium odio, iste veniam.`,
-        hasButton: true,
-        link: 'https://www.google.com',
-        bgColor: '#6C4586',
-        imgSrc: '',
-    },
-    {
-        tag: 'Brand news',
-        title: 'ALBUM "Mother of Brooklyn" on stores now',
-        subtitle: 'Release Date 12th january 2022',
-        desc: `Lorem ipsum dolor, sit amet consectetur adipisicing elit. Consequatur rerum optio
-        consectetur expedita, cumque, tenetur doloribus velit recusandae non quis aspernatur.
-        Facilis eligendi assumenda incidunt minus laudantium odio, iste veniam.`,
-        hasButton: true,
-        link: 'https://www.google.com',
-        bgColor: '#a01a58',
-        imgSrc: '',
-    },
-    {
-        tag: 'Brand news',
-        title: 'ALBUM "Mother of Brooklyn" on stores now',
-        subtitle: 'Release Date 12th january 2022',
-        desc: `Lorem ipsum dolor, sit amet consectetur adipisicing elit. Consequatur rerum optio
-        consectetur expedita, cumque, tenetur doloribus velit recusandae non quis aspernatur.
-        Facilis eligendi assumenda incidunt minus laudantium odio, iste veniam.`,
-        hasButton: true,
-        link: 'https://www.google.com',
-        bgColor: '#0582ca',
-        imgSrc: '',
-    },
-    {
-        tag: 'Brand news',
-        title: 'ALBUM "Mother of Brooklyn" on stores now',
-        subtitle: 'Release Date 12th january 2022',
-        desc: `Lorem ipsum dolor, sit amet consectetur adipisicing elit. Consequatur rerum optio
-        consectetur expedita, cumque, tenetur doloribus velit recusandae non quis aspernatur.
-        Facilis eligendi assumenda incidunt minus laudantium odio, iste veniam.`,
-        hasButton: true,
-        link: 'https://www.google.com',
-        bgColor: '#0B5A49',
-        imgSrc: '',
-    },
-    {
-        tag: 'Brand news',
-        title: 'ALBUM "Mother of Brooklyn" on stores now',
-        subtitle: 'Release Date 12th january 2022',
-        desc: `Lorem ipsum dolor, sit amet consectetur adipisicing elit. Consequatur rerum optio
-        consectetur expedita, cumque, tenetur doloribus velit recusandae non quis aspernatur.
-        Facilis eligendi assumenda incidunt minus laudantium odio, iste veniam.`,
-        hasButton: true,
-        link: 'https://www.google.com',
-        bgColor: '#023047',
-        imgSrc: '',
-    },
-];
-
 const AdsCarousel: FC = () => {
+    const { t } = useTranslation();
+    const dispatch = useAppDispatch();
+    const { data } = useSelector(({ ads: { all } }: IRootState) => all);
+
+    useEffect(() => {
+        dispatch(getAllAdsAction());
+    }, [dispatch]);
+
+    const defaultSlide: IAdsData[] | IUnknownObject[] = [
+        {
+            isAppAds: true,
+            bgColor: PRIMARY,
+            body: t('adsBody'),
+            image: '/phones.png',
+            title: t('adsTitle'),
+            legend: t('adsLegend'),
+            redirectUrl: 'https://www.google.com',
+            iosLink: 'https://google.com',
+            androidLink: 'https://google.com',
+        },
+    ];
+
     return (
         <div className={styles.adsCarousel}>
-            <Carousel wrapAround withoutControls>
-                {sliders.map((slider, i) => (
+            <Carousel wrapAround withoutControls autoplay autoplayInterval={25000} transitionMode="fade">
+                {[...defaultSlide, ...data].map((slider) => (
                     <div key={slider.title}>
                         <SliderContent
-                            hasButton
-                            tag={slider.tag}
-                            link={slider.link}
-                            desc={slider.desc}
+                            body={slider.body}
+                            image={slider.image}
                             title={slider.title}
-                            bgColor={slider.bgColor}
-                            subtitle={slider.subtitle}
-                            imgSrc={`https://picsum.photos/1024/1024?random=${i + 1}`}
+                            legend={slider.legend}
+                            subTitle={slider.subTitle}
+                            isAppAds={slider.isAppAds}
+                            redirectUrl={slider.redirectUrl}
+                            hasButton={!isEmpty(slider.redirectUrl)}
+                            bgColor={slider.bgColor || getBgColor(slider.body)}
                         />
                     </div>
                 ))}
