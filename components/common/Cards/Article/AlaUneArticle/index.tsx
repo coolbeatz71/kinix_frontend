@@ -93,12 +93,12 @@ const AlaUneArticleCard: FC<IAlaUeArticleProps> = ({ article, priority = EnumAla
                             <div className={styles.alaUneArticleCard__content}>
                                 <Title level={5} data-text="title">
                                     {truncate(article?.title, {
-                                        length: 60,
+                                        length: 90,
                                     })}
                                 </Title>
                                 <Paragraph data-text="description">
                                     {truncate(article?.summary, {
-                                        length: 102,
+                                        length: 100,
                                     })}
                                 </Paragraph>
 
