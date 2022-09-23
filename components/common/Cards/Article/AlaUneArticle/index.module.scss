@@ -5,6 +5,14 @@
 .alaUneArticleCard {
     cursor: pointer;
 
+    [data-text='header'] {
+        font-size: 12px;
+    }
+
+    [data-text='title'] {
+        font-family: Poppins;
+    }
+
     &__overlay {
         position: relative;
         left: 0;
@@ -46,17 +54,15 @@
         }
     }
 
-    [data-text='header'] {
-        font-size: 12px;
-    }
-
     [data-priority='FIRST'] {
+        z-index: 0;
         height: 33rem;
         background: $bg-primary-dark;
-        transition: background ease-in-out 0.2s;
 
         &:hover {
-            background: $bg-primary-dark90;
+            [class~='ant-card-body'] {
+                background: $bg-primary-dark90;
+            }
             img {
                 transform: scale(1.2);
             }
@@ -65,6 +71,10 @@
         [class~='ant-card-body'] {
             padding: 0;
             height: 100%;
+            border-radius: $border-radius;
+
+            background: $bg-primary-dark;
+            transition: background ease-in-out 0.2s;
         }
 
         .alaUneArticleCard__content {

@@ -14,7 +14,7 @@ const ArticleContainer: FC = () => {
                 <MainArticle />
             </div>
             <div className="mt-5">
-                <AlaUneArticleSection fetched error={null} articles={[]} canViewAll={false} />
+                <AlaUneArticleSection canViewAll={false} />
             </div>
 
             <div className="mt-5">

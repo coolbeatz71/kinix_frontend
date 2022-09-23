@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import dayjs from 'dayjs';
 import en from 'dayjs/locale/en';
 import fr from 'dayjs/locale/fr';
+import relativeTime from 'dayjs/plugin/relativeTime';
+
 import Wrapper from 'redux/store';
 import { AppProps } from 'next/app';
 import NProgress from 'nprogress';
@@ -50,6 +52,7 @@ const MyApp = ({ Component, pageProps }: AppPropsWithError): JSX.Element => {
     };
 
     useEffect(() => {
+        dayjs.extend(relativeTime);
         initLanguage(userLang as string);
     }, [userLang]);
 

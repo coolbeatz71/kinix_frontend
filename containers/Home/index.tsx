@@ -19,7 +19,7 @@ const HomeContainer: FC = () => {
             </div>
 
             <div className="mt-5">
-                <AlaUneArticleSection fetched error={null} articles={[]} />
+                <AlaUneArticleSection />
             </div>
 
             <div className="mt-5">

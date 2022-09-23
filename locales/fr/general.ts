@@ -27,4 +27,5 @@ export const general = {
     adsTitle: 'Application disponible en téléchargement sur IOS et Android',
     adsBody:
         "Téléchargez gratuitement notre application officielle pour vous tenir au courant des dernières nouvelles et profiter d'une programmation de divertissement, de musique, d'actualités, de mode et d'affaires publiques de qualité.",
+    byRedaction: 'Par la rédaction',
 };

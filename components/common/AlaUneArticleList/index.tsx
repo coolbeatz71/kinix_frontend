@@ -1,33 +1,29 @@
 import React, { FC } from 'react';
 import { Col, Row } from 'antd';
-import { IUnknownObject } from 'interfaces/app';
 import AlaUneArticleCard from '../Cards/Article/AlaUneArticle';
 import { EnumAlaUnePriority } from '@constants/alaune-article';
 import TrendingArticleCard from '../Cards/Article/TrendingArticle';
+import { IArticle } from '@interfaces/articles';
 
 interface IAlaUneArticleListProps {
-    fetched: boolean;
-    error: string | null;
-    articles: IUnknownObject[];
+    articles: IArticle[];
 }
 
-const AlaUneArticleList: FC<IAlaUneArticleListProps> = () => {
+const AlaUneArticleList: FC<IAlaUneArticleListProps> = ({ articles }) => {
     return (
-        <>
-            <Row gutter={[16, 48]}>
-                <Col xs={24} sm={24} md={8}>
-                    <AlaUneArticleCard size={1} priority={EnumAlaUnePriority.FIRST} />
-                </Col>
-                <Col xs={24} sm={24} md={8}>
-                    <AlaUneArticleCard size={2} priority={EnumAlaUnePriority.SECOND} />
-                </Col>
-                <Col xs={24} sm={24} md={8}>
-                    <TrendingArticleCard />
-                    <TrendingArticleCard />
-                    <TrendingArticleCard />
-                </Col>
-            </Row>
-        </>
+        <Row gutter={[16, 48]}>
+            <Col xs={24} sm={24} md={8}>
+                {articles[0] && <AlaUneArticleCard article={articles[0]} priority={EnumAlaUnePriority.FIRST} />}
+            </Col>
+            <Col xs={24} sm={24} md={8}>
+                {articles[1] && <AlaUneArticleCard article={articles[1]} priority={EnumAlaUnePriority.SECOND} />}
+            </Col>
+            <Col xs={24} sm={24} md={8}>
+                <TrendingArticleCard />
+                <TrendingArticleCard />
+                <TrendingArticleCard />
+            </Col>
+        </Row>
     );
 };
 
