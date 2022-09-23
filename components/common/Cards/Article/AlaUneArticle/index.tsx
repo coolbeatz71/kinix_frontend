@@ -23,9 +23,10 @@ export interface IAlaUeArticleProps {
 const AlaUneArticleCard: FC<IAlaUeArticleProps> = ({ article, priority = EnumAlaUnePriority.FIRST }) => {
     const { t } = useTranslation();
     const { value } = useDarkLight();
+    const link = `${ALL_ARTICLE_PATH}/${article?.slug}`;
 
     return (
-        <Link href={`${ALL_ARTICLE_PATH}/${article?.slug}`} passHref>
+        <Link href={link} passHref>
             <div data-theme={value} className={styles.alaUneArticleCard}>
                 <Card
                     hoverable
@@ -52,11 +53,7 @@ const AlaUneArticleCard: FC<IAlaUeArticleProps> = ({ article, priority = EnumAla
                             </div>
                             <div className={styles.alaUneArticleCard__content}>
                                 <div className={styles.alaUneArticleCard__content__header}>
-                                    <Text data-text="header">
-                                        {truncate(t('byRedaction'), {
-                                            length: 90,
-                                        })}
-                                    </Text>
+                                    <Text data-text="header">{t('byRedaction')}</Text>
                                     <Text data-text="header" className="d-flex align-items-center">
                                         <ClockCircleOutlined />
                                         &nbsp; {dayjs(article?.createdAt).fromNow()}
@@ -74,7 +71,11 @@ const AlaUneArticleCard: FC<IAlaUeArticleProps> = ({ article, priority = EnumAla
                                         })}
                                     </Paragraph>
 
-                                    <Button size="large">{t('readMore')}</Button>
+                                    <Button size="large">
+                                        <Link href={link} passHref>
+                                            {t('readMore')}
+                                        </Link>
+                                    </Button>
                                 </div>
                             </div>
                         </Fragment>
@@ -82,11 +83,7 @@ const AlaUneArticleCard: FC<IAlaUeArticleProps> = ({ article, priority = EnumAla
                         <Fragment>
                             <div className={styles.alaUneArticleCard__header}>
                                 <div className="d-flex justify-content-between">
-                                    <Text data-text="header">
-                                        {truncate(t('byRedaction'), {
-                                            length: 90,
-                                        })}
-                                    </Text>
+                                    <Text data-text="header">{t('byRedaction')}</Text>
                                     <Text data-text="header" className="d-flex align-items-center">
                                         <ClockCircleOutlined />
                                         &nbsp; {dayjs(article?.createdAt).fromNow()}
@@ -106,7 +103,9 @@ const AlaUneArticleCard: FC<IAlaUeArticleProps> = ({ article, priority = EnumAla
                                 </Paragraph>
 
                                 <Button size="large" ghost>
-                                    {t('readMore')}
+                                    <Link href={link} passHref>
+                                        {t('readMore')}
+                                    </Link>
                                 </Button>
                             </div>
                         </Fragment>

@@ -19,9 +19,9 @@ const AlaUneArticleList: FC<IAlaUneArticleListProps> = ({ articles }) => {
                 {articles[1] && <AlaUneArticleCard article={articles[1]} priority={EnumAlaUnePriority.SECOND} />}
             </Col>
             <Col xs={24} sm={24} md={8}>
-                <TrendingArticleCard />
-                <TrendingArticleCard />
-                <TrendingArticleCard />
+                {articles.slice(2).map((article) => (
+                    <TrendingArticleCard key={article.slug} article={article} />
+                ))}
             </Col>
         </Row>
     );

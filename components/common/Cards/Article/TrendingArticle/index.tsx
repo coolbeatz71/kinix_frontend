@@ -1,56 +1,58 @@
 import React, { FC } from 'react';
-import useDarkLight from '@hooks/useDarkLight';
+import dayjs from 'dayjs';
+import { truncate } from 'lodash';
 import { Card, Typography } from 'antd';
+import { useTranslation } from 'react-i18next';
+import useDarkLight from '@hooks/useDarkLight';
+import { IArticle } from '@interfaces/articles';
 import { ClockCircleOutlined } from '@ant-design/icons';
 
 import styles from './index.module.scss';
-import { truncate } from 'lodash';
+import Link from 'next/link';
+import { ALL_ARTICLE_PATH } from '@constants/paths';
 
 const { Title, Paragraph, Text } = Typography;
 
 export interface ITrendingArticleProps {
-    size?: number;
+    article: IArticle;
 }
 
-const title = `"Un artiste est-il obligé d'avoir une direction artistique ?" - La Récré feat Yasmine La
-D.A`;
-const description = `Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellat ullam sequi excepturi
-a tempora enim magnam nesciunt suscipit. Ratione unde quis magni, porro cupiditate
-molestiae itaque suscipit maiores aliquid ex!`;
-
-const TrendingArticleCard: FC<ITrendingArticleProps> = () => {
+const TrendingArticleCard: FC<ITrendingArticleProps> = ({ article }) => {
+    const { t } = useTranslation();
     const { value } = useDarkLight();
 
+    const link = `${ALL_ARTICLE_PATH}/${article?.slug}`;
+
     return (
-        <div data-theme={value} className={styles.trendingArticleCard}>
-            <Card bordered={false} hoverable>
-                <div className={styles.trendingArticleCard__header}>
-                    <div className="d-flex justify-content-between">
-                        <Text data-text="header">
-                            {truncate('By Redaction', {
-                                length: 90,
-                            })}
-                        </Text>
-                        <Text data-text="header" className="d-flex align-items-center">
-                            <ClockCircleOutlined />
-                            &nbsp; 1 hour ago
-                        </Text>
+        <Link passHref href={link}>
+            <div data-theme={value} className={styles.trendingArticleCard}>
+                <Card bordered={false} hoverable>
+                    <div className={styles.trendingArticleCard__header}>
+                        <div className="d-flex justify-content-between">
+                            <Text data-text="header">{t('byRedaction')}</Text>
+                            <Text data-text="header" className="d-flex align-items-center">
+                                <ClockCircleOutlined />
+                                &nbsp; {dayjs(article.createdAt).fromNow()}
+                            </Text>
+                        </div>
                     </div>
-                </div>
-                <div className={styles.trendingArticleCard__content}>
-                    <Title level={5} data-text="title">
-                        {truncate(title, {
-                            length: 50,
-                        })}
-                    </Title>
-                    <Paragraph data-text="description">
-                        {truncate(description, {
-                            length: 102,
-                        })}
-                    </Paragraph>
-                </div>
-            </Card>
-        </div>
+                    <div className={styles.trendingArticleCard__content}>
+                        <Title level={5} data-text="title">
+                            <Link passHref href={link}>
+                                {truncate(article?.title, {
+                                    length: 48,
+                                })}
+                            </Link>
+                        </Title>
+                        <Paragraph data-text="description">
+                            {truncate(article?.summary, {
+                                length: 102,
+                            })}
+                        </Paragraph>
+                    </div>
+                </Card>
+            </div>
+        </Link>
     );
 };
 
