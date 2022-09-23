@@ -26,4 +26,5 @@ export const general = {
     adsTitle: 'Application available for download on IOS and Android',
     adsBody:
         'Download our official application for free to get up to date with the latest news and enjoy quality entertainment, music, news, fashion and public affairs programming',
+    byRedaction: 'By redaction',
 };

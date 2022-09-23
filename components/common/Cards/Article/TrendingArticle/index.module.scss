@@ -25,6 +25,13 @@
         @include cardContentPadding;
         padding-top: 0.6rem;
 
+        [data-text='title'] {
+            font-family: Poppins;
+            a {
+                color: unset;
+            }
+        }
+
         [data-text='description'] {
             margin-bottom: 0;
         }
