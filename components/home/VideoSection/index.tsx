@@ -1,40 +1,37 @@
 import React, { FC, ReactElement } from 'react';
 import SectionTitle from '@components/common/SectionTitle';
-import { IUnknownObject } from 'interfaces/app';
 import VideoList from '@components/common/VideoList';
 import useDarkLight from '@hooks/useDarkLight';
+import ExclusiveSection from '../ExclusiveSection';
+import { IVideo } from '@interfaces/videos';
 
 import styles from './index.module.scss';
-import ExclusiveSection from '../ExclusiveSection';
 
 interface IHomeVideoSectionProps {
     title: string;
-    icon: ReactElement;
     fetched: boolean;
-    error: string | null;
-    videos: IUnknownObject[];
+    icon: ReactElement;
     myVideos?: boolean;
     linkHasMore: string;
     hasExclusive?: boolean;
+    videos: IVideo[];
     exclusive?: {
         link: string;
         desc: string;
         title: string;
         imgSrc: string;
-        videos: IUnknownObject[];
     };
 }
 
 const HomeVideoSection: FC<IHomeVideoSectionProps> = ({
-    title,
     icon,
-    linkHasMore,
-    fetched,
-    error,
+    title,
     videos,
+    fetched,
     myVideos,
-    hasExclusive = false,
     exclusive,
+    linkHasMore,
+    hasExclusive = false,
 }) => {
     const { value } = useDarkLight();
 
@@ -46,22 +43,16 @@ const HomeVideoSection: FC<IHomeVideoSectionProps> = ({
                 <div className="mb-5">
                     <ExclusiveSection
                         tag="exclusive"
+                        videos={videos}
                         desc={exclusive.desc}
                         link={exclusive.link}
                         title={exclusive.title}
                         imgSrc={exclusive.imgSrc}
-                        videos={exclusive.videos}
                     />
                 </div>
             )}
 
-            <VideoList
-                fetched={fetched}
-                error={error}
-                videos={videos}
-                myVideos={myVideos}
-                hasExclusive={hasExclusive}
-            />
+            <VideoList fetched={fetched} videos={videos} myVideos={myVideos} hasExclusive={hasExclusive} />
         </div>
     );
 };

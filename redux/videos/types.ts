@@ -1,9 +1,9 @@
-import { BasicInitialStateList, IBasicInitialStateList } from 'constants/redux';
+import { BasicInitialState, IBasicInitialState } from 'constants/redux';
 
 export type IVideosState = {
-    feed: IBasicInitialStateList;
+    feed: IBasicInitialState;
 };
 
 export const videosInitialState: IVideosState = {
-    feed: BasicInitialStateList,
+    feed: BasicInitialState,
 };

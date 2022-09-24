@@ -28,4 +28,7 @@ export const general = {
     adsBody:
         "Téléchargez gratuitement notre application officielle pour vous tenir au courant des dernières nouvelles et profiter d'une programmation de divertissement, de musique, d'actualités, de mode et d'affaires publiques de qualité.",
     byRedaction: 'Par la rédaction',
+    serverErrorTitle: "Désolé, quelque chose s'est mal passé",
+    serverErrorDesc: "Le serveur a rencontré une erreur et n'a pas pu terminer la requête.",
+    refreshPageButton: 'Actualiser la page',
 };

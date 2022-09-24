@@ -27,4 +27,7 @@ export const general = {
     adsBody:
         'Download our official application for free to get up to date with the latest news and enjoy quality entertainment, music, news, fashion and public affairs programming',
     byRedaction: 'By redaction',
+    serverErrorTitle: 'Sorry, something went wrong',
+    serverErrorDesc: 'The server encountered an error and could not complete the request.',
+    refreshPageButton: 'Refresh the page',
 };

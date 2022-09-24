@@ -5,10 +5,9 @@ import { IUnknownObject } from 'interfaces/app';
 
 interface IVideoListProps {
     fetched: boolean;
-    error: string | null;
-    videos: IUnknownObject[];
     myVideos?: boolean;
     hasExclusive?: boolean;
+    videos: IUnknownObject[];
 }
 
 const VideoList: FC<IVideoListProps> = ({ hasExclusive = false }) => {
