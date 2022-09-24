@@ -178,7 +178,7 @@ const Header: FC<IHeaderProps> = ({
                                 },
                                 {
                                     id: 4,
-                                    title: 'FlexNBeatz',
+                                    title: 'FlexBeatz',
                                 },
                             ]}
                             scrolled={scrolled}

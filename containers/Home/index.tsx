@@ -48,7 +48,7 @@ const HomeContainer: FC = () => {
             <div className="mt-5">
                 <HomeVideoSection
                     fetched
-                    title="FlexNBeatz"
+                    title="FlexBeatz"
                     icon={<BsFillSpeakerFill />}
                     error={null}
                     videos={[]}
@@ -57,7 +57,7 @@ const HomeContainer: FC = () => {
                     exclusive={{
                         link: '/videos?',
                         desc: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste, ex sapiente dignissimos aspernatur ipsam voluptas quam omnis qui corporis ducimus. Qui aperiam earum necessitatibus placeat maiores obcaecati cupiditate quas animi.`,
-                        title: 'This week on FlexNBeatz',
+                        title: 'This week on FlexBeatz',
                         imgSrc: 'https://picsum.photos/1024/1024',
                         videos: [],
                     }}
