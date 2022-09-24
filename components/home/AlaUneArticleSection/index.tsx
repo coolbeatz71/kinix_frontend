@@ -9,7 +9,7 @@ import useDarkLight from '@hooks/useDarkLight';
 import AlaUneArticleList from '@components/common/AlaUneArticleList';
 import { ALL_ARTICLE_PATH } from '@constants/paths';
 import getFeaturedArticlesAction from '@redux/articles/featured';
-import { IArticle } from '@interfaces/articles';
+import { IArticle } from '@interfaces/api';
 import AlaUneArticleListSkeleton from '@components/skeleton/AlaUneArticleList';
 
 import styles from './index.module.scss';

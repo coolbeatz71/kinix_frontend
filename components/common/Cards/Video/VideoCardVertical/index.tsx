@@ -1,26 +1,29 @@
-import React, { FC, useEffect, useState } from 'react';
-import { Card, Avatar, Button, Grid } from 'antd';
+import React, { FC, Fragment, useEffect, useState } from 'react';
+import { isBoolean, isEmpty, truncate } from 'lodash';
+import { Card, Button, Grid } from 'antd';
 import { PlayCircleTwoTone } from '@ant-design/icons';
-
-import styles from './index.module.scss';
 import useDarkLight from '@hooks/useDarkLight';
+import { IVideo } from '@interfaces/api';
+import EnumRole from '@interfaces/role';
+import { WARNING } from '@constants/colors';
+import VideoAction from '@components/common/Actions/VideoAction';
 import VideoViewRating from '@components/common/Ratings/VideoViewRating';
 import VideoShareButton from '@components/common/Sharings/VideoShareButton';
-import VideoAction from '@components/common/Actions/VideoAction';
-import { WARNING } from '@constants/colors';
-import { isBoolean } from 'lodash';
+import getYoutubeVideoThumbnail from '@helpers/getYoutubeVideoThumbail';
+
+import styles from './index.module.scss';
 
 const { Meta } = Card;
 const { useBreakpoint } = Grid;
 
 export interface IVideoCardVerticalProps {
-    size: number;
+    video: IVideo;
     isExclusive?: boolean;
 }
 
-const VideoCardVertical: FC<IVideoCardVerticalProps> = ({ size, isExclusive = false }) => {
-    const { value } = useDarkLight();
+const VideoCardVertical: FC<IVideoCardVerticalProps> = ({ isExclusive = false, video }) => {
     const { lg } = useBreakpoint();
+    const { value } = useDarkLight();
 
     const [showOverLay, setShowOverLay] = useState<boolean>(false);
     const overLayStyles = showOverLay ? { opacity: 1 } : { opacity: 0 };
@@ -37,47 +40,57 @@ const VideoCardVertical: FC<IVideoCardVerticalProps> = ({ size, isExclusive = fa
     return (
         <div
             data-theme={value}
-            className={styles.videoCardVertical}
             onMouseEnter={handleShowOverlay}
             onMouseLeave={handleShowOverlay}
+            className={styles.videoCardVertical}
         >
             <Card
                 bordered={false}
                 hoverable={!isExclusive}
                 cover={
-                    <>
+                    <Fragment>
                         <div className="overlay" style={overLayStyles}>
                             <Button
-                                icon={<PlayCircleTwoTone twoToneColor={WARNING} />}
-                                shape="circle"
                                 type="text"
                                 size="large"
+                                shape="circle"
+                                icon={<PlayCircleTwoTone twoToneColor={WARNING} />}
                             />
                         </div>
-                        <img
-                            alt="example"
-                            src={`https://picsum.photos/1024/300?random=${size}`}
-                            style={{
-                                aspectRatio: '16 / 9',
-                                objectFit: 'cover',
-                            }}
-                        />
-                    </>
+                        {!isEmpty(video?.link) && (
+                            //TODO: should use next/image and fix CSS issue
+                            // eslint-disable-next-line @next/next/no-img-element
+                            <img
+                                alt={video?.slug}
+                                src={getYoutubeVideoThumbnail(video?.link)}
+                                style={{
+                                    objectFit: 'cover',
+                                    aspectRatio: '16 / 9',
+                                }}
+                            />
+                        )}
+                    </Fragment>
                 }
                 actions={
                     isExclusive
                         ? []
                         : [
-                              <VideoViewRating count={3} key="video-rating" />,
-                              <VideoShareButton count={1230} key="video-sharing" />,
-                              <VideoAction slug={''} key="video-action" />,
+                              <VideoViewRating count={video?.avgRate || 0} key="video-rating" />,
+                              <VideoShareButton count={Number(video?.sharesCount)} key="video-sharing" />,
+                              <VideoAction slug={video?.slug} key="video-action" />,
                           ]
                 }
             >
                 <Meta
-                    avatar={!isExclusive && <Avatar src="https://joeschmoe.io/api/v1/random" />}
-                    title="The Internet's Own Boy: The Story of Aaron Swartz | full movie (2014)"
-                    description={!isExclusive && 'moviemaniacsDE'}
+                    title={truncate(video?.title, {
+                        length: 100,
+                    })}
+                    description={
+                        !isExclusive &&
+                        ([EnumRole.ADMIN, EnumRole.SUPER_ADMIN].includes(video?.user?.role as EnumRole)
+                            ? "Kinshas'art"
+                            : video?.user?.userName)
+                    }
                 />
             </Card>
         </div>

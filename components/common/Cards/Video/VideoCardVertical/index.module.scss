@@ -59,6 +59,23 @@
         }
     }
 
+    [class~='ant-card-meta-title'] {
+        white-space: unset;
+        font-size: 14px;
+        height: 3rem;
+    }
+
+    [class~='ant-card-meta-description'] {
+        font-size: 13px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+
+    [class~='ant-card-actions'] {
+        background: unset;
+    }
+
     &[data-theme='light'] {
         [class~='ant-card'] {
             background: $light;
@@ -102,27 +119,5 @@
                 border-right: 1px solid $light10;
             }
         }
-    }
-
-    [class~='ant-card-meta-title'] {
-        white-space: unset;
-        font-size: 14px;
-        height: 3rem;
-    }
-
-    [class~='ant-card-meta-description'] {
-        font-size: 13px;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-    }
-
-    [class~='ant-avatar-circle'] {
-        width: 1.5rem;
-        height: 1.5rem;
-    }
-
-    [class~='ant-card-actions'] {
-        background: unset;
     }
 }

@@ -19,7 +19,7 @@ const VideoShareButton: FC<IVideoShareButtonProps> = ({ count }) => {
             onClick={() => console.log('clicked')}
             icon={<ShareAltOutlined />}
         >
-            &nbsp;{count}
+            &nbsp;{count > 0 ? count : ''}
         </Button>
     );
 };

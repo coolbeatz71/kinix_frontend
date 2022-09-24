@@ -4,10 +4,10 @@ import { useSelector } from 'react-redux';
 import { IRootState } from '@redux/reducers';
 import HomeIllustration from '@components/home/MainIllustration';
 import HomeVideoSection from '@components/home/VideoSection';
-import { BulbFilled, VideoCameraFilled } from '@ant-design/icons';
+import { RiFocusLine } from 'react-icons/ri';
+import { BulbFilled, VideoCameraFilled, FireFilled } from '@ant-design/icons';
 import { useAppDispatch } from '@redux/store';
 import { FaMicrophoneAlt, FaPodcast } from 'react-icons/fa';
-import { RiFocusLine, RiFireFill } from 'react-icons/ri';
 import { BsFillSpeakerFill } from 'react-icons/bs';
 import AlaUneArticleSection from '@components/home/AlaUneArticleSection';
 import AdsCarousel from '@components/home/AdsCarousel';
@@ -17,7 +17,7 @@ import getVideosFeedAction from '@redux/videos/feed';
 const HomeContainer: FC = () => {
     const dispatch = useAppDispatch();
     const { t } = useTranslation();
-    const { data: videos, fetched, error } = useSelector(({ videos: { feed } }: IRootState) => feed);
+    const { data: videos, error, loading } = useSelector(({ videos: { feed } }: IRootState) => feed);
 
     const loadVideoFeed = useCallback(() => {
         dispatch(getVideosFeedAction());
@@ -37,7 +37,7 @@ const HomeContainer: FC = () => {
             <div className="mt-5">
                 <AlaUneArticleSection />
             </div>
-            {!error ? (
+            {error ? (
                 <div className="mt-5">
                     <ServerError onRefresh={loadVideoFeed} />
                 </div>
@@ -45,7 +45,7 @@ const HomeContainer: FC = () => {
                 <Fragment>
                     <div className="mt-5">
                         <HomeVideoSection
-                            fetched={fetched}
+                            loading={loading}
                             icon={<BulbFilled />}
                             linkHasMore="/videos?"
                             title={t('discovery')}
@@ -55,9 +55,9 @@ const HomeContainer: FC = () => {
 
                     <div className="mt-5">
                         <HomeVideoSection
-                            fetched={fetched}
+                            loading={loading}
                             title={t('popular')}
-                            icon={<RiFireFill />}
+                            icon={<FireFilled />}
                             linkHasMore="/videos?"
                             videos={videos?.popular}
                         />
@@ -65,7 +65,7 @@ const HomeContainer: FC = () => {
 
                     <div className="mt-5">
                         <HomeVideoSection
-                            fetched={fetched}
+                            loading={loading}
                             linkHasMore="/videos?"
                             title={t('musicVideos')}
                             icon={<VideoCameraFilled />}
@@ -75,13 +75,13 @@ const HomeContainer: FC = () => {
 
                     <div className="mt-5">
                         <HomeVideoSection
-                            fetched={fetched}
+                            isExclusive
                             title="FlexBeatz"
-                            icon={<BsFillSpeakerFill />}
-                            videos={[]}
+                            loading={loading}
                             linkHasMore="/videos?"
-                            hasExclusive
-                            exclusive={{
+                            videos={videos?.flexBeatz}
+                            icon={<BsFillSpeakerFill />}
+                            sessionDetails={{
                                 link: '/videos?',
                                 desc: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste, ex sapiente dignissimos aspernatur ipsam voluptas quam omnis qui corporis ducimus. Qui aperiam earum necessitatibus placeat maiores obcaecati cupiditate quas animi.`,
                                 title: 'This week on FlexBeatz',
@@ -92,33 +92,40 @@ const HomeContainer: FC = () => {
 
                     <div className="mt-5">
                         <HomeVideoSection
-                            fetched={fetched}
                             title="Podcast"
+                            loading={loading}
                             icon={<FaPodcast />}
-                            videos={[]}
                             linkHasMore="/videos?"
+                            videos={videos?.podcast}
                         />
                     </div>
 
                     <div className="mt-5">
                         <HomeVideoSection
-                            fetched={fetched}
+                            isExclusive
+                            loading={loading}
                             title="Interview"
-                            icon={<FaMicrophoneAlt />}
-                            videos={[]}
                             linkHasMore="/videos?"
+                            icon={<FaMicrophoneAlt />}
+                            videos={videos?.interview}
+                            sessionDetails={{
+                                link: '/videos?',
+                                desc: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste, ex sapiente dignissimos aspernatur ipsam voluptas quam omnis qui corporis ducimus. Qui aperiam earum necessitatibus placeat maiores obcaecati cupiditate quas animi.`,
+                                title: 'This week on LeFocus',
+                                imgSrc: 'https://picsum.photos/1024/1024',
+                            }}
                         />
                     </div>
 
                     <div className="mt-5">
                         <HomeVideoSection
-                            fetched={fetched}
+                            isExclusive
                             title="LeFocus"
+                            loading={loading}
                             icon={<RiFocusLine />}
-                            videos={[]}
                             linkHasMore="/videos?"
-                            hasExclusive
-                            exclusive={{
+                            videos={videos?.leFocus}
+                            sessionDetails={{
                                 link: '/videos?',
                                 desc: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste, ex sapiente dignissimos aspernatur ipsam voluptas quam omnis qui corporis ducimus. Qui aperiam earum necessitatibus placeat maiores obcaecati cupiditate quas animi.`,
                                 title: 'This week on LeFocus',

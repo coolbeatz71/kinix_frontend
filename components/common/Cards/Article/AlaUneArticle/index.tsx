@@ -5,10 +5,10 @@ import Image from 'next/image';
 import { truncate } from 'lodash';
 import { useTranslation } from 'react-i18next';
 import useDarkLight from '@hooks/useDarkLight';
+import { IArticle } from '@interfaces/api';
 import { Button, Card, Typography } from 'antd';
 import { EnumAlaUnePriority } from '@constants/alaune-article';
 import { ClockCircleOutlined } from '@ant-design/icons';
-import { IArticle } from '@interfaces/articles';
 import { ALL_ARTICLE_PATH } from '@constants/paths';
 
 import styles from './index.module.scss';

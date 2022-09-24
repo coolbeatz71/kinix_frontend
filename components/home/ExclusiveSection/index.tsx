@@ -1,15 +1,15 @@
 import React, { FC } from 'react';
-import { IUnknownObject } from 'interfaces/app';
+import { truncate } from 'lodash';
 import useDarkLight from '@hooks/useDarkLight';
 import Style from 'style-it';
+import Link from 'next/link';
 import { CaretRightFilled, ShareAltOutlined } from '@ant-design/icons';
+import { Button, Col, Row, Space, Tag, Typography, Grid } from 'antd';
+import { IVideo } from '@interfaces/api';
+import { PRIMARY, WHITE } from '@constants/colors';
+import VideoCardVertical from '@components/common/Cards/Video/VideoCardVertical';
 
 import styles from './index.module.scss';
-import { PRIMARY, WHITE } from '@constants/colors';
-import { Button, Col, Row, Space, Tag, Typography, Grid } from 'antd';
-import Link from 'next/link';
-import { truncate } from 'lodash';
-import VideoCardVertical from '@components/common/Cards/Video/VideoCardVertical';
 
 const { Title, Paragraph } = Typography;
 const { useBreakpoint } = Grid;
@@ -20,10 +20,10 @@ export interface IExclusiveSectionProps {
     link: string;
     title: string;
     imgSrc: string;
-    videos: IUnknownObject[];
+    videos: IVideo[];
 }
 
-const ExclusiveSection: FC<IExclusiveSectionProps> = ({ tag, title, desc, imgSrc, link }) => {
+const ExclusiveSection: FC<IExclusiveSectionProps> = ({ tag, title, desc, imgSrc, link, videos }) => {
     const { value } = useDarkLight();
     const isDark = value === 'dark';
     const { md } = useBreakpoint();
@@ -93,10 +93,10 @@ const ExclusiveSection: FC<IExclusiveSectionProps> = ({ tag, title, desc, imgSrc
                 </Col>
                 {md && rightContent}
             </Row>
-            <Row gutter={md ? [24, 0] : undefined} className={styles.exclusive__bottom} style={colStyles}>
-                {[0, 1, 2, 3].map((el) => (
-                    <Col xs={24} sm={12} md={12} lg={8} xl={6} key={el}>
-                        <VideoCardVertical size={el} isExclusive />
+            <Row gutter={md ? [48, 0] : undefined} className={styles.exclusive__bottom} style={colStyles}>
+                {videos?.map((video) => (
+                    <Col xs={24} sm={12} md={12} lg={8} xl={6} key={video?.slug}>
+                        <VideoCardVertical video={video} isExclusive />
                     </Col>
                 ))}
             </Row>
