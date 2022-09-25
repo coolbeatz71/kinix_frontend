@@ -43,7 +43,7 @@ const HomeContainer: FC = () => {
                 </div>
             ) : (
                 <Fragment>
-                    <div className="mt-5">
+                    <div className="my-5">
                         <HomeVideoSection
                             loading={loading}
                             icon={<BulbFilled />}
@@ -53,7 +53,7 @@ const HomeContainer: FC = () => {
                         />
                     </div>
 
-                    <div className="mt-5">
+                    <div className="my-5">
                         <HomeVideoSection
                             loading={loading}
                             title={t('popular')}
@@ -63,7 +63,7 @@ const HomeContainer: FC = () => {
                         />
                     </div>
 
-                    <div className="mt-5">
+                    <div className="my-5">
                         <HomeVideoSection
                             loading={loading}
                             linkHasMore="/videos?"
@@ -73,7 +73,7 @@ const HomeContainer: FC = () => {
                         />
                     </div>
 
-                    <div className="mt-5">
+                    <div className="my-5">
                         <HomeVideoSection
                             isExclusive
                             title="FlexBeatz"
@@ -90,7 +90,7 @@ const HomeContainer: FC = () => {
                         />
                     </div>
 
-                    <div className="mt-5">
+                    <div className="my-5">
                         <HomeVideoSection
                             title="Podcast"
                             loading={loading}
@@ -100,7 +100,7 @@ const HomeContainer: FC = () => {
                         />
                     </div>
 
-                    <div className="mt-5">
+                    <div className="my-5">
                         <HomeVideoSection
                             isExclusive
                             loading={loading}
@@ -117,7 +117,7 @@ const HomeContainer: FC = () => {
                         />
                     </div>
 
-                    <div className="mt-5">
+                    <div className="my-5">
                         <HomeVideoSection
                             isExclusive
                             title="LeFocus"

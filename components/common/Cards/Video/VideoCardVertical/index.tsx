@@ -1,3 +1,5 @@
+import dayjs from 'dayjs';
+import Image from 'next/image';
 import React, { FC, Fragment, useEffect, useState } from 'react';
 import { isBoolean, isEmpty, truncate } from 'lodash';
 import { Card, Button, Grid } from 'antd';
@@ -10,6 +12,7 @@ import VideoAction from '@components/common/Actions/VideoAction';
 import VideoViewRating from '@components/common/Ratings/VideoViewRating';
 import VideoShareButton from '@components/common/Sharings/VideoShareButton';
 import getYoutubeVideoThumbnail from '@helpers/getYoutubeVideoThumbail';
+import { APP_NAME } from '@constants/platform';
 
 import styles from './index.module.scss';
 
@@ -27,6 +30,8 @@ const VideoCardVertical: FC<IVideoCardVerticalProps> = ({ isExclusive = false, v
 
     const [showOverLay, setShowOverLay] = useState<boolean>(false);
     const overLayStyles = showOverLay ? { opacity: 1 } : { opacity: 0 };
+
+    const isAuthorAdmin = [EnumRole.ADMIN, EnumRole.SUPER_ADMIN].includes(video?.user?.role as EnumRole);
 
     const handleShowOverlay = (): void => {
         if (lg) setShowOverLay(!showOverLay);
@@ -58,16 +63,15 @@ const VideoCardVertical: FC<IVideoCardVerticalProps> = ({ isExclusive = false, v
                             />
                         </div>
                         {!isEmpty(video?.link) && (
-                            //TODO: should use next/image and fix CSS issue
-                            // eslint-disable-next-line @next/next/no-img-element
-                            <img
-                                alt={video?.slug}
-                                src={getYoutubeVideoThumbnail(video?.link)}
-                                style={{
-                                    objectFit: 'cover',
-                                    aspectRatio: '16 / 9',
-                                }}
-                            />
+                            <div>
+                                <Image
+                                    width={100}
+                                    height={50}
+                                    alt={video?.slug}
+                                    layout="responsive"
+                                    src={getYoutubeVideoThumbnail(video?.link)}
+                                />
+                            </div>
                         )}
                     </Fragment>
                 }
@@ -86,10 +90,12 @@ const VideoCardVertical: FC<IVideoCardVerticalProps> = ({ isExclusive = false, v
                         length: 100,
                     })}
                     description={
-                        !isExclusive &&
-                        ([EnumRole.ADMIN, EnumRole.SUPER_ADMIN].includes(video?.user?.role as EnumRole)
-                            ? "Kinshas'art"
-                            : video?.user?.userName)
+                        !isExclusive && (
+                            <div className="d-flex justify-content-between">
+                                <span data-author>{isAuthorAdmin ? APP_NAME : video?.user?.userName}</span>
+                                <span data-created-at>{dayjs(video?.createdAt).fromNow()}</span>
+                            </div>
+                        )
                     }
                 />
             </Card>

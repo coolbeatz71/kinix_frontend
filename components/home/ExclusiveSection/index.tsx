@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { CaretRightFilled, ShareAltOutlined } from '@ant-design/icons';
 import { Button, Col, Row, Space, Tag, Typography, Grid } from 'antd';
 import { IVideo } from '@interfaces/api';
-import { PRIMARY, WHITE } from '@constants/colors';
+import { PRIMARY, GREY } from '@constants/colors';
 import VideoCardVertical from '@components/common/Cards/Video/VideoCardVertical';
 
 import styles from './index.module.scss';
@@ -33,7 +33,7 @@ const ExclusiveSection: FC<IExclusiveSectionProps> = ({ tag, title, desc, imgSrc
               background: PRIMARY,
           }
         : {
-              background: WHITE,
+              background: GREY,
           };
 
     const rightContent = Style.it(
@@ -45,7 +45,7 @@ const ExclusiveSection: FC<IExclusiveSectionProps> = ({ tag, title, desc, imgSrc
             top: 0;
             width: 60%;
             height: 100%;
-            background: linear-gradient(to right, ${!isDark ? PRIMARY : WHITE}, transparent);
+            background: linear-gradient(to right, ${!isDark ? PRIMARY : GREY}, transparent);
         }
 
         .right::before {
@@ -55,7 +55,7 @@ const ExclusiveSection: FC<IExclusiveSectionProps> = ({ tag, title, desc, imgSrc
             top: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(to top, ${!isDark ? PRIMARY : WHITE}, transparent);
+            background: linear-gradient(to top, ${!isDark ? PRIMARY : GREY}, transparent);
         }
         `,
         <Col xs={24} sm={24} md={12} className="right">
