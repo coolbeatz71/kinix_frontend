@@ -14,7 +14,7 @@ const VideoViewRating: FC<IVideoViewRatingProps> = ({ count }) => {
 
     return (
         <Button
-            type="text"
+            type="link"
             data-theme={value}
             className={styles.videoViewRating}
             onClick={() => console.log('clicked')}

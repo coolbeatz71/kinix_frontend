@@ -7,4 +7,5 @@ export const home = {
     subscribeLegend: 'To get the latest news',
     subscribe: 'Subscribe',
     popular: 'Popular',
+    watchNow: 'watch now',
 };

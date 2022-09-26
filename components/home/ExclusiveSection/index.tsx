@@ -3,6 +3,7 @@ import { truncate } from 'lodash';
 import useDarkLight from '@hooks/useDarkLight';
 import Style from 'style-it';
 import Link from 'next/link';
+import { useTranslation } from 'react-i18next';
 import { CaretRightFilled, ShareAltOutlined } from '@ant-design/icons';
 import { Button, Col, Row, Space, Tag, Typography, Grid } from 'antd';
 import { IVideo } from '@interfaces/api';
@@ -11,8 +12,8 @@ import VideoCardVertical from '@components/common/Cards/Video/VideoCardVertical'
 
 import styles from './index.module.scss';
 
-const { Title, Paragraph } = Typography;
 const { useBreakpoint } = Grid;
+const { Title, Paragraph } = Typography;
 
 export interface IExclusiveSectionProps {
     tag: string;
@@ -24,9 +25,10 @@ export interface IExclusiveSectionProps {
 }
 
 const ExclusiveSection: FC<IExclusiveSectionProps> = ({ tag, title, desc, imgSrc, link, videos }) => {
-    const { value } = useDarkLight();
-    const isDark = value === 'dark';
     const { md } = useBreakpoint();
+    const { value } = useDarkLight();
+    const { t } = useTranslation();
+    const isDark = value === 'dark';
 
     const colStyles = !isDark
         ? {
@@ -84,7 +86,7 @@ const ExclusiveSection: FC<IExclusiveSectionProps> = ({ tag, title, desc, imgSrc
                                 icon={<CaretRightFilled />}
                                 type={!isDark ? 'default' : 'primary'}
                             >
-                                Watch Now
+                                {t('watchNow')}
                             </Button>
                         </Link>
 
