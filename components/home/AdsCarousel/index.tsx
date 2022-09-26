@@ -8,7 +8,7 @@ import { IRootState } from '@redux/reducers';
 import { useTranslation } from 'react-i18next';
 import getAllAdsAction from '@redux/ads/getAll';
 import { useAppDispatch } from '@redux/store';
-import { IAdsData } from '@interfaces/api';
+import { IAds } from '@interfaces/api';
 import { IUnknownObject } from '@interfaces/app';
 import { PRIMARY } from '@constants/colors';
 
@@ -23,7 +23,7 @@ const AdsCarousel: FC = () => {
         dispatch(getAllAdsAction());
     }, [dispatch]);
 
-    const defaultSlide: IAdsData[] | IUnknownObject[] = [
+    const defaultSlide: IAds[] | IUnknownObject[] = [
         {
             isAppAds: true,
             bgColor: PRIMARY,

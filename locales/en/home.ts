@@ -6,4 +6,6 @@ export const home = {
     mainLegendTwo: 'music pops up',
     subscribeLegend: 'To get the latest news',
     subscribe: 'Subscribe',
+    popular: 'Popular',
+    watchNow: 'watch now',
 };

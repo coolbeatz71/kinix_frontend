@@ -13,13 +13,13 @@ const VideoShareButton: FC<IVideoShareButtonProps> = ({ count }) => {
 
     return (
         <Button
-            type="text"
+            type="link"
             data-theme={value}
+            icon={<ShareAltOutlined />}
             className={styles.videoShareButton}
             onClick={() => console.log('clicked')}
-            icon={<ShareAltOutlined />}
         >
-            &nbsp;{count}
+            &nbsp;{count > 0 ? count : ''}
         </Button>
     );
 };

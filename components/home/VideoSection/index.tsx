@@ -1,67 +1,68 @@
-import React, { FC, ReactElement } from 'react';
+import React, { FC, Fragment, ReactElement } from 'react';
 import SectionTitle from '@components/common/SectionTitle';
-import { IUnknownObject } from 'interfaces/app';
 import VideoList from '@components/common/VideoList';
 import useDarkLight from '@hooks/useDarkLight';
+import { IVideo } from '@interfaces/api';
+import ExclusiveSection from '../ExclusiveSection';
+import VideoListSkeleton from '@components/skeleton/VideoList';
+import SectionTitleSkeleton from '@components/skeleton/SectionTitle';
 
 import styles from './index.module.scss';
-import ExclusiveSection from '../ExclusiveSection';
 
 interface IHomeVideoSectionProps {
     title: string;
+    loading: boolean;
+    videos: IVideo[];
     icon: ReactElement;
-    fetched: boolean;
-    error: string | null;
-    videos: IUnknownObject[];
     myVideos?: boolean;
     linkHasMore: string;
-    hasExclusive?: boolean;
-    exclusive?: {
+    isExclusive?: boolean;
+    sessionDetails?: {
         link: string;
         desc: string;
         title: string;
         imgSrc: string;
-        videos: IUnknownObject[];
     };
 }
 
 const HomeVideoSection: FC<IHomeVideoSectionProps> = ({
-    title,
     icon,
-    linkHasMore,
-    fetched,
-    error,
+    title,
     videos,
+    loading,
     myVideos,
-    hasExclusive = false,
-    exclusive,
+    sessionDetails,
+    linkHasMore,
+    isExclusive = false,
 }) => {
     const { value } = useDarkLight();
 
+    const videoList = isExclusive ? videos?.slice(0, 8) : videos?.slice(0, 12);
+
     return (
         <div data-theme={value} className={styles.homeVideoSection}>
-            <SectionTitle title={title} icon={icon} linkHasMore={linkHasMore} />
+            {loading ? <SectionTitleSkeleton /> : <SectionTitle title={title} icon={icon} linkHasMore={linkHasMore} />}
 
-            {hasExclusive && exclusive && (
-                <div className="mb-5">
-                    <ExclusiveSection
-                        tag="exclusive"
-                        desc={exclusive.desc}
-                        link={exclusive.link}
-                        title={exclusive.title}
-                        imgSrc={exclusive.imgSrc}
-                        videos={exclusive.videos}
-                    />
-                </div>
+            {loading ? (
+                <VideoListSkeleton />
+            ) : (
+                <Fragment>
+                    {isExclusive && sessionDetails ? (
+                        <div className="mb-5">
+                            <ExclusiveSection
+                                tag="exclusive"
+                                videos={videoList}
+                                desc={sessionDetails.desc}
+                                link={sessionDetails.link}
+                                title={sessionDetails.title}
+                                imgSrc={sessionDetails.imgSrc}
+                            />
+                        </div>
+                    ) : (
+                        <VideoList videos={videoList} myVideos={myVideos} isExclusive={isExclusive} />
+                    )}
+                </Fragment>
             )}
-
-            <VideoList
-                fetched={fetched}
-                error={error}
-                videos={videos}
-                myVideos={myVideos}
-                hasExclusive={hasExclusive}
-            />
         </div>
     );
 };

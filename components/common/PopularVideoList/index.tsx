@@ -1,23 +1,21 @@
 import React, { FC } from 'react';
 import { Col, Row } from 'antd';
-import { IUnknownObject } from 'interfaces/app';
+import { IVideo } from '@interfaces/api';
 import VideoCardVertical from '@components/common/Cards/Video/VideoCardVertical';
 
 interface IPopularVideoListProps {
     fetched: boolean;
-    error: string | null;
-    videos: IUnknownObject[];
+    videos: IVideo[];
     myVideos?: boolean;
+    error: string | null;
 }
 
-const PopularVideoList: FC<IPopularVideoListProps> = () => {
-    const elements = [0, 1, 2, 3, 4, 5];
-
+const PopularVideoList: FC<IPopularVideoListProps> = ({ videos }) => {
     return (
         <Row gutter={[16, 32]}>
-            {elements.map((el) => (
-                <Col xs={24} sm={12} md={8} key={el}>
-                    <VideoCardVertical size={el} />
+            {videos?.map((video) => (
+                <Col xs={24} sm={12} md={8} key={video?.slug}>
+                    <VideoCardVertical video={video} />
                 </Col>
             ))}
         </Row>

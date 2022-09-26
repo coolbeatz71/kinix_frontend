@@ -34,7 +34,7 @@ module.exports = withPlugins(
             return config;
         },
         images: {
-            domains: ['res.cloudinary.com'],
+            domains: ['res.cloudinary.com', 'img.youtube.com'],
         },
     },
 );

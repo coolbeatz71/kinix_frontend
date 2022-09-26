@@ -3,55 +3,59 @@
 
 .videoCardVertical {
     [class~='ant-card-cover'] {
-        cursor: pointer;
         display: flex;
+        cursor: pointer;
+        overflow: hidden;
         align-items: center;
         justify-content: center;
-        overflow: hidden;
         border-radius: $border-radius;
 
         border-bottom-left-radius: 0;
         border-bottom-right-radius: 0;
 
         img {
+            object-fit: cover;
+            aspect-ratio: 16/9;
             transition: transform 0.5s ease;
         }
 
         &:hover img {
             transform: scale(1.2);
         }
-    }
 
-    [class~='overlay'] {
-        cursor: pointer;
-        position: absolute;
-        z-index: 1;
-        transition: opacity ease-in-out 0.2s;
+        [class~='overlay'] {
+            z-index: 1;
+            cursor: pointer;
+            position: absolute;
+            transition: opacity ease-in-out 0.2s;
 
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        [class~='ant-btn'] {
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 1.5rem;
 
-            [class~='anticon'] {
-                font-size: 2rem;
-                background: $warning;
+            [class~='ant-btn'] {
                 display: flex;
-                justify-content: center;
+                padding: $padding;
                 align-items: center;
-                border-radius: 80px;
-                box-shadow: 0px 0px 60px $primary;
+                justify-content: center;
 
-                svg {
-                    path {
-                        fill: $warning;
-                        &:last-of-type {
-                            fill: $white;
+                [class~='anticon'] {
+                    font-size: 2rem;
+                    background: $warning;
+
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    border-radius: 80px;
+                    box-shadow: 0px 0px 60px $primary;
+
+                    svg {
+                        path {
+                            fill: $warning;
+                            &:last-of-type {
+                                fill: $white;
+                            }
                         }
                     }
                 }
@@ -59,24 +63,61 @@
         }
     }
 
-    &[data-theme='light'] {
-        [class~='ant-card'] {
-            background: $light;
+    [class~='ant-card-body'] {
+        [class~='ant-card-meta'] {
+            display: block;
         }
 
         [class~='ant-card-meta-title'] {
-            color: $black;
+            height: 3rem;
+            font-size: 14px;
+            font-weight: 700;
+            white-space: unset;
         }
 
         [class~='ant-card-meta-description'] {
-            color: $dark50;
+            font-size: 13px;
+            overflow: hidden;
+            font-weight: 600;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+
+            [data-created-at='true'] {
+                font-weight: 500;
+            }
         }
+    }
 
-        [class~='ant-card-actions'] {
-            border-top: 1px solid $dark10 !important;
+    [class~='ant-card-actions'] {
+        background: unset;
+    }
 
-            & > li:not(:last-child) {
-                border-right: 1px solid $dark10;
+    &[data-theme='light'] {
+        [class~='ant-card'] {
+            background: $light;
+
+            [class~='ant-card-meta-title'] {
+                color: $dark;
+            }
+
+            [class~='ant-card-meta-description'] {
+                color: $dark;
+            }
+
+            [class~='ant-card-actions'] {
+                border-top: 1px solid $dark10 !important;
+
+                & > li:not(:last-child) {
+                    border-right: 1px solid $dark10;
+                }
+            }
+
+            [data-author='true'] {
+                color: $dark;
+            }
+
+            [data-created-at='true'] {
+                color: $dark50;
             }
         }
     }
@@ -84,45 +125,31 @@
     &[data-theme='dark'] {
         [class~='ant-card'] {
             background: $primary;
-        }
 
-        [class~='ant-card-meta-title'] {
-            color: $white;
-        }
+            [class~='ant-card-meta-title'] {
+                color: $white;
+            }
 
-        [class~='ant-card-meta-description'] {
-            color: $light50;
-        }
+            [class~='ant-card-meta-description'] {
+                color: $light;
+            }
 
-        [class~='ant-card-actions'] {
-            background: unset;
-            border-top: 1px solid $light10 !important;
+            [class~='ant-card-actions'] {
+                background: unset;
+                border-top: 1px solid $light10 !important;
 
-            & > li:not(:last-child) {
-                border-right: 1px solid $light10;
+                & > li:not(:last-child) {
+                    border-right: 1px solid $light10;
+                }
+            }
+
+            [data-author='true'] {
+                color: $light;
+            }
+
+            [data-created-at='true'] {
+                color: $light50;
             }
         }
-    }
-
-    [class~='ant-card-meta-title'] {
-        white-space: unset;
-        font-size: 14px;
-        height: 3rem;
-    }
-
-    [class~='ant-card-meta-description'] {
-        font-size: 13px;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-    }
-
-    [class~='ant-avatar-circle'] {
-        width: 1.5rem;
-        height: 1.5rem;
-    }
-
-    [class~='ant-card-actions'] {
-        background: unset;
     }
 }

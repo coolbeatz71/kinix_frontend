@@ -3,7 +3,7 @@ import { Col, Row } from 'antd';
 import AlaUneArticleCard from '../Cards/Article/AlaUneArticle';
 import { EnumAlaUnePriority } from '@constants/alaune-article';
 import TrendingArticleCard from '../Cards/Article/TrendingArticle';
-import { IArticle } from '@interfaces/articles';
+import { IArticle } from '@interfaces/api';
 
 interface IAlaUneArticleListProps {
     articles: IArticle[];

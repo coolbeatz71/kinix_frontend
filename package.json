@@ -27,6 +27,7 @@
         "color-hash": "^2.0.1",
         "crypto-js": "^4.1.1",
         "dayjs": "^1.10.4",
+        "get-video-id": "^3.6.5",
         "http-status": "^1.5.1",
         "i18next": "^21.8.3",
         "lodash": "^4.17.15",

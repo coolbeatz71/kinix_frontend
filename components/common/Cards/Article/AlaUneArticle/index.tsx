@@ -5,10 +5,10 @@ import Image from 'next/image';
 import { truncate } from 'lodash';
 import { useTranslation } from 'react-i18next';
 import useDarkLight from '@hooks/useDarkLight';
+import { IArticle } from '@interfaces/api';
 import { Button, Card, Typography } from 'antd';
 import { EnumAlaUnePriority } from '@constants/alaune-article';
 import { ClockCircleOutlined } from '@ant-design/icons';
-import { IArticle } from '@interfaces/articles';
 import { ALL_ARTICLE_PATH } from '@constants/paths';
 
 import styles from './index.module.scss';
@@ -93,12 +93,12 @@ const AlaUneArticleCard: FC<IAlaUeArticleProps> = ({ article, priority = EnumAla
                             <div className={styles.alaUneArticleCard__content}>
                                 <Title level={5} data-text="title">
                                     {truncate(article?.title, {
-                                        length: 60,
+                                        length: 90,
                                     })}
                                 </Title>
                                 <Paragraph data-text="description">
                                     {truncate(article?.summary, {
-                                        length: 102,
+                                        length: 100,
                                     })}
                                 </Paragraph>
 

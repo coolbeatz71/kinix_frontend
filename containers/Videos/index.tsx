@@ -8,7 +8,7 @@ const VideoContainer: FC = () => {
         <div data-content-padding className="d-block">
             <TagsBar context={EnumTagsContext.VIDEO} />
             <div className="mt-5">
-                <VideoList fetched={true} error={null} videos={[]} myVideos={false} hasExclusive={false} />
+                <VideoList videos={[]} myVideos={false} isExclusive={false} />
             </div>
         </div>
     );

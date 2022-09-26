@@ -4,7 +4,7 @@ import { truncate } from 'lodash';
 import { Card, Typography } from 'antd';
 import { useTranslation } from 'react-i18next';
 import useDarkLight from '@hooks/useDarkLight';
-import { IArticle } from '@interfaces/articles';
+import { IArticle } from '@interfaces/api';
 import { ClockCircleOutlined } from '@ant-design/icons';
 
 import styles from './index.module.scss';

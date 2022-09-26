@@ -46,9 +46,76 @@
     .sidenav__menu__items {
         display: flex;
         align-items: center;
+        justify-content: center;
 
         a {
             text-transform: capitalize;
+        }
+    }
+
+    [class~='ant-layout-sider-children'] {
+        .sidenav__menu {
+            border: none;
+            padding: 0.5rem;
+
+            &__items {
+                padding: 0 1rem !important;
+                border-radius: $border-radius;
+
+                &::after {
+                    content: none;
+                }
+
+                & > svg:first-child {
+                    transform: scale(1.2);
+                }
+            }
+        }
+    }
+
+    &[data-collapsed='false'] {
+        // sider bottom trigger
+        [class~='ant-layout-sider-trigger'] {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+
+            padding: 0.5rem;
+        }
+    }
+    &[data-collapsed='true'] {
+        .sidenav__menu__items {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            [class~='ant-menu-title-content'] {
+                display: none !important;
+            }
+
+            span {
+                line-height: 0;
+            }
+
+            &:hover {
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+
+                [class~='ant-menu-title-content'] {
+                    display: inline-block !important;
+                }
+
+                width: $max-sidenav-width;
+                padding-left: 0 !important;
+
+                span,
+                & > svg:first-child {
+                    opacity: 1;
+                    line-height: 0;
+                    margin-left: 0.8rem;
+                }
+            }
         }
     }
 
@@ -109,7 +176,7 @@
             }
         }
         [class~='ant-layout-sider-trigger'] {
-            background: $bg-sidenav-triger;
+            background: $dark10;
             span {
                 color: $dark;
                 font-weight: bold;
@@ -216,59 +283,6 @@
             span {
                 color: $white;
                 font-weight: bold;
-            }
-        }
-    }
-
-    [class~='ant-layout-sider-children'] {
-        .sidenav__menu {
-            border: none;
-            padding: 0.5rem;
-
-            &__items {
-                border-radius: $border-radius;
-                padding: 0 1rem !important;
-
-                &::after {
-                    content: none;
-                }
-
-                & > svg:first-child {
-                    transform: scale(1.2);
-                }
-            }
-        }
-    }
-
-    &[data-collapsed='false'] {
-        // sider bottom trigger
-        [class~='ant-layout-sider-trigger'] {
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            padding: 0.5rem;
-        }
-    }
-    &[data-collapsed='true'] {
-        .sidenav__menu__items {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            span {
-                line-height: 0;
-            }
-
-            &:hover {
-                justify-content: flex-start;
-                width: $max-sidenav-width;
-                padding-left: 0 !important;
-
-                span,
-                & > svg:first-child {
-                    opacity: 1;
-                    line-height: 0;
-                    margin-left: 0.8rem;
-                }
             }
         }
     }

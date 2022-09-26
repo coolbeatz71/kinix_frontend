@@ -14,5 +14,5 @@ export const navigation = {
     interview: 'Interview',
     podcast: 'Podcast',
     lefocus: 'LeFocus',
-    flexBeatz: 'FlexNBeatz',
+    flexBeatz: 'FlexBeatz',
 };
