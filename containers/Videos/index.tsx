@@ -1,7 +1,5 @@
 import React, { FC, useEffect, useState } from 'react';
-import { Alert } from 'antd';
 import { useSelector } from 'react-redux';
-import { useTranslation } from 'react-i18next';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { IVideo } from '@interfaces/api';
 import { IRootState } from '@redux/reducers';
@@ -17,18 +15,18 @@ import ServerError from '@components/common/ServerError';
 import styles from './index.module.scss';
 
 const VideoContainer: FC = () => {
-    const { t } = useTranslation();
     const dispatch = useAppDispatch();
+    const [isFirstLoad, setIsFirstLoad] = useState(true);
     const [videos, setVideos] = useState<IVideo[]>([]);
     const [params, setParams] = useState<{
         limit: number;
         page: number;
     }>({
         page: 1,
-        limit: 4,
+        limit: 20,
     });
 
-    const { data, error: errVideos } = useSelector(({ videos: { all } }: IRootState) => all);
+    const { data, error: errVideos, loading: loadingVideos } = useSelector(({ videos: { all } }: IRootState) => all);
     const { loading: loadingTags, data: tags, error } = useSelector(({ videos: { tags } }: IRootState) => tags);
 
     useEffect(() => {
@@ -42,6 +40,7 @@ const VideoContainer: FC = () => {
     const fetchVideos = (limit: number, page: number): void => {
         dispatch(getAllVideosAction({ limit, page })).then((res) => {
             if (res.type === 'videos/all/fulfilled') {
+                setIsFirstLoad(false);
                 setParams({ limit, page: params.page + 1 });
                 setVideos([...videos, ...res.payload.videos]);
             }
@@ -57,21 +56,20 @@ const VideoContainer: FC = () => {
                 tags={tags as unknown as string[]}
             />
             <div className="mt-5">
-                {errVideos ? (
+                {errVideos && isFirstLoad ? (
                     <ServerError onRefresh={() => fetchVideos(params.limit, params.page)} />
+                ) : loadingVideos ? (
+                    <VideoListSkeleton size={8} />
                 ) : (
                     <InfiniteScroll
                         dataLength={videos?.length}
                         hasMore={videos.length < data?.count}
                         loader={
                             <div className="mt-5">
-                                <VideoListSkeleton size={8} />
+                                <VideoListSkeleton />
                             </div>
                         }
                         next={() => fetchVideos(params.limit, params.page)}
-                        endMessage={
-                            <Alert banner type="info" className="mt-4 rounded-1" message={t('scrollingEndMessage')} />
-                        }
                     >
                         <VideoList videos={videos} myVideos={false} isExclusive={false} />
                     </InfiniteScroll>
