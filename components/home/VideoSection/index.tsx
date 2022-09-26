@@ -12,11 +12,11 @@ import styles from './index.module.scss';
 interface IHomeVideoSectionProps {
     title: string;
     loading: boolean;
+    videos: IVideo[];
     icon: ReactElement;
     myVideos?: boolean;
     linkHasMore: string;
     isExclusive?: boolean;
-    videos: IVideo[];
     sessionDetails?: {
         link: string;
         desc: string;
