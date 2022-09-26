@@ -7,8 +7,8 @@ import styles from './index.module.scss';
 const { CheckableTag } = AntTag;
 
 export interface ITagProps {
-    itemId: string;
     value: string;
+    itemId: string;
 }
 
 const Tag: FC<ITagProps> = ({ itemId, value }) => {

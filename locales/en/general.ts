@@ -30,4 +30,6 @@ export const general = {
     serverErrorTitle: 'Sorry, something went wrong',
     serverErrorDesc: 'The server encountered an error and could not complete the request.',
     refreshPageButton: 'Refresh the page',
+    all: 'All',
+    scrollingEndMessage: 'There is no more content to load',
 };

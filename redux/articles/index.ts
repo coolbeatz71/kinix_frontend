@@ -6,6 +6,7 @@ import {
 } from '@constants/redux';
 import { createSlice } from '@reduxjs/toolkit';
 import getFeaturedArticlesAction from './featured';
+import getArticlesTagsAction from './tags';
 import { articlesInitialState } from './types';
 
 export const articlesSlice = createSlice({
@@ -19,7 +20,11 @@ export const articlesSlice = createSlice({
             // get all featured articles
             .addCase(getFeaturedArticlesAction.pending, ActionWrapperPending)
             .addCase(getFeaturedArticlesAction.fulfilled, ActionWrapperFulfilled)
-            .addCase(getFeaturedArticlesAction.rejected, ActionWrapperRejected);
+            .addCase(getFeaturedArticlesAction.rejected, ActionWrapperRejected)
+            // get video tags
+            .addCase(getArticlesTagsAction.pending, ActionWrapperPending)
+            .addCase(getArticlesTagsAction.fulfilled, ActionWrapperFulfilled)
+            .addCase(getArticlesTagsAction.rejected, ActionWrapperRejected);
     },
 });
 
