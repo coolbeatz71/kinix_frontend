@@ -36,6 +36,7 @@ const VideoContainer: FC = () => {
     }, [dispatch]);
 
     // const getVideoByTags = () => {};
+    //TODO: should work on getting video by tags, and categories and search video
 
     const fetchVideos = (limit: number, page: number): void => {
         dispatch(getAllVideosAction({ limit, page })).then((res) => {

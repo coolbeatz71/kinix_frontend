@@ -1,4 +1,4 @@
-import React, { FC, ReactElement, useCallback, useEffect, useState } from 'react';
+import React, { FC, ReactElement, useCallback, useContext, useEffect, useState } from 'react';
 import Head from 'next/head';
 import { Layout as AntLayout, Grid } from 'antd';
 import getPlatformUrl from '@helpers/getPlatformUrl';
@@ -20,6 +20,7 @@ import { useAppDispatch } from 'redux/store';
 import getCurrentUserAction from 'redux/user/getCurrentUser';
 import { ICurrentUser } from '@interfaces/user';
 import getLocalUserData from '@helpers/getLocalUserData';
+import CategoriesContext from '@context/video-categories';
 
 import styles from './index.module.scss';
 
@@ -52,9 +53,9 @@ const Layout: FC<ILayoutProps> = ({
     children,
 }) => {
     const router = useRouter();
-    const { value } = useDarkLight();
     const { lg } = useBreakpoint();
     const { t } = useTranslation();
+    const { value } = useDarkLight();
 
     const dispatch = useAppDispatch();
     const userLocalData = getLocalUserData();
@@ -63,6 +64,8 @@ const Layout: FC<ILayoutProps> = ({
     const [openSidenav, setOpenSidenav] = useState<boolean>(false);
     const [openSideDrawer, setOpenSideDrawer] = useState<boolean>(false);
     const [collapsedSidenav, setCollapsedSidenav] = useState<boolean>(true);
+
+    const { serverProps } = useContext(CategoriesContext);
 
     const [scrolled, setScrolled] = useState<string>('');
 
@@ -136,9 +139,10 @@ const Layout: FC<ILayoutProps> = ({
             <div className={styles.layout__main} data-show-header={showHeader}>
                 {showHeader && (
                     <Header
-                        scrolled={scrolled}
                         open={openSidenav}
+                        scrolled={scrolled}
                         setOpen={setOpenSidenav}
+                        serverProps={serverProps}
                         collapsed={collapsedSidenav}
                         isVideoCategory={isVideoCategory}
                         setCollapsed={setCollapsedSidenav}

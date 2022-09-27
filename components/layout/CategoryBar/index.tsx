@@ -1,10 +1,10 @@
 import React, { FC, ReactElement } from 'react';
-import { capitalize } from 'lodash';
+import { lowerCase, upperFirst } from 'lodash';
 import { useRouter } from 'next/router';
 import { Row, Grid, Dropdown, Button, Col, Menu } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 import { ALL_VIDEOS_PATH } from '@constants/paths';
-import { CatType } from '@context/video-categories';
+import { ICategoryType } from '@context/video-categories';
 import SearchInput from '@components/common/SearchInput';
 
 import styles from './index.module.scss';
@@ -12,7 +12,7 @@ import styles from './index.module.scss';
 export interface ICategoryBarProps {
     baseUrl?: string;
     scrolled: string;
-    categories: CatType[];
+    categories: ICategoryType[];
 }
 
 const { useBreakpoint } = Grid;
@@ -21,8 +21,8 @@ const CategoryBar: FC<ICategoryBarProps> = ({ categories, baseUrl = ALL_VIDEOS_P
     const { query } = useRouter();
     const { lg, md } = useBreakpoint();
 
-    const categoryId: string | string[] = query?.category_id || baseUrl;
-    const categoryTitles = { [baseUrl]: capitalize('all') };
+    const categoryId: string | string[] = query?.category || baseUrl;
+    const categoryTitles = { [baseUrl]: lowerCase('all') };
 
     const sizeBreakpoint = md && scrolled !== '' ? 'small' : 'middle';
     const spanBreakpoint = md && scrolled !== '' ? 6 : 7;
@@ -40,7 +40,7 @@ const CategoryBar: FC<ICategoryBarProps> = ({ categories, baseUrl = ALL_VIDEOS_P
                 overlayClassName={styles.categoryBar__dropdown}
             >
                 <Button size={sizeBreakpoint} type="primary" ghost={`${categoryId}` === baseUrl}>
-                    {capitalize(categoryTitles[`${categoryId}`])} <DownOutlined />
+                    {upperFirst(lowerCase(categoryTitles[`${categoryId}`]))} <DownOutlined />
                 </Button>
             </Dropdown>
         );
@@ -56,9 +56,9 @@ const CategoryBar: FC<ICategoryBarProps> = ({ categories, baseUrl = ALL_VIDEOS_P
                             console.log('key', key);
                         }}
                     >
-                        <Menu.Item key={baseUrl}>{capitalize(categoryTitles[baseUrl])}</Menu.Item>
-                        {categories.map(({ id, title }) => (
-                            <Menu.Item key={id}>{capitalize(title)}</Menu.Item>
+                        <Menu.Item key={baseUrl}>{upperFirst(lowerCase(categoryTitles[baseUrl]))}</Menu.Item>
+                        {categories.map(({ id, name }) => (
+                            <Menu.Item key={id}>{upperFirst(lowerCase(name))}</Menu.Item>
                         ))}
                     </Menu>
                 </Wrapper>

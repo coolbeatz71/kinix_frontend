@@ -5,10 +5,10 @@ import { IUnknownObject } from '@interfaces/app';
 const { Item } = Form;
 
 export interface IErrorAlertProps {
-    error: Error | IUnknownObject | null;
-    closable: boolean;
     banner: boolean;
     showIcon: boolean;
+    closable: boolean;
+    error: Error | IUnknownObject | null;
 }
 
 const ErrorAlert: FC<IErrorAlertProps> = ({ error, closable, banner, showIcon }) => {

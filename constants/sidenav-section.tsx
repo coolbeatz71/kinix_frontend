@@ -1,45 +1,58 @@
 import React, { ReactNode } from 'react';
 import { BsFillSpeakerFill } from 'react-icons/bs';
 import { FaMicrophoneAlt, FaPodcast } from 'react-icons/fa';
-import { VideoCameraFilled, LikeFilled, ShareAltOutlined, StarFilled } from '@ant-design/icons';
 import { RiPlayList2Fill, RiFocusLine, RiBookmark3Fill, RiArticleLine } from 'react-icons/ri';
+import { VideoCameraFilled, LikeFilled, ShareAltOutlined, StarFilled } from '@ant-design/icons';
+import {
+    PODCAST_PATH,
+    LEFOCUS_PATH,
+    FLEXBEATZ_PATH,
+    INTERVIEW_PATH,
+    MUSIC_VIDEO_PATH,
+    ALL_ARTICLE_PATH,
+    USER_VIDEOS_RATED_PATH,
+    USER_VIDEOS_SHARED_PATH,
+    USER_ARTICLES_LIKED_PATH,
+    USER_VIDEOS_PLAYLIST_PATH,
+    USER_ARTICLES_BOOKMARK_PATH,
+} from './paths';
 
 interface ISideNavSection {
-    icon: ReactNode;
     text: string;
     href: string;
+    icon: ReactNode;
 }
 
 export const GENERAL_SECTIONS: ISideNavSection[] = [
     {
-        icon: <VideoCameraFilled />,
         text: 'musicVideos',
-        href: '/videos?category=music-videos',
+        icon: <VideoCameraFilled />,
+        href: MUSIC_VIDEO_PATH,
     },
     {
-        icon: <RiArticleLine />,
         text: 'article',
-        href: '/articles',
+        href: ALL_ARTICLE_PATH,
+        icon: <RiArticleLine />,
     },
     {
-        icon: <FaMicrophoneAlt />,
         text: 'interview',
-        href: '/videos?category=interviews',
+        icon: <FaMicrophoneAlt />,
+        href: INTERVIEW_PATH,
     },
     {
-        icon: <FaPodcast />,
         text: 'podcast',
-        href: '/videos?category=podcast',
+        icon: <FaPodcast />,
+        href: PODCAST_PATH,
     },
     {
-        icon: <RiFocusLine />,
         text: 'lefocus',
-        href: '/videos?category=lefocus',
+        icon: <RiFocusLine />,
+        href: LEFOCUS_PATH,
     },
     {
         icon: <BsFillSpeakerFill />,
         text: 'flexBeatz',
-        href: '/videos?category=flex&beatz',
+        href: FLEXBEATZ_PATH,
     },
 ];
 
@@ -47,27 +60,27 @@ export const FAVORITE_SECTIONS: ISideNavSection[] = [
     {
         icon: <RiPlayList2Fill />,
         text: 'playlist',
-        href: '/user/playlist',
+        href: USER_VIDEOS_PLAYLIST_PATH,
     },
     {
         icon: <RiBookmark3Fill />,
         text: 'bookmarks',
-        href: '/user/article?category=bookmarked',
+        href: USER_ARTICLES_BOOKMARK_PATH,
     },
     {
         icon: <LikeFilled />,
         text: 'likedArticle',
-        href: '/user/article?category=liked',
+        href: USER_ARTICLES_LIKED_PATH,
     },
     {
         icon: <ShareAltOutlined />,
         text: 'sharedVideo',
-        href: '/user/videos?category=shared',
+        href: USER_VIDEOS_SHARED_PATH,
     },
     {
         icon: <StarFilled />,
         text: 'ratedVideo',
-        href: '/user/videos?category=shared',
+        href: USER_VIDEOS_RATED_PATH,
     },
 ];
 
