@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import { Col, Row } from 'antd';
 import EmptyData from '../EmptyData';
+import { useTranslation } from 'react-i18next';
 import { EnumEmptyDataType } from '@constants/empty-data-type';
 import useDarkLight from '@hooks/useDarkLight';
 
@@ -114,10 +115,11 @@ I said he's so sweet, make her wanna lick the wrapper
 (What you do?) So I let her lick the rapper`;
 
 const Lyrics: FC<ILyricsProps> = ({ content }) => {
+    const { t } = useTranslation();
     const { value } = useDarkLight();
 
     return content ? (
-        <EmptyData type={EnumEmptyDataType.LYRICS} desc={'No lyrics was uploaded in this video'} />
+        <EmptyData type={EnumEmptyDataType.LYRICS} desc={t('noLyricsUploaded')} />
     ) : (
         <Row data-theme={value} className={styles.lyrics}>
             <Col sm={24} md={24} lg={12}>

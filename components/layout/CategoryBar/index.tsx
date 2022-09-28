@@ -2,7 +2,7 @@ import React, { FC, ReactElement, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'react-i18next';
 import { IUnknownObject } from '@interfaces/app';
-import { lowerCase, upperFirst } from 'lodash';
+import { upperFirst } from 'lodash';
 import { Row, Grid, Dropdown, Button, Col, Menu } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 import { ALL_VIDEOS_PATH } from '@constants/paths';
@@ -29,8 +29,7 @@ const CategoryBar: FC<ICategoryBarProps> = ({ categories, baseUrl = ALL_VIDEOS_P
     const spanBreakpoint = md && scrolled !== '' ? 6 : 7;
     const sizeBreakpoint = md && scrolled !== '' ? 'small' : 'middle';
 
-    const categoryTitles = { [baseUrl]: lowerCase('all') };
-    const category = (query?.category as string) || baseUrl;
+    const category = query?.category as string;
     const [search, setSearch] = useState<string>((query?.search as string) || '');
 
     const navigate = (data: IUnknownObject): void => {
@@ -63,7 +62,7 @@ const CategoryBar: FC<ICategoryBarProps> = ({ categories, baseUrl = ALL_VIDEOS_P
                 overlayClassName={styles.categoryBar__dropdown}
             >
                 <Button type="primary" size={sizeBreakpoint} ghost={`${category}` === baseUrl}>
-                    {upperFirst(t(categoryTitles[`${category}`]?.toLowerCase()))} <DownOutlined />
+                    {t(category || 'all')} <DownOutlined />
                 </Button>
             </Dropdown>
         );
@@ -80,7 +79,7 @@ const CategoryBar: FC<ICategoryBarProps> = ({ categories, baseUrl = ALL_VIDEOS_P
                             navigate({ category: key, search: '' });
                         }}
                     >
-                        <Item key={baseUrl}>{upperFirst(t(categoryTitles[baseUrl]))}</Item>
+                        <Item key={baseUrl}>{upperFirst(t('all'))}</Item>
                         {categories.map(({ name }) => (
                             <Item key={name.toLowerCase()}>{upperFirst(t(name.toLowerCase()))}</Item>
                         ))}

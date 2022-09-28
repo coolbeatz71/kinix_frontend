@@ -25,6 +25,10 @@ const ArticleContainer: FC = () => {
                 loading={loading}
                 context={EnumTagsContext.ARTICLE}
                 tags={tags as unknown as string[]}
+                activeTag={''}
+                onTagSelect={() => {
+                    //
+                }}
             />
             <div className="mt-5">
                 <MainArticle />

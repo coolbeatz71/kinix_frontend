@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
 import { Col, Row, Skeleton } from 'antd';
-import { useTranslation } from 'react-i18next';
 import Tag from '@components/common/Tag';
 import useDarkLight from '@hooks/useDarkLight';
 import ErrorAlert from '@components/common/ErrorAlert';
@@ -15,15 +14,16 @@ import styles from './index.module.scss';
 export interface ITagsBarProps {
     tags: string[];
     loading: boolean;
+    activeTag: string;
     error?: Error | null;
     context: EnumTagsContext;
+    onTagSelect: (tag: string) => void;
 }
 
-const TagsBar: FC<ITagsBarProps> = ({ context, tags, loading, error }) => {
-    const { t } = useTranslation();
+const TagsBar: FC<ITagsBarProps> = ({ context, tags, loading, error, onTagSelect, activeTag }) => {
     const { value } = useDarkLight();
     const isArticleContext = context === EnumTagsContext.ARTICLE;
-    const tagsList = [t('all'), ...tags]?.map((value, idx) => ({ id: getId(idx), value }));
+    const tagsList = ['all', ...tags]?.map((value, idx) => ({ id: getId(idx), value }));
 
     return (
         <Row className={styles.tags} data-theme={value} data-article-context={isArticleContext}>
@@ -36,7 +36,15 @@ const TagsBar: FC<ITagsBarProps> = ({ context, tags, loading, error }) => {
                     ) : error ? (
                         <ErrorAlert error={error} showIcon closable banner />
                     ) : (
-                        tagsList.map((tag) => <Tag key={tag.id} itemId={tag.id} value={tag.value} />)
+                        tagsList.map((tag) => (
+                            <Tag
+                                key={tag.id}
+                                itemId={tag.id}
+                                value={tag.value}
+                                activeTag={activeTag}
+                                onClick={() => onTagSelect(tag.value)}
+                            />
+                        ))
                     )}
                 </ScrollMenu>
             </Col>

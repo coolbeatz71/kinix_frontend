@@ -1,4 +1,5 @@
 import axios, { AxiosError, AxiosResponse } from 'axios';
+import qs from 'query-string';
 import { API_TOKEN, API_URL, PLATFORM_NAME, USER_DATA } from '@constants/platform';
 import getToken from '@helpers/getToken';
 import { HOME_PATH } from '@constants/paths';
@@ -12,6 +13,7 @@ const lang = getLanguage();
 
 const api = axios.create({
     baseURL: API_URL,
+    paramsSerializer: (params) => qs.stringify(params, { encode: false }),
     headers: {
         platform: PLATFORM_NAME,
         'Accept-Language': lang,
