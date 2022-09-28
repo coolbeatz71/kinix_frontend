@@ -1,6 +1,8 @@
-import React, { FC, ReactElement } from 'react';
-import { lowerCase, upperFirst } from 'lodash';
+import React, { FC, ReactElement, useState } from 'react';
 import { useRouter } from 'next/router';
+import { useTranslation } from 'react-i18next';
+import { IUnknownObject } from '@interfaces/app';
+import { lowerCase, upperFirst } from 'lodash';
 import { Row, Grid, Dropdown, Button, Col, Menu } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 import { ALL_VIDEOS_PATH } from '@constants/paths';
@@ -15,17 +17,38 @@ export interface ICategoryBarProps {
     categories: ICategoryType[];
 }
 
+const { Item } = Menu;
 const { useBreakpoint } = Grid;
 
 const CategoryBar: FC<ICategoryBarProps> = ({ categories, baseUrl = ALL_VIDEOS_PATH, scrolled }) => {
+    const { push } = useRouter();
     const { query } = useRouter();
+    const { t } = useTranslation();
     const { lg, md } = useBreakpoint();
 
-    const categoryId: string | string[] = query?.category || baseUrl;
-    const categoryTitles = { [baseUrl]: lowerCase('all') };
-
-    const sizeBreakpoint = md && scrolled !== '' ? 'small' : 'middle';
     const spanBreakpoint = md && scrolled !== '' ? 6 : 7;
+    const sizeBreakpoint = md && scrolled !== '' ? 'small' : 'middle';
+
+    const categoryTitles = { [baseUrl]: lowerCase('all') };
+    const category = (query?.category as string) || baseUrl;
+    const [search, setSearch] = useState<string>((query?.search as string) || '');
+
+    const navigate = (data: IUnknownObject): void => {
+        const query: IUnknownObject = {};
+
+        if (![baseUrl, '', undefined, null].includes(category)) query.category = category;
+        if (![baseUrl, '', undefined, null].includes(search)) query.search = search;
+
+        Object.keys(data).map((key) => {
+            if ([baseUrl, '', undefined, null].includes(data[key])) delete query[key];
+            else query[key] = data[key];
+        });
+
+        push({
+            query,
+            pathname: baseUrl,
+        });
+    };
 
     const Wrapper: FC<{ children: ReactElement }> = ({ children }) =>
         lg ? (
@@ -39,8 +62,8 @@ const CategoryBar: FC<ICategoryBarProps> = ({ categories, baseUrl = ALL_VIDEOS_P
                 overlayStyle={{ position: 'fixed' }}
                 overlayClassName={styles.categoryBar__dropdown}
             >
-                <Button size={sizeBreakpoint} type="primary" ghost={`${categoryId}` === baseUrl}>
-                    {upperFirst(lowerCase(categoryTitles[`${categoryId}`]))} <DownOutlined />
+                <Button type="primary" size={sizeBreakpoint} ghost={`${category}` === baseUrl}>
+                    {upperFirst(t(categoryTitles[`${category}`]?.toLowerCase()))} <DownOutlined />
                 </Button>
             </Dropdown>
         );
@@ -51,29 +74,34 @@ const CategoryBar: FC<ICategoryBarProps> = ({ categories, baseUrl = ALL_VIDEOS_P
                 <Wrapper>
                     <Menu
                         mode="horizontal"
-                        selectedKeys={[`${categoryId}`]}
+                        selectedKeys={[category]}
                         onClick={({ key }) => {
-                            console.log('key', key);
+                            setSearch('');
+                            navigate({ category: key, search: '' });
                         }}
                     >
-                        <Menu.Item key={baseUrl}>{upperFirst(lowerCase(categoryTitles[baseUrl]))}</Menu.Item>
-                        {categories.map(({ id, name }) => (
-                            <Menu.Item key={id}>{upperFirst(lowerCase(name))}</Menu.Item>
+                        <Item key={baseUrl}>{upperFirst(t(categoryTitles[baseUrl]))}</Item>
+                        {categories.map(({ name }) => (
+                            <Item key={name.toLowerCase()}>{upperFirst(t(name.toLowerCase()))}</Item>
                         ))}
                     </Menu>
                 </Wrapper>
             </Col>
             <Col span={spanBreakpoint} data-search-col={scrolled !== '' ? 'scrolled' : ''}>
                 <SearchInput
-                    value=""
                     isCategory
+                    value={search}
                     allowClear={lg}
                     size={sizeBreakpoint}
-                    onChange={(_e) => {
-                        //
+                    onChange={(e) => {
+                        setSearch(e.target.value);
+                        if (e.type !== 'change') navigate({ search: '' });
                     }}
-                    onKeyPress={(_e) => {
-                        //
+                    onKeyPress={(e) => {
+                        if (e.key === 'Enter') {
+                            if ([null, '', undefined].includes(search)) setSearch('');
+                            else navigate({ category: '' });
+                        }
                     }}
                 />
             </Col>

@@ -3,6 +3,7 @@ export const navigation = {
     settings: 'Configuration',
     logout: 'Déconnexion',
     musicVideos: 'Clip Vidéo',
+    music_video: 'Clip Vidéo',
     bookmarks: 'Favoris',
     generalSection: 'SECTION GENERALE',
     favoriteSection: 'SECTION FAVORIE',

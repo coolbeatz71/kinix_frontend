@@ -60,6 +60,7 @@
         }
 
         &__content {
+            height: 100%;
             &[data-sidenav-close='false'] {
                 padding: $padding;
             }

@@ -3,7 +3,10 @@ import api from 'services/axios';
 
 interface IParams {
     page?: number;
+    tag?: string;
     limit?: number;
+    search?: string;
+    category?: string;
 }
 
 const getAllVideosAction = createAsyncThunk('videos/all', async (params: IParams, { rejectWithValue }) => {
