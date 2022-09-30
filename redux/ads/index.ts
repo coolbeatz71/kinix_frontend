@@ -5,7 +5,7 @@ import {
     ActionWrapperRejected,
 } from '@constants/redux';
 import { createSlice } from '@reduxjs/toolkit';
-import getAllAdsAction from './getAll';
+import getAllAdsAction from './all';
 import { adsInitialState } from './types';
 
 export const adsSlice = createSlice({

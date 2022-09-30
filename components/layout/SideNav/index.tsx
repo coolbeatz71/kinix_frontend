@@ -1,13 +1,13 @@
 import React, { FC, useState, ReactNode, Key, Fragment } from 'react';
+import Link from 'next/link';
 import { Divider, Layout, Menu, Grid } from 'antd';
 import { useTranslation } from 'react-i18next';
 import getSideNavWidth from '@helpers/getSideNavWidth';
 import Logo from '@components/common/Logo';
 import sectionList from '@constants/sidenav-section';
-import { BulbFilled, HomeFilled } from '@ant-design/icons';
-import Link from 'next/link';
+import { HomeFilled } from '@ant-design/icons';
 import useDarkLight from '@hooks/useDarkLight';
-import { DISCOVER_PATH, HOME_PATH } from '@constants/paths';
+import { HOME_PATH } from '@constants/paths';
 
 import styles from './index.module.scss';
 
@@ -90,9 +90,6 @@ const SideNav: FC<ISideNavProps> = ({ open, collapsed, setCollapsed }) => {
                     >
                         <Item title={null} className={styles.sidenav__menu__items} icon={<HomeFilled />}>
                             <Link href={HOME_PATH}>{t('home')}</Link>
-                        </Item>
-                        <Item title={null} className={styles.sidenav__menu__items} icon={<BulbFilled />}>
-                            <Link href={DISCOVER_PATH}>{t('discovery')}</Link>
                         </Item>
 
                         {renderSections(collapsed)}

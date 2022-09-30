@@ -1,21 +1,20 @@
 import { createContext } from 'react';
 
-export interface CatType {
+export interface ICategoryType {
     id: number;
-    title: string;
+    name: string;
 }
 
-export interface SvpType {
+export interface ServerPropsType {
     error: string | null;
-    categories: CatType[];
+    categories: ICategoryType[];
 }
 
 interface CtxType {
-    svpProps: SvpType;
+    serverProps: ServerPropsType;
 }
 
-const initialValue: CtxType = { svpProps: { error: null, categories: [] } };
+const initialValue: CtxType = { serverProps: { error: null, categories: [] } };
+const CategoriesContext = createContext(initialValue);
 
-const Context = createContext(initialValue);
-
-export default Context;
+export default CategoriesContext;

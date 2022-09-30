@@ -1,4 +1,5 @@
 import { APP_NAME } from '@constants/platform';
+
 export const general = {
     viewMore: 'View More',
     viewAll: 'View All',
@@ -30,4 +31,9 @@ export const general = {
     serverErrorTitle: 'Sorry, something went wrong',
     serverErrorDesc: 'The server encountered an error and could not complete the request.',
     refreshPageButton: 'Refresh the page',
+    all: 'All',
+    scrollingEndMessage: 'There is no more content to load',
+    noLyricsUploaded: 'No lyrics was provided on this video',
+    noRatingFound: 'No ratings was found on this video',
+    noContentFound: 'No content was found for this request',
 };

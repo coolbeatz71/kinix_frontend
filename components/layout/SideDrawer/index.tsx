@@ -2,10 +2,10 @@ import React, { FC, useState, ReactNode, Key, Fragment } from 'react';
 import { Menu, Drawer, Divider, Row, Col, Button, Space } from 'antd';
 import { useTranslation } from 'react-i18next';
 import Link from 'next/link';
-import { DISCOVER_PATH, HOME_PATH } from '@constants/paths';
+import { HOME_PATH } from '@constants/paths';
 import sectionList from '@constants/sidenav-section';
 import { MenuOutlined } from '@ant-design/icons';
-import { BulbFilled, HomeFilled } from '@ant-design/icons';
+import { HomeFilled } from '@ant-design/icons';
 import { BsFillSunFill, BsMoonStarsFill } from 'react-icons/bs';
 import useDarkLight from '@hooks/useDarkLight';
 import Logo from '@components/common/Logo';
@@ -116,15 +116,6 @@ const SideDrawer: FC<ISideDrawerProps> = ({ open, setOpen }) => {
                 >
                     <Link href={HOME_PATH}>{t('home')}</Link>
                 </Item>
-                <Item
-                    title={null}
-                    onClick={handleCloseDrawer}
-                    className={styles.sidedrawer__menu__items}
-                    icon={<BulbFilled />}
-                >
-                    <Link href={DISCOVER_PATH}>{t('discovery')}</Link>
-                </Item>
-
                 {renderSections()}
             </Menu>
         </Drawer>

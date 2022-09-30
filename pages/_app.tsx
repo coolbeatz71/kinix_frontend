@@ -4,12 +4,12 @@ import en from 'dayjs/locale/en';
 import fr from 'dayjs/locale/fr';
 import relativeTime from 'dayjs/plugin/relativeTime';
 
-import Wrapper from 'redux/store';
-import { AppProps } from 'next/app';
 import NProgress from 'nprogress';
+import Wrapper from 'redux/store';
+import { AppProps, AppContext } from 'next/app';
 import { Router } from 'next/router';
-import { PersistGate } from 'redux-persist/integration/react';
 import { persistor } from '@redux/store';
+import { PersistGate } from 'redux-persist/integration/react';
 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -19,10 +19,13 @@ import 'styles/global.scss';
 import 'styles/404.scss';
 import 'styles/nprogress.scss';
 
-import { getLanguage } from '@helpers/getLanguage';
 import locales from '@locales/index';
+import { getLanguage } from '@helpers/getLanguage';
+import getCategories from '@helpers/getCategories';
+import { IUnknownObject } from '@interfaces/app';
+import CategoriesContext from '@context/video-categories';
 
-type AppPropsWithError = AppProps & { err: unknown };
+type AppPropsWithError = AppProps & { err: unknown } & IUnknownObject;
 
 const config = {
     trickle: false,
@@ -43,7 +46,7 @@ Router.events.on('routeChangeComplete', () => {
 });
 Router.events.on('routeChangeError', () => nProgress.done());
 
-const MyApp = ({ Component, pageProps }: AppPropsWithError): JSX.Element => {
+const MyApp = ({ Component, pageProps, serverProps }: AppPropsWithError): JSX.Element => {
     const userLang = getLanguage();
 
     const initLanguage = (lang: string): void => {
@@ -58,8 +61,13 @@ const MyApp = ({ Component, pageProps }: AppPropsWithError): JSX.Element => {
 
     return (
         <PersistGate loading={null} persistor={persistor}>
-            <Component {...pageProps} />
+            <CategoriesContext.Provider value={{ serverProps }}>
+                <Component {...pageProps} serverProps={serverProps} />
+            </CategoriesContext.Provider>
         </PersistGate>
     );
 };
+
+MyApp.getInitialProps = async (context: AppContext) => await getCategories(context);
+
 export default withRedux(MyApp);

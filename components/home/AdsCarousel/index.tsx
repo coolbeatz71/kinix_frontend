@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import SliderContent from './SliderContent';
 import { IRootState } from '@redux/reducers';
 import { useTranslation } from 'react-i18next';
-import getAllAdsAction from '@redux/ads/getAll';
+import getAllAdsAction from '@redux/ads/all';
 import { useAppDispatch } from '@redux/store';
 import { IAds } from '@interfaces/api';
 import { IUnknownObject } from '@interfaces/app';

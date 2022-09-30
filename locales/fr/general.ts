@@ -31,4 +31,9 @@ export const general = {
     serverErrorTitle: "Désolé, quelque chose s'est mal passé",
     serverErrorDesc: "Le serveur a rencontré une erreur et n'a pas pu terminer la requête.",
     refreshPageButton: 'Actualiser la page',
+    all: 'Tout',
+    scrollingEndMessage: "Il n'y a plus de contenu à charger",
+    noLyricsUploaded: 'Pas lyrics fourni sur cette vidéo',
+    noRatingFound: "Aucune note n'a été trouvée sur cette vidéo",
+    noContentFound: 'Aucun contenu trouvé pour cette demande',
 };

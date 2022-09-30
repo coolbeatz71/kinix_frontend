@@ -1,5 +1,6 @@
 import React, { FC, useState } from 'react';
 import { Button, Col, Layout, Row, Space, Grid } from 'antd';
+import { isEmpty } from 'lodash';
 import getSideNavWidth from '@helpers/getSideNavWidth';
 import SearchInput from '@components/common/SearchInput';
 import { MenuOutlined } from '@ant-design/icons';
@@ -15,6 +16,7 @@ import { BsFillGridFill } from 'react-icons/bs';
 import UserProfileDropDown from '@components/layout/UserProfileDropDown';
 import UserAuthSection from '@components/layout/UserAuthSection';
 import LanguageDropDown from '@components/layout/LanguageDropDown';
+import { ServerPropsType } from '@context/video-categories';
 
 import styles from './index.module.scss';
 
@@ -27,6 +29,7 @@ interface IHeaderProps {
     collapsed: boolean;
     isVideoCategory: boolean;
     currentUser: ICurrentUser;
+    serverProps: ServerPropsType;
     setOpen: (open: boolean) => void;
     setCollapsed: (collapsed: boolean) => void;
     setOpenSideDrawer: (openSideDrawer: boolean) => void;
@@ -38,12 +41,14 @@ const Header: FC<IHeaderProps> = ({
     scrolled,
     collapsed,
     currentUser,
+    serverProps,
     setCollapsed,
     isVideoCategory,
     setOpenSideDrawer,
 }) => {
     const { value } = useDarkLight();
     const { lg, md } = useBreakpoint();
+
     const [openDropdown, setOpenDropdown] = useState(false);
 
     const userLang: 'en' | 'fr' | string = getLanguage();
@@ -60,7 +65,6 @@ const Header: FC<IHeaderProps> = ({
     };
 
     const sideNavWidth = getSideNavWidth(open, collapsed);
-
     const headerStyles = {
         left: sideNavWidth,
         width: `calc(100% - ${sideNavWidth}px)`,
@@ -157,33 +161,11 @@ const Header: FC<IHeaderProps> = ({
                     justify="space-between"
                     className={styles.header__row__categories}
                 >
-                    <Col span={24}>
-                        <CategoryBar
-                            categories={[
-                                {
-                                    id: 0,
-                                    title: 'music video',
-                                },
-                                {
-                                    id: 1,
-                                    title: 'interview',
-                                },
-                                {
-                                    id: 2,
-                                    title: 'podcast',
-                                },
-                                {
-                                    id: 3,
-                                    title: 'LeFocus',
-                                },
-                                {
-                                    id: 4,
-                                    title: 'FlexBeatz',
-                                },
-                            ]}
-                            scrolled={scrolled}
-                        />
-                    </Col>
+                    {!isEmpty(serverProps?.categories) && (
+                        <Col span={24}>
+                            <CategoryBar categories={serverProps?.categories} scrolled={scrolled} />
+                        </Col>
+                    )}
                 </Row>
             )}
         </AntHeader>
