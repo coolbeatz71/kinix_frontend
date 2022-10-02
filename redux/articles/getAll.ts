@@ -6,12 +6,11 @@ interface IParams {
     page?: number;
     limit?: number;
     search?: string;
-    category?: string;
 }
 
-const getAllVideosAction = createAsyncThunk('videos/all', async (params: IParams, { rejectWithValue }) => {
+const getAllArticlesAction = createAsyncThunk('articles/all', async (params: IParams, { rejectWithValue }) => {
     try {
-        const { data } = await api.get('/videos', {
+        const { data } = await api.get('/articles', {
             params,
         });
         return data;
@@ -20,4 +19,4 @@ const getAllVideosAction = createAsyncThunk('videos/all', async (params: IParams
     }
 });
 
-export default getAllVideosAction;
+export default getAllArticlesAction;
