@@ -3,7 +3,7 @@ import EnumVideoCategory from './video-categories';
 export const HOME_PATH = '/';
 
 export const ALL_VIDEOS_PATH = '/videos';
-export const ALL_ARTICLE_PATH = '/articles';
+export const ALL_ARTICLES_PATH = '/articles';
 export const SETTING_PATH = '/settings';
 
 export const PODCAST_PATH = `/videos?category=${EnumVideoCategory.PODCAST.toLowerCase()}`;

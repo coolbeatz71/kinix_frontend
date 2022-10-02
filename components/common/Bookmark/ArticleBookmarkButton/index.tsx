@@ -15,9 +15,9 @@ const ArticleBookmarkButton: FC<IArticleBookmarkButtonProps> = ({ slug: _ }) => 
         <Button
             type="text"
             data-theme={value}
-            className={styles.articleBookmarkButton}
-            onClick={() => console.log('clicked')}
             icon={<RiBookmark3Fill />}
+            onClick={() => console.log('clicked')}
+            className={styles.articleBookmarkButton}
         />
     );
 };

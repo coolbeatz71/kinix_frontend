@@ -9,7 +9,7 @@ import { IArticle } from '@interfaces/api';
 import { Button, Card, Typography } from 'antd';
 import { EnumAlaUnePriority } from '@constants/alaune-article';
 import { ClockCircleOutlined } from '@ant-design/icons';
-import { ALL_ARTICLE_PATH } from '@constants/paths';
+import { ALL_ARTICLES_PATH } from '@constants/paths';
 
 import styles from './index.module.scss';
 
@@ -23,7 +23,7 @@ export interface IAlaUeArticleProps {
 const AlaUneArticleCard: FC<IAlaUeArticleProps> = ({ article, priority = EnumAlaUnePriority.FIRST }) => {
     const { t } = useTranslation();
     const { value } = useDarkLight();
-    const link = `${ALL_ARTICLE_PATH}/${article?.slug}`;
+    const link = `${ALL_ARTICLES_PATH}/${article?.slug}`;
 
     return (
         <Link href={link} passHref>
