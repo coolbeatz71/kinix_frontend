@@ -110,7 +110,7 @@ const ArticleBody: FC = () => {
 
             {lg && (
                 <Row className="mt-5">
-                    <PopularArticleList fetched error={null} articles={[]} />
+                    <PopularArticleList />
                 </Row>
             )}
         </Fragment>
