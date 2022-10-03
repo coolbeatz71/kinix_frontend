@@ -3,11 +3,13 @@ import { BasicInitialState, BasicInitialStateList, IBasicInitialState, IBasicIni
 export type IArticlesState = {
     all: IBasicInitialState;
     tags: IBasicInitialStateList;
+    popular: IBasicInitialStateList;
     featured: IBasicInitialStateList;
 };
 
 export const articlesInitialState: IArticlesState = {
     all: BasicInitialState,
     tags: BasicInitialStateList,
+    popular: BasicInitialStateList,
     featured: BasicInitialStateList,
 };
