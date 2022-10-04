@@ -1,15 +1,15 @@
 import React, { FC, Fragment, ReactElement, useCallback, useEffect, useState } from 'react';
 import { BackTop, Col, Row, Typography, Grid, Affix } from 'antd';
+import { IUnknownObject } from '@interfaces/app';
 import ArticleHeader from '@components/common/ArticleHeader';
 import ArticleShare from '@components/common/Sharings/ArticleShare';
 import PopularArticleList from '@components/common/PopularArticleList';
 import RelatedArticleList from '@components/common/RelatedArticleList';
 import ArticleTags from '@components/common/ArticleTags';
 import useDarkLight from '@hooks/useDarkLight';
-import { IUnknownObject } from '@interfaces/app';
+import ArticleAction from '../Actions/ArticleAction';
 
 import styles from './index.module.scss';
-import ArticleAction from '../Actions/ArticleAction';
 
 const { Paragraph } = Typography;
 const { useBreakpoint } = Grid;
@@ -110,7 +110,7 @@ const ArticleBody: FC = () => {
 
             {lg && (
                 <Row className="mt-5">
-                    <PopularArticleList fetched error={null} articles={[]} />
+                    <PopularArticleList />
                 </Row>
             )}
         </Fragment>

@@ -9,7 +9,7 @@ import { ClockCircleOutlined } from '@ant-design/icons';
 
 import styles from './index.module.scss';
 import Link from 'next/link';
-import { ALL_ARTICLE_PATH } from '@constants/paths';
+import { ALL_ARTICLES_PATH } from '@constants/paths';
 
 const { Title, Paragraph, Text } = Typography;
 
@@ -21,7 +21,7 @@ const TrendingArticleCard: FC<ITrendingArticleProps> = ({ article }) => {
     const { t } = useTranslation();
     const { value } = useDarkLight();
 
-    const link = `${ALL_ARTICLE_PATH}/${article?.slug}`;
+    const link = `${ALL_ARTICLES_PATH}/${article?.slug}`;
 
     return (
         <Link passHref href={link}>

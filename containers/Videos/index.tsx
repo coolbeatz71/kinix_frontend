@@ -30,7 +30,6 @@ interface IVideoParams {
 const VideoContainer: FC = () => {
     const dispatch = useAppDispatch();
     const { query, asPath, push } = useRouter();
-
     const [activeTag, setActiveTag] = useState<string>((query?.tag as string) || 'all');
 
     const [videos, setVideos] = useState<IVideo[]>([]);

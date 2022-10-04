@@ -1,25 +1,27 @@
-import React, { FC } from 'react';
-import useDarkLight from '@hooks/useDarkLight';
+import React, { FC, Fragment } from 'react';
+import dayjs from 'dayjs';
+import Image from 'next/image';
+import { isEmpty, truncate } from 'lodash';
+import { useTranslation } from 'react-i18next';
 import { Card, Typography } from 'antd';
+import { IArticle } from '@interfaces/api';
+import useDarkLight from '@hooks/useDarkLight';
 import { ClockCircleOutlined } from '@ant-design/icons';
-
-import styles from './index.module.scss';
 import ArticleLikeButton from '@components/common/Like/ArticleLikeButton';
-import { truncate } from 'lodash';
 import ArticleCommentButton from '@components/common/Comment/ArticleCommentButton';
 import ArticleBookmarkButton from '@components/common/Bookmark/ArticleBookmarkButton';
+
+import styles from './index.module.scss';
 
 const { Meta } = Card;
 const { Text } = Typography;
 
 export interface IArticleCardVerticalProps {
-    size: number;
+    article: IArticle;
 }
 
-const description = `
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates, expedita soluta fugit vel deleniti, quisquam animi facilis rerum dolore deserunt quasi aperiam voluptatum dolor necessitatibus nisi officia iste delectus. Esse.`;
-
-const ArticleCardVertical: FC<IArticleCardVerticalProps> = ({ size }) => {
+const ArticleCardVertical: FC<IArticleCardVerticalProps> = ({ article }) => {
+    const { t } = useTranslation();
     const { value } = useDarkLight();
 
     return (
@@ -28,38 +30,43 @@ const ArticleCardVertical: FC<IArticleCardVerticalProps> = ({ size }) => {
                 hoverable
                 bordered={false}
                 cover={
-                    <>
-                        <img
-                            alt="example"
-                            src={`https://picsum.photos/1024/300?random=${size}`}
-                            style={{
-                                aspectRatio: '16 / 9',
-                                objectFit: 'cover',
-                            }}
-                        />
-                    </>
+                    <Fragment>
+                        {!isEmpty(article?.images) && (
+                            <div>
+                                <Image
+                                    width={100}
+                                    height={55}
+                                    alt={article?.slug}
+                                    layout="responsive"
+                                    src={article?.images?.[0] as string}
+                                />
+                            </div>
+                        )}
+                    </Fragment>
                 }
                 actions={[
-                    <ArticleLikeButton count={3} slug="" key="article-like" />,
-                    <ArticleCommentButton count={1230} slug="" key="article-comment" />,
-                    <ArticleBookmarkButton slug={''} key="article-bookmark" />,
+                    <ArticleLikeButton count={Number(article?.likesCount)} slug={article?.slug} key="article-like" />,
+                    <ArticleCommentButton
+                        slug={article?.slug}
+                        key="article-comment"
+                        count={Number(article?.commentsCount)}
+                    />,
+                    <ArticleBookmarkButton slug={article?.slug} key="article-bookmark" />,
                 ]}
             >
                 <div className={styles.articleCardVertical__header}>
-                    <Text>
-                        {truncate('By Redaction', {
-                            length: 90,
-                        })}
-                    </Text>
+                    <Text>{t('byRedaction')}</Text>
                     <Text className="d-flex align-items-center">
                         <ClockCircleOutlined />
-                        &nbsp; 1 hour ago
+                        &nbsp; {dayjs(article?.createdAt).fromNow()}
                     </Text>
                 </div>
 
                 <Meta
-                    title="The Internet's Own Boy: The Story of Aaron Swartz | full movie (2014)"
-                    description={truncate(description, {
+                    title={truncate(article?.title, {
+                        length: 100,
+                    })}
+                    description={truncate(article?.summary, {
                         length: 90,
                     })}
                 />

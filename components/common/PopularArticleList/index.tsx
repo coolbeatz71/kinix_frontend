@@ -1,20 +1,26 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import { Col, Row } from 'antd';
-import ArticleCardVertical from '@components/common/Cards/Article/ArticleVertical';
-import SectionTitle from '@components/common/SectionTitle';
-import { IUnknownObject } from 'interfaces/app';
+import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
+import { useAppDispatch } from '@redux/store';
+import { IRootState } from '@redux/reducers';
+import SectionTitle from '@components/common/SectionTitle';
+import { IArticle } from '@interfaces/api';
+import ServerError from '../ServerError';
+import getPopularArticlesAction from '@redux/articles/popular';
+import ArticleCardVertical from '@components/common/Cards/Article/ArticleVertical';
+import ArticleListSkeleton from '@components/skeleton/ArticleList';
+import { isEmpty } from 'lodash';
 
-interface IPopularArticleListProps {
-    fetched: boolean;
-    error: string | null;
-    articles: IUnknownObject[];
-    myArticles?: boolean;
-}
-
-const PopularArticleList: FC<IPopularArticleListProps> = () => {
-    const elements = [0, 1, 2, 3];
+const PopularArticleList: FC = () => {
     const { t } = useTranslation();
+    const dispatch = useAppDispatch();
+
+    const { loading, error, data } = useSelector(({ articles: { popular } }: IRootState) => popular);
+
+    useEffect(() => {
+        dispatch(getPopularArticlesAction());
+    }, [dispatch]);
 
     return (
         <Col span={24}>
@@ -24,11 +30,22 @@ const PopularArticleList: FC<IPopularArticleListProps> = () => {
                 </Col>
             </Row>
             <Row gutter={[16, 48]}>
-                {elements.map((el) => (
-                    <Col xs={24} sm={12} md={12} lg={8} xl={6} key={el}>
-                        <ArticleCardVertical size={el} />
-                    </Col>
-                ))}
+                {error ? (
+                    <ServerError
+                        onRefresh={() => {
+                            dispatch(getPopularArticlesAction());
+                        }}
+                    />
+                ) : loading ? (
+                    <ArticleListSkeleton size={8} />
+                ) : (
+                    !isEmpty(data) &&
+                    data?.map((article) => (
+                        <Col xs={24} sm={12} md={12} lg={8} xl={6} key={article.id}>
+                            <ArticleCardVertical article={article as IArticle} />
+                        </Col>
+                    ))
+                )}
             </Row>
         </Col>
     );

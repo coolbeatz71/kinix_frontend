@@ -16,11 +16,11 @@ const ArticleLikeButton: FC<IArticleLikeButtonProps> = ({ slug: _, count }) => {
         <Button
             type="text"
             data-theme={value}
+            icon={<HeartOutlined />}
             className={styles.articleLikeButton}
             onClick={() => console.log('clicked')}
-            icon={<HeartOutlined />}
         >
-            &nbsp;{count}
+            &nbsp;{count > 0 ? count : ''}
         </Button>
     );
 };

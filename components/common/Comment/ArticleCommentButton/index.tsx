@@ -16,11 +16,11 @@ const ArticleCommentButton: FC<IArticleCommentButtonProps> = ({ slug: _, count }
         <Button
             type="text"
             data-theme={value}
-            className={styles.articleCommentButton}
-            onClick={() => console.log('clicked')}
             icon={<CommentOutlined />}
+            onClick={() => console.log('clicked')}
+            className={styles.articleCommentButton}
         >
-            &nbsp;{count}
+            &nbsp;{count > 0 ? count : ''}
         </Button>
     );
 };

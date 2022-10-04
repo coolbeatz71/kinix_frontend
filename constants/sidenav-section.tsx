@@ -9,7 +9,7 @@ import {
     FLEXBEATZ_PATH,
     INTERVIEW_PATH,
     MUSIC_VIDEO_PATH,
-    ALL_ARTICLE_PATH,
+    ALL_ARTICLES_PATH,
     USER_VIDEOS_RATED_PATH,
     USER_VIDEOS_SHARED_PATH,
     USER_ARTICLES_LIKED_PATH,
@@ -31,7 +31,7 @@ export const GENERAL_SECTIONS: ISideNavSection[] = [
     },
     {
         text: 'article',
-        href: ALL_ARTICLE_PATH,
+        href: ALL_ARTICLES_PATH,
         icon: <RiArticleLine />,
     },
     {

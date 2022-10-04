@@ -7,7 +7,7 @@ import { IRootState } from '@redux/reducers';
 import { useAppDispatch } from '@redux/store';
 import useDarkLight from '@hooks/useDarkLight';
 import AlaUneArticleList from '@components/common/AlaUneArticleList';
-import { ALL_ARTICLE_PATH } from '@constants/paths';
+import { ALL_ARTICLES_PATH } from '@constants/paths';
 import getFeaturedArticlesAction from '@redux/articles/featured';
 import { IArticle } from '@interfaces/api';
 import AlaUneArticleListSkeleton from '@components/skeleton/AlaUneArticleList';
@@ -15,10 +15,11 @@ import AlaUneArticleListSkeleton from '@components/skeleton/AlaUneArticleList';
 import styles from './index.module.scss';
 
 interface IAlaUneArticleSectionProps {
+    limit?: number;
     canViewAll?: boolean;
 }
 
-const AlaUneArticleSection: FC<IAlaUneArticleSectionProps> = ({ canViewAll = true }) => {
+const AlaUneArticleSection: FC<IAlaUneArticleSectionProps> = ({ limit, canViewAll = true }) => {
     const { t } = useTranslation();
     const { value } = useDarkLight();
     const dispatch = useAppDispatch();
@@ -26,7 +27,8 @@ const AlaUneArticleSection: FC<IAlaUneArticleSectionProps> = ({ canViewAll = tru
     const { fetched, loading, data: articles } = useSelector(({ articles: { featured } }: IRootState) => featured);
 
     useEffect(() => {
-        dispatch(getFeaturedArticlesAction());
+        dispatch(getFeaturedArticlesAction({ limit }));
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [dispatch]);
 
     return (
@@ -35,7 +37,7 @@ const AlaUneArticleSection: FC<IAlaUneArticleSectionProps> = ({ canViewAll = tru
 
             {canViewAll && fetched && (
                 <Row justify="end">
-                    <Link href={ALL_ARTICLE_PATH} passHref>
+                    <Link href={ALL_ARTICLES_PATH} passHref>
                         <Button size="large">{t('viewAll')}</Button>
                     </Link>
                 </Row>

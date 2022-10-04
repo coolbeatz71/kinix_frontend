@@ -7,6 +7,7 @@ import { upperFirst } from 'lodash';
 import CustomIcon from '@components/common/CustomIcon';
 import { languageList } from '@constants/language';
 import locales from 'locales/';
+import useDarkLight from '@hooks/useDarkLight';
 import { USER_LANG } from '@constants/platform';
 import { isServer } from '@constants/app';
 import api from 'services/axios';
@@ -20,6 +21,7 @@ interface ILanguageDropDownProps {
 }
 
 const LanguageDropDown: FC<ILanguageDropDownProps> = ({ userLang }) => {
+    const { value } = useDarkLight();
     const updateLanguage = (lang: string): void => {
         locales.changeLanguage(lang);
         dayjs.locale(lang === 'en' ? en : fr);
@@ -28,7 +30,7 @@ const LanguageDropDown: FC<ILanguageDropDownProps> = ({ userLang }) => {
     };
 
     const LanguageMenu = (
-        <Menu className={styles.language__menu}>
+        <Menu className={styles.language__menu} data-theme={value}>
             {languageList.map((lang) => (
                 <Item
                     key={lang.key}

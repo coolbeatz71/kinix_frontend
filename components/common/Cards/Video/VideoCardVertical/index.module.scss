@@ -14,8 +14,7 @@
         border-bottom-right-radius: 0;
 
         img {
-            object-fit: cover;
-            aspect-ratio: 16/9;
+            height: 100%;
             transition: transform 0.5s ease;
         }
 
