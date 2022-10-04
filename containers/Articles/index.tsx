@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, Fragment, useEffect, useState } from 'react';
 import { isEmpty } from 'lodash';
 import { useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
@@ -13,14 +13,14 @@ import ServerError from '@components/common/ServerError';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import TagsBar from '@components/layout/TagsBar';
 import ArticleList from '@components/common/ArticleList';
+import ArticleListSkeleton from '@components/skeleton/ArticleList';
 import getArticlesTagsAction from '@redux/articles/tags';
 import { EnumTagsContext } from '@constants/tags-context';
-import MainArticle from '@components/common/ArticleCarousel';
+import PopularArticleCarousel from '@components/common/PopularArticleCarousel';
 import AlaUneArticleSection from '@components/home/AlaUneArticleSection';
 import SubscribeNewsLetter from '@components/common/Cards/Article/SubscribeNewsLetter';
 
 import styles from './index.module.scss';
-import ArticleListSkeleton from '@components/skeleton/ArticleList';
 
 interface IArticleParams {
     page: number;
@@ -94,12 +94,16 @@ const ArticleContainer: FC = () => {
                 context={EnumTagsContext.ARTICLE}
                 tags={tags as unknown as string[]}
             />
-            {/* <div className="mt-5">
-                <MainArticle />
-            </div> */}
-            <div className="mt-5">
-                <AlaUneArticleSection canViewAll={false} limit={6} />
-            </div>
+            {isEmpty(query) && (
+                <Fragment>
+                    <div className="mt-5">
+                        <PopularArticleCarousel />
+                    </div>
+                    <div className="mt-5">
+                        <AlaUneArticleSection canViewAll={false} />
+                    </div>
+                </Fragment>
+            )}
 
             <div className="mt-5">
                 <SubscribeNewsLetter />
