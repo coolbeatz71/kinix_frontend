@@ -10,6 +10,7 @@ import ServerError from '../ServerError';
 import getPopularArticlesAction from '@redux/articles/popular';
 import ArticleCardVertical from '@components/common/Cards/Article/ArticleVertical';
 import ArticleListSkeleton from '@components/skeleton/ArticleList';
+import { isEmpty } from 'lodash';
 
 const PopularArticleList: FC = () => {
     const { t } = useTranslation();
@@ -38,9 +39,10 @@ const PopularArticleList: FC = () => {
                 ) : loading ? (
                     <ArticleListSkeleton size={8} />
                 ) : (
-                    (data as IArticle[]).map((article) => (
+                    !isEmpty(data) &&
+                    data?.map((article) => (
                         <Col xs={24} sm={12} md={12} lg={8} xl={6} key={article.id}>
-                            <ArticleCardVertical article={article} />
+                            <ArticleCardVertical article={article as IArticle} />
                         </Col>
                     ))
                 )}

@@ -32,13 +32,15 @@ const ArticleCardVertical: FC<IArticleCardVerticalProps> = ({ article }) => {
                 cover={
                     <Fragment>
                         {!isEmpty(article?.images) && (
-                            <Image
-                                width={100}
-                                height={50}
-                                alt={article?.slug}
-                                layout="responsive"
-                                src={article?.images?.[0] as string}
-                            />
+                            <div>
+                                <Image
+                                    width={100}
+                                    height={55}
+                                    alt={article?.slug}
+                                    layout="responsive"
+                                    src={article?.images?.[0] as string}
+                                />
+                            </div>
                         )}
                     </Fragment>
                 }

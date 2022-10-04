@@ -1,9 +1,10 @@
 import React, { FC } from 'react';
+import { truncate } from 'lodash';
 
 import { Typography } from 'antd';
 import { ClockCircleOutlined } from '@ant-design/icons';
+
 import styles from './index.module.scss';
-import { truncate } from 'lodash';
 
 const { Title, Paragraph, Text } = Typography;
 

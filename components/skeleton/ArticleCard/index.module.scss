@@ -7,12 +7,12 @@
     }
     &__cover {
         width: 100%;
+        padding: $padding;
 
         [class~='ant-skeleton-image'] {
             width: 100%;
-            height: 12rem;
+            height: 10.5rem;
             border-radius: $border-radius;
-            padding: $padding;
         }
     }
 

@@ -85,7 +85,7 @@ const ArticleContainer: FC = () => {
     };
 
     return (
-        <div data-content-padding className={styles.articles}>
+        <div className={styles.articles}>
             <TagsBar
                 error={error}
                 loading={loadingTags}
@@ -94,9 +94,9 @@ const ArticleContainer: FC = () => {
                 context={EnumTagsContext.ARTICLE}
                 tags={tags as unknown as string[]}
             />
-            <div className="mt-5">
+            {/* <div className="mt-5">
                 <MainArticle />
-            </div>
+            </div> */}
             <div className="mt-5">
                 <AlaUneArticleSection canViewAll={false} limit={6} />
             </div>

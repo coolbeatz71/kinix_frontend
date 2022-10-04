@@ -10,7 +10,7 @@ const ArticleCardSkeleton: FC = () => {
     return (
         <div data-theme={value} className={styles.articleSkeleton}>
             <Card bordered={false}>
-                <Row className="mb-4" align="middle">
+                <Row className="mb-2" align="middle">
                     <Col span={24}>
                         <Skeleton.Image active className={styles.articleSkeleton__cover} />
                     </Col>
