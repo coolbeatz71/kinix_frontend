@@ -39,7 +39,7 @@ const MainArticle: FC<IMainArticleProps> = ({ article }) => {
                     </Title>
                     <Paragraph data-text="description">
                         {truncate(article?.summary, {
-                            length: 250,
+                            length: 120,
                         })}
                     </Paragraph>
                 </div>

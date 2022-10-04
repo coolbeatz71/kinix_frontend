@@ -1,3 +1,4 @@
+@import 'styles/colors.scss';
 @import 'styles/dimensions.scss';
 
 .language {
@@ -27,6 +28,19 @@
             [class~='anticon'] {
                 width: 1.2rem;
                 margin-right: 0.5rem;
+            }
+            &:hover {
+                background: $primary;
+                span {
+                    color: $white;
+                }
+            }
+        }
+
+        &[data-theme='dark'] {
+            background: $dark;
+            span {
+                color: $light;
             }
         }
     }
