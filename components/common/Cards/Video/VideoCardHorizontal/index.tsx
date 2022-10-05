@@ -3,9 +3,9 @@ import useDarkLight from '@hooks/useDarkLight';
 import { Button, Card, Col, Grid, Row, Typography } from 'antd';
 import { PlayCircleTwoTone } from '@ant-design/icons';
 import { isBoolean, truncate } from 'lodash';
+import { WARNING } from '@constants/colors';
 
 import styles from './index.module.scss';
-import { WARNING } from '@constants/colors';
 
 const { Title, Text } = Typography;
 const { useBreakpoint } = Grid;

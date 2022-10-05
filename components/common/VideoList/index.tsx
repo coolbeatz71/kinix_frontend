@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
-import { isEmpty } from 'lodash';
 import { Col, Row } from 'antd';
+import { isEmpty } from 'lodash';
 import { useTranslation } from 'react-i18next';
 import { IVideo } from '@interfaces/api';
 import VideoCardVertical from '@components/common/Cards/Video/VideoCardVertical';

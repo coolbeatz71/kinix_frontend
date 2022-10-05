@@ -7,6 +7,7 @@ import {
 import { createSlice } from '@reduxjs/toolkit';
 import getAllVideosAction from './all';
 import getVideosFeedAction from './feed';
+import getSingleVideoAction from './single';
 import getVideosTagsAction from './tags';
 import { videosInitialState } from './types';
 
@@ -29,7 +30,11 @@ export const videosSlice = createSlice({
             // get all videos
             .addCase(getAllVideosAction.pending, ActionWrapperPending)
             .addCase(getAllVideosAction.fulfilled, ActionWrapperFulfilled)
-            .addCase(getAllVideosAction.rejected, ActionWrapperRejected);
+            .addCase(getAllVideosAction.rejected, ActionWrapperRejected)
+            // get single video
+            .addCase(getSingleVideoAction.pending, ActionWrapperPending)
+            .addCase(getSingleVideoAction.fulfilled, ActionWrapperFulfilled)
+            .addCase(getSingleVideoAction.rejected, ActionWrapperRejected);
     },
 });
 

@@ -29,18 +29,18 @@
                 width: 1.2rem;
                 margin-right: 0.5rem;
             }
-            &:hover {
-                background: $primary;
-                span {
-                    color: $white;
-                }
-            }
         }
 
         &[data-theme='dark'] {
-            background: $dark;
-            span {
+            background: $black;
+            [class~='ant-dropdown-menu-item'] {
                 color: $light;
+                &:hover {
+                    background: $primary;
+                    span {
+                        color: $white;
+                    }
+                }
             }
         }
     }
