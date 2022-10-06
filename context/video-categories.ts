@@ -5,13 +5,13 @@ export interface ICategoryType {
     name: string;
 }
 
-export interface ServerPropsType {
+export interface CategoryServerPropsType {
     error: string | null;
     categories: ICategoryType[];
 }
 
 interface CtxType {
-    serverProps: ServerPropsType;
+    serverProps: CategoryServerPropsType;
 }
 
 const initialValue: CtxType = { serverProps: { error: null, categories: [] } };

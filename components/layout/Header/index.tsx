@@ -16,7 +16,7 @@ import { BsFillGridFill } from 'react-icons/bs';
 import UserProfileDropDown from '@components/layout/UserProfileDropDown';
 import UserAuthSection from '@components/layout/UserAuthSection';
 import LanguageDropDown from '@components/layout/LanguageDropDown';
-import { ServerPropsType } from '@context/video-categories';
+import { CategoryServerPropsType } from '@context/video-categories';
 
 import styles from './index.module.scss';
 
@@ -29,7 +29,7 @@ interface IHeaderProps {
     collapsed: boolean;
     isVideoCategory: boolean;
     currentUser: ICurrentUser;
-    serverProps: ServerPropsType;
+    serverProps: CategoryServerPropsType;
     setOpen: (open: boolean) => void;
     setCollapsed: (collapsed: boolean) => void;
     setOpenSideDrawer: (openSideDrawer: boolean) => void;

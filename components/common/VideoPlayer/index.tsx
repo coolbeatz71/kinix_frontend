@@ -1,55 +1,102 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
+import dayjs from 'dayjs';
+import numeral from 'numeral';
+import { isEmpty, upperFirst } from 'lodash';
+import { useTranslation } from 'react-i18next';
 import ReactPlayer from 'react-player';
-import { Col, Row, Typography, Spin } from 'antd';
+import { FaShare } from 'react-icons/fa';
+import { Col, Row, Typography, Spin, Button } from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
+import { useAppDispatch } from '@redux/store';
+import { IRootState } from '@redux/reducers';
+import { useSelector } from 'react-redux';
 import useDarkLight from '@hooks/useDarkLight';
+import SharePopover from '../SharePopover';
 import VideoTagsList from '../VideoTagsList';
+import { IVideo } from '@interfaces/api';
+import { IItemsEntity, IYoutubeVideo } from '@interfaces/youtube';
 import SingleVideoAction from '../Actions/SingleVideoAction';
+import getSingleVideoRatedByUserAction from '@redux/ratings/getUserRate';
+import VideoRatingModal from '@components/modal/VideoRatingModal';
 
 import styles from './index.module.scss';
 
 const { Text } = Typography;
 
-const tagsList = [
-    { value: 'Music videos', link: '/videos?tag=music_videos' },
-    { value: 'Music', link: '/videos?tag=music' },
-    { value: 'Kinshasa', link: '/videos?tag=kinshasa' },
-];
+export interface IVideoPlayerProps {
+    video: IVideo;
+    youtubeVideo: IYoutubeVideo;
+}
 
-const VideoPlayer: FC = () => {
+const VideoPlayer: FC<IVideoPlayerProps> = ({ youtubeVideo, video }) => {
+    const { t } = useTranslation();
+    const { value, isDark } = useDarkLight();
+    const dispatch = useAppDispatch();
+
+    const { data: userRatings } = useSelector(({ ratings: { userRate } }: IRootState) => userRate);
+
+    const youtubeVideoEntity = youtubeVideo.items?.[0];
+    const viewCount = youtubeVideoEntity?.statistics?.viewCount;
+    const publishedAt = youtubeVideoEntity?.snippet?.publishedAt;
+
     const [videoLoaded, setVideoLoaded] = useState<boolean>(false);
+    const [hasUserRated, setHasUserRated] = useState<boolean>(false);
+    const [openRatingModal, setOpenRatingModal] = useState<boolean>(false);
+    const [openSharePopover, setOpenSharePopover] = useState<boolean>(false);
 
-    const { value } = useDarkLight();
+    useEffect(() => {
+        if (!isEmpty(userRatings)) setHasUserRated(true);
+    }, [userRatings]);
+
+    useEffect(() => {
+        setHasUserRated(false);
+        if (video.slug) dispatch(getSingleVideoRatedByUserAction(video.slug));
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [dispatch]);
 
     return (
         <Row data-theme={value} className={styles.videoPlayer}>
             <Col span={24} className={styles.videoPlayer__container} data-video-loaded={videoLoaded}>
-                {videoLoaded === false ? <Spin size="large" /> : null}
+                {videoLoaded === false ? <Spin size="large" indicator={<LoadingOutlined spin />} /> : null}
                 <ReactPlayer
                     playing
                     controls
                     width={'100%'}
                     height={'100%'}
+                    url={video.link}
+                    onEnded={() => {
+                        !hasUserRated && setOpenRatingModal(true);
+                    }}
+                    onPause={() => {
+                        !hasUserRated && setOpenRatingModal(true);
+                    }}
                     onReady={() => setVideoLoaded(true)}
-                    url="https://www.youtube.com/watch?v=Z9HoTDMEKdk"
                     className={styles.videoPlayer__container__player}
                 />
             </Col>
             <Col span={24} className={styles.videoPlayer__footer}>
-                <VideoTagsList tags={tagsList} />
-                <Text data-title>T.I. - “Hit Dogs Holla” feat. Tokyo Jetz (Official Music Video - WSHH Exclusive)</Text>
+                <div className="d-flex justify-content-between">
+                    {video.tags && <VideoTagsList tags={video.tags} />}
+                    <SharePopover
+                        slug={video.slug}
+                        link={video.link}
+                        title={video.title}
+                        open={openSharePopover}
+                        setOpen={setOpenSharePopover}
+                    >
+                        <Button data-share-button icon={<FaShare />} type={isDark ? 'default' : 'primary'} ghost>
+                            {t('share')}
+                        </Button>
+                    </SharePopover>
+                </div>
+                <Text data-title>{video.title}</Text>
                 <Text data-views className="my-2">
-                    288,065 views - Jan 1, 2022
+                    {numeral(viewCount).format('0,0')} {t('views')} -{' '}
+                    {upperFirst(dayjs(publishedAt).format('MMM D, YYYY'))}
                 </Text>
-                <SingleVideoAction commentCount={1200} likeCount={3.5} />
-                {/* // TODO: must think about adding channel info or no */}
-                {/* <Divider />
-
-                <VideoOwnerProfile
-                    subscribers={87.5}
-                    channel="Derrière La Caméra"
-                    avatarLink="https://i.pravatar.cc/300"
-                /> */}
+                <SingleVideoAction video={video} youtubeVideoEntity={youtubeVideoEntity as IItemsEntity} />
             </Col>
+            <VideoRatingModal slug={video.slug} openModal={openRatingModal} setOpenModal={setOpenRatingModal} />
         </Row>
     );
 };
