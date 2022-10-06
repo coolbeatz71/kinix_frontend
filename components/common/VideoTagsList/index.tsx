@@ -1,25 +1,27 @@
 import React, { FC } from 'react';
 import { Tag } from 'antd';
 import Link from 'next/link';
+import { ALL_VIDEOS_PATH } from '@constants/paths';
 
 import styles from './index.module.scss';
 
 export interface IVideoTagsListProps {
-    tags: { value: string; link: string }[];
+    tags: string[];
 }
 
-const VideoTagsList: FC<IVideoTagsListProps> = ({ tags }) => {
-    return (
-        <div className={styles.tagsList}>
-            {tags.map((tag) => (
-                <Tag key={tag.value}>
-                    <Link href={tag.link} passHref>
-                        {`#${tag.value}`}
+const VideoTagsList: FC<IVideoTagsListProps> = ({ tags }) => (
+    <div className={styles.tagsList}>
+        {tags.map((tag) => {
+            const link = `${ALL_VIDEOS_PATH}?tag=${tag}`;
+            return (
+                <Tag key={tag}>
+                    <Link href={link} passHref>
+                        {`#${tag}`}
                     </Link>
                 </Tag>
-            ))}
-        </div>
-    );
-};
+            );
+        })}
+    </div>
+);
 
 export default VideoTagsList;

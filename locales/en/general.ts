@@ -36,4 +36,11 @@ export const general = {
     noLyricsUploaded: 'No lyrics was provided on this video',
     noRatingFound: 'No ratings was found on this video',
     noContentFound: 'No content was found for this request',
+    share: 'Share',
+    views: 'views',
+    ratingTitle: 'Do you want to share your impression of this video with us?',
+    send: 'Send',
+    ratingSuccess: 'Rating added. Thanks for sharing your opinion on the video!',
+    popular: 'POPULAR',
+    lyrics: 'LYRICS',
 };

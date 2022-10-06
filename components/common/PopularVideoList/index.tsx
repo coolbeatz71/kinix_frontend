@@ -1,24 +1,38 @@
-import React, { FC } from 'react';
+import React, { FC, Fragment, useEffect } from 'react';
 import { Col, Row } from 'antd';
-import { IVideo } from '@interfaces/api';
+import { useSelector } from 'react-redux';
+import { useAppDispatch } from '@redux/store';
+import { IRootState } from '@redux/reducers';
+import getPopularVideosAction from '@redux/videos/popular';
 import VideoCardVertical from '@components/common/Cards/Video/VideoCardVertical';
+import { IVideo } from '@interfaces/api';
+import ServerError from '../ServerError';
+import VideoListSkeleton from '@components/skeleton/VideoList';
 
-interface IPopularVideoListProps {
-    fetched: boolean;
-    videos: IVideo[];
-    myVideos?: boolean;
-    error: string | null;
-}
+const PopularVideoList: FC = () => {
+    const dispatch = useAppDispatch();
+    const { error, data: videos, loading } = useSelector(({ videos: { popular } }: IRootState) => popular);
 
-const PopularVideoList: FC<IPopularVideoListProps> = ({ videos }) => {
+    useEffect(() => {
+        dispatch(getPopularVideosAction());
+    }, [dispatch]);
+
     return (
-        <Row gutter={[16, 32]}>
-            {videos?.map((video) => (
-                <Col xs={24} sm={12} md={8} key={video?.slug}>
-                    <VideoCardVertical video={video} />
-                </Col>
-            ))}
-        </Row>
+        <Fragment>
+            {error ? (
+                <ServerError onRefresh={() => dispatch(getPopularVideosAction())} />
+            ) : loading ? (
+                <VideoListSkeleton size={8} isPopular />
+            ) : (
+                <Row gutter={[16, 32]}>
+                    {videos?.map((video) => (
+                        <Col xs={24} sm={12} md={8} key={video?.slug}>
+                            <VideoCardVertical video={video as IVideo} />
+                        </Col>
+                    ))}
+                </Row>
+            )}
+        </Fragment>
     );
 };
 

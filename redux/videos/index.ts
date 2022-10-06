@@ -7,8 +7,11 @@ import {
 import { createSlice } from '@reduxjs/toolkit';
 import getAllVideosAction from './all';
 import getVideosFeedAction from './feed';
+import getPopularVideosAction from './popular';
+import getRelatedVideosAction from './related';
 import getVideosTagsAction from './tags';
 import { videosInitialState } from './types';
+import getYoutubeVideoInfoAction from './youtube';
 
 export const videosSlice = createSlice({
     name: 'videos',
@@ -29,7 +32,19 @@ export const videosSlice = createSlice({
             // get all videos
             .addCase(getAllVideosAction.pending, ActionWrapperPending)
             .addCase(getAllVideosAction.fulfilled, ActionWrapperFulfilled)
-            .addCase(getAllVideosAction.rejected, ActionWrapperRejected);
+            .addCase(getAllVideosAction.rejected, ActionWrapperRejected)
+            // get single youtube video infos
+            .addCase(getYoutubeVideoInfoAction.pending, ActionWrapperPending)
+            .addCase(getYoutubeVideoInfoAction.fulfilled, ActionWrapperFulfilled)
+            .addCase(getYoutubeVideoInfoAction.rejected, ActionWrapperRejected)
+            // get related videos
+            .addCase(getRelatedVideosAction.pending, ActionWrapperPending)
+            .addCase(getRelatedVideosAction.fulfilled, ActionWrapperFulfilled)
+            .addCase(getRelatedVideosAction.rejected, ActionWrapperRejected)
+            // get popular videos
+            .addCase(getPopularVideosAction.pending, ActionWrapperPending)
+            .addCase(getPopularVideosAction.fulfilled, ActionWrapperFulfilled)
+            .addCase(getPopularVideosAction.rejected, ActionWrapperRejected);
     },
 });
 

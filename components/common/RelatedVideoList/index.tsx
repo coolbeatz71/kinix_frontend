@@ -1,28 +1,27 @@
 import React, { FC } from 'react';
 import { Col, Row } from 'antd';
+import { IVideo } from '@interfaces/api';
 import RelatedVideoCard from '@components/common/Cards/Video/VideoCardHorizontal';
-import { IUnknownObject } from 'interfaces/app';
 import SectionTitle from '@components/common/SectionTitle';
 import { useTranslation } from 'react-i18next';
+import { CONTENT_LIMIT } from '@constants/app';
 
 interface IRelatedVideoListProps {
-    fetched: boolean;
-    error: string | null;
-    videos: IUnknownObject[];
+    videos: IVideo[];
 }
 
-const RelatedVideoList: FC<IRelatedVideoListProps> = () => {
-    const elements = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+const RelatedVideoList: FC<IRelatedVideoListProps> = ({ videos }) => {
     const { t } = useTranslation();
+    const related = videos.slice(0, CONTENT_LIMIT);
 
     return (
         <Row>
             <Col span={24}>
                 <SectionTitle title={t('relatedVideos')} isRelated />
             </Col>
-            {elements.map((el) => (
-                <Col key={el}>
-                    <RelatedVideoCard size={el} />
+            {related.map((video) => (
+                <Col key={video.id} span={24}>
+                    <RelatedVideoCard video={video} />
                 </Col>
             ))}
         </Row>

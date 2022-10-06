@@ -87,26 +87,28 @@
             align-items: center;
 
             &[data-like='true'],
-            &[data-comment='true'] {
+            &[data-comment='true'],
+            &[data-playlist='true'] {
                 display: flex;
                 align-items: center;
                 flex-flow: row-reverse;
-                margin-right: 1rem;
-            }
 
-            [data-count='true'] {
-                font-size: 12pt;
-                margin-right: 0.3rem;
-            }
-
-            [class~='anticon'] {
-                font-size: 14pt;
-            }
-
-            &[class~='ant-btn-icon-only'] {
                 margin-left: 1rem;
+
                 svg {
-                    font-size: 16pt;
+                    font-size: 15pt;
+                }
+
+                [data-count='true'] {
+                    font-size: 12pt;
+                    margin-right: 0.3rem;
+                }
+            }
+
+            &[data-share-button='true'] {
+                padding: 1rem !important;
+                svg {
+                    margin-right: 0.2rem;
                 }
             }
         }

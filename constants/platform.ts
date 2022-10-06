@@ -21,3 +21,4 @@ export const API_TOKEN = 'kiinox-token';
 export const PLATFORM_NAME = 'kiinox_web';
 
 export const CRYPTO_PASSPHASE = process.env.NEXT_PUBLIC_CRYPTO_PASSPHASE;
+export const GOOGLE_API_KEY = process.env.NEXT_PUBLIC_GOOGLE_API_KEY as string;

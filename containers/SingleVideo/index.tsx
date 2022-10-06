@@ -1,31 +1,73 @@
-import React, { FC, Fragment } from 'react';
+import React, { FC, Fragment, useEffect } from 'react';
+import { isEmpty } from 'lodash';
 import { Col, Grid, Row } from 'antd';
+import { useSelector } from 'react-redux';
+import { IVideo } from '@interfaces/api';
+import { IRootState } from '@redux/reducers';
+import { useAppDispatch } from '@redux/store';
 import useDarkLight from '@hooks/useDarkLight';
 import VideoPlayer from '@components/common/VideoPlayer';
 import RelatedVideoList from '@components/common/RelatedVideoList';
 import VideosTabs from '@components/common/VideosTabs';
+import { IYoutubeVideo } from '@interfaces/youtube';
+import getRelatedVideosAction from '@redux/videos/related';
+import getYoutubeVideoInfoAction from '@redux/videos/youtube';
+import ServerError from '@components/common/ServerError';
+import SingleVideoSkeleton from '@components/skeleton/SingleVideo';
 
 const { useBreakpoint } = Grid;
 
-const SingleVideoContainer: FC = () => {
+export interface ISingleVideoContainerProps {
+    video: IVideo;
+}
+const SingleVideoContainer: FC<ISingleVideoContainerProps> = ({ video }) => {
+    const dispatch = useAppDispatch();
     const { lg } = useBreakpoint();
     const { value } = useDarkLight();
 
+    const {
+        data: related,
+        error: errRelated,
+        loading: loadRelated,
+    } = useSelector(({ videos: { related } }: IRootState) => related);
+    const {
+        error: errYoutube,
+        data: youtubeVideo,
+        loading: loadYoutube,
+    } = useSelector(({ videos: { youtube } }: IRootState) => youtube);
+
+    useEffect(() => {
+        const { tags, link } = video as IVideo;
+        if (!isEmpty(tags)) {
+            dispatch(getYoutubeVideoInfoAction(link));
+            dispatch(getRelatedVideosAction({ slug: video?.slug, tags }));
+        }
+    }, [dispatch, video]);
+
+    const error = errRelated || errYoutube;
+    const loading = loadYoutube || loadRelated;
+
     return (
         <Fragment>
-            <Row data-theme={value} justify="space-between" gutter={[0, 0]}>
-                <Col xs={24} sm={24} md={24} lg={16}>
-                    <VideoPlayer />
-                    <div className={lg ? 'mt-5' : 'mt-3'}>
-                        <VideosTabs />
-                    </div>
-                </Col>
-                {lg && (
-                    <Col lg={8} className="ps-3">
-                        <RelatedVideoList fetched error={null} videos={[]} />
+            {error ? (
+                <ServerError onRefresh={() => dispatch(getYoutubeVideoInfoAction(video.link))} />
+            ) : loading ? (
+                <SingleVideoSkeleton />
+            ) : (
+                <Row data-theme={value} justify="space-between" gutter={[0, 0]}>
+                    <Col xs={24} sm={24} md={24} lg={16}>
+                        <VideoPlayer video={video} youtubeVideo={youtubeVideo as IYoutubeVideo} />
+                        <div className="mt-3">
+                            <VideosTabs lyrics={video.lyrics as string} />
+                        </div>
                     </Col>
-                )}
-            </Row>
+                    {lg && !isEmpty(related) && (
+                        <Col lg={8} className="ps-3">
+                            <RelatedVideoList videos={related as IVideo[]} />
+                        </Col>
+                    )}
+                </Row>
+            )}
         </Fragment>
     );
 };

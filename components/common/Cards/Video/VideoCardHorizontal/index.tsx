@@ -1,23 +1,25 @@
 import React, { FC, useEffect, useState } from 'react';
-import useDarkLight from '@hooks/useDarkLight';
+import dayjs from 'dayjs';
+import Image from 'next/image';
+import { isBoolean, isEmpty, truncate } from 'lodash';
+import StarRatingComponent from 'react-star-rating-component';
 import { Button, Card, Col, Grid, Row, Typography } from 'antd';
+import { IVideo } from '@interfaces/api';
 import { PlayCircleTwoTone } from '@ant-design/icons';
-import { isBoolean, truncate } from 'lodash';
+import { WARNING } from '@constants/colors';
+import useDarkLight from '@hooks/useDarkLight';
+import getYoutubeVideoThumbnail from '@helpers/getYoutubeVideoThumbail';
 
 import styles from './index.module.scss';
-import { WARNING } from '@constants/colors';
 
 const { Title, Text } = Typography;
 const { useBreakpoint } = Grid;
 
 export interface IVideoCardHorinzontalProps {
-    size?: number;
+    video: IVideo;
 }
 
-const title = "We Takin' Over - Dj Khaled Ft. T.I, Akon, Rick Ross, Fat Joe, Birdman & Lil Wayne";
-const channel = 'Derrière La Caméra';
-
-const VideoCardHorinzontal: FC<IVideoCardHorinzontalProps> = () => {
+const VideoCardHorinzontal: FC<IVideoCardHorinzontalProps> = ({ video }) => {
     const { value } = useDarkLight();
     const { lg } = useBreakpoint();
 
@@ -36,9 +38,9 @@ const VideoCardHorinzontal: FC<IVideoCardHorinzontalProps> = () => {
     return (
         <div
             data-theme={value}
-            className={styles.videoCardHorinzontal}
             onMouseEnter={handleShowOverlay}
             onMouseLeave={handleShowOverlay}
+            className={styles.videoCardHorinzontal}
         >
             <Card bordered={false} hoverable>
                 <Row justify="space-between">
@@ -46,26 +48,28 @@ const VideoCardHorinzontal: FC<IVideoCardHorinzontalProps> = () => {
                         <div className="overlay" style={overLayStyles}>
                             <Button
                                 icon={<PlayCircleTwoTone twoToneColor={WARNING} />}
-                                shape="circle"
                                 type="text"
                                 size="large"
+                                shape="circle"
                             />
                         </div>
-                        <img src="https://picsum.photos/1024/512?random" alt="" />
+                        {!isEmpty(video?.link) && (
+                            <div className={styles.videoCardHorinzontal__cover__image}>
+                                <Image layout="fill" alt={video?.slug} src={getYoutubeVideoThumbnail(video?.link)} />
+                            </div>
+                        )}
                     </Col>
                     <Col span={15} data-body>
                         <Title level={5} data-title>
-                            {truncate(title, {
+                            {truncate(video.title, {
                                 length: 60,
                             })}
                         </Title>
                         <div className="d-flex flex-column">
-                            <Text data-channel>
-                                {truncate(channel, {
-                                    length: 20,
-                                })}
+                            <Text data-ratings>
+                                <StarRatingComponent name="rate-video" starCount={5} value={Number(video.avgRate)} />
                             </Text>
-                            <Text data-subscribers>87.5K subscribers</Text>
+                            <Text data-created-at>{dayjs(video?.createdAt).fromNow()}</Text>
                         </div>
                     </Col>
                 </Row>
