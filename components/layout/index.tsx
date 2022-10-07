@@ -154,7 +154,6 @@ const Layout: FC<ILayoutProps> = ({
                 <Content className={styles.layout__main__content} data-sidenav-close={isSidenavClose}>
                     {children}
                 </Content>
-
                 {showFooter && <Footer isSidenavClose={isSidenavClose} />}
             </div>
         </AntLayout>
