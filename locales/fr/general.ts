@@ -42,7 +42,11 @@ export const general = {
     send: 'Envoyer',
     ratingSuccess: "Sondage ajouté. Merci d'avoir partagé votre avis sur la video!",
     sharingSuccess: 'Merci pour le partage de la vidéo. Nous apprécions votre soutien',
+    likingSuccess: 'Like ajouté avec succès!',
+    unLikingSuccess: 'Like supprimé avec succès!',
     textCopied: 'Texte copié:',
     popular: 'POPULAIRE',
     lyrics: 'LYRICS',
+    likes: "j'aime",
+    readTime: 'de lecture',
 };

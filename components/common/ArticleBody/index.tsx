@@ -1,20 +1,27 @@
 import React, { FC, Fragment, ReactElement, useCallback, useEffect, useState } from 'react';
 import { BackTop, Col, Row, Typography, Grid, Affix } from 'antd';
+import { IArticle, IUser } from '@interfaces/api';
+import useDarkLight from '@hooks/useDarkLight';
 import { IUnknownObject } from '@interfaces/app';
+import ArticleAction from '../Actions/ArticleAction';
+import ArticleTags from '@components/common/ArticleTags';
 import ArticleHeader from '@components/common/ArticleHeader';
 import ArticleShare from '@components/common/Sharings/ArticleShare';
 import PopularArticleList from '@components/common/PopularArticleList';
 import RelatedArticleList from '@components/common/RelatedArticleList';
-import ArticleTags from '@components/common/ArticleTags';
-import useDarkLight from '@hooks/useDarkLight';
-import ArticleAction from '../Actions/ArticleAction';
 
 import styles from './index.module.scss';
 
-const { Paragraph } = Typography;
 const { useBreakpoint } = Grid;
+const { Paragraph } = Typography;
 
-const ArticleBody: FC = () => {
+export interface IArticleBodyProps {
+    user: IUser;
+    article: IArticle;
+    related: IArticle[];
+}
+
+const ArticleBody: FC<IArticleBodyProps> = ({ user, article, related }) => {
     const { value } = useDarkLight();
     const { lg, md } = useBreakpoint();
     const [scrolled, setScrolled] = useState<string>('');
@@ -90,7 +97,7 @@ const ArticleBody: FC = () => {
                         perspiciatis, blanditiis voluptate numquam!
                     </Paragraph>
 
-                    {lg && <ArticleAction />}
+                    {lg && <ArticleAction user={user} article={article} />}
                     {lg && <ArticleTags />}
                     <BackTop style={backToStyle} data-back-top />
                 </Col>

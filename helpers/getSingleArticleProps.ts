@@ -2,10 +2,10 @@ import { GetServerSidePropsContext } from 'next';
 import { IUnknownObject } from '@interfaces/app';
 import api from 'services/axios';
 
-export const getSingleVideoProps = async (context: GetServerSidePropsContext): Promise<IUnknownObject> => {
-    const video = { slug: context?.query.slug };
+export const getSingleArticleProps = async (context: GetServerSidePropsContext): Promise<IUnknownObject> => {
+    const article = { slug: context?.query.slug };
     try {
-        const { data } = await api.get(`/videos/${video?.slug}`);
+        const { data } = await api.get(`/articles/${article?.slug}`);
         return {
             props: { data },
         };
@@ -16,4 +16,4 @@ export const getSingleVideoProps = async (context: GetServerSidePropsContext): P
     }
 };
 
-export default getSingleVideoProps;
+export default getSingleArticleProps;

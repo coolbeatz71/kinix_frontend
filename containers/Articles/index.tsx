@@ -7,7 +7,7 @@ import { IRootState } from '@redux/reducers';
 import { useAppDispatch } from '@redux/store';
 import { IUnknownObject } from '@interfaces/app';
 import { CONTENT_LIMIT, START_PAGE } from '@constants/app';
-import getAllArticlesAction from '@redux/articles/getAll';
+import getAllArticlesAction from '@redux/articles/all';
 import { ALL_ARTICLES_PATH } from '@constants/paths';
 import ServerError from '@components/common/ServerError';
 import InfiniteScroll from 'react-infinite-scroll-component';
