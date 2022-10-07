@@ -1,10 +1,10 @@
 import React, { FC, ReactNode, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Button, message, Popover } from 'antd';
 import { useAppDispatch } from '@redux/store';
-import SocialShare from '../SocialShare';
-import useDarkLight from '@hooks/useDarkLight';
-import addVideoSharingAction, { resetAddVideoSharingAction } from '@redux/sharing/add';
+import SocialShare from '@components/common/SocialShare';
 import { IShareType, shareList } from '@constants/social';
+import addVideoSharingAction, { resetAddVideoSharingAction } from '@redux/sharing/add';
 
 import styles from './index.module.scss';
 
@@ -16,10 +16,10 @@ export interface ISharePopoverProps {
     children: ReactNode;
     setOpen: (v: boolean) => void;
 }
-const shares = [shareList[1], shareList[2], shareList[3]];
+const shares = [shareList[1], shareList[2], shareList[3], shareList[4]];
 
 const SharePopover: FC<ISharePopoverProps> = ({ open, setOpen, children, link, title, slug }) => {
-    const { value } = useDarkLight();
+    const { t } = useTranslation();
     const dispatch = useAppDispatch();
 
     useEffect(() => {
@@ -29,7 +29,7 @@ const SharePopover: FC<ISharePopoverProps> = ({ open, setOpen, children, link, t
     const onSubmitShare = (): void => {
         dispatch(addVideoSharingAction(slug)).then((res) => {
             setOpen(false);
-            if (res.type === 'sharings/add/fulfilled') message.success(res.payload.message);
+            if (res.type === 'sharings/add/fulfilled') message.success(t('sharingSuccess'));
         });
     };
 
@@ -37,12 +37,11 @@ const SharePopover: FC<ISharePopoverProps> = ({ open, setOpen, children, link, t
         <Popover
             visible={open}
             trigger="click"
-            data-theme={value}
             placement="topLeft"
             onVisibleChange={(v) => setOpen(v)}
-            overlayClassName={styles.sharePopover}
+            overlayClassName={`${styles.sharePopover}`}
             content={
-                <div className="d-flex justify-content-between p-1">
+                <div data-content className="d-flex justify-content-between p-1">
                     {shares.map((share) => (
                         <SocialShare key={share.name} type={share.name as IShareType} link={link} title={title}>
                             <Button
@@ -56,7 +55,6 @@ const SharePopover: FC<ISharePopoverProps> = ({ open, setOpen, children, link, t
                     ))}
                 </div>
             }
-            className={styles.sharePopover}
         >
             {children}
         </Popover>

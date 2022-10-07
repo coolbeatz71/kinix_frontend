@@ -20,6 +20,8 @@ import getSingleVideoRatedByUserAction from '@redux/ratings/getUserRate';
 import VideoRatingModal from '@components/modal/VideoRatingModal';
 
 import styles from './index.module.scss';
+import getPlatformUrl from '@helpers/getPlatformUrl';
+import { ALL_VIDEOS_PATH } from '@constants/paths';
 
 const { Text } = Typography;
 
@@ -30,8 +32,9 @@ export interface IVideoPlayerProps {
 
 const VideoPlayer: FC<IVideoPlayerProps> = ({ youtubeVideo, video }) => {
     const { t } = useTranslation();
-    const { value, isDark } = useDarkLight();
     const dispatch = useAppDispatch();
+    const { value, isDark } = useDarkLight();
+    const sharedLink = `${getPlatformUrl()}${ALL_VIDEOS_PATH}/${video.slug}`;
 
     const { data: userRatings } = useSelector(({ ratings: { userRate } }: IRootState) => userRate);
 
@@ -79,7 +82,7 @@ const VideoPlayer: FC<IVideoPlayerProps> = ({ youtubeVideo, video }) => {
                     {video.tags && <VideoTagsList tags={video.tags} />}
                     <SharePopover
                         slug={video.slug}
-                        link={video.link}
+                        link={sharedLink}
                         title={video.title}
                         open={openSharePopover}
                         setOpen={setOpenSharePopover}

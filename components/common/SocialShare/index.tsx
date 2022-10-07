@@ -1,6 +1,7 @@
 import { FC, Fragment, ReactElement } from 'react';
 import qs from 'query-string';
 import { message } from 'antd';
+import { useTranslation } from 'react-i18next';
 import copyToClipboard from '@helpers/copyToClipboard';
 
 export interface ISocialShareProps {
@@ -11,7 +12,8 @@ export interface ISocialShareProps {
 }
 
 const SocialShare: FC<ISocialShareProps> = ({ type, title, link, children }) => {
-    const t = {
+    const { t } = useTranslation();
+    const platforms = {
         twitter: `http://twitter.com/share?${qs.stringify({
             text: `${title} ${link}`,
         })}`,
@@ -31,7 +33,7 @@ const SocialShare: FC<ISocialShareProps> = ({ type, title, link, children }) => 
 
     const copyText = (): Promise<void> => {
         return copyToClipboard(link).then(() => {
-            message.success(`Texte copié: "${link}"!`, 2);
+            message.success(`${t('textCopied')}: "${link}"!`, 2);
         });
     };
 
@@ -40,7 +42,7 @@ const SocialShare: FC<ISocialShareProps> = ({ type, title, link, children }) => 
             {type === 'copy' ? (
                 <div onClick={copyText}>{children}</div>
             ) : (
-                <a href={t[type]} target="_blank" rel="noreferrer noopener">
+                <a href={platforms[type]} target="_blank" rel="noreferrer noopener">
                     {children}
                 </a>
             )}

@@ -41,6 +41,8 @@ export const general = {
     ratingTitle: 'Do you want to share your impression of this video with us?',
     send: 'Send',
     ratingSuccess: 'Rating added. Thanks for sharing your opinion on the video!',
+    sharingSuccess: 'Thank you for sharing the video. We appreciate your support',
+    textCopied: 'Copied text:',
     popular: 'POPULAR',
     lyrics: 'LYRICS',
 };

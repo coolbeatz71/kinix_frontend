@@ -14,7 +14,7 @@ const SingleVideoPage: NextPage<ServerPropsType> = (props) => {
     const { data, error } = props;
     const { reload } = useRouter();
     return (
-        <Layout showFooter={false} title={(data as IVideo)?.title || t('videos')}>
+        <Layout showFooter={isEmpty(error)} title={(data as IVideo)?.title || t('videos')}>
             {!isEmpty(error) ? (
                 <ServerError onRefresh={() => reload()} />
             ) : (
