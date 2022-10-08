@@ -99,7 +99,7 @@ const ArticleCover: FC<IArticleCoverProps> = ({ user, article }) => {
                 {!lg && (
                     <Row className={styles.articleCover__content__action}>
                         <Col span={16} className={styles.articleCover__content__action__left}>
-                            <ArticleAction />
+                            <ArticleAction article={article} user={user} />
                         </Col>
                         <Col span={8} className={styles.articleCover__content__action__right}>
                             <Text data-read>

@@ -1,29 +1,27 @@
 import React, { FC } from 'react';
+import Link from 'next/link';
 import { Space, Tag } from 'antd';
+import { ALL_ARTICLES_PATH } from '@constants/paths';
 
 import styles from './index.module.scss';
-import Link from 'next/link';
 
-const ArticleTags: FC = () => {
-    return (
-        <div className={styles.articleTags}>
-            <Space>
-                <Tag>
-                    <Link href="#java">#Java</Link>
-                </Tag>
-                <Tag>#NodeJS</Tag>
-                <Tag>#React-native</Tag>
-                <Tag>#Java</Tag>
-                <Tag>#React-native</Tag>
-                <Tag>#NodeJS</Tag>
-                <Tag>#React-native</Tag>
-                <Tag>#NodeJS</Tag>
-                <Tag>#NodeJS</Tag>
-                <Tag>#Java</Tag>
-                <Tag>#Java</Tag>
-            </Space>
-        </div>
-    );
-};
+export interface IArticleTagsProps {
+    tags: string[] | null;
+}
+
+const ArticleTags: FC<IArticleTagsProps> = ({ tags }) => (
+    <div className={styles.articleTags}>
+        <Space>
+            {tags?.map((tag, idx) => {
+                const link = `${ALL_ARTICLES_PATH}?tag=${tag}`;
+                return (
+                    <Tag key={idx}>
+                        <Link href={link} passHref>{`#${tag}`}</Link>
+                    </Tag>
+                );
+            })}
+        </Space>
+    </div>
+);
 
 export default ArticleTags;

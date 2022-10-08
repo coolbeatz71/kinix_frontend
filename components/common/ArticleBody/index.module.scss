@@ -3,21 +3,40 @@
 @import 'styles/_mixins.scss';
 
 .articleBody {
-    &[data-theme='dark'] {
-        [data-paragraph='true'] {
-            color: $light;
-        }
-    }
-
     &__content {
-        padding-right: calc(#{$padding} * 2);
         padding-left: 0;
+        padding-right: calc(#{$padding} * 2);
 
         [data-paragraph='true'] {
             font-family: Poppins;
             line-height: 1.7;
             font-size: 12.5pt;
             font-weight: 300;
+        }
+
+        [data-summary='true'] {
+            line-height: 2;
+            font-size: 12.5pt;
+            padding: 0.5rem;
+            padding-left: 1rem;
+            font-style: italic;
+            background: $default;
+            border-left: 0.4rem solid $dark20;
+        }
+
+        [data-article-body='true'] {
+            line-height: 2;
+            font-size: 13pt;
+
+            img {
+                width: 100%;
+                object-fit: cover;
+            }
+
+            iframe {
+                width: 100% !important;
+                height: 380px !important;
+            }
         }
     }
 
@@ -36,6 +55,12 @@
             margin-top: 0.8rem;
             align-items: center;
             justify-content: center;
+        }
+    }
+
+    &[data-theme='dark'] {
+        [data-paragraph='true'] {
+            color: $light;
         }
     }
 
