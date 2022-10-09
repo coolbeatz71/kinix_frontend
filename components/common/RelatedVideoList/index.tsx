@@ -1,10 +1,12 @@
-import React, { FC } from 'react';
+import React, { FC, Fragment } from 'react';
 import { Col, Row } from 'antd';
-import { IVideo } from '@interfaces/api';
-import RelatedVideoCard from '@components/common/Cards/Video/RelatedVideoCard';
-import SectionTitle from '@components/common/SectionTitle';
+import { isEmpty } from 'lodash';
 import { useTranslation } from 'react-i18next';
+
+import { IVideo } from '@interfaces/api';
 import { CONTENT_LIMIT } from '@constants/app';
+import SectionTitle from '@components/common/SectionTitle';
+import RelatedVideoCard from '@components/common/Cards/Video/RelatedVideoCard';
 
 interface IRelatedVideoListProps {
     videos: IVideo[];
@@ -16,14 +18,18 @@ const RelatedVideoList: FC<IRelatedVideoListProps> = ({ videos }) => {
 
     return (
         <Row>
-            <Col span={24}>
-                <SectionTitle title={t('relatedVideos')} isRelated />
-            </Col>
-            {related.map((video) => (
-                <Col key={video.id} span={24}>
-                    <RelatedVideoCard video={video} />
-                </Col>
-            ))}
+            {!isEmpty(related) && (
+                <Fragment>
+                    <Col span={24}>
+                        <SectionTitle title={t('relatedVideos')} isRelated />
+                    </Col>
+                    {related.map((video) => (
+                        <Col key={video.id} span={24}>
+                            <RelatedVideoCard video={video} />
+                        </Col>
+                    ))}
+                </Fragment>
+            )}
         </Row>
     );
 };
