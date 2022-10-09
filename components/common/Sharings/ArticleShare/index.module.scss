@@ -22,7 +22,6 @@
         color: $white !important;
 
         &:hover {
-            background: $grey !important;
             [class~='twitter'] {
                 color: $twitter;
             }
@@ -32,7 +31,12 @@
             [class~='email'] {
                 color: $google;
             }
+            [class~='whatsapp'] {
+                color: $whatsapp;
+            }
+
             color: $primary !important;
+            background: $grey !important;
         }
 
         &[data-platform='twitter'] {

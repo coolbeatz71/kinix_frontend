@@ -12,10 +12,10 @@ export interface IArticleShareProps {
 }
 
 const ArticleShare: FC<IArticleShareProps> = ({ link, title }) => {
-    const { isDark } = useDarkLight();
+    const { isDark, value } = useDarkLight();
 
     return (
-        <div className={styles.articleShare}>
+        <div className={styles.articleShare} data-theme={value}>
             {shareList.map((share) => (
                 <SocialShare key={share.name} type={share.name as IShareType} link={link} title={title}>
                     <Button

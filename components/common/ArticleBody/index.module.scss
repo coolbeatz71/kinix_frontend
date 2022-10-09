@@ -7,21 +7,12 @@
         padding-left: 0;
         padding-right: calc(#{$padding} * 2);
 
-        [data-paragraph='true'] {
-            font-family: Poppins;
-            line-height: 1.7;
-            font-size: 12.5pt;
-            font-weight: 300;
-        }
-
         [data-summary='true'] {
             line-height: 2;
             font-size: 12.5pt;
             padding: 0.5rem;
             padding-left: 1rem;
             font-style: italic;
-            background: $default;
-            border-left: 0.4rem solid $dark20;
         }
 
         [data-article-body='true'] {
@@ -42,12 +33,9 @@
 
     [data-back-top='true'] {
         [class~='ant-back-top-content'] {
-            color: $primary;
-            background-color: $white;
-            height: 3rem;
             width: 3rem;
+            height: 3rem;
             border-radius: 100%;
-            box-shadow: 0px 8px 16px rgb(12 35 70 / 30%);
         }
 
         [class~='ant-back-top-icon'] {
@@ -58,9 +46,38 @@
         }
     }
 
+    &[data-theme='light'] {
+        [data-summary='true'] {
+            background: $default;
+            border-left: 0.4rem solid $dark20;
+        }
+        [data-article-body='true'] {
+            color: $black;
+        }
+        [data-back-top='true'] {
+            [class~='ant-back-top-content'] {
+                color: $primary;
+                background-color: $white;
+                box-shadow: 0px 8px 16px rgb(12 35 70 / 30%);
+            }
+        }
+    }
+
     &[data-theme='dark'] {
-        [data-paragraph='true'] {
+        [data-summary='true'] {
             color: $light;
+            background: $dark20;
+            border-left: 0.4rem solid $grey;
+        }
+        [data-article-body='true'] {
+            color: $white;
+        }
+        [data-back-top='true'] {
+            [class~='ant-back-top-content'] {
+                color: $white;
+                background-color: $primary;
+                box-shadow: 0px 8px 16px rgb(12 35 70 / 50%);
+            }
         }
     }
 
@@ -69,7 +86,7 @@
             padding-right: 0;
             padding-left: 0;
 
-            [data-paragraph='true'] {
+            [data-article-body='true'] {
                 line-height: 1.6;
                 font-size: 11.5pt;
             }
@@ -78,8 +95,8 @@
 
     @include mediaSM {
         &__content {
-            padding-right: 0;
             padding-left: 0;
+            padding-right: 0;
         }
     }
 }
