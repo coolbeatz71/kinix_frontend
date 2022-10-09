@@ -9,7 +9,7 @@ import styles from './index.module.scss';
 const { Item } = Breadcrumb;
 
 export interface IArticleHeaderProps {
-    createdAt: string | null;
+    createdAt: string;
 }
 
 const ArticleHeader: FC<IArticleHeaderProps> = ({ createdAt }) => {

@@ -4,8 +4,8 @@ import { IArticle, IUser } from '@interfaces/api';
 import useDarkLight from '@hooks/useDarkLight';
 import { IUnknownObject } from '@interfaces/app';
 import ArticleAction from '../Actions/ArticleAction';
-import ArticleTags from '@components/common/ArticleTags';
 import ArticleHeader from '@components/common/ArticleHeader';
+import ArticleTagsList from '@components/common/ArticleTagsList';
 import ArticleShare from '@components/common/Sharings/ArticleShare';
 import PopularArticleList from '@components/common/PopularArticleList';
 import RelatedArticleList from '@components/common/RelatedArticleList';
@@ -65,19 +65,19 @@ const ArticleBody: FC<IArticleBodyProps> = ({ user, article, related }) => {
                     </div>
 
                     {lg && <ArticleAction user={user} article={article} />}
-                    {lg && <ArticleTags tags={article.tags} />}
+                    {lg && <ArticleTagsList tags={article.tags} />}
                     <BackTop style={backToStyle} data-back-top />
                 </Col>
 
                 {lg && (
                     <Col sm={24} lg={8}>
-                        <RelatedArticleList fetched error={null} articles={[]} />
+                        <RelatedArticleList articles={related} />
                     </Col>
                 )}
 
                 {md && !lg && (
                     <Col sm={24} lg={8}>
-                        <ArticleTags tags={article.tags} />
+                        <ArticleTagsList tags={article.tags} />
                     </Col>
                 )}
             </Row>

@@ -5,23 +5,23 @@ import { isBoolean, isEmpty, truncate } from 'lodash';
 import StarRatingComponent from 'react-star-rating-component';
 import { Button, Card, Col, Grid, Row, Typography } from 'antd';
 import { IVideo } from '@interfaces/api';
-import { PlayCircleTwoTone } from '@ant-design/icons';
 import { WARNING } from '@constants/colors';
 import useDarkLight from '@hooks/useDarkLight';
+import { PlayCircleTwoTone } from '@ant-design/icons';
 import getYoutubeVideoThumbnail from '@helpers/getYoutubeVideoThumbail';
 
 import styles from './index.module.scss';
 
-const { Title, Text } = Typography;
 const { useBreakpoint } = Grid;
+const { Title, Text } = Typography;
 
-export interface IVideoCardHorinzontalProps {
+export interface IRelatedVideoCardProps {
     video: IVideo;
 }
 
-const VideoCardHorinzontal: FC<IVideoCardHorinzontalProps> = ({ video }) => {
-    const { value } = useDarkLight();
+const RelatedVideoCard: FC<IRelatedVideoCardProps> = ({ video }) => {
     const { lg } = useBreakpoint();
+    const { value } = useDarkLight();
 
     const [showOverLay, setShowOverLay] = useState<boolean>(false);
     const overLayStyles = showOverLay ? { opacity: 1 } : { opacity: 0 };
@@ -40,11 +40,11 @@ const VideoCardHorinzontal: FC<IVideoCardHorinzontalProps> = ({ video }) => {
             data-theme={value}
             onMouseEnter={handleShowOverlay}
             onMouseLeave={handleShowOverlay}
-            className={styles.videoCardHorinzontal}
+            className={styles.relatedVideoCard}
         >
             <Card bordered={false} hoverable>
                 <Row justify="space-between">
-                    <Col span={9} className={styles.videoCardHorinzontal__cover}>
+                    <Col span={9} className={styles.relatedVideoCard__cover}>
                         <div className="overlay" style={overLayStyles}>
                             <Button
                                 icon={<PlayCircleTwoTone twoToneColor={WARNING} />}
@@ -54,7 +54,7 @@ const VideoCardHorinzontal: FC<IVideoCardHorinzontalProps> = ({ video }) => {
                             />
                         </div>
                         {!isEmpty(video?.link) && (
-                            <div className={styles.videoCardHorinzontal__cover__image}>
+                            <div className={styles.relatedVideoCard__cover__image}>
                                 <Image layout="fill" alt={video?.slug} src={getYoutubeVideoThumbnail(video?.link)} />
                             </div>
                         )}
@@ -78,4 +78,4 @@ const VideoCardHorinzontal: FC<IVideoCardHorinzontalProps> = ({ video }) => {
     );
 };
 
-export default VideoCardHorinzontal;
+export default RelatedVideoCard;

@@ -9,13 +9,13 @@ export interface IArticleTagsProps {
     tags: string[] | null;
 }
 
-const ArticleTags: FC<IArticleTagsProps> = ({ tags }) => (
+const ArticleTagsList: FC<IArticleTagsProps> = ({ tags }) => (
     <div className={styles.articleTags}>
         <Space>
-            {tags?.map((tag, idx) => {
+            {tags?.map((tag) => {
                 const link = `${ALL_ARTICLES_PATH}?tag=${tag}`;
                 return (
-                    <Tag key={idx}>
+                    <Tag key={tag}>
                         <Link href={link} passHref>{`#${tag}`}</Link>
                     </Tag>
                 );
@@ -24,4 +24,4 @@ const ArticleTags: FC<IArticleTagsProps> = ({ tags }) => (
     </div>
 );
 
-export default ArticleTags;
+export default ArticleTagsList;

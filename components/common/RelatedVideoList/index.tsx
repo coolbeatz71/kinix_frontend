@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { Col, Row } from 'antd';
 import { IVideo } from '@interfaces/api';
-import RelatedVideoCard from '@components/common/Cards/Video/VideoCardHorizontal';
+import RelatedVideoCard from '@components/common/Cards/Video/RelatedVideoCard';
 import SectionTitle from '@components/common/SectionTitle';
 import { useTranslation } from 'react-i18next';
 import { CONTENT_LIMIT } from '@constants/app';
