@@ -1,11 +1,12 @@
 import React, { FC, useEffect, useState } from 'react';
 import numeral from 'numeral';
+import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 import { Button, Col, message, Row } from 'antd';
 import { MdOutlineBookmarkAdd } from 'react-icons/md';
 import { CommentOutlined, HeartOutlined, HeartFilled } from '@ant-design/icons';
-import { useTranslation } from 'react-i18next';
+
 import { IArticle } from '@interfaces/api';
-import { useSelector } from 'react-redux';
 import { IRootState } from '@redux/reducers';
 import { useAppDispatch } from '@redux/store';
 import useDarkLight from '@hooks/useDarkLight';
@@ -13,6 +14,7 @@ import isLikeOwner from '@helpers/isLikeOwner';
 import addArticleLikeAction from '@redux/likes/add';
 import getArticleLikesAction from '@redux/likes/all';
 import removeArticleLikeAction from '@redux/likes/unlike';
+import getAllArticleCommentsAction from '@redux/comments/all';
 import ArticleCommentsDrawer from '@components/comment/ArticleCommentsDrawer';
 
 import styles from './index.module.scss';
@@ -42,7 +44,8 @@ const ArticleAction: FC<IArticleActionProps> = ({ article }) => {
     const comments = numeral(commentCount).format('0.[00]a');
 
     useEffect(() => {
-        if (article.slug) dispatch(getArticleLikesAction(article.slug));
+        dispatch(getArticleLikesAction(article.slug));
+        dispatch(getAllArticleCommentsAction({ slug: article.slug }));
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [dispatch]);
 
