@@ -44,6 +44,9 @@
         &[data-platform='email'] {
             background: $google;
         }
+        &[data-platform='whatsapp'] {
+            background: $whatsapp;
+        }
     }
 
     @include mediaXS {

@@ -40,7 +40,7 @@ const SingleArticleContainer: FC<ISingleArticleContainerProps> = ({ article }) =
                     <ArticleCover article={article} user={user as IUser} />
 
                     <div className="mt-5">
-                        <ArticleBody user={user as IUser} article={article} related={related as IArticle[]} />
+                        <ArticleBody article={article} related={related as IArticle[]} />
                     </div>
                 </div>
             )}

@@ -26,4 +26,13 @@ export const form = {
     otp: 'Verification code',
     confirm: 'Confirm',
     resentOtp: 'Resend verification code',
+    comment: 'Comment',
+    addComment: 'Add your comment...',
+    commentBtn: 'Comment',
+    deleteCommentConfirm: 'Are you sure to delete this comment?',
+    yes: 'Yes',
+    non: 'No',
+    articleComment: 'Article comment',
+    commentDeletedSuccess: 'The comment has been successfully deleted!',
+    commentAddedSuccess: 'The comment has been successfully added!',
 };

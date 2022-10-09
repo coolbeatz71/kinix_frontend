@@ -1,9 +1,11 @@
 import React, { FC, Fragment, ReactElement, useCallback, useEffect, useState } from 'react';
 import { BackTop, Col, Row, Typography, Grid, Affix } from 'antd';
-import { IArticle, IUser } from '@interfaces/api';
+import { IArticle } from '@interfaces/api';
 import useDarkLight from '@hooks/useDarkLight';
 import { IUnknownObject } from '@interfaces/app';
 import ArticleAction from '../Actions/ArticleAction';
+import { ALL_ARTICLES_PATH } from '@constants/paths';
+import getPlatformUrl from '@helpers/getPlatformUrl';
 import ArticleHeader from '@components/common/ArticleHeader';
 import ArticleTagsList from '@components/common/ArticleTagsList';
 import ArticleShare from '@components/common/Sharings/ArticleShare';
@@ -16,15 +18,15 @@ const { useBreakpoint } = Grid;
 const { Paragraph } = Typography;
 
 export interface IArticleBodyProps {
-    user: IUser;
     article: IArticle;
     related: IArticle[];
 }
 
-const ArticleBody: FC<IArticleBodyProps> = ({ user, article, related }) => {
+const ArticleBody: FC<IArticleBodyProps> = ({ article, related }) => {
     const { value } = useDarkLight();
     const { lg, md } = useBreakpoint();
     const [scrolled, setScrolled] = useState<string>('');
+    const sharedLink = `${getPlatformUrl()}${ALL_ARTICLES_PATH}/${article.slug}`;
 
     const backToStyle: IUnknownObject = {
         position: 'fixed',
@@ -54,7 +56,7 @@ const ArticleBody: FC<IArticleBodyProps> = ({ user, article, related }) => {
             <Row data-theme={value} justify="space-between" className={styles.articleBody}>
                 <Col xs={3} sm={2} lg={5}>
                     <ActionWrapper>
-                        <ArticleShare />
+                        <ArticleShare link={sharedLink} title={article.title} />
                     </ActionWrapper>
                 </Col>
                 <Col xs={21} sm={22} lg={11} className={styles.articleBody__content}>
@@ -64,7 +66,7 @@ const ArticleBody: FC<IArticleBodyProps> = ({ user, article, related }) => {
                         <div data-article-body dangerouslySetInnerHTML={{ __html: article.body }} />
                     </div>
 
-                    {lg && <ArticleAction user={user} article={article} />}
+                    {lg && <ArticleAction article={article} />}
                     {lg && <ArticleTagsList tags={article.tags} />}
                     <BackTop style={backToStyle} data-back-top />
                 </Col>
