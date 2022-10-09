@@ -1,6 +1,7 @@
 import React, { FC, useState, useEffect } from 'react';
 import { Form, Modal } from 'antd';
 import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 import { useAppDispatch } from '@redux/store';
 import { CloseCircleOutlined } from '@ant-design/icons';
 import addArticleCommentAction, { resetAddCommentAction } from '@redux/comments/add';
@@ -30,9 +31,11 @@ const UpdateArticleCommentModal: FC<IUpdateArticleCommentModalProps> = ({
     initialValues,
 }) => {
     const [form] = useForm();
+    const { t } = useTranslation();
     const dispatch = useAppDispatch();
     const [success, setSuccess] = useState('');
     const { error: errAddComment, loading: loadAddComment } = useSelector(({ comments: { add } }: IRootState) => add);
+
     useEffect(() => {
         if (openModal) setSuccess('');
         resetAddCommentAction()(dispatch);
@@ -50,8 +53,7 @@ const UpdateArticleCommentModal: FC<IUpdateArticleCommentModalProps> = ({
             if (res.type === 'comments/add/rejected') form.resetFields();
             if (res.type === 'comments/add/fulfilled') {
                 form.resetFields();
-                setSuccess('commentaire modifié avec succès');
-                dispatch(getAllArticleCommentsAction({ slug }));
+                setSuccess(t('commentUpdatedSuccess'));
             }
         });
     };
@@ -64,12 +66,18 @@ const UpdateArticleCommentModal: FC<IUpdateArticleCommentModalProps> = ({
             destroyOnClose
             visible={openModal}
             onCancel={onCloseModal}
-            title="Modifier commentaire"
+            title={t('updateComment')}
             closeIcon={<CloseCircleOutlined />}
             className={styles.updateCommentModal}
         >
             {success ? (
-                <FormSuccessResult title={success} onClose={onCloseModal} />
+                <FormSuccessResult
+                    title={success}
+                    onClose={() => {
+                        onCloseModal();
+                        dispatch(getAllArticleCommentsAction({ slug }));
+                    }}
+                />
             ) : (
                 <CreateArticleComment
                     formRef={form}

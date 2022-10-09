@@ -49,4 +49,6 @@ export const general = {
     lyrics: 'LYRICS',
     likes: "j'aime",
     readTime: 'de lecture',
+    delete: 'Effacer',
+    modify: 'Modifier',
 };

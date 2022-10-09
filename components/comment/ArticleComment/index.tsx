@@ -1,11 +1,13 @@
 import React, { FC, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { Avatar, Button, Col, List, Row, Tooltip, Modal, notification } from 'antd';
-import { EditFilled, DeleteFilled, ExclamationCircleOutlined } from '@ant-design/icons';
-import { useSelector } from 'react-redux';
+import { EditFilled, DeleteFilled, ExclamationCircleOutlined, UserOutlined } from '@ant-design/icons';
+
 import { IComment } from '@interfaces/api';
 import { IRootState } from '@redux/reducers';
 import { useAppDispatch } from '@redux/store';
+import { getBgColor } from '@helpers/getBgColor';
 import getAllArticleCommentsAction from '@redux/comments/all';
 import deleteArticleCommentAction from '@redux/comments/delete';
 import UpdateArticleCommentModal from '@components/modal/UpdateArticleCommentModal';
@@ -69,7 +71,7 @@ const ArticleComment: FC<IArticleCommentProps> = ({ slug, comment, createdTime, 
             actions={
                 isCommentOwner
                     ? [
-                          <Tooltip key="edit" title="Modifier" placement="topRight">
+                          <Tooltip key="edit" title={t('modify')} placement="topRight">
                               <Button
                                   ghost
                                   size="small"
@@ -79,7 +81,7 @@ const ArticleComment: FC<IArticleCommentProps> = ({ slug, comment, createdTime, 
                                   onClick={() => setOpenUpdateModal(true)}
                               />
                           </Tooltip>,
-                          <Tooltip title="Effacer" placement="topRight" key="delete">
+                          <Tooltip title={t('delete')} placement="topRight" key="delete">
                               <Button
                                   ghost
                                   danger
@@ -100,7 +102,16 @@ const ArticleComment: FC<IArticleCommentProps> = ({ slug, comment, createdTime, 
                         <Col data-created-time>{createdTime}</Col>
                     </Row>
                 }
-                avatar={<Avatar size="small" alt={comment.user?.userName} src={comment.user?.image} />}
+                avatar={
+                    <Avatar
+                        size="small"
+                        icon={<UserOutlined />}
+                        src={comment.user?.image}
+                        alt={comment.user?.userName}
+                        className="d-flex align-items-center justify-content-center"
+                        style={{ backgroundColor: getBgColor(String(comment.user?.userName)) }}
+                    />
+                }
             />
             {comment.body}
             <UpdateArticleCommentModal

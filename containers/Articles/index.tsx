@@ -57,6 +57,7 @@ const ArticleContainer: FC = () => {
         dispatch(getAllArticlesAction({ page: START_PAGE, limit: CONTENT_LIMIT, search, tag })).then((res) => {
             if (res.type === 'articles/all/fulfilled') {
                 setIsFirstLoad(false);
+                console.log('here', res.payload.articles);
                 setArticles(res.payload.articles);
             }
         });
