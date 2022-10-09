@@ -7,7 +7,7 @@ import { IRootState } from '@redux/reducers';
 import { useAppDispatch } from '@redux/store';
 import { IUnknownObject } from '@interfaces/app';
 import { CONTENT_LIMIT, START_PAGE } from '@constants/app';
-import getAllArticlesAction from '@redux/articles/getAll';
+import getAllArticlesAction from '@redux/articles/all';
 import { ALL_ARTICLES_PATH } from '@constants/paths';
 import ServerError from '@components/common/ServerError';
 import InfiniteScroll from 'react-infinite-scroll-component';
@@ -57,6 +57,7 @@ const ArticleContainer: FC = () => {
         dispatch(getAllArticlesAction({ page: START_PAGE, limit: CONTENT_LIMIT, search, tag })).then((res) => {
             if (res.type === 'articles/all/fulfilled') {
                 setIsFirstLoad(false);
+                console.log('here', res.payload.articles);
                 setArticles(res.payload.articles);
             }
         });

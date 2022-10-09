@@ -3,13 +3,17 @@
 @import 'styles/_mixins.scss';
 
 .articleAction {
-    margin: calc(#{$padding} * 1.2) 0;
-    padding: calc(#{$padding} * 1.2) 0;
     justify-content: flex-end;
     border: 1px solid $dark10;
-
     border-left: 0 !important;
     border-right: 0 !important;
+
+    margin: calc(#{$padding} * 1.2) 0;
+    padding: calc(#{$padding} * 1.2) 0;
+
+    [data-liked='true'] {
+        color: $warning;
+    }
 
     [data-author='true'] {
         font-weight: 600;
@@ -24,11 +28,12 @@
     }
 
     button {
-        padding: 0 !important;
         color: $dark;
+        padding: 0 !important;
 
+        &[data-like='true'],
         &[data-comment='true'],
-        &[data-like='true'] {
+        &[data-bookmark='true'] {
             display: flex;
             align-items: center;
             margin-right: 1rem;
@@ -72,6 +77,24 @@
     }
 
     @include mediaXS {
+        button {
+            [class~='anticon'] {
+                font-size: 16pt;
+            }
+
+            &[class~='ant-btn-icon-only'] {
+                svg {
+                    font-size: 18pt;
+                }
+            }
+            [data-count='true'] {
+                font-size: 10pt;
+                margin-right: 0.1rem;
+            }
+        }
+    }
+
+    @include mediaSM {
         button {
             [class~='anticon'] {
                 font-size: 16pt;

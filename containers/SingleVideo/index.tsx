@@ -20,10 +20,11 @@ const { useBreakpoint } = Grid;
 export interface ISingleVideoContainerProps {
     video: IVideo;
 }
+
 const SingleVideoContainer: FC<ISingleVideoContainerProps> = ({ video }) => {
-    const dispatch = useAppDispatch();
     const { lg } = useBreakpoint();
     const { value } = useDarkLight();
+    const dispatch = useAppDispatch();
 
     const {
         data: related,
@@ -37,10 +38,10 @@ const SingleVideoContainer: FC<ISingleVideoContainerProps> = ({ video }) => {
     } = useSelector(({ videos: { youtube } }: IRootState) => youtube);
 
     useEffect(() => {
-        const { tags, link } = video as IVideo;
+        const { tags, link, slug } = video as IVideo;
         if (!isEmpty(tags)) {
             dispatch(getYoutubeVideoInfoAction(link));
-            dispatch(getRelatedVideosAction({ slug: video?.slug, tags }));
+            dispatch(getRelatedVideosAction({ slug, tags }));
         }
     }, [dispatch, video]);
 

@@ -1,24 +1,31 @@
 import React, { FC } from 'react';
 import { Button } from 'antd';
-import { shareList } from '@constants/social';
 import useDarkLight from '@hooks/useDarkLight';
+import SocialShare from '@components/common/SocialShare';
+import { IShareType, shareList } from '@constants/social';
 
 import styles from './index.module.scss';
 
-const ArticleShare: FC = () => {
-    const { isDark } = useDarkLight();
+export interface IArticleShareProps {
+    link: string;
+    title: string;
+}
+
+const ArticleShare: FC<IArticleShareProps> = ({ link, title }) => {
+    const { isDark, value } = useDarkLight();
 
     return (
-        <div className={styles.articleShare}>
-            {shareList.map((item) => (
-                <Button
-                    shape="circle"
-                    key={item.name}
-                    icon={item.icon}
-                    data-platform={item.name}
-                    type={isDark ? 'default' : 'primary'}
-                    className={styles.articleShare__button}
-                />
+        <div className={styles.articleShare} data-theme={value}>
+            {shareList.map((share) => (
+                <SocialShare key={share.name} type={share.name as IShareType} link={link} title={title}>
+                    <Button
+                        shape="circle"
+                        icon={share.icon}
+                        data-platform={share.name}
+                        type={isDark ? 'default' : 'primary'}
+                        className={styles.articleShare__button}
+                    />
+                </SocialShare>
             ))}
         </div>
     );

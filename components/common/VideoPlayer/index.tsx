@@ -8,6 +8,8 @@ import { FaShare } from 'react-icons/fa';
 import { Col, Row, Typography, Spin, Button } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
 import { useAppDispatch } from '@redux/store';
+import getPlatformUrl from '@helpers/getPlatformUrl';
+import { ALL_VIDEOS_PATH } from '@constants/paths';
 import { IRootState } from '@redux/reducers';
 import { useSelector } from 'react-redux';
 import useDarkLight from '@hooks/useDarkLight';
@@ -20,8 +22,6 @@ import getSingleVideoRatedByUserAction from '@redux/ratings/getUserRate';
 import VideoRatingModal from '@components/modal/VideoRatingModal';
 
 import styles from './index.module.scss';
-import getPlatformUrl from '@helpers/getPlatformUrl';
-import { ALL_VIDEOS_PATH } from '@constants/paths';
 
 const { Text } = Typography;
 
@@ -67,13 +67,13 @@ const VideoPlayer: FC<IVideoPlayerProps> = ({ youtubeVideo, video }) => {
                     width={'100%'}
                     height={'100%'}
                     url={video.link}
+                    onReady={() => setVideoLoaded(true)}
                     onEnded={() => {
                         !hasUserRated && setOpenRatingModal(true);
                     }}
                     onPause={() => {
                         !hasUserRated && setOpenRatingModal(true);
                     }}
-                    onReady={() => setVideoLoaded(true)}
                     className={styles.videoPlayer__container__player}
                 />
             </Col>

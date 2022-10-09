@@ -1,23 +1,32 @@
 import React, { FC, Fragment, ReactElement, useCallback, useEffect, useState } from 'react';
 import { BackTop, Col, Row, Typography, Grid, Affix } from 'antd';
+import { IArticle } from '@interfaces/api';
+import useDarkLight from '@hooks/useDarkLight';
 import { IUnknownObject } from '@interfaces/app';
+import ArticleAction from '../Actions/ArticleAction';
+import { ALL_ARTICLES_PATH } from '@constants/paths';
+import getPlatformUrl from '@helpers/getPlatformUrl';
 import ArticleHeader from '@components/common/ArticleHeader';
+import ArticleTagsList from '@components/common/ArticleTagsList';
 import ArticleShare from '@components/common/Sharings/ArticleShare';
 import PopularArticleList from '@components/common/PopularArticleList';
 import RelatedArticleList from '@components/common/RelatedArticleList';
-import ArticleTags from '@components/common/ArticleTags';
-import useDarkLight from '@hooks/useDarkLight';
-import ArticleAction from '../Actions/ArticleAction';
 
 import styles from './index.module.scss';
 
-const { Paragraph } = Typography;
 const { useBreakpoint } = Grid;
+const { Paragraph } = Typography;
 
-const ArticleBody: FC = () => {
+export interface IArticleBodyProps {
+    article: IArticle;
+    related: IArticle[];
+}
+
+const ArticleBody: FC<IArticleBodyProps> = ({ article, related }) => {
     const { value } = useDarkLight();
     const { lg, md } = useBreakpoint();
     const [scrolled, setScrolled] = useState<string>('');
+    const sharedLink = `${getPlatformUrl()}${ALL_ARTICLES_PATH}/${article.slug}`;
 
     const backToStyle: IUnknownObject = {
         position: 'fixed',
@@ -47,63 +56,30 @@ const ArticleBody: FC = () => {
             <Row data-theme={value} justify="space-between" className={styles.articleBody}>
                 <Col xs={3} sm={2} lg={5}>
                     <ActionWrapper>
-                        <ArticleShare />
+                        <ArticleShare link={sharedLink} title={article.title} />
                     </ActionWrapper>
                 </Col>
                 <Col xs={21} sm={22} lg={11} className={styles.articleBody__content}>
-                    <ArticleHeader />
-                    <Paragraph data-paragraph>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum maiores repellat autem iusto
-                        quibusdam fugit error illo eius architecto animi eligendi iste consequuntur nam explicabo, fuga
-                        iure, sit ad fugiat aut ullam nobis rem molestiae culpa eveniet. Sequi, repellendus
-                        <br />
-                        <br />
-                        exercitationem quia rerum eius dolorem non facere, iste incidunt quo quidem libero beatae
-                        consequuntur! Unde possimus hic aspernatur illum ratione veniam laborum ipsam ipsa corporis
-                        maiores! Rerum, a. Numquam reprehenderit eum beatae voluptas delectus placeat, autem voluptates
-                        officia, ratione
-                        <br />
-                        <br />
-                        architecto quae accusamus sint animi ipsam amet dolor suscipit necessitatibus illo a, provident
-                        accusantium! Dignissimos numquam quasi veritatis aliquam placeat quia? Modi?
-                        <br />
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit numquam id nemo corporis alias
-                        ipsa quo. Voluptas, dicta recusandae laudantium totam cupiditate saepe vel fuga sunt
-                        perspiciatis, blanditiis voluptate numquam!
-                        <br />
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit numquam id nemo corporis alias
-                        ipsa quo. Voluptas, dicta recusandae laudantium totam cupiditate saepe vel fuga sunt
-                        perspiciatis, blanditiis voluptate numquam!
-                        <br />
-                        <br />
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit numquam id nemo corporis alias
-                        ipsa quo. Voluptas, dicta recusandae laudantium totam cupiditate saepe vel fuga sunt
-                        perspiciatis, blanditiis voluptate numquam!
-                        <br />
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit numquam id nemo corporis alias
-                        ipsa quo. Voluptas, dicta recusandae laudantium totam cupiditate saepe vel fuga sunt
-                        perspiciatis, blanditiis voluptate numquam!
-                        <br />
-                        <br />
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit numquam id nemo corporis alias
-                        ipsa quo. Voluptas, dicta recusandae laudantium totam cupiditate saepe vel fuga sunt
-                        perspiciatis, blanditiis voluptate numquam!
-                    </Paragraph>
+                    <ArticleHeader createdAt={article.createdAt as string} />
+                    <div>
+                        <Paragraph data-summary>{article.summary}</Paragraph>
+                        <div data-article-body dangerouslySetInnerHTML={{ __html: article.body }} />
+                    </div>
 
-                    {lg && <ArticleAction />}
-                    {lg && <ArticleTags />}
+                    {lg && <ArticleAction article={article} />}
+                    {lg && <ArticleTagsList tags={article.tags} />}
                     <BackTop style={backToStyle} data-back-top />
                 </Col>
 
                 {lg && (
                     <Col sm={24} lg={8}>
-                        <RelatedArticleList fetched error={null} articles={[]} />
+                        <RelatedArticleList articles={related} />
                     </Col>
                 )}
 
                 {md && !lg && (
                     <Col sm={24} lg={8}>
-                        <ArticleTags />
+                        <ArticleTagsList tags={article.tags} />
                     </Col>
                 )}
             </Row>

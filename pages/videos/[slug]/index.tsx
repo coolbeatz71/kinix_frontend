@@ -15,6 +15,7 @@ const SingleVideoPage: NextPage<ServerPropsType> = ({ error, data }) => {
     const { reload } = useRouter();
 
     const videoThumbnail = getYoutubeVideoThumbnail((data as IVideo)?.link);
+
     return (
         <Layout
             image={videoThumbnail}

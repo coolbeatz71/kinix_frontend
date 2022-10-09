@@ -1,5 +1,5 @@
-import { IUnknownObject } from '@interfaces/app';
 import { GetServerSidePropsContext } from 'next';
+import { IUnknownObject } from '@interfaces/app';
 import api from 'services/axios';
 
 export const getSingleVideoProps = async (context: GetServerSidePropsContext): Promise<IUnknownObject> => {

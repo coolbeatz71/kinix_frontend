@@ -35,7 +35,7 @@ interface ILayoutProps {
     isArticle?: boolean;
     isVideoCategory?: boolean;
     title?: string;
-    image?: string;
+    image?: string | null;
     description?: string;
     baseUrl?: string;
 }

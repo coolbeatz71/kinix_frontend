@@ -5,22 +5,19 @@
     margin-bottom: calc(#{$padding} * 1.2);
 
     [data-author='true'] {
+        color: $black;
+        cursor: pointer;
         font-weight: 600;
 
-        a {
-            color: $black;
-            &:hover,
-            &:active {
-                color: $link;
-            }
+        &:hover,
+        &:active {
+            color: $link;
         }
     }
 
     &[data-theme='dark'] {
         [data-author='true'] {
-            a {
-                color: $white;
-            }
+            color: $white;
         }
 
         [class~='ant-breadcrumb-separator'],

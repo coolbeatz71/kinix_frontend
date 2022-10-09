@@ -15,9 +15,7 @@ const VideoTagsList: FC<IVideoTagsListProps> = ({ tags }) => (
             const link = `${ALL_VIDEOS_PATH}?tag=${tag}`;
             return (
                 <Tag key={tag}>
-                    <Link href={link} passHref>
-                        {`#${tag}`}
-                    </Link>
+                    <Link href={link} passHref>{`#${tag}`}</Link>
                 </Tag>
             );
         })}

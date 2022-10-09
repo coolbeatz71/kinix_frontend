@@ -1,20 +1,24 @@
 import { combineReducers } from 'redux';
-import auth from './auth';
-import user from './user';
 import ads from './ads';
-import articles from './articles';
+import user from './user';
+import auth from './auth';
+import likes from './likes';
 import videos from './videos';
 import ratings from './ratings';
 import sharing from './sharing';
+import articles from './articles';
+import comments from './comments';
 
 export const rootReducer = combineReducers({
     ads,
     user,
     auth,
+    likes,
     videos,
-    articles,
-    ratings,
     sharing,
+    ratings,
+    articles,
+    comments,
 });
 
 export type IRootState = ReturnType<typeof rootReducer>;
