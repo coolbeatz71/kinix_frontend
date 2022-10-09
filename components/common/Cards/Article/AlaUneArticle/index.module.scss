@@ -7,6 +7,12 @@
 
     [data-text='header'] {
         font-size: 12px;
+        font-style: italic;
+    }
+
+    [data-text='author'] {
+        font-weight: 600;
+        font-size: 13px;
     }
 
     [data-text='title'] {

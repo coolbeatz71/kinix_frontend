@@ -12,9 +12,9 @@ import { WARNING } from '@constants/colors';
 import { APP_NAME } from '@constants/platform';
 import { ALL_VIDEOS_PATH } from '@constants/paths';
 import VideoAction from '@components/common/Actions/VideoAction';
+import getYoutubeVideoThumbnail from '@helpers/getYoutubeVideoThumbail';
 import VideoViewRating from '@components/common/Ratings/VideoViewRating';
 import VideoShareButton from '@components/common/Sharings/VideoShareButton';
-import getYoutubeVideoThumbnail from '@helpers/getYoutubeVideoThumbail';
 
 import styles from './index.module.scss';
 
@@ -52,11 +52,12 @@ const VideoCardVertical: FC<IVideoCardVerticalProps> = ({ isExclusive = false, v
             onMouseLeave={handleShowOverlay}
             className={styles.videoCardVertical}
         >
-            <Link href={link} passHref>
-                <Card
-                    bordered={false}
-                    hoverable={!isExclusive}
-                    cover={
+            <Card
+                bordered={false}
+                hoverable={!isExclusive}
+                data-exclusive={isExclusive}
+                cover={
+                    <Link href={link} passHref>
                         <Fragment>
                             <div className="overlay" style={overLayStyles}>
                                 <Button
@@ -78,32 +79,38 @@ const VideoCardVertical: FC<IVideoCardVerticalProps> = ({ isExclusive = false, v
                                 </div>
                             )}
                         </Fragment>
+                    </Link>
+                }
+                actions={
+                    isExclusive
+                        ? []
+                        : [
+                              <VideoViewRating count={video?.avgRate || 0} key="video-rating" />,
+                              <VideoShareButton count={Number(video?.sharesCount)} key="video-sharing" />,
+                              <VideoAction slug={video?.slug} key="video-action" />,
+                          ]
+                }
+            >
+                <Meta
+                    title={
+                        <Link href={link} passHref>
+                            {truncate(video?.title, {
+                                length: 100,
+                            })}
+                        </Link>
                     }
-                    actions={
-                        isExclusive
-                            ? []
-                            : [
-                                  <VideoViewRating count={video?.avgRate || 0} key="video-rating" />,
-                                  <VideoShareButton count={Number(video?.sharesCount)} key="video-sharing" />,
-                                  <VideoAction slug={video?.slug} key="video-action" />,
-                              ]
-                    }
-                >
-                    <Meta
-                        title={truncate(video?.title, {
-                            length: 100,
-                        })}
-                        description={
-                            !isExclusive && (
+                    description={
+                        !isExclusive && (
+                            <Link href={link} passHref>
                                 <div className="d-flex justify-content-between">
                                     <span data-author>{isAuthorAdmin ? APP_NAME : video?.user?.userName}</span>
                                     <span data-created-at>{dayjs(video?.createdAt).fromNow()}</span>
                                 </div>
-                            )
-                        }
-                    />
-                </Card>
-            </Link>
+                            </Link>
+                        )
+                    }
+                />
+            </Card>
         </div>
     );
 };

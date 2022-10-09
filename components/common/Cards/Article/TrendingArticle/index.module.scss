@@ -18,6 +18,12 @@
 
         [data-text='header'] {
             font-size: 12px;
+            font-style: italic;
+        }
+
+        [data-text='author'] {
+            font-size: 12px;
+            font-weight: 600;
         }
     }
 

@@ -46,9 +46,9 @@ const RelatedVideoCard: FC<IRelatedVideoCardProps> = ({ video }) => {
             onMouseLeave={handleShowOverlay}
             className={styles.relatedVideoCard}
         >
-            <Link href={link} passHref>
-                <Card bordered={false} hoverable>
-                    <Row justify="space-between">
+            <Card bordered={false} hoverable>
+                <Row justify="space-between">
+                    <Link href={link} passHref>
                         <Col span={9} className={styles.relatedVideoCard__cover}>
                             <div className="overlay" style={overLayStyles}>
                                 <Button
@@ -68,26 +68,24 @@ const RelatedVideoCard: FC<IRelatedVideoCardProps> = ({ video }) => {
                                 </div>
                             )}
                         </Col>
-                        <Col span={15} data-body>
-                            <Title level={5} data-title>
+                    </Link>
+                    <Col span={15} data-body>
+                        <Title level={5} data-title>
+                            <Link href={link} passHref>
                                 {truncate(video.title, {
                                     length: 60,
                                 })}
-                            </Title>
-                            <div className="d-flex flex-column">
-                                <Text data-ratings>
-                                    <StarRatingComponent
-                                        name="rate-video"
-                                        starCount={5}
-                                        value={Number(video.avgRate)}
-                                    />
-                                </Text>
-                                <Text data-created-at>{dayjs(video?.createdAt).fromNow()}</Text>
-                            </div>
-                        </Col>
-                    </Row>
-                </Card>
-            </Link>
+                            </Link>
+                        </Title>
+                        <div className="d-flex flex-column">
+                            <Text data-ratings>
+                                <StarRatingComponent name="rate-video" starCount={5} value={Number(video.avgRate)} />
+                            </Text>
+                            <Text data-created-at>{dayjs(video?.createdAt).fromNow()}</Text>
+                        </div>
+                    </Col>
+                </Row>
+            </Card>
         </div>
     );
 };
