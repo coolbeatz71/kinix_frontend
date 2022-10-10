@@ -10,6 +10,7 @@ import ArticleBody from '@components/common/ArticleBody';
 import ServerError from '@components/common/ServerError';
 import ArticleCover from '@components/common/ArticleCover';
 import getRelatedArticlesAction from '@redux/articles/related';
+import getUserBookmarksAction from '@redux/bookmarks/userBookmarks';
 import SingleArticleSkeleton from '@components/skeleton/SingleArticle';
 
 export interface ISingleArticleContainerProps {
@@ -29,7 +30,10 @@ const SingleArticleContainer: FC<ISingleArticleContainerProps> = ({ article }) =
     }, [dispatch, article]);
 
     useEffect(() => {
-        if (user?.id) dispatch(getUserLikesAction());
+        if (user?.id) {
+            dispatch(getUserLikesAction());
+            dispatch(getUserBookmarksAction());
+        }
     }, [dispatch, user.id]);
 
     return (

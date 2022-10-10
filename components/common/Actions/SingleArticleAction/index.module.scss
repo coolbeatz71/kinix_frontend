@@ -11,7 +11,8 @@
     margin: calc(#{$padding} * 1.2) 0;
     padding: calc(#{$padding} * 1.2) 0;
 
-    [data-liked='true'] {
+    [data-liked='true'],
+    [data-bookmarked='true'] {
         color: $warning;
     }
 
@@ -40,7 +41,8 @@
 
         [data-count='true'] {
             font-size: 12pt;
-            margin-right: 0.2rem;
+            margin-left: 2px;
+            margin-right: 0.5rem;
         }
 
         [class~='anticon'] {
@@ -56,12 +58,12 @@
 
     &[data-theme='dark'] {
         border: 1px solid $light20;
+
         [data-author='true'] {
             a {
                 color: $white;
             }
         }
-
         [class~='ant-breadcrumb-separator'],
         [class~='ant-breadcrumb-link'] {
             color: $light;
@@ -80,7 +82,6 @@
             [class~='anticon'] {
                 font-size: 16pt;
             }
-
             &[class~='ant-btn-icon-only'] {
                 svg {
                     font-size: 18pt;
@@ -88,7 +89,8 @@
             }
             [data-count='true'] {
                 font-size: 10pt;
-                margin-right: 0.1rem;
+                margin-left: 2px;
+                margin-right: 0.2rem;
             }
         }
     }
@@ -98,7 +100,6 @@
             [class~='anticon'] {
                 font-size: 16pt;
             }
-
             &[class~='ant-btn-icon-only'] {
                 svg {
                     font-size: 18pt;
@@ -106,7 +107,8 @@
             }
             [data-count='true'] {
                 font-size: 10pt;
-                margin-right: 0.1rem;
+                margin-left: 2px;
+                margin-right: 0.2rem;
             }
         }
     }

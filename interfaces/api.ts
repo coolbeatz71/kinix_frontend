@@ -83,15 +83,16 @@ export interface IVideo {
 }
 
 export interface IBookmark {
-    readonly id: number;
+    readonly id?: number;
     userId: number;
+    article?: IArticle;
     articleId: number;
     createdAt?: string;
     updatedAt?: string;
 }
 
 export interface ICategory {
-    readonly id: number;
+    readonly id?: number;
     name: string;
     createdAt?: string;
     updatedAt?: string;

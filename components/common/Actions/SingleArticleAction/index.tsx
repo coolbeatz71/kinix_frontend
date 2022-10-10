@@ -2,19 +2,24 @@ import React, { FC, useEffect, useState } from 'react';
 import numeral from 'numeral';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
+import { BsBookmarkPlus } from 'react-icons/bs';
+import { RiBookmark3Fill } from 'react-icons/ri';
 import { Button, Col, message, Row } from 'antd';
-import { MdOutlineBookmarkAdd } from 'react-icons/md';
 import { CommentOutlined, HeartOutlined, HeartFilled } from '@ant-design/icons';
-
 import { IArticle } from '@interfaces/api';
 import { IRootState } from '@redux/reducers';
 import { useAppDispatch } from '@redux/store';
 import useDarkLight from '@hooks/useDarkLight';
-import isSingleArticleLikeOwner from '@helpers/isLikeOwner';
 import addArticleLikeAction from '@redux/likes/add';
 import getArticleLikesAction from '@redux/likes/all';
 import removeArticleLikeAction from '@redux/likes/unlike';
+import isSingleArticleLikeOwner from '@helpers/isLikeOwner';
+import addArticleBookmarkAction from '@redux/bookmarks/add';
+import getArticleBookmarksAction from '@redux/bookmarks/all';
 import getAllArticleCommentsAction from '@redux/comments/all';
+import removeArticleBookmarkAction from '@redux/bookmarks/delete';
+import isSingleArticleBookmarkOwner from '@helpers/isBookmarkOwner';
+import getUserBookmarksAction from '@redux/bookmarks/userBookmarks';
 import ArticleCommentsDrawer from '@components/comment/ArticleCommentsDrawer';
 
 import styles from './index.module.scss';
@@ -31,13 +36,13 @@ const SingleArticleAction: FC<ISingleArticleActionProps> = ({ article }) => {
     const [likeCount, setLikeCount] = useState(article.likesCount);
     const [likeOwner, setLikeOwner] = useState<boolean | undefined>(false);
     const [commentCount, setCommentCount] = useState(article.commentsCount);
+    const [bookmarkOwner, setBookmarkOwner] = useState<boolean | undefined>(false);
 
     const [openCommentDrawer, setOpenCommentDrawer] = useState<boolean>(false);
 
     const { data: allLikes } = useSelector(({ likes: { all } }: IRootState) => all);
-    const { error: errLike } = useSelector(({ likes: { add } }: IRootState) => add);
     const { data: allComments } = useSelector(({ comments: { all } }: IRootState) => all);
-    const { error: errUnlike } = useSelector(({ likes: { unlike } }: IRootState) => unlike);
+    const { data: allBookmarks } = useSelector(({ bookmarks: { all } }: IRootState) => all);
     const { data: user } = useSelector(({ user: { currentUser } }: IRootState) => currentUser);
 
     const likes = numeral(likeCount).format('0.[00]a');
@@ -45,6 +50,7 @@ const SingleArticleAction: FC<ISingleArticleActionProps> = ({ article }) => {
 
     useEffect(() => {
         dispatch(getArticleLikesAction(article.slug));
+        dispatch(getArticleBookmarksAction(article.slug));
         dispatch(getAllArticleCommentsAction({ slug: article.slug }));
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [dispatch]);
@@ -52,9 +58,15 @@ const SingleArticleAction: FC<ISingleArticleActionProps> = ({ article }) => {
     useEffect(() => {
         if (allLikes?.rows) {
             setLikeCount(allLikes?.count);
-            if (allLikes?.rows) setLikeOwner(isSingleArticleLikeOwner(user.id, allLikes.rows));
+            setLikeOwner(isSingleArticleLikeOwner(user.id, allLikes.rows));
         }
     }, [allLikes, user.id]);
+
+    useEffect(() => {
+        if (allBookmarks?.rows) {
+            setBookmarkOwner(isSingleArticleBookmarkOwner(user.id, allBookmarks.rows));
+        }
+    }, [allBookmarks, user.id]);
 
     useEffect(() => {
         if (allComments?.rows) setCommentCount(allComments?.count);
@@ -62,7 +74,7 @@ const SingleArticleAction: FC<ISingleArticleActionProps> = ({ article }) => {
 
     const likeArticle = (): void => {
         dispatch(addArticleLikeAction(article.slug)).then((res) => {
-            if (res.type === 'likes/add/rejected') message.error(errLike?.message);
+            if (res.type === 'likes/add/rejected') message.error(res.payload?.message);
             else if (res.type === 'likes/add/fulfilled') {
                 setLikeCount(Number(likeCount) + 1);
                 dispatch(getArticleLikesAction(article.slug));
@@ -73,11 +85,33 @@ const SingleArticleAction: FC<ISingleArticleActionProps> = ({ article }) => {
 
     const unlikeArticle = (): void => {
         dispatch(removeArticleLikeAction(article.slug)).then((res) => {
-            if (res.type === 'likes/unlike/rejected') message.error(errUnlike?.message);
+            if (res.type === 'likes/unlike/rejected') message.error(res.payload?.message);
             else if (res.type === 'likes/unlike/fulfilled') {
                 setLikeCount(Number(likeCount) - 1);
                 dispatch(getArticleLikesAction(article.slug));
                 message.success(t('unLikingSuccess'));
+            }
+        });
+    };
+
+    const bookmarkArticle = (): void => {
+        dispatch(addArticleBookmarkAction(article?.slug)).then((res) => {
+            if (res.type === 'bookmarks/add/rejected') message.error(res.payload?.message);
+            else if (res.type === 'bookmarks/add/fulfilled') {
+                dispatch(getUserBookmarksAction());
+                dispatch(getArticleBookmarksAction(article?.slug));
+                message.success(t('bookmarkingSuccess'));
+            }
+        });
+    };
+
+    const unBookmarkArticle = (): void => {
+        dispatch(removeArticleBookmarkAction(article?.slug)).then((res) => {
+            if (res.type === 'bookmarks/delete/rejected') message.error(res.payload?.message);
+            else if (res.type === 'bookmarks/delete/fulfilled') {
+                dispatch(getUserBookmarksAction());
+                dispatch(getArticleBookmarksAction(article?.slug));
+                message.success(t('unBookmarkingSuccess'));
             }
         });
     };
@@ -91,12 +125,23 @@ const SingleArticleAction: FC<ISingleArticleActionProps> = ({ article }) => {
                     onClick={likeOwner ? unlikeArticle : likeArticle}
                     icon={likeOwner ? <HeartFilled data-liked /> : <HeartOutlined />}
                 >
-                    <span data-count>{likes}</span>
+                    <span data-count>&nbsp;{Number(likeCount) > 0 ? likes : ''}</span>
                 </Button>
                 <Button data-comment type="link" icon={<CommentOutlined />} onClick={() => setOpenCommentDrawer(true)}>
-                    <span data-count>{comments}</span>
+                    <span data-count>&nbsp;{Number(commentCount) > 0 ? comments : ''}</span>
                 </Button>
-                <Button data-bookmark type="link" icon={<MdOutlineBookmarkAdd />} />
+                <Button
+                    type="link"
+                    data-bookmark
+                    onClick={bookmarkOwner ? unBookmarkArticle : bookmarkArticle}
+                    icon={
+                        bookmarkOwner ? (
+                            <RiBookmark3Fill className="anticon" data-bookmarked />
+                        ) : (
+                            <BsBookmarkPlus className="anticon" />
+                        )
+                    }
+                />
             </Col>
             <ArticleCommentsDrawer
                 article={article}

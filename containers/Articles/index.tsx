@@ -17,8 +17,9 @@ import ArticleListSkeleton from '@components/skeleton/ArticleList';
 import getUserLikesAction from '@redux/likes/userLikes';
 import getArticlesTagsAction from '@redux/articles/tags';
 import { EnumTagsContext } from '@constants/tags-context';
-import PopularArticleCarousel from '@components/common/PopularArticleCarousel';
+import getUserBookmarksAction from '@redux/bookmarks/userBookmarks';
 import AlaUneArticleSection from '@components/home/AlaUneArticleSection';
+import PopularArticleCarousel from '@components/common/PopularArticleCarousel';
 import SubscribeNewsLetter from '@components/common/Cards/Article/SubscribeNewsLetter';
 
 import styles from './index.module.scss';
@@ -55,7 +56,10 @@ const ArticleContainer: FC = () => {
     }, [dispatch]);
 
     useEffect(() => {
-        if (user?.id) dispatch(getUserLikesAction());
+        if (user?.id) {
+            dispatch(getUserLikesAction());
+            dispatch(getUserBookmarksAction());
+        }
     }, [dispatch, user.id]);
 
     useEffect(() => {

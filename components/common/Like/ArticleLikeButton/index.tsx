@@ -29,9 +29,7 @@ const ArticleLikeButton: FC<IArticleLikeButtonProps> = ({ slug, count }) => {
     const [likeCount, setLikeCount] = useState(count);
     const [likeOwner, setLikeOwner] = useState<boolean | undefined>(false);
 
-    const { error: errLike } = useSelector(({ likes: { add } }: IRootState) => add);
     const { data: allUserLikes } = useSelector(({ likes: { user } }: IRootState) => user);
-    const { error: errUnlike } = useSelector(({ likes: { unlike } }: IRootState) => unlike);
     const { data: user } = useSelector(({ user: { currentUser } }: IRootState) => currentUser);
 
     const likes = numeral(likeCount).format('0.[00]a');
@@ -44,7 +42,7 @@ const ArticleLikeButton: FC<IArticleLikeButtonProps> = ({ slug, count }) => {
 
     const likeArticle = (): void => {
         dispatch(addArticleLikeAction(slug)).then((res) => {
-            if (res.type === 'likes/add/rejected') message.error(errLike?.message);
+            if (res.type === 'likes/add/rejected') message.error(res.payload?.message);
             else if (res.type === 'likes/add/fulfilled') {
                 dispatch(getUserLikesAction());
                 dispatch(getArticleLikesAction(slug));
@@ -56,7 +54,7 @@ const ArticleLikeButton: FC<IArticleLikeButtonProps> = ({ slug, count }) => {
 
     const unlikeArticle = (): void => {
         dispatch(removeArticleLikeAction(slug)).then((res) => {
-            if (res.type === 'likes/unlike/rejected') message.error(errUnlike?.message);
+            if (res.type === 'likes/unlike/rejected') message.error(res.payload?.message);
             else if (res.type === 'likes/unlike/fulfilled') {
                 dispatch(getUserLikesAction());
                 dispatch(getArticleLikesAction(slug));
@@ -68,7 +66,6 @@ const ArticleLikeButton: FC<IArticleLikeButtonProps> = ({ slug, count }) => {
 
     return (
         <Button
-            key={slug}
             type="text"
             data-theme={value}
             className={styles.articleLikeButton}

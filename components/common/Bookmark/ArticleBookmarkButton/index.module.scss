@@ -39,5 +39,9 @@
     [class~='anticon'] {
         font-size: 1.2rem;
         line-height: 0;
+
+        &[data-bookmarked='true'] {
+            color: $warning;
+        }
     }
 }
