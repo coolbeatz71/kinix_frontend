@@ -38,8 +38,10 @@ const UpdateArticleCommentModal: FC<IUpdateArticleCommentModalProps> = ({
     const { error: errAddComment, loading: loadAddComment } = useSelector(({ comments: { add } }: IRootState) => add);
 
     useEffect(() => {
-        if (openModal) setSuccess('');
-        resetAddCommentAction()(dispatch);
+        if (openModal) {
+            setSuccess('');
+            resetAddCommentAction()(dispatch);
+        }
     }, [dispatch, openModal]);
 
     const onCloseModal = (): void => {
