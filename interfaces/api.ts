@@ -100,6 +100,7 @@ export interface ICategory {
 export interface ILike {
     readonly id?: number;
     userId: number;
+    article?: IArticle;
     articleId: number;
     createdAt?: string;
     updatedAt?: string;

@@ -2,16 +2,17 @@ import React, { FC, useState, useEffect } from 'react';
 import { Form, Modal } from 'antd';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { useAppDispatch } from '@redux/store';
 import { CloseCircleOutlined } from '@ant-design/icons';
-import addArticleCommentAction, { resetAddCommentAction } from '@redux/comments/add';
+
 import { IComment } from '@interfaces/api';
 import { IRootState } from '@redux/reducers';
+import { useAppDispatch } from '@redux/store';
 import { EnumFormContext } from '@interfaces/app';
 import { ICommentData } from '@interfaces/comments';
 import getAllArticleCommentsAction from '@redux/comments/all';
 import FormSuccessResult from '@components/common/FormSuccessResult';
 import CreateArticleComment from '@components/form/CreateArticleComment';
+import addArticleCommentAction, { resetAddCommentAction } from '@redux/comments/add';
 
 import styles from './index.module.scss';
 

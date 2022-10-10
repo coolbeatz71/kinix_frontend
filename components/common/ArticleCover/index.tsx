@@ -7,10 +7,10 @@ import { useTranslation } from 'react-i18next';
 import { Col, Grid, message, Row, Typography } from 'antd';
 import { IRootState } from '@redux/reducers';
 import { useAppDispatch } from '@redux/store';
-import isLikeOwner from '@helpers/isLikeOwner';
+import isSingleArticleLikeOwner from '@helpers/isLikeOwner';
 import { HeartFilled, HeartOutlined } from '@ant-design/icons';
 import { IArticle, IUser } from '@interfaces/api';
-import ArticleAction from '../Actions/ArticleAction';
+import ArticleAction from '../Actions/SingleArticleAction';
 import addArticleLikeAction from '@redux/likes/add';
 import getArticleLikesAction from '@redux/likes/all';
 import removeArticleLikeAction from '@redux/likes/unlike';
@@ -48,7 +48,7 @@ const ArticleCover: FC<IArticleCoverProps> = ({ user, article }) => {
     useEffect(() => {
         if (allLikes?.rows) {
             setLike(allLikes?.count);
-            setLikeOwner(isLikeOwner(user.id, allLikes.rows));
+            setLikeOwner(isSingleArticleLikeOwner(user.id, allLikes.rows));
         }
     }, [allLikes, user.id]);
 

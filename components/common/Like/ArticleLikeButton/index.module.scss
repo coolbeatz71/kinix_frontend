@@ -38,5 +38,9 @@
     [class~='anticon'] {
         font-size: 1.2rem;
         line-height: 0;
+
+        &[data-liked='true'] {
+            color: $warning;
+        }
     }
 }

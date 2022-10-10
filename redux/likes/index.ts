@@ -9,6 +9,7 @@ import addArticleLikeAction from './add';
 import getArticleLikesAction from './all';
 import { likesInitialState } from './types';
 import removeArticleLikeAction from './unlike';
+import getUserLikesAction from './userLikes';
 
 export const likesSlice = createSlice({
     name: 'likes',
@@ -29,7 +30,11 @@ export const likesSlice = createSlice({
             // get all likes for an article
             .addCase(getArticleLikesAction.pending, ActionWrapperPending)
             .addCase(getArticleLikesAction.fulfilled, ActionWrapperFulfilled)
-            .addCase(getArticleLikesAction.rejected, ActionWrapperRejected);
+            .addCase(getArticleLikesAction.rejected, ActionWrapperRejected)
+            // get all likes by a user
+            .addCase(getUserLikesAction.pending, ActionWrapperPending)
+            .addCase(getUserLikesAction.fulfilled, ActionWrapperFulfilled)
+            .addCase(getUserLikesAction.rejected, ActionWrapperRejected);
     },
 });
 

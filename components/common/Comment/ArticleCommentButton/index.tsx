@@ -1,7 +1,8 @@
 import React, { FC } from 'react';
 import { Button } from 'antd';
-import { CommentOutlined } from '@ant-design/icons';
 import useDarkLight from '@hooks/useDarkLight';
+import { CommentOutlined } from '@ant-design/icons';
+
 import styles from './index.module.scss';
 
 export interface IArticleCommentButtonProps {

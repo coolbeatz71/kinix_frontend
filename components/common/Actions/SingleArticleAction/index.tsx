@@ -10,7 +10,7 @@ import { IArticle } from '@interfaces/api';
 import { IRootState } from '@redux/reducers';
 import { useAppDispatch } from '@redux/store';
 import useDarkLight from '@hooks/useDarkLight';
-import isLikeOwner from '@helpers/isLikeOwner';
+import isSingleArticleLikeOwner from '@helpers/isLikeOwner';
 import addArticleLikeAction from '@redux/likes/add';
 import getArticleLikesAction from '@redux/likes/all';
 import removeArticleLikeAction from '@redux/likes/unlike';
@@ -19,11 +19,11 @@ import ArticleCommentsDrawer from '@components/comment/ArticleCommentsDrawer';
 
 import styles from './index.module.scss';
 
-export interface IArticleActionProps {
+export interface ISingleArticleActionProps {
     article: IArticle;
 }
 
-const ArticleAction: FC<IArticleActionProps> = ({ article }) => {
+const SingleArticleAction: FC<ISingleArticleActionProps> = ({ article }) => {
     const { t } = useTranslation();
     const { value } = useDarkLight();
     const dispatch = useAppDispatch();
@@ -52,7 +52,7 @@ const ArticleAction: FC<IArticleActionProps> = ({ article }) => {
     useEffect(() => {
         if (allLikes?.rows) {
             setLikeCount(allLikes?.count);
-            if (allLikes?.rows) setLikeOwner(isLikeOwner(user.id, allLikes.rows));
+            if (allLikes?.rows) setLikeOwner(isSingleArticleLikeOwner(user.id, allLikes.rows));
         }
     }, [allLikes, user.id]);
 
@@ -107,4 +107,4 @@ const ArticleAction: FC<IArticleActionProps> = ({ article }) => {
     );
 };
 
-export default ArticleAction;
+export default SingleArticleAction;

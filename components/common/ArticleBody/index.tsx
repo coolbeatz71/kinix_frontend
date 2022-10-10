@@ -3,7 +3,7 @@ import { BackTop, Col, Row, Typography, Grid, Affix } from 'antd';
 import { IArticle } from '@interfaces/api';
 import useDarkLight from '@hooks/useDarkLight';
 import { IUnknownObject } from '@interfaces/app';
-import ArticleAction from '../Actions/ArticleAction';
+import ArticleAction from '../Actions/SingleArticleAction';
 import { ALL_ARTICLES_PATH } from '@constants/paths';
 import getPlatformUrl from '@helpers/getPlatformUrl';
 import ArticleHeader from '@components/common/ArticleHeader';

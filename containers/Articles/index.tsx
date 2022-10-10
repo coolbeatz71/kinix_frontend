@@ -14,6 +14,7 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import TagsBar from '@components/layout/TagsBar';
 import ArticleList from '@components/common/ArticleList';
 import ArticleListSkeleton from '@components/skeleton/ArticleList';
+import getUserLikesAction from '@redux/likes/userLikes';
 import getArticlesTagsAction from '@redux/articles/tags';
 import { EnumTagsContext } from '@constants/tags-context';
 import PopularArticleCarousel from '@components/common/PopularArticleCarousel';
@@ -34,30 +35,34 @@ const ArticleContainer: FC = () => {
     const { query, asPath, push } = useRouter();
     const [activeTag, setActiveTag] = useState<string>((query?.tag as string) || 'all');
 
-    const [articles, setArticles] = useState<IArticle[]>([]);
     const [isFirstLoad, setIsFirstLoad] = useState(true);
+    const [articles, setArticles] = useState<IArticle[]>([]);
     const [params, setParams] = useState<IArticleParams>({
         page: START_PAGE,
         limit: CONTENT_LIMIT,
     });
 
-    const { loading: loadingTags, data: tags, error } = useSelector(({ articles: { tags } }: IRootState) => tags);
     const {
         data,
         error: errArticles,
         loading: loadingArticles,
     } = useSelector(({ articles: { all } }: IRootState) => all);
+    const { data: user } = useSelector(({ user: { currentUser } }: IRootState) => currentUser);
+    const { loading: loadingTags, data: tags, error } = useSelector(({ articles: { tags } }: IRootState) => tags);
 
     useEffect(() => {
         dispatch(getArticlesTagsAction());
     }, [dispatch]);
 
     useEffect(() => {
+        if (user?.id) dispatch(getUserLikesAction());
+    }, [dispatch, user.id]);
+
+    useEffect(() => {
         const { search, tag } = query as IUnknownObject;
         dispatch(getAllArticlesAction({ page: START_PAGE, limit: CONTENT_LIMIT, search, tag })).then((res) => {
             if (res.type === 'articles/all/fulfilled') {
                 setIsFirstLoad(false);
-                console.log('here', res.payload.articles);
                 setArticles(res.payload.articles);
             }
         });

@@ -1,21 +1,22 @@
 import React, { FC, useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { Button, Divider, Form, Input } from 'antd';
-import AuthModal from '@components/common/Modals/AuthModal';
-import { useSelector } from 'react-redux';
-import FloatTextInput from '@components/common/TextInput';
+
 import SocialLogin from '../SocialLogin';
-import emailUserNameValidator, { passwordValidator } from './validation';
-import { showAuthDialogAction } from 'redux/auth/showDialog';
-import { EnumAuthContext } from '@constants/auth-context';
 import { IRootState } from 'redux/reducers';
+import { useAppDispatch } from 'redux/store';
+import { ILoginData } from '@interfaces/auth';
 import { IUnknownObject } from '@interfaces/app';
 import { CHECK_CONFIRM_EMAIL } from '@constants/api';
-import AccountConfirmation from '../AccountConfirmation';
-import loginAction, { resetLoginAction } from 'redux/auth/login';
-import { ILoginData } from '@interfaces/auth';
-import { useAppDispatch } from 'redux/store';
 import ErrorAlert from '@components/common/ErrorAlert';
+import AccountConfirmation from '../AccountConfirmation';
+import { EnumAuthContext } from '@constants/auth-context';
+import FloatTextInput from '@components/common/TextInput';
+import AuthModal from '@components/common/Modals/AuthModal';
+import { showAuthDialogAction } from 'redux/auth/showDialog';
+import loginAction, { resetLoginAction } from 'redux/auth/login';
+import emailUserNameValidator, { passwordValidator } from './validation';
 
 import styles from './index.module.scss';
 
@@ -26,9 +27,8 @@ const btnStyles = `d-flex align-items-center justify-content-center`;
 
 const LoginModal: FC = () => {
     const { t } = useTranslation();
-    const [currentCredential, setCurrentCredential] = useState<string>('');
-
     const dispatch = useAppDispatch();
+    const [currentCredential, setCurrentCredential] = useState<string>('');
     const { error, loading } = useSelector(({ auth: { login } }: IRootState) => login);
     const { isOpen, context } = useSelector(({ auth: { dialog } }: IRootState) => dialog);
 
@@ -39,30 +39,28 @@ const LoginModal: FC = () => {
     const onSubmit = (formValues: ILoginData): void => {
         const { credential, password } = formValues;
         dispatch(loginAction({ data: { credential, password }, dispatch })).then((res) => {
-            if (res.type === 'auth/login/rejected') setCurrentCredential(credential);
             if (res.type === 'auth/login/fulfilled') onCloseLogin();
+            if (res.type === 'auth/login/rejected') setCurrentCredential(credential);
         });
     };
 
     const openLogin = isOpen && context === EnumAuthContext.LOGIN;
+    const onOpenSignUp = (): void => {
+        showAuthDialogAction({
+            isOpen: true,
+            context: EnumAuthContext.SIGNUP,
+        })(dispatch);
+    };
     const onCloseLogin = (): void => {
         showAuthDialogAction({
             isOpen: false,
             context: EnumAuthContext.LOGIN,
         })(dispatch);
     };
-
     const onOpenForgotPassword = (): void => {
         showAuthDialogAction({
             isOpen: true,
             context: EnumAuthContext.FORGOT_PASSWORD,
-        })(dispatch);
-    };
-
-    const onOpenSignUp = (): void => {
-        showAuthDialogAction({
-            isOpen: true,
-            context: EnumAuthContext.SIGNUP,
         })(dispatch);
     };
 
@@ -117,8 +115,8 @@ const LoginModal: FC = () => {
                         <Button
                             block
                             type="text"
-                            className={`mb-1 ${styles.loginForm__footer__btn}`}
                             onClick={onOpenSignUp}
+                            className={`mb-1 ${styles.loginForm__footer__btn}`}
                         >
                             {dontHaveAccount}
                         </Button>
@@ -126,8 +124,8 @@ const LoginModal: FC = () => {
                         <Button
                             block
                             type="text"
-                            className={styles.loginForm__footer__btn}
                             onClick={onOpenForgotPassword}
+                            className={styles.loginForm__footer__btn}
                         >
                             {forgotPassword}
                         </Button>
