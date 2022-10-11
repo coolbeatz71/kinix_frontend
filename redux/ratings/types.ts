@@ -2,10 +2,12 @@ import { BasicInitialState, BasicInitialStateList, IBasicInitialState, IBasicIni
 
 export type IVideoRatingState = {
     add: IBasicInitialState;
+    summary: IBasicInitialState;
     userRate: IBasicInitialStateList;
 };
 
 export const videoRatingInitialState: IVideoRatingState = {
     add: BasicInitialState,
+    summary: BasicInitialState,
     userRate: BasicInitialStateList,
 };

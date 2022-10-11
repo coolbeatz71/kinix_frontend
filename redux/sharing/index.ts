@@ -7,6 +7,7 @@ import {
 } from '@constants/redux';
 import { videoSharingInitialState } from './types';
 import addVideoSharingAction from './add';
+import getVideoSharingsAction from './all';
 
 export const sharingSlice = createSlice({
     name: 'sharings',
@@ -19,7 +20,11 @@ export const sharingSlice = createSlice({
             // save a video share
             .addCase(addVideoSharingAction.pending, ActionWrapperPending)
             .addCase(addVideoSharingAction.fulfilled, ActionWrapperFulfilled)
-            .addCase(addVideoSharingAction.rejected, ActionWrapperRejected);
+            .addCase(addVideoSharingAction.rejected, ActionWrapperRejected)
+            // get all sharings for a single video
+            .addCase(getVideoSharingsAction.pending, ActionWrapperPending)
+            .addCase(getVideoSharingsAction.fulfilled, ActionWrapperFulfilled)
+            .addCase(getVideoSharingsAction.rejected, ActionWrapperRejected);
     },
 });
 
