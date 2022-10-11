@@ -8,9 +8,12 @@
     }
 
     [class~='ant-tag'] {
+        font-size: 10.5pt;
+
         cursor: pointer;
-        padding: 0.5rem;
+        padding: 0.8rem;
         margin-bottom: 1rem;
+        font-weight: 500;
 
         a:hover {
             color: $link;
