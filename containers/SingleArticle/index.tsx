@@ -5,10 +5,12 @@ import { IArticle, IUser } from '@interfaces/api';
 import { IRootState } from '@redux/reducers';
 import { useAppDispatch } from '@redux/store';
 import useDarkLight from '@hooks/useDarkLight';
+import getUserLikesAction from '@redux/likes/userLikes';
 import ArticleBody from '@components/common/ArticleBody';
 import ServerError from '@components/common/ServerError';
 import ArticleCover from '@components/common/ArticleCover';
 import getRelatedArticlesAction from '@redux/articles/related';
+import getUserBookmarksAction from '@redux/bookmarks/userBookmarks';
 import SingleArticleSkeleton from '@components/skeleton/SingleArticle';
 
 export interface ISingleArticleContainerProps {
@@ -26,6 +28,13 @@ const SingleArticleContainer: FC<ISingleArticleContainerProps> = ({ article }) =
         const { tags, slug } = article as IArticle;
         if (!isEmpty(tags)) dispatch(getRelatedArticlesAction({ slug, tags }));
     }, [dispatch, article]);
+
+    useEffect(() => {
+        if (user?.id) {
+            dispatch(getUserLikesAction());
+            dispatch(getUserBookmarksAction());
+        }
+    }, [dispatch, user.id]);
 
     return (
         <Fragment>

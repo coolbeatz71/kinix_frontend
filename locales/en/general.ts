@@ -44,6 +44,8 @@ export const general = {
     sharingSuccess: 'Thank you for sharing the video. We appreciate your support',
     likingSuccess: 'Like added successfully!',
     unLikingSuccess: 'Like deleted successfully!',
+    bookmarkingSuccess: 'Article successfully bookmarked!',
+    unBookmarkingSuccess: 'Article successfully removed from the bookmark list!',
     textCopied: 'Copied text:',
     popular: 'POPULAR',
     lyrics: 'LYRICS',

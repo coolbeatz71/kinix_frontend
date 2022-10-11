@@ -29,7 +29,7 @@ const TrendingArticleCard: FC<ITrendingArticleProps> = ({ article }) => {
                 <Card bordered={false} hoverable>
                     <div className={styles.trendingArticleCard__header}>
                         <div className="d-flex justify-content-between">
-                            <Text data-text="header">{t('byRedaction')}</Text>
+                            <Text data-text="author">{t('byRedaction')}</Text>
                             <Text data-text="header" className="d-flex align-items-center">
                                 <ClockCircleOutlined />
                                 &nbsp; {dayjs(article.createdAt).fromNow()}

@@ -1,15 +1,15 @@
 import { IBasicInitialState, BasicInitialState } from '@constants/redux';
 
-export type ILikesState = {
+export type IBookmarksState = {
     add: IBasicInitialState;
     all: IBasicInitialState;
     user: IBasicInitialState;
-    unlike: IBasicInitialState;
+    delete: IBasicInitialState;
 };
 
-export const likesInitialState: ILikesState = {
+export const bookmarksInitialState: IBookmarksState = {
     add: BasicInitialState,
     all: BasicInitialState,
     user: BasicInitialState,
-    unlike: BasicInitialState,
+    delete: BasicInitialState,
 };

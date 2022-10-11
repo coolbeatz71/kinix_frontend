@@ -7,10 +7,10 @@ import { useTranslation } from 'react-i18next';
 import { Col, Grid, message, Row, Typography } from 'antd';
 import { IRootState } from '@redux/reducers';
 import { useAppDispatch } from '@redux/store';
-import isLikeOwner from '@helpers/isLikeOwner';
+import isSingleArticleLikeOwner from '@helpers/isLikeOwner';
 import { HeartFilled, HeartOutlined } from '@ant-design/icons';
 import { IArticle, IUser } from '@interfaces/api';
-import ArticleAction from '../Actions/ArticleAction';
+import ArticleAction from '../Actions/SingleArticleAction';
 import addArticleLikeAction from '@redux/likes/add';
 import getArticleLikesAction from '@redux/likes/all';
 import removeArticleLikeAction from '@redux/likes/unlike';
@@ -37,8 +37,6 @@ const ArticleCover: FC<IArticleCoverProps> = ({ user, article }) => {
     const likes = numeral(like).format('0.[00]a');
 
     const { data: allLikes } = useSelector(({ likes: { all } }: IRootState) => all);
-    const { error: errLike } = useSelector(({ likes: { add } }: IRootState) => add);
-    const { error: errUnlike } = useSelector(({ likes: { unlike } }: IRootState) => unlike);
 
     useEffect(() => {
         if (article.slug) dispatch(getArticleLikesAction(article.slug));
@@ -48,13 +46,13 @@ const ArticleCover: FC<IArticleCoverProps> = ({ user, article }) => {
     useEffect(() => {
         if (allLikes?.rows) {
             setLike(allLikes?.count);
-            setLikeOwner(isLikeOwner(user.id, allLikes.rows));
+            setLikeOwner(isSingleArticleLikeOwner(user.id, allLikes.rows));
         }
     }, [allLikes, user.id]);
 
     const likeArticle = (): void => {
         dispatch(addArticleLikeAction(article.slug)).then((res) => {
-            if (res.type === 'likes/add/rejected') message.error(errLike?.message);
+            if (res.type === 'likes/add/rejected') message.error(res.payload?.message);
             else if (res.type === 'likes/add/fulfilled') {
                 setLike(Number(like) + 1);
                 dispatch(getArticleLikesAction(article.slug));
@@ -65,7 +63,7 @@ const ArticleCover: FC<IArticleCoverProps> = ({ user, article }) => {
 
     const unlikeArticle = (): void => {
         dispatch(removeArticleLikeAction(article.slug)).then((res) => {
-            if (res.type === 'likes/unlike/rejected') message.error(errUnlike?.message);
+            if (res.type === 'likes/unlike/rejected') message.error(res.payload?.message);
             else if (res.type === 'likes/unlike/fulfilled') {
                 setLike(Number(like) - 1);
                 dispatch(getArticleLikesAction(article.slug));

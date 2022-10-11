@@ -9,6 +9,12 @@
         [class~='ant-typography'] {
             font-size: 8.5pt;
         }
+        [data-text='author'] {
+            font-weight: 600;
+        }
+        [data-text='header'] {
+            font-style: italic;
+        }
     }
 
     [class~='ant-card-cover'] {
@@ -43,17 +49,39 @@
         }
     }
 
+    [class~='ant-card-meta-title'] {
+        height: 3rem;
+        font-size: 12pt;
+        font-weight: 600;
+        white-space: unset;
+        margin-bottom: 5px !important;
+    }
+
+    [class~='ant-card-meta-description'] {
+        font-size: 13px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    [class~='ant-card-actions'] {
+        background: unset;
+    }
+
     &[data-theme='light'] {
         [class~='ant-card'] {
             background: $light;
         }
 
         [class~='ant-card-meta-title'] {
-            color: $dark;
+            a {
+                color: $black !important;
+            }
         }
 
         [class~='ant-card-meta-description'] {
-            color: $dark50;
+            a {
+                color: $dark50;
+            }
         }
 
         [class~='ant-card-actions'] {
@@ -71,11 +99,15 @@
         }
 
         [class~='ant-card-meta-title'] {
-            color: $white;
+            a {
+                color: $white !important;
+            }
         }
 
         [class~='ant-card-meta-description'] {
-            color: $light50;
+            a {
+                color: $light50;
+            }
         }
 
         [class~='ant-card-actions'] {
@@ -92,23 +124,5 @@
                 color: $light;
             }
         }
-    }
-
-    [class~='ant-card-meta-title'] {
-        white-space: unset;
-        font-size: 14px;
-        height: 3rem;
-        font-weight: 600;
-        margin-bottom: 4px !important;
-    }
-
-    [class~='ant-card-meta-description'] {
-        font-size: 13px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-
-    [class~='ant-card-actions'] {
-        background: unset;
     }
 }

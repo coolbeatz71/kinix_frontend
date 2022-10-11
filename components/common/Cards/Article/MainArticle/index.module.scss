@@ -53,17 +53,23 @@
         }
 
         [class~='ant-typography'] {
-            font-family: Poppins;
             color: $white;
         }
 
         [data-text='title'] {
             font-size: 3rem;
             font-weight: 600;
+            font-family: Poppins;
         }
         [data-text='description'] {
             font-size: 1rem;
             margin-bottom: 0;
+        }
+        [data-text='header'] {
+            font-style: italic;
+        }
+        [data-text='author'] {
+            font-weight: 600;
         }
     }
 

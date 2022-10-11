@@ -53,7 +53,7 @@ const AlaUneArticleCard: FC<IAlaUeArticleProps> = ({ article, priority = EnumAla
                             </div>
                             <div className={styles.alaUneArticleCard__content}>
                                 <div className={styles.alaUneArticleCard__content__header}>
-                                    <Text data-text="header">{t('byRedaction')}</Text>
+                                    <Text data-text="author">{t('byRedaction')}</Text>
                                     <Text data-text="header" className="d-flex align-items-center">
                                         <ClockCircleOutlined />
                                         &nbsp; {dayjs(article?.createdAt).fromNow()}
@@ -83,7 +83,7 @@ const AlaUneArticleCard: FC<IAlaUeArticleProps> = ({ article, priority = EnumAla
                         <Fragment>
                             <div className={styles.alaUneArticleCard__header}>
                                 <div className="d-flex justify-content-between">
-                                    <Text data-text="header">{t('byRedaction')}</Text>
+                                    <Text data-text="author">{t('byRedaction')}</Text>
                                     <Text data-text="header" className="d-flex align-items-center">
                                         <ClockCircleOutlined />
                                         &nbsp; {dayjs(article?.createdAt).fromNow()}

@@ -1,4 +1,4 @@
-import React, { FC, Fragment } from 'react';
+import React, { FC, Fragment, useState } from 'react';
 import dayjs from 'dayjs';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -10,7 +10,8 @@ import useDarkLight from '@hooks/useDarkLight';
 import { ALL_ARTICLES_PATH } from '@constants/paths';
 import { ClockCircleOutlined } from '@ant-design/icons';
 import ArticleLikeButton from '@components/common/Like/ArticleLikeButton';
-import ArticleCommentButton from '@components/common/Comment/ArticleCommentButton';
+import ArticleCommentButton from '@components/comment/ArticleCommentButton';
+import ArticleCommentsDrawer from '@components/comment/ArticleCommentsDrawer';
 import ArticleBookmarkButton from '@components/common/Bookmark/ArticleBookmarkButton';
 
 import styles from './index.module.scss';
@@ -27,13 +28,15 @@ const ArticleCardVertical: FC<IArticleCardVerticalProps> = ({ article }) => {
     const { value } = useDarkLight();
     const link = `${ALL_ARTICLES_PATH}/${article?.slug}`;
 
+    const [openCommentDrawer, setOpenCommentDrawer] = useState(false);
+
     return (
-        <Link href={link} passHref>
-            <div data-theme={value} className={styles.articleCardVertical}>
-                <Card
-                    hoverable
-                    bordered={false}
-                    cover={
+        <div data-theme={value} className={styles.articleCardVertical}>
+            <Card
+                hoverable
+                bordered={false}
+                cover={
+                    <Link href={link} passHref>
                         <Fragment>
                             {!isEmpty(article?.images) && (
                                 <div>
@@ -47,40 +50,50 @@ const ArticleCardVertical: FC<IArticleCardVerticalProps> = ({ article }) => {
                                 </div>
                             )}
                         </Fragment>
-                    }
-                    actions={[
-                        <ArticleLikeButton
-                            count={Number(article?.likesCount)}
-                            slug={article?.slug}
-                            key="article-like"
-                        />,
-                        <ArticleCommentButton
-                            slug={article?.slug}
-                            key="article-comment"
-                            count={Number(article?.commentsCount)}
-                        />,
-                        <ArticleBookmarkButton slug={article?.slug} key="article-bookmark" />,
-                    ]}
-                >
-                    <div className={styles.articleCardVertical__header}>
-                        <Text>{t('byRedaction')}</Text>
-                        <Text className="d-flex align-items-center">
-                            <ClockCircleOutlined />
-                            &nbsp; {dayjs(article?.createdAt).fromNow()}
-                        </Text>
-                    </div>
+                    </Link>
+                }
+                actions={[
+                    <ArticleLikeButton key="article-like" slug={article?.slug} count={Number(article?.likesCount)} />,
+                    <ArticleCommentButton
+                        key="article-comment"
+                        articleId={article?.id}
+                        count={Number(article?.commentsCount)}
+                        onClick={() => setOpenCommentDrawer(true)}
+                    />,
+                    <ArticleBookmarkButton slug={article?.slug} key="article-bookmark" />,
+                ]}
+            >
+                <div className={styles.articleCardVertical__header}>
+                    <Text data-text="author">{t('byRedaction')}</Text>
+                    <Text data-text="header" className="d-flex align-items-center">
+                        <ClockCircleOutlined />
+                        &nbsp; {dayjs(article?.createdAt).fromNow()}
+                    </Text>
+                </div>
 
-                    <Meta
-                        title={truncate(article?.title, {
-                            length: 100,
-                        })}
-                        description={truncate(article?.summary, {
-                            length: 90,
-                        })}
-                    />
-                </Card>
-            </div>
-        </Link>
+                <Meta
+                    title={
+                        <Link href={link} passHref>
+                            {truncate(article?.title, {
+                                length: 100,
+                            })}
+                        </Link>
+                    }
+                    description={
+                        <Link href={link} passHref>
+                            {truncate(article?.summary, {
+                                length: 90,
+                            })}
+                        </Link>
+                    }
+                />
+            </Card>
+            <ArticleCommentsDrawer
+                article={article}
+                openDrawer={openCommentDrawer}
+                setOpenDrawer={setOpenCommentDrawer}
+            />
+        </div>
     );
 };
 

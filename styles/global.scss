@@ -57,3 +57,10 @@ textarea {
         font-size: 12px;
     }
 }
+
+[class~='ant-message-notice-content'] {
+    [class~='ant-message-custom-content'] {
+        display: flex;
+        align-items: center;
+    }
+}

@@ -1,7 +1,7 @@
 @import 'styles/dimensions.scss';
 @import 'styles/colors.scss';
 
-.videoCardHorinzontal {
+.relatedVideoCard {
     cursor: pointer;
     margin-bottom: 1rem;
     border-radius: $border-radius;
@@ -18,19 +18,18 @@
         padding: calc(#{$padding} / 1.5);
 
         [data-title='true'] {
-            height: 2.5rem;
+            height: 3rem;
             font-size: 10pt;
             font-weight: normal;
             font-family: Poppins;
         }
-
         [data-ratings='true'] {
             font-size: 10pt;
             font-weight: 600;
         }
-
         [data-created-at='true'] {
             font-size: 12px;
+            font-style: italic;
         }
     }
 
@@ -39,8 +38,8 @@
         padding-right: 0;
 
         display: flex;
-        justify-content: center;
         align-items: center;
+        justify-content: center;
 
         &__image {
             width: 100%;
@@ -61,8 +60,8 @@
             transition: opacity ease-in-out 0.2s;
 
             display: flex;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
 
             [class~='ant-btn'] {
                 display: flex;
@@ -93,30 +92,33 @@
     }
 
     &[data-theme='light'] {
+        a {
+            color: $black;
+        }
         [class~='ant-card'] {
             background: $white;
         }
         [class~='ant-typography'] {
             color: $dark;
         }
-
         [data-title='true'] {
             color: $black;
         }
-
         [data-created-at='true'] {
             color: $dark50;
         }
     }
 
     &[data-theme='dark'] {
+        a {
+            color: $white;
+        }
         [class~='ant-card'] {
             background: $bg-primary-dark90;
         }
         [class~='ant-typography'] {
             color: $white;
         }
-
         [data-created-at='true'] {
             color: $light50;
         }

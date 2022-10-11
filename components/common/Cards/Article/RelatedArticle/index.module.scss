@@ -59,6 +59,9 @@
             background: $white;
         }
         [class~='ant-typography'] {
+            color: $black;
+        }
+        [data-text='header'] {
             color: $dark;
         }
     }
@@ -69,6 +72,9 @@
         }
         [class~='ant-typography'] {
             color: $white;
+        }
+        [data-text='header'] {
+            color: $light;
         }
     }
 }

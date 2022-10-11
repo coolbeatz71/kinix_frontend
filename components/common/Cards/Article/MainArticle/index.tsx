@@ -30,7 +30,7 @@ const MainArticle: FC<IMainArticleProps> = ({ article }) => {
                 </div>
                 <Col lg={16} xl={12} className={styles.mainArticle__content} data-content>
                     <div className={styles.mainArticle__content__header}>
-                        <Text data-text="header">{t('byRedaction')}</Text>
+                        <Text data-text="author">{t('byRedaction')}</Text>
                         <Text data-text="header" className="d-flex align-items-center">
                             <ClockCircleOutlined />
                             &nbsp; {dayjs(article?.createdAt).fromNow()}

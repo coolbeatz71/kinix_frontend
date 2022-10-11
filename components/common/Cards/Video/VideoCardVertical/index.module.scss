@@ -8,8 +8,8 @@
         overflow: hidden;
         align-items: center;
         justify-content: center;
-        border-radius: $border-radius;
 
+        border-radius: $border-radius;
         border-bottom-left-radius: 0;
         border-bottom-right-radius: 0;
 
@@ -70,7 +70,7 @@
 
         [class~='ant-card-meta-title'] {
             height: 3rem;
-            font-size: 14px;
+            font-size: 12pt;
             font-weight: 700;
             white-space: unset;
         }
@@ -84,6 +84,7 @@
 
             [data-created-at='true'] {
                 font-weight: 500;
+                font-style: italic;
             }
         }
     }
@@ -93,11 +94,21 @@
     }
 
     &[data-theme='light'] {
+        [data-exclusive='true'] {
+            [class~='ant-card-meta-title'] {
+                a {
+                    color: $white !important;
+                }
+            }
+        }
+
         [class~='ant-card'] {
             background: $light;
 
             [class~='ant-card-meta-title'] {
-                color: $dark;
+                a {
+                    color: $black;
+                }
             }
 
             [class~='ant-card-meta-description'] {
@@ -123,11 +134,21 @@
     }
 
     &[data-theme='dark'] {
+        [data-exclusive='true'] {
+            [class~='ant-card-meta-title'] {
+                a {
+                    color: $black !important;
+                }
+            }
+        }
+
         [class~='ant-card'] {
             background: $primary;
 
             [class~='ant-card-meta-title'] {
-                color: $white;
+                a {
+                    color: $white;
+                }
             }
 
             [class~='ant-card-meta-description'] {
