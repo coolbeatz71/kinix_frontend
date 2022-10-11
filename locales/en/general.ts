@@ -53,4 +53,5 @@ export const general = {
     readTime: 'read',
     delete: 'Delete',
     modify: 'Modify',
+    rateVideo: 'Rate video',
 };

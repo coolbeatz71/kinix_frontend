@@ -1,26 +1,31 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import { Button } from 'antd';
-import StarRatingComponent from 'react-star-rating-component';
 import useDarkLight from '@hooks/useDarkLight';
+import StarRatingComponent from 'react-star-rating-component';
+import RatingSummaryPopover from '../RatingSummaryPopover';
 
 import styles from './index.module.scss';
 
 export interface IVideoViewRatingProps {
+    slug: string;
     count: number;
 }
 
-const VideoViewRating: FC<IVideoViewRatingProps> = ({ count }) => {
+const VideoViewRating: FC<IVideoViewRatingProps> = ({ count, slug }) => {
     const { value } = useDarkLight();
+    const [openRatingPopup, setOpenRatingPopup] = useState(false);
 
     return (
-        <Button
-            type="link"
-            data-theme={value}
-            className={styles.videoViewRating}
-            onClick={() => console.log('clicked')}
-        >
-            <StarRatingComponent name="video-rate" starCount={5} value={count} />
-        </Button>
+        <RatingSummaryPopover slug={slug} open={openRatingPopup} setOpen={setOpenRatingPopup}>
+            <Button
+                type="link"
+                data-theme={value}
+                className={styles.videoViewRating}
+                onClick={() => setOpenRatingPopup(true)}
+            >
+                <StarRatingComponent name={slug} starCount={5} value={count} />
+            </Button>
+        </RatingSummaryPopover>
     );
 };
 

@@ -25,7 +25,7 @@ const VideoRatingCard: FC<IVideoRatingCardProps> = ({ rater, comment, rateCount 
                     </Text>
                 </Col>
                 <Col span={12} className="d-flex justify-content-end mb-2">
-                    <VideoViewRating count={rateCount} />
+                    <VideoViewRating count={rateCount} slug={''} />
                 </Col>
             </Row>
             <Row align="middle">
