@@ -1,4 +1,4 @@
-import React, { FC, Fragment, useState } from 'react';
+import React, { FC, Fragment, ReactElement, useState } from 'react';
 import { Button, Dropdown, Menu } from 'antd';
 import useDarkLight from '@hooks/useDarkLight';
 import { EllipsisOutlined } from '@ant-design/icons';
@@ -8,9 +8,11 @@ import styles from './index.module.scss';
 
 export interface IVideoActionProps {
     videoId: number;
+    children?: ReactElement;
+    context: 'standalone' | 'card';
 }
 
-const VideoAction: FC<IVideoActionProps> = ({ videoId }) => {
+const VideoAction: FC<IVideoActionProps> = ({ videoId, context, children }) => {
     const { value } = useDarkLight();
     const [openMenu, setOpenMenu] = useState(false);
 
@@ -29,12 +31,16 @@ const VideoAction: FC<IVideoActionProps> = ({ videoId }) => {
                     </Menu>
                 }
             >
-                <Button
-                    type="text"
-                    data-theme={value}
-                    icon={<EllipsisOutlined />}
-                    className={styles.videoAction__button}
-                />
+                {context === 'card' ? (
+                    <Button
+                        type="text"
+                        data-theme={value}
+                        icon={<EllipsisOutlined />}
+                        className={styles.videoAction__button}
+                    />
+                ) : (
+                    children
+                )}
             </Dropdown>
         </Fragment>
     );

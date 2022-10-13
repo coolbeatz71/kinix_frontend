@@ -48,8 +48,8 @@ const RelatedVideoCard: FC<IRelatedVideoCardProps> = ({ video }) => {
         >
             <Card bordered={false} hoverable>
                 <Row justify="space-between">
-                    <Link href={link} passHref>
-                        <Col span={9} className={styles.relatedVideoCard__cover}>
+                    <Col span={9} className={styles.relatedVideoCard__cover}>
+                        <Link href={link} passHref>
                             <div className="overlay" style={overLayStyles}>
                                 <Button
                                     icon={<PlayCircleTwoTone twoToneColor={WARNING} />}
@@ -58,17 +58,19 @@ const RelatedVideoCard: FC<IRelatedVideoCardProps> = ({ video }) => {
                                     shape="circle"
                                 />
                             </div>
-                            {!isEmpty(video?.link) && (
-                                <div className={styles.relatedVideoCard__cover__image}>
+                        </Link>
+                        {!isEmpty(video?.link) && (
+                            <div className={styles.relatedVideoCard__cover__image}>
+                                <Link href={link} passHref>
                                     <Image
                                         layout="fill"
                                         alt={video?.slug}
                                         src={getYoutubeVideoThumbnail(video?.link)}
                                     />
-                                </div>
-                            )}
-                        </Col>
-                    </Link>
+                                </Link>
+                            </div>
+                        )}
+                    </Col>
                     <Col span={15} data-body>
                         <Title level={5} data-title>
                             <Link href={link} passHref>
