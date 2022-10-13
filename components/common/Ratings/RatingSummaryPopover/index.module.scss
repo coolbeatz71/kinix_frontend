@@ -1,0 +1,26 @@
+@import 'styles/colors.scss';
+
+.ratingPopover {
+    [class~='ant-popover-inner-content'] {
+        padding: 1rem;
+    }
+
+    [data-star='true'] {
+        color: $warning;
+    }
+
+    [class~='ant-rate'] {
+        [class~='anticon'] {
+            font-size: 10pt;
+        }
+    }
+
+    [data-total-rate='true'] {
+        margin-right: 5px;
+        font-family: Poppins;
+    }
+
+    [data-total-count='true'] {
+        font-size: 10pt;
+    }
+}

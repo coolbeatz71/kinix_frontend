@@ -46,6 +46,8 @@
             justify-content: center;
             padding-right: $padding;
 
+            border-right: 0.5rem solid $warning;
+
             [class~='anticon'] {
                 font-size: 52pt;
                 font-weight: 700;
@@ -76,7 +78,6 @@
 
             [data-read='true'] {
                 color: $white;
-                font-size: 12pt;
             }
         }
 
@@ -85,7 +86,7 @@
             [class~='ant-typography'] {
                 color: $white;
                 padding-left: $padding;
-                border-left: 0.5rem solid $warning;
+
                 font-family: Poppins;
                 font-size: 32pt;
                 line-height: 60px;

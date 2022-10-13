@@ -2,8 +2,8 @@ import React, { FC, Fragment, useEffect, useState } from 'react';
 import dayjs from 'dayjs';
 import Link from 'next/link';
 import Image from 'next/image';
-import { isBoolean, isEmpty, truncate } from 'lodash';
 import { Card, Button, Grid } from 'antd';
+import { isBoolean, isEmpty, truncate } from 'lodash';
 import { PlayCircleTwoTone } from '@ant-design/icons';
 import useDarkLight from '@hooks/useDarkLight';
 import EnumRole from '@interfaces/role';
@@ -57,8 +57,8 @@ const VideoCardVertical: FC<IVideoCardVerticalProps> = ({ isExclusive = false, v
                 hoverable={!isExclusive}
                 data-exclusive={isExclusive}
                 cover={
-                    <Link href={link} passHref>
-                        <Fragment>
+                    <Fragment>
+                        <Link href={link} passHref>
                             <div className="overlay" style={overLayStyles}>
                                 <Button
                                     type="text"
@@ -67,8 +67,10 @@ const VideoCardVertical: FC<IVideoCardVerticalProps> = ({ isExclusive = false, v
                                     icon={<PlayCircleTwoTone twoToneColor={WARNING} />}
                                 />
                             </div>
-                            {!isEmpty(video?.link) && (
-                                <div>
+                        </Link>
+                        {!isEmpty(video?.link) && (
+                            <div>
+                                <Link href={link} passHref>
                                     <Image
                                         width={100}
                                         height={50}
@@ -76,18 +78,23 @@ const VideoCardVertical: FC<IVideoCardVerticalProps> = ({ isExclusive = false, v
                                         layout="responsive"
                                         src={getYoutubeVideoThumbnail(video?.link)}
                                     />
-                                </div>
-                            )}
-                        </Fragment>
-                    </Link>
+                                </Link>
+                            </div>
+                        )}
+                    </Fragment>
                 }
                 actions={
                     isExclusive
                         ? []
                         : [
-                              <VideoViewRating count={video?.avgRate || 0} key="video-rating" />,
-                              <VideoShareButton count={Number(video?.sharesCount)} key="video-sharing" />,
-                              <VideoAction slug={video?.slug} key="video-action" />,
+                              <VideoViewRating slug={video?.slug} key="video-rating" count={video?.avgRate || 0} />,
+                              <VideoShareButton
+                                  key="video-sharing"
+                                  slug={video?.slug}
+                                  title={video?.title}
+                                  count={Number(video?.sharesCount)}
+                              />,
+                              <VideoAction videoId={video?.id as number} key="video-action" context="card" />,
                           ]
                 }
             >

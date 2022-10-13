@@ -36,10 +36,10 @@ const ArticleCardVertical: FC<IArticleCardVerticalProps> = ({ article }) => {
                 hoverable
                 bordered={false}
                 cover={
-                    <Link href={link} passHref>
-                        <Fragment>
-                            {!isEmpty(article?.images) && (
-                                <div>
+                    <Fragment>
+                        {!isEmpty(article?.images) && (
+                            <div>
+                                <Link href={link} passHref>
                                     <Image
                                         width={100}
                                         height={55}
@@ -47,10 +47,10 @@ const ArticleCardVertical: FC<IArticleCardVerticalProps> = ({ article }) => {
                                         layout="responsive"
                                         src={article?.images?.[0] as string}
                                     />
-                                </div>
-                            )}
-                        </Fragment>
-                    </Link>
+                                </Link>
+                            </div>
+                        )}
+                    </Fragment>
                 }
                 actions={[
                     <ArticleLikeButton key="article-like" slug={article?.slug} count={Number(article?.likesCount)} />,

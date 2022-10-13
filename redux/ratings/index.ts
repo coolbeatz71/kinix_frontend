@@ -7,6 +7,7 @@ import {
 } from '@constants/redux';
 import addVideoRatingAction from './add';
 import { videoRatingInitialState } from './types';
+import getSingleVideoRateSummaryAction from './summary';
 import getSingleVideoRatedByUserAction from './getUserRate';
 
 export const ratingsSlice = createSlice({
@@ -24,7 +25,11 @@ export const ratingsSlice = createSlice({
             // get ratings by an user for a specific video
             .addCase(getSingleVideoRatedByUserAction.pending, ActionWrapperPending)
             .addCase(getSingleVideoRatedByUserAction.fulfilled, ActionWrapperFulfilled)
-            .addCase(getSingleVideoRatedByUserAction.rejected, ActionWrapperRejected);
+            .addCase(getSingleVideoRatedByUserAction.rejected, ActionWrapperRejected)
+            // get rating summary for a single video
+            .addCase(getSingleVideoRateSummaryAction.pending, ActionWrapperPending)
+            .addCase(getSingleVideoRateSummaryAction.fulfilled, ActionWrapperFulfilled)
+            .addCase(getSingleVideoRateSummaryAction.rejected, ActionWrapperRejected);
     },
 });
 

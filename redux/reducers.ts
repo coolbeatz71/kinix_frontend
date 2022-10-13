@@ -8,6 +8,7 @@ import ratings from './ratings';
 import sharing from './sharing';
 import articles from './articles';
 import comments from './comments';
+import playlists from './playlists';
 import bookmarks from './bookmarks';
 
 export const rootReducer = combineReducers({
@@ -21,6 +22,7 @@ export const rootReducer = combineReducers({
     articles,
     comments,
     bookmarks,
+    playlists,
 });
 
 export type IRootState = ReturnType<typeof rootReducer>;

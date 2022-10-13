@@ -5,6 +5,7 @@ import { useAppDispatch } from '@redux/store';
 import SocialShare from '@components/common/SocialShare';
 import { IShareType, shareList } from '@constants/social';
 import addVideoSharingAction, { resetAddVideoSharingAction } from '@redux/sharing/add';
+import getVideoSharingsAction from '@redux/sharing/all';
 
 import styles from './index.module.scss';
 
@@ -23,13 +24,17 @@ const SharePopover: FC<ISharePopoverProps> = ({ open, setOpen, children, link, t
     const dispatch = useAppDispatch();
 
     useEffect(() => {
-        resetAddVideoSharingAction()(dispatch);
+        if (open) resetAddVideoSharingAction()(dispatch);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [dispatch]);
 
     const onSubmitShare = (): void => {
         dispatch(addVideoSharingAction(slug)).then((res) => {
             setOpen(false);
-            if (res.type === 'sharings/add/fulfilled') message.success(t('sharingSuccess'));
+            if (res.type === 'sharings/add/fulfilled') {
+                dispatch(getVideoSharingsAction(slug));
+                message.success(t('sharingSuccess'));
+            }
         });
     };
 
@@ -39,7 +44,7 @@ const SharePopover: FC<ISharePopoverProps> = ({ open, setOpen, children, link, t
             trigger="click"
             placement="topLeft"
             onVisibleChange={(v) => setOpen(v)}
-            overlayClassName={`${styles.sharePopover}`}
+            overlayClassName={styles.sharePopover}
             content={
                 <div data-content className="d-flex justify-content-between p-1">
                     {shares.map((share) => (

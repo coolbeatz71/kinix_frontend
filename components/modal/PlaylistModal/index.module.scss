@@ -1,0 +1,69 @@
+@import 'styles/colors.scss';
+@import 'styles/dimensions.scss';
+
+.playlist {
+    &__button {
+        color: $dark;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        &:hover {
+            color: $primary !important;
+            background: $bg-warning-fade;
+        }
+    }
+    &__modal {
+        [class~='ant-form-item'] {
+            display: grid;
+        }
+
+        [class~='ant-modal-body'],
+        [class~='ant-modal-footer'],
+        [class~='ant-modal-header'] {
+            padding: 1rem;
+        }
+
+        [class~='ant-modal-close-x'] {
+            line-height: 48px;
+        }
+
+        [class~='ant-space-item'] {
+            padding: 0.5rem;
+            border-radius: $border-radius;
+            background-color: $dark10;
+        }
+
+        [class~='ant-radio-group'] {
+            width: 100%;
+        }
+
+        [class~='ant-radio-wrapper'] {
+            width: 100%;
+
+            span:not(:first-of-type) {
+                width: 100%;
+            }
+        }
+
+        [class~='ant-radio-inner'] {
+            background-color: $white;
+            &::after {
+                border-radius: $border-radius;
+            }
+            border-radius: $border-radius;
+        }
+
+        [data-radio-content='true'] {
+            width: 100%;
+            display: flex;
+            font-size: 9.5pt;
+            font-weight: 500;
+            align-items: center;
+            justify-content: space-between;
+
+            [class~='ant-spin'] {
+                line-height: 0;
+            }
+        }
+    }
+}

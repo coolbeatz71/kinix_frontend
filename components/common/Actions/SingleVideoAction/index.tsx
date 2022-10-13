@@ -1,9 +1,10 @@
 import React, { FC, useState } from 'react';
-import { Button, Col, Rate, Row, Space } from 'antd';
 import numeral from 'numeral';
-import { CommentOutlined, LikeOutlined } from '@ant-design/icons';
+import { Button, Col, Rate, Row, Space } from 'antd';
 import { RiPlayListAddFill } from 'react-icons/ri';
+import { CommentOutlined, LikeOutlined } from '@ant-design/icons';
 import { IVideo } from '@interfaces/api';
+import VideoAction from '../VideoAction';
 import { IItemsEntity } from '@interfaces/youtube';
 import VideoRatingModal from '@components/modal/VideoRatingModal';
 
@@ -35,9 +36,11 @@ const SingleVideoAction: FC<ISingleVideoActionProps> = ({ video, youtubeVideoEnt
                 <Button data-comment type="text" icon={<CommentOutlined />}>
                     <span data-count>{Number(commentsCount) > 0 && comments}</span>
                 </Button>
-                <Button data-playlist type="link" icon={<RiPlayListAddFill />}>
-                    <span data-count>{Number(video.playlistsCount) > 0 && playlists}</span>
-                </Button>
+                <VideoAction videoId={video?.id as number} context="standalone">
+                    <Button data-playlist type="link" icon={<RiPlayListAddFill />}>
+                        <span data-count>{Number(video.playlistsCount) > 0 && playlists}</span>
+                    </Button>
+                </VideoAction>
             </Space>
             <VideoRatingModal slug={video.slug} openModal={openRatingModal} setOpenModal={setOpenRatingModal} />
         </Row>
