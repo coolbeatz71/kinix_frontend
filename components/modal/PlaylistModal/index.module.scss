@@ -12,5 +12,17 @@
         }
     }
     &__modal {
+        [class~='ant-form-item'] {
+            display: grid;
+        }
+
+        [class~='ant-modal-footer'],
+        [class~='ant-modal-header'] {
+            padding: 1rem;
+        }
+
+        [class~='ant-modal-close-x'] {
+            line-height: 48px;
+        }
     }
 }

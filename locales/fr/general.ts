@@ -56,4 +56,8 @@ export const general = {
     rateVideo: 'Donner avis',
     addToPlaylist: 'Enregistrer',
     playlistModalTitle: 'Sélectionner playlist',
+    playlistPlaceholder: 'Entrez le nom de playlist...',
+    playlistTitle: 'Nom',
+    createPlaylist: 'Créer',
+    newPlaylist: 'Créer nouveau playlist',
 };
