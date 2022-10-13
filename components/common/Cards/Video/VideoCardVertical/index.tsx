@@ -92,7 +92,7 @@ const VideoCardVertical: FC<IVideoCardVerticalProps> = ({ isExclusive = false, v
                                   title={video?.title}
                                   count={Number(video?.sharesCount)}
                               />,
-                              <VideoAction slug={video?.slug} key="video-action" />,
+                              <VideoAction slug={video?.slug} videoId={video?.id} key="video-action" />,
                           ]
                 }
             >

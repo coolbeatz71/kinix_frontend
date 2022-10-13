@@ -54,4 +54,6 @@ export const general = {
     delete: 'Effacer',
     modify: 'Modifier',
     rateVideo: 'Donner avis',
+    addToPlaylist: 'Enregistrer',
+    playlistModalTitle: 'Sélectionner playlist',
 };

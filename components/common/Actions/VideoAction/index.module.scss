@@ -2,42 +2,48 @@
 @import 'styles/dimensions.scss';
 
 .videoAction {
-    margin: auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    &__button {
+        margin: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
-    &[data-theme='dark'] {
-        color: $light50;
+        &[data-theme='dark'] {
+            color: $light50;
 
-        [class~='anticon'] {
-            color: $light;
+            [class~='anticon'] {
+                color: $light;
+            }
+
+            &:hover {
+                background: $dark10;
+                [class~='anticon'] {
+                    color: $warning;
+                }
+            }
         }
 
-        &:hover {
-            background: $dark10;
+        &[data-theme='light'] {
+            color: $dark50;
+
             [class~='anticon'] {
-                color: $warning;
+                color: $dark;
             }
+
+            &:hover {
+                [class~='anticon'] {
+                    color: $primary;
+                }
+            }
+        }
+
+        [class~='anticon'] {
+            font-size: 1.2rem;
+            line-height: 0;
         }
     }
 
-    &[data-theme='light'] {
-        color: $dark50;
-
-        [class~='anticon'] {
-            color: $dark;
-        }
-
-        &:hover {
-            [class~='anticon'] {
-                color: $primary;
-            }
-        }
-    }
-
-    [class~='anticon'] {
-        font-size: 1.2rem;
-        line-height: 0;
+    &__menu {
+        padding: 0.5rem;
     }
 }
