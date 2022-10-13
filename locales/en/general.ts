@@ -60,4 +60,7 @@ export const general = {
     playlistTitle: 'Name',
     createPlaylist: 'Create',
     newPlaylist: 'Create new playlist',
+    noPlaylistFound: 'No playlist found',
+    playlistAddedSuccess: 'Playlist has been created successfully.',
+    videoAddedToPlaylistSuccess: 'Video has been successfully added to the playlist.',
 };

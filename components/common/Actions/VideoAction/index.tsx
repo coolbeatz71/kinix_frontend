@@ -7,11 +7,10 @@ import PlaylistModal from '@components/modal/PlaylistModal';
 import styles from './index.module.scss';
 
 export interface IVideoActionProps {
-    slug: string;
-    videoId: number | undefined;
+    videoId: number;
 }
 
-const VideoAction: FC<IVideoActionProps> = ({ slug, videoId }) => {
+const VideoAction: FC<IVideoActionProps> = ({ videoId }) => {
     const { value } = useDarkLight();
     const [openMenu, setOpenMenu] = useState(false);
 
@@ -26,7 +25,7 @@ const VideoAction: FC<IVideoActionProps> = ({ slug, videoId }) => {
                 onVisibleChange={(v) => setOpenMenu(v)}
                 overlay={
                     <Menu className={styles.videoAction__menu}>
-                        <PlaylistModal slug={slug} videoId={videoId} closeMenu={() => setOpenMenu(false)} />
+                        <PlaylistModal videoId={videoId} closeMenu={() => setOpenMenu(false)} />
                     </Menu>
                 }
             >

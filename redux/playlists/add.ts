@@ -3,7 +3,7 @@ import api from 'services/axios';
 
 interface IParams {
     slug?: string;
-    title: string;
+    title?: string;
     videoId: number;
 }
 
