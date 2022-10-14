@@ -5,6 +5,7 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import { IVideo } from '@interfaces/api';
 import { useRouter } from 'next/router';
 import { IRootState } from '@redux/reducers';
+import getPayload from '@helpers/getPayload';
 import { useAppDispatch } from '@redux/store';
 import TagsBar from '@components/layout/TagsBar';
 import { IUnknownObject } from '@interfaces/app';
@@ -51,7 +52,7 @@ const VideoContainer: FC = () => {
         dispatch(getAllVideosAction({ page: START_PAGE, limit: CONTENT_LIMIT, search, category, tag })).then((res) => {
             if (res.type === 'videos/all/fulfilled') {
                 setIsFirstLoad(false);
-                setVideos(res.payload.videos);
+                setVideos(getPayload(res.payload).videos);
             }
         });
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -74,7 +75,9 @@ const VideoContainer: FC = () => {
         setParams({ limit, page, search, category });
 
         dispatch(getAllVideosAction({ limit, page, search, category })).then((res) => {
-            if (res.type === 'videos/all/fulfilled') setVideos([...videos, ...res.payload.videos]);
+            if (res.type === 'videos/all/fulfilled') {
+                setVideos([...videos, ...getPayload(res.payload).videos]);
+            }
         });
     };
 
@@ -91,6 +94,7 @@ const VideoContainer: FC = () => {
             <div className="mt-5">
                 {errVideos && isFirstLoad ? (
                     <ServerError
+                        error={errVideos}
                         onRefresh={() => {
                             const { limit, page } = params;
                             dispatch(getAllVideosAction({ limit, page }));

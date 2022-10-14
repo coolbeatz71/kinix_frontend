@@ -1,3 +1,4 @@
+import { IUnknownObject } from '@interfaces/app';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import api from 'services/axios';
 
@@ -10,13 +11,13 @@ export interface IParams {
 const getAllArticleCommentsAction = createAsyncThunk('comments/all', async (params: IParams, { rejectWithValue }) => {
     const { page, limit, slug } = params;
     try {
-        const { data } = await api.get(`/comments/${slug}`, {
+        const response: IUnknownObject = await api.get(`/comments/${slug}`, {
             params: {
                 page,
                 limit,
             },
         });
-        return data;
+        return response;
     } catch (error) {
         return rejectWithValue(error);
     }

@@ -4,15 +4,15 @@ import { Button, message } from 'antd';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { HeartOutlined, HeartFilled } from '@ant-design/icons';
-
+import getPayload from '@helpers/getPayload';
 import { IRootState } from '@redux/reducers';
 import { useAppDispatch } from '@redux/store';
 import useDarkLight from '@hooks/useDarkLight';
-import { isAllArticleLikeOwner } from '@helpers/isLikeOwner';
 import addArticleLikeAction from '@redux/likes/add';
 import getArticleLikesAction from '@redux/likes/all';
 import getUserLikesAction from '@redux/likes/userLikes';
 import removeArticleLikeAction from '@redux/likes/unlike';
+import { isAllArticleLikeOwner } from '@helpers/isLikeOwner';
 
 import styles from './index.module.scss';
 
@@ -42,7 +42,7 @@ const ArticleLikeButton: FC<IArticleLikeButtonProps> = ({ slug, count }) => {
 
     const likeArticle = (): void => {
         dispatch(addArticleLikeAction(slug)).then((res) => {
-            if (res.type === 'likes/add/rejected') message.error(res.payload?.message);
+            if (res.type === 'likes/add/rejected') message.error(getPayload(res.payload)?.message);
             else if (res.type === 'likes/add/fulfilled') {
                 dispatch(getUserLikesAction());
                 dispatch(getArticleLikesAction(slug));
@@ -54,7 +54,7 @@ const ArticleLikeButton: FC<IArticleLikeButtonProps> = ({ slug, count }) => {
 
     const unlikeArticle = (): void => {
         dispatch(removeArticleLikeAction(slug)).then((res) => {
-            if (res.type === 'likes/unlike/rejected') message.error(res.payload?.message);
+            if (res.type === 'likes/unlike/rejected') message.error(getPayload(res.payload)?.message);
             else if (res.type === 'likes/unlike/fulfilled') {
                 dispatch(getUserLikesAction());
                 dispatch(getArticleLikesAction(slug));

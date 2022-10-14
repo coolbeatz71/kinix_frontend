@@ -1,8 +1,8 @@
-import { AnyAction, createAsyncThunk } from '@reduxjs/toolkit';
-import { AppDispatch } from '@redux/store';
-import api from 'services/axios';
-import { IUnknownObject } from '@interfaces/app';
 import { ratingsSlice } from '.';
+import api from 'services/axios';
+import { AppDispatch } from '@redux/store';
+import { AnyAction, createAsyncThunk } from '@reduxjs/toolkit';
+import { IUnknownObject } from '@interfaces/app';
 
 interface IParams {
     slug: string;
@@ -18,10 +18,10 @@ export const resetAddVideoRatingAction =
 const addVideoRatingAction = createAsyncThunk('ratings/add', async (params: IParams, { rejectWithValue }) => {
     const { count, slug } = params;
     try {
-        const { data }: IUnknownObject = await api.post(`/rates/${slug}`, {
+        const response: IUnknownObject = await api.post(`/rates/${slug}`, {
             count,
         });
-        return data;
+        return response;
     } catch (error) {
         return rejectWithValue(error);
     }

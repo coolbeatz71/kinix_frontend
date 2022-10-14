@@ -1,3 +1,4 @@
+import { IUnknownObject } from '@interfaces/app';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import api from 'services/axios';
 
@@ -5,8 +6,8 @@ const getSingleVideoRatedByUserAction = createAsyncThunk(
     'ratings/userRate',
     async (slug: string, { rejectWithValue }) => {
         try {
-            const { data } = await api.get(`/rates/user/${slug}`);
-            return data;
+            const response: IUnknownObject = await api.get(`/rates/user/${slug}`);
+            return response;
         } catch (error) {
             return rejectWithValue(error);
         }

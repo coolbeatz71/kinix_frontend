@@ -1,9 +1,11 @@
 import React, { FC, Fragment, useState, useEffect } from 'react';
+import { isEmpty } from 'lodash';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { CloseCircleOutlined, PlusOutlined } from '@ant-design/icons';
 import { Button, Empty, message, Modal, RadioChangeEvent, Result } from 'antd';
 import { RiPlayListAddFill } from 'react-icons/ri';
+import getPayload from '@helpers/getPayload';
 import { IRootState } from '@redux/reducers';
 import { useAppDispatch } from '@redux/store';
 import getAllPlaylistsAction from '@redux/playlists/all';
@@ -41,7 +43,7 @@ const PlaylistModal: FC<IPlaylistModalProps> = ({ videoId, closeMenu }) => {
         const { value } = e.target;
         setSelectedPlaylist(value);
         dispatch(addVideoToPlaylistAction({ slug: value.slug, title: value.title, videoId })).then((res) => {
-            if (res.type === 'playlists/add/rejected') message.error(res.payload?.message);
+            if (res.type === 'playlists/add/rejected') message.error(getPayload(res.payload)?.message);
             else if (res.type === 'playlists/add/fulfilled') {
                 setOpenModal(false);
                 setOpenPlaylistForm(false);
@@ -67,23 +69,27 @@ const PlaylistModal: FC<IPlaylistModalProps> = ({ videoId, closeMenu }) => {
             <Modal
                 width={350}
                 footer={
-                    !openPlaylistForm ? (
-                        <Button
-                            ghost
-                            block
-                            type="primary"
-                            icon={<PlusOutlined />}
-                            onClick={() => setOpenPlaylistForm(true)}
-                            className="d-flex align-items-center justify-content-center"
-                        >
-                            {t('newPlaylist')}
-                        </Button>
-                    ) : (
-                        <CreatePlaylistForm
-                            videoId={videoId}
-                            setOpenModal={setOpenModal}
-                            setOpenPlaylistForm={setOpenPlaylistForm}
-                        />
+                    isEmpty(error) && (
+                        <Fragment>
+                            {!openPlaylistForm ? (
+                                <Button
+                                    ghost
+                                    block
+                                    type="primary"
+                                    icon={<PlusOutlined />}
+                                    onClick={() => setOpenPlaylistForm(true)}
+                                    className="d-flex align-items-center justify-content-center"
+                                >
+                                    {t('newPlaylist')}
+                                </Button>
+                            ) : (
+                                <CreatePlaylistForm
+                                    videoId={videoId}
+                                    setOpenModal={setOpenModal}
+                                    setOpenPlaylistForm={setOpenPlaylistForm}
+                                />
+                            )}
+                        </Fragment>
                     )
                 }
                 destroyOnClose
@@ -99,7 +105,7 @@ const PlaylistModal: FC<IPlaylistModalProps> = ({ videoId, closeMenu }) => {
                 {loading ? (
                     <PlaylistListSkeleton />
                 ) : error ? (
-                    <Result status="error" subTitle={t('serverErrorDesc')} />
+                    <Result status="error" subTitle={error?.message || t('serverErrorDesc')} />
                 ) : playlists?.count === 0 ? (
                     <Empty description={t('noPlaylistFound')} className="my-5" />
                 ) : (

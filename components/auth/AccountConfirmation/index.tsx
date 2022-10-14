@@ -1,13 +1,13 @@
 import React, { FC, useEffect, useState, Fragment } from 'react';
 import { Button, Col, Form, Input, notification, Row, Typography } from 'antd';
 import { useTranslation } from 'react-i18next';
-import ErrorAlert from '@components/common/ErrorAlert';
-import { IUnknownObject } from '@interfaces/app';
-import FloatTextInput from '@components/common/TextInput';
 import otpValidator from './validator';
-import { useAppDispatch } from '@redux/store';
 import { useSelector } from 'react-redux';
 import { IRootState } from '@redux/reducers';
+import getPayload from '@helpers/getPayload';
+import { useAppDispatch } from '@redux/store';
+import ErrorAlert from '@components/common/ErrorAlert';
+import FloatTextInput from '@components/common/TextInput';
 import confirmAccountAction, { resetConfirmAccountAction } from '@redux/auth/confirm';
 import resendOTPAction, { resetResendOTPAction } from '@redux/auth/resentOtp';
 
@@ -50,7 +50,7 @@ const AccountConfirmation: FC<IAccountConfirmationProps> = ({ credential, onClos
                     key: 'success',
                     placement: 'topRight',
                     message: 'Confirmation',
-                    description: (res.payload as IUnknownObject).message,
+                    description: getPayload(res.payload).message,
                 });
             }
         });

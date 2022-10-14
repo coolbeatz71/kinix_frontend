@@ -2,31 +2,35 @@ import { IUnknownObject } from '@interfaces/app';
 import { PayloadAction } from '@reduxjs/toolkit';
 
 export type IBasicInitialState = {
-    data: IUnknownObject;
     loading: boolean;
     fetched: boolean;
+    data: IUnknownObject;
+    message: string | null;
     error: Error | IUnknownObject | null;
 };
 
 export type IBasicInitialStateList = {
-    data: IUnknownObject[];
     loading: false;
     fetched: false;
     error: Error | null;
+    message: string | null;
+    data: IUnknownObject[];
 };
 
 export const BasicInitialState: IBasicInitialState = {
     data: {},
+    error: null,
+    message: null,
     loading: false,
     fetched: false,
-    error: null,
 };
 
 export const BasicInitialStateList: IBasicInitialStateList = {
     data: [],
+    error: null,
+    message: null,
     loading: false,
     fetched: false,
-    error: null,
 };
 
 export const BasicActionPending = (state: IBasicInitialState): void => {
@@ -39,7 +43,8 @@ export const BasicActionFulfilled = (state: IBasicInitialState, action: PayloadA
     state.error = null;
     state.fetched = true;
     state.loading = false;
-    state.data = action.payload;
+    state.data = action.payload.data;
+    state.message = action.payload.message;
 };
 
 export const BasicActionRejected = (state: IBasicInitialState, action: PayloadAction<IUnknownObject>): void => {
@@ -49,39 +54,48 @@ export const BasicActionRejected = (state: IBasicInitialState, action: PayloadAc
 };
 
 export const BasicResetAction = (state: IBasicInitialState): void => {
+    state.data = {};
     state.error = null;
+    state.message = null;
     state.fetched = false;
     state.loading = false;
-    state.data = {};
 };
 
 export const ActionWrapperPending = (state: IUnknownObject, action: PayloadAction<unknown>): void => {
     const childStore = action.type.split('/')[1];
     state[childStore].error = null;
+    state[childStore].message = null;
     state[childStore].loading = true;
     state[childStore].fetched = false;
 };
 
 export const ActionWrapperFulfilled = (state: IUnknownObject, action: PayloadAction<unknown>): void => {
     const childStore = action.type.split('/')[1];
+    const payload = action.payload as IUnknownObject;
+
     state[childStore].error = null;
-    state[childStore].loading = false;
     state[childStore].fetched = true;
-    state[childStore].data = action.payload;
+    state[childStore].loading = false;
+    state[childStore].data = payload?.data;
+    state[childStore].message = payload?.message;
 };
 
 export const ActionWrapperRejected = (state: IUnknownObject, action: PayloadAction<unknown>): void => {
     const childStore = action.type.split('/')[1];
-    state[childStore].error = action.payload;
+
+    state[childStore].data = null;
+    state[childStore].message = null;
     state[childStore].loading = false;
     state[childStore].fetched = false;
-    state[childStore].data = null;
+    state[childStore].error = action.payload;
 };
 
 export const ActionWrapperReset = (state: IUnknownObject, action: PayloadAction<IUnknownObject>): void => {
     const childStore = action?.payload?.context?.split('/')?.[1];
+
     if (state[childStore]) {
         state[childStore].error = null;
+        state[childStore].message = null;
         state[childStore].fetched = false;
         state[childStore].loading = false;
         state[childStore].data = Array.isArray(state[childStore]?.data) ? [] : {};

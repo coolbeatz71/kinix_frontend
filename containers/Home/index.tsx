@@ -39,7 +39,7 @@ const HomeContainer: FC = () => {
             </div>
             {error ? (
                 <div className="mt-5">
-                    <ServerError onRefresh={loadVideoFeed} />
+                    <ServerError error={error} onRefresh={loadVideoFeed} />
                 </div>
             ) : (
                 <Fragment>

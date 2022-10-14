@@ -8,6 +8,7 @@ import { Button, Col, message, Row } from 'antd';
 import { CommentOutlined, HeartOutlined, HeartFilled } from '@ant-design/icons';
 import { IArticle } from '@interfaces/api';
 import { IRootState } from '@redux/reducers';
+import getPayload from '@helpers/getPayload';
 import { useAppDispatch } from '@redux/store';
 import useDarkLight from '@hooks/useDarkLight';
 import addArticleLikeAction from '@redux/likes/add';
@@ -74,7 +75,7 @@ const SingleArticleAction: FC<ISingleArticleActionProps> = ({ article }) => {
 
     const likeArticle = (): void => {
         dispatch(addArticleLikeAction(article.slug)).then((res) => {
-            if (res.type === 'likes/add/rejected') message.error(res.payload?.message);
+            if (res.type === 'likes/add/rejected') message.error(getPayload(res.payload)?.message);
             else if (res.type === 'likes/add/fulfilled') {
                 setLikeCount(Number(likeCount) + 1);
                 dispatch(getArticleLikesAction(article.slug));
@@ -85,7 +86,7 @@ const SingleArticleAction: FC<ISingleArticleActionProps> = ({ article }) => {
 
     const unlikeArticle = (): void => {
         dispatch(removeArticleLikeAction(article.slug)).then((res) => {
-            if (res.type === 'likes/unlike/rejected') message.error(res.payload?.message);
+            if (res.type === 'likes/unlike/rejected') message.error(getPayload(res.payload)?.message);
             else if (res.type === 'likes/unlike/fulfilled') {
                 setLikeCount(Number(likeCount) - 1);
                 dispatch(getArticleLikesAction(article.slug));
@@ -96,7 +97,7 @@ const SingleArticleAction: FC<ISingleArticleActionProps> = ({ article }) => {
 
     const bookmarkArticle = (): void => {
         dispatch(addArticleBookmarkAction(article?.slug)).then((res) => {
-            if (res.type === 'bookmarks/add/rejected') message.error(res.payload?.message);
+            if (res.type === 'bookmarks/add/rejected') message.error(getPayload(res.payload)?.message);
             else if (res.type === 'bookmarks/add/fulfilled') {
                 dispatch(getUserBookmarksAction());
                 dispatch(getArticleBookmarksAction(article?.slug));
@@ -107,7 +108,7 @@ const SingleArticleAction: FC<ISingleArticleActionProps> = ({ article }) => {
 
     const unBookmarkArticle = (): void => {
         dispatch(removeArticleBookmarkAction(article?.slug)).then((res) => {
-            if (res.type === 'bookmarks/delete/rejected') message.error(res.payload?.message);
+            if (res.type === 'bookmarks/delete/rejected') message.error(getPayload(res.payload)?.message);
             else if (res.type === 'bookmarks/delete/fulfilled') {
                 dispatch(getUserBookmarksAction());
                 dispatch(getArticleBookmarksAction(article?.slug));

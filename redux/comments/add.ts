@@ -21,7 +21,7 @@ const addArticleCommentAction = createAsyncThunk(
                 method: isEdit ? 'PUT' : 'POST',
                 url: `/comments${isEdit ? `/${data.slug}/${data.id}` : `/${data.slug}`}`,
             });
-            return response.data;
+            return response;
         } catch (error) {
             return rejectWithValue(error);
         }

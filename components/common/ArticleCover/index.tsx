@@ -5,6 +5,7 @@ import { isEmpty } from 'lodash';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { Col, Grid, message, Row, Typography } from 'antd';
+import getPayload from '@helpers/getPayload';
 import { IRootState } from '@redux/reducers';
 import { useAppDispatch } from '@redux/store';
 import isSingleArticleLikeOwner from '@helpers/isLikeOwner';
@@ -52,7 +53,7 @@ const ArticleCover: FC<IArticleCoverProps> = ({ user, article }) => {
 
     const likeArticle = (): void => {
         dispatch(addArticleLikeAction(article.slug)).then((res) => {
-            if (res.type === 'likes/add/rejected') message.error(res.payload?.message);
+            if (res.type === 'likes/add/rejected') message.error(getPayload(res.payload)?.message);
             else if (res.type === 'likes/add/fulfilled') {
                 setLike(Number(like) + 1);
                 dispatch(getArticleLikesAction(article.slug));
@@ -63,7 +64,7 @@ const ArticleCover: FC<IArticleCoverProps> = ({ user, article }) => {
 
     const unlikeArticle = (): void => {
         dispatch(removeArticleLikeAction(article.slug)).then((res) => {
-            if (res.type === 'likes/unlike/rejected') message.error(res.payload?.message);
+            if (res.type === 'likes/unlike/rejected') message.error(getPayload(res.payload)?.message);
             else if (res.type === 'likes/unlike/fulfilled') {
                 setLike(Number(like) - 1);
                 dispatch(getArticleLikesAction(article.slug));

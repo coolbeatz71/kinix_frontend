@@ -24,7 +24,7 @@ const SingleVideoPage: NextPage<ServerPropsType> = ({ error, data }) => {
             title={(data as IVideo)?.title || t('videos')}
         >
             {!isEmpty(error) ? (
-                <ServerError onRefresh={() => reload()} />
+                <ServerError error={error} onRefresh={() => reload()} />
             ) : (
                 <SingleVideoContainer video={data as IVideo} />
             )}

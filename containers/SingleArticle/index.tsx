@@ -40,6 +40,7 @@ const SingleArticleContainer: FC<ISingleArticleContainerProps> = ({ article }) =
         <Fragment>
             {error ? (
                 <ServerError
+                    error={error}
                     onRefresh={() => dispatch(getRelatedArticlesAction({ slug: article?.slug, tags: article?.tags }))}
                 />
             ) : loading ? (

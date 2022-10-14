@@ -32,6 +32,7 @@ const PopularArticleList: FC = () => {
             <Row gutter={[16, 48]}>
                 {error ? (
                     <ServerError
+                        error={error}
                         onRefresh={() => {
                             dispatch(getPopularArticlesAction());
                         }}

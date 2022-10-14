@@ -1,3 +1,4 @@
+import { IUnknownObject } from '@interfaces/app';
 import { AppDispatch } from '@redux/store';
 import { AnyAction, createAsyncThunk } from '@reduxjs/toolkit';
 import api from 'services/axios';
@@ -15,8 +16,8 @@ const deleteArticleCommentAction = createAsyncThunk(
         const { slug, id } = params;
 
         try {
-            const { data } = await api.delete(`/comments/${slug}/${id}`);
-            return data;
+            const response: IUnknownObject = await api.delete(`/comments/${slug}/${id}`);
+            return response;
         } catch (error) {
             return rejectWithValue(error);
         }

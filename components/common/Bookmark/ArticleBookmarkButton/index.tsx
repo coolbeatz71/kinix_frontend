@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { BsBookmarkPlus } from 'react-icons/bs';
 import { RiBookmark3Fill } from 'react-icons/ri';
+import getPayload from '@helpers/getPayload';
 import { IRootState } from '@redux/reducers';
 import { useAppDispatch } from '@redux/store';
 import useDarkLight from '@hooks/useDarkLight';
@@ -37,7 +38,7 @@ const ArticleBookmarkButton: FC<IArticleBookmarkButtonProps> = ({ slug }) => {
 
     const bookmarkArticle = (): void => {
         dispatch(addArticleBookmarkAction(slug)).then((res) => {
-            if (res.type === 'bookmarks/add/rejected') message.error(res.payload?.message);
+            if (res.type === 'bookmarks/add/rejected') message.error(getPayload(res.payload)?.message);
             else if (res.type === 'bookmarks/add/fulfilled') {
                 dispatch(getUserBookmarksAction());
                 dispatch(getArticleBookmarksAction(slug));
@@ -48,7 +49,7 @@ const ArticleBookmarkButton: FC<IArticleBookmarkButtonProps> = ({ slug }) => {
 
     const unBookmarkArticle = (): void => {
         dispatch(removeArticleBookmarkAction(slug)).then((res) => {
-            if (res.type === 'bookmarks/delete/rejected') message.error(res.payload?.message);
+            if (res.type === 'bookmarks/delete/rejected') message.error(getPayload(res.payload)?.message);
             else if (res.type === 'bookmarks/delete/fulfilled') {
                 dispatch(getUserBookmarksAction());
                 dispatch(getArticleBookmarksAction(slug));

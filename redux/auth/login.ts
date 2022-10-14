@@ -29,7 +29,7 @@ const loginAction = createAsyncThunk('auth/login', async (params: IParams, { rej
         !isServer && localStorage.setItem(API_TOKEN, response.token);
         api.defaults.headers.Authorization = `Bearer ${response.token}`;
 
-        return response.data;
+        return response;
     } catch (error) {
         return rejectWithValue(error);
     }
