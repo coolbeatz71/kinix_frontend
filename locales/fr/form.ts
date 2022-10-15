@@ -33,9 +33,6 @@ export const form = {
     deleteCommentConfirm: 'Êtes-vous sûr de supprimer ce commentaire?',
     yes: 'Oui',
     no: 'Non',
-    articleComment: 'Commentaires article',
-    commentAddedSuccess: 'Le commentaire a été ajouté avec succès',
-    commentUpdatedSuccess: 'Le commentaire a été modifié avec succès',
-    commentDeletedSuccess: 'Le commentaire a été supprimé avec succès!',
     close: 'Fermer',
+    articleComment: 'Commentaires article',
 };

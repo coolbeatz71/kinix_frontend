@@ -92,8 +92,8 @@ const SideDrawer: FC<ISideDrawerProps> = ({ open, setOpen }) => {
 
     return (
         <Drawer
+            open={open}
             destroyOnClose
-            visible={open}
             closable={false}
             placement="left"
             data-theme={value}

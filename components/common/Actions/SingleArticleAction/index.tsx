@@ -1,7 +1,6 @@
 import React, { FC, useEffect, useState } from 'react';
 import numeral from 'numeral';
 import { useSelector } from 'react-redux';
-import { useTranslation } from 'react-i18next';
 import { BsBookmarkPlus } from 'react-icons/bs';
 import { RiBookmark3Fill } from 'react-icons/ri';
 import { Button, Col, message, Row } from 'antd';
@@ -30,7 +29,6 @@ export interface ISingleArticleActionProps {
 }
 
 const SingleArticleAction: FC<ISingleArticleActionProps> = ({ article }) => {
-    const { t } = useTranslation();
     const { value } = useDarkLight();
     const dispatch = useAppDispatch();
 
@@ -59,15 +57,15 @@ const SingleArticleAction: FC<ISingleArticleActionProps> = ({ article }) => {
     useEffect(() => {
         if (allLikes?.rows) {
             setLikeCount(allLikes?.count);
-            setLikeOwner(isSingleArticleLikeOwner(user.id, allLikes.rows));
+            setLikeOwner(isSingleArticleLikeOwner(user?.id, allLikes.rows));
         }
-    }, [allLikes, user.id]);
+    }, [allLikes, user?.id]);
 
     useEffect(() => {
         if (allBookmarks?.rows) {
-            setBookmarkOwner(isSingleArticleBookmarkOwner(user.id, allBookmarks.rows));
+            setBookmarkOwner(isSingleArticleBookmarkOwner(user?.id, allBookmarks.rows));
         }
-    }, [allBookmarks, user.id]);
+    }, [allBookmarks, user?.id]);
 
     useEffect(() => {
         if (allComments?.rows) setCommentCount(allComments?.count);
@@ -75,44 +73,44 @@ const SingleArticleAction: FC<ISingleArticleActionProps> = ({ article }) => {
 
     const likeArticle = (): void => {
         dispatch(addArticleLikeAction(article.slug)).then((res) => {
-            if (res.type === 'likes/add/rejected') message.error(getPayload(res.payload)?.message);
+            if (res.type === 'likes/add/rejected') message.error(getPayload(res)?.message);
             else if (res.type === 'likes/add/fulfilled') {
                 setLikeCount(Number(likeCount) + 1);
                 dispatch(getArticleLikesAction(article.slug));
-                message.success(t('likingSuccess'));
+                message.success(getPayload(res).message);
             }
         });
     };
 
     const unlikeArticle = (): void => {
         dispatch(removeArticleLikeAction(article.slug)).then((res) => {
-            if (res.type === 'likes/unlike/rejected') message.error(getPayload(res.payload)?.message);
+            if (res.type === 'likes/unlike/rejected') message.error(getPayload(res)?.message);
             else if (res.type === 'likes/unlike/fulfilled') {
                 setLikeCount(Number(likeCount) - 1);
                 dispatch(getArticleLikesAction(article.slug));
-                message.success(t('unLikingSuccess'));
+                message.success(getPayload(res).message);
             }
         });
     };
 
     const bookmarkArticle = (): void => {
         dispatch(addArticleBookmarkAction(article?.slug)).then((res) => {
-            if (res.type === 'bookmarks/add/rejected') message.error(getPayload(res.payload)?.message);
+            if (res.type === 'bookmarks/add/rejected') message.error(getPayload(res)?.message);
             else if (res.type === 'bookmarks/add/fulfilled') {
                 dispatch(getUserBookmarksAction());
                 dispatch(getArticleBookmarksAction(article?.slug));
-                message.success(t('bookmarkingSuccess'));
+                message.success(getPayload(res).message);
             }
         });
     };
 
     const unBookmarkArticle = (): void => {
         dispatch(removeArticleBookmarkAction(article?.slug)).then((res) => {
-            if (res.type === 'bookmarks/delete/rejected') message.error(getPayload(res.payload)?.message);
+            if (res.type === 'bookmarks/delete/rejected') message.error(getPayload(res)?.message);
             else if (res.type === 'bookmarks/delete/fulfilled') {
                 dispatch(getUserBookmarksAction());
                 dispatch(getArticleBookmarksAction(article?.slug));
-                message.success(t('unBookmarkingSuccess'));
+                message.success(getPayload(res).message);
             }
         });
     };

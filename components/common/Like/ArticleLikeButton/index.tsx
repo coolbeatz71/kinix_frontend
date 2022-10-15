@@ -2,7 +2,6 @@ import React, { FC, useEffect, useState } from 'react';
 import numeral from 'numeral';
 import { Button, message } from 'antd';
 import { useSelector } from 'react-redux';
-import { useTranslation } from 'react-i18next';
 import { HeartOutlined, HeartFilled } from '@ant-design/icons';
 import getPayload from '@helpers/getPayload';
 import { IRootState } from '@redux/reducers';
@@ -22,7 +21,6 @@ export interface IArticleLikeButtonProps {
 }
 
 const ArticleLikeButton: FC<IArticleLikeButtonProps> = ({ slug, count }) => {
-    const { t } = useTranslation();
     const { value } = useDarkLight();
     const dispatch = useAppDispatch();
 
@@ -36,17 +34,17 @@ const ArticleLikeButton: FC<IArticleLikeButtonProps> = ({ slug, count }) => {
 
     useEffect(() => {
         if (allUserLikes?.rows) {
-            setLikeOwner(isAllArticleLikeOwner(slug, user.id, allUserLikes.rows));
+            setLikeOwner(isAllArticleLikeOwner(slug, user?.id, allUserLikes.rows));
         }
-    }, [allUserLikes, slug, user.id]);
+    }, [allUserLikes, slug, user?.id]);
 
     const likeArticle = (): void => {
         dispatch(addArticleLikeAction(slug)).then((res) => {
-            if (res.type === 'likes/add/rejected') message.error(getPayload(res.payload)?.message);
+            if (res.type === 'likes/add/rejected') message.error(getPayload(res)?.message);
             else if (res.type === 'likes/add/fulfilled') {
                 dispatch(getUserLikesAction());
                 dispatch(getArticleLikesAction(slug));
-                message.success(t('likingSuccess'));
+                message.success(getPayload(res).message);
                 setLikeCount((prevCount) => Number(prevCount) + 1);
             }
         });
@@ -54,11 +52,11 @@ const ArticleLikeButton: FC<IArticleLikeButtonProps> = ({ slug, count }) => {
 
     const unlikeArticle = (): void => {
         dispatch(removeArticleLikeAction(slug)).then((res) => {
-            if (res.type === 'likes/unlike/rejected') message.error(getPayload(res.payload)?.message);
+            if (res.type === 'likes/unlike/rejected') message.error(getPayload(res)?.message);
             else if (res.type === 'likes/unlike/fulfilled') {
                 dispatch(getUserLikesAction());
                 dispatch(getArticleLikesAction(slug));
-                message.success(t('unLikingSuccess'));
+                message.success(getPayload(res).message);
                 setLikeCount((prevCount) => Number(prevCount) - 1);
             }
         });

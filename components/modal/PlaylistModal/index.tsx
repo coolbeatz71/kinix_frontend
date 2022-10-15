@@ -43,12 +43,12 @@ const PlaylistModal: FC<IPlaylistModalProps> = ({ videoId, closeMenu }) => {
         const { value } = e.target;
         setSelectedPlaylist(value);
         dispatch(addVideoToPlaylistAction({ slug: value.slug, title: value.title, videoId })).then((res) => {
-            if (res.type === 'playlists/add/rejected') message.error(getPayload(res.payload)?.message);
+            if (res.type === 'playlists/add/rejected') message.error(getPayload(res)?.message);
             else if (res.type === 'playlists/add/fulfilled') {
                 setOpenModal(false);
                 setOpenPlaylistForm(false);
                 dispatch(getAllPlaylistsAction());
-                message.success(t('videoAddedToPlaylistSuccess'));
+                message.success(getPayload(res).message);
             }
         });
     };
@@ -93,7 +93,7 @@ const PlaylistModal: FC<IPlaylistModalProps> = ({ videoId, closeMenu }) => {
                     )
                 }
                 destroyOnClose
-                visible={openModal}
+                open={openModal}
                 title={t('playlistModalTitle')}
                 className={styles.playlist__modal}
                 closeIcon={<CloseCircleOutlined />}

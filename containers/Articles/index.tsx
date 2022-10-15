@@ -61,14 +61,14 @@ const ArticleContainer: FC = () => {
             dispatch(getUserLikesAction());
             dispatch(getUserBookmarksAction());
         }
-    }, [dispatch, user.id]);
+    }, [dispatch, user?.id]);
 
     useEffect(() => {
         const { search, tag } = query as IUnknownObject;
         dispatch(getAllArticlesAction({ page: START_PAGE, limit: CONTENT_LIMIT, search, tag })).then((res) => {
             if (res.type === 'articles/all/fulfilled') {
                 setIsFirstLoad(false);
-                setArticles(getPayload(res.payload).articles);
+                setArticles(getPayload(res).data.articles);
             }
         });
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -92,7 +92,7 @@ const ArticleContainer: FC = () => {
 
         dispatch(getAllArticlesAction({ limit, page, search })).then((res) => {
             if (res.type === 'articles/all/fulfilled') {
-                setArticles([...articles, ...getPayload(res.payload).articles]);
+                setArticles([...articles, ...getPayload(res).data.articles]);
             }
         });
     };

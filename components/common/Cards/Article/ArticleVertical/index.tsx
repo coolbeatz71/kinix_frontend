@@ -40,13 +40,15 @@ const ArticleCardVertical: FC<IArticleCardVerticalProps> = ({ article }) => {
                         {!isEmpty(article?.images) && (
                             <div>
                                 <Link href={link} passHref>
-                                    <Image
-                                        width={100}
-                                        height={55}
-                                        alt={article?.slug}
-                                        layout="responsive"
-                                        src={article?.images?.[0] as string}
-                                    />
+                                    <a rel="noreferrer noopener">
+                                        <Image
+                                            width={100}
+                                            height={55}
+                                            alt={article?.slug}
+                                            layout="responsive"
+                                            src={article?.images?.[0] as string}
+                                        />
+                                    </a>
                                 </Link>
                             </div>
                         )}

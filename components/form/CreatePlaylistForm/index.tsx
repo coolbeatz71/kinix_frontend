@@ -28,12 +28,12 @@ const CreatePlaylistForm: FC<ICreatePlaylistFormProps> = ({ videoId, setOpenModa
         setLoading(true);
         dispatch(addVideoToPlaylistAction({ title, videoId })).then((res) => {
             setLoading(false);
-            if (res.type === 'playlists/add/rejected') message.error(getPayload(res.payload)?.message);
+            if (res.type === 'playlists/add/rejected') message.error(getPayload(res)?.message);
             else if (res.type === 'playlists/add/fulfilled') {
                 setOpenPlaylistForm(false);
                 setOpenModal(false);
                 dispatch(getAllPlaylistsAction());
-                message.success(t('playlistAddedSuccess'));
+                message.success(getPayload(res).message);
             }
         });
     };

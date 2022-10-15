@@ -34,7 +34,7 @@ const SingleArticleContainer: FC<ISingleArticleContainerProps> = ({ article }) =
             dispatch(getUserLikesAction());
             dispatch(getUserBookmarksAction());
         }
-    }, [dispatch, user.id]);
+    }, [dispatch, user?.id]);
 
     return (
         <Fragment>

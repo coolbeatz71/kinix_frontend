@@ -2,8 +2,8 @@ import React, { FC, useEffect, useState } from 'react';
 import { isEmpty } from 'lodash';
 import { useSelector } from 'react-redux';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { IVideo } from '@interfaces/api';
 import { useRouter } from 'next/router';
+import { IVideo } from '@interfaces/api';
 import { IRootState } from '@redux/reducers';
 import getPayload from '@helpers/getPayload';
 import { useAppDispatch } from '@redux/store';
@@ -52,7 +52,7 @@ const VideoContainer: FC = () => {
         dispatch(getAllVideosAction({ page: START_PAGE, limit: CONTENT_LIMIT, search, category, tag })).then((res) => {
             if (res.type === 'videos/all/fulfilled') {
                 setIsFirstLoad(false);
-                setVideos(getPayload(res.payload).videos);
+                setVideos(getPayload(res).videos);
             }
         });
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -76,7 +76,7 @@ const VideoContainer: FC = () => {
 
         dispatch(getAllVideosAction({ limit, page, search, category })).then((res) => {
             if (res.type === 'videos/all/fulfilled') {
-                setVideos([...videos, ...getPayload(res.payload).videos]);
+                setVideos([...videos, ...getPayload(res).videos]);
             }
         });
     };

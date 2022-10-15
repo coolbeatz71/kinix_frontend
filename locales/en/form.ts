@@ -33,9 +33,6 @@ export const form = {
     deleteCommentConfirm: 'Are you sure to delete this comment?',
     yes: 'Yes',
     no: 'No',
-    articleComment: 'Article comment',
-    commentAddedSuccess: 'The comment has been successfully added!',
-    commentUpdatedSuccess: 'The comment has been successfully updated!',
-    commentDeletedSuccess: 'The comment has been successfully deleted!',
     close: 'Close',
+    articleComment: 'Article comment',
 };

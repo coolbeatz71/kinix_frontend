@@ -47,28 +47,28 @@ const ArticleCover: FC<IArticleCoverProps> = ({ user, article }) => {
     useEffect(() => {
         if (allLikes?.rows) {
             setLike(allLikes?.count);
-            setLikeOwner(isSingleArticleLikeOwner(user.id, allLikes.rows));
+            setLikeOwner(isSingleArticleLikeOwner(user?.id, allLikes.rows));
         }
-    }, [allLikes, user.id]);
+    }, [allLikes, user?.id]);
 
     const likeArticle = (): void => {
         dispatch(addArticleLikeAction(article.slug)).then((res) => {
-            if (res.type === 'likes/add/rejected') message.error(getPayload(res.payload)?.message);
+            if (res.type === 'likes/add/rejected') message.error(getPayload(res)?.message);
             else if (res.type === 'likes/add/fulfilled') {
                 setLike(Number(like) + 1);
                 dispatch(getArticleLikesAction(article.slug));
-                message.success(t('likingSuccess'));
+                message.success(getPayload(res).message);
             }
         });
     };
 
     const unlikeArticle = (): void => {
         dispatch(removeArticleLikeAction(article.slug)).then((res) => {
-            if (res.type === 'likes/unlike/rejected') message.error(getPayload(res.payload)?.message);
+            if (res.type === 'likes/unlike/rejected') message.error(getPayload(res)?.message);
             else if (res.type === 'likes/unlike/fulfilled') {
                 setLike(Number(like) - 1);
                 dispatch(getArticleLikesAction(article.slug));
-                message.success(t('unLikingSuccess'));
+                message.success(getPayload(res).message);
             }
         });
     };

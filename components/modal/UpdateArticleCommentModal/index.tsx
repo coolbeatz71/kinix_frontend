@@ -3,7 +3,7 @@ import { Form, Modal } from 'antd';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { CloseCircleOutlined } from '@ant-design/icons';
-
+import getPayload from '@helpers/getPayload';
 import { IComment } from '@interfaces/api';
 import { IRootState } from '@redux/reducers';
 import { useAppDispatch } from '@redux/store';
@@ -56,7 +56,7 @@ const UpdateArticleCommentModal: FC<IUpdateArticleCommentModalProps> = ({
             if (res.type === 'comments/add/rejected') form.resetFields();
             if (res.type === 'comments/add/fulfilled') {
                 form.resetFields();
-                setSuccess(t('commentUpdatedSuccess'));
+                setSuccess(getPayload(res).message);
             }
         });
     };
@@ -67,7 +67,7 @@ const UpdateArticleCommentModal: FC<IUpdateArticleCommentModalProps> = ({
             width={520}
             footer={null}
             destroyOnClose
-            visible={openModal}
+            open={openModal}
             onCancel={onCloseModal}
             title={t('updateComment')}
             closeIcon={<CloseCircleOutlined />}

@@ -44,8 +44,8 @@ const SliderContent: FC<ISliderContentProps> = ({
         .right::after {
             content: '';
             position: absolute;
-            left: -1px;
             top: 0;
+            left: -1px;
             width: 60%;
             height: 100%;
             background: linear-gradient(to right, ${bgColor}, transparent);
@@ -75,12 +75,12 @@ const SliderContent: FC<ISliderContentProps> = ({
             {hasButton &&
                 (isAppAds ? (
                     <Space>
-                        <a href={iosLink}>
+                        <a href={iosLink} rel="noreferrer noopener">
                             <Button size="large" target="_blank" ghost icon={<AppleFilled />}>
                                 App Store
                             </Button>
                         </a>
-                        <a href={androidLink}>
+                        <a href={androidLink} rel="noreferrer noopener">
                             <Button size="large" target="_blank" icon={<AndroidFilled />}>
                                 Google Play
                             </Button>

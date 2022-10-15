@@ -1,7 +1,6 @@
 import React, { FC, useEffect, useState } from 'react';
 import { Button, message } from 'antd';
 import { useSelector } from 'react-redux';
-import { useTranslation } from 'react-i18next';
 import { BsBookmarkPlus } from 'react-icons/bs';
 import { RiBookmark3Fill } from 'react-icons/ri';
 import getPayload from '@helpers/getPayload';
@@ -21,7 +20,6 @@ export interface IArticleBookmarkButtonProps {
 }
 
 const ArticleBookmarkButton: FC<IArticleBookmarkButtonProps> = ({ slug }) => {
-    const { t } = useTranslation();
     const { value } = useDarkLight();
     const dispatch = useAppDispatch();
 
@@ -32,28 +30,28 @@ const ArticleBookmarkButton: FC<IArticleBookmarkButtonProps> = ({ slug }) => {
 
     useEffect(() => {
         if (allUserBookmarks?.rows) {
-            setBookmarkOwner(isAllArticleBookmarkOwner(slug, user.id, allUserBookmarks.rows));
+            setBookmarkOwner(isAllArticleBookmarkOwner(slug, user?.id, allUserBookmarks.rows));
         }
-    }, [allUserBookmarks, slug, user.id]);
+    }, [allUserBookmarks, slug, user?.id]);
 
     const bookmarkArticle = (): void => {
         dispatch(addArticleBookmarkAction(slug)).then((res) => {
-            if (res.type === 'bookmarks/add/rejected') message.error(getPayload(res.payload)?.message);
+            if (res.type === 'bookmarks/add/rejected') message.error(getPayload(res)?.message);
             else if (res.type === 'bookmarks/add/fulfilled') {
                 dispatch(getUserBookmarksAction());
                 dispatch(getArticleBookmarksAction(slug));
-                message.success(t('bookmarkingSuccess'));
+                message.success(getPayload(res).message);
             }
         });
     };
 
     const unBookmarkArticle = (): void => {
         dispatch(removeArticleBookmarkAction(slug)).then((res) => {
-            if (res.type === 'bookmarks/delete/rejected') message.error(getPayload(res.payload)?.message);
+            if (res.type === 'bookmarks/delete/rejected') message.error(getPayload(res)?.message);
             else if (res.type === 'bookmarks/delete/fulfilled') {
                 dispatch(getUserBookmarksAction());
                 dispatch(getArticleBookmarksAction(slug));
-                message.success(t('unBookmarkingSuccess'));
+                message.success(getPayload(res).message);
             }
         });
     };

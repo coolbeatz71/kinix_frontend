@@ -50,7 +50,7 @@ const AccountConfirmation: FC<IAccountConfirmationProps> = ({ credential, onClos
                     key: 'success',
                     placement: 'topRight',
                     message: 'Confirmation',
-                    description: getPayload(res.payload).message,
+                    description: getPayload(res).message,
                 });
             }
         });

@@ -3,13 +3,14 @@ import Lottie from 'react-lottie';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { Button, Modal, notification, Rate, Typography } from 'antd';
-import { useAppDispatch } from '@redux/store';
 import { CloseCircleOutlined } from '@ant-design/icons';
-import getLottieOptions from '@helpers/getLottieOptions';
-import addVideoRatingAction from '@redux/ratings/add';
-import FormSuccessResult from '@components/common/FormSuccessResult';
-import { IRootState } from '@redux/reducers';
 import rating from 'public/rating_anim.json';
+import getPayload from '@helpers/getPayload';
+import { useAppDispatch } from '@redux/store';
+import { IRootState } from '@redux/reducers';
+import addVideoRatingAction from '@redux/ratings/add';
+import getLottieOptions from '@helpers/getLottieOptions';
+import FormSuccessResult from '@components/common/FormSuccessResult';
 import getSingleVideoRatedByUserAction from '@redux/ratings/getUserRate';
 
 import styles from './index.module.scss';
@@ -40,7 +41,7 @@ const VideoRatingModal: FC<VideoRatingModalProps> = ({ slug, openModal, setOpenM
     const onSubmitRating = (): void => {
         dispatch(addVideoRatingAction({ slug, count: rateCount })).then((res) => {
             if (res.type === 'ratings/add/fulfilled') {
-                setSuccess(t('ratingSuccess'));
+                setSuccess(getPayload(res).message);
                 dispatch(getSingleVideoRatedByUserAction(slug));
             } else if (res.type === 'ratings/add/rejected') {
                 notification.error({
@@ -60,7 +61,7 @@ const VideoRatingModal: FC<VideoRatingModalProps> = ({ slug, openModal, setOpenM
             width={420}
             footer={null}
             destroyOnClose
-            visible={openModal}
+            open={openModal}
             onCancel={onCloseModal}
             className={styles.ratingModal}
             closeIcon={<CloseCircleOutlined />}
