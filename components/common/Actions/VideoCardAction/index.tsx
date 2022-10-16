@@ -6,13 +6,13 @@ import PlaylistModal from '@components/modal/PlaylistModal';
 
 import styles from './index.module.scss';
 
-export interface IVideoActionProps {
+export interface IVideoCardActionProps {
     videoId: number;
     children?: ReactElement;
     context: 'standalone' | 'card';
 }
 
-const VideoAction: FC<IVideoActionProps> = ({ videoId, context, children }) => {
+const VideoCardAction: FC<IVideoCardActionProps> = ({ videoId, context, children }) => {
     const { value } = useDarkLight();
     const [openMenu, setOpenMenu] = useState(false);
 
@@ -46,4 +46,4 @@ const VideoAction: FC<IVideoActionProps> = ({ videoId, context, children }) => {
     );
 };
 
-export default VideoAction;
+export default VideoCardAction;

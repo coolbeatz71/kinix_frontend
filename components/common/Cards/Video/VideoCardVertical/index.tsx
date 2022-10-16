@@ -11,7 +11,7 @@ import { IVideo } from '@interfaces/api';
 import { WARNING } from '@constants/colors';
 import { APP_NAME } from '@constants/platform';
 import { ALL_VIDEOS_PATH } from '@constants/paths';
-import VideoAction from '@components/common/Actions/VideoAction';
+import VideoCardAction from '@components/common/Actions/VideoCardAction';
 import getYoutubeVideoThumbnail from '@helpers/getYoutubeVideoThumbail';
 import VideoViewRating from '@components/common/Ratings/VideoViewRating';
 import VideoShareButton from '@components/common/Sharings/VideoShareButton';
@@ -97,7 +97,7 @@ const VideoCardVertical: FC<IVideoCardVerticalProps> = ({ isExclusive = false, v
                                   title={video?.title}
                                   count={Number(video?.sharesCount)}
                               />,
-                              <VideoAction videoId={video?.id as number} key="video-action" context="card" />,
+                              <VideoCardAction videoId={video?.id as number} key="video-action" context="card" />,
                           ]
                 }
             >
