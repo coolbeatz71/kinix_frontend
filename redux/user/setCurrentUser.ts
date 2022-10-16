@@ -1,9 +1,9 @@
 import { userSlice } from '.';
 import { AppDispatch } from '@redux/store';
-import { ICurrentUser } from '@interfaces/user';
+import { IUnknownObject } from '@interfaces/app';
 
 const setCurrentUserAction =
-    (payload: ICurrentUser) =>
+    (payload: IUnknownObject) =>
     (dispatch: AppDispatch): unknown => {
         return dispatch(userSlice.actions.currentUser({ ...payload }));
     };

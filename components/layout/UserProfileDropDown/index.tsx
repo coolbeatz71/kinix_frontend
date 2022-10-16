@@ -20,7 +20,7 @@ const UserProfileDropDown: FC<IUserProfileDropDownProps> = ({
     setOpenDropdown,
 }) => {
     return (
-        <Space size="middle">
+        <Space size={48}>
             <Button
                 type="text"
                 shape="circle"

@@ -25,7 +25,7 @@ const loginAction = createAsyncThunk('auth/login', async (params: IParams, { rej
         const response: IUnknownObject = await api.post('/auth/login', data);
 
         setLocalUserData(response.data);
-        dispatch(setCurrentUserAction(response.data));
+        dispatch(setCurrentUserAction(response));
         !isServer && localStorage.setItem(API_TOKEN, response.token);
         api.defaults.headers.Authorization = `Bearer ${response.token}`;
 
