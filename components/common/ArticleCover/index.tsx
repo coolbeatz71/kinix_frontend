@@ -76,7 +76,7 @@ const ArticleCover: FC<IArticleCoverProps> = ({ user, article }) => {
     return (
         <div className={styles.articleCover}>
             <div className={styles.articleCover__overlay}>
-                {!isEmpty(cover) && <Image src={cover as string} layout="fill" />}
+                {!isEmpty(cover) && <Image src={cover as string} layout="fill" priority />}
             </div>
             <Row justify="space-between" align="middle" className={styles.articleCover__content}>
                 {lg && (

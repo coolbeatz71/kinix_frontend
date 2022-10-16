@@ -68,7 +68,9 @@ const UserProfileMenu: FC<IUserProfileMenuProps> = ({ avatar, email, phoneNumber
                 </Col>
             </Row>
             <Item icon={<SettingOutlined />}>
-                <Link href={SETTING_PATH}>{t('settings')}</Link>
+                <Link href={SETTING_PATH} prefetch={false}>
+                    {t('settings')}
+                </Link>
             </Item>
             <Item danger data-signout icon={<LogoutOutlined />} onClick={onLogout}>
                 {loading ? <Spin indicator={<LoadingOutlined />} /> : t('logout')}

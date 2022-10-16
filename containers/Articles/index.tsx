@@ -136,7 +136,7 @@ const ArticleContainer: FC = () => {
                 ) : (
                     <InfiniteScroll
                         dataLength={articles?.length}
-                        hasMore={articles.length < data?.count}
+                        hasMore={articles?.length < data?.count}
                         className={isEmpty(articles) ? '' : 'pb-5'}
                         loader={
                             <div className="mt-5">

@@ -52,7 +52,7 @@ const VideoContainer: FC = () => {
         dispatch(getAllVideosAction({ page: START_PAGE, limit: CONTENT_LIMIT, search, category, tag })).then((res) => {
             if (res.type === 'videos/all/fulfilled') {
                 setIsFirstLoad(false);
-                setVideos(getPayload(res).videos);
+                setVideos(getPayload(res).data.videos);
             }
         });
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -76,7 +76,7 @@ const VideoContainer: FC = () => {
 
         dispatch(getAllVideosAction({ limit, page, search, category })).then((res) => {
             if (res.type === 'videos/all/fulfilled') {
-                setVideos([...videos, ...getPayload(res).videos]);
+                setVideos([...videos, ...getPayload(res).data.videos]);
             }
         });
     };
@@ -105,7 +105,7 @@ const VideoContainer: FC = () => {
                 ) : (
                     <InfiniteScroll
                         dataLength={videos?.length}
-                        hasMore={videos.length < data?.count}
+                        hasMore={videos?.length < data?.count}
                         className={isEmpty(videos) ? '' : 'pb-5'}
                         loader={
                             <div className="mt-5">

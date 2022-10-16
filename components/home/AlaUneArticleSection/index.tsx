@@ -37,7 +37,7 @@ const AlaUneArticleSection: FC<IAlaUneArticleSectionProps> = ({ limit, canViewAl
 
             {canViewAll && fetched && (
                 <Row justify="end">
-                    <Link href={ALL_ARTICLES_PATH} passHref>
+                    <Link href={ALL_ARTICLES_PATH} passHref prefetch={false}>
                         <Button size="large">{t('viewAll')}</Button>
                     </Link>
                 </Row>

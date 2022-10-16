@@ -79,7 +79,7 @@ const ExclusiveSection: FC<IExclusiveSectionProps> = ({ tag, title, desc, imgSrc
                         })}
                     </Paragraph>
                     <Space className="mt-4 d-flex align-content-center" size={12}>
-                        <Link href={link} passHref>
+                        <Link href={link} passHref prefetch={false}>
                             <Button
                                 size="large"
                                 data-watch-now

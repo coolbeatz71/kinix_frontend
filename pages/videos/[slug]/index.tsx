@@ -14,7 +14,7 @@ const SingleVideoPage: NextPage<ServerPropsType> = ({ error, data }) => {
     const { t } = useTranslation();
     const { reload } = useRouter();
 
-    const videoThumbnail = getYoutubeVideoThumbnail((data as IVideo)?.link);
+    const videoThumbnail = getYoutubeVideoThumbnail((data as IVideo)?.link) as string;
 
     return (
         <Layout

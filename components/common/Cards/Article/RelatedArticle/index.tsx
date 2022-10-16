@@ -31,7 +31,7 @@ const RelatedArticleCard: FC<IRelatedArticleProps> = ({ article }) => {
                     <Row justify="space-between">
                         <Col span={7} className={styles.relatedArticleCard__cover}>
                             <div className={styles.relatedArticleCard__cover__image}>
-                                <Image layout="fill" src={coverImage as string} alt={article?.slug} />
+                                <Image priority layout="fill" src={coverImage as string} alt={article?.slug} />
                             </div>
                         </Col>
                         <Col span={17} data-body>

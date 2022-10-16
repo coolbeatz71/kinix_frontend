@@ -39,10 +39,10 @@ const SharePopover: FC<ISharePopoverProps> = ({ open, setOpen, children, link, t
 
     return (
         <Popover
-            visible={open}
+            open={open}
             trigger="click"
             placement="topLeft"
-            onVisibleChange={(v) => setOpen(v)}
+            onOpenChange={(v) => setOpen(v)}
             overlayClassName={styles.sharePopover}
             content={
                 <div data-content className="d-flex justify-content-between p-1">

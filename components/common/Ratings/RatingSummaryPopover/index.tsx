@@ -29,12 +29,12 @@ const RatingSummaryPopover: FC<IRatingSummaryPopoverProps> = ({ slug, children, 
 
     return (
         <Popover
-            visible={open}
+            open={open}
             trigger="click"
             placement="topLeft"
-            onVisibleChange={(v) => setOpen(v)}
             overlayClassName={styles.ratingPopover}
-            onOpenChange={() => {
+            onOpenChange={(v) => {
+                setOpen(v);
                 dispatch(getSingleVideoRateSummaryAction(slug));
             }}
             content={

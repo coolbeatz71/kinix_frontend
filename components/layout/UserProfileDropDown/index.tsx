@@ -31,9 +31,9 @@ const UserProfileDropDown: FC<IUserProfileDropDownProps> = ({
                 }
             />
             <Dropdown
+                open={openDropdown}
                 className={className}
                 placement="bottomLeft"
-                visible={openDropdown}
                 overlay={
                     <UserProfileMenu
                         email={currentUser.email}

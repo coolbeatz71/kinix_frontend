@@ -1,8 +1,9 @@
-import { Form, Typography } from 'antd';
 import { FC } from 'react';
+import { Form, Typography } from 'antd';
 import { useTranslation } from 'react-i18next';
 
-const { Text, Link } = Typography;
+const { Item } = Form;
+const { Text } = Typography;
 
 export interface IUserAgreementProps {
     styles: { [key: string]: string };
@@ -16,18 +17,18 @@ const UserAgreement: FC<IUserAgreementProps> = ({ styles }) => {
     const byClickingCreateAccount = t('byClickingCreateAccount');
 
     return (
-        <Form.Item className={styles.signupForm__userAgreement}>
+        <Item className={styles.signupForm__userAgreement}>
             <Text className={styles.signupForm__userAgreement__text}>
                 {byClickingCreateAccount}{' '}
-                <Link href="/user-agreement" target="blank">
+                <a href="/user-agreement" target="blank" rel="noreferrer noopener">
                     {termsOfService}
-                </Link>{' '}
+                </a>{' '}
                 {t('and')}{' '}
-                <Link href="/privacy-policy" target="blank">
+                <a href="/privacy-policy" target="blank" rel="noreferrer noopener">
                     {privacyPolicies}
-                </Link>{' '}
+                </a>{' '}
             </Text>
-        </Form.Item>
+        </Item>
     );
 };
 

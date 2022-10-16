@@ -1,11 +1,9 @@
 import React, { FC, useState } from 'react';
-import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { Avatar, Button, Col, List, Row, Tooltip, Modal, notification } from 'antd';
 import { EditFilled, DeleteFilled, ExclamationCircleOutlined, UserOutlined } from '@ant-design/icons';
 import { IComment } from '@interfaces/api';
 import getPayload from '@helpers/getPayload';
-import { IRootState } from '@redux/reducers';
 import { useAppDispatch } from '@redux/store';
 import { getBgColor } from '@helpers/getBgColor';
 import getAllArticleCommentsAction from '@redux/comments/all';
@@ -25,9 +23,6 @@ export interface IArticleCommentProps {
 const ArticleComment: FC<IArticleCommentProps> = ({ slug, comment, createdTime, isCommentOwner }) => {
     const { t } = useTranslation();
     const dispatch = useAppDispatch();
-    const {
-        delete: { error },
-    } = useSelector(({ comments }: IRootState) => comments);
     const [openUpdateModal, setOpenUpdateModal] = useState<boolean>(false);
 
     const showDeleteConfirm = (): void => {
@@ -59,7 +54,7 @@ const ArticleComment: FC<IArticleCommentProps> = ({ slug, comment, createdTime, 
                             key: 'error',
                             message: 'Youpi!',
                             placement: 'topRight',
-                            description: error?.message,
+                            description: getPayload(res).message,
                         });
                     }
                 });

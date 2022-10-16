@@ -1,13 +1,13 @@
 import axios from 'axios';
 import { YOUTUBE_API } from '@constants/app';
-import { IYoutubeVideo } from '@interfaces/youtube';
+import { IUnknownObject } from '@interfaces/app';
 import { GOOGLE_API_KEY } from '@constants/platform';
 
-export const getYoutubeVideoInfo = async (videoId: string | null): Promise<IYoutubeVideo> => {
+export const getYoutubeVideoInfo = async (videoId: string | null): Promise<IUnknownObject> => {
     const part = 'snippet,contentDetails,statistics';
     const url = `${YOUTUBE_API}videos`;
 
-    const { data } = await axios.get(url, {
+    const response = await axios.get(url, {
         params: {
             part,
             id: videoId,
@@ -15,5 +15,5 @@ export const getYoutubeVideoInfo = async (videoId: string | null): Promise<IYout
         },
     });
 
-    return data;
+    return response;
 };

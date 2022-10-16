@@ -32,7 +32,7 @@ const VideoRatingModal: FC<VideoRatingModalProps> = ({ slug, openModal, setOpenM
     const [rateCount, setRateCount] = useState<number>(0);
     const [hasRated, setHasRated] = useState<boolean>(false);
 
-    const { error, loading } = useSelector(({ ratings: { add } }: IRootState) => add);
+    const { loading } = useSelector(({ ratings: { add } }: IRootState) => add);
 
     const onCloseModal = (): void => {
         setOpenModal(false);
@@ -49,7 +49,7 @@ const VideoRatingModal: FC<VideoRatingModalProps> = ({ slug, openModal, setOpenM
                     key: 'error',
                     message: 'Oops!',
                     placement: 'topRight',
-                    description: error?.message,
+                    description: getPayload(res).message,
                 });
             }
         });

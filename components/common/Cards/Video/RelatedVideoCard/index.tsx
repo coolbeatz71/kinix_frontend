@@ -62,11 +62,14 @@ const RelatedVideoCard: FC<IRelatedVideoCardProps> = ({ video }) => {
                         {!isEmpty(video?.link) && (
                             <div className={styles.relatedVideoCard__cover__image}>
                                 <Link href={link} passHref>
-                                    <Image
-                                        layout="fill"
-                                        alt={video?.slug}
-                                        src={getYoutubeVideoThumbnail(video?.link)}
-                                    />
+                                    <a rel="noreferrer noopener">
+                                        <Image
+                                            priority
+                                            layout="fill"
+                                            alt={video?.slug}
+                                            src={getYoutubeVideoThumbnail(video?.link) as string}
+                                        />
+                                    </a>
                                 </Link>
                             </div>
                         )}

@@ -39,9 +39,10 @@ const ArticleCardVertical: FC<IArticleCardVerticalProps> = ({ article }) => {
                     <Fragment>
                         {!isEmpty(article?.images) && (
                             <div>
-                                <Link href={link} passHref>
+                                <Link href={link} passHref prefetch={false}>
                                     <a rel="noreferrer noopener">
                                         <Image
+                                            priority
                                             width={100}
                                             height={55}
                                             alt={article?.slug}
@@ -75,14 +76,14 @@ const ArticleCardVertical: FC<IArticleCardVerticalProps> = ({ article }) => {
 
                 <Meta
                     title={
-                        <Link href={link} passHref>
+                        <Link href={link} passHref prefetch={false}>
                             {truncate(article?.title, {
                                 length: 100,
                             })}
                         </Link>
                     }
                     description={
-                        <Link href={link} passHref>
+                        <Link href={link} passHref prefetch={false}>
                             {truncate(article?.summary, {
                                 length: 90,
                             })}

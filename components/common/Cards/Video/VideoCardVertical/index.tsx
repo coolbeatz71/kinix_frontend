@@ -71,13 +71,16 @@ const VideoCardVertical: FC<IVideoCardVerticalProps> = ({ isExclusive = false, v
                         {!isEmpty(video?.link) && (
                             <div>
                                 <Link href={link} passHref>
-                                    <Image
-                                        width={100}
-                                        height={50}
-                                        alt={video?.slug}
-                                        layout="responsive"
-                                        src={getYoutubeVideoThumbnail(video?.link)}
-                                    />
+                                    <a rel="noreferrer noopener">
+                                        <Image
+                                            priority
+                                            width={100}
+                                            height={50}
+                                            alt={video?.slug}
+                                            layout="responsive"
+                                            src={getYoutubeVideoThumbnail(video?.link) as string}
+                                        />
+                                    </a>
                                 </Link>
                             </div>
                         )}
