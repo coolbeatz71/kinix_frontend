@@ -5,6 +5,7 @@ import { isEmpty } from 'lodash';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { Col, Grid, message, Row, Typography } from 'antd';
+import getPayload from '@helpers/getPayload';
 import { IRootState } from '@redux/reducers';
 import { useAppDispatch } from '@redux/store';
 import isSingleArticleLikeOwner from '@helpers/isLikeOwner';
@@ -46,28 +47,28 @@ const ArticleCover: FC<IArticleCoverProps> = ({ user, article }) => {
     useEffect(() => {
         if (allLikes?.rows) {
             setLike(allLikes?.count);
-            setLikeOwner(isSingleArticleLikeOwner(user.id, allLikes.rows));
+            setLikeOwner(isSingleArticleLikeOwner(user?.id, allLikes.rows));
         }
-    }, [allLikes, user.id]);
+    }, [allLikes, user?.id]);
 
     const likeArticle = (): void => {
         dispatch(addArticleLikeAction(article.slug)).then((res) => {
-            if (res.type === 'likes/add/rejected') message.error(res.payload?.message);
+            if (res.type === 'likes/add/rejected') message.error(getPayload(res)?.message);
             else if (res.type === 'likes/add/fulfilled') {
                 setLike(Number(like) + 1);
                 dispatch(getArticleLikesAction(article.slug));
-                message.success(t('likingSuccess'));
+                message.success(getPayload(res).message);
             }
         });
     };
 
     const unlikeArticle = (): void => {
         dispatch(removeArticleLikeAction(article.slug)).then((res) => {
-            if (res.type === 'likes/unlike/rejected') message.error(res.payload?.message);
+            if (res.type === 'likes/unlike/rejected') message.error(getPayload(res)?.message);
             else if (res.type === 'likes/unlike/fulfilled') {
                 setLike(Number(like) - 1);
                 dispatch(getArticleLikesAction(article.slug));
-                message.success(t('unLikingSuccess'));
+                message.success(getPayload(res).message);
             }
         });
     };
@@ -75,15 +76,15 @@ const ArticleCover: FC<IArticleCoverProps> = ({ user, article }) => {
     return (
         <div className={styles.articleCover}>
             <div className={styles.articleCover__overlay}>
-                {!isEmpty(cover) && <Image src={cover as string} layout="fill" />}
+                {!isEmpty(cover) && <Image src={cover as string} layout="fill" priority />}
             </div>
             <Row justify="space-between" align="middle" className={styles.articleCover__content}>
                 {lg && (
                     <Col md={24} lg={3} className={styles.articleCover__content__like}>
                         {likeOwner ? (
-                            <HeartFilled data-is-my-like={likeOwner} onClick={() => unlikeArticle()} />
+                            <HeartFilled data-is-my-like={Boolean(likeOwner)} onClick={() => unlikeArticle()} />
                         ) : (
-                            <HeartOutlined data-is-my-like={likeOwner} onClick={() => likeArticle()} />
+                            <HeartOutlined data-is-my-like={Boolean(likeOwner)} onClick={() => likeArticle()} />
                         )}
                         <Text data-likes-value>{Number(like) > 0 && `${likes} ${t('likes')}`}</Text>
                         <Text data-read>

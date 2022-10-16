@@ -1,3 +1,4 @@
+import { IUnknownObject } from '@interfaces/app';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import api from 'services/axios';
 
@@ -10,10 +11,10 @@ interface IParams {
 
 const getAllArticlesAction = createAsyncThunk('articles/all', async (params: IParams, { rejectWithValue }) => {
     try {
-        const { data } = await api.get('/articles', {
+        const response: IUnknownObject = await api.get('/articles', {
             params,
         });
-        return data;
+        return response;
     } catch (error) {
         return rejectWithValue(error);
     }

@@ -3,46 +3,28 @@
 @import '/styles/_mixins.scss';
 
 .layout {
-    min-height: 100vh;
     overflow: hidden;
+    min-height: 100vh;
 
     &[data-theme~='dark'] {
-        background: url('/bg-dark.svg');
-        background-repeat: repeat-y;
-        background-size: cover;
-        background-attachment: fixed;
+        background: $bg-primary-dark90;
 
         .layout__main {
-            background-color: $bg-primary-dark;
+            background: url('/bg-pattern-dark.svg');
             background-size: cover;
-
-            &__content {
-                background: $bg-primary-dark url('/bg-pattern-dark.svg');
-
-                background-attachment: fixed;
-                background-repeat: no-repeat;
-                background-size: cover;
-            }
+            background-attachment: fixed;
+            background-repeat: no-repeat;
         }
     }
 
     &[data-theme~='light'] {
-        background: url('/bg-light.svg');
-        background-repeat: repeat-y;
-        background-size: cover;
-        background-attachment: fixed;
+        background: $bg-primary-light90;
 
         .layout__main {
-            background-color: $bg-primary-light;
+            background: url('/bg-pattern-light.svg');
             background-size: cover;
-
-            &__content {
-                background: $bg-primary-light url('/bg-pattern-light.svg');
-
-                background-attachment: fixed;
-                background-repeat: no-repeat;
-                background-size: cover;
-            }
+            background-attachment: fixed;
+            background-repeat: no-repeat;
         }
     }
 

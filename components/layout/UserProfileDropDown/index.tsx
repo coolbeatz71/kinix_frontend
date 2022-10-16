@@ -20,7 +20,7 @@ const UserProfileDropDown: FC<IUserProfileDropDownProps> = ({
     setOpenDropdown,
 }) => {
     return (
-        <Space size="middle">
+        <Space size={48}>
             <Button
                 type="text"
                 shape="circle"
@@ -31,9 +31,9 @@ const UserProfileDropDown: FC<IUserProfileDropDownProps> = ({
                 }
             />
             <Dropdown
+                open={openDropdown}
                 className={className}
                 placement="bottomLeft"
-                visible={openDropdown}
                 overlay={
                     <UserProfileMenu
                         email={currentUser.email}

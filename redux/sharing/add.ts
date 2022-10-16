@@ -1,8 +1,8 @@
 import { AnyAction, createAsyncThunk } from '@reduxjs/toolkit';
-import { AppDispatch } from '@redux/store';
-import api from 'services/axios';
-import { IUnknownObject } from '@interfaces/app';
 import { sharingSlice } from '.';
+import api from 'services/axios';
+import { AppDispatch } from '@redux/store';
+import { IUnknownObject } from '@interfaces/app';
 
 export const resetAddVideoSharingAction =
     () =>
@@ -12,8 +12,8 @@ export const resetAddVideoSharingAction =
 
 const addVideoSharingAction = createAsyncThunk('sharings/add', async (slug: string, { rejectWithValue }) => {
     try {
-        const { data }: IUnknownObject = await api.post(`/shares/${slug}`);
-        return data;
+        const response: IUnknownObject = await api.post(`/shares/${slug}`);
+        return response;
     } catch (error) {
         return rejectWithValue(error);
     }

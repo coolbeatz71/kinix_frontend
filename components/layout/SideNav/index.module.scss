@@ -188,7 +188,7 @@
         .sidenav__menu {
             background-color: $bg-primary-dark;
             &_divider {
-                background-color: $light50;
+                background-color: $light20;
             }
             &__sub {
                 [class~='ant-menu-inline'] {
@@ -206,7 +206,7 @@
 
         .sidenav__divider {
             [class~='ant-divider'] {
-                background-color: $light50;
+                background-color: $light20;
             }
         }
 

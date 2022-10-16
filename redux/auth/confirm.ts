@@ -28,7 +28,7 @@ const confirmAccountAction = createAsyncThunk('auth/confirm', async (params: IPa
         const response: IUnknownObject = await api.post('/auth/confirm', data);
 
         setLocalUserData(response.data);
-        dispatch(setCurrentUserAction(response.data));
+        dispatch(setCurrentUserAction(response));
         !isServer && localStorage.setItem(API_TOKEN, response.token);
         api.defaults.headers.Authorization = `Bearer ${response.token}`;
 

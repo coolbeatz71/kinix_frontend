@@ -23,10 +23,10 @@ const MainArticle: FC<IMainArticleProps> = ({ article }) => {
     const link = `${ALL_ARTICLES_PATH}/${article?.slug}`;
 
     return (
-        <Link href={link} passHref>
+        <Link href={link} passHref prefetch={false}>
             <Row justify="space-between" className={styles.mainArticle}>
                 <div className={styles.mainArticle__cover}>
-                    <Image alt={article?.slug} layout="fill" src={article?.images?.[0] as string} />
+                    <Image priority alt={article?.slug} layout="fill" src={article?.images?.[0] as string} />
                 </div>
                 <Col lg={16} xl={12} className={styles.mainArticle__content} data-content>
                     <div className={styles.mainArticle__content__header}>

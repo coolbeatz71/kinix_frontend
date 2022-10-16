@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import api from 'services/axios';
 import { RELATED_CONTENT_LIMIT } from '@constants/app';
+import { IUnknownObject } from '@interfaces/app';
 
 export interface IParams {
     slug: string;
@@ -10,10 +11,10 @@ export interface IParams {
 const getRelatedArticlesAction = createAsyncThunk('articles/related', async (params: IParams, { rejectWithValue }) => {
     const { slug, tags } = params;
     try {
-        const { data } = await api.get(`/articles/related/${slug}`, {
+        const response: IUnknownObject = await api.get(`/articles/related/${slug}`, {
             params: { tags: tags?.join(','), limit: RELATED_CONTENT_LIMIT },
         });
-        return data;
+        return response;
     } catch (error) {
         return rejectWithValue(error);
     }

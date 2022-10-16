@@ -27,7 +27,7 @@ const Custom404: NextPage = () => {
             <Title className="text-center" data-text="title">
                 {t('notFound')}
             </Title>
-            <Link href={HOME_PATH} passHref>
+            <Link href={HOME_PATH} passHref prefetch={false}>
                 <Button className="text-center" size="large" type="primary" icon={<HomeOutlined />}>
                     {t('backHome')}
                 </Button>

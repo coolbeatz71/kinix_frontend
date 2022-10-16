@@ -1,11 +1,11 @@
 import React, { FC, ReactNode, useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
 import { Button, message, Popover } from 'antd';
+import getPayload from '@helpers/getPayload';
 import { useAppDispatch } from '@redux/store';
+import getVideoSharingsAction from '@redux/sharing/all';
 import SocialShare from '@components/common/SocialShare';
 import { IShareType, shareList } from '@constants/social';
 import addVideoSharingAction, { resetAddVideoSharingAction } from '@redux/sharing/add';
-import getVideoSharingsAction from '@redux/sharing/all';
 
 import styles from './index.module.scss';
 
@@ -20,7 +20,6 @@ export interface ISharePopoverProps {
 const shares = [shareList[1], shareList[2], shareList[3], shareList[4]];
 
 const SharePopover: FC<ISharePopoverProps> = ({ open, setOpen, children, link, title, slug }) => {
-    const { t } = useTranslation();
     const dispatch = useAppDispatch();
 
     useEffect(() => {
@@ -33,17 +32,17 @@ const SharePopover: FC<ISharePopoverProps> = ({ open, setOpen, children, link, t
             setOpen(false);
             if (res.type === 'sharings/add/fulfilled') {
                 dispatch(getVideoSharingsAction(slug));
-                message.success(t('sharingSuccess'));
+                message.success(getPayload(res).message);
             }
         });
     };
 
     return (
         <Popover
-            visible={open}
+            open={open}
             trigger="click"
             placement="topLeft"
-            onVisibleChange={(v) => setOpen(v)}
+            onOpenChange={(v) => setOpen(v)}
             overlayClassName={styles.sharePopover}
             content={
                 <div data-content className="d-flex justify-content-between p-1">

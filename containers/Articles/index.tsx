@@ -11,6 +11,7 @@ import getAllArticlesAction from '@redux/articles/all';
 import { ALL_ARTICLES_PATH } from '@constants/paths';
 import ServerError from '@components/common/ServerError';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import getPayload from '@helpers/getPayload';
 import TagsBar from '@components/layout/TagsBar';
 import ArticleList from '@components/common/ArticleList';
 import ArticleListSkeleton from '@components/skeleton/ArticleList';
@@ -60,14 +61,14 @@ const ArticleContainer: FC = () => {
             dispatch(getUserLikesAction());
             dispatch(getUserBookmarksAction());
         }
-    }, [dispatch, user.id]);
+    }, [dispatch, user?.id]);
 
     useEffect(() => {
         const { search, tag } = query as IUnknownObject;
         dispatch(getAllArticlesAction({ page: START_PAGE, limit: CONTENT_LIMIT, search, tag })).then((res) => {
             if (res.type === 'articles/all/fulfilled') {
                 setIsFirstLoad(false);
-                setArticles(res.payload.articles);
+                setArticles(getPayload(res).data.articles);
             }
         });
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -90,7 +91,9 @@ const ArticleContainer: FC = () => {
         setParams({ limit, page, search });
 
         dispatch(getAllArticlesAction({ limit, page, search })).then((res) => {
-            if (res.type === 'articles/all/fulfilled') setArticles([...articles, ...res.payload.articles]);
+            if (res.type === 'articles/all/fulfilled') {
+                setArticles([...articles, ...getPayload(res).data.articles]);
+            }
         });
     };
 
@@ -107,10 +110,10 @@ const ArticleContainer: FC = () => {
             {isEmpty(query) && (
                 <Fragment>
                     <div className="mt-5">
-                        <PopularArticleCarousel />
+                        <AlaUneArticleSection canViewAll={false} />
                     </div>
                     <div className="mt-5">
-                        <AlaUneArticleSection canViewAll={false} />
+                        <PopularArticleCarousel />
                     </div>
                 </Fragment>
             )}
@@ -122,6 +125,7 @@ const ArticleContainer: FC = () => {
             <div className="mt-5">
                 {errArticles && isFirstLoad ? (
                     <ServerError
+                        error={errArticles}
                         onRefresh={() => {
                             const { limit, page } = params;
                             dispatch(getAllArticlesAction({ limit, page }));
@@ -132,7 +136,7 @@ const ArticleContainer: FC = () => {
                 ) : (
                     <InfiniteScroll
                         dataLength={articles?.length}
-                        hasMore={articles.length < data?.count}
+                        hasMore={articles?.length < data?.count}
                         className={isEmpty(articles) ? '' : 'pb-5'}
                         loader={
                             <div className="mt-5">

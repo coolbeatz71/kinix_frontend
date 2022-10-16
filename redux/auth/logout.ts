@@ -1,10 +1,10 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { authSlice } from '.';
 import api from 'services/axios';
+import { userSlice } from '@redux/user';
+import { IUnknownObject } from '@interfaces/app';
 import { AppDispatch, persistor } from 'redux/store';
 import { API_TOKEN, USER_DATA } from '@constants/platform';
-import { IUnknownObject } from '@interfaces/app';
-import { authSlice } from '.';
-import { userSlice } from '@redux/user';
 
 const logoutAction = createAsyncThunk('auth/logout', async (params: { dispatch: AppDispatch }, { rejectWithValue }) => {
     const { dispatch } = params;
@@ -19,7 +19,7 @@ const logoutAction = createAsyncThunk('auth/logout', async (params: { dispatch: 
         localStorage.removeItem(USER_DATA);
         localStorage.removeItem(API_TOKEN);
 
-        return response.data;
+        return response;
     } catch (error) {
         return rejectWithValue(error);
     }

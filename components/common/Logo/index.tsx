@@ -10,7 +10,7 @@ interface ILogoProps {
 const Logo: FC<ILogoProps> = ({ className, canRedirect = false }) =>
     canRedirect ? (
         <Link href={HOME_PATH}>
-            <a aria-label="kiinox-logo">
+            <a aria-label="kiinox-logo" rel="noreferrer noopener">
                 <div className={className} />
             </a>
         </Link>

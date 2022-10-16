@@ -3,6 +3,7 @@ import { ISignUpData } from '@interfaces/auth';
 import api from 'services/axios';
 import { authSlice } from '.';
 import { AppDispatch } from 'redux/store';
+import { IUnknownObject } from '@interfaces/app';
 
 export const resetSignUpAction =
     () =>
@@ -12,8 +13,8 @@ export const resetSignUpAction =
 
 const signUpAction = createAsyncThunk('auth/signup', async (params: ISignUpData, { rejectWithValue }) => {
     try {
-        const { data } = await api.post('/auth/signup', params);
-        return data;
+        const response: IUnknownObject = await api.post('/auth/signup', params);
+        return response;
     } catch (error) {
         return rejectWithValue(error);
     }

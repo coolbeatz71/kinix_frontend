@@ -17,6 +17,9 @@
 
     [data-text='title'] {
         font-family: Poppins;
+        &:hover {
+            text-decoration: underline;
+        }
     }
 
     &__overlay {

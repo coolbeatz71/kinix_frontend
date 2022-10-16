@@ -49,7 +49,9 @@ const SideDrawer: FC<ISideDrawerProps> = ({ open, setOpen }) => {
                             onClick={handleCloseDrawer}
                             className={styles.sidedrawer__menu__sub__items}
                         >
-                            <Link href={item.href}>{t(item.text)}</Link>
+                            <Link href={item.href} prefetch={false}>
+                                {t(item.text)}
+                            </Link>
                         </Item>
                     ))}
                 </SubMenu>
@@ -92,8 +94,8 @@ const SideDrawer: FC<ISideDrawerProps> = ({ open, setOpen }) => {
 
     return (
         <Drawer
+            open={open}
             destroyOnClose
-            visible={open}
             closable={false}
             placement="left"
             data-theme={value}
@@ -114,7 +116,9 @@ const SideDrawer: FC<ISideDrawerProps> = ({ open, setOpen }) => {
                     className={styles.sidedrawer__menu__items}
                     icon={<HomeFilled />}
                 >
-                    <Link href={HOME_PATH}>{t('home')}</Link>
+                    <Link href={HOME_PATH} prefetch={false}>
+                        {t('home')}
+                    </Link>
                 </Item>
                 {renderSections()}
             </Menu>

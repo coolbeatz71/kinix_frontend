@@ -21,7 +21,7 @@ const SingleArticlePage: NextPage<ServerPropsType> = ({ error, data }) => {
             title={(data as IArticle)?.title || t('articles')}
         >
             {!isEmpty(error) ? (
-                <ServerError onRefresh={() => reload()} />
+                <ServerError error={error} onRefresh={() => reload()} />
             ) : (
                 <SingleArticleContainer article={data as IArticle} />
             )}

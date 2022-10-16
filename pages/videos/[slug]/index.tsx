@@ -14,7 +14,7 @@ const SingleVideoPage: NextPage<ServerPropsType> = ({ error, data }) => {
     const { t } = useTranslation();
     const { reload } = useRouter();
 
-    const videoThumbnail = getYoutubeVideoThumbnail((data as IVideo)?.link);
+    const videoThumbnail = getYoutubeVideoThumbnail((data as IVideo)?.link) as string;
 
     return (
         <Layout
@@ -24,7 +24,7 @@ const SingleVideoPage: NextPage<ServerPropsType> = ({ error, data }) => {
             title={(data as IVideo)?.title || t('videos')}
         >
             {!isEmpty(error) ? (
-                <ServerError onRefresh={() => reload()} />
+                <ServerError error={error} onRefresh={() => reload()} />
             ) : (
                 <SingleVideoContainer video={data as IVideo} />
             )}

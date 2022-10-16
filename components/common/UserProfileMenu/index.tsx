@@ -2,13 +2,14 @@ import React, { FC, useEffect } from 'react';
 import { Avatar, Col, Menu, Row, Typography, Spin, notification } from 'antd';
 import { UserOutlined, SettingOutlined, LogoutOutlined, LoadingOutlined } from '@ant-design/icons';
 import Link from 'next/link';
-import useDarkLight from '@hooks/useDarkLight';
+import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
+import useDarkLight from '@hooks/useDarkLight';
 import { IRootState } from '@redux/reducers';
-import { getBgColor } from '@helpers/getBgColor';
 import logoutAction from '@redux/auth/logout';
 import { useAppDispatch } from '@redux/store';
+import { getBgColor } from '@helpers/getBgColor';
 import { HOME_PATH, SETTING_PATH } from '@constants/paths';
 
 import styles from './index.module.scss';
@@ -25,6 +26,7 @@ export interface IUserProfileMenuProps {
 }
 
 const UserProfileMenu: FC<IUserProfileMenuProps> = ({ avatar, email, phoneNumber, userName, setOpenDropdown }) => {
+    const { replace } = useRouter();
     const { t } = useTranslation();
     const { value } = useDarkLight();
     const dispatch = useAppDispatch();
@@ -45,7 +47,7 @@ const UserProfileMenu: FC<IUserProfileMenuProps> = ({ avatar, email, phoneNumber
         dispatch(logoutAction({ dispatch })).then((res) => {
             if (res.type === 'auth/logout/fulfilled') {
                 setOpenDropdown(false);
-                window.location.href = HOME_PATH;
+                replace(HOME_PATH);
             }
         });
     };
@@ -68,7 +70,9 @@ const UserProfileMenu: FC<IUserProfileMenuProps> = ({ avatar, email, phoneNumber
                 </Col>
             </Row>
             <Item icon={<SettingOutlined />}>
-                <Link href={SETTING_PATH}>{t('settings')}</Link>
+                <Link href={SETTING_PATH} prefetch={false}>
+                    {t('settings')}
+                </Link>
             </Item>
             <Item danger data-signout icon={<LogoutOutlined />} onClick={onLogout}>
                 {loading ? <Spin indicator={<LoadingOutlined />} /> : t('logout')}

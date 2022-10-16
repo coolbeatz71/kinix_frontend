@@ -20,11 +20,11 @@ const VideoAction: FC<IVideoActionProps> = ({ videoId, context, children }) => {
         <Fragment>
             <Dropdown
                 arrow
-                visible={openMenu}
+                open={openMenu}
                 trigger={['click']}
                 placement="topRight"
                 className={styles.videoAction}
-                onVisibleChange={(v) => setOpenMenu(v)}
+                onOpenChange={(v) => setOpenMenu(v)}
                 overlay={
                     <Menu className={styles.videoAction__menu}>
                         <PlaylistModal videoId={videoId} closeMenu={() => setOpenMenu(false)} />

@@ -26,7 +26,7 @@ const AlaUneArticleCard: FC<IAlaUeArticleProps> = ({ article, priority = EnumAla
     const link = `${ALL_ARTICLES_PATH}/${article?.slug}`;
 
     return (
-        <Link href={link} passHref>
+        <Link href={link} passHref prefetch={false}>
             <div data-theme={value} className={styles.alaUneArticleCard}>
                 <Card
                     hoverable
@@ -36,6 +36,7 @@ const AlaUneArticleCard: FC<IAlaUeArticleProps> = ({ article, priority = EnumAla
                         priority !== EnumAlaUnePriority.FIRST && (
                             <div className={styles.alaUneArticleCard__cover}>
                                 <Image
+                                    priority
                                     width={100}
                                     height={56}
                                     alt={article?.slug}
@@ -49,7 +50,12 @@ const AlaUneArticleCard: FC<IAlaUeArticleProps> = ({ article, priority = EnumAla
                     {priority === EnumAlaUnePriority.FIRST ? (
                         <Fragment>
                             <div className={styles.alaUneArticleCard__overlay}>
-                                <Image alt={article?.slug} src={article?.images?.[0] as string} layout="fill" />
+                                <Image
+                                    priority
+                                    layout="fill"
+                                    alt={article?.slug}
+                                    src={article?.images?.[0] as string}
+                                />
                             </div>
                             <div className={styles.alaUneArticleCard__content}>
                                 <div className={styles.alaUneArticleCard__content__header}>
@@ -72,7 +78,7 @@ const AlaUneArticleCard: FC<IAlaUeArticleProps> = ({ article, priority = EnumAla
                                     </Paragraph>
 
                                     <Button size="large">
-                                        <Link href={link} passHref>
+                                        <Link href={link} passHref prefetch={false}>
                                             {t('readMore')}
                                         </Link>
                                     </Button>
@@ -103,7 +109,7 @@ const AlaUneArticleCard: FC<IAlaUeArticleProps> = ({ article, priority = EnumAla
                                 </Paragraph>
 
                                 <Button size="large" ghost>
-                                    <Link href={link} passHref>
+                                    <Link href={link} passHref prefetch={false}>
                                         {t('readMore')}
                                     </Link>
                                 </Button>

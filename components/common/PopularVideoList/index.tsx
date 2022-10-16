@@ -20,7 +20,7 @@ const PopularVideoList: FC = () => {
     return (
         <Fragment>
             {error ? (
-                <ServerError onRefresh={() => dispatch(getPopularVideosAction())} />
+                <ServerError error={error} onRefresh={() => dispatch(getPopularVideosAction())} />
             ) : loading ? (
                 <VideoListSkeleton size={8} isPopular />
             ) : (

@@ -1,6 +1,26 @@
 @import 'colors.scss';
 @import 'dimensions.scss';
 
+body {
+    width: 100% !important;
+    overflow-y: auto;
+
+    &[class~='light-mode'] {
+        background: url('/bg-light.svg');
+
+        background-size: cover;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+    }
+    &[class~='dark-mode'] {
+        background: url('/bg-dark.svg');
+
+        background-size: cover;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+    }
+}
+
 textarea {
     &::-webkit-input-placeholder {
         font-size: 14px;

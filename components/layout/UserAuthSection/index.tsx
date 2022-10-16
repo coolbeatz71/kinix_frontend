@@ -1,11 +1,11 @@
 import React, { FC } from 'react';
 import { Space, Button } from 'antd';
+import { useDispatch } from 'react-redux';
 import { isDark } from '@constants/colors';
+import { useTranslation } from 'react-i18next';
+import useDarkLight from '@hooks/useDarkLight';
 import { EnumAuthContext } from '@constants/auth-context';
 import { showAuthDialogAction } from '@redux/auth/showDialog';
-import { useTranslation } from 'react-i18next';
-import { useDispatch } from 'react-redux';
-import useDarkLight from '@hooks/useDarkLight';
 
 const UserAuthSection: FC = () => {
     const { t } = useTranslation();
@@ -13,7 +13,7 @@ const UserAuthSection: FC = () => {
     const { value } = useDarkLight();
 
     return (
-        <Space size="middle">
+        <Space>
             <Button
                 ghost
                 type={isDark(value) ? 'default' : 'primary'}

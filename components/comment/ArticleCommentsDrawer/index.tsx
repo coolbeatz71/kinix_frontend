@@ -6,6 +6,7 @@ import { CloseCircleOutlined } from '@ant-design/icons';
 import { Col, Drawer, Form, notification, Row } from 'antd';
 import { IArticle } from '@interfaces/api';
 import { IRootState } from '@redux/reducers';
+import getPayload from '@helpers/getPayload';
 import { useAppDispatch } from '@redux/store';
 import { EnumFormContext } from '@interfaces/app';
 import { ICommentData } from '@interfaces/comments';
@@ -59,7 +60,7 @@ const ArticleCommentsDrawer: FC<IArticleCommentsDrawerProps> = ({ article, openD
                     key: 'success',
                     message: 'Youpi!',
                     placement: 'topRight',
-                    description: t('commentAddedSuccess'),
+                    description: getPayload(res).message,
                 });
             }
         });
@@ -69,7 +70,7 @@ const ArticleCommentsDrawer: FC<IArticleCommentsDrawerProps> = ({ article, openD
         <Drawer
             width={520}
             placement="right"
-            visible={openDrawer}
+            open={openDrawer}
             onClose={onCloseDrawer}
             title={
                 <Row justify="space-between" align="middle">

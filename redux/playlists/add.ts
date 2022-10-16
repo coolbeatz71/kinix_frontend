@@ -1,3 +1,4 @@
+import { IUnknownObject } from '@interfaces/app';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import api from 'services/axios';
 
@@ -10,7 +11,7 @@ interface IParams {
 const addVideoToPlaylistAction = createAsyncThunk('playlists/add', async (params: IParams, { rejectWithValue }) => {
     const { slug, videoId, title } = params;
     try {
-        const { data } = await api.post(
+        const response = await api.post(
             '/playlists',
             {
                 title,
@@ -18,7 +19,7 @@ const addVideoToPlaylistAction = createAsyncThunk('playlists/add', async (params
             },
             { params: { slug } },
         );
-        return data;
+        return response as IUnknownObject;
     } catch (error) {
         return rejectWithValue(error);
     }

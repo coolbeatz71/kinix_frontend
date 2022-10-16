@@ -16,7 +16,7 @@ const ArticleTagsList: FC<IArticleTagsProps> = ({ tags }) => (
                 const link = `${ALL_ARTICLES_PATH}?tag=${tag}`;
                 return (
                     <Tag key={tag}>
-                        <Link href={link} passHref>{`#${tag}`}</Link>
+                        <Link href={link} passHref prefetch={false}>{`#${tag}`}</Link>
                     </Tag>
                 );
             })}

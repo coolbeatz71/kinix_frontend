@@ -1,17 +1,16 @@
 import React, { FC, useState } from 'react';
-import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { Avatar, Button, Col, List, Row, Tooltip, Modal, notification } from 'antd';
 import { EditFilled, DeleteFilled, ExclamationCircleOutlined, UserOutlined } from '@ant-design/icons';
-
 import { IComment } from '@interfaces/api';
-import { IRootState } from '@redux/reducers';
+import getPayload from '@helpers/getPayload';
 import { useAppDispatch } from '@redux/store';
 import { getBgColor } from '@helpers/getBgColor';
 import getAllArticleCommentsAction from '@redux/comments/all';
 import deleteArticleCommentAction from '@redux/comments/delete';
 import UpdateArticleCommentModal from '@components/modal/UpdateArticleCommentModal';
 
+const { Item } = List;
 const { confirm } = Modal;
 
 export interface IArticleCommentProps {
@@ -24,9 +23,6 @@ export interface IArticleCommentProps {
 const ArticleComment: FC<IArticleCommentProps> = ({ slug, comment, createdTime, isCommentOwner }) => {
     const { t } = useTranslation();
     const dispatch = useAppDispatch();
-    const {
-        delete: { error },
-    } = useSelector(({ comments }: IRootState) => comments);
     const [openUpdateModal, setOpenUpdateModal] = useState<boolean>(false);
 
     const showDeleteConfirm = (): void => {
@@ -50,7 +46,7 @@ const ArticleComment: FC<IArticleCommentProps> = ({ slug, comment, createdTime, 
                             key: 'success',
                             message: 'Youpi!',
                             placement: 'topRight',
-                            description: t('commentDeletedSuccess'),
+                            description: getPayload(res).message,
                         });
                     } else if (res.type === 'comments/delete/rejected') {
                         notification.error({
@@ -58,7 +54,7 @@ const ArticleComment: FC<IArticleCommentProps> = ({ slug, comment, createdTime, 
                             key: 'error',
                             message: 'Youpi!',
                             placement: 'topRight',
-                            description: error?.message,
+                            description: getPayload(res).message,
                         });
                     }
                 });
@@ -67,7 +63,7 @@ const ArticleComment: FC<IArticleCommentProps> = ({ slug, comment, createdTime, 
     };
 
     return (
-        <List.Item
+        <Item
             actions={
                 isCommentOwner
                     ? [
@@ -95,7 +91,7 @@ const ArticleComment: FC<IArticleCommentProps> = ({ slug, comment, createdTime, 
                     : undefined
             }
         >
-            <List.Item.Meta
+            <Item.Meta
                 title={
                     <Row justify="space-between" align="middle">
                         <Col>{comment.user?.userName}</Col>
@@ -120,7 +116,7 @@ const ArticleComment: FC<IArticleCommentProps> = ({ slug, comment, createdTime, 
                 openModal={openUpdateModal}
                 setOpenModal={setOpenUpdateModal}
             />
-        </List.Item>
+        </Item>
     );
 };
 

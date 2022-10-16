@@ -51,7 +51,7 @@ const SingleVideoContainer: FC<ISingleVideoContainerProps> = ({ video }) => {
     return (
         <Fragment>
             {error ? (
-                <ServerError onRefresh={() => dispatch(getYoutubeVideoInfoAction(video.link))} />
+                <ServerError error={error} onRefresh={() => dispatch(getYoutubeVideoInfoAction(video.link))} />
             ) : loading ? (
                 <SingleVideoSkeleton />
             ) : (

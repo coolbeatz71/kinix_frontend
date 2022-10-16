@@ -68,10 +68,10 @@ const AuthModal: FC<Props> = ({
                     },
                 })}
             <Modal
+                open={open}
                 footer={null}
                 destroyOnClose
                 title={_title}
-                visible={open}
                 closeIcon={closeIcon}
                 style={{ top: 16 }}
                 className={styles[icon ? 'modal_icon' : 'modal']}

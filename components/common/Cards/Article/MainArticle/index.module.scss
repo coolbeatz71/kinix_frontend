@@ -60,6 +60,9 @@
             font-size: 3rem;
             font-weight: 600;
             font-family: Poppins;
+            &:hover {
+                text-decoration: underline;
+            }
         }
         [data-text='description'] {
             font-size: 1rem;

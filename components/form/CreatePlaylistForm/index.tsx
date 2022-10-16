@@ -2,6 +2,7 @@ import React, { FC, useState } from 'react';
 import { Button, Form, Input, message } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { titleValidator } from './validator';
+import getPayload from '@helpers/getPayload';
 import { useAppDispatch } from '@redux/store';
 import getAllPlaylistsAction from '@redux/playlists/all';
 import FloatTextInput from '@components/common/TextInput';
@@ -27,12 +28,12 @@ const CreatePlaylistForm: FC<ICreatePlaylistFormProps> = ({ videoId, setOpenModa
         setLoading(true);
         dispatch(addVideoToPlaylistAction({ title, videoId })).then((res) => {
             setLoading(false);
-            if (res.type === 'playlists/add/rejected') message.error(res.payload?.message);
+            if (res.type === 'playlists/add/rejected') message.error(getPayload(res)?.message);
             else if (res.type === 'playlists/add/fulfilled') {
                 setOpenPlaylistForm(false);
                 setOpenModal(false);
                 dispatch(getAllPlaylistsAction());
-                message.success(t('playlistAddedSuccess'));
+                message.success(getPayload(res).message);
             }
         });
     };

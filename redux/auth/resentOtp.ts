@@ -1,8 +1,8 @@
-import { IUnknownObject } from '@interfaces/app';
-import { AppDispatch } from '@redux/store';
-import { AnyAction, createAsyncThunk } from '@reduxjs/toolkit';
-import api from 'services/axios';
 import { authSlice } from '.';
+import api from 'services/axios';
+import { AppDispatch } from '@redux/store';
+import { IUnknownObject } from '@interfaces/app';
+import { AnyAction, createAsyncThunk } from '@reduxjs/toolkit';
 
 interface IParams {
     credential: string;

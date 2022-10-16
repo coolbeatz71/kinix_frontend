@@ -1,3 +1,4 @@
+import { IUnknownObject } from '@interfaces/app';
 import { AppDispatch } from '@redux/store';
 import { AnyAction, createAsyncThunk } from '@reduxjs/toolkit';
 import api from 'services/axios';
@@ -11,8 +12,8 @@ export const resetDeletePlaylistAction =
 
 const deletePlaylistAction = createAsyncThunk('playlists/delete', async (slug: string, { rejectWithValue }) => {
     try {
-        const { data } = await api.delete(`/playlists/${slug}`);
-        return data;
+        const response: IUnknownObject = await api.delete(`/playlists/${slug}`);
+        return response;
     } catch (error) {
         return rejectWithValue(error);
     }

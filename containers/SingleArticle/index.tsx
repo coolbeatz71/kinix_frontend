@@ -34,12 +34,13 @@ const SingleArticleContainer: FC<ISingleArticleContainerProps> = ({ article }) =
             dispatch(getUserLikesAction());
             dispatch(getUserBookmarksAction());
         }
-    }, [dispatch, user.id]);
+    }, [dispatch, user?.id]);
 
     return (
         <Fragment>
             {error ? (
                 <ServerError
+                    error={error}
                     onRefresh={() => dispatch(getRelatedArticlesAction({ slug: article?.slug, tags: article?.tags }))}
                 />
             ) : loading ? (
