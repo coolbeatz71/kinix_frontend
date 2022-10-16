@@ -51,6 +51,9 @@
         [data-text='title'] {
             height: 4rem;
             margin-bottom: 0;
+            &:hover {
+                text-decoration: underline;
+            }
         }
     }
 

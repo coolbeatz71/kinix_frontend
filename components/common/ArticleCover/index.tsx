@@ -82,9 +82,9 @@ const ArticleCover: FC<IArticleCoverProps> = ({ user, article }) => {
                 {lg && (
                     <Col md={24} lg={3} className={styles.articleCover__content__like}>
                         {likeOwner ? (
-                            <HeartFilled data-is-my-like={likeOwner} onClick={() => unlikeArticle()} />
+                            <HeartFilled data-is-my-like={Boolean(likeOwner)} onClick={() => unlikeArticle()} />
                         ) : (
-                            <HeartOutlined data-is-my-like={likeOwner} onClick={() => likeArticle()} />
+                            <HeartOutlined data-is-my-like={Boolean(likeOwner)} onClick={() => likeArticle()} />
                         )}
                         <Text data-likes-value>{Number(like) > 0 && `${likes} ${t('likes')}`}</Text>
                         <Text data-read>

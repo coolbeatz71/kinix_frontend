@@ -70,7 +70,7 @@
             border-left: 0.4rem solid $grey;
         }
         [data-article-body='true'] {
-            color: $white;
+            color: $white !important;
         }
         [data-back-top='true'] {
             [class~='ant-back-top-content'] {

@@ -4,8 +4,8 @@
 .articleCardVertical {
     &__header {
         display: flex;
-        justify-content: space-between;
         margin-bottom: $padding;
+        justify-content: space-between;
         [class~='ant-typography'] {
             font-size: 8.5pt;
         }
@@ -52,8 +52,9 @@
     [class~='ant-card-meta-title'] {
         height: 3rem;
         font-size: 12pt;
-        font-weight: 600;
+        font-weight: 500;
         white-space: unset;
+        font-family: Poppins;
         margin-bottom: 5px !important;
     }
 
@@ -75,6 +76,9 @@
         [class~='ant-card-meta-title'] {
             a {
                 color: $black !important;
+                &:hover {
+                    text-decoration: underline;
+                }
             }
         }
 
@@ -101,6 +105,9 @@
         [class~='ant-card-meta-title'] {
             a {
                 color: $white !important;
+                &:hover {
+                    text-decoration: underline;
+                }
             }
         }
 

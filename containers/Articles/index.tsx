@@ -110,10 +110,10 @@ const ArticleContainer: FC = () => {
             {isEmpty(query) && (
                 <Fragment>
                     <div className="mt-5">
-                        <PopularArticleCarousel />
+                        <AlaUneArticleSection canViewAll={false} />
                     </div>
                     <div className="mt-5">
-                        <AlaUneArticleSection canViewAll={false} />
+                        <PopularArticleCarousel />
                     </div>
                 </Fragment>
             )}

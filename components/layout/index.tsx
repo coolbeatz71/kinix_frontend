@@ -1,26 +1,26 @@
 import React, { FC, ReactElement, useCallback, useContext, useEffect, useState } from 'react';
 import Head from 'next/head';
-import { Layout as AntLayout, Grid } from 'antd';
-import getPlatformUrl from '@helpers/getPlatformUrl';
 import { isEmpty } from 'lodash';
 import { useRouter } from 'next/router';
-import getImageUrl from '@helpers/getImageUrl';
+import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
+import { Layout as AntLayout, Grid } from 'antd';
+import Footer from './Footer';
+import Header from './Header';
 import SideNav from './SideNav';
 import SideDrawer from './SideDrawer';
-import Header from './Header';
-import DarkModeToggler from '@components/common/DarkModeToggler';
-import useDarkLight from '@hooks/useDarkLight';
-import { PRIMARY, WARNING } from '@constants/colors';
-import { APP_AUTHOR, APP_NAME, APP_TWITTER_HANDLE } from '@constants/platform';
-import { useTranslation } from 'react-i18next';
-import Footer from './Footer';
 import { IRootState } from 'redux/reducers';
-import { useSelector } from 'react-redux';
 import { useAppDispatch } from 'redux/store';
-import getCurrentUserAction from 'redux/user/getCurrentUser';
+import getImageUrl from '@helpers/getImageUrl';
+import useDarkLight from '@hooks/useDarkLight';
 import { ICurrentUser } from '@interfaces/user';
+import getPlatformUrl from '@helpers/getPlatformUrl';
+import { PRIMARY, WARNING } from '@constants/colors';
 import getLocalUserData from '@helpers/getLocalUserData';
 import CategoriesContext from '@context/video-categories';
+import getCurrentUserAction from 'redux/user/getCurrentUser';
+import DarkModeToggler from '@components/common/DarkModeToggler';
+import { APP_AUTHOR, APP_NAME, APP_TWITTER_HANDLE } from '@constants/platform';
 
 import styles from './index.module.scss';
 

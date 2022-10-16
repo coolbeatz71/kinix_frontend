@@ -2,14 +2,18 @@ import React, { useEffect } from 'react';
 import dayjs from 'dayjs';
 import en from 'dayjs/locale/en';
 import fr from 'dayjs/locale/fr';
-import relativeTime from 'dayjs/plugin/relativeTime';
-
 import NProgress from 'nprogress';
-import Wrapper from 'redux/store';
-import { AppProps, AppContext } from 'next/app';
 import { Router } from 'next/router';
-import { persistor } from '@redux/store';
+import { AppProps, AppContext } from 'next/app';
+import relativeTime from 'dayjs/plugin/relativeTime';
 import { PersistGate } from 'redux-persist/integration/react';
+import Wrapper from 'redux/store';
+import locales from '@locales/index';
+import { persistor } from '@redux/store';
+import { IUnknownObject } from '@interfaces/app';
+import getCategories from '@helpers/getCategories';
+import { getLanguage } from '@helpers/getLanguage';
+import CategoriesContext from '@context/video-categories';
 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -18,12 +22,6 @@ import 'styles/coreui.min.css';
 import 'styles/global.scss';
 import 'styles/404.scss';
 import 'styles/nprogress.scss';
-
-import locales from '@locales/index';
-import { getLanguage } from '@helpers/getLanguage';
-import getCategories from '@helpers/getCategories';
-import { IUnknownObject } from '@interfaces/app';
-import CategoriesContext from '@context/video-categories';
 
 type AppPropsWithError = AppProps & { err: unknown } & IUnknownObject;
 
