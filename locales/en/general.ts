@@ -55,4 +55,5 @@ export const general = {
     createPlaylist: 'Create',
     newPlaylist: 'Create new playlist',
     noPlaylistFound: 'No playlist found',
+    confirmation: 'Confirmation',
 };

@@ -1,4 +1,5 @@
 import React, { FC, ReactNode, useState } from 'react';
+import dynamic from 'next/dynamic';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { Button, Col, Popover, Row } from 'antd';
@@ -7,9 +8,10 @@ import SummaryHeader from '../SummaryHeader';
 import IRateSummary from '@interfaces/rates';
 import { IRootState } from '@redux/reducers';
 import { useAppDispatch } from '@redux/store';
-import VideoRatingModal from '@components/modal/VideoRatingModal';
 import getSingleVideoRateSummaryAction from '@redux/ratings/summary';
-import RatingSummarySkeleton from '@components/skeleton/RatingSummary';
+
+const DynamicVideoRatingModal = dynamic(() => import('@components/modal/VideoRatingModal'));
+const DynamicRatingSummarySkeleton = dynamic(() => import('@components/skeleton/RatingSummary'));
 
 import styles from './index.module.scss';
 
@@ -41,7 +43,7 @@ const RatingSummaryPopover: FC<IRatingSummaryPopoverProps> = ({ slug, children, 
                     <Row data-content justify="space-between">
                         <Col span={24}>
                             {loading ? (
-                                <RatingSummarySkeleton />
+                                <DynamicRatingSummarySkeleton />
                             ) : (
                                 <div className="d-flex flex-column">
                                     <SummaryHeader ratings={ratings as IRateSummary} />
@@ -69,7 +71,11 @@ const RatingSummaryPopover: FC<IRatingSummaryPopoverProps> = ({ slug, children, 
                             </Button>
                         </Col>
                     </Row>
-                    <VideoRatingModal slug={slug} openModal={openRatingModal} setOpenModal={setOpenRatingModal} />
+                    <DynamicVideoRatingModal
+                        slug={slug}
+                        openModal={openRatingModal}
+                        setOpenModal={setOpenRatingModal}
+                    />
                 </div>
             }
         >

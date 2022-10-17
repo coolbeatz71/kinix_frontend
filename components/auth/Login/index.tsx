@@ -1,4 +1,5 @@
 import React, { FC, useEffect, useState } from 'react';
+import dynamic from 'next/dynamic';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { Button, Divider, Form, Input } from 'antd';
@@ -9,13 +10,14 @@ import { ILoginData } from '@interfaces/auth';
 import { IUnknownObject } from '@interfaces/app';
 import AuthModal from '@components/modal/AuthModal';
 import { CHECK_CONFIRM_EMAIL } from '@constants/api';
-import ErrorAlert from '@components/common/ErrorAlert';
 import AccountConfirmation from '../AccountConfirmation';
 import { EnumAuthContext } from '@constants/auth-context';
 import FloatTextInput from '@components/common/TextInput';
 import { showAuthDialogAction } from 'redux/auth/showDialog';
 import loginAction, { resetLoginAction } from 'redux/auth/login';
 import emailUserNameValidator, { passwordValidator } from './validation';
+
+const DynamicErrorAlert = dynamic(() => import('@components/common/ErrorAlert'));
 
 import styles from './index.module.scss';
 
@@ -98,7 +100,7 @@ const LoginModal: FC = () => {
                         </FloatTextInput>
                     </Item>
 
-                    <ErrorAlert error={error} showIcon closable banner />
+                    <DynamicErrorAlert error={error} showIcon closable banner />
 
                     <Button
                         block

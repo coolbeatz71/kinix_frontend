@@ -1,21 +1,24 @@
 import React, { FC, useCallback, useEffect } from 'react';
 import numeral from 'numeral';
+import dynamic from 'next/dynamic';
 import { useSelector } from 'react-redux';
+import { Col, Drawer, Form, Row } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { CloseCircleOutlined } from '@ant-design/icons';
-import { Col, Drawer, Form, notification, Row } from 'antd';
 import { IArticle } from '@interfaces/api';
 import { IRootState } from '@redux/reducers';
 import getPayload from '@helpers/getPayload';
 import { useAppDispatch } from '@redux/store';
 import { EnumFormContext } from '@interfaces/app';
 import { ICommentData } from '@interfaces/comments';
-import ErrorAlert from '@components/common/ErrorAlert';
+import getNotification from '@helpers/getNotification';
 import addArticleCommentAction from '@redux/comments/add';
 import getAllArticleCommentsAction from '@redux/comments/all';
-import ArticleCommentList from '@components/lists/ArticleCommentList';
 import CreateArticleComment from '@components/form/CreateArticleComment';
-import ArticleCommentListSkeleton from '@components/skeleton/ArticleCommentList';
+
+const DynamicErrorAlert = dynamic(() => import('@components/common/ErrorAlert'));
+const DynamicArticleCommentList = dynamic(() => import('@components/lists/ArticleCommentList'));
+const DynamicCommentListSkeleton = dynamic(() => import('@components/skeleton/ArticleCommentList'));
 
 import styles from './index.module.scss';
 
@@ -55,13 +58,7 @@ const ArticleCommentsDrawer: FC<IArticleCommentsDrawerProps> = ({ article, openD
             if (res.type === 'comments/add/fulfilled') {
                 form.resetFields();
                 reloadArticleComments();
-                notification.success({
-                    maxCount: 1,
-                    key: 'success',
-                    message: 'Youpi!',
-                    placement: 'topRight',
-                    description: getPayload(res).message,
-                });
+                getNotification('success', getPayload(res).message);
             }
         });
     };
@@ -93,11 +90,11 @@ const ArticleCommentsDrawer: FC<IArticleCommentsDrawerProps> = ({ article, openD
             }
         >
             {error ? (
-                <ErrorAlert error={error} closable banner showIcon />
+                <DynamicErrorAlert error={error} closable banner showIcon />
             ) : loading ? (
-                <ArticleCommentListSkeleton />
+                <DynamicCommentListSkeleton />
             ) : (
-                <ArticleCommentList comments={comments.rows} article={article} />
+                <DynamicArticleCommentList comments={comments.rows} article={article} />
             )}
         </Drawer>
     );

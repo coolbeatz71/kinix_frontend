@@ -1,11 +1,13 @@
 import React, { FC } from 'react';
+import dynamic from 'next/dynamic';
 import { useTranslation } from 'react-i18next';
 import { Button, Form, FormInstance, Input } from 'antd';
 import { IComment } from '@interfaces/api';
 import { commentValidator } from './validators';
 import { ICommentData } from '@interfaces/comments';
-import ErrorAlert from '@components/common/ErrorAlert';
 import { EnumFormContext, IUnknownObject } from '@interfaces/app';
+
+const DynamicErrorAlert = dynamic(() => import('@components/common/ErrorAlert'));
 
 const { Item } = Form;
 const { TextArea } = Input;
@@ -41,7 +43,7 @@ const CreateArticleComment: FC<ICreateArticleCommentProps> = ({ loading, error, 
                 <TextArea size="large" autoSize={false} style={textAreaStyle} placeholder={t('addComment')} />
             </Item>
 
-            <ErrorAlert error={error} closable banner showIcon />
+            <DynamicErrorAlert error={error} closable banner showIcon />
 
             <div className="d-flex justify-content-end">
                 <Button htmlType="submit" type="primary" size="middle" loading={loading} disabled={loading}>

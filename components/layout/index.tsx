@@ -1,14 +1,12 @@
 import React, { FC, ReactElement, useCallback, useContext, useEffect, useState } from 'react';
 import Head from 'next/head';
+import dynamic from 'next/dynamic';
 import isEmpty from 'lodash/isEmpty';
 import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { Layout as AntLayout, Grid } from 'antd';
-import Footer from './Footer';
 import Header from './Header';
-import SideNav from './SideNav';
-import SideDrawer from './SideDrawer';
 import { IRootState } from 'redux/reducers';
 import { useAppDispatch } from 'redux/store';
 import getImageUrl from '@helpers/getImageUrl';
@@ -19,8 +17,12 @@ import { PRIMARY, WARNING } from '@constants/colors';
 import getLocalUserData from '@helpers/getLocalUserData';
 import CategoriesContext from '@context/video-categories';
 import getCurrentUserAction from 'redux/user/getCurrentUser';
-import DarkModeToggler from '@components/common/DarkModeToggler';
 import { APP_AUTHOR, APP_NAME, APP_TWITTER_HANDLE } from '@constants/platform';
+
+const DynamicFooter = dynamic(() => import('./Footer'));
+const DynamicSideNav = dynamic(() => import('./SideNav'));
+const DynamicSideDrawer = dynamic(() => import('./SideDrawer'));
+const DynamicDarkModeToggler = dynamic(() => import('@components/common/DarkModeToggler'));
 
 import styles from './index.module.scss';
 
@@ -28,29 +30,29 @@ const { Content } = AntLayout;
 const { useBreakpoint } = Grid;
 
 interface ILayoutProps {
-    children: ReactElement;
+    title?: string;
+    baseUrl?: string;
     isHome?: boolean;
+    isArticle?: boolean;
+    description?: string;
     showFooter?: boolean;
     showHeader?: boolean;
-    isArticle?: boolean;
-    isVideoCategory?: boolean;
-    title?: string;
     image?: string | null;
-    description?: string;
-    baseUrl?: string;
+    children: ReactElement;
+    isVideoCategory?: boolean;
 }
 
 const Layout: FC<ILayoutProps> = ({
-    baseUrl: _baseUrl,
     title,
     image,
+    children,
     description,
+    baseUrl: _baseUrl,
     showHeader = true,
-    isHome: _isHome = false,
     showFooter = true,
     isArticle = false,
+    isHome: _isHome = false,
     isVideoCategory = false,
-    children,
 }) => {
     const router = useRouter();
     const { lg } = useBreakpoint();
@@ -128,12 +130,12 @@ const Layout: FC<ILayoutProps> = ({
                 <meta name="msapplication-TileColor" content={WARNING} />
             </Head>
 
-            {lg && <DarkModeToggler />}
+            {lg && <DynamicDarkModeToggler />}
 
             {lg ? (
-                <SideNav open={openSidenav} collapsed={collapsedSidenav} setCollapsed={setCollapsedSidenav} />
+                <DynamicSideNav open={openSidenav} collapsed={collapsedSidenav} setCollapsed={setCollapsedSidenav} />
             ) : (
-                <SideDrawer open={openSideDrawer} setOpen={setOpenSideDrawer} />
+                <DynamicSideDrawer open={openSideDrawer} setOpen={setOpenSideDrawer} />
             )}
 
             <div className={styles.layout__main} data-show-header={showHeader}>
@@ -154,7 +156,7 @@ const Layout: FC<ILayoutProps> = ({
                 <Content className={styles.layout__main__content} data-sidenav-close={isSidenavClose}>
                     {children}
                 </Content>
-                {showFooter && <Footer isSidenavClose={isSidenavClose} />}
+                {showFooter && <DynamicFooter isSidenavClose={isSidenavClose} />}
             </div>
         </AntLayout>
     );

@@ -10,7 +10,10 @@
         "lint": "eslint **/*.tsx **/*.ts",
         "lint:fix": "eslint **/*.tsx **/*.ts --fix",
         "prettier": "prettier --check --config package.json **/*.tsx **/*.ts",
-        "prettier:fix": "prettier --write **/*.tsx **/*.ts"
+        "prettier:fix": "prettier --write **/*.tsx **/*.ts",
+        "analyze": "cross-env ANALYZE=true next build",
+        "analyze:server": "cross-env BUNDLE_ANALYZE=server next build",
+        "analyze:browser": "cross-env BUNDLE_ANALYZE=browser next build"
     },
     "dependencies": {
         "@reduxjs/toolkit": "^1.8.1",
@@ -61,6 +64,7 @@
         "validator": "^13.7.0"
     },
     "devDependencies": {
+        "@next/bundle-analyzer": "^12.3.1",
         "@next/eslint-plugin-next": "^11.1.0",
         "@types/lodash": "^4.14.154",
         "@types/nprogress": "^0.2.0",
@@ -69,6 +73,7 @@
         "@types/validator": "^13.7.2",
         "@typescript-eslint/eslint-plugin": "^4.29.3",
         "@typescript-eslint/parser": "^4.29.3",
+        "cross-env": "^7.0.3",
         "enforce-branch-name": "^1.0.1",
         "eslint": "^7.32.0",
         "eslint-config-prettier": "^8.3.0",

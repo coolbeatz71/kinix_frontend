@@ -2,6 +2,9 @@ const withPWA = require('next-pwa');
 const runtimeCaching = require('next-pwa/cache');
 const withPlugins = require('next-compose-plugins');
 const withAntdLess = require('next-plugin-antd-less');
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+    enabled: process.env.ANALYZE === 'true',
+});
 
 const isProduction = process.env.NODE_ENV === 'production';
 
@@ -24,17 +27,11 @@ const antdLessConfig = {
     },
 };
 
-module.exports = withPlugins(
-    [
-        [withPWA, pwaConfig],
-        [withAntdLess, antdLessConfig],
-    ],
-    {
-        webpack(config) {
-            return config;
-        },
-        images: {
-            domains: ['res.cloudinary.com', 'img.youtube.com'],
-        },
+module.exports = withPlugins([[withPWA, pwaConfig], [withAntdLess, antdLessConfig], [withBundleAnalyzer]], {
+    webpack(config) {
+        return config;
     },
-);
+    images: {
+        domains: ['res.cloudinary.com', 'img.youtube.com'],
+    },
+});

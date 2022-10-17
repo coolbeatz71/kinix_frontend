@@ -11,7 +11,7 @@ import { useAppDispatch } from '@redux/store';
 import isSingleArticleLikeOwner from '@helpers/isLikeOwner';
 import { HeartFilled, HeartOutlined } from '@ant-design/icons';
 import { IArticle, IUser } from '@interfaces/api';
-import ArticleAction from '../../actions/SingleArticleAction';
+import SingleArticleAction from '../../actions/SingleArticleAction';
 import addArticleLikeAction from '@redux/likes/add';
 import getArticleLikesAction from '@redux/likes/all';
 import removeArticleLikeAction from '@redux/likes/unlike';
@@ -98,7 +98,7 @@ const ArticleCover: FC<IArticleCoverProps> = ({ user, article }) => {
                 {!lg && (
                     <Row className={styles.articleCover__content__action}>
                         <Col span={16} className={styles.articleCover__content__action__left}>
-                            <ArticleAction article={article} />
+                            <SingleArticleAction article={article} />
                         </Col>
                         <Col span={8} className={styles.articleCover__content__action__right}>
                             <Text data-read>

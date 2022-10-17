@@ -1,22 +1,24 @@
 import React, { FC } from 'react';
 import { Col, Row } from 'antd';
-import AlaUneArticleCardSkeleton from '../AlaUneArticleCard';
-import TrendingArticleSkeleton from '../TrendingArticleCard';
+import dynamic from 'next/dynamic';
 import { EnumAlaUnePriority } from '@constants/alaune-article';
+
+const DynamicAlaUneArticleCardSkeleton = dynamic(() => import('../AlaUneArticleCard'));
+const DynamicTrendingArticleSkeleton = dynamic(() => import('../TrendingArticleCard'));
 
 const AlaUneArticleListSkeleton: FC = () => {
     return (
         <Row gutter={[16, 48]}>
             <Col xs={24} sm={24} md={8}>
-                <AlaUneArticleCardSkeleton priority={EnumAlaUnePriority.FIRST} />
+                <DynamicAlaUneArticleCardSkeleton priority={EnumAlaUnePriority.FIRST} />
             </Col>
             <Col xs={24} sm={24} md={8}>
-                <AlaUneArticleCardSkeleton priority={EnumAlaUnePriority.SECOND} />
+                <DynamicAlaUneArticleCardSkeleton priority={EnumAlaUnePriority.SECOND} />
             </Col>
             <Col xs={24} sm={24} md={8}>
-                <TrendingArticleSkeleton />
-                <TrendingArticleSkeleton />
-                <TrendingArticleSkeleton />
+                <DynamicTrendingArticleSkeleton />
+                <DynamicTrendingArticleSkeleton />
+                <DynamicTrendingArticleSkeleton />
             </Col>
         </Row>
     );

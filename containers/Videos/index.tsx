@@ -1,4 +1,5 @@
 import React, { FC, useEffect, useState } from 'react';
+import dynamic from 'next/dynamic';
 import isEmpty from 'lodash/isEmpty';
 import { useSelector } from 'react-redux';
 import InfiniteScroll from 'react-infinite-scroll-component';
@@ -11,12 +12,13 @@ import TagsBar from '@components/layout/TagsBar';
 import { IUnknownObject } from '@interfaces/app';
 import getAllVideosAction from '@redux/videos/all';
 import { ALL_VIDEOS_PATH } from '@constants/paths';
-import VideoList from '@components/lists/VideoList';
 import getVideosTagsAction from '@redux/videos/tags';
-import ServerError from '@components/common/ServerError';
 import { EnumTagsContext } from '@constants/tags-context';
 import { CONTENT_LIMIT, START_PAGE } from '@constants/app';
-import VideoListSkeleton from '@components/skeleton/VideoList';
+
+const DynamicVideoList = dynamic(() => import('@components/lists/VideoList'));
+const DynamicServerError = dynamic(() => import('@components/common/ServerError'));
+const DynamicVideoListSkeleton = dynamic(() => import('@components/skeleton/VideoList'));
 
 import styles from './index.module.scss';
 
@@ -93,7 +95,7 @@ const VideoContainer: FC = () => {
             />
             <div className="mt-5">
                 {errVideos && isFirstLoad ? (
-                    <ServerError
+                    <DynamicServerError
                         error={errVideos}
                         onRefresh={() => {
                             const { limit, page } = params;
@@ -101,7 +103,7 @@ const VideoContainer: FC = () => {
                         }}
                     />
                 ) : loadingVideos ? (
-                    <VideoListSkeleton size={8} />
+                    <DynamicVideoListSkeleton size={8} />
                 ) : (
                     <InfiniteScroll
                         dataLength={videos?.length}
@@ -109,7 +111,7 @@ const VideoContainer: FC = () => {
                         className={isEmpty(videos) ? '' : 'pb-5'}
                         loader={
                             <div className="mt-5">
-                                <VideoListSkeleton />
+                                <DynamicVideoListSkeleton />
                             </div>
                         }
                         next={() => {
@@ -118,7 +120,7 @@ const VideoContainer: FC = () => {
                             fetchMoreVideos({ limit, page: page + 1, search, category, tag });
                         }}
                     >
-                        <VideoList videos={videos} myVideos={false} isExclusive={false} />
+                        <DynamicVideoList videos={videos} myVideos={false} isExclusive={false} />
                     </InfiniteScroll>
                 )}
             </div>

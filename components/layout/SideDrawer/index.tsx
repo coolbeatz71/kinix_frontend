@@ -1,14 +1,16 @@
 import React, { FC, useState, ReactNode, Key, Fragment } from 'react';
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
 import { useTranslation } from 'react-i18next';
 import { Menu, Drawer, Divider, Row, Col, Button, Space } from 'antd';
-import { HOME_PATH } from '@constants/paths';
 import { HomeFilled, MenuOutlined } from '@ant-design/icons';
 import { BsFillSunFill, BsMoonStarsFill } from 'react-icons/bs';
-import Logo from '@components/common/Logo';
+import { HOME_PATH } from '@constants/paths';
 import useDarkLight from '@hooks/useDarkLight';
 import sectionList from '@constants/sidenav-section';
-import UserAvatar from '@components/common/UserAvatar';
+
+const DynamicLogo = dynamic(() => import('@components/common/Logo'));
+const DynamicUserAvatar = dynamic(() => import('@components/common/UserAvatar'));
 
 import styles from './index.module.scss';
 
@@ -63,7 +65,7 @@ const SideDrawer: FC<ISideDrawerProps> = ({ open, setOpen }) => {
             <div className={styles.sidedrawer__header}>
                 <Row justify="space-between" align="middle">
                     <Col span={16}>
-                        <Logo canRedirect className={styles.sidedrawer__header__logo} />
+                        <DynamicLogo canRedirect className={styles.sidedrawer__header__logo} />
                     </Col>
 
                     <Col span={8} className="d-flex justify-content-end">
@@ -98,9 +100,9 @@ const SideDrawer: FC<ISideDrawerProps> = ({ open, setOpen }) => {
             closable={false}
             placement="left"
             data-theme={value}
-            className={styles.sidedrawer}
             onClose={handleCloseDrawer}
-            footer={<UserAvatar onClick={handleCloseDrawer} userName="Mutombo Jean-vincent" />}
+            className={styles.sidedrawer}
+            footer={<DynamicUserAvatar onClick={handleCloseDrawer} userName="Mutombo Jean-vincent" />}
         >
             <Menu
                 mode="inline"
@@ -111,9 +113,9 @@ const SideDrawer: FC<ISideDrawerProps> = ({ open, setOpen }) => {
                 {renderHeader()}
                 <Item
                     title={null}
+                    icon={<HomeFilled />}
                     onClick={handleCloseDrawer}
                     className={styles.sidedrawer__menu__items}
-                    icon={<HomeFilled />}
                 >
                     <Link href={HOME_PATH} prefetch={false}>
                         {t('home')}

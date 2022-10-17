@@ -1,4 +1,5 @@
 import React, { FC, Fragment, useState } from 'react';
+import dynamic from 'next/dynamic';
 import dayjs from 'dayjs';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -12,8 +13,9 @@ import useDarkLight from '@hooks/useDarkLight';
 import { ALL_ARTICLES_PATH } from '@constants/paths';
 import ArticleLikeButton from '@components/actions/ArticleLikeButton';
 import ArticleCommentButton from '@components/comments/ArticleCommentButton';
-import ArticleCommentsDrawer from '@components/comments/ArticleCommentsDrawer';
 import ArticleBookmarkButton from '@components/actions/ArticleBookmarkButton';
+
+const DynamicCommentsDrawer = dynamic(() => import('@components/comments/ArticleCommentsDrawer'));
 
 import styles from './index.module.scss';
 
@@ -92,7 +94,7 @@ const ArticleCardVertical: FC<IArticleCardVerticalProps> = ({ article }) => {
                     }
                 />
             </Card>
-            <ArticleCommentsDrawer
+            <DynamicCommentsDrawer
                 article={article}
                 openDrawer={openCommentDrawer}
                 setOpenDrawer={setOpenCommentDrawer}

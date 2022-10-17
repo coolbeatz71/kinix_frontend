@@ -1,16 +1,18 @@
 import React, { FC, useEffect } from 'react';
 import { Col, Row } from 'antd';
-import { useSelector } from 'react-redux';
+import dynamic from 'next/dynamic';
 import isEmpty from 'lodash/isEmpty';
+import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { IArticle } from '@interfaces/api';
 import { IRootState } from '@redux/reducers';
 import { useAppDispatch } from '@redux/store';
-import ServerError from '@components/common/ServerError';
 import SectionTitle from '@components/common/SectionTitle';
 import getPopularArticlesAction from '@redux/articles/popular';
-import ArticleListSkeleton from '@components/skeleton/ArticleList';
-import ArticleCardVertical from '@components/cards/Article/ArticleVertical';
+
+const DynamicServerError = dynamic(() => import('@components/common/ServerError'));
+const DynamicArticleListSkeleton = dynamic(() => import('@components/skeleton/ArticleList'));
+const DynamicArticleCardVertical = dynamic(() => import('@components/cards/Article/ArticleVertical'));
 
 const PopularArticleList: FC = () => {
     const { t } = useTranslation();
@@ -31,19 +33,19 @@ const PopularArticleList: FC = () => {
             </Row>
             <Row gutter={[16, 48]}>
                 {error ? (
-                    <ServerError
+                    <DynamicServerError
                         error={error}
                         onRefresh={() => {
                             dispatch(getPopularArticlesAction());
                         }}
                     />
                 ) : loading ? (
-                    <ArticleListSkeleton size={8} />
+                    <DynamicArticleListSkeleton size={8} />
                 ) : (
                     !isEmpty(data) &&
                     data?.map((article) => (
                         <Col xs={24} sm={12} md={12} lg={8} xl={6} key={article.id}>
-                            <ArticleCardVertical article={article as IArticle} />
+                            <DynamicArticleCardVertical article={article as IArticle} />
                         </Col>
                     ))
                 )}

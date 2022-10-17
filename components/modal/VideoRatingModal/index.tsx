@@ -2,13 +2,14 @@ import React, { FC, Fragment, useState } from 'react';
 import Lottie from 'react-lottie';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { Button, Modal, notification, Rate, Typography } from 'antd';
+import { Button, Modal, Rate, Typography } from 'antd';
 import { CloseCircleOutlined } from '@ant-design/icons';
 import rating from 'public/rating_anim.json';
 import getPayload from '@helpers/getPayload';
 import { useAppDispatch } from '@redux/store';
 import { IRootState } from '@redux/reducers';
 import addVideoRatingAction from '@redux/ratings/add';
+import getNotification from '@helpers/getNotification';
 import getLottieOptions from '@helpers/getLottieOptions';
 import FormSuccessResult from '@components/form/FormSuccessResult';
 import getSingleVideoRatedByUserAction from '@redux/ratings/getUserRate';
@@ -43,15 +44,7 @@ const VideoRatingModal: FC<VideoRatingModalProps> = ({ slug, openModal, setOpenM
             if (res.type === 'ratings/add/fulfilled') {
                 setSuccess(getPayload(res).message);
                 dispatch(getSingleVideoRatedByUserAction(slug));
-            } else if (res.type === 'ratings/add/rejected') {
-                notification.error({
-                    maxCount: 1,
-                    key: 'error',
-                    message: 'Oops!',
-                    placement: 'topRight',
-                    description: getPayload(res).message,
-                });
-            }
+            } else if (res.type === 'ratings/add/rejected') getNotification('error', getPayload(res).message);
         });
     };
 

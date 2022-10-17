@@ -2,11 +2,11 @@ import React, { FC } from 'react';
 import Link from 'next/link';
 import { useTranslation } from 'react-i18next';
 import { Col, Layout, Row, Typography, Anchor, Button, Form, Input, Divider, Space, Grid } from 'antd';
-import useDarkLight from '@hooks/useDarkLight';
 import { MdLocationOn, MdPhone, MdEmail } from 'react-icons/md';
-import social from '@constants/social';
-import FloatTextInput from '@components/common/TextInput';
+import SocialButtons from '@components/common/SocialButtons';
+import useDarkLight from '@hooks/useDarkLight';
 import { APP_AUTHOR } from '@constants/platform';
+import FloatTextInput from '@components/common/TextInput';
 
 import styles from './index.module.scss';
 
@@ -60,15 +60,7 @@ export const Footer: FC<IFooterProps> = ({ isSidenavClose }) => {
                                 {t('followUsOne')} <br /> {t('followUsTwo')}
                             </Text>
                             <Row>
-                                {social.map((item) => (
-                                    <Button
-                                        type="text"
-                                        key={item.name}
-                                        icon={item.icon}
-                                        className={styles.footer__content__social__icon}
-                                        onClick={() => window?.open(item.url, '_blank')}
-                                    />
-                                ))}
+                                <SocialButtons className={styles.footer__content__social__icon} />
                             </Row>
                         </div>
                     </Col>

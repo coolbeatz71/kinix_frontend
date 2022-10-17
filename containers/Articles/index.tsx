@@ -1,4 +1,5 @@
 import React, { FC, Fragment, useEffect, useState } from 'react';
+import dynamic from 'next/dynamic';
 import isEmpty from 'lodash/isEmpty';
 import { useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
@@ -9,19 +10,20 @@ import { IUnknownObject } from '@interfaces/app';
 import { CONTENT_LIMIT, START_PAGE } from '@constants/app';
 import getAllArticlesAction from '@redux/articles/all';
 import { ALL_ARTICLES_PATH } from '@constants/paths';
-import ServerError from '@components/common/ServerError';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import getPayload from '@helpers/getPayload';
 import TagsBar from '@components/layout/TagsBar';
-import ArticleList from '@components/lists/ArticleList';
-import ArticleListSkeleton from '@components/skeleton/ArticleList';
 import getUserLikesAction from '@redux/likes/userLikes';
 import getArticlesTagsAction from '@redux/articles/tags';
 import { EnumTagsContext } from '@constants/tags-context';
 import getUserBookmarksAction from '@redux/bookmarks/userBookmarks';
-import AlaUneArticleSection from '@components/home/AlaUneArticleSection';
 import SubscribeNewsLetter from '@components/cards/Article/SubscribeNewsLetter';
 import PopularArticleCarousel from '@components/articles/PopularArticleCarousel';
+
+const DynamicServerError = dynamic(() => import('@components/common/ServerError'));
+const DynamicArticleList = dynamic(() => import('@components/lists/ArticleList'));
+const DynamicArticleListSkeleton = dynamic(() => import('@components/skeleton/ArticleList'));
+const DynamicAlaUneArticleSection = dynamic(() => import('@components/home/AlaUneArticleSection'));
 
 import styles from './index.module.scss';
 
@@ -110,7 +112,7 @@ const ArticleContainer: FC = () => {
             {isEmpty(query) && (
                 <Fragment>
                     <div className="mt-5">
-                        <AlaUneArticleSection canViewAll={false} />
+                        <DynamicAlaUneArticleSection canViewAll={false} />
                     </div>
                     <div className="mt-5">
                         <PopularArticleCarousel />
@@ -124,7 +126,7 @@ const ArticleContainer: FC = () => {
 
             <div className="mt-5">
                 {errArticles && isFirstLoad ? (
-                    <ServerError
+                    <DynamicServerError
                         error={errArticles}
                         onRefresh={() => {
                             const { limit, page } = params;
@@ -132,7 +134,7 @@ const ArticleContainer: FC = () => {
                         }}
                     />
                 ) : loadingArticles ? (
-                    <ArticleListSkeleton size={8} />
+                    <DynamicArticleListSkeleton size={8} />
                 ) : (
                     <InfiniteScroll
                         dataLength={articles?.length}
@@ -140,7 +142,7 @@ const ArticleContainer: FC = () => {
                         className={isEmpty(articles) ? '' : 'pb-5'}
                         loader={
                             <div className="mt-5">
-                                <ArticleListSkeleton />
+                                <DynamicArticleListSkeleton />
                             </div>
                         }
                         next={() => {
@@ -149,7 +151,7 @@ const ArticleContainer: FC = () => {
                             fetchMoreArticles({ limit, page: page + 1, search, tag });
                         }}
                     >
-                        <ArticleList articles={articles} myArticles={false} />
+                        <DynamicArticleList articles={articles} myArticles={false} />
                     </InfiniteScroll>
                 )}
             </div>
