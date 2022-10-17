@@ -6,13 +6,13 @@ import { IVideo } from '@interfaces/api';
 import { IRootState } from '@redux/reducers';
 import { useAppDispatch } from '@redux/store';
 import useDarkLight from '@hooks/useDarkLight';
-import VideoPlayer from '@components/common/VideoPlayer';
-import RelatedVideoList from '@components/common/RelatedVideoList';
-import VideosTabs from '@components/common/VideosTabs';
 import { IYoutubeVideo } from '@interfaces/youtube';
+import VideosTabs from '@components/videos/VideosTabs';
+import ServerError from '@components/common/ServerError';
+import VideoPlayer from '@components/videos/VideoPlayer';
 import getRelatedVideosAction from '@redux/videos/related';
 import getYoutubeVideoInfoAction from '@redux/videos/youtube';
-import ServerError from '@components/common/ServerError';
+import RelatedVideoList from '@components/lists/RelatedVideoList';
 import SingleVideoSkeleton from '@components/skeleton/SingleVideo';
 
 const { useBreakpoint } = Grid;

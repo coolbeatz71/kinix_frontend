@@ -11,7 +11,7 @@ import TagsBar from '@components/layout/TagsBar';
 import { IUnknownObject } from '@interfaces/app';
 import getAllVideosAction from '@redux/videos/all';
 import { ALL_VIDEOS_PATH } from '@constants/paths';
-import VideoList from '@components/common/VideoList';
+import VideoList from '@components/lists/VideoList';
 import getVideosTagsAction from '@redux/videos/tags';
 import ServerError from '@components/common/ServerError';
 import { EnumTagsContext } from '@constants/tags-context';

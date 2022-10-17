@@ -1,9 +1,9 @@
 import React, { FC, Fragment, ReactElement } from 'react';
-import SectionTitle from '@components/common/SectionTitle';
-import VideoList from '@components/common/VideoList';
-import useDarkLight from '@hooks/useDarkLight';
 import { IVideo } from '@interfaces/api';
+import useDarkLight from '@hooks/useDarkLight';
 import ExclusiveSection from '../ExclusiveSection';
+import VideoList from '@components/lists/VideoList';
+import SectionTitle from '@components/common/SectionTitle';
 import VideoListSkeleton from '@components/skeleton/VideoList';
 import SectionTitleSkeleton from '@components/skeleton/SectionTitle';
 

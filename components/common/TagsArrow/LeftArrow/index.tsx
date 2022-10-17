@@ -1,8 +1,7 @@
 import React, { FC, useContext, useEffect, useState } from 'react';
 import { CaretLeftOutlined } from '@ant-design/icons';
-
-import { VisibilityContext } from 'react-horizontal-scrolling-menu';
 import ArrowButton from '../ArrowButton';
+import { VisibilityContext } from 'react-horizontal-scrolling-menu';
 import { EnumTagArrowPlacement } from '@constants/tag-arrow-placement';
 
 export const LeftArrow: FC = () => {
