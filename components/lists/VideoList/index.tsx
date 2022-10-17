@@ -1,0 +1,35 @@
+import React, { FC } from 'react';
+import { Col, Row } from 'antd';
+import isEmpty from 'lodash/isEmpty';
+import { useTranslation } from 'react-i18next';
+import { IVideo } from '@interfaces/api';
+import EmptyData from '@components/common/EmptyData';
+import { EnumEmptyDataType } from '@constants/empty-data-type';
+import VideoCardVertical from '@components/cards/Video/VideoCardVertical';
+
+interface IVideoListProps {
+    videos: IVideo[];
+    myVideos?: boolean;
+    isExclusive?: boolean;
+}
+
+const VideoList: FC<IVideoListProps> = ({ videos, isExclusive }) => {
+    const { t } = useTranslation();
+    return (
+        <Row gutter={[16, 48]}>
+            {isEmpty(videos) ? (
+                <Col span={24}>
+                    <EmptyData type={EnumEmptyDataType.CONTENT} desc={t('noContentFound')} />
+                </Col>
+            ) : (
+                videos?.map((video) => (
+                    <Col xs={24} sm={12} md={12} lg={8} xl={6} key={video.slug}>
+                        <VideoCardVertical video={video} isExclusive={isExclusive} />
+                    </Col>
+                ))
+            )}
+        </Row>
+    );
+};
+
+export default VideoList;

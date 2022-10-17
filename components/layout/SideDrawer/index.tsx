@@ -1,15 +1,14 @@
 import React, { FC, useState, ReactNode, Key, Fragment } from 'react';
-import { Menu, Drawer, Divider, Row, Col, Button, Space } from 'antd';
-import { useTranslation } from 'react-i18next';
 import Link from 'next/link';
+import { useTranslation } from 'react-i18next';
+import { Menu, Drawer, Divider, Row, Col, Button, Space } from 'antd';
 import { HOME_PATH } from '@constants/paths';
-import sectionList from '@constants/sidenav-section';
-import { MenuOutlined } from '@ant-design/icons';
-import { HomeFilled } from '@ant-design/icons';
+import { HomeFilled, MenuOutlined } from '@ant-design/icons';
 import { BsFillSunFill, BsMoonStarsFill } from 'react-icons/bs';
-import useDarkLight from '@hooks/useDarkLight';
 import Logo from '@components/common/Logo';
-import UserAvatar from '@components/common/Profile/UserAvatar';
+import useDarkLight from '@hooks/useDarkLight';
+import sectionList from '@constants/sidenav-section';
+import UserAvatar from '@components/common/UserAvatar';
 
 import styles from './index.module.scss';
 

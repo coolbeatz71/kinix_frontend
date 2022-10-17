@@ -1,16 +1,16 @@
 import React, { FC, useEffect } from 'react';
-import { isEmpty } from 'lodash';
+import isEmpty from 'lodash/isEmpty';
 import Carousel from 'nuka-carousel';
-import { getBgColor } from '@helpers/getBgColor';
 import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
+import { IAds } from '@interfaces/api';
+import { PRIMARY } from '@constants/colors';
 import SliderContent from './SliderContent';
 import { IRootState } from '@redux/reducers';
-import { useTranslation } from 'react-i18next';
 import getAllAdsAction from '@redux/ads/all';
 import { useAppDispatch } from '@redux/store';
-import { IAds } from '@interfaces/api';
 import { IUnknownObject } from '@interfaces/app';
-import { PRIMARY } from '@constants/colors';
+import { getBgColor } from '@helpers/getBgColor';
 
 import styles from './index.module.scss';
 

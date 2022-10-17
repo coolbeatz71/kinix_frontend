@@ -2,7 +2,7 @@ import React, { FC, ReactElement, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'react-i18next';
 import { IUnknownObject } from '@interfaces/app';
-import { upperFirst } from 'lodash';
+import upperFirst from 'lodash/upperFirst';
 import { Row, Grid, Dropdown, Button, Col, Menu } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 import { ALL_VIDEOS_PATH } from '@constants/paths';

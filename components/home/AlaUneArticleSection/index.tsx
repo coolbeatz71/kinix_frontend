@@ -3,13 +3,13 @@ import { Button, Row } from 'antd';
 import Link from 'next/link';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
+import { IArticle } from '@interfaces/api';
 import { IRootState } from '@redux/reducers';
 import { useAppDispatch } from '@redux/store';
 import useDarkLight from '@hooks/useDarkLight';
-import AlaUneArticleList from '@components/common/AlaUneArticleList';
 import { ALL_ARTICLES_PATH } from '@constants/paths';
 import getFeaturedArticlesAction from '@redux/articles/featured';
-import { IArticle } from '@interfaces/api';
+import AlaUneArticleList from '@components/lists/AlaUneArticleList';
 import AlaUneArticleListSkeleton from '@components/skeleton/AlaUneArticleList';
 
 import styles from './index.module.scss';

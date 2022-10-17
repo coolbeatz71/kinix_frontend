@@ -1,14 +1,14 @@
 import React, { FC } from 'react';
-import { truncate } from 'lodash';
-import useDarkLight from '@hooks/useDarkLight';
 import Style from 'style-it';
 import Link from 'next/link';
+import truncate from 'lodash/truncate';
 import { useTranslation } from 'react-i18next';
 import { CaretRightFilled, ShareAltOutlined } from '@ant-design/icons';
 import { Button, Col, Row, Space, Tag, Typography, Grid } from 'antd';
 import { IVideo } from '@interfaces/api';
+import useDarkLight from '@hooks/useDarkLight';
 import { PRIMARY, SKY_BLUE } from '@constants/colors';
-import VideoCardVertical from '@components/common/Cards/Video/VideoCardVertical';
+import VideoCardVertical from '@components/cards/Video/VideoCardVertical';
 
 import styles from './index.module.scss';
 

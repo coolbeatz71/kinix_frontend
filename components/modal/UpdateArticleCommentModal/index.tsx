@@ -10,7 +10,7 @@ import { useAppDispatch } from '@redux/store';
 import { EnumFormContext } from '@interfaces/app';
 import { ICommentData } from '@interfaces/comments';
 import getAllArticleCommentsAction from '@redux/comments/all';
-import FormSuccessResult from '@components/common/FormSuccessResult';
+import FormSuccessResult from '@components/form/FormSuccessResult';
 import CreateArticleComment from '@components/form/CreateArticleComment';
 import addArticleCommentAction, { resetAddCommentAction } from '@redux/comments/add';
 

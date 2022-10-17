@@ -10,7 +10,7 @@ import { useAppDispatch } from '@redux/store';
 import { IRootState } from '@redux/reducers';
 import addVideoRatingAction from '@redux/ratings/add';
 import getLottieOptions from '@helpers/getLottieOptions';
-import FormSuccessResult from '@components/common/FormSuccessResult';
+import FormSuccessResult from '@components/form/FormSuccessResult';
 import getSingleVideoRatedByUserAction from '@redux/ratings/getUserRate';
 
 import styles from './index.module.scss';

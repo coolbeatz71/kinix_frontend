@@ -1,6 +1,6 @@
 import React, { FC, ReactElement, useCallback, useContext, useEffect, useState } from 'react';
 import Head from 'next/head';
-import { isEmpty } from 'lodash';
+import isEmpty from 'lodash/isEmpty';
 import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';

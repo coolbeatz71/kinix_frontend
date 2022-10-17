@@ -1,5 +1,5 @@
 import React, { FC, Fragment, useEffect, useState } from 'react';
-import { isEmpty } from 'lodash';
+import isEmpty from 'lodash/isEmpty';
 import { useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import { IArticle } from '@interfaces/api';
@@ -13,15 +13,15 @@ import ServerError from '@components/common/ServerError';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import getPayload from '@helpers/getPayload';
 import TagsBar from '@components/layout/TagsBar';
-import ArticleList from '@components/common/ArticleList';
+import ArticleList from '@components/lists/ArticleList';
 import ArticleListSkeleton from '@components/skeleton/ArticleList';
 import getUserLikesAction from '@redux/likes/userLikes';
 import getArticlesTagsAction from '@redux/articles/tags';
 import { EnumTagsContext } from '@constants/tags-context';
 import getUserBookmarksAction from '@redux/bookmarks/userBookmarks';
 import AlaUneArticleSection from '@components/home/AlaUneArticleSection';
-import PopularArticleCarousel from '@components/common/PopularArticleCarousel';
-import SubscribeNewsLetter from '@components/common/Cards/Article/SubscribeNewsLetter';
+import SubscribeNewsLetter from '@components/cards/Article/SubscribeNewsLetter';
+import PopularArticleCarousel from '@components/articles/PopularArticleCarousel';
 
 import styles from './index.module.scss';
 
