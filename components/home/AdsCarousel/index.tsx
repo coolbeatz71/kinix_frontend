@@ -1,5 +1,5 @@
 import React, { FC, useEffect } from 'react';
-import { isEmpty } from 'lodash';
+import isEmpty from 'lodash/isEmpty';
 import Carousel from 'nuka-carousel';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';

@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { Tabs } from 'antd';
-import { toLower } from 'lodash';
+import toLower from 'lodash/toLower';
 import videosTabs, { ETabTitle } from '@constants/videos-tabs';
 import { useTranslation } from 'react-i18next';
 import useDarkLight from '@hooks/useDarkLight';

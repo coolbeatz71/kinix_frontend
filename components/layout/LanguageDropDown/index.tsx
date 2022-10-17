@@ -3,7 +3,7 @@ import dayjs from 'dayjs';
 import en from 'dayjs/locale/en';
 import fr from 'dayjs/locale/fr';
 import { Button, Dropdown, Menu } from 'antd';
-import { upperFirst } from 'lodash';
+import upperFirst from 'lodash/upperFirst';
 import CustomIcon from '@components/common/CustomIcon';
 import { languageList } from '@constants/language';
 import locales from 'locales/';

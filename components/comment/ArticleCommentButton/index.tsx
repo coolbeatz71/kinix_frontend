@@ -1,7 +1,7 @@
 import React, { FC, useState, useEffect } from 'react';
 import numeral from 'numeral';
 import { Button } from 'antd';
-import { isEmpty } from 'lodash';
+import isEmpty from 'lodash/isEmpty';
 import { useSelector } from 'react-redux';
 import { IRootState } from '@redux/reducers';
 import useDarkLight from '@hooks/useDarkLight';

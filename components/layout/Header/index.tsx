@@ -1,6 +1,6 @@
 import React, { FC, useState } from 'react';
 import { Button, Col, Layout, Row, Space, Grid } from 'antd';
-import { isEmpty } from 'lodash';
+import isEmpty from 'lodash/isEmpty';
 import { BsFillGridFill } from 'react-icons/bs';
 import { MenuOutlined } from '@ant-design/icons';
 import social from '@constants/social';

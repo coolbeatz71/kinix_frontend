@@ -1,5 +1,5 @@
 import React, { FC, Fragment, useState, useEffect } from 'react';
-import { isEmpty } from 'lodash';
+import isEmpty from 'lodash/isEmpty';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { CloseCircleOutlined, PlusOutlined } from '@ant-design/icons';

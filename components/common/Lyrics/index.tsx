@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { Col, Row } from 'antd';
-import { isEmpty } from 'lodash';
+import isEmpty from 'lodash/isEmpty';
 import EmptyData from '../EmptyData';
 import { useTranslation } from 'react-i18next';
 import { EnumEmptyDataType } from '@constants/empty-data-type';

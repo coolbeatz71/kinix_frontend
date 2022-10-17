@@ -1,6 +1,6 @@
 import React, { FC, Fragment } from 'react';
 import { Col, Row } from 'antd';
-import { isEmpty } from 'lodash';
+import isEmpty from 'lodash/isEmpty';
 import { useTranslation } from 'react-i18next';
 
 import { IVideo } from '@interfaces/api';

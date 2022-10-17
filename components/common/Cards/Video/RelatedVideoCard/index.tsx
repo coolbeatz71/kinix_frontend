@@ -2,7 +2,9 @@ import React, { FC, useEffect, useState } from 'react';
 import dayjs from 'dayjs';
 import Image from 'next/image';
 import Link from 'next/link';
-import { isBoolean, isEmpty, truncate } from 'lodash';
+import isEmpty from 'lodash/isEmpty';
+import truncate from 'lodash/truncate';
+import isBoolean from 'lodash/isBoolean';
 import StarRatingComponent from 'react-star-rating-component';
 import { Button, Card, Col, Grid, Row, Typography } from 'antd';
 

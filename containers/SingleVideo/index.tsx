@@ -1,5 +1,5 @@
 import React, { FC, Fragment, useEffect } from 'react';
-import { isEmpty } from 'lodash';
+import isEmpty from 'lodash/isEmpty';
 import { Col, Grid, Row } from 'antd';
 import { useSelector } from 'react-redux';
 import { IVideo } from '@interfaces/api';

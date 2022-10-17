@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { isEmpty } from 'lodash';
+import isEmpty from 'lodash/isEmpty';
 import { Col, Row } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { IArticle } from '@interfaces/api';

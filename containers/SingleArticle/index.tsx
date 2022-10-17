@@ -1,5 +1,5 @@
 import React, { FC, Fragment, useEffect } from 'react';
-import { isEmpty } from 'lodash';
+import isEmpty from 'lodash/isEmpty';
 import { useSelector } from 'react-redux';
 import { IArticle, IUser } from '@interfaces/api';
 import { IRootState } from '@redux/reducers';

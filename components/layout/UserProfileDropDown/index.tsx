@@ -1,10 +1,11 @@
 import React, { FC } from 'react';
+import truncate from 'lodash/truncate';
+import upperFirst from 'lodash/upperFirst';
 import { BellFilled, UserOutlined } from '@ant-design/icons';
-import { getBgColor } from '@helpers/getBgColor';
 import { Space, Button, Badge, Dropdown, Avatar } from 'antd';
-import UserProfileMenu from '@components/common/UserProfileMenu';
 import { ICurrentUser } from '@interfaces/user';
-import { truncate, upperFirst } from 'lodash';
+import { getBgColor } from '@helpers/getBgColor';
+import UserProfileMenu from '@components/common/UserProfileMenu';
 
 export interface IUserProfileDropDownProps {
     className: string;

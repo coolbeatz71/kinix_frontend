@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { Avatar, Col, Row, Typography } from 'antd';
-import { truncate } from 'lodash';
+import truncate from 'lodash/truncate';
 import useDarkLight from '@hooks/useDarkLight';
 import { SettingOutlined } from '@ant-design/icons';
 import Link from 'next/link';

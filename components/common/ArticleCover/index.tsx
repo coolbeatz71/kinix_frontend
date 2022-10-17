@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useState } from 'react';
 import numeral from 'numeral';
 import Image from 'next/image';
-import { isEmpty } from 'lodash';
+import isEmpty from 'lodash/isEmpty';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { Col, Grid, message, Row, Typography } from 'antd';

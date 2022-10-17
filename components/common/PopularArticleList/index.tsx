@@ -10,7 +10,7 @@ import ServerError from '../ServerError';
 import getPopularArticlesAction from '@redux/articles/popular';
 import ArticleCardVertical from '@components/common/Cards/Article/ArticleVertical';
 import ArticleListSkeleton from '@components/skeleton/ArticleList';
-import { isEmpty } from 'lodash';
+import isEmpty from 'lodash/isEmpty';
 
 const PopularArticleList: FC = () => {
     const { t } = useTranslation();

@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import dayjs from 'dayjs';
 import Link from 'next/link';
 import Image from 'next/image';
-import { truncate } from 'lodash';
+import truncate from 'lodash/truncate';
 import { Col, Row, Typography } from 'antd';
 import { useTranslation } from 'react-i18next';
 

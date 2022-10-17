@@ -2,7 +2,7 @@ import React, { FC, Fragment } from 'react';
 import Link from 'next/link';
 import dayjs from 'dayjs';
 import Image from 'next/image';
-import { truncate } from 'lodash';
+import truncate from 'lodash/truncate';
 import { useTranslation } from 'react-i18next';
 import useDarkLight from '@hooks/useDarkLight';
 import { IArticle } from '@interfaces/api';

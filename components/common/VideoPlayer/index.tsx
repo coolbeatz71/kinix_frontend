@@ -1,7 +1,8 @@
 import React, { FC, useEffect, useState } from 'react';
 import dayjs from 'dayjs';
 import numeral from 'numeral';
-import { isEmpty, upperFirst } from 'lodash';
+import isEmpty from 'lodash/isEmpty';
+import upperFirst from 'lodash/upperFirst';
 import { useTranslation } from 'react-i18next';
 import ReactPlayer from 'react-player';
 import { FaShare } from 'react-icons/fa';

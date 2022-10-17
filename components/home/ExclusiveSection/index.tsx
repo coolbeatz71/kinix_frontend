@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { truncate } from 'lodash';
+import truncate from 'lodash/truncate';
 import useDarkLight from '@hooks/useDarkLight';
 import Style from 'style-it';
 import Link from 'next/link';

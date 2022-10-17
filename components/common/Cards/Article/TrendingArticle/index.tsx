@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import dayjs from 'dayjs';
-import { truncate } from 'lodash';
+import truncate from 'lodash/truncate';
 import { Card, Typography } from 'antd';
 import { useTranslation } from 'react-i18next';
 import useDarkLight from '@hooks/useDarkLight';
