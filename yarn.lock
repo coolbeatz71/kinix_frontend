@@ -2,6 +2,13 @@
 # yarn lockfile v1
 
 
+"@alfonmga/react-lottie-light-ts@^0.0.1":
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/@alfonmga/react-lottie-light-ts/-/react-lottie-light-ts-0.0.1.tgz#06f99ba72c0b9d148004d7261893e909dd786d45"
+  integrity sha512-rdSuaCyWZ2Tq/UR9w3kkrTSoQCcUJjf/jSG2RNEL8615T1pgMk92kKJOxY0Y3rmuWj5Nn8S7/IQ4mDTNWXCjgQ==
+  dependencies:
+    lottie-web "5.5.9"
+
 "@ant-design/colors@^6.0.0":
   version "6.0.0"
   resolved "https://registry.yarnpkg.com/@ant-design/colors/-/colors-6.0.0.tgz#9b9366257cffcc47db42b9d0203bb592c13c0298"
@@ -1301,13 +1308,6 @@
   resolved "https://registry.yarnpkg.com/@types/prop-types/-/prop-types-15.7.4.tgz#fcf7205c25dff795ee79af1e30da2c9790808f11"
   integrity sha512-rZ5drC/jWjrArrS8BR6SIr4cWpW09RNTYt9AMZo3Jwwif+iacXAqgVjm0B0Bv/S1jhDXKHqRVNCbACkJ89RAnQ==
 
-"@types/react-lottie@^1.2.6":
-  version "1.2.6"
-  resolved "https://registry.yarnpkg.com/@types/react-lottie/-/react-lottie-1.2.6.tgz#4f351dfdf5f93a46a3a9714fbb319f1e0f030eaf"
-  integrity sha512-fvGJHD7SeUdVESHo7f7erRnXkTWaa/6Mo5TB+R0/ieSftKoFspA4sMlF2qMH6BljXI7ehFJbBtrD5bzDxPCkGg==
-  dependencies:
-    "@types/react" "*"
-
 "@types/react-redux@^7.1.24":
   version "7.1.24"
   resolved "https://registry.yarnpkg.com/@types/react-redux/-/react-redux-7.1.24.tgz#6caaff1603aba17b27d20f8ad073e4c077e975c0"
@@ -1830,14 +1830,6 @@ babel-plugin-polyfill-regenerator@^0.2.2:
   dependencies:
     "@babel/helper-define-polyfill-provider" "^0.2.2"
 
-babel-runtime@^6.26.0:
-  version "6.26.0"
-  resolved "https://registry.yarnpkg.com/babel-runtime/-/babel-runtime-6.26.0.tgz#965c7058668e82b55d7bfe04ff2337bc8b5647fe"
-  integrity sha1-llxwWGaOgrVde/4E/yM3vItWR/4=
-  dependencies:
-    core-js "^2.4.0"
-    regenerator-runtime "^0.11.0"
-
 balanced-match@^1.0.0:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.2.tgz#e83e3a7e3f300b34cb9d87f615fa0cbf357690ee"
@@ -2262,11 +2254,6 @@ core-js-pure@^3.16.0:
   version "3.16.3"
   resolved "https://registry.yarnpkg.com/core-js-pure/-/core-js-pure-3.16.3.tgz#41ccb9b6027535f8dd51a0af004c1c7f0a8c9ca7"
   integrity sha512-6In+2RwN0FT5yK0ZnhDP5rco/NnuuFZhHauQizZiHo5lDnqAvq8Phxcpy3f+prJOqtKodt/cftBl/GTOW0kiqQ==
-
-core-js@^2.4.0:
-  version "2.6.12"
-  resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.6.12.tgz#d9333dfa7b065e347cc5682219d6f690859cc2ec"
-  integrity sha512-Kb2wC0fvsWfQrgk8HU5lW6U/Lcs8+9aaYcy4ZFc6DDlo4nZ7n70dEgE5rtR0oG6ufKDUnrwfWL1mXR5ljDatrQ==
 
 cosmiconfig@^7.0.0:
   version "7.0.1"
@@ -4071,10 +4058,10 @@ loose-envify@^1.1.0, loose-envify@^1.4.0:
   dependencies:
     js-tokens "^3.0.0 || ^4.0.0"
 
-lottie-web@^5.1.3:
-  version "5.8.1"
-  resolved "https://registry.yarnpkg.com/lottie-web/-/lottie-web-5.8.1.tgz#807e0af0ad22b59bf867d964eb684cb3368da0ef"
-  integrity sha512-9gIizWADlaHC2GCt+D+yNpk5l2clZQFqnVWWIVdY0LnxC/uLa39dYltAe3fcmC/hrZ2IUQ8dLlY0O934Npjs7Q==
+lottie-web@5.5.9:
+  version "5.5.9"
+  resolved "https://registry.yarnpkg.com/lottie-web/-/lottie-web-5.5.9.tgz#f8775e8c36dfada428f9acea826ab674750419a8"
+  integrity sha512-3Zdxnuyi6WXnMj+0ZfwDd17EXCM87Hcbhd+sVFq6EPGfkVoGzoIkZt9OafcgXw4mzjyILOkPDLaBumrgGKoCaw==
 
 lru-cache@^4.0.1:
   version "4.1.5"
@@ -5405,14 +5392,6 @@ react-lib-adler32@^1.0.3:
   resolved "https://registry.yarnpkg.com/react-lib-adler32/-/react-lib-adler32-1.0.3.tgz#63df1aed274eabcc1c5067077ea281ec30888ba7"
   integrity sha512-AqFqdt4cP0RPffHNjVHZ7tyIgnoSzNxgFhG8XKMXCtA1dZ72gTPO4iYFwWDKHqvE8sHS14rhltQTdbXU5G4BFA==
 
-react-lottie@^1.2.3:
-  version "1.2.3"
-  resolved "https://registry.yarnpkg.com/react-lottie/-/react-lottie-1.2.3.tgz#8544b96939e088658072eea5e12d912cdaa3acc1"
-  integrity sha512-qLCERxUr8M+4mm1LU0Ruxw5Y5Fn/OmYkGfnA+JDM/dZb3oKwVAJCjwnjkj9TMHtzR2U6sMEUD3ZZ1RaHagM7kA==
-  dependencies:
-    babel-runtime "^6.26.0"
-    lottie-web "^5.1.3"
-
 react-move@^6.5.0:
   version "6.5.0"
   resolved "https://registry.yarnpkg.com/react-move/-/react-move-6.5.0.tgz#4b337d75987f9266426193f80e982604d49e97ff"
@@ -5546,11 +5525,6 @@ regenerator-runtime@0.13.4:
   version "0.13.4"
   resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.13.4.tgz#e96bf612a3362d12bb69f7e8f74ffeab25c7ac91"
   integrity sha512-plpwicqEzfEyTQohIKktWigcLzmNStMGwbOUbykx51/29Z3JOGYldaaNGK7ngNXV+UcoqvIMmloZ48Sr74sd+g==
-
-regenerator-runtime@^0.11.0:
-  version "0.11.1"
-  resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.11.1.tgz#be05ad7f9bf7d22e056f9726cee5017fbf19e2e9"
-  integrity sha512-MguG95oij0fC3QV3URf4V2SDYGJhJnJGqvIIgdECeODCT98wSWDAJ94SSuVpYQUoTcGUIL6L4yNB7j1DFFHSBg==
 
 regenerator-runtime@^0.13.4:
   version "0.13.9"

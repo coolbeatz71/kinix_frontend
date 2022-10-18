@@ -62,7 +62,7 @@ const RatingSummaryPopover: FC<IRatingSummaryPopoverProps> = ({ slug, children, 
                                 ghost
                                 type="primary"
                                 onClick={() => {
-                                    setOpen(true);
+                                    setOpen(false);
                                     setOpenRatingModal(true);
                                 }}
                                 className={styles.ratingPopover__button}

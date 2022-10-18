@@ -1,35 +1,40 @@
-import React, { FC } from 'react';
-import { Row, Col, Typography, Button, Carousel, Grid } from 'antd';
-import { useTranslation } from 'react-i18next';
+import React, { FC, useEffect, useState } from 'react';
+import Image from 'next/image';
+import dynamic from 'next/dynamic';
+import isEmpty from 'lodash/isEmpty';
 import { YoutubeFilled } from 'icons';
-import Lottie, { Options } from 'react-lottie';
-import { IUnknownObject } from 'interfaces/app';
+import { useTranslation } from 'react-i18next';
+import { Row, Col, Typography, Button, Carousel, Grid } from 'antd';
 import useDarkLight from '@hooks/useDarkLight';
+import { IUnknownObject } from 'interfaces/app';
 
-import music from 'public/listen_music_anim.json';
-import office from 'public/listen_office_anim.json';
-import podcast from 'public/listen_podcast_anim.json';
+const DynamicLottieAnimation = dynamic(() => import('@components/common/LottieAnimation'));
 
 import styles from './index.module.scss';
 
 const { useBreakpoint } = Grid;
 const { Title, Text } = Typography;
 
-const animationList: IUnknownObject[] = [music, office, podcast];
-
 const HomeIllustration: FC = () => {
     const { md } = useBreakpoint();
-    const { value } = useDarkLight();
     const { t } = useTranslation();
+    const { value } = useDarkLight();
+    const [animationData, setAnimationData] = useState<IUnknownObject[]>([]);
 
-    const defaultOptions = (animationData: IUnknownObject): Options => ({
-        loop: true,
-        autoplay: true,
-        animationData: animationData,
-        rendererSettings: {
-            preserveAspectRatio: 'xMidYMid slice',
-        },
-    });
+    useEffect(() => {
+        const importAnimationJSON = async (): Promise<void> => {
+            const [music, office, podcast] = await Promise.all([
+                import('public/listen_music_anim.json'),
+                import('public/listen_office_anim.json'),
+                import('public/listen_podcast_anim.json'),
+            ]);
+
+            setAnimationData([music.default, office.default, podcast.default]);
+        };
+
+        importAnimationJSON();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     return (
         <div className={styles.illustration} data-theme={value}>
@@ -63,9 +68,24 @@ const HomeIllustration: FC = () => {
                             autoplaySpeed={1000 * 60}
                             className={styles.illustration__slider}
                         >
-                            {animationList.map((animation, i) => (
-                                <Lottie key={i} width={512} height={512} options={defaultOptions(animation)} />
-                            ))}
+                            {isEmpty(animationData) ? (
+                                <Image
+                                    quality={1}
+                                    width={512}
+                                    height={512}
+                                    layout="intrinsic"
+                                    src="/lottie-placeholder-vector.svg"
+                                />
+                            ) : (
+                                animationData.map((animation, i) => (
+                                    <DynamicLottieAnimation
+                                        key={i}
+                                        width="512px"
+                                        height="512px"
+                                        animation={animation}
+                                    />
+                                ))
+                            )}
                         </Carousel>
                     </Col>
                 )}

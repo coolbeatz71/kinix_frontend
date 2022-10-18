@@ -1,18 +1,19 @@
-import React, { FC, Fragment, useState } from 'react';
-import Lottie from 'react-lottie';
+import React, { FC, Fragment, useEffect, useState } from 'react';
+import dynamic from 'next/dynamic';
 import { useSelector } from 'react-redux';
+import { CloseCircleOutlined } from 'icons';
 import { useTranslation } from 'react-i18next';
 import { Button, Modal, Rate, Typography } from 'antd';
-import { CloseCircleOutlined } from 'icons';
-import rating from 'public/rating_anim.json';
 import getPayload from '@helpers/getPayload';
-import { useAppDispatch } from '@redux/store';
 import { IRootState } from '@redux/reducers';
+import { useAppDispatch } from '@redux/store';
+import { IUnknownObject } from '@interfaces/app';
 import addVideoRatingAction from '@redux/ratings/add';
 import getNotification from '@helpers/getNotification';
-import getLottieOptions from '@helpers/getLottieOptions';
 import FormSuccessResult from '@components/form/FormSuccessResult';
 import getSingleVideoRatedByUserAction from '@redux/ratings/getUserRate';
+
+const DynamicLottieAnimation = dynamic(() => import('@components/common/LottieAnimation'));
 
 import styles from './index.module.scss';
 
@@ -27,11 +28,12 @@ export interface VideoRatingModalProps {
 const VideoRatingModal: FC<VideoRatingModalProps> = ({ slug, openModal, setOpenModal }) => {
     const { t } = useTranslation();
     const dispatch = useAppDispatch();
-    const lottieOps = getLottieOptions(rating);
     const [success, setSuccess] = useState<string>('');
 
     const [rateCount, setRateCount] = useState<number>(0);
     const [hasRated, setHasRated] = useState<boolean>(false);
+
+    const [animationData, setAnimationData] = useState<IUnknownObject>();
 
     const { loading } = useSelector(({ ratings: { add } }: IRootState) => add);
 
@@ -48,6 +50,11 @@ const VideoRatingModal: FC<VideoRatingModalProps> = ({ slug, openModal, setOpenM
         });
     };
 
+    useEffect(() => {
+        import('public/rating_anim.json').then((res) => setAnimationData(res.default));
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
     return (
         <Modal
             centered
@@ -63,7 +70,7 @@ const VideoRatingModal: FC<VideoRatingModalProps> = ({ slug, openModal, setOpenM
                 <FormSuccessResult title={success} onClose={onCloseModal} />
             ) : (
                 <Fragment>
-                    <Lottie width={250} height={100} options={lottieOps} />
+                    <DynamicLottieAnimation width="250px" height="100px" animation={animationData as IUnknownObject} />
 
                     <Text className="d-flex text-center justify-content-center">{t('ratingTitle')}</Text>
                     <div className="my-5 d-flex justify-content-center">

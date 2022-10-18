@@ -29,7 +29,7 @@ const antdLessConfig = {
 };
 
 module.exports = withPlugins([[withPWA, pwaConfig], [withAntdLess, antdLessConfig], [withBundleAnalyzer]], {
-    webpack(config, options) {
+    webpack(config) {
         config.resolve.alias['@ant-design/icons/lib/dist$'] = path.join(__dirname, './icons.js');
         return config;
     },
