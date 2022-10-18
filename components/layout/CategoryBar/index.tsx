@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { IUnknownObject } from '@interfaces/app';
 import upperFirst from 'lodash/upperFirst';
 import { Row, Grid, Dropdown, Button, Col, Menu } from 'antd';
-import { DownOutlined } from '@ant-design/icons';
+import { DownOutlined } from 'icons';
 import { ALL_VIDEOS_PATH } from '@constants/paths';
 import { ICategoryType } from '@context/video-categories';
 import SearchInput from '@components/common/SearchInput';

@@ -3,7 +3,7 @@ import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { useTranslation } from 'react-i18next';
 import { Menu, Drawer, Divider, Row, Col, Button, Space } from 'antd';
-import { HomeFilled, MenuOutlined } from '@ant-design/icons';
+import { HomeFilled, MenuOutlined } from 'icons';
 import { BsFillSunFill, BsMoonStarsFill } from 'react-icons/bs';
 import { HOME_PATH } from '@constants/paths';
 import useDarkLight from '@hooks/useDarkLight';
@@ -50,9 +50,7 @@ const SideDrawer: FC<ISideDrawerProps> = ({ open, setOpen }) => {
                             onClick={handleCloseDrawer}
                             className={styles.sidedrawer__menu__sub__items}
                         >
-                            <Link href={item.href} prefetch={false}>
-                                {t(item.text)}
-                            </Link>
+                            <Link href={item.href}>{t(item.text)}</Link>
                         </Item>
                     ))}
                 </SubMenu>
@@ -117,9 +115,7 @@ const SideDrawer: FC<ISideDrawerProps> = ({ open, setOpen }) => {
                     onClick={handleCloseDrawer}
                     className={styles.sidedrawer__menu__items}
                 >
-                    <Link href={HOME_PATH} prefetch={false}>
-                        {t('home')}
-                    </Link>
+                    <Link href={HOME_PATH}>{t('home')}</Link>
                 </Item>
                 {renderSections()}
             </Menu>

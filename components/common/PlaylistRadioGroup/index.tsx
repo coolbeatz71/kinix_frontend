@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import uniqBy from 'lodash/uniqBy';
 import { RadioChangeEvent, Radio, Space, Spin } from 'antd';
-import { SyncOutlined } from '@ant-design/icons';
+import { SyncOutlined } from 'icons';
 import { IPlaylist } from '@interfaces/api';
 import { IUnknownObject } from '@interfaces/app';
 

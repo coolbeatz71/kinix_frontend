@@ -9,7 +9,7 @@ import getPayload from '@helpers/getPayload';
 import { IRootState } from '@redux/reducers';
 import { useAppDispatch } from '@redux/store';
 import isSingleArticleLikeOwner from '@helpers/isLikeOwner';
-import { HeartFilled, HeartOutlined } from '@ant-design/icons';
+import { HeartFilled, HeartOutlined } from 'icons';
 import { IArticle, IUser } from '@interfaces/api';
 import SingleArticleAction from '../../actions/SingleArticleAction';
 import addArticleLikeAction from '@redux/likes/add';

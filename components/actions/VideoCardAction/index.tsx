@@ -1,7 +1,7 @@
 import React, { FC, Fragment, ReactElement, useState } from 'react';
 import { Button, Dropdown, Menu } from 'antd';
 import useDarkLight from '@hooks/useDarkLight';
-import { EllipsisOutlined } from '@ant-design/icons';
+import { EllipsisOutlined } from 'icons';
 import PlaylistModal from '@components/modal/PlaylistModal';
 
 import styles from './index.module.scss';

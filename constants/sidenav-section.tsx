@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react';
 import { BsFillSpeakerFill } from 'react-icons/bs';
 import { FaMicrophoneAlt, FaPodcast } from 'react-icons/fa';
 import { RiPlayList2Fill, RiFocusLine, RiBookmark3Fill, RiArticleLine } from 'react-icons/ri';
-import { VideoCameraFilled, LikeFilled, ShareAltOutlined, StarFilled } from '@ant-design/icons';
+import { VideoCameraFilled, LikeFilled, ShareAltOutlined, StarFilled } from 'icons';
 import {
     PODCAST_PATH,
     LEFOCUS_PATH,

@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import dynamic from 'next/dynamic';
 import truncate from 'lodash/truncate';
 import upperFirst from 'lodash/upperFirst';
-import { BellFilled, UserOutlined } from '@ant-design/icons';
+import { BellFilled, UserOutlined } from 'icons';
 import { Space, Button, Badge, Dropdown, Avatar } from 'antd';
 import { ICurrentUser } from '@interfaces/user';
 import { getBgColor } from '@helpers/getBgColor';

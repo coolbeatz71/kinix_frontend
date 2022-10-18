@@ -5,6 +5,10 @@
 .alaUneArticleCard {
     cursor: pointer;
 
+    a {
+        text-decoration: none;
+    }
+
     [data-text='header'] {
         font-size: 12px;
         font-style: italic;

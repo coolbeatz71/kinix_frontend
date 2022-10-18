@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { Row, Col, Typography, Button, Carousel, Grid } from 'antd';
 import { useTranslation } from 'react-i18next';
-import { YoutubeFilled } from '@ant-design/icons';
+import { YoutubeFilled } from 'icons';
 import Lottie, { Options } from 'react-lottie';
 import { IUnknownObject } from 'interfaces/app';
 import useDarkLight from '@hooks/useDarkLight';

@@ -3,7 +3,7 @@ import numeral from 'numeral';
 import { Button } from 'antd';
 import dynamic from 'next/dynamic';
 import { useSelector } from 'react-redux';
-import { ShareAltOutlined } from '@ant-design/icons';
+import { ShareAltOutlined } from 'icons';
 import { IRootState } from '@redux/reducers';
 import useDarkLight from '@hooks/useDarkLight';
 import { ALL_VIDEOS_PATH } from '@constants/paths';

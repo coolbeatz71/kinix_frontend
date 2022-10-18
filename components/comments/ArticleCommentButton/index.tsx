@@ -5,7 +5,7 @@ import isEmpty from 'lodash/isEmpty';
 import { useSelector } from 'react-redux';
 import { IRootState } from '@redux/reducers';
 import useDarkLight from '@hooks/useDarkLight';
-import { CommentOutlined } from '@ant-design/icons';
+import { CommentOutlined } from 'icons';
 
 import styles from './index.module.scss';
 

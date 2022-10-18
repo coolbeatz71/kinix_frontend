@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import { BsBookmarkPlus } from 'react-icons/bs';
 import { RiBookmark3Fill } from 'react-icons/ri';
 import { Button, Col, message, Row } from 'antd';
-import { CommentOutlined, HeartOutlined, HeartFilled } from '@ant-design/icons';
+import { CommentOutlined, HeartOutlined, HeartFilled } from 'icons';
 import { IArticle } from '@interfaces/api';
 import { IRootState } from '@redux/reducers';
 import getPayload from '@helpers/getPayload';

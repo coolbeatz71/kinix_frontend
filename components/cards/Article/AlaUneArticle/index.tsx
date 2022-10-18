@@ -8,7 +8,7 @@ import useDarkLight from '@hooks/useDarkLight';
 import { IArticle } from '@interfaces/api';
 import { Button, Card, Typography } from 'antd';
 import { EnumAlaUnePriority } from '@constants/alaune-article';
-import { ClockCircleOutlined } from '@ant-design/icons';
+import { ClockCircleOutlined } from 'icons';
 import { ALL_ARTICLES_PATH } from '@constants/paths';
 
 import styles from './index.module.scss';
@@ -26,7 +26,7 @@ const AlaUneArticleCard: FC<IAlaUeArticleProps> = ({ article, priority = EnumAla
     const link = `${ALL_ARTICLES_PATH}/${article?.slug}`;
 
     return (
-        <Link href={link} passHref prefetch={false}>
+        <Link href={link} passHref>
             <div data-theme={value} className={styles.alaUneArticleCard}>
                 <Card
                     hoverable
@@ -78,7 +78,7 @@ const AlaUneArticleCard: FC<IAlaUeArticleProps> = ({ article, priority = EnumAla
                                     </Paragraph>
 
                                     <Button size="large">
-                                        <Link href={link} passHref prefetch={false}>
+                                        <Link href={link} passHref>
                                             {t('readMore')}
                                         </Link>
                                     </Button>
@@ -109,7 +109,7 @@ const AlaUneArticleCard: FC<IAlaUeArticleProps> = ({ article, priority = EnumAla
                                 </Paragraph>
 
                                 <Button size="large" ghost>
-                                    <Link href={link} passHref prefetch={false}>
+                                    <Link href={link} passHref>
                                         {t('readMore')}
                                     </Link>
                                 </Button>

@@ -1,8 +1,8 @@
 import React, { FC, useEffect, useState } from 'react';
 import numeral from 'numeral';
+import { HeartFilled, HeartOutlined } from 'icons';
 import { Button, message } from 'antd';
 import { useSelector } from 'react-redux';
-import { HeartOutlined, HeartFilled } from '@ant-design/icons';
 import getPayload from '@helpers/getPayload';
 import { IRootState } from '@redux/reducers';
 import { useAppDispatch } from '@redux/store';

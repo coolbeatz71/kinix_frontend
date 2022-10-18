@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import Lottie, { Options } from 'react-lottie';
 import notFound from 'public/404_anim.json';
 import { Button, Typography } from 'antd';
-import { HomeOutlined } from '@ant-design/icons';
+import { HomeOutlined } from 'icons';
 import Link from 'next/link';
 import { HOME_PATH } from '@constants/paths';
 
@@ -27,7 +27,7 @@ const Custom404: NextPage = () => {
             <Title className="text-center" data-text="title">
                 {t('notFound')}
             </Title>
-            <Link href={HOME_PATH} passHref prefetch={false}>
+            <Link href={HOME_PATH} passHref>
                 <Button className="text-center" size="large" type="primary" icon={<HomeOutlined />}>
                     {t('backHome')}
                 </Button>

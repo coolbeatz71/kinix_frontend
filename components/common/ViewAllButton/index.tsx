@@ -11,7 +11,7 @@ const ViewAllButton: FC<IViewAllButtonProps> = ({ link }) => {
 
     return (
         <Row justify="end">
-            <Link href={link} passHref prefetch={false}>
+            <Link href={link} passHref>
                 <Button size="large">{t('viewAll')}</Button>
             </Link>
         </Row>

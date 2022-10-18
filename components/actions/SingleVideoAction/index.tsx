@@ -3,7 +3,7 @@ import numeral from 'numeral';
 import dynamic from 'next/dynamic';
 import { RiPlayListAddFill } from 'react-icons/ri';
 import { Button, Col, Rate, Row, Space } from 'antd';
-import { CommentOutlined, LikeOutlined } from '@ant-design/icons';
+import { CommentOutlined, LikeOutlined } from 'icons';
 import { IVideo } from '@interfaces/api';
 import { IItemsEntity } from '@interfaces/youtube';
 

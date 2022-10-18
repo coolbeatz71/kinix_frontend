@@ -3,7 +3,7 @@ import Lottie from 'react-lottie';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { Button, Modal, Rate, Typography } from 'antd';
-import { CloseCircleOutlined } from '@ant-design/icons';
+import { CloseCircleOutlined } from 'icons';
 import rating from 'public/rating_anim.json';
 import getPayload from '@helpers/getPayload';
 import { useAppDispatch } from '@redux/store';

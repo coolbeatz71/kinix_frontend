@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import getSideNavWidth from '@helpers/getSideNavWidth';
 import Logo from '@components/common/Logo';
 import sectionList from '@constants/sidenav-section';
-import { HomeFilled } from '@ant-design/icons';
+import { HomeFilled } from 'icons';
 import useDarkLight from '@hooks/useDarkLight';
 import { HOME_PATH } from '@constants/paths';
 
@@ -61,9 +61,7 @@ const SideNav: FC<ISideNavProps> = ({ open, collapsed, setCollapsed }) => {
                         <SubMenu key={section.key} title={t(section.title)} className={styles.sidenav__menu__sub}>
                             {section.sub.map((item) => (
                                 <Item className={styles.sidenav__menu__items} key={item.text} icon={item.icon}>
-                                    <Link href={item.href} prefetch={false}>
-                                        {t(item.text)}
-                                    </Link>
+                                    <Link href={item.href}>{t(item.text)}</Link>
                                 </Item>
                             ))}
                         </SubMenu>
@@ -91,9 +89,7 @@ const SideNav: FC<ISideNavProps> = ({ open, collapsed, setCollapsed }) => {
                         className={styles.sidenav__menu}
                     >
                         <Item title={null} className={styles.sidenav__menu__items} icon={<HomeFilled />}>
-                            <Link href={HOME_PATH} prefetch={false}>
-                                {t('home')}
-                            </Link>
+                            <Link href={HOME_PATH}>{t('home')}</Link>
                         </Item>
 
                         {renderSections(collapsed)}

@@ -7,7 +7,7 @@ import { RiFocusLine } from 'react-icons/ri';
 import { useAppDispatch } from '@redux/store';
 import { BsFillSpeakerFill } from 'react-icons/bs';
 import { FaMicrophoneAlt, FaPodcast } from 'react-icons/fa';
-import { BulbFilled, VideoCameraFilled, FireFilled } from '@ant-design/icons';
+import { BulbFilled, VideoCameraFilled, FireFilled } from 'icons';
 import getVideosFeedAction from '@redux/videos/feed';
 import AdsCarousel from '@components/home/AdsCarousel';
 import HomeVideoSection from '@components/home/VideoSection';

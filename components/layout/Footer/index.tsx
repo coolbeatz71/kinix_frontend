@@ -105,15 +105,9 @@ export const Footer: FC<IFooterProps> = ({ isSidenavClose }) => {
                     </Col>
                     <Col xs={24} sm={24} md={12} data-links>
                         <Space size={24} className={`d-flex ${md ? 'justify-content-end' : 'justify-content-between'}`}>
-                            <Link href="" prefetch={false}>
-                                {t('termsOfService')}
-                            </Link>
-                            <Link href="" prefetch={false}>
-                                {t('privacyPolicies')}
-                            </Link>
-                            <Link href="" prefetch={false}>
-                                {t('security')}
-                            </Link>
+                            <Link href="">{t('termsOfService')}</Link>
+                            <Link href="">{t('privacyPolicies')}</Link>
+                            <Link href="">{t('security')}</Link>
                         </Space>
                     </Col>
                 </Row>

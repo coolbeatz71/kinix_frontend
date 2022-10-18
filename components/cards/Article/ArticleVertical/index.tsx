@@ -7,7 +7,7 @@ import { Card, Typography } from 'antd';
 import isEmpty from 'lodash/isEmpty';
 import truncate from 'lodash/truncate';
 import { useTranslation } from 'react-i18next';
-import { ClockCircleOutlined } from '@ant-design/icons';
+import { ClockCircleOutlined } from 'icons';
 import { IArticle } from '@interfaces/api';
 import useDarkLight from '@hooks/useDarkLight';
 import { ALL_ARTICLES_PATH } from '@constants/paths';
@@ -42,7 +42,7 @@ const ArticleCardVertical: FC<IArticleCardVerticalProps> = ({ article }) => {
                     <Fragment>
                         {!isEmpty(article?.images) && (
                             <div>
-                                <Link href={link} passHref prefetch={false}>
+                                <Link href={link} passHref>
                                     <a rel="noreferrer noopener">
                                         <Image
                                             priority
@@ -79,14 +79,14 @@ const ArticleCardVertical: FC<IArticleCardVerticalProps> = ({ article }) => {
 
                 <Meta
                     title={
-                        <Link href={link} passHref prefetch={false}>
+                        <Link href={link} passHref>
                             {truncate(article?.title, {
                                 length: 100,
                             })}
                         </Link>
                     }
                     description={
-                        <Link href={link} passHref prefetch={false}>
+                        <Link href={link} passHref>
                             {truncate(article?.summary, {
                                 length: 90,
                             })}

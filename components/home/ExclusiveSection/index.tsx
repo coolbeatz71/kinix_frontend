@@ -5,7 +5,7 @@ import dynamic from 'next/dynamic';
 import truncate from 'lodash/truncate';
 import { useTranslation } from 'react-i18next';
 import { Button, Col, Row, Space, Tag, Typography, Grid } from 'antd';
-import { CaretRightFilled, ShareAltOutlined } from '@ant-design/icons';
+import { CaretRightFilled, ShareAltOutlined } from 'icons';
 import { IVideo } from '@interfaces/api';
 import useDarkLight from '@hooks/useDarkLight';
 import { PRIMARY, SKY_BLUE } from '@constants/colors';
@@ -81,7 +81,7 @@ const ExclusiveSection: FC<IExclusiveSectionProps> = ({ tag, title, desc, imgSrc
                         })}
                     </Paragraph>
                     <Space className="mt-4 d-flex align-content-center" size={12}>
-                        <Link href={link} passHref prefetch={false}>
+                        <Link href={link} passHref>
                             <Button
                                 size="large"
                                 data-watch-now

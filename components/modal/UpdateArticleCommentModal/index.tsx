@@ -3,7 +3,7 @@ import { Form, Modal } from 'antd';
 import dynamic from 'next/dynamic';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { CloseCircleOutlined } from '@ant-design/icons';
+import { CloseCircleOutlined } from 'icons';
 import getPayload from '@helpers/getPayload';
 import { IComment } from '@interfaces/api';
 import { IRootState } from '@redux/reducers';

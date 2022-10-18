@@ -12,7 +12,7 @@ import { IVideo } from '@interfaces/api';
 import { WARNING } from '@constants/colors';
 import useDarkLight from '@hooks/useDarkLight';
 import { ALL_VIDEOS_PATH } from '@constants/paths';
-import { PlayCircleTwoTone } from '@ant-design/icons';
+import { PlayCircleTwoTone } from 'icons';
 import getYoutubeVideoThumbnail from '@helpers/getYoutubeVideoThumbail';
 
 import styles from './index.module.scss';

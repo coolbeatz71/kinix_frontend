@@ -1,7 +1,7 @@
 import React, { cloneElement, CSSProperties, FC, Fragment, ReactElement, useEffect, useState } from 'react';
 import Head from 'next/head';
 import { Modal, Typography } from 'antd';
-import { CloseCircleOutlined } from '@ant-design/icons';
+import { CloseCircleOutlined } from 'icons';
 import { APP_NAME } from '@constants/platform';
 
 import styles from './index.module.scss';

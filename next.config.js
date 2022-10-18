@@ -1,3 +1,4 @@
+const path = require('path');
 const withPWA = require('next-pwa');
 const runtimeCaching = require('next-pwa/cache');
 const withPlugins = require('next-compose-plugins');
@@ -28,7 +29,8 @@ const antdLessConfig = {
 };
 
 module.exports = withPlugins([[withPWA, pwaConfig], [withAntdLess, antdLessConfig], [withBundleAnalyzer]], {
-    webpack(config) {
+    webpack(config, options) {
+        config.resolve.alias['@ant-design/icons/lib/dist$'] = path.join(__dirname, './icons.js');
         return config;
     },
     images: {

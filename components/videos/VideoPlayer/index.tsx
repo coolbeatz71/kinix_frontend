@@ -9,7 +9,7 @@ import { useSelector } from 'react-redux';
 import upperFirst from 'lodash/upperFirst';
 import { useTranslation } from 'react-i18next';
 import { Col, Row, Typography, Spin, Button } from 'antd';
-import { LoadingOutlined } from '@ant-design/icons';
+import { LoadingOutlined } from 'icons';
 import { IVideo } from '@interfaces/api';
 import { IRootState } from '@redux/reducers';
 import { useAppDispatch } from '@redux/store';

@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next';
 import useDarkLight from '@hooks/useDarkLight';
 import { Card, Col, Row, Typography } from 'antd';
 import { ALL_ARTICLES_PATH } from '@constants/paths';
-import { ClockCircleOutlined } from '@ant-design/icons';
+import { ClockCircleOutlined } from 'icons';
 
 import styles from './index.module.scss';
 

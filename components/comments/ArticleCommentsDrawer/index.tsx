@@ -4,7 +4,7 @@ import dynamic from 'next/dynamic';
 import { useSelector } from 'react-redux';
 import { Col, Drawer, Form, Row } from 'antd';
 import { useTranslation } from 'react-i18next';
-import { CloseCircleOutlined } from '@ant-design/icons';
+import { CloseCircleOutlined } from 'icons';
 import { IArticle } from '@interfaces/api';
 import { IRootState } from '@redux/reducers';
 import getPayload from '@helpers/getPayload';

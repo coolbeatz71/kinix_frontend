@@ -3,7 +3,7 @@ import dynamic from 'next/dynamic';
 import isEmpty from 'lodash/isEmpty';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { CloseCircleOutlined, PlusOutlined } from '@ant-design/icons';
+import { CloseCircleOutlined, PlusOutlined } from 'icons';
 import { Button, Empty, message, Modal, RadioChangeEvent, Result } from 'antd';
 import { RiPlayListAddFill } from 'react-icons/ri';
 import getPayload from '@helpers/getPayload';

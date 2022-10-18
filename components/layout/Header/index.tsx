@@ -3,7 +3,7 @@ import { Button, Col, Layout, Row, Grid } from 'antd';
 import dynamic from 'next/dynamic';
 import isEmpty from 'lodash/isEmpty';
 import { BsFillGridFill } from 'react-icons/bs';
-import { MenuOutlined } from '@ant-design/icons';
+import { MenuOutlined } from 'icons';
 import Logo from '@components/common/Logo';
 import useDarkLight from '@hooks/useDarkLight';
 import { ICurrentUser } from '@interfaces/user';
