@@ -1,4 +1,9 @@
 .ratingModal {
+    [class~='ant-modal-body'] {
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+    }
     [class~='ant-rate'] {
         [class~='ant-rate-star'] {
             margin: 0 0.5rem;

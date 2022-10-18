@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import numeral from 'numeral';
 import { Row, Col, Progress } from 'antd';
 import { PRIMARY } from '@constants/colors';
-import { StarFilled } from '@ant-design/icons';
+import { StarFilled } from 'icons';
 
 export interface ISummaryBodyProps {
     percent: string;

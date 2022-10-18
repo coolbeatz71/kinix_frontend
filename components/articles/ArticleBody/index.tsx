@@ -7,7 +7,7 @@ import { ALL_ARTICLES_PATH } from '@constants/paths';
 import getPlatformUrl from '@helpers/getPlatformUrl';
 import ArticleHeader from '@components/articles/ArticleHeader';
 import ArticleTagsList from '@components/lists/ArticleTagsList';
-import ArticleAction from '@components/actions/SingleArticleAction';
+import SingleArticleAction from '@components/actions/SingleArticleAction';
 import ArticleShare from '@components/sharings/ArticleShare';
 import PopularArticleList from '@components/lists/PopularArticleList';
 import RelatedArticleList from '@components/lists/RelatedArticleList';
@@ -66,7 +66,7 @@ const ArticleBody: FC<IArticleBodyProps> = ({ article, related }) => {
                         <div data-article-body dangerouslySetInnerHTML={{ __html: article.body }} />
                     </div>
 
-                    {lg && <ArticleAction article={article} />}
+                    {lg && <SingleArticleAction article={article} />}
                     {lg && <ArticleTagsList tags={article.tags} />}
                     <BackTop style={backToStyle} data-back-top />
                 </Col>

@@ -1,15 +1,18 @@
 import React, { FC, useEffect, useState, Fragment } from 'react';
-import { Button, Col, Form, Input, notification, Row, Typography } from 'antd';
-import { useTranslation } from 'react-i18next';
-import otpValidator from './validator';
+import dynamic from 'next/dynamic';
 import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
+import { Button, Col, Form, Input, Row, Typography } from 'antd';
+import otpValidator from './validator';
 import { IRootState } from '@redux/reducers';
 import getPayload from '@helpers/getPayload';
 import { useAppDispatch } from '@redux/store';
-import ErrorAlert from '@components/common/ErrorAlert';
+import getNotification from '@helpers/getNotification';
 import FloatTextInput from '@components/common/TextInput';
-import confirmAccountAction, { resetConfirmAccountAction } from '@redux/auth/confirm';
 import resendOTPAction, { resetResendOTPAction } from '@redux/auth/resentOtp';
+import confirmAccountAction, { resetConfirmAccountAction } from '@redux/auth/confirm';
+
+const DynamicErrorAlert = dynamic(() => import('@components/common/ErrorAlert'));
 
 import styles from './index.module.scss';
 
@@ -46,12 +49,7 @@ const AccountConfirmation: FC<IAccountConfirmationProps> = ({ credential, onClos
     const onResendOtp = (): void => {
         dispatch(resendOTPAction({ credential })).then((res) => {
             if (res.type === 'auth/resendOtp/fulfilled') {
-                notification.success({
-                    key: 'success',
-                    placement: 'topRight',
-                    message: 'Confirmation',
-                    description: getPayload(res).message,
-                });
+                getNotification('success', getPayload(res).message, t('confirmation'));
             }
         });
     };
@@ -80,7 +78,7 @@ const AccountConfirmation: FC<IAccountConfirmationProps> = ({ credential, onClos
                     <Text className="text-center">{t('enterVerificationCode')}</Text>
                     <br />
 
-                    <ErrorAlert error={error} showIcon closable banner />
+                    <DynamicErrorAlert error={error} showIcon closable banner />
 
                     <Form size="large" name="account_confirmation" layout="vertical" onFinish={onSubmit}>
                         <Item name="otp" validateTrigger={['onSubmit', 'onBlur']} rules={otpValidator(t('otp'))}>

@@ -1,7 +1,5 @@
 import React, { FC, useEffect } from 'react';
-import { Button, Row } from 'antd';
-import Link from 'next/link';
-import { useTranslation } from 'react-i18next';
+import dynamic from 'next/dynamic';
 import { useSelector } from 'react-redux';
 import { IArticle } from '@interfaces/api';
 import { IRootState } from '@redux/reducers';
@@ -9,8 +7,10 @@ import { useAppDispatch } from '@redux/store';
 import useDarkLight from '@hooks/useDarkLight';
 import { ALL_ARTICLES_PATH } from '@constants/paths';
 import getFeaturedArticlesAction from '@redux/articles/featured';
-import AlaUneArticleList from '@components/lists/AlaUneArticleList';
-import AlaUneArticleListSkeleton from '@components/skeleton/AlaUneArticleList';
+
+const DynamicViewAllButton = dynamic(() => import('@components/common/ViewAllButton'));
+const DynamicAlaUneArticleList = dynamic(() => import('@components/lists/AlaUneArticleList'));
+const DynamicAlaUneArticleListSkeleton = dynamic(() => import('@components/skeleton/AlaUneArticleList'));
 
 import styles from './index.module.scss';
 
@@ -20,7 +20,6 @@ interface IAlaUneArticleSectionProps {
 }
 
 const AlaUneArticleSection: FC<IAlaUneArticleSectionProps> = ({ limit, canViewAll = true }) => {
-    const { t } = useTranslation();
     const { value } = useDarkLight();
     const dispatch = useAppDispatch();
 
@@ -33,15 +32,13 @@ const AlaUneArticleSection: FC<IAlaUneArticleSectionProps> = ({ limit, canViewAl
 
     return (
         <div data-theme={value} className={styles.alaUneArticleSection}>
-            {loading ? <AlaUneArticleListSkeleton /> : <AlaUneArticleList articles={articles as IArticle[]} />}
-
-            {canViewAll && fetched && (
-                <Row justify="end">
-                    <Link href={ALL_ARTICLES_PATH} passHref prefetch={false}>
-                        <Button size="large">{t('viewAll')}</Button>
-                    </Link>
-                </Row>
+            {loading ? (
+                <DynamicAlaUneArticleListSkeleton />
+            ) : (
+                <DynamicAlaUneArticleList articles={articles as IArticle[]} />
             )}
+
+            {canViewAll && fetched && <DynamicViewAllButton link={ALL_ARTICLES_PATH} />}
         </div>
     );
 };

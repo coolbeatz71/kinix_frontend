@@ -1,10 +1,11 @@
 import React, { FC, useEffect, useState } from 'react';
 import numeral from 'numeral';
+import dynamic from 'next/dynamic';
 import { useSelector } from 'react-redux';
 import { BsBookmarkPlus } from 'react-icons/bs';
 import { RiBookmark3Fill } from 'react-icons/ri';
 import { Button, Col, message, Row } from 'antd';
-import { CommentOutlined, HeartOutlined, HeartFilled } from '@ant-design/icons';
+import { CommentOutlined, HeartOutlined, HeartFilled } from 'icons';
 import { IArticle } from '@interfaces/api';
 import { IRootState } from '@redux/reducers';
 import getPayload from '@helpers/getPayload';
@@ -20,7 +21,8 @@ import getAllArticleCommentsAction from '@redux/comments/all';
 import removeArticleBookmarkAction from '@redux/bookmarks/delete';
 import isSingleArticleBookmarkOwner from '@helpers/isBookmarkOwner';
 import getUserBookmarksAction from '@redux/bookmarks/userBookmarks';
-import ArticleCommentsDrawer from '@components/comments/ArticleCommentsDrawer';
+
+const DynamicCommentsDrawer = dynamic(() => import('@components/comments/ArticleCommentsDrawer'));
 
 import styles from './index.module.scss';
 
@@ -142,7 +144,7 @@ const SingleArticleAction: FC<ISingleArticleActionProps> = ({ article }) => {
                     }
                 />
             </Col>
-            <ArticleCommentsDrawer
+            <DynamicCommentsDrawer
                 article={article}
                 openDrawer={openCommentDrawer}
                 setOpenDrawer={setOpenCommentDrawer}

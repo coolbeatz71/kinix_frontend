@@ -1,13 +1,13 @@
 import React, { FC, useEffect, useState } from 'react';
 import { Button, Divider, Form, Input } from 'antd';
-import { useTranslation } from 'react-i18next';
+import dynamic from 'next/dynamic';
 import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 import SocialLogin from '../SocialLogin';
 import { IRootState } from 'redux/reducers';
 import { useAppDispatch } from 'redux/store';
 import { ISignUpData } from '@interfaces/auth';
 import AuthModal from '@components/modal/AuthModal';
-import ErrorAlert from '@components/common/ErrorAlert';
 import FloatTextInput from '@components/common/TextInput';
 import { EnumAuthContext } from '@constants/auth-context';
 import UserAgreement from '@components/common/UserAgreement';
@@ -15,6 +15,8 @@ import { showAuthDialogAction } from 'redux/auth/showDialog';
 import signUpAction, { resetSignUpAction } from 'redux/auth/signup';
 import AccountConfirmation from '@components/auth/AccountConfirmation';
 import { emailValidator, passwordMatchValidator, passwordValidator, userNameValidator } from './validator';
+
+const DynamicErrorAlert = dynamic(() => import('@components/common/ErrorAlert'));
 
 import styles from './index.module.scss';
 
@@ -113,7 +115,7 @@ const SignUpModal: FC = () => {
                         </FloatTextInput>
                     </Item>
 
-                    <ErrorAlert error={error} showIcon closable banner />
+                    <DynamicErrorAlert error={error} showIcon closable banner />
 
                     <UserAgreement styles={styles} />
 

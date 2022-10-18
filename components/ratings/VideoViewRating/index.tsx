@@ -1,8 +1,10 @@
 import React, { FC, useState } from 'react';
 import { Button } from 'antd';
+import dynamic from 'next/dynamic';
 import useDarkLight from '@hooks/useDarkLight';
 import StarRatingComponent from 'react-star-rating-component';
-import RatingSummaryPopover from '../RatingSummaryPopover';
+
+const DynamicRatingSummaryPopover = dynamic(() => import('../RatingSummaryPopover'));
 
 import styles from './index.module.scss';
 
@@ -16,7 +18,7 @@ const VideoViewRating: FC<IVideoViewRatingProps> = ({ count, slug }) => {
     const [openRatingPopup, setOpenRatingPopup] = useState(false);
 
     return (
-        <RatingSummaryPopover slug={slug} open={openRatingPopup} setOpen={setOpenRatingPopup}>
+        <DynamicRatingSummaryPopover slug={slug} open={openRatingPopup} setOpen={setOpenRatingPopup}>
             <Button
                 type="link"
                 data-theme={value}
@@ -25,7 +27,7 @@ const VideoViewRating: FC<IVideoViewRatingProps> = ({ count, slug }) => {
             >
                 <StarRatingComponent name={slug} starCount={5} value={count} />
             </Button>
-        </RatingSummaryPopover>
+        </DynamicRatingSummaryPopover>
     );
 };
 

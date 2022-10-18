@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { TwitterOutlined, InstagramFilled, FacebookFilled, YoutubeFilled, WhatsAppOutlined } from '@ant-design/icons';
+import { TwitterOutlined, InstagramFilled, FacebookFilled, YoutubeFilled, WhatsAppOutlined } from 'icons';
 import { MdEmail } from 'react-icons/md';
 import { HiOutlineLink } from 'react-icons/hi';
 

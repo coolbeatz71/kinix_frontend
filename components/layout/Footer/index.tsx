@@ -2,11 +2,11 @@ import React, { FC } from 'react';
 import Link from 'next/link';
 import { useTranslation } from 'react-i18next';
 import { Col, Layout, Row, Typography, Anchor, Button, Form, Input, Divider, Space, Grid } from 'antd';
-import useDarkLight from '@hooks/useDarkLight';
 import { MdLocationOn, MdPhone, MdEmail } from 'react-icons/md';
-import social from '@constants/social';
-import FloatTextInput from '@components/common/TextInput';
+import SocialButtons from '@components/common/SocialButtons';
+import useDarkLight from '@hooks/useDarkLight';
 import { APP_AUTHOR } from '@constants/platform';
+import FloatTextInput from '@components/common/TextInput';
 
 import styles from './index.module.scss';
 
@@ -60,15 +60,7 @@ export const Footer: FC<IFooterProps> = ({ isSidenavClose }) => {
                                 {t('followUsOne')} <br /> {t('followUsTwo')}
                             </Text>
                             <Row>
-                                {social.map((item) => (
-                                    <Button
-                                        type="text"
-                                        key={item.name}
-                                        icon={item.icon}
-                                        className={styles.footer__content__social__icon}
-                                        onClick={() => window?.open(item.url, '_blank')}
-                                    />
-                                ))}
+                                <SocialButtons className={styles.footer__content__social__icon} />
                             </Row>
                         </div>
                     </Col>
@@ -113,15 +105,9 @@ export const Footer: FC<IFooterProps> = ({ isSidenavClose }) => {
                     </Col>
                     <Col xs={24} sm={24} md={12} data-links>
                         <Space size={24} className={`d-flex ${md ? 'justify-content-end' : 'justify-content-between'}`}>
-                            <Link href="" prefetch={false}>
-                                {t('termsOfService')}
-                            </Link>
-                            <Link href="" prefetch={false}>
-                                {t('privacyPolicies')}
-                            </Link>
-                            <Link href="" prefetch={false}>
-                                {t('security')}
-                            </Link>
+                            <Link href="">{t('termsOfService')}</Link>
+                            <Link href="">{t('privacyPolicies')}</Link>
+                            <Link href="">{t('security')}</Link>
                         </Space>
                     </Col>
                 </Row>

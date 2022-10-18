@@ -1,7 +1,7 @@
 import React, { ChangeEventHandler, FC, KeyboardEventHandler } from 'react';
 import { Input } from 'antd';
 import { useTranslation } from 'react-i18next';
-import { SearchOutlined } from '@ant-design/icons';
+import { SearchOutlined } from 'icons';
 import { SizeType } from 'antd/lib/config-provider/SizeContext';
 import useDarkLight from '@hooks/useDarkLight';
 

@@ -1,4 +1,5 @@
 import React, { FC, Fragment, useEffect } from 'react';
+import dynamic from 'next/dynamic';
 import isEmpty from 'lodash/isEmpty';
 import { Col, Grid, Row } from 'antd';
 import { useSelector } from 'react-redux';
@@ -7,13 +8,14 @@ import { IRootState } from '@redux/reducers';
 import { useAppDispatch } from '@redux/store';
 import useDarkLight from '@hooks/useDarkLight';
 import { IYoutubeVideo } from '@interfaces/youtube';
-import VideosTabs from '@components/videos/VideosTabs';
-import ServerError from '@components/common/ServerError';
-import VideoPlayer from '@components/videos/VideoPlayer';
 import getRelatedVideosAction from '@redux/videos/related';
 import getYoutubeVideoInfoAction from '@redux/videos/youtube';
-import RelatedVideoList from '@components/lists/RelatedVideoList';
-import SingleVideoSkeleton from '@components/skeleton/SingleVideo';
+
+const DynamicVideosTabs = dynamic(() => import('@components/videos/VideosTabs'));
+const DynamicVideoPlayer = dynamic(() => import('@components/videos/VideoPlayer'));
+const DynamicServerError = dynamic(() => import('@components/common/ServerError'));
+const DynamicRelatedVideoList = dynamic(() => import('@components/lists/RelatedVideoList'));
+const DynamicSingleVideoSkeleton = dynamic(() => import('@components/skeleton/SingleVideo'));
 
 const { useBreakpoint } = Grid;
 
@@ -51,20 +53,20 @@ const SingleVideoContainer: FC<ISingleVideoContainerProps> = ({ video }) => {
     return (
         <Fragment>
             {error ? (
-                <ServerError error={error} onRefresh={() => dispatch(getYoutubeVideoInfoAction(video.link))} />
+                <DynamicServerError error={error} onRefresh={() => dispatch(getYoutubeVideoInfoAction(video.link))} />
             ) : loading ? (
-                <SingleVideoSkeleton />
+                <DynamicSingleVideoSkeleton />
             ) : (
                 <Row data-theme={value} justify="space-between" gutter={[0, 0]}>
                     <Col xs={24} sm={24} md={24} lg={16}>
-                        <VideoPlayer video={video} youtubeVideo={youtubeVideo as IYoutubeVideo} />
+                        <DynamicVideoPlayer video={video} youtubeVideo={youtubeVideo as IYoutubeVideo} />
                         <div className="mt-3">
-                            <VideosTabs lyrics={video.lyrics as string} />
+                            <DynamicVideosTabs lyrics={video.lyrics as string} />
                         </div>
                     </Col>
                     {lg && !isEmpty(related) && (
                         <Col lg={8} className="ps-3">
-                            <RelatedVideoList videos={related as IVideo[]} />
+                            <DynamicRelatedVideoList videos={related as IVideo[]} />
                         </Col>
                     )}
                 </Row>

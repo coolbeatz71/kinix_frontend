@@ -1,46 +1,44 @@
-import React, { cloneElement, CSSProperties, FC, ReactElement, useEffect, useState } from 'react';
+import React, { cloneElement, CSSProperties, FC, Fragment, ReactElement, useEffect, useState } from 'react';
 import Head from 'next/head';
 import { Modal, Typography } from 'antd';
-import { CloseCircleOutlined } from '@ant-design/icons';
+import { CloseCircleOutlined } from 'icons';
 import { APP_NAME } from '@constants/platform';
 
 import styles from './index.module.scss';
 
 const { Title } = Typography;
 
-// TODO: handle the open and close context inside redux, instead of using internal state
-
 interface Props {
-    title?: string | string[];
-    trigger?: ReactElement;
-    open?: boolean;
-    titleLevel?: 1 | 2 | 3 | 4;
-    titleType?: 'danger' | 'secondary' | 'warning';
-    noTitle?: boolean;
     icon?: string;
-    iconStyle?: CSSProperties;
+    open?: boolean;
+    noTitle?: boolean;
     onOpen?: () => void;
     onCancel?: () => void;
+    trigger?: ReactElement;
     onCloseClick?: () => void;
+    iconStyle?: CSSProperties;
+    title?: string | string[];
+    titleLevel?: 1 | 2 | 3 | 4;
+    titleType?: 'danger' | 'secondary' | 'warning';
     children: string | string[] | ReactElement | ReactElement[];
 }
 
 const AuthModal: FC<Props> = ({
-    title = ` `,
-    trigger,
-    open: visible = false,
-    titleLevel = 2,
-    titleType,
-    noTitle = false,
     icon,
+    trigger,
+    children,
+    titleType,
+    title = ` `,
+    onCloseClick,
+    titleLevel = 2,
+    noTitle = false,
+    open: visible = false,
     onOpen = () => {
         //
     },
     onCancel = () => {
         //
     },
-    onCloseClick,
-    children,
 }) => {
     const [open, setOpen] = useState(visible);
 
@@ -59,7 +57,7 @@ const AuthModal: FC<Props> = ({
     const closeIcon = <CloseCircleOutlined style={{ fontSize: '22px' }} />;
 
     return (
-        <>
+        <Fragment>
             {trigger &&
                 cloneElement(trigger, {
                     onClick: () => {
@@ -72,8 +70,8 @@ const AuthModal: FC<Props> = ({
                 footer={null}
                 destroyOnClose
                 title={_title}
-                closeIcon={closeIcon}
                 style={{ top: 16 }}
+                closeIcon={closeIcon}
                 className={styles[icon ? 'modal_icon' : 'modal']}
                 onCancel={() => {
                     setOpen(false);
@@ -88,7 +86,7 @@ const AuthModal: FC<Props> = ({
                 </Head>
                 {children}
             </Modal>
-        </>
+        </Fragment>
     );
 };
 

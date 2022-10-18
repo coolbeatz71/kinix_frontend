@@ -1,13 +1,15 @@
 import React from 'react';
 import { NextPage } from 'next';
+import dynamic from 'next/dynamic';
 import isEmpty from 'lodash/isEmpty';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'react-i18next';
 import Layout from '@components/layout';
 import { IArticle } from '@interfaces/api';
 import ServerPropsType from '@interfaces/serverProps';
-import ServerError from '@components/common/ServerError';
 import SingleArticleContainer from '@containers/SingleArticle';
+
+const DynamicServerError = dynamic(() => import('@components/common/ServerError'));
 
 const SingleArticlePage: NextPage<ServerPropsType> = ({ error, data }) => {
     const { t } = useTranslation();
@@ -21,7 +23,7 @@ const SingleArticlePage: NextPage<ServerPropsType> = ({ error, data }) => {
             title={(data as IArticle)?.title || t('articles')}
         >
             {!isEmpty(error) ? (
-                <ServerError error={error} onRefresh={() => reload()} />
+                <DynamicServerError error={error} onRefresh={() => reload()} />
             ) : (
                 <SingleArticleContainer article={data as IArticle} />
             )}

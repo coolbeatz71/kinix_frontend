@@ -73,6 +73,13 @@
             font-size: 12pt;
             font-weight: 700;
             white-space: unset;
+
+            a {
+                text-decoration: none;
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
         }
 
         [class~='ant-card-meta-description'] {

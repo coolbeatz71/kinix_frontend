@@ -10,13 +10,16 @@
         "lint": "eslint **/*.tsx **/*.ts",
         "lint:fix": "eslint **/*.tsx **/*.ts --fix",
         "prettier": "prettier --check --config package.json **/*.tsx **/*.ts",
-        "prettier:fix": "prettier --write **/*.tsx **/*.ts"
+        "prettier:fix": "prettier --write **/*.tsx **/*.ts",
+        "analyze": "cross-env ANALYZE=true next build",
+        "analyze:server": "cross-env BUNDLE_ANALYZE=server next build",
+        "analyze:browser": "cross-env BUNDLE_ANALYZE=browser next build"
     },
     "dependencies": {
+        "@alfonmga/react-lottie-light-ts": "^0.0.1",
         "@reduxjs/toolkit": "^1.8.1",
         "@types/color-hash": "^1.0.2",
         "@types/crypto-js": "^4.1.1",
-        "@types/react-lottie": "^1.2.6",
         "@types/react-redux": "^7.1.24",
         "@types/react-star-rating-component": "^1.4.1",
         "@types/redux-logger": "^3.0.9",
@@ -48,7 +51,6 @@
         "react-infinite-scroll-component": "^6.1.0",
         "react-infinite-scroll-hook": "^4.0.3",
         "react-jwt": "^1.1.6",
-        "react-lottie": "^1.2.3",
         "react-player": "^2.11.0",
         "react-redux": "^8.0.1",
         "react-star-rating-component": "^1.4.1",
@@ -61,6 +63,7 @@
         "validator": "^13.7.0"
     },
     "devDependencies": {
+        "@next/bundle-analyzer": "^12.3.1",
         "@next/eslint-plugin-next": "^11.1.0",
         "@types/lodash": "^4.14.154",
         "@types/nprogress": "^0.2.0",
@@ -69,6 +72,7 @@
         "@types/validator": "^13.7.2",
         "@typescript-eslint/eslint-plugin": "^4.29.3",
         "@typescript-eslint/parser": "^4.29.3",
+        "cross-env": "^7.0.3",
         "enforce-branch-name": "^1.0.1",
         "eslint": "^7.32.0",
         "eslint-config-prettier": "^8.3.0",

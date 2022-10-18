@@ -1,14 +1,16 @@
 import React, { FC } from 'react';
 import Style from 'style-it';
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
 import truncate from 'lodash/truncate';
 import { useTranslation } from 'react-i18next';
-import { CaretRightFilled, ShareAltOutlined } from '@ant-design/icons';
 import { Button, Col, Row, Space, Tag, Typography, Grid } from 'antd';
+import { CaretRightFilled, ShareAltOutlined } from 'icons';
 import { IVideo } from '@interfaces/api';
 import useDarkLight from '@hooks/useDarkLight';
 import { PRIMARY, SKY_BLUE } from '@constants/colors';
-import VideoCardVertical from '@components/cards/Video/VideoCardVertical';
+
+const DynamicVideoCardVertical = dynamic(() => import('@components/cards/Video/VideoCardVertical'));
 
 import styles from './index.module.scss';
 
@@ -79,7 +81,7 @@ const ExclusiveSection: FC<IExclusiveSectionProps> = ({ tag, title, desc, imgSrc
                         })}
                     </Paragraph>
                     <Space className="mt-4 d-flex align-content-center" size={12}>
-                        <Link href={link} passHref prefetch={false}>
+                        <Link href={link} passHref>
                             <Button
                                 size="large"
                                 data-watch-now
@@ -98,7 +100,7 @@ const ExclusiveSection: FC<IExclusiveSectionProps> = ({ tag, title, desc, imgSrc
             <Row gutter={md ? [48, 0] : undefined} className={styles.exclusive__bottom} style={colStyles}>
                 {videos?.map((video) => (
                     <Col xs={24} sm={12} md={12} lg={8} xl={6} key={video?.slug}>
-                        <VideoCardVertical video={video} isExclusive />
+                        <DynamicVideoCardVertical video={video} isExclusive />
                     </Col>
                 ))}
             </Row>

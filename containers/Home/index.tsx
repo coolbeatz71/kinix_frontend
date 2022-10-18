@@ -1,18 +1,20 @@
 import React, { Fragment, FC, useCallback, useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
+import dynamic from 'next/dynamic';
 import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 import { IRootState } from '@redux/reducers';
-import HomeIllustration from '@components/home/MainIllustration';
-import HomeVideoSection from '@components/home/VideoSection';
 import { RiFocusLine } from 'react-icons/ri';
-import { BulbFilled, VideoCameraFilled, FireFilled } from '@ant-design/icons';
 import { useAppDispatch } from '@redux/store';
-import { FaMicrophoneAlt, FaPodcast } from 'react-icons/fa';
 import { BsFillSpeakerFill } from 'react-icons/bs';
-import AlaUneArticleSection from '@components/home/AlaUneArticleSection';
-import AdsCarousel from '@components/home/AdsCarousel';
-import ServerError from '@components/common/ServerError';
+import { FaMicrophoneAlt, FaPodcast } from 'react-icons/fa';
+import { BulbFilled, VideoCameraFilled, FireFilled } from 'icons';
 import getVideosFeedAction from '@redux/videos/feed';
+import AdsCarousel from '@components/home/AdsCarousel';
+import HomeVideoSection from '@components/home/VideoSection';
+import HomeIllustration from '@components/home/MainIllustration';
+import AlaUneArticleSection from '@components/home/AlaUneArticleSection';
+
+const DynamicServerError = dynamic(() => import('@components/common/ServerError'));
 
 const HomeContainer: FC = () => {
     const dispatch = useAppDispatch();
@@ -39,7 +41,7 @@ const HomeContainer: FC = () => {
             </div>
             {error ? (
                 <div className="mt-5">
-                    <ServerError error={error} onRefresh={loadVideoFeed} />
+                    <DynamicServerError error={error} onRefresh={loadVideoFeed} />
                 </div>
             ) : (
                 <Fragment>

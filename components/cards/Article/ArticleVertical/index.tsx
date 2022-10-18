@@ -1,4 +1,5 @@
 import React, { FC, Fragment, useState } from 'react';
+import dynamic from 'next/dynamic';
 import dayjs from 'dayjs';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -6,14 +7,15 @@ import { Card, Typography } from 'antd';
 import isEmpty from 'lodash/isEmpty';
 import truncate from 'lodash/truncate';
 import { useTranslation } from 'react-i18next';
-import { ClockCircleOutlined } from '@ant-design/icons';
+import { ClockCircleOutlined } from 'icons';
 import { IArticle } from '@interfaces/api';
 import useDarkLight from '@hooks/useDarkLight';
 import { ALL_ARTICLES_PATH } from '@constants/paths';
 import ArticleLikeButton from '@components/actions/ArticleLikeButton';
 import ArticleCommentButton from '@components/comments/ArticleCommentButton';
-import ArticleCommentsDrawer from '@components/comments/ArticleCommentsDrawer';
 import ArticleBookmarkButton from '@components/actions/ArticleBookmarkButton';
+
+const DynamicCommentsDrawer = dynamic(() => import('@components/comments/ArticleCommentsDrawer'));
 
 import styles from './index.module.scss';
 
@@ -40,7 +42,7 @@ const ArticleCardVertical: FC<IArticleCardVerticalProps> = ({ article }) => {
                     <Fragment>
                         {!isEmpty(article?.images) && (
                             <div>
-                                <Link href={link} passHref prefetch={false}>
+                                <Link href={link} passHref>
                                     <a rel="noreferrer noopener">
                                         <Image
                                             priority
@@ -77,14 +79,14 @@ const ArticleCardVertical: FC<IArticleCardVerticalProps> = ({ article }) => {
 
                 <Meta
                     title={
-                        <Link href={link} passHref prefetch={false}>
+                        <Link href={link} passHref>
                             {truncate(article?.title, {
                                 length: 100,
                             })}
                         </Link>
                     }
                     description={
-                        <Link href={link} passHref prefetch={false}>
+                        <Link href={link} passHref>
                             {truncate(article?.summary, {
                                 length: 90,
                             })}
@@ -92,7 +94,7 @@ const ArticleCardVertical: FC<IArticleCardVerticalProps> = ({ article }) => {
                     }
                 />
             </Card>
-            <ArticleCommentsDrawer
+            <DynamicCommentsDrawer
                 article={article}
                 openDrawer={openCommentDrawer}
                 setOpenDrawer={setOpenCommentDrawer}

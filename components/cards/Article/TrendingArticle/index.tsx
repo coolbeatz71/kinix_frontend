@@ -5,7 +5,7 @@ import { Card, Typography } from 'antd';
 import { useTranslation } from 'react-i18next';
 import useDarkLight from '@hooks/useDarkLight';
 import { IArticle } from '@interfaces/api';
-import { ClockCircleOutlined } from '@ant-design/icons';
+import { ClockCircleOutlined } from 'icons';
 
 import styles from './index.module.scss';
 import Link from 'next/link';

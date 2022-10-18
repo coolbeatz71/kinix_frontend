@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next';
 
 import { IArticle } from '@interfaces/api';
 import { ALL_ARTICLES_PATH } from '@constants/paths';
-import { ClockCircleOutlined } from '@ant-design/icons';
+import { ClockCircleOutlined } from 'icons';
 
 import styles from './index.module.scss';
 
@@ -23,7 +23,7 @@ const MainArticle: FC<IMainArticleProps> = ({ article }) => {
     const link = `${ALL_ARTICLES_PATH}/${article?.slug}`;
 
     return (
-        <Link href={link} passHref prefetch={false}>
+        <Link href={link} passHref>
             <Row justify="space-between" className={styles.mainArticle}>
                 <div className={styles.mainArticle__cover}>
                     <Image priority alt={article?.slug} layout="fill" src={article?.images?.[0] as string} />

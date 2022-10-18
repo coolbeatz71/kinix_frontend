@@ -1,8 +1,9 @@
 import React, { FC, useState, useEffect } from 'react';
 import { Form, Modal } from 'antd';
+import dynamic from 'next/dynamic';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { CloseCircleOutlined } from '@ant-design/icons';
+import { CloseCircleOutlined } from 'icons';
 import getPayload from '@helpers/getPayload';
 import { IComment } from '@interfaces/api';
 import { IRootState } from '@redux/reducers';
@@ -10,9 +11,10 @@ import { useAppDispatch } from '@redux/store';
 import { EnumFormContext } from '@interfaces/app';
 import { ICommentData } from '@interfaces/comments';
 import getAllArticleCommentsAction from '@redux/comments/all';
-import FormSuccessResult from '@components/form/FormSuccessResult';
 import CreateArticleComment from '@components/form/CreateArticleComment';
 import addArticleCommentAction, { resetAddCommentAction } from '@redux/comments/add';
+
+const DynamicFormSuccessResult = dynamic(() => import('@components/form/FormSuccessResult'));
 
 import styles from './index.module.scss';
 
@@ -74,7 +76,7 @@ const UpdateArticleCommentModal: FC<IUpdateArticleCommentModalProps> = ({
             className={styles.updateCommentModal}
         >
             {success ? (
-                <FormSuccessResult
+                <DynamicFormSuccessResult
                     title={success}
                     onClose={() => {
                         onCloseModal();

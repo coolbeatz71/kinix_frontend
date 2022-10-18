@@ -1,6 +1,6 @@
 import React, { FC, useEffect } from 'react';
-import { Avatar, Col, Menu, Row, Typography, Spin, notification } from 'antd';
-import { UserOutlined, SettingOutlined, LogoutOutlined, LoadingOutlined } from '@ant-design/icons';
+import { Avatar, Col, Menu, Row, Typography, Spin } from 'antd';
+import { UserOutlined, SettingOutlined, LogoutOutlined, LoadingOutlined } from 'icons';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
@@ -10,6 +10,7 @@ import { IRootState } from '@redux/reducers';
 import logoutAction from '@redux/auth/logout';
 import { useAppDispatch } from '@redux/store';
 import { getBgColor } from '@helpers/getBgColor';
+import getNotification from '@helpers/getNotification';
 import { HOME_PATH, SETTING_PATH } from '@constants/paths';
 
 import styles from './index.module.scss';
@@ -33,14 +34,7 @@ const UserProfileMenu: FC<IUserProfileMenuProps> = ({ avatar, email, phoneNumber
     const { error, loading } = useSelector(({ auth: { logout } }: IRootState) => logout);
 
     useEffect(() => {
-        if (error) {
-            notification.error({
-                key: 'error',
-                message: 'Erreur',
-                placement: 'bottomRight',
-                description: error?.message,
-            });
-        }
+        if (error) getNotification('error', error?.message);
     }, [error]);
 
     const onLogout = (): void => {
@@ -70,9 +64,7 @@ const UserProfileMenu: FC<IUserProfileMenuProps> = ({ avatar, email, phoneNumber
                 </Col>
             </Row>
             <Item icon={<SettingOutlined />}>
-                <Link href={SETTING_PATH} prefetch={false}>
-                    {t('settings')}
-                </Link>
+                <Link href={SETTING_PATH}>{t('settings')}</Link>
             </Item>
             <Item danger data-signout icon={<LogoutOutlined />} onClick={onLogout}>
                 {loading ? <Spin indicator={<LoadingOutlined />} /> : t('logout')}

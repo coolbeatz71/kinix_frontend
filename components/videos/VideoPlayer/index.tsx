@@ -1,6 +1,7 @@
 import React, { FC, useEffect, useState } from 'react';
 import dayjs from 'dayjs';
 import numeral from 'numeral';
+import dynamic from 'next/dynamic';
 import isEmpty from 'lodash/isEmpty';
 import ReactPlayer from 'react-player';
 import { FaShare } from 'react-icons/fa';
@@ -8,19 +9,20 @@ import { useSelector } from 'react-redux';
 import upperFirst from 'lodash/upperFirst';
 import { useTranslation } from 'react-i18next';
 import { Col, Row, Typography, Spin, Button } from 'antd';
-import { LoadingOutlined } from '@ant-design/icons';
+import { LoadingOutlined } from 'icons';
+import { IVideo } from '@interfaces/api';
+import { IRootState } from '@redux/reducers';
 import { useAppDispatch } from '@redux/store';
+import useDarkLight from '@hooks/useDarkLight';
 import { ALL_VIDEOS_PATH } from '@constants/paths';
 import getPlatformUrl from '@helpers/getPlatformUrl';
-import { IRootState } from '@redux/reducers';
-import { IVideo } from '@interfaces/api';
-import useDarkLight from '@hooks/useDarkLight';
-import SharePopover from '@components/sharings/SharePopover';
-import VideoTagsList from '@components/lists/VideoTagsList';
-import VideoRatingModal from '@components/modal/VideoRatingModal';
 import { IItemsEntity, IYoutubeVideo } from '@interfaces/youtube';
-import SingleVideoAction from '@components/actions/SingleVideoAction';
 import getSingleVideoRatedByUserAction from '@redux/ratings/getUserRate';
+
+const DynamicVideoTagsList = dynamic(() => import('@components/lists/VideoTagsList'));
+const DynamicSharePopover = dynamic(() => import('@components/sharings/SharePopover'));
+const DynamicVideoRatingModal = dynamic(() => import('@components/modal/VideoRatingModal'));
+const DynamicSingleVideoAction = dynamic(() => import('@components/actions/SingleVideoAction'));
 
 import styles from './index.module.scss';
 
@@ -80,8 +82,8 @@ const VideoPlayer: FC<IVideoPlayerProps> = ({ youtubeVideo, video }) => {
             </Col>
             <Col span={24} className={styles.videoPlayer__footer}>
                 <div className="d-flex justify-content-between">
-                    {video.tags && <VideoTagsList tags={video.tags} />}
-                    <SharePopover
+                    {video.tags && <DynamicVideoTagsList tags={video.tags} />}
+                    <DynamicSharePopover
                         slug={video.slug}
                         link={sharedLink}
                         title={video.title}
@@ -91,16 +93,16 @@ const VideoPlayer: FC<IVideoPlayerProps> = ({ youtubeVideo, video }) => {
                         <Button data-share-button icon={<FaShare />} type={isDark ? 'default' : 'primary'} ghost>
                             {t('share')}
                         </Button>
-                    </SharePopover>
+                    </DynamicSharePopover>
                 </div>
                 <Text data-title>{video.title}</Text>
                 <Text data-views className="my-2">
                     {numeral(viewCount).format('0,0')} {t('views')} -{' '}
                     {upperFirst(dayjs(publishedAt).format('MMM D, YYYY'))}
                 </Text>
-                <SingleVideoAction video={video} youtubeVideoEntity={youtubeVideoEntity as IItemsEntity} />
+                <DynamicSingleVideoAction video={video} youtubeVideoEntity={youtubeVideoEntity as IItemsEntity} />
             </Col>
-            <VideoRatingModal slug={video.slug} openModal={openRatingModal} setOpenModal={setOpenRatingModal} />
+            <DynamicVideoRatingModal slug={video.slug} openModal={openRatingModal} setOpenModal={setOpenRatingModal} />
         </Row>
     );
 };

@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { Avatar, Col, Row, Typography } from 'antd';
 import truncate from 'lodash/truncate';
 import useDarkLight from '@hooks/useDarkLight';
-import { SettingOutlined } from '@ant-design/icons';
+import { SettingOutlined } from 'icons';
 import Link from 'next/link';
 import { HOME_PATH } from '@constants/paths';
 

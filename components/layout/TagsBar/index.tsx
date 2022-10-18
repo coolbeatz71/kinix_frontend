@@ -1,13 +1,15 @@
 import React, { FC } from 'react';
+import dynamic from 'next/dynamic';
 import { Col, Row, Skeleton } from 'antd';
 import Tag from '@components/common/Tag';
 import useDarkLight from '@hooks/useDarkLight';
-import ErrorAlert from '@components/common/ErrorAlert';
 import onWheel, { getId } from '@helpers/tagBarOnWheel';
 import { EnumTagsContext } from '@constants/tags-context';
 import { ScrollMenu } from 'react-horizontal-scrolling-menu';
 import { LeftArrow } from '@components/common/TagsArrow/LeftArrow';
 import { RightArrow } from '@components/common/TagsArrow/RightArrow';
+
+const DynamicErrorAlert = dynamic(() => import('@components/common/ErrorAlert'));
 
 import styles from './index.module.scss';
 
@@ -34,7 +36,7 @@ const TagsBar: FC<ITagsBarProps> = ({ context, tags, loading, error, onTagSelect
                             .fill(0)
                             .map((idx) => <Skeleton.Button className="me-2" active key={idx} />)
                     ) : error ? (
-                        <ErrorAlert error={error} showIcon closable banner />
+                        <DynamicErrorAlert error={error} showIcon closable banner />
                     ) : (
                         tagsList.map((tag) => (
                             <Tag

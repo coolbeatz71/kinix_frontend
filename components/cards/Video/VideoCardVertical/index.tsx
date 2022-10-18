@@ -6,7 +6,7 @@ import { Card, Button, Grid } from 'antd';
 import isEmpty from 'lodash/isEmpty';
 import truncate from 'lodash/truncate';
 import isBoolean from 'lodash/isBoolean';
-import { PlayCircleTwoTone } from '@ant-design/icons';
+import { PlayCircleTwoTone } from 'icons';
 import useDarkLight from '@hooks/useDarkLight';
 import EnumRole from '@interfaces/role';
 import { IVideo } from '@interfaces/api';

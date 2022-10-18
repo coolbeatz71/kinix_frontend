@@ -1,11 +1,13 @@
 import React, { FC, Fragment, ReactElement } from 'react';
+import dynamic from 'next/dynamic';
 import { IVideo } from '@interfaces/api';
 import useDarkLight from '@hooks/useDarkLight';
-import ExclusiveSection from '../ExclusiveSection';
-import VideoList from '@components/lists/VideoList';
-import SectionTitle from '@components/common/SectionTitle';
-import VideoListSkeleton from '@components/skeleton/VideoList';
-import SectionTitleSkeleton from '@components/skeleton/SectionTitle';
+
+const DynamicExclusiveSection = dynamic(() => import('../ExclusiveSection'));
+const DynamicVideoList = dynamic(() => import('@components/lists/VideoList'));
+const DynamicSectionTitle = dynamic(() => import('@components/common/SectionTitle'));
+const DynamicVideoListSkeleton = dynamic(() => import('@components/skeleton/VideoList'));
+const DynamicSectionTitleSkeleton = dynamic(() => import('@components/skeleton/SectionTitle'));
 
 import styles from './index.module.scss';
 
@@ -41,15 +43,19 @@ const HomeVideoSection: FC<IHomeVideoSectionProps> = ({
 
     return (
         <div data-theme={value} className={styles.homeVideoSection}>
-            {loading ? <SectionTitleSkeleton /> : <SectionTitle title={title} icon={icon} linkHasMore={linkHasMore} />}
+            {loading ? (
+                <DynamicSectionTitleSkeleton />
+            ) : (
+                <DynamicSectionTitle title={title} icon={icon} linkHasMore={linkHasMore} />
+            )}
 
             {loading ? (
-                <VideoListSkeleton />
+                <DynamicVideoListSkeleton />
             ) : (
                 <Fragment>
                     {isExclusive && sessionDetails ? (
                         <div className="mb-5">
-                            <ExclusiveSection
+                            <DynamicExclusiveSection
                                 tag="exclusive"
                                 videos={videoList}
                                 desc={sessionDetails.desc}
@@ -59,7 +65,7 @@ const HomeVideoSection: FC<IHomeVideoSectionProps> = ({
                             />
                         </div>
                     ) : (
-                        <VideoList videos={videoList} myVideos={myVideos} isExclusive={isExclusive} />
+                        <DynamicVideoList videos={videoList} myVideos={myVideos} isExclusive={isExclusive} />
                     )}
                 </Fragment>
             )}

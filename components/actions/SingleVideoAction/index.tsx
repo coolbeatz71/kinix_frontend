@@ -1,12 +1,14 @@
 import React, { FC, useState } from 'react';
 import numeral from 'numeral';
-import { Button, Col, Rate, Row, Space } from 'antd';
+import dynamic from 'next/dynamic';
 import { RiPlayListAddFill } from 'react-icons/ri';
-import { CommentOutlined, LikeOutlined } from '@ant-design/icons';
+import { Button, Col, Rate, Row, Space } from 'antd';
+import { CommentOutlined, LikeOutlined } from 'icons';
 import { IVideo } from '@interfaces/api';
-import VideoCardAction from '../VideoCardAction';
 import { IItemsEntity } from '@interfaces/youtube';
-import VideoRatingModal from '@components/modal/VideoRatingModal';
+
+const DynamicVideoCardAction = dynamic(() => import('../VideoCardAction'));
+const DynamicVideoRatingModal = dynamic(() => import('@components/modal/VideoRatingModal'));
 
 export interface ISingleVideoActionProps {
     video: IVideo;
@@ -36,13 +38,13 @@ const SingleVideoAction: FC<ISingleVideoActionProps> = ({ video, youtubeVideoEnt
                 <Button data-comment type="text" icon={<CommentOutlined />}>
                     <span data-count>{Number(commentsCount) > 0 && comments}</span>
                 </Button>
-                <VideoCardAction videoId={video?.id as number} context="standalone">
+                <DynamicVideoCardAction videoId={video?.id as number} context="standalone">
                     <Button data-playlist type="link" icon={<RiPlayListAddFill />}>
                         <span data-count>{Number(video.playlistsCount) > 0 && playlists}</span>
                     </Button>
-                </VideoCardAction>
+                </DynamicVideoCardAction>
             </Space>
-            <VideoRatingModal slug={video.slug} openModal={openRatingModal} setOpenModal={setOpenRatingModal} />
+            <DynamicVideoRatingModal slug={video.slug} openModal={openRatingModal} setOpenModal={setOpenRatingModal} />
         </Row>
     );
 };

@@ -1,5 +1,5 @@
 import React, { FC, useContext, useEffect, useState } from 'react';
-import { CaretRightOutlined } from '@ant-design/icons';
+import { CaretRightOutlined } from 'icons';
 import ArrowButton from '../ArrowButton';
 import { VisibilityContext } from 'react-horizontal-scrolling-menu';
 import { EnumTagArrowPlacement } from '@constants/tag-arrow-placement';

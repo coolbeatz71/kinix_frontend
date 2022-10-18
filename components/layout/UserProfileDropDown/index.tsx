@@ -1,11 +1,13 @@
 import React, { FC } from 'react';
+import dynamic from 'next/dynamic';
 import truncate from 'lodash/truncate';
 import upperFirst from 'lodash/upperFirst';
-import { BellFilled, UserOutlined } from '@ant-design/icons';
+import { BellFilled, UserOutlined } from 'icons';
 import { Space, Button, Badge, Dropdown, Avatar } from 'antd';
 import { ICurrentUser } from '@interfaces/user';
 import { getBgColor } from '@helpers/getBgColor';
-import UserProfileMenu from '@components/common/UserProfileMenu';
+
+const DynamicUserProfileMenu = dynamic(() => import('@components/common/UserProfileMenu'));
 
 export interface IUserProfileDropDownProps {
     className: string;
@@ -36,7 +38,7 @@ const UserProfileDropDown: FC<IUserProfileDropDownProps> = ({
                 className={className}
                 placement="bottomLeft"
                 overlay={
-                    <UserProfileMenu
+                    <DynamicUserProfileMenu
                         email={currentUser.email}
                         avatar={currentUser.image}
                         userName={currentUser.userName}

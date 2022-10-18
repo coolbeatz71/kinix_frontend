@@ -1,16 +1,20 @@
 import React, { FC, useState } from 'react';
+import dynamic from 'next/dynamic';
 import { useTranslation } from 'react-i18next';
-import { Avatar, Button, Col, List, Row, Tooltip, Modal, notification } from 'antd';
-import { EditFilled, DeleteFilled, ExclamationCircleOutlined, UserOutlined } from '@ant-design/icons';
+import { Avatar, Button, Col, List, Row, Tooltip, Modal } from 'antd';
+import { EditFilled, DeleteFilled, ExclamationCircleOutlined, UserOutlined } from 'icons';
 import { IComment } from '@interfaces/api';
 import getPayload from '@helpers/getPayload';
 import { useAppDispatch } from '@redux/store';
 import { getBgColor } from '@helpers/getBgColor';
 import getAllArticleCommentsAction from '@redux/comments/all';
 import deleteArticleCommentAction from '@redux/comments/delete';
-import UpdateArticleCommentModal from '@components/modal/UpdateArticleCommentModal';
+import getNotification from '@helpers/getNotification';
+
+const DynamicUpdateCommentModal = dynamic(() => import('@components/modal/UpdateArticleCommentModal'));
 
 const { Item } = List;
+const { Meta } = Item;
 const { confirm } = Modal;
 
 export interface IArticleCommentProps {
@@ -41,21 +45,9 @@ const ArticleComment: FC<IArticleCommentProps> = ({ slug, comment, createdTime, 
                 dispatch(deleteArticleCommentAction({ slug, id: Number(comment.id) })).then((res) => {
                     if (res.type === 'comments/delete/fulfilled') {
                         dispatch(getAllArticleCommentsAction({ slug }));
-                        notification.success({
-                            maxCount: 1,
-                            key: 'success',
-                            message: 'Youpi!',
-                            placement: 'topRight',
-                            description: getPayload(res).message,
-                        });
+                        getNotification('success', getPayload(res).message);
                     } else if (res.type === 'comments/delete/rejected') {
-                        notification.error({
-                            maxCount: 1,
-                            key: 'error',
-                            message: 'Youpi!',
-                            placement: 'topRight',
-                            description: getPayload(res).message,
-                        });
+                        getNotification('error', getPayload(res).message);
                     }
                 });
             },
@@ -91,7 +83,7 @@ const ArticleComment: FC<IArticleCommentProps> = ({ slug, comment, createdTime, 
                     : undefined
             }
         >
-            <Item.Meta
+            <Meta
                 title={
                     <Row justify="space-between" align="middle">
                         <Col>{comment.user?.userName}</Col>
@@ -110,7 +102,7 @@ const ArticleComment: FC<IArticleCommentProps> = ({ slug, comment, createdTime, 
                 }
             />
             {comment.body}
-            <UpdateArticleCommentModal
+            <DynamicUpdateCommentModal
                 slug={slug}
                 initialValues={comment}
                 openModal={openUpdateModal}

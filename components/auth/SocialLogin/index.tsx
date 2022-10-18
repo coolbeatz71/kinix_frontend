@@ -1,7 +1,7 @@
 import React, { FC, Fragment } from 'react';
 import { Button } from 'antd';
 import { useTranslation } from 'react-i18next';
-import { GoogleOutlined, FacebookFilled } from '@ant-design/icons';
+import { GoogleOutlined, FacebookFilled } from 'icons';
 import { EnumAuthContext } from '@constants/auth-context';
 
 interface ISocialLoginProps {

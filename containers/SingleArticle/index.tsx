@@ -1,4 +1,5 @@
 import React, { FC, Fragment, useEffect } from 'react';
+import dynamic from 'next/dynamic';
 import isEmpty from 'lodash/isEmpty';
 import { useSelector } from 'react-redux';
 import { IArticle, IUser } from '@interfaces/api';
@@ -6,12 +7,13 @@ import { IRootState } from '@redux/reducers';
 import { useAppDispatch } from '@redux/store';
 import useDarkLight from '@hooks/useDarkLight';
 import getUserLikesAction from '@redux/likes/userLikes';
-import ArticleBody from '@components/articles/ArticleBody';
-import ServerError from '@components/common/ServerError';
-import ArticleCover from '@components/articles/ArticleCover';
 import getRelatedArticlesAction from '@redux/articles/related';
 import getUserBookmarksAction from '@redux/bookmarks/userBookmarks';
-import SingleArticleSkeleton from '@components/skeleton/SingleArticle';
+
+const DynamicServerError = dynamic(() => import('@components/common/ServerError'));
+const DynamicArticleBody = dynamic(() => import('@components/articles/ArticleBody'));
+const DynamicArticleCover = dynamic(() => import('@components/articles/ArticleCover'));
+const DynamicSingleArticleSkeleton = dynamic(() => import('@components/skeleton/SingleArticle'));
 
 export interface ISingleArticleContainerProps {
     article: IArticle;
@@ -39,18 +41,18 @@ const SingleArticleContainer: FC<ISingleArticleContainerProps> = ({ article }) =
     return (
         <Fragment>
             {error ? (
-                <ServerError
+                <DynamicServerError
                     error={error}
                     onRefresh={() => dispatch(getRelatedArticlesAction({ slug: article?.slug, tags: article?.tags }))}
                 />
             ) : loading ? (
-                <SingleArticleSkeleton />
+                <DynamicSingleArticleSkeleton />
             ) : (
                 <div data-theme={value}>
-                    <ArticleCover article={article} user={user as IUser} />
+                    <DynamicArticleCover article={article} user={user as IUser} />
 
                     <div className="mt-5">
-                        <ArticleBody article={article} related={related as IArticle[]} />
+                        <DynamicArticleBody article={article} related={related as IArticle[]} />
                     </div>
                 </div>
             )}

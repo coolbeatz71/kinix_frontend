@@ -1,13 +1,15 @@
 import React, { FC, useState, useEffect } from 'react';
 import numeral from 'numeral';
 import { Button } from 'antd';
+import dynamic from 'next/dynamic';
 import { useSelector } from 'react-redux';
-import { ShareAltOutlined } from '@ant-design/icons';
+import { ShareAltOutlined } from 'icons';
 import { IRootState } from '@redux/reducers';
 import useDarkLight from '@hooks/useDarkLight';
 import { ALL_VIDEOS_PATH } from '@constants/paths';
 import getPlatformUrl from '@helpers/getPlatformUrl';
-import SharePopover from '@components/sharings/SharePopover';
+
+const DynamicSharePopover = dynamic(() => import('@components/sharings/SharePopover'));
 
 import styles from './index.module.scss';
 
@@ -38,7 +40,13 @@ const VideoShareButton: FC<IVideoShareButtonProps> = ({ count, slug, title }) =>
     }, [addedShare]);
 
     return (
-        <SharePopover open={openSharePopup} setOpen={setOpenSharePopup} link={sharedLink} title={title} slug={slug}>
+        <DynamicSharePopover
+            slug={slug}
+            title={title}
+            link={sharedLink}
+            open={openSharePopup}
+            setOpen={setOpenSharePopup}
+        >
             <Button
                 type="link"
                 data-theme={value}
@@ -48,7 +56,7 @@ const VideoShareButton: FC<IVideoShareButtonProps> = ({ count, slug, title }) =>
             >
                 &nbsp;{shareCount > 0 ? shares : ''}
             </Button>
-        </SharePopover>
+        </DynamicSharePopover>
     );
 };
 

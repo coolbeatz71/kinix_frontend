@@ -1,8 +1,9 @@
 import React, { FC, Fragment, useState, useEffect } from 'react';
+import dynamic from 'next/dynamic';
 import isEmpty from 'lodash/isEmpty';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { CloseCircleOutlined, PlusOutlined } from '@ant-design/icons';
+import { CloseCircleOutlined, PlusOutlined } from 'icons';
 import { Button, Empty, message, Modal, RadioChangeEvent, Result } from 'antd';
 import { RiPlayListAddFill } from 'react-icons/ri';
 import getPayload from '@helpers/getPayload';
@@ -10,9 +11,10 @@ import { IRootState } from '@redux/reducers';
 import { useAppDispatch } from '@redux/store';
 import getAllPlaylistsAction from '@redux/playlists/all';
 import addVideoToPlaylistAction from '@redux/playlists/add';
-import CreatePlaylistForm from '@components/form/CreatePlaylistForm';
-import PlaylistListSkeleton from '@components/skeleton/PlaylistsList';
-import PlaylistRadioGroup from '@components/common/PlaylistRadioGroup';
+
+const DynamicCreatePlaylistForm = dynamic(() => import('@components/form/CreatePlaylistForm'));
+const DynamicPlaylistListSkeleton = dynamic(() => import('@components/skeleton/PlaylistsList'));
+const DynamicPlaylistRadioGroup = dynamic(() => import('@components/common/PlaylistRadioGroup'));
 
 import styles from './index.module.scss';
 
@@ -83,7 +85,7 @@ const PlaylistModal: FC<IPlaylistModalProps> = ({ videoId, closeMenu }) => {
                                     {t('newPlaylist')}
                                 </Button>
                             ) : (
-                                <CreatePlaylistForm
+                                <DynamicCreatePlaylistForm
                                     videoId={videoId}
                                     setOpenModal={setOpenModal}
                                     setOpenPlaylistForm={setOpenPlaylistForm}
@@ -103,13 +105,13 @@ const PlaylistModal: FC<IPlaylistModalProps> = ({ videoId, closeMenu }) => {
                 }}
             >
                 {loading ? (
-                    <PlaylistListSkeleton />
+                    <DynamicPlaylistListSkeleton />
                 ) : error ? (
                     <Result status="error" subTitle={error?.message || t('serverErrorDesc')} />
                 ) : playlists?.count === 0 ? (
                     <Empty description={t('noPlaylistFound')} className="my-5" />
                 ) : (
-                    <PlaylistRadioGroup
+                    <DynamicPlaylistRadioGroup
                         loading={addLoading}
                         playlists={playlists}
                         selectedPlaylist={selectedPlaylist}
