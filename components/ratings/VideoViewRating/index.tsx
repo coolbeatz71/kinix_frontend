@@ -1,5 +1,6 @@
 import React, { FC, useState } from 'react';
 import { Button } from 'antd';
+import { nanoid } from 'nanoid';
 import dynamic from 'next/dynamic';
 import useDarkLight from '@hooks/useDarkLight';
 import StarRatingComponent from 'react-star-rating-component';
@@ -25,7 +26,7 @@ const VideoViewRating: FC<IVideoViewRatingProps> = ({ count, slug }) => {
                 className={styles.videoViewRating}
                 onClick={() => setOpenRatingPopup(true)}
             >
-                <StarRatingComponent name={slug} starCount={5} value={count} />
+                <StarRatingComponent name={nanoid()} starCount={5} value={count} />
             </Button>
         </DynamicRatingSummaryPopover>
     );

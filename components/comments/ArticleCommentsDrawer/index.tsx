@@ -12,6 +12,7 @@ import { useAppDispatch } from '@redux/store';
 import { EnumFormContext } from '@interfaces/app';
 import { ICommentData } from '@interfaces/comments';
 import getNotification from '@helpers/getNotification';
+import showAuthRequired from '@helpers/showAuthRequired';
 import addArticleCommentAction from '@redux/comments/add';
 import getAllArticleCommentsAction from '@redux/comments/all';
 import CreateArticleComment from '@components/form/CreateArticleComment';
@@ -35,6 +36,7 @@ const ArticleCommentsDrawer: FC<IArticleCommentsDrawerProps> = ({ article, openD
     const { t } = useTranslation();
     const dispatch = useAppDispatch();
 
+    const { data: user } = useSelector(({ user: { currentUser } }: IRootState) => currentUser);
     const { error, loading, data: comments } = useSelector(({ comments: { all } }: IRootState) => all);
     const { error: errAddComment, loading: loadAddComment } = useSelector(({ comments: { add } }: IRootState) => add);
 
@@ -53,14 +55,15 @@ const ArticleCommentsDrawer: FC<IArticleCommentsDrawerProps> = ({ article, openD
 
     const onSubmitComment = (formData: ICommentData): void => {
         const { body } = formData;
-
-        dispatch(addArticleCommentAction({ isEdit: false, data: { slug: article.slug, body } })).then((res) => {
-            if (res.type === 'comments/add/fulfilled') {
-                form.resetFields();
-                reloadArticleComments();
-                getNotification('success', getPayload(res).message);
-            }
-        });
+        if (user?.id) {
+            dispatch(addArticleCommentAction({ isEdit: false, data: { slug: article.slug, body } })).then((res) => {
+                if (res.type === 'comments/add/fulfilled') {
+                    form.resetFields();
+                    reloadArticleComments();
+                    getNotification('success', getPayload(res).message);
+                }
+            });
+        } else showAuthRequired(t, dispatch);
     };
 
     return (

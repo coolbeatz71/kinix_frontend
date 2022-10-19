@@ -2,10 +2,10 @@ import React, { FC, Fragment, useEffect, useState } from 'react';
 import dayjs from 'dayjs';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Card, Button, Grid } from 'antd';
 import isEmpty from 'lodash/isEmpty';
 import truncate from 'lodash/truncate';
 import isBoolean from 'lodash/isBoolean';
+import { Card, Button, Grid } from 'antd';
 import { PlayCircleTwoTone } from 'icons';
 import useDarkLight from '@hooks/useDarkLight';
 import EnumRole from '@interfaces/role';
@@ -15,8 +15,8 @@ import { APP_NAME } from '@constants/platform';
 import { ALL_VIDEOS_PATH } from '@constants/paths';
 import VideoViewRating from '@components/ratings/VideoViewRating';
 import VideoCardAction from '@components/actions/VideoCardAction';
-import getYoutubeVideoThumbnail from '@helpers/getYoutubeVideoThumbail';
 import VideoShareButton from '@components/sharings/VideoShareButton';
+import getYoutubeVideoThumbnail from '@helpers/getYoutubeVideoThumbail';
 
 import styles from './index.module.scss';
 

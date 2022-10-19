@@ -56,4 +56,7 @@ export const general = {
     newPlaylist: 'Créer nouveau playlist',
     noPlaylistFound: 'Aucune playlist trouvée',
     confirmation: 'Confirmation',
+    authRequired: 'Authentification requise. Vous devez vous connecter pour continuer.',
+    likesFromYoutube: "Les j'aimes sur youtube",
+    commentsFromYoutube: 'Les commentaires sur youtube',
 };

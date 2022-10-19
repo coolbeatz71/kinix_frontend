@@ -4,17 +4,18 @@ import Image from 'next/image';
 import isEmpty from 'lodash/isEmpty';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
+import { HeartFilled, HeartOutlined } from 'icons';
 import { Col, Grid, message, Row, Typography } from 'antd';
 import getPayload from '@helpers/getPayload';
 import { IRootState } from '@redux/reducers';
 import { useAppDispatch } from '@redux/store';
-import isSingleArticleLikeOwner from '@helpers/isLikeOwner';
-import { HeartFilled, HeartOutlined } from 'icons';
 import { IArticle, IUser } from '@interfaces/api';
-import SingleArticleAction from '../../actions/SingleArticleAction';
 import addArticleLikeAction from '@redux/likes/add';
 import getArticleLikesAction from '@redux/likes/all';
+import showAuthRequired from '@helpers/showAuthRequired';
 import removeArticleLikeAction from '@redux/likes/unlike';
+import isSingleArticleLikeOwner from '@helpers/isLikeOwner';
+import SingleArticleAction from '@components/actions/SingleArticleAction';
 
 import styles from './index.module.scss';
 
@@ -52,25 +53,29 @@ const ArticleCover: FC<IArticleCoverProps> = ({ user, article }) => {
     }, [allLikes, user?.id]);
 
     const likeArticle = (): void => {
-        dispatch(addArticleLikeAction(article.slug)).then((res) => {
-            if (res.type === 'likes/add/rejected') message.error(getPayload(res)?.message);
-            else if (res.type === 'likes/add/fulfilled') {
-                setLike(Number(like) + 1);
-                dispatch(getArticleLikesAction(article.slug));
-                message.success(getPayload(res).message);
-            }
-        });
+        if (user?.id) {
+            dispatch(addArticleLikeAction(article.slug)).then((res) => {
+                if (res.type === 'likes/add/rejected') message.error(getPayload(res)?.message);
+                else if (res.type === 'likes/add/fulfilled') {
+                    setLike(Number(like) + 1);
+                    dispatch(getArticleLikesAction(article.slug));
+                    message.success(getPayload(res).message);
+                }
+            });
+        } else showAuthRequired(t, dispatch);
     };
 
     const unlikeArticle = (): void => {
-        dispatch(removeArticleLikeAction(article.slug)).then((res) => {
-            if (res.type === 'likes/unlike/rejected') message.error(getPayload(res)?.message);
-            else if (res.type === 'likes/unlike/fulfilled') {
-                setLike(Number(like) - 1);
-                dispatch(getArticleLikesAction(article.slug));
-                message.success(getPayload(res).message);
-            }
-        });
+        if (user?.id) {
+            dispatch(removeArticleLikeAction(article.slug)).then((res) => {
+                if (res.type === 'likes/unlike/rejected') message.error(getPayload(res)?.message);
+                else if (res.type === 'likes/unlike/fulfilled') {
+                    setLike(Number(like) - 1);
+                    dispatch(getArticleLikesAction(article.slug));
+                    message.success(getPayload(res).message);
+                }
+            });
+        } else showAuthRequired(t, dispatch);
     };
 
     return (

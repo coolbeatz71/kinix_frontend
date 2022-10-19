@@ -9,10 +9,10 @@ export interface IVideoTab {
 
 const videosTabs: IVideoTab[] = [
     {
-        title: ETabTitle.POPULAR,
+        title: ETabTitle.LYRICS,
     },
     {
-        title: ETabTitle.LYRICS,
+        title: ETabTitle.POPULAR,
     },
 ];
 

@@ -34,6 +34,7 @@
         "http-status": "^1.5.1",
         "i18next": "^21.8.3",
         "lodash": "^4.17.15",
+        "nanoid": "^4.0.0",
         "next": "^12.0.3",
         "next-compose-plugins": "^2.2.1",
         "next-plugin-antd-less": "^1.4.2",

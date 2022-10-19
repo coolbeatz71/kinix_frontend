@@ -2,6 +2,7 @@ import React, { FC, useEffect, useState } from 'react';
 import numeral from 'numeral';
 import dynamic from 'next/dynamic';
 import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 import { BsBookmarkPlus } from 'react-icons/bs';
 import { RiBookmark3Fill } from 'react-icons/ri';
 import { Button, Col, message, Row } from 'antd';
@@ -13,9 +14,10 @@ import { useAppDispatch } from '@redux/store';
 import useDarkLight from '@hooks/useDarkLight';
 import addArticleLikeAction from '@redux/likes/add';
 import getArticleLikesAction from '@redux/likes/all';
+import showAuthRequired from '@helpers/showAuthRequired';
 import removeArticleLikeAction from '@redux/likes/unlike';
-import isSingleArticleLikeOwner from '@helpers/isLikeOwner';
 import addArticleBookmarkAction from '@redux/bookmarks/add';
+import isSingleArticleLikeOwner from '@helpers/isLikeOwner';
 import getArticleBookmarksAction from '@redux/bookmarks/all';
 import getAllArticleCommentsAction from '@redux/comments/all';
 import removeArticleBookmarkAction from '@redux/bookmarks/delete';
@@ -31,6 +33,7 @@ export interface ISingleArticleActionProps {
 }
 
 const SingleArticleAction: FC<ISingleArticleActionProps> = ({ article }) => {
+    const { t } = useTranslation();
     const { value } = useDarkLight();
     const dispatch = useAppDispatch();
 
@@ -64,7 +67,7 @@ const SingleArticleAction: FC<ISingleArticleActionProps> = ({ article }) => {
     }, [allLikes, user?.id]);
 
     useEffect(() => {
-        if (allBookmarks?.rows) {
+        if (allBookmarks?.rows && user?.id) {
             setBookmarkOwner(isSingleArticleBookmarkOwner(user?.id, allBookmarks.rows));
         }
     }, [allBookmarks, user?.id]);
@@ -74,47 +77,55 @@ const SingleArticleAction: FC<ISingleArticleActionProps> = ({ article }) => {
     }, [allComments]);
 
     const likeArticle = (): void => {
-        dispatch(addArticleLikeAction(article.slug)).then((res) => {
-            if (res.type === 'likes/add/rejected') message.error(getPayload(res)?.message);
-            else if (res.type === 'likes/add/fulfilled') {
-                setLikeCount(Number(likeCount) + 1);
-                dispatch(getArticleLikesAction(article.slug));
-                message.success(getPayload(res).message);
-            }
-        });
+        if (user?.id) {
+            dispatch(addArticleLikeAction(article.slug)).then((res) => {
+                if (res.type === 'likes/add/rejected') message.error(getPayload(res)?.message);
+                else if (res.type === 'likes/add/fulfilled') {
+                    setLikeCount(Number(likeCount) + 1);
+                    dispatch(getArticleLikesAction(article.slug));
+                    message.success(getPayload(res).message);
+                }
+            });
+        } else showAuthRequired(t, dispatch);
     };
 
     const unlikeArticle = (): void => {
-        dispatch(removeArticleLikeAction(article.slug)).then((res) => {
-            if (res.type === 'likes/unlike/rejected') message.error(getPayload(res)?.message);
-            else if (res.type === 'likes/unlike/fulfilled') {
-                setLikeCount(Number(likeCount) - 1);
-                dispatch(getArticleLikesAction(article.slug));
-                message.success(getPayload(res).message);
-            }
-        });
+        if (user?.id) {
+            dispatch(removeArticleLikeAction(article.slug)).then((res) => {
+                if (res.type === 'likes/unlike/rejected') message.error(getPayload(res)?.message);
+                else if (res.type === 'likes/unlike/fulfilled') {
+                    setLikeCount(Number(likeCount) - 1);
+                    dispatch(getArticleLikesAction(article.slug));
+                    message.success(getPayload(res).message);
+                }
+            });
+        } else showAuthRequired(t, dispatch);
     };
 
     const bookmarkArticle = (): void => {
-        dispatch(addArticleBookmarkAction(article?.slug)).then((res) => {
-            if (res.type === 'bookmarks/add/rejected') message.error(getPayload(res)?.message);
-            else if (res.type === 'bookmarks/add/fulfilled') {
-                dispatch(getUserBookmarksAction());
-                dispatch(getArticleBookmarksAction(article?.slug));
-                message.success(getPayload(res).message);
-            }
-        });
+        if (user?.id) {
+            dispatch(addArticleBookmarkAction(article?.slug)).then((res) => {
+                if (res.type === 'bookmarks/add/rejected') message.error(getPayload(res)?.message);
+                else if (res.type === 'bookmarks/add/fulfilled') {
+                    dispatch(getUserBookmarksAction());
+                    dispatch(getArticleBookmarksAction(article?.slug));
+                    message.success(getPayload(res).message);
+                }
+            });
+        } else showAuthRequired(t, dispatch);
     };
 
     const unBookmarkArticle = (): void => {
-        dispatch(removeArticleBookmarkAction(article?.slug)).then((res) => {
-            if (res.type === 'bookmarks/delete/rejected') message.error(getPayload(res)?.message);
-            else if (res.type === 'bookmarks/delete/fulfilled') {
-                dispatch(getUserBookmarksAction());
-                dispatch(getArticleBookmarksAction(article?.slug));
-                message.success(getPayload(res).message);
-            }
-        });
+        if (user?.id) {
+            dispatch(removeArticleBookmarkAction(article?.slug)).then((res) => {
+                if (res.type === 'bookmarks/delete/rejected') message.error(getPayload(res)?.message);
+                else if (res.type === 'bookmarks/delete/fulfilled') {
+                    dispatch(getUserBookmarksAction());
+                    dispatch(getArticleBookmarksAction(article?.slug));
+                    message.success(getPayload(res).message);
+                }
+            });
+        } else showAuthRequired(t, dispatch);
     };
 
     return (
