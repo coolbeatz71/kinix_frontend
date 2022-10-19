@@ -7,6 +7,7 @@ import { useTranslation } from 'react-i18next';
 import { Row, Col, Typography, Button, Carousel, Grid } from 'antd';
 import useDarkLight from '@hooks/useDarkLight';
 import { IUnknownObject } from 'interfaces/app';
+import { YOUTUBE_URL } from '@constants/social';
 
 const DynamicLottieAnimation = dynamic(() => import('@components/common/LottieAnimation'));
 
@@ -52,7 +53,14 @@ const HomeIllustration: FC = () => {
                             <Text className={styles.illustration__legend__subscribe__text}>{t('subscribeLegend')}</Text>
                         </Col>
                         <Col xs={24} sm={24} md={8} className="d-flex justify-content-end">
-                            <Button type="primary" block={!md} size="large" danger icon={<YoutubeFilled />}>
+                            <Button
+                                danger
+                                block={!md}
+                                size="large"
+                                type="primary"
+                                icon={<YoutubeFilled />}
+                                onClick={() => window?.open(YOUTUBE_URL, '_blank')}
+                            >
                                 {t('subscribe')}
                             </Button>
                         </Col>

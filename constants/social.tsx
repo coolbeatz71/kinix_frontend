@@ -4,10 +4,10 @@ import { TwitterOutlined, InstagramFilled, FacebookFilled, YoutubeFilled, WhatsA
 import { MdEmail } from 'react-icons/md';
 import { HiOutlineLink } from 'react-icons/hi';
 
-const TWITTER_URL = 'https://twitter.com/coolbeatz71';
-const INSTAGRAM_URL = 'https://www.instagram.com/kinshas_art/';
-const FACEBOOK_URL = 'https://www.facebook.com/kinshasart';
-const YOUTUBE_URL = 'https://www.youtube.com/channel/UCu-5xpKCQmOtTMPN5CeW-hg?sub_confirmation=1';
+export const TWITTER_URL = 'https://twitter.com/coolbeatz71';
+export const FACEBOOK_URL = 'https://www.facebook.com/kinshasart';
+export const INSTAGRAM_URL = 'https://www.instagram.com/kinshas_art/';
+export const YOUTUBE_URL = 'https://www.youtube.com/channel/UCu-5xpKCQmOtTMPN5CeW-hg?sub_confirmation=1';
 
 export type IShareType = 'facebook' | 'whatsapp' | 'twitter' | 'email' | 'copy';
 
