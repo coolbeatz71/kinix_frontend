@@ -1,10 +1,12 @@
 import React, { FC, ReactNode, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { Button, message, Popover } from 'antd';
+import { IRootState } from '@redux/reducers';
 import getPayload from '@helpers/getPayload';
 import { useAppDispatch } from '@redux/store';
 import getVideoSharingsAction from '@redux/sharing/all';
-import SocialShare from '@components/sharings/SocialShare';
 import { IShareType, shareList } from '@constants/social';
+import SocialShare from '@components/sharings/SocialShare';
 import addVideoSharingAction, { resetAddVideoSharingAction } from '@redux/sharing/add';
 
 import styles from './index.module.scss';
@@ -21,6 +23,7 @@ const shares = [shareList[1], shareList[2], shareList[3], shareList[4]];
 
 const SharePopover: FC<ISharePopoverProps> = ({ open, setOpen, children, link, title, slug }) => {
     const dispatch = useAppDispatch();
+    const { data: user } = useSelector(({ user: { currentUser } }: IRootState) => currentUser);
 
     useEffect(() => {
         if (open) resetAddVideoSharingAction()(dispatch);
@@ -28,13 +31,15 @@ const SharePopover: FC<ISharePopoverProps> = ({ open, setOpen, children, link, t
     }, [dispatch]);
 
     const onSubmitShare = (): void => {
-        dispatch(addVideoSharingAction(slug)).then((res) => {
-            setOpen(false);
-            if (res.type === 'sharings/add/fulfilled') {
-                dispatch(getVideoSharingsAction(slug));
-                message.success(getPayload(res).message);
-            }
-        });
+        if (user?.id) {
+            dispatch(addVideoSharingAction(slug)).then((res) => {
+                setOpen(false);
+                if (res.type === 'sharings/add/fulfilled') {
+                    dispatch(getVideoSharingsAction(slug));
+                    message.success(getPayload(res).message);
+                }
+            });
+        }
     };
 
     return (

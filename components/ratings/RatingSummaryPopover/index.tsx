@@ -8,6 +8,7 @@ import SummaryHeader from '../SummaryHeader';
 import IRateSummary from '@interfaces/rates';
 import { IRootState } from '@redux/reducers';
 import { useAppDispatch } from '@redux/store';
+import showAuthRequired from '@helpers/showAuthRequired';
 import getSingleVideoRateSummaryAction from '@redux/ratings/summary';
 
 const DynamicVideoRatingModal = dynamic(() => import('@components/modal/VideoRatingModal'));
@@ -26,6 +27,8 @@ const RatingSummaryPopover: FC<IRatingSummaryPopoverProps> = ({ slug, children, 
     const { t } = useTranslation();
     const dispatch = useAppDispatch();
     const [openRatingModal, setOpenRatingModal] = useState<boolean>(false);
+
+    const { data: user } = useSelector(({ user: { currentUser } }: IRootState) => currentUser);
     const { data: ratings, loading } = useSelector(({ ratings: { summary } }: IRootState) => summary);
 
     return (
@@ -63,7 +66,8 @@ const RatingSummaryPopover: FC<IRatingSummaryPopoverProps> = ({ slug, children, 
                                 type="primary"
                                 onClick={() => {
                                     setOpen(false);
-                                    setOpenRatingModal(true);
+                                    if (user?.id) setOpenRatingModal(true);
+                                    else showAuthRequired(t, dispatch);
                                 }}
                                 className={styles.ratingPopover__button}
                             >

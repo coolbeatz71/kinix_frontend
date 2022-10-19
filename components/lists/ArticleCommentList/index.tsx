@@ -25,7 +25,7 @@ const ArticleCommentList: FC<IArticleCommentListProps> = ({ comments, article })
             className={styles.articleComment}
             renderItem={(comment) => {
                 const createdTime = dayjs(comment.createdAt).fromNow();
-                const isCommentOwner = user.email === comment.user?.email;
+                const isCommentOwner = user?.email === comment.user?.email;
 
                 return (
                     <ArticleComment

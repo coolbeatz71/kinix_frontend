@@ -9,6 +9,7 @@ import { RiPlayListAddFill } from 'react-icons/ri';
 import getPayload from '@helpers/getPayload';
 import { IRootState } from '@redux/reducers';
 import { useAppDispatch } from '@redux/store';
+import showAuthRequired from '@helpers/showAuthRequired';
 import getAllPlaylistsAction from '@redux/playlists/all';
 import addVideoToPlaylistAction from '@redux/playlists/add';
 
@@ -34,6 +35,7 @@ const PlaylistModal: FC<IPlaylistModalProps> = ({ videoId, closeMenu }) => {
     });
 
     const { loading: addLoading } = useSelector(({ playlists: { add } }: IRootState) => add);
+    const { data: user } = useSelector(({ user: { currentUser } }: IRootState) => currentUser);
     const { data: playlists, error, loading } = useSelector(({ playlists: { all } }: IRootState) => all);
 
     useEffect(() => {
@@ -42,17 +44,19 @@ const PlaylistModal: FC<IPlaylistModalProps> = ({ videoId, closeMenu }) => {
     }, [dispatch]);
 
     const onSelectPlaylist = (e: RadioChangeEvent): void => {
-        const { value } = e.target;
-        setSelectedPlaylist(value);
-        dispatch(addVideoToPlaylistAction({ slug: value.slug, title: value.title, videoId })).then((res) => {
-            if (res.type === 'playlists/add/rejected') message.error(getPayload(res)?.message);
-            else if (res.type === 'playlists/add/fulfilled') {
-                setOpenModal(false);
-                setOpenPlaylistForm(false);
-                dispatch(getAllPlaylistsAction());
-                message.success(getPayload(res).message);
-            }
-        });
+        if (user?.id) {
+            const { value } = e.target;
+            setSelectedPlaylist(value);
+            dispatch(addVideoToPlaylistAction({ slug: value.slug, title: value.title, videoId })).then((res) => {
+                if (res.type === 'playlists/add/rejected') message.error(getPayload(res)?.message);
+                else if (res.type === 'playlists/add/fulfilled') {
+                    setOpenModal(false);
+                    setOpenPlaylistForm(false);
+                    dispatch(getAllPlaylistsAction());
+                    message.success(getPayload(res).message);
+                }
+            });
+        } else showAuthRequired(t, dispatch);
     };
 
     return (
@@ -96,13 +100,13 @@ const PlaylistModal: FC<IPlaylistModalProps> = ({ videoId, closeMenu }) => {
                 }
                 destroyOnClose
                 open={openModal}
-                title={t('playlistModalTitle')}
                 className={styles.playlist__modal}
                 closeIcon={<CloseCircleOutlined />}
                 onCancel={() => {
                     setOpenModal(false);
                     setOpenPlaylistForm(false);
                 }}
+                title={user?.id ? t('playlistModalTitle') : null}
             >
                 {loading ? (
                     <DynamicPlaylistListSkeleton />
