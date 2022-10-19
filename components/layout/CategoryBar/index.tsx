@@ -35,8 +35,8 @@ const CategoryBar: FC<ICategoryBarProps> = ({ categories, baseUrl = ALL_VIDEOS_P
     const navigate = (data: IUnknownObject): void => {
         const query: IUnknownObject = {};
 
-        if (![baseUrl, '', undefined, null].includes(category)) query.category = category;
         if (![baseUrl, '', undefined, null].includes(search)) query.search = search;
+        if (![baseUrl, '', undefined, null].includes(category)) query.category = category;
 
         Object.keys(data).map((key) => {
             if ([baseUrl, '', undefined, null].includes(data[key])) delete query[key];
@@ -73,13 +73,13 @@ const CategoryBar: FC<ICategoryBarProps> = ({ categories, baseUrl = ALL_VIDEOS_P
                 <Wrapper>
                     <Menu
                         mode="horizontal"
-                        selectedKeys={[category]}
+                        selectedKeys={[category || 'all']}
                         onClick={({ key }) => {
                             setSearch('');
-                            navigate({ category: key, search: '' });
+                            navigate({ category: key !== 'all' ? key : '', search: '' });
                         }}
                     >
-                        <Item key={baseUrl}>{upperFirst(t('all'))}</Item>
+                        <Item key="all">{upperFirst(t('all'))}</Item>
                         {categories.map(({ name }) => (
                             <Item key={name.toLowerCase()}>{upperFirst(t(name.toLowerCase()))}</Item>
                         ))}
