@@ -1,13 +1,13 @@
 import React, { FC, ReactElement, useState } from 'react';
+import { DownOutlined } from 'icons';
 import { useRouter } from 'next/router';
+import upperFirst from 'lodash/upperFirst';
 import { useTranslation } from 'react-i18next';
 import { IUnknownObject } from '@interfaces/app';
-import upperFirst from 'lodash/upperFirst';
 import { Row, Grid, Dropdown, Button, Col, Menu } from 'antd';
-import { DownOutlined } from 'icons';
 import { ALL_VIDEOS_PATH } from '@constants/paths';
-import { ICategoryType } from '@context/video-categories';
 import SearchInput from '@components/common/SearchInput';
+import { ICategoryType } from '@context/video-categories';
 
 import styles from './index.module.scss';
 
@@ -91,7 +91,7 @@ const CategoryBar: FC<ICategoryBarProps> = ({ categories, baseUrl = ALL_VIDEOS_P
                     isCategory
                     value={search}
                     allowClear={lg}
-                    size={sizeBreakpoint}
+                    size="middle"
                     onChange={(e) => {
                         setSearch(e.target.value);
                         if (e.type !== 'change') navigate({ search: '' });

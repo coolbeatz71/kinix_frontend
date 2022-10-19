@@ -90,10 +90,10 @@ const Header: FC<IHeaderProps> = ({
                 <Col xs={12} sm={12} lg={1} className="p-0">
                     <Button
                         type="text"
-                        className="hamburger-menu"
-                        size={lg ? 'large' : 'middle'}
-                        onClick={lg ? handleToggle : openSideDrawer}
+                        size="large"
                         icon={<MenuOutlined />}
+                        className="hamburger-menu"
+                        onClick={lg ? handleToggle : openSideDrawer}
                     />
                     {!md && <Logo canRedirect className={styles.header__row__logo} />}
                 </Col>
@@ -111,19 +111,16 @@ const Header: FC<IHeaderProps> = ({
                 )}
 
                 {lg && (
-                    <Col span={2} className="d-flex justify-content-end">
-                        <DynamicLanguageDropDown userLang={userLang} />
-                    </Col>
-                )}
-
-                {lg && (
-                    <Col span={8} className="d-flex flex-row-reverse">
-                        <Row justify="space-between" gutter={[24, 0]}>
-                            <Col span={12} className="d-flex justify-content-end">
+                    <Col span={10} className="d-flex flex-row-reverse">
+                        <Row justify="space-between" gutter={[32, 0]}>
+                            <Col span={4} className="d-flex justify-content-end">
+                                <DynamicLanguageDropDown userLang={userLang} />
+                            </Col>
+                            <Col span={10} className="d-flex justify-content-end">
                                 <SocialButtons className={styles.header__row__social} />
                             </Col>
 
-                            <Col span={12} className="d-flex justify-content-center ps-0">
+                            <Col span={10} className="d-flex justify-content-end ps-0">
                                 {!currentUser?.isLoggedIn && <UserAuthSection />}
 
                                 {currentUser?.isLoggedIn && (

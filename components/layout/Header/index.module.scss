@@ -44,10 +44,10 @@
     }
 
     &[data-sidenav-close='false'] {
-        padding: 0 $padding;
+        padding: 0.7rem $padding;
     }
     &[data-sidenav-close='true'] {
-        padding: 0 $content-padding;
+        padding: 0.7rem $content-padding;
     }
 
     [class~='hamburger-menu'] {
