@@ -19,7 +19,7 @@ const DynamicServerError = dynamic(() => import('@components/common/ServerError'
 const HomeContainer: FC = () => {
     const dispatch = useAppDispatch();
     const { t } = useTranslation();
-    const { data: videos, error, loading } = useSelector(({ videos: { feed } }: IRootState) => feed);
+    const { data: videos, error, loading, fetched } = useSelector(({ videos: { feed } }: IRootState) => feed);
 
     const loadVideoFeed = useCallback(() => {
         dispatch(getVideosFeedAction());
@@ -47,31 +47,31 @@ const HomeContainer: FC = () => {
                 <Fragment>
                     <div className="my-5">
                         <HomeVideoSection
-                            loading={loading}
                             icon={<BulbFilled />}
                             linkHasMore="/videos?"
                             title={t('discovery')}
                             videos={videos?.discovery}
+                            loading={loading && !fetched}
                         />
                     </div>
 
                     <div className="my-5">
                         <HomeVideoSection
-                            loading={loading}
                             title={t('popular')}
                             icon={<FireFilled />}
                             linkHasMore="/videos?"
                             videos={videos?.popular}
+                            loading={loading && !fetched}
                         />
                     </div>
 
                     <div className="my-5">
                         <HomeVideoSection
-                            loading={loading}
                             linkHasMore="/videos?"
                             title={t('musicVideos')}
-                            icon={<VideoCameraFilled />}
                             videos={videos?.musicVideo}
+                            icon={<VideoCameraFilled />}
+                            loading={loading && !fetched}
                         />
                     </div>
 
@@ -79,10 +79,10 @@ const HomeContainer: FC = () => {
                         <HomeVideoSection
                             isExclusive
                             title="FlexBeatz"
-                            loading={loading}
                             linkHasMore="/videos?"
                             videos={videos?.flexBeatz}
                             icon={<BsFillSpeakerFill />}
+                            loading={loading && !fetched}
                             sessionDetails={{
                                 link: '/videos?',
                                 desc: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste, ex sapiente dignissimos aspernatur ipsam voluptas quam omnis qui corporis ducimus. Qui aperiam earum necessitatibus placeat maiores obcaecati cupiditate quas animi.`,
@@ -95,21 +95,21 @@ const HomeContainer: FC = () => {
                     <div className="my-5">
                         <HomeVideoSection
                             title="Podcast"
-                            loading={loading}
                             icon={<FaPodcast />}
                             linkHasMore="/videos?"
                             videos={videos?.podcast}
+                            loading={loading && !fetched}
                         />
                     </div>
 
                     <div className="my-5">
                         <HomeVideoSection
                             isExclusive
-                            loading={loading}
                             title="Interview"
                             linkHasMore="/videos?"
                             icon={<FaMicrophoneAlt />}
                             videos={videos?.interview}
+                            loading={loading && !fetched}
                             sessionDetails={{
                                 link: '/videos?',
                                 desc: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste, ex sapiente dignissimos aspernatur ipsam voluptas quam omnis qui corporis ducimus. Qui aperiam earum necessitatibus placeat maiores obcaecati cupiditate quas animi.`,
@@ -123,10 +123,10 @@ const HomeContainer: FC = () => {
                         <HomeVideoSection
                             isExclusive
                             title="LeFocus"
-                            loading={loading}
                             icon={<RiFocusLine />}
                             linkHasMore="/videos?"
                             videos={videos?.leFocus}
+                            loading={loading && !fetched}
                             sessionDetails={{
                                 link: '/videos?',
                                 desc: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste, ex sapiente dignissimos aspernatur ipsam voluptas quam omnis qui corporis ducimus. Qui aperiam earum necessitatibus placeat maiores obcaecati cupiditate quas animi.`,
