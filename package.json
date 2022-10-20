@@ -40,6 +40,7 @@
         "next-plugin-antd-less": "^1.4.2",
         "next-pwa": "5.0.3",
         "next-redux-wrapper": "^7.0.5",
+        "nookies": "^2.5.2",
         "nprogress": "^0.2.0",
         "nuka-carousel": "4.8.4",
         "numeral": "^2.0.6",

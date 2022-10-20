@@ -1,13 +1,14 @@
 import { AnyAction, createAsyncThunk } from '@reduxjs/toolkit';
-import { ILoginData } from '@interfaces/auth';
 import api from 'services/axios';
 import { authSlice } from '.';
 import { AppDispatch } from 'redux/store';
-import { setLocalUserData } from '@helpers/getLocalUserData';
-import setCurrentUserAction from 'redux/user/setCurrentUser';
+import { isServer } from '@constants/app';
+import { ILoginData } from '@interfaces/auth';
+import setAuthCookies from '@helpers/cookies';
 import { API_TOKEN } from '@constants/platform';
 import { IUnknownObject } from '@interfaces/app';
-import { isServer } from '@constants/app';
+import setCurrentUserAction from 'redux/user/setCurrentUser';
+import { setLocalUserData } from '@helpers/getLocalUserData';
 
 export const resetLoginAction =
     () =>
@@ -24,6 +25,7 @@ const loginAction = createAsyncThunk('auth/login', async (params: IParams, { rej
     try {
         const response: IUnknownObject = await api.post('/auth/login', data);
 
+        setAuthCookies(response.token);
         setLocalUserData(response.data);
         dispatch(setCurrentUserAction(response));
         !isServer && localStorage.setItem(API_TOKEN, response.token);

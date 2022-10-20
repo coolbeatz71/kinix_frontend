@@ -59,4 +59,5 @@ export const general = {
     authRequired: 'Authentification requise. Vous devez vous connecter pour continuer.',
     likesFromYoutube: "Les j'aimes sur youtube",
     commentsFromYoutube: 'Les commentaires sur youtube',
+    account: 'Compte',
 };
