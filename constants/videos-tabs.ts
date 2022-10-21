@@ -1,18 +1,18 @@
-export enum ETabTitle {
+export enum EnumVideoTabTitle {
     POPULAR = 'POPULAR',
     LYRICS = 'LYRICS',
 }
 
 export interface IVideoTab {
-    title: ETabTitle;
+    title: EnumVideoTabTitle;
 }
 
 const videosTabs: IVideoTab[] = [
     {
-        title: ETabTitle.LYRICS,
+        title: EnumVideoTabTitle.LYRICS,
     },
     {
-        title: ETabTitle.POPULAR,
+        title: EnumVideoTabTitle.POPULAR,
     },
 ];
 

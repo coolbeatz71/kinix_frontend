@@ -1,0 +1,15 @@
+@import 'styles/colors.scss';
+@import 'styles/dimensions.scss';
+
+.favorites {
+    padding: $padding;
+    border-radius: $border-radius;
+
+    &[data-theme='light'] {
+        background: $light;
+    }
+
+    &[data-theme='dark'] {
+        background: $bg-primary-dark50;
+    }
+}

@@ -1,0 +1,32 @@
+@import 'styles/colors.scss';
+
+.favoriteTabs {
+    [class~='ant-tabs-tab'] {
+        margin-left: 0 !important;
+        margin-right: 5px !important;
+    }
+    &[data-theme='light'] {
+        [class~='ant-tabs-tab-active'] {
+            * {
+                color: $white !important;
+            }
+            background: $primary !important;
+        }
+    }
+
+    &[data-theme='dark'] {
+        [class~='ant-tabs-tab'] {
+            color: $white;
+            background: $primary;
+            border-color: $light50;
+            border-bottom-color: $white;
+        }
+        [class~='ant-tabs-tab-active'] {
+            border-color: $white !important;
+            * {
+                color: $primary !important;
+            }
+            background: $white !important;
+        }
+    }
+}
