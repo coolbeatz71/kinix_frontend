@@ -1,6 +1,10 @@
 @import 'styles/colors.scss';
+@import 'styles/dimensions.scss';
 
 .favoriteTabs {
+    [class~='ant-tabs-nav'] {
+        margin-bottom: $padding;
+    }
     [class~='ant-tabs-tab'] {
         margin-left: 0 !important;
         margin-right: 5px !important;
