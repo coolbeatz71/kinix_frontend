@@ -13,8 +13,8 @@ import { EnumEmptyDataType } from '@constants/empty-data-type';
 import getUserBookmarksAction from '@redux/bookmarks/userBookmarks';
 
 const DynamicServerError = dynamic(() => import('@components/common/ServerError'));
-const DynamicBookmarksListSkeleton = dynamic(() => import('@components/skeleton/BookmarksList'));
 const DynamicRelatedArticleCard = dynamic(() => import('@components/cards/Article/RelatedArticle'));
+const DynamicBookmarksListSkeleton = dynamic(() => import('@components/skeleton/FavoriteArticlesList'));
 
 const BookmarksList: FC = () => {
     const { t } = useTranslation();
@@ -31,7 +31,10 @@ const BookmarksList: FC = () => {
 
     return (
         <Fragment>
-            <SectionTitle title={`${t('myBookmarks')} ${bookmarks && `(${bookmarks?.count})`}`} isRelated />
+            <SectionTitle
+                title={`${t('myBookmarks')} ${!isEmpty(bookmarks) ? `(${bookmarks?.count})` : ''}`}
+                isRelated
+            />
             {error ? (
                 <DynamicServerError error={error} onRefresh={loadBookmarks} />
             ) : loading ? (

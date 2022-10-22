@@ -121,6 +121,7 @@ export interface IRate {
     readonly id?: number;
     userId: number | null;
     videoId: number;
+    video?: IVideo;
     count: number;
     createdAt?: string;
     updatedAt?: string;
@@ -130,6 +131,7 @@ export interface IShare {
     readonly id?: number;
     userId: number | null;
     videoId: number;
+    video?: IVideo;
     createdAt?: string;
     updatedAt?: string;
 }
