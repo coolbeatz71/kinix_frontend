@@ -11,7 +11,7 @@ import { IUnknownObject } from '@interfaces/app';
 import addVideoRatingAction from '@redux/ratings/add';
 import getNotification from '@helpers/getNotification';
 import FormSuccessResult from '@components/form/FormSuccessResult';
-import getSingleVideoRatedByUserAction from '@redux/ratings/getUserRate';
+import getSingleVideoRatedByUserAction from '@redux/ratings/single';
 
 const DynamicLottieAnimation = dynamic(() => import('@components/common/LottieAnimation'));
 

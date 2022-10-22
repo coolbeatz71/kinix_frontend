@@ -33,9 +33,7 @@ const BookmarksList: FC = () => {
         <Fragment>
             <SectionTitle title={`${t('myBookmarks')} ${bookmarks && `(${bookmarks?.count})`}`} isRelated />
             {error ? (
-                <div className="mt-5">
-                    <DynamicServerError error={error} onRefresh={loadBookmarks} />
-                </div>
+                <DynamicServerError error={error} onRefresh={loadBookmarks} />
             ) : loading ? (
                 <DynamicBookmarksListSkeleton />
             ) : isEmpty(bookmarks?.rows) ? (

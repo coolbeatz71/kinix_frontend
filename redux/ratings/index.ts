@@ -8,7 +8,8 @@ import {
 import addVideoRatingAction from './add';
 import { videoRatingInitialState } from './types';
 import getSingleVideoRateSummaryAction from './summary';
-import getSingleVideoRatedByUserAction from './getUserRate';
+import getSingleVideoRatedByUserAction from './single';
+import getRatesByUserAction from './userRates';
 
 export const ratingsSlice = createSlice({
     name: 'ratings',
@@ -29,7 +30,11 @@ export const ratingsSlice = createSlice({
             // get rating summary for a single video
             .addCase(getSingleVideoRateSummaryAction.pending, ActionWrapperPending)
             .addCase(getSingleVideoRateSummaryAction.fulfilled, ActionWrapperFulfilled)
-            .addCase(getSingleVideoRateSummaryAction.rejected, ActionWrapperRejected);
+            .addCase(getSingleVideoRateSummaryAction.rejected, ActionWrapperRejected)
+            // get all ratings by a user
+            .addCase(getRatesByUserAction.pending, ActionWrapperPending)
+            .addCase(getRatesByUserAction.fulfilled, ActionWrapperFulfilled)
+            .addCase(getRatesByUserAction.rejected, ActionWrapperRejected);
     },
 });
 

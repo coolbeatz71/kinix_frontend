@@ -8,6 +8,7 @@ import {
 import { videoSharingInitialState } from './types';
 import addVideoSharingAction from './add';
 import getVideoSharingsAction from './all';
+import getSharesByUserAction from './userShares';
 
 export const sharingSlice = createSlice({
     name: 'sharings',
@@ -24,7 +25,11 @@ export const sharingSlice = createSlice({
             // get all sharings for a single video
             .addCase(getVideoSharingsAction.pending, ActionWrapperPending)
             .addCase(getVideoSharingsAction.fulfilled, ActionWrapperFulfilled)
-            .addCase(getVideoSharingsAction.rejected, ActionWrapperRejected);
+            .addCase(getVideoSharingsAction.rejected, ActionWrapperRejected)
+            // get video shares by a user
+            .addCase(getSharesByUserAction.pending, ActionWrapperPending)
+            .addCase(getSharesByUserAction.fulfilled, ActionWrapperFulfilled)
+            .addCase(getSharesByUserAction.rejected, ActionWrapperRejected);
     },
 });
 
