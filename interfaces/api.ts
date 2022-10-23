@@ -113,6 +113,7 @@ export interface IPlaylist {
     title: string;
     userId: number;
     videoId: number;
+    videos?: IVideo[];
     createdAt?: string;
     updatedAt?: string;
 }

@@ -11,6 +11,7 @@ import getSinglePlaylistAction from './single';
 import { playlistsInitialState } from './types';
 import removeVideoFromPlaylistAction from './removeVideo';
 import addVideoToPlaylistAction from './add';
+import getAllPlaylistsDetailsAction from './details';
 
 export const playlistsSlice = createSlice({
     name: 'playlists',
@@ -39,7 +40,11 @@ export const playlistsSlice = createSlice({
             // create a playlist and add video
             .addCase(addVideoToPlaylistAction.pending, ActionWrapperPending)
             .addCase(addVideoToPlaylistAction.fulfilled, ActionWrapperFulfilled)
-            .addCase(addVideoToPlaylistAction.rejected, ActionWrapperRejected);
+            .addCase(addVideoToPlaylistAction.rejected, ActionWrapperRejected)
+            // get all playlists with details
+            .addCase(getAllPlaylistsDetailsAction.pending, ActionWrapperPending)
+            .addCase(getAllPlaylistsDetailsAction.fulfilled, ActionWrapperFulfilled)
+            .addCase(getAllPlaylistsDetailsAction.rejected, ActionWrapperRejected);
     },
 });
 

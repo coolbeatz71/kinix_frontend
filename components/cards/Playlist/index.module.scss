@@ -1,11 +1,7 @@
 @import 'styles/colors.scss';
 @import 'styles/dimensions.scss';
 
-.relatedVideoCard {
-    cursor: pointer;
-    margin-bottom: 1rem;
-    border-radius: $border-radius;
-
+.playlistCard {
     [class~='ant-card-body'] {
         padding: 0;
         height: 100%;
@@ -15,28 +11,23 @@
         display: flex;
         flex-flow: column;
         justify-content: space-between;
-        padding: calc(#{$padding} / 1.5);
+        padding: $padding;
 
         [data-title='true'] {
-            height: 3rem;
-            font-size: 10pt;
-            font-weight: normal;
-            font-family: Poppins;
+            height: 3.5rem;
+            font-size: 14pt;
+            font-weight: 700;
         }
-        [data-ratings='true'] {
-            font-size: 10pt;
-            font-weight: 600;
+        [data-videos] {
+            font-size: 11pt;
+            font-style: italic;
         }
         [data-created-at='true'] {
-            font-size: 12px;
-            font-style: italic;
+            font-size: 10pt;
         }
     }
 
     &__cover {
-        padding: calc(#{$padding} / 1.5);
-        padding-right: 0;
-
         display: flex;
         align-items: center;
         justify-content: center;
@@ -50,6 +41,8 @@
                 object-fit: cover;
                 aspect-ratio: 16 / 9;
                 border-radius: $border-radius;
+                border-top-right-radius: 0;
+                border-bottom-right-radius: 0;
             }
         }
 
@@ -92,9 +85,6 @@
     }
 
     &[data-theme='light'] {
-        a {
-            color: $black;
-        }
         [class~='ant-card'] {
             background: $white;
         }
@@ -108,11 +98,7 @@
             color: $dark50;
         }
     }
-
     &[data-theme='dark'] {
-        a {
-            color: $white;
-        }
         [class~='ant-card'] {
             background: $bg-primary-dark90;
         }

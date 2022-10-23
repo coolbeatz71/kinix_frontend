@@ -19,11 +19,14 @@
     }
 
     &[data-theme='dark'] {
+        [class~='ant-tabs-nav']::before {
+            border-color: $light20;
+        }
         [class~='ant-tabs-tab'] {
             color: $white;
             background: $primary;
-            border-color: $light50;
-            border-bottom-color: $white;
+            border-color: $light20;
+            border-bottom-color: $light20;
         }
         [class~='ant-tabs-tab-active'] {
             border-color: $white !important;

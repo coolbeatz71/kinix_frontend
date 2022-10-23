@@ -14,8 +14,8 @@ import getAllPlaylistsAction from '@redux/playlists/all';
 import addVideoToPlaylistAction from '@redux/playlists/add';
 
 const DynamicCreatePlaylistForm = dynamic(() => import('@components/form/CreatePlaylistForm'));
-const DynamicPlaylistListSkeleton = dynamic(() => import('@components/skeleton/PlaylistsList'));
 const DynamicPlaylistRadioGroup = dynamic(() => import('@components/common/PlaylistRadioGroup'));
+const DynamicPlaylistsSummarySkeleton = dynamic(() => import('@components/skeleton/PlaylistsSummary'));
 
 import styles from './index.module.scss';
 
@@ -109,7 +109,7 @@ const PlaylistModal: FC<IPlaylistModalProps> = ({ videoId, closeMenu }) => {
                 title={user?.id ? t('playlistModalTitle') : null}
             >
                 {loading ? (
-                    <DynamicPlaylistListSkeleton />
+                    <DynamicPlaylistsSummarySkeleton />
                 ) : error ? (
                     <Result status="error" subTitle={error?.message || t('serverErrorDesc')} />
                 ) : playlists?.count === 0 ? (

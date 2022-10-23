@@ -4,4 +4,7 @@ export const favorite = {
     mySharedVideos: 'My shared videos',
     myRatedVideos: 'My rated videos',
     myLikedArticles: 'My liked articles',
+    lastUpdate: 'Last update:',
+    createdAt: 'Creation:',
+    noVideos: 'No video',
 };
