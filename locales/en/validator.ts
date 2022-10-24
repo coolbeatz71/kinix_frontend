@@ -6,6 +6,6 @@ export const validator = {
     passwordErr: 'must have at least 6 digits and contain 1 Uppercase, 1 Lowercase, 1 number',
     passwordMismatchErr: 'Password and confirm password must be identical',
     invalidFormatErr: '{{value}} has an invalid format',
-    invalidPhoneCodeErr: 'Telephone code is invalid',
+    invalidPhoneCodeErr: 'Country code is invalid',
     invalidRegionErr: '{{name}} is invalid for the chosen region',
 };

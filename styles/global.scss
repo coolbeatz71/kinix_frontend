@@ -115,12 +115,12 @@ textarea {
 
 [class~='ant-select-lg'] {
     [class~='ant-select-selector'] {
-        height: 42px !important;
+        height: 45px !important;
     }
 }
 
 [class~='ant-select-item-option-selected']:not(.ant-select-item-option-disabled) {
-    background-color: rgba($color: $link, $alpha: 0.1);
+    background-color: $warning !important;
 }
 [class~='ant-select-selection-item'],
 [class~='ant-select-selection-placeholder'] {
@@ -132,7 +132,7 @@ textarea {
         padding: 2.5px 4px !important;
     }
     [class~='ant-select-selection-item'] {
-        height: 30px !important;
+        height: 32px !important;
         line-height: 28px !important;
     }
 }

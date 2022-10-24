@@ -9,7 +9,6 @@ import { useAppDispatch } from '@redux/store';
 import { required } from '@helpers/validators';
 import { BTN_STYLES } from '@constants/styles';
 import getNotification from '@helpers/getNotification';
-import FloatTextInput from '@components/common/TextInput';
 import { newPasswordMatchValidator, newPasswordValidator } from './validator';
 import changePasswordAction, { resetChangePasswordAction } from '@redux/auth/changePassword';
 

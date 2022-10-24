@@ -1,16 +1,19 @@
 import { createSlice } from '@reduxjs/toolkit';
-import loginAction from './login';
-import signUpAction from './signup';
 import {
-    ActionWrapperFulfilled,
+    ActionWrapperReset,
     ActionWrapperPending,
     ActionWrapperRejected,
-    ActionWrapperReset,
+    ActionWrapperFulfilled,
 } from 'constants/redux';
 import { authInitialState } from './types';
-import confirmAccountAction from './confirm';
-import resendOTPAction from './resentOtp';
+import loginAction from './login';
+import signUpAction from './signup';
 import logoutAction from './logout';
+import resendOTPAction from './resentOtp';
+import confirmAccountAction from './confirm';
+import updateAvatarAction from './updateAvatar';
+import updateAccountAction from './updateAccount';
+import changePasswordAction from './changePassword';
 
 export const authSlice = createSlice({
     name: 'auth',
@@ -43,7 +46,19 @@ export const authSlice = createSlice({
             // logout user
             .addCase(logoutAction.pending, ActionWrapperPending)
             .addCase(logoutAction.fulfilled, ActionWrapperFulfilled)
-            .addCase(logoutAction.rejected, ActionWrapperRejected);
+            .addCase(logoutAction.rejected, ActionWrapperRejected)
+            // update avatar
+            .addCase(updateAvatarAction.pending, ActionWrapperPending)
+            .addCase(updateAvatarAction.fulfilled, ActionWrapperFulfilled)
+            .addCase(updateAvatarAction.rejected, ActionWrapperRejected)
+            // change password
+            .addCase(changePasswordAction.pending, ActionWrapperPending)
+            .addCase(changePasswordAction.fulfilled, ActionWrapperFulfilled)
+            .addCase(changePasswordAction.rejected, ActionWrapperRejected)
+            // update account
+            .addCase(updateAccountAction.pending, ActionWrapperPending)
+            .addCase(updateAccountAction.fulfilled, ActionWrapperFulfilled)
+            .addCase(updateAccountAction.rejected, ActionWrapperRejected);
     },
 });
 

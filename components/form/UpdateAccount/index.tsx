@@ -1,5 +1,7 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, ReactNode, useEffect, useState } from 'react';
+import Image from 'next/image';
 import dynamic from 'next/dynamic';
+import truncate from 'lodash/truncate';
 import { useSelector } from 'react-redux';
 import { Button, Card, Form, Input, Select, Typography } from 'antd';
 import { useTranslation } from 'react-i18next';
@@ -12,7 +14,6 @@ import { BTN_STYLES } from '@constants/styles';
 import countryList from '@constants/country-list';
 import getNotification from '@helpers/getNotification';
 import { ICountryObject } from '@interfaces/countryObject';
-import CountryOption from '@components/common/CountryOption';
 import { countryNameValidator, phonePartialValidator } from './validator';
 import { emailValidator, userNameValidator } from '@components/auth/SignUp/validator';
 import updateAccountAction, { resetUpdateAccountAction } from '@redux/auth/updateAccount';
@@ -21,6 +22,7 @@ import styles from './index.module.scss';
 
 const DynamicErrorAlert = dynamic(() => import('@components/common/ErrorAlert'));
 
+const { Option } = Select;
 const { Title } = Typography;
 const { Item, useForm, useWatch } = Form;
 
@@ -77,6 +79,29 @@ const UpdateAccountForm: FC<IUpdateAccountProps> = ({ initialValues }) => {
     const telephone = t('telephone');
     const selectPhoneCode = t('selectTelephoneCode');
 
+    const countryOption = (country: ICountryObject): ReactNode => (
+        <Option value={country.name} label={country.name} optionLabelProp="label">
+            <div className="d-flex justify-content-between align-items-center">
+                <span className="d-flex align-items-center py-1">
+                    <Image
+                        width={18}
+                        height={18}
+                        quality={10}
+                        layout="intrinsic"
+                        src={country.flag}
+                        alt={country.isoCode}
+                    />
+                    <span className="mx-2 fw-medium">
+                        {truncate(country.name, {
+                            length: 35,
+                        })}
+                    </span>
+                </span>
+                <span className="text-secondary">{country.dialCode}</span>
+            </div>
+        </Option>
+    );
+
     return (
         <Card bordered className={styles.updateAccount}>
             <Title level={4} data-title>
@@ -85,8 +110,8 @@ const UpdateAccountForm: FC<IUpdateAccountProps> = ({ initialValues }) => {
 
             <Form
                 form={form}
-                layout="vertical"
                 size="large"
+                layout="vertical"
                 onFinish={onSubmit}
                 name="update_account"
                 initialValues={initialValues}
@@ -113,9 +138,7 @@ const UpdateAccountForm: FC<IUpdateAccountProps> = ({ initialValues }) => {
                     rules={countryNameValidator(t('telephoneCode'))}
                 >
                     <Select showSearch placeholder={selectPhoneCode}>
-                        {countryList.map((country) => (
-                            <CountryOption key={country.name} country={country} />
-                        ))}
+                        {countryList.map((country) => countryOption(country))}
                     </Select>
                 </Item>
 

@@ -1,6 +1,5 @@
 import React, { FC, useEffect } from 'react';
 import { Col, Row } from 'antd';
-import isEmpty from 'lodash/isEmpty';
 import { useSelector } from 'react-redux';
 import { IUser } from '@interfaces/api';
 import { IRootState } from '@redux/reducers';
@@ -16,11 +15,10 @@ const SettingsContainer: FC = () => {
     const { value } = useDarkLight();
 
     const dispatch = useAppDispatch();
-    const { data: user, loading } = useSelector(({ user }: IRootState) => user?.currentUser);
+    const { data: user } = useSelector(({ user }: IRootState) => user?.currentUser);
 
     useEffect(() => {
-        if (isEmpty(user)) dispatch(getCurrentUserAction());
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+        dispatch(getCurrentUserAction());
     }, [dispatch]);
 
     return (

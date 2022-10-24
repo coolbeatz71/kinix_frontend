@@ -34,6 +34,6 @@ module.exports = withPlugins([[withPWA, pwaConfig], [withAntdLess, antdLessConfi
         return config;
     },
     images: {
-        domains: ['res.cloudinary.com', 'img.youtube.com'],
+        domains: ['res.cloudinary.com', 'img.youtube.com', 'cdn.kcak11.com'],
     },
 });

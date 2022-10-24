@@ -7,12 +7,11 @@ import { ICountryObject } from '@interfaces/countryObject';
 const { Option } = Select;
 
 export interface ICountryOptionProps {
-    key: string;
     country: ICountryObject;
 }
-const CountryOption: FC<ICountryOptionProps> = ({ country, key }) => {
+const CountryOption: FC<ICountryOptionProps> = ({ country }) => {
     return (
-        <Option value={country.name} key={key} label={country.name}>
+        <Option value={country.name} key={country.name} label={country.name} optionLabelProp="label">
             <div className="d-flex justify-content-between">
                 <span>
                     <span>

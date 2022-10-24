@@ -39,7 +39,7 @@ export const form = {
     close: 'Close',
     articleComment: 'Article comment',
     accountInfo: 'Account information',
-    telephoneCode: 'Telephone code',
+    telephoneCode: 'Country code',
     selectTelephoneCode: 'Select telephone code',
     changePassword: 'Change password',
     oldPassword: 'Old password',
