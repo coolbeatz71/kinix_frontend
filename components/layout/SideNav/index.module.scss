@@ -9,7 +9,11 @@
     [class~='ant-layout-sider-children'] {
         //sider children
         position: fixed;
-        z-index: 1;
+        z-index: 100;
+    }
+
+    [class~='ant-layout-sider-trigger'] {
+        z-index: 999;
     }
 
     &__divider {
@@ -89,11 +93,10 @@
     &[data-collapsed='false'] {
         // sider bottom trigger
         [class~='ant-layout-sider-trigger'] {
+            padding: 0.5rem;
             display: flex;
             align-items: center;
             justify-content: flex-end;
-
-            padding: 0.5rem;
         }
     }
     &[data-collapsed='true'] {
