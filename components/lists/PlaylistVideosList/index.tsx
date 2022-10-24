@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { List, Row, Col, Button, Modal, message } from 'antd';
+import { List, Row, Col, Button, Modal, message, Tooltip } from 'antd';
 import { DeleteFilled, ExclamationCircleOutlined } from 'icons';
 import { IRootState } from '@redux/reducers';
 import getPayload from '@helpers/getPayload';
@@ -71,7 +71,9 @@ const PlaylistVideosList: FC<IPlaylistVideosListProps> = ({ playlist }) => {
                             <RelatedVideoCard bordered video={video} />
                         </Col>
                         <Col span={2}>
-                            <Button ghost danger icon={<DeleteFilled />} onClick={showDeleteConfirm} />
+                            <Tooltip title={t('removeVideoFromPlaylist')} placement="topRight">
+                                <Button ghost danger icon={<DeleteFilled />} onClick={showDeleteConfirm} />
+                            </Tooltip>
                         </Col>
                     </Row>
                 );

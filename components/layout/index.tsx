@@ -2,6 +2,8 @@ import React, { FC, ReactElement, useCallback, useContext, useEffect, useState }
 import Head from 'next/head';
 import dynamic from 'next/dynamic';
 import isEmpty from 'lodash/isEmpty';
+import toLower from 'lodash/toLower';
+import upperFirst from 'lodash/upperFirst';
 import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
@@ -87,10 +89,10 @@ const Layout: FC<ILayoutProps> = ({
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [dispatch]);
 
+    const _title = upperFirst(toLower(title)) || '';
     const _url = `${getPlatformUrl()}${router.asPath}`;
     const _description = description || t('app_description');
     const _image = image ? `${getImageUrl()}/${image}` : `${getPlatformUrl()}/download.png`;
-    const _title = title || '';
 
     const isSidenavClose = !openSidenav || collapsedSidenav;
 

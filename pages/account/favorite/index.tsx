@@ -7,7 +7,7 @@ import FavoriteContainer from '@containers/Favorite';
 const FavoritePage: NextPage = () => {
     const { t } = useTranslation();
     return (
-        <Layout title={t('favoriteSection').toLowerCase()} showFooter>
+        <Layout title={t('favoriteSection')} showFooter>
             <FavoriteContainer />
         </Layout>
     );

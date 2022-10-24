@@ -8,7 +8,7 @@ import truncate from 'lodash/truncate';
 import upperFirst from 'lodash/upperFirst';
 import { useTranslation } from 'react-i18next';
 import { DeleteFilled, ExclamationCircleOutlined } from 'icons';
-import { Button, Card, Col, message, Modal, Row, Typography } from 'antd';
+import { Button, Card, Col, message, Modal, Row, Tooltip, Typography } from 'antd';
 import { IPlaylist } from '@interfaces/api';
 import getPayload from '@helpers/getPayload';
 import { useAppDispatch } from '@redux/store';
@@ -121,15 +121,17 @@ const PlaylistCard: FC<IPlaylistCardProps> = ({ playlist }) => {
                         </div>
 
                         <div className="mt-3 d-flex justify-content-end pe-4">
-                            <Button
-                                ghost
-                                danger
-                                icon={<DeleteFilled />}
-                                onClick={showDeleteConfirm}
-                                className="d-flex align-items-center"
-                            >
-                                {t('delete')}
-                            </Button>
+                            <Tooltip title={t('deletePlaylist')} placement="topRight">
+                                <Button
+                                    ghost
+                                    danger
+                                    icon={<DeleteFilled />}
+                                    onClick={showDeleteConfirm}
+                                    className="d-flex align-items-center"
+                                >
+                                    {t('delete')}
+                                </Button>
+                            </Tooltip>
                         </div>
                     </Col>
                 </Row>
