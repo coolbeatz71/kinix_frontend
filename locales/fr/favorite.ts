@@ -7,4 +7,5 @@ export const favorite = {
     lastUpdate: 'Dernière mise à jour:',
     createdAt: 'Création:',
     noVideos: 'Pas de vidéo',
+    playlistVideos: 'Liste des vidéos',
 };

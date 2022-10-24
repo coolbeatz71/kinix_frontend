@@ -7,9 +7,9 @@ import { IComment } from '@interfaces/api';
 import getPayload from '@helpers/getPayload';
 import { useAppDispatch } from '@redux/store';
 import { getBgColor } from '@helpers/getBgColor';
+import getNotification from '@helpers/getNotification';
 import getAllArticleCommentsAction from '@redux/comments/all';
 import deleteArticleCommentAction from '@redux/comments/delete';
-import getNotification from '@helpers/getNotification';
 
 const DynamicUpdateCommentModal = dynamic(() => import('@components/modal/UpdateArticleCommentModal'));
 
@@ -44,8 +44,8 @@ const ArticleComment: FC<IArticleCommentProps> = ({ slug, comment, createdTime, 
             onOk() {
                 dispatch(deleteArticleCommentAction({ slug, id: Number(comment.id) })).then((res) => {
                     if (res.type === 'comments/delete/fulfilled') {
-                        dispatch(getAllArticleCommentsAction({ slug }));
                         getNotification('success', getPayload(res).message);
+                        dispatch(getAllArticleCommentsAction({ slug }));
                     } else if (res.type === 'comments/delete/rejected') {
                         getNotification('error', getPayload(res).message);
                     }

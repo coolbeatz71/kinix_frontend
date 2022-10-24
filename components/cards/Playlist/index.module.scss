@@ -17,13 +17,16 @@
             height: 3.5rem;
             font-size: 14pt;
             font-weight: 700;
+            &:hover {
+                text-decoration: underline;
+            }
         }
         [data-videos] {
-            font-size: 11pt;
+            font-size: 10pt;
             font-style: italic;
         }
         [data-created-at='true'] {
-            font-size: 10pt;
+            font-size: 11pt;
         }
     }
 

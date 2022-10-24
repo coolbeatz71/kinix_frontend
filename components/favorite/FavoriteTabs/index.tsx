@@ -38,9 +38,9 @@ const FavoriteTabs: FC = () => {
 
     return (
         <Tabs defaultActiveKey="0" className={styles.favoriteTabs} data-theme={value} type="card">
-            {favoriteTabs.map((tab) => (
+            {favoriteTabs.map((tab, idx) => (
                 <TabPane
-                    key={tab.title}
+                    key={idx}
                     tab={
                         <div className="d-flex justify-content-between align-items-center">
                             {tab.icon} {t(tab.title)}

@@ -2,18 +2,26 @@ import React, { FC, useEffect, useState } from 'react';
 import dayjs from 'dayjs';
 import numeral from 'numeral';
 import Image from 'next/image';
+import dynamic from 'next/dynamic';
 import isEmpty from 'lodash/isEmpty';
-import { DeleteFilled } from 'icons';
 import truncate from 'lodash/truncate';
 import upperFirst from 'lodash/upperFirst';
 import { useTranslation } from 'react-i18next';
-import { Button, Card, Col, Row, Typography } from 'antd';
+import { DeleteFilled, ExclamationCircleOutlined } from 'icons';
+import { Button, Card, Col, message, Modal, Row, Typography } from 'antd';
 import { IPlaylist } from '@interfaces/api';
+import getPayload from '@helpers/getPayload';
+import { useAppDispatch } from '@redux/store';
 import useDarkLight from '@hooks/useDarkLight';
+import deletePlaylistAction from '@redux/playlists/delete';
+import getAllPlaylistsDetailsAction from '@redux/playlists/details';
 import getYoutubeVideoThumbnail from '@helpers/getYoutubeVideoThumbail';
+
+const DynamicPlaylistVideosDrawer = dynamic(() => import('@components/drawers/PlaylistVideosDrawer'));
 
 import styles from './index.module.scss';
 
+const { confirm } = Modal;
 const { Title, Text } = Typography;
 
 export interface IPlaylistCardProps {
@@ -23,8 +31,11 @@ export interface IPlaylistCardProps {
 const PlaylistCard: FC<IPlaylistCardProps> = ({ playlist }) => {
     const { t } = useTranslation();
     const { value } = useDarkLight();
+    const dispatch = useAppDispatch();
     const defaultCover = playlist?.videos?.[0]?.link || '';
+
     const [cover, setCover] = useState<string>(defaultCover);
+    const [openVideoListModal, setOpenVideoListModal] = useState<boolean>(false);
 
     const videosLength = playlist?.videos?.length;
     const fallbackImage = '/feedback/empty-playlist.svg';
@@ -35,13 +46,47 @@ const PlaylistCard: FC<IPlaylistCardProps> = ({ playlist }) => {
         setCover(defaultCover);
     }, [defaultCover]);
 
+    const showDeleteConfirm = (): void => {
+        confirm({
+            okText: t('yes'),
+            cancelText: t('no'),
+            okButtonProps: {
+                ghost: true,
+                danger: true,
+                type: 'primary',
+            },
+            open: false,
+            title: t('deletePlaylistConfirm'),
+            icon: <ExclamationCircleOutlined />,
+            cancelButtonProps: { type: 'primary', ghost: true, danger: false },
+            onOk() {
+                dispatch(deletePlaylistAction(playlist?.slug)).then((res) => {
+                    if (res.type === 'playlists/delete/fulfilled') {
+                        message.success(getPayload(res).message);
+                        dispatch(getAllPlaylistsDetailsAction());
+                    } else if (res.type === 'playlists/delete/rejected') {
+                        message.error(getPayload(res).message);
+                    }
+                });
+            },
+        });
+    };
+
     return (
         <div data-theme={value} className={styles.playlistCard}>
+            <DynamicPlaylistVideosDrawer
+                playlist={playlist}
+                openDrawer={openVideoListModal}
+                setOpenDrawer={setOpenVideoListModal}
+            />
             <Card bordered={false} hoverable>
                 <Row justify="space-between" gutter={24}>
                     <Col span={12} className={styles.playlistCard__cover}>
                         {!isEmpty(playlist?.videos?.[0].link) && (
-                            <div className={styles.playlistCard__cover__image}>
+                            <div
+                                onClick={() => setOpenVideoListModal(true)}
+                                className={styles.playlistCard__cover__image}
+                            >
                                 <Image
                                     priority
                                     layout="fill"
@@ -58,8 +103,8 @@ const PlaylistCard: FC<IPlaylistCardProps> = ({ playlist }) => {
                         )}
                     </Col>
                     <Col span={12} data-body>
-                        <Title level={5} data-title className="pe-4">
-                            {truncate(`${playlist.title} ${playlist.title}`, {
+                        <Title level={5} data-title className="pe-4" onClick={() => setOpenVideoListModal(true)}>
+                            {truncate(playlist.title, {
                                 length: 45,
                             })}
                         </Title>
@@ -76,7 +121,13 @@ const PlaylistCard: FC<IPlaylistCardProps> = ({ playlist }) => {
                         </div>
 
                         <div className="mt-3 d-flex justify-content-end pe-4">
-                            <Button ghost danger icon={<DeleteFilled />} className="d-flex align-items-center">
+                            <Button
+                                ghost
+                                danger
+                                icon={<DeleteFilled />}
+                                onClick={showDeleteConfirm}
+                                className="d-flex align-items-center"
+                            >
                                 {t('delete')}
                             </Button>
                         </div>

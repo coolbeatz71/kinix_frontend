@@ -22,9 +22,10 @@ const { Title, Text } = Typography;
 
 export interface IRelatedVideoCardProps {
     video: IVideo;
+    bordered?: boolean;
 }
 
-const RelatedVideoCard: FC<IRelatedVideoCardProps> = ({ video }) => {
+const RelatedVideoCard: FC<IRelatedVideoCardProps> = ({ video, bordered = false }) => {
     const { lg } = useBreakpoint();
     const { value } = useDarkLight();
     const link = `${ALL_VIDEOS_PATH}/${video?.slug}`;
@@ -48,7 +49,7 @@ const RelatedVideoCard: FC<IRelatedVideoCardProps> = ({ video }) => {
             onMouseLeave={handleShowOverlay}
             className={styles.relatedVideoCard}
         >
-            <Card bordered={false} hoverable>
+            <Card bordered={bordered} hoverable>
                 <Row justify="space-between">
                     <Col span={9} className={styles.relatedVideoCard__cover}>
                         <Link href={link} passHref>

@@ -31,6 +31,8 @@ export const form = {
     addComment: 'Ajouter votre commentaire...',
     commentBtn: 'Commenter',
     deleteCommentConfirm: 'Êtes-vous sûr de supprimer ce commentaire?',
+    deletePlaylistConfirm: 'Êtes-vous sûr de supprimer cette playliste?',
+    removePlaylistVideoConfirm: 'Êtes-vous sûr de retirer cette vidéo de la playliste?',
     yes: 'Oui',
     no: 'Non',
     close: 'Fermer',

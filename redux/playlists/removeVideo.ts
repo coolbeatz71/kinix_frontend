@@ -20,7 +20,7 @@ const removeVideoFromPlaylistAction = createAsyncThunk(
     async (params: IParams, { rejectWithValue }) => {
         const { slug, videoId } = params;
         try {
-            const response: IUnknownObject = await api.delete(`/playlists/${slug}`, { data: { videoId } });
+            const response: IUnknownObject = await api.delete(`/playlists/video/${slug}`, { data: { videoId } });
             return response;
         } catch (error) {
             return rejectWithValue(error);
