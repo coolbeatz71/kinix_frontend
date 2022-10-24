@@ -19,8 +19,8 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
 import 'styles/coreui.min.css';
-import 'styles/global.scss';
 import 'styles/404.scss';
+import 'styles/global.scss';
 import 'styles/nprogress.scss';
 
 type AppPropsWithError = AppProps & { err: unknown } & IUnknownObject;

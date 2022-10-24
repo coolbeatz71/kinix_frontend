@@ -24,7 +24,7 @@ import removeArticleBookmarkAction from '@redux/bookmarks/delete';
 import isSingleArticleBookmarkOwner from '@helpers/isBookmarkOwner';
 import getUserBookmarksAction from '@redux/bookmarks/userBookmarks';
 
-const DynamicCommentsDrawer = dynamic(() => import('@components/comments/ArticleCommentsDrawer'));
+const DynamicCommentsDrawer = dynamic(() => import('@components/drawers/ArticleCommentsDrawer'));
 
 import styles from './index.module.scss';
 

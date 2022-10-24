@@ -3,6 +3,7 @@ import { navigation } from './navigation';
 import { form } from './form';
 import { home } from './home';
 import { general } from './general';
+import { favorite } from './favorite';
 
 export default {
     ...validator,
@@ -10,4 +11,5 @@ export default {
     ...form,
     ...home,
     ...general,
+    ...favorite,
 };

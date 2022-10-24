@@ -17,7 +17,7 @@ import useDarkLight from '@hooks/useDarkLight';
 import { ALL_VIDEOS_PATH } from '@constants/paths';
 import getPlatformUrl from '@helpers/getPlatformUrl';
 import { IItemsEntity, IYoutubeVideo } from '@interfaces/youtube';
-import getSingleVideoRatedByUserAction from '@redux/ratings/getUserRate';
+import getSingleVideoRatedByUserAction from '@redux/ratings/single';
 
 const DynamicVideoTagsList = dynamic(() => import('@components/lists/VideoTagsList'));
 const DynamicSharePopover = dynamic(() => import('@components/sharings/SharePopover'));
@@ -39,7 +39,7 @@ const VideoPlayer: FC<IVideoPlayerProps> = ({ youtubeVideo, video }) => {
     const { value, isDark } = useDarkLight();
     const sharedLink = `${getPlatformUrl()}${ALL_VIDEOS_PATH}/${video.slug}`;
 
-    const { data: userRatings } = useSelector(({ ratings: { userRate } }: IRootState) => userRate);
+    const { data: userRatings } = useSelector(({ ratings: { single } }: IRootState) => single);
 
     const youtubeVideoEntity = youtubeVideo.items?.[0];
     const viewCount = youtubeVideoEntity?.statistics?.viewCount;

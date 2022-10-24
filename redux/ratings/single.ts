@@ -3,7 +3,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import api from 'services/axios';
 
 const getSingleVideoRatedByUserAction = createAsyncThunk(
-    'ratings/userRate',
+    'ratings/single',
     async (slug: string, { rejectWithValue }) => {
         try {
             const response: IUnknownObject = await api.get(`/rates/user/${slug}`);

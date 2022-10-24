@@ -1,19 +1,15 @@
-import React, { FC, Fragment } from 'react';
-import { Col, Row, Skeleton } from 'antd';
+import React, { FC } from 'react';
+import { Col, Row } from 'antd';
+import PlaylistCardSkeleton from '../PlaylistCard';
 
-const PlaylistListSkeleton: FC = () => (
-    <Fragment>
-        {Array.from(Array(6).keys()).map((item, idx) => (
-            <Row key={item} className={`${![0, 5].includes(idx) ? 'my-4' : ''}`} justify="space-between">
-                <Col span={2}>
-                    <Skeleton.Button shape="circle" size="small" active block />
-                </Col>
-                <Col span={21}>
-                    <Skeleton.Button size="small" active block />
-                </Col>
-            </Row>
+const PlaylistsListSkeleton: FC = () => (
+    <Row align="middle" gutter={[32, 32]}>
+        {Array.from(Array(6).keys()).map((i) => (
+            <Col key={i} xs={24} sm={24} md={12}>
+                <PlaylistCardSkeleton />
+            </Col>
         ))}
-    </Fragment>
+    </Row>
 );
 
-export default PlaylistListSkeleton;
+export default PlaylistsListSkeleton;

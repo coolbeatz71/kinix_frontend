@@ -52,7 +52,7 @@ const SideNav: FC<ISideNavProps> = ({ open, collapsed, setCollapsed }) => {
                 {collapsed ? (
                     section.sub.map((item) => (
                         <Item title={null} className={styles.sidenav__menu__items} key={item.text} icon={item.icon}>
-                            {t(item.text)}
+                            <Link href={item.href}>{t(item.text)}</Link>
                         </Item>
                     ))
                 ) : (

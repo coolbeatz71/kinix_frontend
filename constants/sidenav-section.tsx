@@ -59,7 +59,7 @@ export const GENERAL_SECTIONS: ISideNavSection[] = [
 export const FAVORITE_SECTIONS: ISideNavSection[] = [
     {
         icon: <RiPlayList2Fill />,
-        text: 'playlist',
+        text: 'playlists',
         href: USER_VIDEOS_PLAYLIST_PATH,
     },
     {

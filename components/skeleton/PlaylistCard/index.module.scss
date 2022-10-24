@@ -1,0 +1,40 @@
+@import 'styles/colors.scss';
+@import 'styles/dimensions.scss';
+
+.playlistSkeleton {
+    [class~='ant-card-body'] {
+        padding: 0;
+        height: 100%;
+    }
+
+    &__cover {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        width: 100%;
+
+        [class~='ant-skeleton-element'],
+        [class~='ant-skeleton-image'] {
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    &__body {
+        padding: $padding;
+        padding-right: 2rem !important;
+
+        [data-description='true'] {
+            [class~='ant-skeleton-button'] {
+                height: 12px !important;
+            }
+        }
+    }
+
+    &[data-theme='dark'] {
+        [class~='ant-card-body'] {
+            background-color: $primary;
+        }
+    }
+}

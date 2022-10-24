@@ -1,0 +1,39 @@
+@import 'styles/colors.scss';
+@import 'styles/dimensions.scss';
+
+.favoriteTabs {
+    [class~='ant-tabs-nav'] {
+        margin-bottom: $padding;
+    }
+    [class~='ant-tabs-tab'] {
+        margin-left: 0 !important;
+        margin-right: 5px !important;
+    }
+    &[data-theme='light'] {
+        [class~='ant-tabs-tab-active'] {
+            * {
+                color: $white !important;
+            }
+            background: $primary !important;
+        }
+    }
+
+    &[data-theme='dark'] {
+        [class~='ant-tabs-nav']::before {
+            border-color: $light20;
+        }
+        [class~='ant-tabs-tab'] {
+            color: $white;
+            background: $primary;
+            border-color: $light20;
+            border-bottom-color: $light20;
+        }
+        [class~='ant-tabs-tab-active'] {
+            border-color: $white !important;
+            * {
+                color: $primary !important;
+            }
+            background: $white !important;
+        }
+    }
+}

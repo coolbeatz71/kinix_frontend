@@ -4,7 +4,7 @@ import dynamic from 'next/dynamic';
 import toLower from 'lodash/toLower';
 import { useTranslation } from 'react-i18next';
 import useDarkLight from '@hooks/useDarkLight';
-import videosTabs, { ETabTitle } from '@constants/videos-tabs';
+import videosTabs, { EnumVideoTabTitle } from '@constants/videos-tabs';
 
 const DynamicLyrics = dynamic(() => import('@components/common/Lyrics'));
 const DynamicPopularVideoList = dynamic(() => import('@components/lists/PopularVideoList'));
@@ -23,7 +23,7 @@ const VideosTabs: FC<IVideosTabsProps> = ({ lyrics }) => {
 
     const getTabsContent = (title: string): JSX.Element => {
         switch (title) {
-            case ETabTitle.LYRICS:
+            case EnumVideoTabTitle.LYRICS:
                 return <DynamicLyrics content={lyrics} />;
             default:
                 return <DynamicPopularVideoList />;

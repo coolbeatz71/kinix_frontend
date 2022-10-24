@@ -44,10 +44,10 @@
     }
 
     &[data-sidenav-close='false'] {
-        padding: 0 $padding;
+        padding: 0.7rem $padding;
     }
     &[data-sidenav-close='true'] {
-        padding: 0 $content-padding;
+        padding: 0.7rem $content-padding;
     }
 
     [class~='hamburger-menu'] {
@@ -83,6 +83,21 @@
                 background-size: $logo-bg-size;
                 background-repeat: no-repeat;
                 background-position: left center;
+            }
+
+            &__categories {
+                [class~='ant-menu-item'] {
+                    background-color: rgba($color: $default, $alpha: 0.5);
+                    outline: 1px solid $light50;
+                }
+
+                [class~='ant-menu-item-active']:hover,
+                [class~='ant-menu-item-selected']:hover,
+                [class~='ant-menu-item-only-child']:hover {
+                    &::after {
+                        border-color: $dark50;
+                    }
+                }
             }
 
             &__profile {
@@ -123,15 +138,28 @@
 
         .header__row {
             &__categories {
+                [class~='ant-menu-item'] {
+                    background-color: $dark50;
+                    outline: 1px solid $dark20;
+                }
+
+                [class~='ant-menu-item-selected'] {
+                    &::after {
+                        border-bottom: 2px solid $white;
+                    }
+                }
+
                 [class~='ant-menu-item-only-child'] {
                     color: $light;
                 }
 
-                [class~='ant-menu-item-selected'],
-                [class~='ant-menu-item-active'],
+                [class~='ant-menu-item-active']:hover,
+                [class~='ant-menu-item-selected']:hover,
                 [class~='ant-menu-item-only-child']:hover {
                     color: $white;
-                    border-color: $white;
+                    &::after {
+                        border-color: $light50;
+                    }
                 }
 
                 [class~='ant-menu-item-selected'] {
@@ -168,13 +196,13 @@
 
         &__categories {
             width: 100%;
-            transition: height 0.2s;
             padding-bottom: 0.5rem;
+            transition: height 0.2s;
 
             [class~='ant-menu'] {
-                background-color: transparent;
-                border-bottom: none;
                 display: flex;
+                border-bottom: none;
+                background-color: transparent;
 
                 [class~='ant-menu-item-selected'],
                 [class~='ant-menu-item-active'],
@@ -186,9 +214,13 @@
                     font-weight: 600;
                 }
 
+                [class~='ant-menu-item'] {
+                    border-radius: $border-radius;
+                }
+
                 & > li {
                     line-height: calc(#{$header-height} / 2);
-                    margin-left: 0.5rem !important;
+                    margin-right: 0.5rem !important;
                 }
             }
         }

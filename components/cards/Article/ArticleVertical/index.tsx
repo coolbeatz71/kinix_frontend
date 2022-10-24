@@ -15,7 +15,7 @@ import ArticleLikeButton from '@components/actions/ArticleLikeButton';
 import ArticleCommentButton from '@components/comments/ArticleCommentButton';
 import ArticleBookmarkButton from '@components/actions/ArticleBookmarkButton';
 
-const DynamicCommentsDrawer = dynamic(() => import('@components/comments/ArticleCommentsDrawer'));
+const DynamicCommentsDrawer = dynamic(() => import('@components/drawers/ArticleCommentsDrawer'));
 
 import styles from './index.module.scss';
 

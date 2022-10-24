@@ -3,10 +3,11 @@ import api from 'services/axios';
 import { authSlice } from '.';
 import { AppDispatch } from 'redux/store';
 import { IUnknownObject } from '@interfaces/app';
+import { isServer } from '@constants/app';
+import setAuthCookies from '@helpers/cookies';
+import { API_TOKEN } from '@constants/platform';
 import { setLocalUserData } from '@helpers/getLocalUserData';
 import setCurrentUserAction from '@redux/user/setCurrentUser';
-import { isServer } from '@constants/app';
-import { API_TOKEN } from '@constants/platform';
 
 interface IParams {
     dispatch: AppDispatch;
@@ -27,6 +28,7 @@ const confirmAccountAction = createAsyncThunk('auth/confirm', async (params: IPa
     try {
         const response: IUnknownObject = await api.post('/auth/confirm', data);
 
+        setAuthCookies(response.token);
         setLocalUserData(response.data);
         dispatch(setCurrentUserAction(response));
         !isServer && localStorage.setItem(API_TOKEN, response.token);
