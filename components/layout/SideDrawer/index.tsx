@@ -1,10 +1,11 @@
 import React, { FC, useState, ReactNode, Key, Fragment } from 'react';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
+import { useRouter } from 'next/router';
 import { useTranslation } from 'react-i18next';
-import { Menu, Drawer, Divider, Row, Col, Button, Space } from 'antd';
 import { HomeFilled, MenuOutlined } from 'icons';
 import { BsFillSunFill, BsMoonStarsFill } from 'react-icons/bs';
+import { Menu, Drawer, Divider, Row, Col, Button, Space } from 'antd';
 import { HOME_PATH } from '@constants/paths';
 import useDarkLight from '@hooks/useDarkLight';
 import sectionList from '@constants/sidenav-section';
@@ -23,6 +24,7 @@ interface ISideDrawerProps {
 const defaultOpen = [sectionList[0].key];
 
 const SideDrawer: FC<ISideDrawerProps> = ({ open, setOpen }) => {
+    const { asPath } = useRouter();
     const { t } = useTranslation();
     const { value, toggle } = useDarkLight();
 
@@ -43,16 +45,20 @@ const SideDrawer: FC<ISideDrawerProps> = ({ open, setOpen }) => {
             <Fragment key={section.key}>
                 <Divider className={styles.sidedrawer__menu_divider} />
                 <SubMenu key={section.key} title={t(section.title)} className={styles.sidedrawer__menu__sub}>
-                    {section.sub.map((item) => (
-                        <Item
-                            key={item.text}
-                            icon={item.icon}
-                            onClick={handleCloseDrawer}
-                            className={styles.sidedrawer__menu__sub__items}
-                        >
-                            <Link href={item.href}>{t(item.text)}</Link>
-                        </Item>
-                    ))}
+                    {section.sub.map((item) => {
+                        const isActive = asPath === item.href;
+                        return (
+                            <Item
+                                key={item.text}
+                                icon={item.icon}
+                                data-active={isActive}
+                                onClick={handleCloseDrawer}
+                                className={styles.sidedrawer__menu__sub__items}
+                            >
+                                <Link href={item.href}>{t(item.text)}</Link>
+                            </Item>
+                        );
+                    })}
                 </SubMenu>
             </Fragment>
         ));
@@ -91,6 +97,30 @@ const SideDrawer: FC<ISideDrawerProps> = ({ open, setOpen }) => {
         );
     };
 
+    const sideMenuContent = (): ReactNode => {
+        const isActive = asPath === HOME_PATH;
+        return (
+            <Menu
+                mode="inline"
+                openKeys={openSections}
+                onOpenChange={onOpenSectionChange}
+                className={styles.sidedrawer__menu}
+            >
+                {renderHeader()}
+                <Item
+                    title={null}
+                    icon={<HomeFilled />}
+                    data-active={isActive}
+                    onClick={handleCloseDrawer}
+                    className={styles.sidedrawer__menu__items}
+                >
+                    <Link href={HOME_PATH}>{t('home')}</Link>
+                </Item>
+                {renderSections()}
+            </Menu>
+        );
+    };
+
     return (
         <Drawer
             open={open}
@@ -102,23 +132,7 @@ const SideDrawer: FC<ISideDrawerProps> = ({ open, setOpen }) => {
             className={styles.sidedrawer}
             footer={<DynamicUserAvatar onClick={handleCloseDrawer} userName="Mutombo Jean-vincent" />}
         >
-            <Menu
-                mode="inline"
-                openKeys={openSections}
-                onOpenChange={onOpenSectionChange}
-                className={styles.sidedrawer__menu}
-            >
-                {renderHeader()}
-                <Item
-                    title={null}
-                    icon={<HomeFilled />}
-                    onClick={handleCloseDrawer}
-                    className={styles.sidedrawer__menu__items}
-                >
-                    <Link href={HOME_PATH}>{t('home')}</Link>
-                </Item>
-                {renderSections()}
-            </Menu>
+            {sideMenuContent()}
         </Drawer>
     );
 };

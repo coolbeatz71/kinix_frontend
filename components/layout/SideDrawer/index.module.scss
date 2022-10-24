@@ -8,8 +8,8 @@
 
     [class~='ant-btn'] {
         display: flex;
-        justify-content: center;
         align-items: center;
+        justify-content: center;
     }
     [class~='ant-menu'] {
         border-right: 0;
@@ -52,6 +52,19 @@
                 align-items: center;
                 padding-left: 1.5rem !important;
                 border-radius: $border-radius;
+
+                &[data-active='true'] {
+                    font-weight: 600;
+                    background-color: rgba($color: $warning, $alpha: 0.8);
+
+                    [class~='anticon'] {
+                        display: flex;
+                    }
+
+                    * {
+                        color: $primary;
+                    }
+                }
             }
         }
 
@@ -60,6 +73,19 @@
             align-items: center;
             padding-left: 1rem !important;
             border-radius: $border-radius;
+
+            &[data-active='true'] {
+                font-weight: 600;
+                background-color: rgba($color: $warning, $alpha: 0.8);
+
+                [class~='anticon'] {
+                    display: flex;
+                }
+
+                * {
+                    color: $primary;
+                }
+            }
 
             a {
                 text-transform: capitalize;
