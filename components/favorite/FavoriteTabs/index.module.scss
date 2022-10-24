@@ -9,6 +9,10 @@
         margin-left: 0 !important;
         margin-right: 5px !important;
     }
+    [class='ant-tabs-content-holder'] {
+        padding: $padding 0;
+    }
+
     &[data-theme='light'] {
         [class~='ant-tabs-tab-active'] {
             * {

@@ -44,7 +44,7 @@ const BookmarksList: FC = () => {
             ) : (
                 <Row align="middle" gutter={[32, 24]}>
                     {bookmarks?.rows?.map((bookmark: IBookmark) => (
-                        <Col key={bookmark.id} xs={24} sm={12} md={8}>
+                        <Col key={bookmark.id} xs={24} sm={24} md={12} lg={8}>
                             <DynamicRelatedArticleCard article={bookmark.article as IArticle} />
                         </Col>
                     ))}
