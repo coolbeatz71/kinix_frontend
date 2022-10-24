@@ -59,8 +59,8 @@ const ChangePasswordForm: FC = () => {
                 <DynamicErrorAlert error={error} showIcon closable banner />
 
                 <Item
-                    label={oldPassword}
                     name="oldPassword"
+                    label={oldPassword}
                     rules={[required(oldPassword)]}
                     validateTrigger={['onSubmit', 'onBlur']}
                 >
@@ -69,7 +69,7 @@ const ChangePasswordForm: FC = () => {
 
                 <Item
                     name="newPassword"
-                    label={oldPassword}
+                    label={newPassword}
                     validateTrigger={['onSubmit', 'onBlur']}
                     rules={newPasswordValidator(newPassword)}
                 >

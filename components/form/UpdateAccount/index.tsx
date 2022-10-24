@@ -67,6 +67,8 @@ const UpdateAccountForm: FC<IUpdateAccountProps> = ({ initialValues }) => {
         resetUpdateAccountAction()(dispatch);
     }, [dispatch]);
 
+    useEffect(() => form.resetFields(), [form, initialValues]);
+
     useEffect(() => {
         if (selectedCountryName) {
             const selectedCountry = countryList.find((ct: ICountryObject) => ct.name === selectedCountryName);

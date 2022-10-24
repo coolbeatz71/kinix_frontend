@@ -12,16 +12,16 @@ import { MAX_FILE_SIZE } from '@constants/app';
 import { getBgColor } from '@helpers/getBgColor';
 import getNotification from '@helpers/getNotification';
 import updateAvatarAction, { resetUpdateAvatarAction } from '@redux/auth/updateAvatar';
-import 'antd/es/slider/style';
+import 'antd/lib/slider/style';
 
 import styles from './index.module.scss';
 
 const { Title } = Typography;
 
 export interface IAvatarCardProps {
+    image: string;
     userName: string;
     loading: boolean;
-    image: string | null;
 }
 
 type FileType = string | boolean | void | File | Blob;
@@ -29,12 +29,16 @@ type FileType = string | boolean | void | File | Blob;
 const AvatarCard: FC<IAvatarCardProps> = ({ image, userName, loading }) => {
     const { t } = useTranslation();
     const dispatch = useAppDispatch();
-    const [avatar, setAvatar] = useState<string | null>(image);
+    const [avatar, setAvatar] = useState<string>(image);
     const { loading: updating } = useSelector(({ auth: { updateAvatar } }: IRootState) => updateAvatar);
 
     useEffect(() => {
         resetUpdateAvatarAction()(dispatch);
     }, [dispatch]);
+
+    useEffect(() => {
+        setAvatar(image);
+    }, [image]);
 
     const beforeCrop = (file: File): boolean => {
         const isPNG = file.type === 'image/png';

@@ -21,6 +21,12 @@ body {
     }
 }
 
+[class~='ant-btn'] {
+    [class~='ant-btn-loading-icon'] {
+        display: flex;
+    }
+}
+
 textarea {
     &::-webkit-input-placeholder {
         font-size: 14px;

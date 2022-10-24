@@ -1,8 +1,6 @@
 import React, { FC } from 'react';
-import { Alert, Form } from 'antd';
+import { Alert } from 'antd';
 import { IUnknownObject } from '@interfaces/app';
-
-const { Item } = Form;
 
 export interface IErrorAlertProps {
     banner: boolean;
@@ -14,9 +12,14 @@ export interface IErrorAlertProps {
 const ErrorAlert: FC<IErrorAlertProps> = ({ error, closable, banner, showIcon }) => {
     return (
         error && (
-            <Item>
-                <Alert message={error?.message} type="error" showIcon={showIcon} closable={closable} banner={banner} />
-            </Item>
+            <Alert
+                type="error"
+                banner={banner}
+                className="mb-4"
+                showIcon={showIcon}
+                closable={closable}
+                message={error?.message}
+            />
         )
     );
 };
