@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 import SocialLogin from '../SocialLogin';
 import { IRootState } from 'redux/reducers';
 import { useAppDispatch } from 'redux/store';
+import { BTN_STYLES } from '@constants/styles';
 import { ISignUpData } from '@interfaces/auth';
 import AuthModal from '@components/modal/AuthModal';
 import FloatTextInput from '@components/common/TextInput';
@@ -22,8 +23,6 @@ import styles from './index.module.scss';
 
 const { Item } = Form;
 const { Password } = Input;
-
-const btnStyles = 'd-flex align-items-center justify-content-center';
 
 const SignUpModal: FC = () => {
     const { t } = useTranslation();
@@ -81,8 +80,8 @@ const SignUpModal: FC = () => {
                 >
                     <SocialLogin
                         context={EnumAuthContext.SIGNUP}
-                        googleClassName={`mb-2 ${btnStyles} ${styles.signupForm__social__google}`}
-                        facebookClassName={`${btnStyles} ${styles.signupForm__social__facebook}`}
+                        googleClassName={`mb-2 ${BTN_STYLES} ${styles.signupForm__social__google}`}
+                        facebookClassName={`${BTN_STYLES} ${styles.signupForm__social__facebook}`}
                     />
 
                     <Divider className="my-2 py-2">{t('or')}</Divider>
@@ -125,7 +124,7 @@ const SignUpModal: FC = () => {
                         type="primary"
                         loading={loading}
                         htmlType="submit"
-                        className={`mt-2 ${btnStyles}`}
+                        className={`mt-2 ${BTN_STYLES}`}
                     >
                         {signUp}
                     </Button>

@@ -1,12 +1,13 @@
 import React, { FC } from 'react';
 import Link from 'next/link';
 import { useTranslation } from 'react-i18next';
-import { Col, Layout, Row, Typography, Anchor, Button, Form, Input, Divider, Space, Grid } from 'antd';
 import { MdLocationOn, MdPhone, MdEmail } from 'react-icons/md';
-import SocialButtons from '@components/common/SocialButtons';
+import { Col, Layout, Row, Typography, Anchor, Button, Form, Input, Divider, Space, Grid } from 'antd';
+import { BTN_STYLES } from '@constants/styles';
 import useDarkLight from '@hooks/useDarkLight';
 import { APP_AUTHOR } from '@constants/platform';
 import FloatTextInput from '@components/common/TextInput';
+import SocialButtons from '@components/common/SocialButtons';
 
 import styles from './index.module.scss';
 
@@ -19,8 +20,6 @@ const { Title, Text, Link: TextLink } = Typography;
 export interface IFooterProps {
     isSidenavClose: boolean;
 }
-
-const btnStyles = 'd-flex align-items-center justify-content-center';
 
 export const Footer: FC<IFooterProps> = ({ isSidenavClose }) => {
     const { md } = useBreakpoint();
@@ -88,8 +87,8 @@ export const Footer: FC<IFooterProps> = ({ isSidenavClose }) => {
                             <Button
                                 block={!md}
                                 size="large"
+                                className={`mt-2 ${BTN_STYLES}`}
                                 type={isDark ? 'default' : 'primary'}
-                                className={`mt-2 ${btnStyles}`}
                             >
                                 {t('sendMessage')}
                             </Button>

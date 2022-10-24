@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import Layout from '@components/layout';
 import FavoriteContainer from '@containers/Favorite';
 
-const FavoritePage: NextPage = () => {
+const SettingsPage: NextPage = () => {
     const { t } = useTranslation();
     return (
         <Layout title={t('settings')} showFooter>
@@ -13,6 +13,6 @@ const FavoritePage: NextPage = () => {
     );
 };
 
-export default FavoritePage;
+export default SettingsPage;
 
 export { default as getServerSideProps } from '@helpers/authentication';

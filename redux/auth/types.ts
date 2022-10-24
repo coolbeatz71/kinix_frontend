@@ -18,6 +18,9 @@ export type IAuthState = {
     dialog: IDialogInitialState;
     confirm: IBasicInitialState;
     resendOtp: IBasicInitialState;
+    updateAvatar: IBasicInitialState;
+    updateAccount: IBasicInitialState;
+    changePassword: IBasicInitialState;
 };
 
 export const authInitialState: IAuthState = {
@@ -27,4 +30,7 @@ export const authInitialState: IAuthState = {
     dialog: DialogInitialState,
     confirm: BasicInitialState,
     resendOtp: BasicInitialState,
+    updateAvatar: BasicInitialState,
+    updateAccount: BasicInitialState,
+    changePassword: BasicInitialState,
 };
