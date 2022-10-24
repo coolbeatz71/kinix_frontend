@@ -41,7 +41,7 @@ const RatedVideosList: FC = () => {
             ) : (
                 <Row align="middle" gutter={[32, 24]}>
                     {rates?.rows?.map((rate: IRate) => (
-                        <Col key={rate.id} xs={24} sm={12} md={8}>
+                        <Col key={rate.id} xs={24} sm={24} md={12} lg={8}>
                             <DynamicRelatedVideoCard video={rate.video as IVideo} />
                         </Col>
                     ))}

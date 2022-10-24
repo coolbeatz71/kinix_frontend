@@ -8,4 +8,6 @@ export const favorite = {
     createdAt: 'Creation:',
     noVideos: 'No video',
     playlistVideos: 'List of videos',
+    removeVideoFromPlaylist: 'Remove video from playlist',
+    deletePlaylist: 'Delete playlist',
 };

@@ -1,8 +1,8 @@
 import React, { ReactNode } from 'react';
 import { BsFillSpeakerFill } from 'react-icons/bs';
 import { FaMicrophoneAlt, FaPodcast } from 'react-icons/fa';
-import { RiPlayList2Fill, RiFocusLine, RiBookmark3Fill, RiArticleLine } from 'react-icons/ri';
 import { VideoCameraFilled, LikeFilled, ShareAltOutlined, StarFilled } from 'icons';
+import { RiPlayList2Fill, RiFocusLine, RiBookmark3Fill, RiArticleLine } from 'react-icons/ri';
 import {
     PODCAST_PATH,
     LEFOCUS_PATH,
@@ -22,6 +22,9 @@ interface ISideNavSection {
     href: string;
     icon: ReactNode;
 }
+
+export const MIN_SIDENAV_WIDTH = 60;
+export const MAX_SIDENAV_WIDTH = 200;
 
 export const GENERAL_SECTIONS: ISideNavSection[] = [
     {
