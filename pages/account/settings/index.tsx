@@ -2,13 +2,13 @@ import React from 'react';
 import { NextPage } from 'next';
 import { useTranslation } from 'react-i18next';
 import Layout from '@components/layout';
-import FavoriteContainer from '@containers/Favorite';
+import SettingsContainer from '@containers/SettingsContainer';
 
 const SettingsPage: NextPage = () => {
     const { t } = useTranslation();
     return (
         <Layout title={t('settings')} showFooter>
-            <FavoriteContainer />
+            <SettingsContainer />
         </Layout>
     );
 };

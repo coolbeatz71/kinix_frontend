@@ -9,7 +9,7 @@ import StarRatingComponent from 'react-star-rating-component';
 import { Button, Card, Col, Grid, Row, Typography } from 'antd';
 
 import { IVideo } from '@interfaces/api';
-import { WARNING } from '@constants/colors';
+import { WARNING } from '@constants/styles';
 import useDarkLight from '@hooks/useDarkLight';
 import { ALL_VIDEOS_PATH } from '@constants/paths';
 import { PlayCircleTwoTone } from 'icons';

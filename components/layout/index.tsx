@@ -15,7 +15,7 @@ import getImageUrl from '@helpers/getImageUrl';
 import useDarkLight from '@hooks/useDarkLight';
 import { ICurrentUser } from '@interfaces/user';
 import getPlatformUrl from '@helpers/getPlatformUrl';
-import { PRIMARY, WARNING } from '@constants/colors';
+import { PRIMARY, WARNING } from '@constants/styles';
 import getLocalUserData from '@helpers/getLocalUserData';
 import CategoriesContext from '@context/video-categories';
 import getCurrentUserAction from 'redux/user/getCurrentUser';

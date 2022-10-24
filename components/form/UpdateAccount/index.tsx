@@ -11,7 +11,6 @@ import { useAppDispatch } from '@redux/store';
 import { BTN_STYLES } from '@constants/styles';
 import countryList from '@constants/country-list';
 import getNotification from '@helpers/getNotification';
-import FloatTextInput from '@components/common/TextInput';
 import { ICountryObject } from '@interfaces/countryObject';
 import CountryOption from '@components/common/CountryOption';
 import { countryNameValidator, phonePartialValidator } from './validator';
@@ -86,57 +85,50 @@ const UpdateAccountForm: FC<IUpdateAccountProps> = ({ initialValues }) => {
 
             <Form
                 form={form}
-                size="large"
                 layout="vertical"
+                size="large"
                 onFinish={onSubmit}
                 name="update_account"
                 initialValues={initialValues}
             >
                 <DynamicErrorAlert error={error} showIcon closable banner />
 
-                <Item name="email" rules={emailValidator()} validateTrigger={['onSubmit', 'onBlur']}>
-                    <FloatTextInput label={email} placeholder={email} required>
-                        <Input size="large" type="email" />
-                    </FloatTextInput>
+                <Item name="email" label={email} rules={emailValidator()} validateTrigger={['onSubmit', 'onBlur']}>
+                    <Input placeholder={email} type="email" />
                 </Item>
 
-                <Item name="userName" validateTrigger={['onSubmit', 'onBlur']} rules={userNameValidator(userName)}>
-                    <FloatTextInput label={userName} placeholder={userName} required>
-                        <Input size="large" />
-                    </FloatTextInput>
+                <Item
+                    name="userName"
+                    label={userName}
+                    rules={userNameValidator(userName)}
+                    validateTrigger={['onSubmit', 'onBlur']}
+                >
+                    <Input placeholder={userName} />
                 </Item>
 
                 <Item
                     name="countryName"
+                    label={t('telephoneCode')}
                     validateTrigger={['onSubmit', 'onBlur']}
                     rules={countryNameValidator(t('telephoneCode'))}
                 >
-                    <FloatTextInput label={t('telephoneCode')} placeholder={selectPhoneCode} required>
-                        <Select showSearch size="large" placeholder={selectPhoneCode}>
-                            {countryList.map((country) => (
-                                <CountryOption key={country.isoCode} country={country} />
-                            ))}
-                        </Select>
-                    </FloatTextInput>
+                    <Select showSearch placeholder={selectPhoneCode}>
+                        {countryList.map((country) => (
+                            <CountryOption key={country.name} country={country} />
+                        ))}
+                    </Select>
                 </Item>
 
                 <Item
+                    label={telephone}
                     name="phonePartial"
                     validateTrigger={['onSubmit', 'onBlur']}
                     rules={phonePartialValidator(telephone, country?.dialCode)}
                 >
-                    <FloatTextInput label={telephone} placeholder="Ex: 815252801" required>
-                        <Input size="large" type="number" prefix={country?.dialCode} />
-                    </FloatTextInput>
+                    <Input prefix={country?.dialCode} placeholder="Ex: 815252801" />
                 </Item>
 
-                <Button
-                    size="large"
-                    type="primary"
-                    htmlType="submit"
-                    loading={loading}
-                    className={`mt-2 ${BTN_STYLES}`}
-                >
+                <Button type="primary" htmlType="submit" loading={loading} className={`mt-2 ${BTN_STYLES}`}>
                     {t('send')}
                 </Button>
             </Form>

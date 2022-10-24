@@ -59,39 +59,34 @@ const ChangePasswordForm: FC = () => {
             <Form form={form} size="large" layout="vertical" onFinish={onSubmit} name="change_password">
                 <DynamicErrorAlert error={error} showIcon closable banner />
 
-                <Item name="oldPassword" validateTrigger={['onSubmit', 'onBlur']} rules={[required(oldPassword)]}>
-                    <FloatTextInput label={oldPassword} placeholder="••••••••••••••" required>
-                        <Password size="large" visibilityToggle autoComplete="new-password" />
-                    </FloatTextInput>
+                <Item
+                    label={oldPassword}
+                    name="oldPassword"
+                    rules={[required(oldPassword)]}
+                    validateTrigger={['onSubmit', 'onBlur']}
+                >
+                    <Password visibilityToggle autoComplete="new-password" placeholder="••••••••••••••" />
                 </Item>
 
                 <Item
                     name="newPassword"
+                    label={oldPassword}
                     validateTrigger={['onSubmit', 'onBlur']}
                     rules={newPasswordValidator(newPassword)}
                 >
-                    <FloatTextInput label={newPassword} placeholder="••••••••••••••" required>
-                        <Password size="large" visibilityToggle autoComplete="new-password" />
-                    </FloatTextInput>
+                    <Password visibilityToggle autoComplete="new-password" placeholder="••••••••••••••" />
                 </Item>
 
                 <Item
                     name="confNewPassword"
+                    label={confNewPassword}
                     validateTrigger={['onSubmit', 'onBlur']}
                     rules={newPasswordMatchValidator(confNewPassword)}
                 >
-                    <FloatTextInput label={confNewPassword} placeholder="••••••••••••••" required>
-                        <Password size="large" visibilityToggle autoComplete="new-password" />
-                    </FloatTextInput>
+                    <Password visibilityToggle autoComplete="new-password" placeholder="••••••••••••••" />
                 </Item>
 
-                <Button
-                    size="large"
-                    type="primary"
-                    htmlType="submit"
-                    loading={loading}
-                    className={`mt-2 ${BTN_STYLES}`}
-                >
+                <Button type="primary" htmlType="submit" loading={loading} className={`mt-2 ${BTN_STYLES}`}>
                     {t('send')}
                 </Button>
             </Form>
