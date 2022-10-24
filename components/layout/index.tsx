@@ -92,7 +92,7 @@ const Layout: FC<ILayoutProps> = ({
     const _title = upperFirst(toLower(title)) || '';
     const _url = `${getPlatformUrl()}${router.asPath}`;
     const _description = description || t('app_description');
-    const _image = image ? `${getImageUrl()}/${image}` : `${getPlatformUrl()}/download.png`;
+    const _image = image || `${getPlatformUrl()}/download.png`;
 
     const isSidenavClose = !openSidenav || collapsedSidenav;
 

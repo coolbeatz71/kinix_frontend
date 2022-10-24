@@ -7,7 +7,7 @@ import { IVideo } from '@interfaces/api';
 import { CONTENT_LIMIT } from '@constants/app';
 
 const DynamicSectionTitle = dynamic(() => import('@components/common/SectionTitle'));
-const DynamicRelatedVideoCard = dynamic(() => import('@components/cards/Video/RelatedVideoCard'));
+const DynamicRelatedVideoCard = dynamic(() => import('@components/cards/Video/RelatedVideo'));
 
 interface IRelatedVideoListProps {
     videos: IVideo[];

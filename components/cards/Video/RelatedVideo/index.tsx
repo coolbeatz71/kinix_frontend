@@ -5,6 +5,7 @@ import Link from 'next/link';
 import isEmpty from 'lodash/isEmpty';
 import truncate from 'lodash/truncate';
 import isBoolean from 'lodash/isBoolean';
+import { PlayCircleTwoTone } from 'icons';
 import StarRatingComponent from 'react-star-rating-component';
 import { Button, Card, Col, Grid, Row, Typography } from 'antd';
 
@@ -12,7 +13,6 @@ import { IVideo } from '@interfaces/api';
 import { WARNING } from '@constants/styles';
 import useDarkLight from '@hooks/useDarkLight';
 import { ALL_VIDEOS_PATH } from '@constants/paths';
-import { PlayCircleTwoTone } from 'icons';
 import getYoutubeVideoThumbnail from '@helpers/getYoutubeVideoThumbail';
 
 import styles from './index.module.scss';

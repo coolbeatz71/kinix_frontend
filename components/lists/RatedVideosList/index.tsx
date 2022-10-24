@@ -13,7 +13,7 @@ import getRatesByUserAction from '@redux/ratings/userRates';
 import { EnumEmptyDataType } from '@constants/empty-data-type';
 
 const DynamicServerError = dynamic(() => import('@components/common/ServerError'));
-const DynamicRelatedVideoCard = dynamic(() => import('@components/cards/Video/RelatedVideoCard'));
+const DynamicRelatedVideoCard = dynamic(() => import('@components/cards/Video/RelatedVideo'));
 const DynamicFavoriteListSkeleton = dynamic(() => import('@components/skeleton/FavoriteVideosList'));
 
 const RatedVideosList: FC = () => {

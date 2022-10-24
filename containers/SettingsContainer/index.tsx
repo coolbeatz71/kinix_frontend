@@ -5,6 +5,7 @@ import { IUser } from '@interfaces/api';
 import { IRootState } from '@redux/reducers';
 import { useAppDispatch } from '@redux/store';
 import useDarkLight from '@hooks/useDarkLight';
+import AvatarCard from '@components/cards/Avatar';
 import getCurrentUserAction from '@redux/user/getCurrentUser';
 import UpdateAccountForm from '@components/form/UpdateAccount';
 import ChangePasswordForm from '@components/form/ChangePassword';
@@ -15,7 +16,7 @@ const SettingsContainer: FC = () => {
     const { value } = useDarkLight();
 
     const dispatch = useAppDispatch();
-    const { data: user } = useSelector(({ user }: IRootState) => user?.currentUser);
+    const { data: user, loading } = useSelector(({ user }: IRootState) => user?.currentUser);
 
     useEffect(() => {
         dispatch(getCurrentUserAction());
@@ -25,6 +26,7 @@ const SettingsContainer: FC = () => {
         <div data-theme={value} className={styles.settings}>
             <Row justify="space-between" gutter={24}>
                 <Col xs={24} sm={24} md={24} lg={12}>
+                    <AvatarCard loading={loading} image={user?.image} userName={user?.userName} />
                     <ChangePasswordForm />
                 </Col>
                 <Col xs={24} sm={24} md={24} lg={12}>
