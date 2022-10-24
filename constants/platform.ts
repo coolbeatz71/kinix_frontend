@@ -1,6 +1,11 @@
 export const IMAGES_URL = process.env.NEXT_PUBLIC_IMAGES_URL;
-
 export const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
+export const IMAGES_API_URL = process.env.NEXT_PUBLIC_CLOUDINARY_URL as string;
+export const IMAGES_API_KEY = process.env.NEXT_PUBLIC_CLOUDINARY_API_KEY as string;
+export const IMAGES_API_SECRET = process.env.NEXT_PUBLIC_CLOUDINARY_SECRET as string;
+export const IMAGES_API_PRESET = process.env.NEXT_PUBLIC_CLOUDINARY_PRESET as string;
+export const IMAGES_API_CLOUD_NAME = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME as string;
 
 export const STAGING_URL = process.env.NEXT_PUBLIC_FRONTEND_STAGING_URL;
 export const PROD_URL = process.env.NEXT_PUBLIC_FRONTEND_PRODUCTION_URL;

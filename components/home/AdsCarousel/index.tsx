@@ -4,7 +4,7 @@ import Carousel from 'nuka-carousel';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { IAds } from '@interfaces/api';
-import { PRIMARY } from '@constants/colors';
+import { PRIMARY } from '@constants/styles';
 import SliderContent from './SliderContent';
 import { IRootState } from '@redux/reducers';
 import getAllAdsAction from '@redux/ads/all';

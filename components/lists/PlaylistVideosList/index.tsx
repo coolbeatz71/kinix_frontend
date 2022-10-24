@@ -8,7 +8,7 @@ import getPayload from '@helpers/getPayload';
 import { useAppDispatch } from '@redux/store';
 import { IPlaylist, IVideo } from '@interfaces/api';
 import getSinglePlaylistAction from '@redux/playlists/single';
-import RelatedVideoCard from '@components/cards/Video/RelatedVideoCard';
+import RelatedVideoCard from '@components/cards/Video/RelatedVideo';
 import removeVideoFromPlaylistAction from '@redux/playlists/removeVideo';
 
 import styles from './index.module.scss';

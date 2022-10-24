@@ -3,7 +3,7 @@ import { Button, Col, Row, Typography } from 'antd';
 import Link from 'next/link';
 import { useTranslation } from 'react-i18next';
 import useDarkLight from '@hooks/useDarkLight';
-import { isDark } from '@constants/colors';
+import { isDark } from '@constants/styles';
 
 import styles from './index.module.scss';
 

@@ -64,4 +64,9 @@ export const general = {
     likesFromYoutube: 'Likes on youtube',
     commentsFromYoutube: 'Comments on youtube',
     account: 'Account',
+    maxImageSizeErr: 'File is too large. The maximum size allowed is 1.5Mb',
+    imageFormatErr: 'Only images in PNG or JPG format are accepted',
+    profilePicture: 'Profile picture',
+    cancel: 'Cancel',
+    modifyImage: 'Edit image',
 };

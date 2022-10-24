@@ -13,7 +13,7 @@ export interface ICurrentUser {
     allowEmailNotification: boolean;
 }
 
-export interface IUser {
+export interface IUserData {
     id?: number;
     userName: string;
     email?: string | null;
@@ -22,6 +22,7 @@ export interface IUser {
     provider?: EnumProvider;
     isLoggedIn?: boolean;
     verified?: boolean;
+    active?: boolean;
     image?: string | null;
     allowEmailNotification?: boolean;
     role?: EnumRole;

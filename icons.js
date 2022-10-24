@@ -38,3 +38,4 @@ export { default as WhatsAppOutlined } from '@ant-design/icons/WhatsAppOutlined'
 export { default as BulbFilled } from '@ant-design/icons/BulbFilled';
 export { default as FireFilled } from '@ant-design/icons/FireFilled';
 export { default as CaretRightFilled } from '@ant-design/icons/CaretRightFilled';
+export { default as EditOutlined } from '@ant-design/icons/EditOutlined';

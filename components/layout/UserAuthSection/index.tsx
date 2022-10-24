@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { Space, Button } from 'antd';
 import { useDispatch } from 'react-redux';
-import { isDark } from '@constants/colors';
+import { isDark } from '@constants/styles';
 import { useTranslation } from 'react-i18next';
 import useDarkLight from '@hooks/useDarkLight';
 import { EnumAuthContext } from '@constants/auth-context';

@@ -7,6 +7,7 @@ import SocialLogin from '../SocialLogin';
 import { IRootState } from 'redux/reducers';
 import { useAppDispatch } from 'redux/store';
 import { ILoginData } from '@interfaces/auth';
+import { BTN_STYLES } from '@constants/styles';
 import { IUnknownObject } from '@interfaces/app';
 import AuthModal from '@components/modal/AuthModal';
 import { CHECK_CONFIRM_EMAIL } from '@constants/api';
@@ -23,8 +24,6 @@ import styles from './index.module.scss';
 
 const { Item } = Form;
 const { Password } = Input;
-
-const btnStyles = `d-flex align-items-center justify-content-center`;
 
 const LoginModal: FC = () => {
     const { t } = useTranslation();
@@ -78,8 +77,8 @@ const LoginModal: FC = () => {
             ) : (
                 <Form size="large" name="user_login" className={styles.loginForm} layout="vertical" onFinish={onSubmit}>
                     <SocialLogin
-                        googleClassName={`mb-2 ${btnStyles} ${styles.loginForm__social__google}`}
-                        facebookClassName={`${btnStyles} ${styles.loginForm__social__facebook}`}
+                        googleClassName={`mb-2 ${BTN_STYLES} ${styles.loginForm__social__google}`}
+                        facebookClassName={`${BTN_STYLES} ${styles.loginForm__social__facebook}`}
                     />
 
                     <Divider className="my-2 py-2">{t('or')}</Divider>
@@ -108,7 +107,7 @@ const LoginModal: FC = () => {
                         type="primary"
                         htmlType="submit"
                         loading={loading}
-                        className={`mt-2 ${btnStyles}`}
+                        className={`mt-2 ${BTN_STYLES}`}
                     >
                         {login}
                     </Button>

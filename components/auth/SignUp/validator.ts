@@ -6,8 +6,8 @@ import { IUnknownObject } from '@interfaces/app';
 
 export const emailValidator = (): Rule[] => [
     {
-        required: true,
         type: 'email',
+        required: true,
         message: `${i18n.t('email')} ${i18n.t('emailErr')}`,
     },
 ];
@@ -25,8 +25,10 @@ export const userNameValidator = (name: string): Rule[] => {
             validator(_rule: unknown, value: string) {
                 const regex = new RegExp(`.{${min},${max}}$`);
 
+                if ([undefined, null, ''].includes(value)) return Promise.resolve();
+
                 if (!validator.isAlphanumeric(value) && regex.test(value)) {
-                    return Promise.reject(`${name} ${i18n.t('alphaErr')}`);
+                    return Promise.reject(`${name} ${i18n.t('alphaNumericErr')}`);
                 }
                 return Promise.resolve();
             },
@@ -47,13 +49,11 @@ export const passwordValidator = (name: string): Rule[] => {
 export const passwordMatchValidator = (name: string): Rule[] => [
     ({ getFieldValue }: IUnknownObject) => ({
         validator(_rule: unknown, value: string) {
-            if ([undefined, '', null].includes(getFieldValue(['confPassword']))) {
-                return Promise.reject(`${name} ${i18n.t('requiredErr')}`);
-            }
+            const isPassword = [undefined, '', null].includes(getFieldValue(['confPassword']));
 
-            if (value !== getFieldValue(['password'])) {
-                return Promise.reject(i18n.t('passwordMismatchErr'));
-            }
+            if (isPassword) return Promise.reject(`${name} ${i18n.t('requiredErr')}`);
+            if (value !== getFieldValue(['password'])) return Promise.reject(i18n.t('passwordMismatchErr'));
+
             return Promise.resolve();
         },
     }),

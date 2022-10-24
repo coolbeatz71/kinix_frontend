@@ -10,7 +10,7 @@ import { PlayCircleTwoTone } from 'icons';
 import useDarkLight from '@hooks/useDarkLight';
 import EnumRole from '@interfaces/role';
 import { IVideo } from '@interfaces/api';
-import { WARNING } from '@constants/colors';
+import { WARNING } from '@constants/styles';
 import { APP_NAME } from '@constants/platform';
 import { ALL_VIDEOS_PATH } from '@constants/paths';
 import VideoViewRating from '@components/ratings/VideoViewRating';

@@ -8,7 +8,7 @@ import { Button, Col, Row, Space, Tag, Typography, Grid } from 'antd';
 import { CaretRightFilled, ShareAltOutlined } from 'icons';
 import { IVideo } from '@interfaces/api';
 import useDarkLight from '@hooks/useDarkLight';
-import { PRIMARY, SKY_BLUE } from '@constants/colors';
+import { PRIMARY, SKY_BLUE } from '@constants/styles';
 
 const DynamicVideoCardVertical = dynamic(() => import('@components/cards/Video/VideoCardVertical'));
 
