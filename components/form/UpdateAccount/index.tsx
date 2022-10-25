@@ -11,6 +11,7 @@ import { IRootState } from '@redux/reducers';
 import { IUserData } from '@interfaces/user';
 import { useAppDispatch } from '@redux/store';
 import { BTN_STYLES } from '@constants/styles';
+import useDarkLight from '@hooks/useDarkLight';
 import countryList from '@constants/country-list';
 import getNotification from '@helpers/getNotification';
 import { ICountryObject } from '@interfaces/countryObject';
@@ -33,6 +34,7 @@ export interface IUpdateAccountProps {
 const UpdateAccountForm: FC<IUpdateAccountProps> = ({ initialValues }) => {
     const [form] = useForm();
     const { t } = useTranslation();
+    const { value } = useDarkLight();
     const dispatch = useAppDispatch();
     const [country, setCountry] = useState<ICountryObject>();
     const selectedCountryName = useWatch('countryName', form);
@@ -105,7 +107,7 @@ const UpdateAccountForm: FC<IUpdateAccountProps> = ({ initialValues }) => {
     );
 
     return (
-        <Card bordered className={styles.updateAccount}>
+        <Card bordered className={styles.updateAccount} data-theme={value}>
             <Title level={4} data-title>
                 {t('accountInfo')}
             </Title>

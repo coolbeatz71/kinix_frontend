@@ -51,7 +51,7 @@ const VideoRatingModal: FC<VideoRatingModalProps> = ({ slug, openModal, setOpenM
     };
 
     useEffect(() => {
-        import('public/rating_anim.json').then((res) => setAnimationData(res.default));
+        import('public/lottie/rating_anim.json').then((res) => setAnimationData(res.default));
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 

@@ -19,7 +19,7 @@ const Custom404: NextPage = () => {
     const [animationData, setAnimationData] = useState<IUnknownObject>();
 
     useEffect(() => {
-        import('public/404_anim.json').then((res) => setAnimationData(res.default));
+        import('public/lottie/404_anim.json').then((res) => setAnimationData(res.default));
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 

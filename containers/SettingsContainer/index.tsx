@@ -1,5 +1,6 @@
 import React, { FC, useEffect } from 'react';
 import { Col, Row } from 'antd';
+import isEmpty from 'lodash/isEmpty';
 import { useSelector } from 'react-redux';
 import { IUser } from '@interfaces/api';
 import { IRootState } from '@redux/reducers';
@@ -19,8 +20,8 @@ const SettingsContainer: FC = () => {
     const { data: user, loading } = useSelector(({ user }: IRootState) => user?.currentUser);
 
     useEffect(() => {
-        dispatch(getCurrentUserAction());
-    }, [dispatch]);
+        if (isEmpty(user)) dispatch(getCurrentUserAction());
+    }, [dispatch, user]);
 
     return (
         <div data-theme={value} className={styles.settings}>
