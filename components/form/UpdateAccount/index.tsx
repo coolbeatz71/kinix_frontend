@@ -10,7 +10,7 @@ import getPayload from '@helpers/getPayload';
 import { IRootState } from '@redux/reducers';
 import { IUserData } from '@interfaces/user';
 import { useAppDispatch } from '@redux/store';
-import { BTN_STYLES } from '@constants/styles';
+import { BTN_STYLES, isDark } from '@constants/styles';
 import useDarkLight from '@hooks/useDarkLight';
 import countryList from '@constants/country-list';
 import getNotification from '@helpers/getNotification';
@@ -155,7 +155,12 @@ const UpdateAccountForm: FC<IUpdateAccountProps> = ({ initialValues }) => {
                     <Input prefix={country?.dialCode} placeholder="Ex: 815252801" />
                 </Item>
 
-                <Button type="primary" htmlType="submit" loading={loading} className={`mt-2 ${BTN_STYLES}`}>
+                <Button
+                    htmlType="submit"
+                    loading={loading}
+                    type={isDark(value) ? 'default' : 'primary'}
+                    className={`mt-2 ${BTN_STYLES}`}
+                >
                     {t('send')}
                 </Button>
             </Form>

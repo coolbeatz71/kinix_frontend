@@ -19,4 +19,17 @@
         padding-right: 0.5rem;
         border-right: 1px solid $dark10;
     }
+
+    &[data-theme='dark'] {
+        border-color: $light20;
+        background: $bg-primary-dark50;
+
+        [data-title='true'] {
+            color: $white;
+        }
+
+        label {
+            color: $light !important;
+        }
+    }
 }

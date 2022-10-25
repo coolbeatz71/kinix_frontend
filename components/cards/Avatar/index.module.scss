@@ -37,4 +37,13 @@
             width: 100%;
         }
     }
+
+    &[data-theme='dark'] {
+        border-color: $light20;
+        background: $bg-primary-dark50;
+
+        [data-title='true'] {
+            color: $white;
+        }
+    }
 }
