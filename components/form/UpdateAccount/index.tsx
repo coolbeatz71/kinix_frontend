@@ -38,6 +38,7 @@ const UpdateAccountForm: FC<IUpdateAccountProps> = ({ initialValues }) => {
     const dispatch = useAppDispatch();
     const [country, setCountry] = useState<ICountryObject>();
     const selectedCountryName = useWatch('countryName', form);
+    const { data: user } = useSelector(({ user: { currentUser } }: IRootState) => currentUser);
     const { loading, error } = useSelector(({ auth: { updateAccount } }: IRootState) => updateAccount);
 
     const onSubmit = (formData: IUserData): void => {
@@ -51,13 +52,13 @@ const UpdateAccountForm: FC<IUpdateAccountProps> = ({ initialValues }) => {
             updateAccountAction({
                 dispatch,
                 data: {
-                    email,
                     userName,
                     countryFlag,
                     countryName,
                     phonePartial,
                     phoneISOCode,
                     phoneDialCode,
+                    email: user?.email || email,
                 },
             }),
         ).then((res) => {
@@ -123,7 +124,7 @@ const UpdateAccountForm: FC<IUpdateAccountProps> = ({ initialValues }) => {
                 <DynamicErrorAlert error={error} showIcon closable banner />
 
                 <Item name="email" label={email} rules={emailValidator()} validateTrigger={['onSubmit', 'onBlur']}>
-                    <Input placeholder={email} type="email" />
+                    <Input placeholder={email} type="email" disabled />
                 </Item>
 
                 <Item
