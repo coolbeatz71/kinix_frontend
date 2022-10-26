@@ -25,9 +25,9 @@ const HomeIllustration: FC = () => {
     useEffect(() => {
         const importAnimationJSON = async (): Promise<void> => {
             const [music, office, podcast] = await Promise.all([
-                import('public/listen_music_anim.json'),
-                import('public/listen_office_anim.json'),
-                import('public/listen_podcast_anim.json'),
+                import('public/lottie/listen_music_anim.json'),
+                import('public/lottie/listen_office_anim.json'),
+                import('public/lottie/listen_podcast_anim.json'),
             ]);
 
             setAnimationData([music.default, office.default, podcast.default]);

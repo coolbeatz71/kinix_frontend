@@ -7,7 +7,8 @@ import { IRootState } from '@redux/reducers';
 import getPayload from '@helpers/getPayload';
 import { useAppDispatch } from '@redux/store';
 import { required } from '@helpers/validators';
-import { BTN_STYLES } from '@constants/styles';
+import { BTN_STYLES, isDark } from '@constants/styles';
+import useDarkLight from '@hooks/useDarkLight';
 import getNotification from '@helpers/getNotification';
 import { newPasswordMatchValidator, newPasswordValidator } from './validator';
 import changePasswordAction, { resetChangePasswordAction } from '@redux/auth/changePassword';
@@ -23,6 +24,7 @@ const { Item, useForm } = Form;
 const ChangePasswordForm: FC = () => {
     const [form] = useForm();
     const { t } = useTranslation();
+    const { value } = useDarkLight();
     const dispatch = useAppDispatch();
     const { loading, error } = useSelector(({ auth: { changePassword } }: IRootState) => changePassword);
 
@@ -50,7 +52,7 @@ const ChangePasswordForm: FC = () => {
     const confNewPassword = t('confNewPassword');
 
     return (
-        <Card bordered className={styles.changePassword}>
+        <Card bordered className={styles.changePassword} data-theme={value}>
             <Title level={4} data-title>
                 {t('changePassword')}
             </Title>
@@ -85,7 +87,12 @@ const ChangePasswordForm: FC = () => {
                     <Password visibilityToggle autoComplete="new-password" placeholder="••••••••••••••" />
                 </Item>
 
-                <Button type="primary" htmlType="submit" loading={loading} className={`mt-2 ${BTN_STYLES}`}>
+                <Button
+                    htmlType="submit"
+                    loading={loading}
+                    className={`mt-2 ${BTN_STYLES}`}
+                    type={isDark(value) ? 'default' : 'primary'}
+                >
                     {t('send')}
                 </Button>
             </Form>

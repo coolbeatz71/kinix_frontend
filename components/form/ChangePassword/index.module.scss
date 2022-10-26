@@ -1,3 +1,4 @@
+@import 'styles/colors.scss';
 @import 'styles/mixins.scss';
 @import 'styles/dimensions.scss';
 
@@ -16,5 +17,18 @@
     @include mediaMinMD {
         margin: 0;
         margin-top: 0.5rem;
+    }
+
+    &[data-theme='dark'] {
+        border-color: $light20;
+        background: $bg-primary-dark50;
+
+        [data-title='true'] {
+            color: $white;
+        }
+
+        label {
+            color: $light !important;
+        }
     }
 }

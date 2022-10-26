@@ -5,9 +5,11 @@ import { useTranslation } from 'react-i18next';
 import uploadImageCloudinary from 'services/cloudinary';
 import { EditOutlined, LoadingOutlined, UserOutlined } from 'icons';
 import { Avatar, Button, Typography, Upload, message, Spin, Card } from 'antd';
+import { isDark } from '@constants/styles';
 import getPayload from '@helpers/getPayload';
 import { IRootState } from '@redux/reducers';
 import { useAppDispatch } from '@redux/store';
+import useDarkLight from '@hooks/useDarkLight';
 import { MAX_FILE_SIZE } from '@constants/app';
 import { getBgColor } from '@helpers/getBgColor';
 import getNotification from '@helpers/getNotification';
@@ -28,6 +30,7 @@ type FileType = string | boolean | void | File | Blob;
 
 const AvatarCard: FC<IAvatarCardProps> = ({ image, userName, loading }) => {
     const { t } = useTranslation();
+    const { value } = useDarkLight();
     const dispatch = useAppDispatch();
     const [avatar, setAvatar] = useState<string>(image);
     const { loading: updating } = useSelector(({ auth: { updateAvatar } }: IRootState) => updateAvatar);
@@ -78,7 +81,7 @@ const AvatarCard: FC<IAvatarCardProps> = ({ image, userName, loading }) => {
     };
 
     return (
-        <Card bordered className={styles.avatarCard}>
+        <Card bordered className={styles.avatarCard} data-theme={value}>
             <Title level={4} data-title>
                 {t('profilePicture')}
             </Title>
@@ -116,9 +119,9 @@ const AvatarCard: FC<IAvatarCardProps> = ({ image, userName, loading }) => {
                         <Upload showUploadList={false} accept="image/png, image/jpeg">
                             <Button
                                 shape="circle"
-                                type="primary"
                                 icon={<EditOutlined />}
                                 className={styles.avatarCard__button}
+                                type={isDark(value) ? 'default' : 'primary'}
                             />
                         </Upload>
                     </ImgCrop>
