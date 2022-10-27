@@ -2,13 +2,13 @@ import { EnumAuthContext } from '@constants/auth-context';
 import { BasicInitialState, IBasicInitialState } from 'constants/redux';
 
 export interface IDialogInitialState {
-    context: EnumAuthContext;
     isOpen: boolean;
+    context: EnumAuthContext;
 }
 
 const DialogInitialState: IDialogInitialState = {
-    context: EnumAuthContext.LOGIN,
     isOpen: false,
+    context: EnumAuthContext.LOGIN,
 };
 
 export type IAuthState = {
@@ -18,6 +18,7 @@ export type IAuthState = {
     dialog: IDialogInitialState;
     confirm: IBasicInitialState;
     resendOtp: IBasicInitialState;
+    socialLogin: IBasicInitialState;
     updateAvatar: IBasicInitialState;
     updateAccount: IBasicInitialState;
     changePassword: IBasicInitialState;
@@ -30,6 +31,7 @@ export const authInitialState: IAuthState = {
     dialog: DialogInitialState,
     confirm: BasicInitialState,
     resendOtp: BasicInitialState,
+    socialLogin: BasicInitialState,
     updateAvatar: BasicInitialState,
     updateAccount: BasicInitialState,
     changePassword: BasicInitialState,

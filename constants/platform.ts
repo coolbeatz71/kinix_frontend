@@ -1,5 +1,13 @@
-export const IMAGES_URL = process.env.NEXT_PUBLIC_IMAGES_URL;
 export const API_URL = process.env.NEXT_PUBLIC_API_URL;
+export const IMAGES_URL = process.env.NEXT_PUBLIC_IMAGES_URL;
+
+export const JWT_AUTH_SECRET = process.env.NEXT_PUBLIC_JWT_AUTH_SECRET as string;
+
+export const GOOGLE_AUTH_CLIENT_ID = process.env.NEXT_PUBLIC_GOOGLE_AUTH_CLIENT_ID as string;
+export const GOOGLE_AUTH_CLIENT_SECRET = process.env.NEXT_PUBLIC_GOOGLE_AUTH_CLIENT_SECRET as string;
+
+export const FACEBOOK_AUTH_CLIENT_ID = process.env.NEXT_PUBLIC_FACEBOOK_AUTH_CLIENT_ID as string;
+export const FACEBOOK_AUTH_CLIENT_SECRET = process.env.NEXT_PUBLIC_FACEBOOK_AUTH_CLIENT_SECRET as string;
 
 export const IMAGES_API_URL = process.env.NEXT_PUBLIC_CLOUDINARY_URL as string;
 export const IMAGES_API_KEY = process.env.NEXT_PUBLIC_CLOUDINARY_API_KEY as string;
