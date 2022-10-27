@@ -78,11 +78,7 @@ const SignUpModal: FC = () => {
                     onFinish={onSubmit}
                     className={styles.signupForm}
                 >
-                    <SocialLogin
-                        context={EnumAuthContext.SIGNUP}
-                        googleClassName={`mb-2 ${BTN_STYLES} ${styles.signupForm__social__google}`}
-                        facebookClassName={`${BTN_STYLES} ${styles.signupForm__social__facebook}`}
-                    />
+                    <SocialLogin context={EnumAuthContext.SIGNUP} />
 
                     <Divider className="my-2 py-2">{t('or')}</Divider>
 

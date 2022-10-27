@@ -5,6 +5,7 @@ import fr from 'dayjs/locale/fr';
 import NProgress from 'nprogress';
 import { Router } from 'next/router';
 import { AppProps, AppContext } from 'next/app';
+
 import relativeTime from 'dayjs/plugin/relativeTime';
 import { PersistGate } from 'redux-persist/integration/react';
 import Wrapper from 'redux/store';

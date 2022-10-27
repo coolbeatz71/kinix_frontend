@@ -1,0 +1,40 @@
+@import 'styles/colors.scss';
+@import 'styles/dimensions.scss';
+
+.social {
+    &__google,
+    &__facebook {
+        color: $white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &:hover,
+        &:active,
+        &:focus {
+            color: $white;
+        }
+    }
+
+    &__google {
+        margin-bottom: 0.5rem;
+        background: rgba($color: $google, $alpha: 0.85);
+        &:hover,
+        &:active,
+        &:focus {
+            background: $google;
+        }
+    }
+    &__facebook {
+        background: rgba($color: $facebook, $alpha: 0.85);
+        &:hover,
+        &:active,
+        &:focus {
+            background: $facebook;
+        }
+    }
+
+    [class~='ant-skeleton-button'] {
+        margin-top: 0.5rem;
+    }
+}
