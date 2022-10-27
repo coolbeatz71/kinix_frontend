@@ -10,7 +10,7 @@ import { ISocialLoginData } from '@interfaces/auth';
 import setCurrentUserAction from 'redux/user/setCurrentUser';
 import { setLocalUserData } from '@helpers/getLocalUserData';
 
-export const resetLoginAction =
+export const resetSocialLoginAction =
     () =>
     (dispatch: AppDispatch): AnyAction => {
         return dispatch(authSlice.actions.clear({ context: 'auth/socialLogin' }));
@@ -23,7 +23,7 @@ interface IParams {
 const socialLoginAction = createAsyncThunk('auth/socialLogin', async (params: IParams, { rejectWithValue }) => {
     const { data, dispatch } = params;
     try {
-        const response: IUnknownObject = await api.post('/auth/social/login', data);
+        const response: IUnknownObject = await api.post('/auth/social-login', data);
 
         setAuthCookies(response.token);
         setLocalUserData(response.data);

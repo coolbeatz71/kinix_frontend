@@ -76,7 +76,7 @@ const LoginModal: FC = () => {
                 <AccountConfirmation credential={currentCredential} onCloseModal={onCloseLogin} />
             ) : (
                 <Form size="large" name="user_login" className={styles.loginForm} layout="vertical" onFinish={onSubmit}>
-                    <SocialLogin context={EnumAuthContext.LOGIN} />
+                    <SocialLogin context={EnumAuthContext.LOGIN} onCloseModal={onCloseLogin} />
 
                     <Divider className="my-2 py-2">{t('or')}</Divider>
 

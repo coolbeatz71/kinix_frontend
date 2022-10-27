@@ -78,7 +78,7 @@ const SignUpModal: FC = () => {
                     onFinish={onSubmit}
                     className={styles.signupForm}
                 >
-                    <SocialLogin context={EnumAuthContext.SIGNUP} />
+                    <SocialLogin context={EnumAuthContext.SIGNUP} onCloseModal={onCloseSignUp} />
 
                     <Divider className="my-2 py-2">{t('or')}</Divider>
 

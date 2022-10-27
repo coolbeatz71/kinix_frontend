@@ -1,4 +1,4 @@
-import EnumPromotionPlan from '@constants/promotion';
+import EnumProvider from './provider';
 
 export interface ILoginData {
     credential: string;
@@ -14,6 +14,6 @@ export interface ISignUpData {
 export interface ISocialLoginData {
     email: string;
     userName: string;
-    image?: string | null;
-    provider: EnumPromotionPlan;
+    avatar?: string | null;
+    provider: EnumProvider;
 }

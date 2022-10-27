@@ -1,8 +1,10 @@
 import React, { FC, Fragment, ReactElement, useState } from 'react';
+import dynamic from 'next/dynamic';
+import { EllipsisOutlined } from 'icons';
 import { Button, Dropdown, Menu } from 'antd';
 import useDarkLight from '@hooks/useDarkLight';
-import { EllipsisOutlined } from 'icons';
-import PlaylistModal from '@components/modal/PlaylistModal';
+
+const DynamicPlaylistModal = dynamic(() => import('@components/modal/PlaylistModal'));
 
 import styles from './index.module.scss';
 
@@ -27,7 +29,7 @@ const VideoCardAction: FC<IVideoCardActionProps> = ({ videoId, context, children
                 onOpenChange={(v) => setOpenMenu(v)}
                 overlay={
                     <Menu className={styles.videoAction__menu}>
-                        <PlaylistModal videoId={videoId} closeMenu={() => setOpenMenu(false)} />
+                        <DynamicPlaylistModal videoId={videoId} closeMenu={() => setOpenMenu(false)} />
                     </Menu>
                 }
             >
