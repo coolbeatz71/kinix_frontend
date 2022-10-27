@@ -3,27 +3,27 @@ import { authSlice } from '.';
 import api from 'services/axios';
 import { AppDispatch } from 'redux/store';
 import { isServer } from '@constants/app';
-import { ILoginData } from '@interfaces/auth';
 import setAuthCookies from '@helpers/cookies';
 import { API_TOKEN } from '@constants/platform';
 import { IUnknownObject } from '@interfaces/app';
+import { ISocialLoginData } from '@interfaces/auth';
 import setCurrentUserAction from 'redux/user/setCurrentUser';
 import { setLocalUserData } from '@helpers/getLocalUserData';
 
 export const resetLoginAction =
     () =>
     (dispatch: AppDispatch): AnyAction => {
-        return dispatch(authSlice.actions.clear({ context: 'auth/login' }));
+        return dispatch(authSlice.actions.clear({ context: 'auth/socialLogin' }));
     };
 interface IParams {
-    data: ILoginData;
+    data: ISocialLoginData;
     dispatch: AppDispatch;
 }
 
-const loginAction = createAsyncThunk('auth/login', async (params: IParams, { rejectWithValue }) => {
+const socialLoginAction = createAsyncThunk('auth/socialLogin', async (params: IParams, { rejectWithValue }) => {
     const { data, dispatch } = params;
     try {
-        const response: IUnknownObject = await api.post('/auth/login', data);
+        const response: IUnknownObject = await api.post('/auth/social/login', data);
 
         setAuthCookies(response.token);
         setLocalUserData(response.data);
@@ -37,4 +37,4 @@ const loginAction = createAsyncThunk('auth/login', async (params: IParams, { rej
     }
 });
 
-export default loginAction;
+export default socialLoginAction;

@@ -14,6 +14,7 @@ import confirmAccountAction from './confirm';
 import updateAvatarAction from './updateAvatar';
 import updateAccountAction from './updateAccount';
 import changePasswordAction from './changePassword';
+import socialLoginAction from './socialLogin';
 
 export const authSlice = createSlice({
     name: 'auth',
@@ -58,7 +59,11 @@ export const authSlice = createSlice({
             // update account
             .addCase(updateAccountAction.pending, ActionWrapperPending)
             .addCase(updateAccountAction.fulfilled, ActionWrapperFulfilled)
-            .addCase(updateAccountAction.rejected, ActionWrapperRejected);
+            .addCase(updateAccountAction.rejected, ActionWrapperRejected)
+            // social login
+            .addCase(socialLoginAction.pending, ActionWrapperPending)
+            .addCase(socialLoginAction.fulfilled, ActionWrapperFulfilled)
+            .addCase(socialLoginAction.rejected, ActionWrapperRejected);
     },
 });
 
