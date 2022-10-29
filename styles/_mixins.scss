@@ -36,6 +36,12 @@
     }
 }
 
+@mixin mediaMinLG {
+    @media screen and (min-width: #{$lg-size}) {
+        @content;
+    }
+}
+
 @mixin mediaMaxMD {
     @media screen and (max-width: #{$md-size}) {
         @content;

@@ -22,6 +22,8 @@ export type IAuthState = {
     updateAvatar: IBasicInitialState;
     updateAccount: IBasicInitialState;
     changePassword: IBasicInitialState;
+    forgotPassword: IBasicInitialState;
+    resetPassword: IBasicInitialState;
 };
 
 export const authInitialState: IAuthState = {
@@ -35,4 +37,6 @@ export const authInitialState: IAuthState = {
     updateAvatar: BasicInitialState,
     updateAccount: BasicInitialState,
     changePassword: BasicInitialState,
+    forgotPassword: BasicInitialState,
+    resetPassword: BasicInitialState,
 };

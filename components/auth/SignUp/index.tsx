@@ -84,19 +84,19 @@ const SignUpModal: FC = () => {
 
                     <Item name="userName" validateTrigger={['onSubmit', 'onBlur']} rules={userNameValidator(userName)}>
                         <FloatTextInput label={userName} placeholder={userName} required>
-                            <Input size="large" />
+                            <Input />
                         </FloatTextInput>
                     </Item>
 
                     <Item name="email" validateTrigger={['onSubmit', 'onBlur']} rules={emailValidator()}>
                         <FloatTextInput label={email} placeholder={email} required>
-                            <Input size="large" />
+                            <Input />
                         </FloatTextInput>
                     </Item>
 
                     <Item name="password" validateTrigger={['onSubmit', 'onBlur']} rules={passwordValidator(password)}>
                         <FloatTextInput label={password} placeholder={password} required>
-                            <Password size="large" visibilityToggle />
+                            <Password visibilityToggle />
                         </FloatTextInput>
                     </Item>
 
@@ -106,7 +106,7 @@ const SignUpModal: FC = () => {
                         rules={passwordMatchValidator(confPassword)}
                     >
                         <FloatTextInput label={confPassword} placeholder={confPassword} required>
-                            <Password size="large" visibilityToggle />
+                            <Password visibilityToggle />
                         </FloatTextInput>
                     </Item>
 
@@ -114,14 +114,7 @@ const SignUpModal: FC = () => {
 
                     <UserAgreement styles={styles} />
 
-                    <Button
-                        block
-                        size="large"
-                        type="primary"
-                        loading={loading}
-                        htmlType="submit"
-                        className={`mt-2 ${BTN_STYLES}`}
-                    >
+                    <Button block type="primary" loading={loading} htmlType="submit" className={`mt-2 ${BTN_STYLES}`}>
                         {signUp}
                     </Button>
 
@@ -129,6 +122,7 @@ const SignUpModal: FC = () => {
                         <Button
                             block
                             type="text"
+                            disabled={loading}
                             onClick={onOpenLogin}
                             className={`mb-1 ${styles.signupForm__footer__btn}`}
                         >

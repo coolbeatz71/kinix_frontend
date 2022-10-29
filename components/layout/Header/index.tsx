@@ -11,13 +11,15 @@ import { getLanguage } from '@helpers/getLanguage';
 import getSideNavWidth from '@helpers/getSideNavWidth';
 import SocialButtons from '@components/common/SocialButtons';
 import UserAuthSection from '@components/layout/UserAuthSection';
+import LanguageDropDown from '@components/layout/LanguageDropDown';
 import { CategoryServerPropsType } from '@context/video-categories';
 
-const DynamicCategoryBar = dynamic(() => import('../CategoryBar'));
 const DynamicLoginModal = dynamic(() => import('@components/auth/Login'));
 const DynamicSignUpModal = dynamic(() => import('@components/auth/SignUp'));
+const DynamicCategoryBar = dynamic(() => import('@components/layout/CategoryBar'));
 const DynamicSearchInput = dynamic(() => import('@components/common/SearchInput'));
-const DynamicLanguageDropDown = dynamic(() => import('@components/layout/LanguageDropDown'));
+const DynamicResetPasswordModal = dynamic(() => import('@components/auth/ResetPassword'));
+const DynamicForgotPasswordModal = dynamic(() => import('@components/auth/ForgotPassword'));
 const DynamicUserProfileDropDown = dynamic(() => import('@components/layout/UserProfileDropDown'));
 
 import styles from './index.module.scss';
@@ -85,6 +87,8 @@ const Header: FC<IHeaderProps> = ({
         >
             <DynamicLoginModal />
             <DynamicSignUpModal />
+            <DynamicResetPasswordModal />
+            <DynamicForgotPasswordModal />
 
             <Row align="middle" className={styles.header__row} justify="space-between">
                 <Col xs={12} sm={12} lg={1} className="p-0">
@@ -114,7 +118,7 @@ const Header: FC<IHeaderProps> = ({
                     <Col span={10} className="d-flex flex-row-reverse">
                         <Row justify="space-between" gutter={[32, 0]}>
                             <Col span={4} className="d-flex justify-content-end">
-                                <DynamicLanguageDropDown userLang={userLang} />
+                                <LanguageDropDown userLang={userLang} />
                             </Col>
                             <Col span={10} className="d-flex justify-content-end">
                                 <SocialButtons className={styles.header__row__social} />

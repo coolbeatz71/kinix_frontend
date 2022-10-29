@@ -1,7 +1,6 @@
 @import 'styles/colors.scss';
-@import 'styles/dimensions.scss';
 
-.signupForm {
+.forgotPassword {
     &__footer {
         &__btn {
             font-size: 13px;
@@ -17,15 +16,6 @@
                     text-decoration: underline;
                 }
             }
-        }
-    }
-
-    &__userAgreement {
-        text-align: center;
-        padding: 0 $padding;
-
-        &__text {
-            font-size: 13px;
         }
     }
 }
