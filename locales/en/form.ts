@@ -10,6 +10,7 @@ export const form = {
     emailUserName: 'Email or username',
     firstLastName: 'First and last name',
     names: 'Names',
+    message: 'Message',
     password: 'Password',
     confPassword: 'Confirm password',
     forgotPassword: 'Forgot password?',
@@ -49,4 +50,6 @@ export const form = {
     reset: 'Reset',
     resetPasswordTitle: 'Reset password',
     rememberPassword: 'Remember password? Sign In',
+    contactUsSuccess: 'Message successfully sent: Thanks for reaching out! we will respond to you as soon as possible.',
+    contactUsError: 'Sorry, your message was not sent. Please try again later!',
 };

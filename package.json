@@ -17,6 +17,7 @@
     },
     "dependencies": {
         "@alfonmga/react-lottie-light-ts": "^0.0.1",
+        "@emailjs/browser": "^3.7.0",
         "@reduxjs/toolkit": "^1.8.1",
         "@types/color-hash": "^1.0.2",
         "@types/crypto-js": "^4.1.1",

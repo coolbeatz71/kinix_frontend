@@ -9,6 +9,7 @@ export const form = {
     createAccount: 'Créer un compte',
     firstLastName: 'Nom et prénom',
     names: 'Noms',
+    message: 'Message',
     emailUserName: 'Email ou pseudo',
     password: 'Mot de passe',
     confPassword: 'Confirmer le mot de passe',
@@ -49,4 +50,7 @@ export const form = {
     reset: 'Réinitialiser',
     resetPasswordTitle: 'Réinitialiser mot de passe',
     rememberPassword: 'Rappelez-vous le mot de passe? Connexion',
+    contactUsSuccess:
+        'Message envoyé avec succès: merci de nous avoir contactés ! nous vous répondrons dans les plus brefs délais.',
+    contactUsError: "Désolé, votre message n'a pas été envoyé. Veuillez réessayer plus tard!",
 };

@@ -2,17 +2,14 @@ import React, { FC } from 'react';
 import Link from 'next/link';
 import { useTranslation } from 'react-i18next';
 import { MdLocationOn, MdPhone, MdEmail } from 'react-icons/md';
-import { Col, Layout, Row, Typography, Anchor, Button, Form, Input, Divider, Space, Grid } from 'antd';
-import { BTN_STYLES } from '@constants/styles';
+import { Col, Layout, Row, Typography, Anchor, Divider, Space, Grid } from 'antd';
 import useDarkLight from '@hooks/useDarkLight';
 import { APP_AUTHOR } from '@constants/platform';
-import FloatTextInput from '@components/common/TextInput';
+import ContactUsForm from '@components/form/ContactUs';
 import SocialButtons from '@components/common/SocialButtons';
 
 import styles from './index.module.scss';
 
-const { Item } = Form;
-const { TextArea } = Input;
 const { useBreakpoint } = Grid;
 const { Footer: AntFooter } = Layout;
 const { Title, Text, Link: TextLink } = Typography;
@@ -24,7 +21,7 @@ export interface IFooterProps {
 export const Footer: FC<IFooterProps> = ({ isSidenavClose }) => {
     const { md } = useBreakpoint();
     const { t } = useTranslation();
-    const { value, isDark } = useDarkLight();
+    const { value } = useDarkLight();
 
     return (
         <div className={styles.footer} data-theme={value}>
@@ -64,35 +61,7 @@ export const Footer: FC<IFooterProps> = ({ isSidenavClose }) => {
                         </div>
                     </Col>
                     <Col xs={24} sm={24} md={14} className={styles.footer__content__contact}>
-                        <Title level={3} data-title>
-                            {t('contactUs')}
-                        </Title>
-                        <Form
-                            name="contact_us"
-                            size="large"
-                            layout="vertical"
-                            className={styles.footer__content__contact__form}
-                        >
-                            <Item name="names">
-                                <FloatTextInput label={t('names')} placeholder={t('firstLastName')} required>
-                                    <Input />
-                                </FloatTextInput>
-                            </Item>
-
-                            <Item name="email">
-                                <FloatTextInput label="Email" placeholder={t('email')} required>
-                                    <Input />
-                                </FloatTextInput>
-                            </Item>
-
-                            <Item name="message">
-                                <TextArea placeholder={t('writeMessageHere')} rows={4} autoSize={false} />
-                            </Item>
-
-                            <Button block={!md} className={`mt-2 ${BTN_STYLES}`} type={isDark ? 'default' : 'primary'}>
-                                {t('sendMessage')}
-                            </Button>
-                        </Form>
+                        <ContactUsForm className={styles.footer__content__contact__form} />
                     </Col>
                 </Row>
                 <Divider />
