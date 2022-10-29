@@ -13,7 +13,7 @@ import showAuthRequired from '@helpers/showAuthRequired';
 import getAllPlaylistsAction from '@redux/playlists/all';
 import addVideoToPlaylistAction from '@redux/playlists/add';
 
-const DynamicCreatePlaylistForm = dynamic(() => import('@components/form/CreatePlaylistForm'));
+const DynamicCreatePlaylistForm = dynamic(() => import('@components/form/CreatePlaylist'));
 const DynamicPlaylistRadioGroup = dynamic(() => import('@components/common/PlaylistRadioGroup'));
 const DynamicPlaylistsSummarySkeleton = dynamic(() => import('@components/skeleton/PlaylistsSummary'));
 

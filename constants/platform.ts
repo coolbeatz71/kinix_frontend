@@ -15,6 +15,10 @@ export const IMAGES_API_SECRET = process.env.NEXT_PUBLIC_CLOUDINARY_SECRET as st
 export const IMAGES_API_PRESET = process.env.NEXT_PUBLIC_CLOUDINARY_PRESET as string;
 export const IMAGES_API_CLOUD_NAME = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME as string;
 
+export const EMAILJS_PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY as string;
+export const EMAILJS_SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID as string;
+export const EMAILJS_TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID as string;
+
 export const STAGING_URL = process.env.NEXT_PUBLIC_FRONTEND_STAGING_URL;
 export const PROD_URL = process.env.NEXT_PUBLIC_FRONTEND_PRODUCTION_URL;
 export const DEV_URL = process.env.NEXT_PUBLIC_FRONTEND_DEVELOPMENT_URL;
