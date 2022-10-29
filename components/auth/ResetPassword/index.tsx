@@ -80,7 +80,7 @@ const ResetPasswordModal: FC = () => {
             >
                 <Item name="otp" validateTrigger={['onSubmit', 'onBlur']} rules={otpValidator(t('otp'))}>
                     <FloatTextInput label={t('otp')} placeholder={t('otp')} required>
-                        <Input size="large" maxLength={6} />
+                        <Input maxLength={6} />
                     </FloatTextInput>
                 </Item>
 
@@ -106,14 +106,7 @@ const ResetPasswordModal: FC = () => {
 
                 <DynamicErrorAlert error={error} showIcon closable banner />
 
-                <Button
-                    block
-                    size="large"
-                    type="primary"
-                    htmlType="submit"
-                    loading={loading}
-                    className={`mt-2 ${BTN_STYLES}`}
-                >
+                <Button block type="primary" htmlType="submit" loading={loading} className={`mt-2 ${BTN_STYLES}`}>
                     {reset}
                 </Button>
 

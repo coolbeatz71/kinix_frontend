@@ -67,29 +67,29 @@ export const Footer: FC<IFooterProps> = ({ isSidenavClose }) => {
                         <Title level={3} data-title>
                             {t('contactUs')}
                         </Title>
-                        <Form name="contact_us" layout="vertical" className={styles.footer__content__contact__form}>
+                        <Form
+                            name="contact_us"
+                            size="large"
+                            layout="vertical"
+                            className={styles.footer__content__contact__form}
+                        >
                             <Item name="names">
                                 <FloatTextInput label={t('names')} placeholder={t('firstLastName')} required>
-                                    <Input size="large" />
+                                    <Input />
                                 </FloatTextInput>
                             </Item>
 
                             <Item name="email">
                                 <FloatTextInput label="Email" placeholder={t('email')} required>
-                                    <Input size="large" />
+                                    <Input />
                                 </FloatTextInput>
                             </Item>
 
                             <Item name="message">
-                                <TextArea size="large" placeholder={t('writeMessageHere')} rows={4} autoSize={false} />
+                                <TextArea placeholder={t('writeMessageHere')} rows={4} autoSize={false} />
                             </Item>
 
-                            <Button
-                                block={!md}
-                                size="large"
-                                className={`mt-2 ${BTN_STYLES}`}
-                                type={isDark ? 'default' : 'primary'}
-                            >
+                            <Button block={!md} className={`mt-2 ${BTN_STYLES}`} type={isDark ? 'default' : 'primary'}>
                                 {t('sendMessage')}
                             </Button>
                         </Form>

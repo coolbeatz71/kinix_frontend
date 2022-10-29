@@ -86,26 +86,19 @@ const LoginModal: FC = () => {
                         rules={emailUserNameValidator(emailUserName)}
                     >
                         <FloatTextInput label={emailUserName} placeholder={emailUserName} required>
-                            <Input size="large" />
+                            <Input />
                         </FloatTextInput>
                     </Item>
 
                     <Item name="password" validateTrigger={['onSubmit', 'onBlur']} rules={passwordValidator(password)}>
                         <FloatTextInput label={password} placeholder={password} required>
-                            <Password size="large" visibilityToggle />
+                            <Password visibilityToggle />
                         </FloatTextInput>
                     </Item>
 
                     <DynamicErrorAlert error={error} showIcon closable banner />
 
-                    <Button
-                        block
-                        size="large"
-                        type="primary"
-                        htmlType="submit"
-                        loading={loading}
-                        className={`mt-2 ${BTN_STYLES}`}
-                    >
+                    <Button block type="primary" htmlType="submit" loading={loading} className={`mt-2 ${BTN_STYLES}`}>
                         {login}
                     </Button>
                     <div className="mt-4">

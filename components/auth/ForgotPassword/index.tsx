@@ -76,20 +76,13 @@ const ForgotPasswordModal: FC = () => {
             >
                 <Item name="email" rules={emailValidator()} validateTrigger={['onSubmit', 'onBlur']}>
                     <FloatTextInput label={email} placeholder={email} required>
-                        <Input size="large" />
+                        <Input />
                     </FloatTextInput>
                 </Item>
 
                 <DynamicErrorAlert error={error} showIcon closable banner />
 
-                <Button
-                    block
-                    size="large"
-                    type="primary"
-                    htmlType="submit"
-                    loading={loading}
-                    className={`mt-2 ${BTN_STYLES}`}
-                >
+                <Button block type="primary" htmlType="submit" loading={loading} className={`mt-2 ${BTN_STYLES}`}>
                     {resetPassword}
                 </Button>
 

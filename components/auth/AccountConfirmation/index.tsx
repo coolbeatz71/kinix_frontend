@@ -83,18 +83,18 @@ const AccountConfirmation: FC<IAccountConfirmationProps> = ({ credential, onClos
                     <Form size="large" name="account_confirmation" layout="vertical" onFinish={onSubmit}>
                         <Item name="otp" validateTrigger={['onSubmit', 'onBlur']} rules={otpValidator(t('otp'))}>
                             <FloatTextInput label={t('otp')} placeholder={t('otp')} required>
-                                <Input size="large" maxLength={6} />
+                                <Input maxLength={6} />
                             </FloatTextInput>
                         </Item>
 
                         <Row justify="space-between" align="middle" className="mb-3">
                             <Col>
-                                <Button size="large" type="primary" htmlType="submit" loading={loadConfirm}>
+                                <Button type="primary" htmlType="submit" loading={loadConfirm}>
                                     {t('confirm')}
                                 </Button>
                             </Col>
                             <Col>
-                                <Button size="large" onClick={onResendOtp} loading={loadResendOtp}>
+                                <Button onClick={onResendOtp} loading={loadResendOtp}>
                                     {t('resentOtp')}
                                 </Button>
                             </Col>

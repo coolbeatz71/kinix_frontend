@@ -40,7 +40,7 @@ const CreateArticleComment: FC<ICreateArticleCommentProps> = ({ loading, error, 
                 rules={commentValidator(t('comment'))}
                 validateTrigger={['onSubmit', 'onBlur']}
             >
-                <TextArea size="large" autoSize={false} style={textAreaStyle} placeholder={t('addComment')} />
+                <TextArea autoSize={false} style={textAreaStyle} placeholder={t('addComment')} />
             </Item>
 
             <DynamicErrorAlert error={error} closable banner showIcon />
