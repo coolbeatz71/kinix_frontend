@@ -112,6 +112,7 @@ const LoginModal: FC = () => {
                         <Button
                             block
                             type="text"
+                            disabled={loading}
                             onClick={onOpenSignUp}
                             className={`mb-1 ${styles.loginForm__footer__btn}`}
                         >
@@ -121,6 +122,7 @@ const LoginModal: FC = () => {
                         <Button
                             block
                             type="text"
+                            disabled={loading}
                             onClick={onOpenForgotPassword}
                             className={styles.loginForm__footer__btn}
                         >

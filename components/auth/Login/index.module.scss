@@ -5,6 +5,17 @@
         &__btn {
             font-size: 13px;
             color: $primary;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            &:hover {
+                * {
+                    color: $link;
+                    text-decoration: underline;
+                }
+            }
         }
     }
 }

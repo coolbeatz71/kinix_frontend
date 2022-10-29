@@ -1,0 +1,13 @@
+@import 'styles/dimensions.scss';
+
+.errorAlert {
+    display: flex;
+    align-items: flex-start;
+
+    margin-bottom: $padding;
+
+    [class~='ant-alert-icon'],
+    [class~='ant-alert-close-icon'] {
+        margin-top: 4px;
+    }
+}

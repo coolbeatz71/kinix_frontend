@@ -45,4 +45,8 @@ export const form = {
     oldPassword: 'Ancien mot de passe',
     newPassword: 'Nouveau mot de passe',
     confNewPassword: 'Confirmer nouveau mot de passe',
+    forgotPasswordTitle: 'Mot de passe oublié',
+    reset: 'Réinitialiser',
+    resetPasswordTitle: 'Réinitialiser mot de passe',
+    rememberPassword: 'Rappelez-vous le mot de passe? Connexion',
 };

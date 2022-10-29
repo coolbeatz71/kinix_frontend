@@ -129,6 +129,7 @@ const SignUpModal: FC = () => {
                         <Button
                             block
                             type="text"
+                            disabled={loading}
                             onClick={onOpenLogin}
                             className={`mb-1 ${styles.signupForm__footer__btn}`}
                         >

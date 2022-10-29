@@ -11,10 +11,12 @@ import signUpAction from './signup';
 import logoutAction from './logout';
 import resendOTPAction from './resentOtp';
 import confirmAccountAction from './confirm';
+import socialLoginAction from './socialLogin';
 import updateAvatarAction from './updateAvatar';
 import updateAccountAction from './updateAccount';
+import resetPasswordAction from './resetPassword';
 import changePasswordAction from './changePassword';
-import socialLoginAction from './socialLogin';
+import forgotPasswordAction from './forgotPassword';
 
 export const authSlice = createSlice({
     name: 'auth',
@@ -63,7 +65,15 @@ export const authSlice = createSlice({
             // social login
             .addCase(socialLoginAction.pending, ActionWrapperPending)
             .addCase(socialLoginAction.fulfilled, ActionWrapperFulfilled)
-            .addCase(socialLoginAction.rejected, ActionWrapperRejected);
+            .addCase(socialLoginAction.rejected, ActionWrapperRejected)
+            // forgot password
+            .addCase(forgotPasswordAction.pending, ActionWrapperPending)
+            .addCase(forgotPasswordAction.fulfilled, ActionWrapperFulfilled)
+            .addCase(forgotPasswordAction.rejected, ActionWrapperRejected)
+            // reset password
+            .addCase(resetPasswordAction.pending, ActionWrapperPending)
+            .addCase(resetPasswordAction.fulfilled, ActionWrapperFulfilled)
+            .addCase(resetPasswordAction.rejected, ActionWrapperRejected);
     },
 });
 
