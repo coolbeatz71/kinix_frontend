@@ -135,9 +135,18 @@ const Layout: FC<ILayoutProps> = ({
             {lg && <DynamicDarkModeToggler />}
 
             {lg ? (
-                <DynamicSideNav open={openSidenav} collapsed={collapsedSidenav} setCollapsed={setCollapsedSidenav} />
+                <DynamicSideNav
+                    open={openSidenav}
+                    collapsed={collapsedSidenav}
+                    setCollapsed={setCollapsedSidenav}
+                    currentUser={(userLocalData || userData) as ICurrentUser}
+                />
             ) : (
-                <DynamicSideDrawer open={openSideDrawer} setOpen={setOpenSideDrawer} />
+                <DynamicSideDrawer
+                    open={openSideDrawer}
+                    setOpen={setOpenSideDrawer}
+                    currentUser={(userLocalData || userData) as ICurrentUser}
+                />
             )}
 
             <div className={styles.layout__main} data-show-header={showHeader}>

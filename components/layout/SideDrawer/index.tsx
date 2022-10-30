@@ -8,6 +8,7 @@ import { BsFillSunFill, BsMoonStarsFill } from 'react-icons/bs';
 import { Menu, Drawer, Divider, Row, Col, Button, Space } from 'antd';
 import { HOME_PATH } from '@constants/paths';
 import useDarkLight from '@hooks/useDarkLight';
+import { ICurrentUser } from '@interfaces/user';
 import sectionList from '@constants/sidenav-section';
 
 const DynamicLogo = dynamic(() => import('@components/common/Logo'));
@@ -18,12 +19,13 @@ import styles from './index.module.scss';
 const { Item, SubMenu } = Menu;
 interface ISideDrawerProps {
     open: boolean;
+    currentUser: ICurrentUser;
     setOpen: (open: boolean) => void;
 }
 
 const defaultOpen = [sectionList[0].key];
 
-const SideDrawer: FC<ISideDrawerProps> = ({ open, setOpen }) => {
+const SideDrawer: FC<ISideDrawerProps> = ({ open, setOpen, currentUser: _ }) => {
     const { asPath } = useRouter();
     const { t } = useTranslation();
     const { value, toggle } = useDarkLight();

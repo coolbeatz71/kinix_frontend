@@ -7,6 +7,7 @@ import { Divider, Layout, Menu, Grid } from 'antd';
 import Logo from '@components/common/Logo';
 import { HOME_PATH } from '@constants/paths';
 import useDarkLight from '@hooks/useDarkLight';
+import { ICurrentUser } from '@interfaces/user';
 import sectionList from '@constants/sidenav-section';
 import getSideNavWidth from '@helpers/getSideNavWidth';
 
@@ -19,18 +20,20 @@ const { useBreakpoint } = Grid;
 interface ISideNavProps {
     open: boolean;
     collapsed: boolean;
+    currentUser: ICurrentUser;
     setCollapsed: (collapsed: boolean) => void;
 }
 
 const defaultOpen = [sectionList[0].key];
 
-const SideNav: FC<ISideNavProps> = ({ open, collapsed, setCollapsed }) => {
+const SideNav: FC<ISideNavProps> = ({ open, collapsed, setCollapsed, currentUser }) => {
     const { asPath } = useRouter();
     const { t } = useTranslation();
     const { lg } = useBreakpoint();
     const { value } = useDarkLight();
-
     const [openSections, setOpenSections] = useState(defaultOpen);
+
+    const authorizedSections = currentUser?.isLoggedIn ? sectionList : [sectionList[0]];
 
     const onCollapse = (collapsed: boolean): void => {
         if (!collapsed) setOpenSections(defaultOpen);
@@ -42,14 +45,14 @@ const SideNav: FC<ISideNavProps> = ({ open, collapsed, setCollapsed }) => {
 
     const onOpenSectionChange = (keys: Key[]): void => {
         const lastOpenKey = keys.find((key) => openSections.indexOf(key as string) === -1);
-        const lastOpenSection = sectionList.find((section) => section.key === lastOpenKey);
+        const lastOpenSection = authorizedSections.find((section) => section.key === lastOpenKey);
 
         if (!lastOpenSection) setOpenSections(keys as string[]);
         else setOpenSections(lastOpenKey ? [lastOpenKey as string] : []);
     };
 
     const renderSections = (collapsed: boolean): ReactNode => {
-        return sectionList.map((section) => (
+        return authorizedSections.map((section) => (
             <Fragment key={section.key}>
                 {collapsed ? (
                     section.sub.map((item) => {
