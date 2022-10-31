@@ -1,6 +1,11 @@
 @import 'styles/colors.scss';
 
 .userVatar {
+    [data-avatar='true'] {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
     [data-text='true'] {
         padding-left: 0.8rem;
     }

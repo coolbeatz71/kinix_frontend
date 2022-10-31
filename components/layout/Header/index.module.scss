@@ -57,6 +57,10 @@
 
         background: transparent !important;
         border-color: transparent !important;
+
+        [class~='anticon'] {
+            font-size: 15pt;
+        }
     }
 
     [class~='ant-btn'] {
@@ -341,13 +345,20 @@
     }
 
     @include mediaXS {
-        padding: $mobile-content-padding !important;
+        width: 100%;
 
         display: flex;
-        align-content: center;
         align-items: center;
+        align-content: center;
         justify-content: space-between;
-        width: 100%;
+
+        padding: $mobile-content-padding !important;
+
+        [class~='hamburger-menu'] {
+            [class~='anticon'] {
+                font-size: 18pt;
+            }
+        }
 
         &[data-is-category='true'] {
             height: calc(#{$header-height} * 1.8) !important;

@@ -94,7 +94,6 @@ const Header: FC<IHeaderProps> = ({
                 <Col xs={12} sm={12} lg={1} className="p-0">
                     <Button
                         type="text"
-                        size="large"
                         icon={<MenuOutlined />}
                         className="hamburger-menu"
                         onClick={lg ? handleToggle : openSideDrawer}
