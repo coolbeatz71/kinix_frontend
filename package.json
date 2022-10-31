@@ -30,6 +30,7 @@
         "axios": "^0.19.2",
         "babel-plugin-import": "^1.13.3",
         "babel-plugin-istanbul": "^6.0.0",
+        "clsx": "^1.2.1",
         "color-hash": "^2.0.1",
         "crypto-js": "^4.1.1",
         "dayjs": "^1.10.4",

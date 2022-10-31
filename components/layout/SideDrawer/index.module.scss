@@ -53,9 +53,16 @@
                 padding-left: 1.5rem !important;
                 border-radius: $border-radius;
 
+                width: 100% !important;
+                &:hover {
+                    width: calc(100% - 1px) !important;
+                }
+
                 &[data-active='true'] {
                     font-weight: 600;
                     background-color: rgba($color: $warning, $alpha: 0.8);
+
+                    width: calc(100% - 1px) !important;
 
                     [class~='anticon'] {
                         display: flex;
@@ -74,9 +81,16 @@
             padding-left: 1rem !important;
             border-radius: $border-radius;
 
+            width: 100% !important;
+            &:hover {
+                width: calc(100% - 1px) !important;
+            }
+
             &[data-active='true'] {
                 font-weight: 600;
                 background-color: rgba($color: $warning, $alpha: 0.8);
+
+                width: calc(100% - 1px) !important;
 
                 [class~='anticon'] {
                     display: flex;
@@ -119,7 +133,7 @@
         }
     }
 
-    &[data-theme='light'] {
+    &[class~='theme_light'] {
         .sidedrawer__header {
             &__logo {
                 background-image: url('/logo/short_light.svg');
@@ -136,12 +150,6 @@
 
             [class~='ant-btn-text']:hover {
                 background: $dark10;
-            }
-
-            &__themeToggle {
-                svg {
-                    color: $primary;
-                }
             }
         }
 
@@ -205,7 +213,7 @@
         }
     }
 
-    &[data-theme='dark'] {
+    &[class~='theme_dark'] {
         .sidedrawer__header {
             &__logo {
                 background-image: url('/logo/short_dark.svg');
