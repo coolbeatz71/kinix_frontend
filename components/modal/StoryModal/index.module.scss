@@ -10,21 +10,33 @@
         align-items: center;
         justify-content: center;
 
-        top: -10px;
-        right: -10px;
-        background: $white;
+        // top: -10px;
+        right: 10px;
+        // background: $white;
         border-radius: 100%;
 
-        width: 2.2rem;
-        height: 2.2rem;
+        width: calc(#{$padding} * 1.2);
+        height: calc(#{$padding} * 1.2);
 
         [class~='ant-modal-close-x'] {
-            line-height: 48px;
+            line-height: 4.2;
         }
 
         [class~='anticon'] {
+            color: $white;
             font-size: 1.25rem;
         }
+    }
+
+    [class~='ant-modal-content'] {
+        background: $dark-black;
+        border-radius: $border-radius;
+    }
+
+    [class~='ant-modal-header'] {
+        padding: $padding;
+        background: $dark-black;
+        border-color: $light10;
     }
 
     [class~='ant-modal-body'] {
@@ -33,13 +45,29 @@
 
     &__content {
         & > div {
+            height: 100% !important;
             background: transparent !important;
-            & > div {
+            & > div:first-of-type {
                 padding: 0 !important;
+                width: 100% !important;
+            }
+
+            & > div:nth-of-type(2) {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                width: 100% !important;
+                height: 480px !important;
+                margin-top: $padding !important;
             }
         }
         img {
+            width: 100% !important;
+            height: 100% !important;
+
             aspect-ratio: 1;
+            object-fit: fill;
         }
     }
 }
