@@ -1,0 +1,28 @@
+@import 'styles/colors.scss';
+@import 'styles/dimensions.scss';
+
+.articleHeader {
+    margin-bottom: calc(#{$padding} * 1.2);
+
+    [data-author='true'] {
+        color: $black;
+        cursor: pointer;
+        font-weight: 600;
+
+        &:hover,
+        &:active {
+            color: $link;
+        }
+    }
+
+    &[data-theme='dark'] {
+        [data-author='true'] {
+            color: $white;
+        }
+
+        [class~='ant-breadcrumb-separator'],
+        [class~='ant-breadcrumb-link'] {
+            color: $light;
+        }
+    }
+}

@@ -1,0 +1,72 @@
+@import 'styles/colors.scss';
+@import 'styles/dimensions.scss';
+@import 'styles/_mixins.scss';
+
+.serverError {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: $border-radius;
+
+    [class~='ant-result-icon'] {
+        margin: auto;
+        width: 22rem;
+    }
+
+    [class~='ant-result-info'] {
+        padding-top: 0;
+        padding-bottom: $content-padding;
+    }
+
+    [class~='ant-result-title'] {
+        font-weight: 700;
+        line-height: 1.5;
+        margin-bottom: $padding;
+    }
+
+    [class~='ant-result-subtitle'] {
+        font-size: 12pt;
+    }
+
+    &[data-theme='dark'] {
+        background-color: $light20;
+
+        [class~='ant-result-title'] {
+            color: $white;
+        }
+        [class~='ant-result-subtitle'] {
+            color: $white;
+        }
+    }
+
+    &[data-theme='light'] {
+        background-color: $white;
+
+        [class~='ant-result-title'] {
+            color: $dark;
+        }
+        [class~='ant-result-subtitle'] {
+            color: $dark;
+        }
+    }
+
+    @include mediaXS {
+        [class~='ant-result-icon'] {
+            width: 15rem;
+        }
+    }
+
+    @include mediaSM {
+        [class~='ant-result-icon'] {
+            width: 15rem;
+        }
+    }
+
+    @include mediaMD {
+        [class~='ant-result-icon'] {
+            width: 18rem;
+        }
+    }
+}

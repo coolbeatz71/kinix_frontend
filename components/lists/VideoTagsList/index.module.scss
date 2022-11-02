@@ -1,0 +1,14 @@
+@import 'styles/colors.scss';
+
+.tagsList {
+    a {
+        text-decoration: none;
+    }
+    [class~='ant-tag']:hover,
+    [class~='ant-tag']:active {
+        a {
+            color: $link;
+            text-decoration: underline;
+        }
+    }
+}

@@ -1,0 +1,39 @@
+@import 'styles/colors.scss';
+@import 'styles/dimensions.scss';
+
+.mainArticleSkeleton {
+    &__image {
+        width: 100%;
+        height: 27.5rem;
+
+        [class~='ant-skeleton-image'] {
+            width: 100%;
+            height: 100%;
+            border-radius: $border-radius;
+        }
+    }
+
+    [class~='ant-skeleton-button'] {
+        margin-bottom: 1rem;
+    }
+    &[data-theme='light'] {
+        .mainArticleSkeleton__card {
+            [class~='ant-card-body'] {
+                border-radius: $border-radius;
+                background: $dark10;
+            }
+        }
+    }
+
+    &[data-theme='dark'] {
+        [class~='ant-card-body'] {
+            background: $primary;
+        }
+
+        .mainArticleSkeleton__card {
+            [class~='ant-card-body'] {
+                background: $bg-primary-dark90;
+            }
+        }
+    }
+}

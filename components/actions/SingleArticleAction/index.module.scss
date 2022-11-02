@@ -1,0 +1,115 @@
+@import 'styles/colors.scss';
+@import 'styles/dimensions.scss';
+@import 'styles/_mixins.scss';
+
+.articleAction {
+    justify-content: flex-end;
+    border: 1px solid $dark10;
+    border-left: 0 !important;
+    border-right: 0 !important;
+
+    margin: calc(#{$padding} * 1.2) 0;
+    padding: calc(#{$padding} * 1.2) 0;
+
+    [data-liked='true'],
+    [data-bookmarked='true'] {
+        color: $warning;
+    }
+
+    [data-author='true'] {
+        font-weight: 600;
+        a {
+            color: $black;
+            &:hover,
+            &:active {
+                color: $link;
+            }
+        }
+    }
+
+    button {
+        color: $dark;
+        padding: 0 !important;
+
+        &[data-like='true'],
+        &[data-comment='true'],
+        &[data-bookmark='true'] {
+            display: flex;
+            align-items: center;
+            margin-right: 1rem;
+        }
+
+        [data-count='true'] {
+            font-size: 12pt;
+            margin-left: 2px;
+            margin-right: 0.5rem;
+        }
+
+        [class~='anticon'] {
+            font-size: 20pt !important;
+        }
+
+        &[class~='ant-btn-icon-only'] {
+            svg {
+                font-size: 24pt;
+            }
+        }
+    }
+
+    &[data-theme='dark'] {
+        border: 1px solid $light20;
+
+        [data-author='true'] {
+            a {
+                color: $white;
+            }
+        }
+        [class~='ant-breadcrumb-separator'],
+        [class~='ant-breadcrumb-link'] {
+            color: $light;
+        }
+
+        button {
+            color: $white;
+            &:hover {
+                color: $light;
+            }
+        }
+    }
+
+    @include mediaXS {
+        button {
+            [class~='anticon'] {
+                font-size: 16pt;
+            }
+            &[class~='ant-btn-icon-only'] {
+                svg {
+                    font-size: 18pt;
+                }
+            }
+            [data-count='true'] {
+                font-size: 10pt;
+                margin-left: 2px;
+                margin-right: 0.2rem;
+            }
+        }
+    }
+
+    @include mediaSM {
+        button {
+            [class~='anticon'] {
+                font-size: 16pt;
+            }
+            &[class~='ant-btn-icon-only'] {
+                svg {
+                    font-size: 18pt;
+                }
+            }
+            [data-count='true'] {
+                font-size: 10pt;
+                margin-left: 2px;
+                margin-right: 0.2rem;
+            }
+        }
+    }
+}

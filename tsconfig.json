@@ -16,15 +16,18 @@
         "jsx": "preserve",
         "paths": {
             "@components/*": ["components/*"],
+            "@containers/*": ["containers/*"],
             "@helpers/*": ["helpers/*"],
             "@constants/*": ["constants/*"],
             "@hooks/*": ["hooks/*"],
+            "@redux/*": ["redux/*"],
             "@styles/*": ["styles/*"],
             "@context/*": ["context/*"],
-            "@type/*": ["type/*"]
+            "@interfaces/*": ["interfaces/*"],
+            "@locales/*": ["locales/*"]
         },
         "incremental": true
     },
-    "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+    "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "icons.js"],
     "exclude": ["node_modules"]
 }

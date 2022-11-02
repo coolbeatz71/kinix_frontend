@@ -7,6 +7,17 @@
     align-items: center;
     background-color: unset !important;
 
+    [class~='ant-input-suffix'] {
+        span {
+            display: flex;
+            align-items: center;
+        }
+    }
+
+    [class~='ant-input-group-addon']:last-child {
+        left: 0 !important;
+    }
+
     &[data-theme='light'] {
         [class~='ant-input-group-addon'] {
             button {

@@ -1,0 +1,135 @@
+@import 'styles/colors.scss';
+@import 'styles/dimensions.scss';
+
+.articleCardVertical {
+    &__header {
+        display: flex;
+        margin-bottom: $padding;
+        justify-content: space-between;
+        [class~='ant-typography'] {
+            font-size: 8.5pt;
+        }
+        [data-text='author'] {
+            font-weight: 600;
+        }
+        [data-text='header'] {
+            font-style: italic;
+        }
+    }
+
+    [class~='ant-card-cover'] {
+        margin: calc(#{$padding} / 1.5);
+        margin-bottom: 0;
+
+        display: flex;
+        cursor: pointer;
+        overflow: hidden;
+        align-items: center;
+        justify-content: center;
+        border-radius: $border-radius;
+
+        img {
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        &:hover img {
+            transform: scale(1.2);
+        }
+    }
+
+    [class~='ant-card'] {
+        display: flex;
+        flex-flow: column;
+        justify-content: space-between;
+
+        [class~='ant-card-body'] {
+            padding: calc(#{$padding} / 1.5);
+        }
+    }
+
+    [class~='ant-card-meta-title'] {
+        height: 3rem;
+        font-size: 12pt;
+        font-weight: 500;
+        white-space: unset;
+        font-family: Poppins;
+        margin-bottom: 5px !important;
+    }
+
+    [class~='ant-card-meta-description'] {
+        font-size: 13px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    [class~='ant-card-actions'] {
+        background: unset;
+    }
+
+    &[data-theme='light'] {
+        [class~='ant-card'] {
+            background: $light;
+        }
+
+        [class~='ant-card-meta-title'] {
+            a {
+                color: $black !important;
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+
+        [class~='ant-card-meta-description'] {
+            a {
+                color: $dark50;
+            }
+        }
+
+        [class~='ant-card-actions'] {
+            border-top: 1px solid $dark10 !important;
+
+            & > li:not(:last-child) {
+                border-right: 1px solid $dark10;
+            }
+        }
+    }
+
+    &[data-theme='dark'] {
+        [class~='ant-card'] {
+            background: $primary;
+        }
+
+        [class~='ant-card-meta-title'] {
+            a {
+                color: $white !important;
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+
+        [class~='ant-card-meta-description'] {
+            a {
+                color: $light50;
+            }
+        }
+
+        [class~='ant-card-actions'] {
+            background: unset;
+            border-top: 1px solid $light10 !important;
+
+            & > li:not(:last-child) {
+                border-right: 1px solid $light10;
+            }
+        }
+
+        .articleCardVertical__header {
+            [class~='ant-typography'] {
+                color: $light;
+            }
+        }
+    }
+}

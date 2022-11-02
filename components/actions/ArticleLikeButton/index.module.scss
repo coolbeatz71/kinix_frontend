@@ -1,0 +1,46 @@
+@import 'styles/colors.scss';
+@import 'styles/dimensions.scss';
+
+.articleLikeButton {
+    margin: auto;
+    display: flex;
+    align-items: center;
+
+    &[data-theme='dark'] {
+        color: $light50;
+
+        [class~='anticon'] {
+            color: $light;
+        }
+
+        &:hover {
+            background: $dark10;
+            [class~='anticon'] {
+                color: $warning;
+            }
+        }
+    }
+
+    &[data-theme='light'] {
+        color: $dark50;
+
+        [class~='anticon'] {
+            color: $dark;
+        }
+
+        &:hover {
+            [class~='anticon'] {
+                color: $primary;
+            }
+        }
+    }
+
+    [class~='anticon'] {
+        font-size: 1.2rem;
+        line-height: 0;
+
+        &[data-liked='true'] {
+            color: $warning;
+        }
+    }
+}

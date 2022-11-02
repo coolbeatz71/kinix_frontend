@@ -1,0 +1,87 @@
+@import 'styles/colors.scss';
+@import 'styles/_mixins.scss';
+@import 'styles/dimensions.scss';
+
+.modal_icon {
+    [class~='ant-modal-content'] {
+        padding-top: 160px;
+    }
+    &__icon {
+        height: 120px;
+        width: auto;
+        position: absolute;
+        top: 40px;
+        left: 0;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+@include mediaMinLG {
+    .modal {
+        display: flex !important;
+        justify-content: center;
+        width: calc(#{$modal-padding} * 10) !important;
+    }
+}
+
+.modal,
+.modal_icon {
+    [class~='ant-modal-content'] {
+        @include mediaMinLG {
+            width: calc(#{$modal-padding} * 8);
+        }
+
+        background: url('/bg-pattern-light.svg') $white;
+
+        background-size: cover;
+        background-repeat: no-repeat;
+
+        [class~='ant-modal-close'] {
+            width: $modal-padding;
+            height: calc(#{$modal-padding} * 0.66);
+            margin-top: calc(#{$padding} / 2);
+
+            @include mediaMaxLG {
+                width: calc(#{$padding} * 2);
+            }
+
+            [class~='ant-modal-close-x'] {
+                height: 100%;
+                width: 100%;
+                line-height: calc(#{$modal-padding} * 0.66);
+            }
+        }
+
+        [class~='ant-modal-header'] {
+            @include preventTextSelection;
+
+            text-align: center;
+            background-color: transparent;
+            padding: calc(#{$padding} / 2) $modal-padding;
+
+            @include mediaMaxLG {
+                padding: $padding calc(#{$padding} * 2);
+            }
+
+            [class~='ant-modal-title'] {
+                height: calc(#{$modal-padding} * 0.66);
+                line-height: calc(#{$modal-padding} * 0.66);
+
+                [class~='ant-typography'] {
+                    font-family: Poppins;
+                    margin-bottom: 0px;
+                    line-height: inherit;
+                }
+            }
+        }
+        [class~='ant-modal-body'] {
+            padding: calc(#{$padding} * 1.2) $modal-padding;
+
+            @include mediaMaxLG {
+                padding: calc(#{$padding} * 2);
+            }
+        }
+    }
+}

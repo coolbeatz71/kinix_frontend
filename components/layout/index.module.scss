@@ -1,0 +1,62 @@
+@import 'styles/colors.scss';
+@import 'styles/dimensions.scss';
+@import '/styles/_mixins.scss';
+
+.layout {
+    overflow: hidden;
+    min-height: 100vh;
+    width: 100%;
+
+    &[data-theme~='dark'] {
+        background: $bg-primary-dark90;
+
+        .layout__main {
+            background: url('/bg-pattern-dark.svg');
+            background-size: cover;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+        }
+    }
+
+    &[data-theme~='light'] {
+        background: $bg-primary-light90;
+
+        .layout__main {
+            background: url('/bg-pattern-light.svg');
+            background-size: cover;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+        }
+    }
+
+    &__main {
+        width: 100%;
+        &[data-show-header='true'] {
+            .layout__main__content {
+                margin-top: $header-height;
+            }
+        }
+        &[data-show-header='false'] {
+            .layout__main__content {
+                height: 100vh;
+            }
+        }
+
+        &__content {
+            &[data-sidenav-close='false'] {
+                padding: $padding;
+            }
+            &[data-sidenav-close='true'] {
+                padding: calc(#{$content-padding} / 1.4) $content-padding;
+            }
+
+            @include mediaXS {
+                padding: $mobile-content-padding !important;
+            }
+
+            @include mediaSM {
+                padding: calc(#{$mobile-content-padding} * 2) !important;
+            }
+        }
+    }
+}

@@ -1,0 +1,115 @@
+@import 'styles/colors.scss';
+@import 'styles/dimensions.scss';
+
+.playlistCard {
+    [class~='ant-card-body'] {
+        padding: 0;
+        height: 100%;
+    }
+
+    [data-body='true'] {
+        display: flex;
+        flex-flow: column;
+        justify-content: space-between;
+        padding: $padding;
+
+        [data-title='true'] {
+            height: 3.5rem;
+            font-size: 14pt;
+            font-weight: 700;
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+        [data-videos] {
+            font-size: 10pt;
+            font-style: italic;
+        }
+        [data-created-at='true'] {
+            font-size: 11pt;
+        }
+    }
+
+    &__cover {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &__image {
+            width: 100%;
+            height: 100%;
+            position: relative;
+
+            img {
+                object-fit: cover;
+                aspect-ratio: 16 / 9;
+                border-radius: $border-radius;
+                border-top-right-radius: 0;
+                border-bottom-right-radius: 0;
+            }
+        }
+
+        [class~='overlay'] {
+            cursor: pointer;
+            position: absolute;
+            z-index: 1;
+            transition: opacity ease-in-out 0.2s;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            [class~='ant-btn'] {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 1.5rem;
+
+                [class~='anticon'] {
+                    font-size: 1.5rem;
+                    background: $warning;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    border-radius: 80px;
+                    box-shadow: 0px 0px 60px $primary;
+
+                    svg {
+                        path {
+                            fill: $warning;
+                            &:last-of-type {
+                                fill: $white;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    &[data-theme='light'] {
+        [class~='ant-card'] {
+            background: $white;
+        }
+        [class~='ant-typography'] {
+            color: $dark;
+        }
+        [data-title='true'] {
+            color: $black;
+        }
+        [data-created-at='true'] {
+            color: $dark50;
+        }
+    }
+    &[data-theme='dark'] {
+        [class~='ant-card'] {
+            background: $bg-primary-dark90;
+        }
+        [class~='ant-typography'] {
+            color: $white;
+        }
+        [data-created-at='true'] {
+            color: $light50;
+        }
+    }
+}

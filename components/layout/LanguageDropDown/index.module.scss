@@ -1,0 +1,47 @@
+@import 'styles/colors.scss';
+@import 'styles/dimensions.scss';
+
+.language {
+    [class~='anticon'] {
+        width: 1rem;
+    }
+
+    [data-lang='true'] {
+        line-height: 0;
+        font-weight: 700;
+    }
+
+    &__menu {
+        [class~='ant-dropdown-menu-item'] {
+            display: flex;
+            margin: 0.2rem 0.4rem;
+            border-radius: $border-radius;
+
+            [class~='ant-dropdown-menu-title-content'] {
+                display: flex;
+                align-items: center;
+
+                line-height: 0.1;
+                margin: 0.4rem 0;
+            }
+
+            [class~='anticon'] {
+                width: 1.2rem;
+                margin-right: 0.5rem;
+            }
+        }
+
+        &[data-theme='dark'] {
+            background: $black;
+            [class~='ant-dropdown-menu-item'] {
+                color: $light;
+                &:hover {
+                    background: $primary;
+                    span {
+                        color: $white;
+                    }
+                }
+            }
+        }
+    }
+}

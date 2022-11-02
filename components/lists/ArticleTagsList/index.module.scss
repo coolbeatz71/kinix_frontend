@@ -1,0 +1,23 @@
+@import 'styles/colors.scss';
+
+.articleTags {
+    padding: 1rem 0;
+    [class~='ant-space-horizontal'] {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    [class~='ant-tag'] {
+        font-size: 10.5pt;
+
+        cursor: pointer;
+        padding: 0.8rem;
+        margin-bottom: 1rem;
+        font-weight: 500;
+
+        a:hover {
+            color: $link;
+            text-decoration: underline;
+        }
+    }
+}

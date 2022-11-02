@@ -1,0 +1,31 @@
+@import 'styles/colors.scss';
+@import 'styles/dimensions.scss';
+
+.signupForm {
+    &__footer {
+        &__btn {
+            font-size: 13px;
+            color: $primary;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            &:hover {
+                * {
+                    color: $link;
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+
+    &__userAgreement {
+        text-align: center;
+        padding: 0 $padding;
+
+        &__text {
+            font-size: 13px;
+        }
+    }
+}

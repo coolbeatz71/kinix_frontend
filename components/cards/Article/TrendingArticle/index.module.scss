@@ -1,0 +1,66 @@
+@import 'styles/dimensions.scss';
+@import 'styles/colors.scss';
+@import 'styles/_mixins.scss';
+
+.trendingArticleCard {
+    cursor: pointer;
+    margin-bottom: 1.3rem;
+    border-radius: $border-radius;
+
+    [class~='ant-card-body'] {
+        padding: 0;
+        height: 100%;
+    }
+
+    &__header {
+        padding: 0 calc(#{$padding} * 1.2);
+        margin-top: calc(#{$padding} * 1.2);
+
+        [data-text='header'] {
+            font-size: 12px;
+            font-style: italic;
+        }
+
+        [data-text='author'] {
+            font-size: 12px;
+            font-weight: 600;
+        }
+    }
+
+    &__content {
+        @include cardContentPadding;
+        padding-top: 0.6rem;
+
+        [data-text='title'] {
+            font-family: Poppins;
+            &:hover {
+                text-decoration: underline;
+            }
+            a {
+                color: unset;
+            }
+        }
+
+        [data-text='description'] {
+            margin-bottom: 0;
+        }
+    }
+
+    &[data-theme='light'] {
+        [class~='ant-card'] {
+            background: $white;
+        }
+        [class~='ant-typography'] {
+            color: $dark;
+        }
+    }
+
+    &[data-theme='dark'] {
+        [class~='ant-card'] {
+            background: $bg-primary-dark90;
+        }
+        [class~='ant-typography'] {
+            color: $white;
+        }
+    }
+}

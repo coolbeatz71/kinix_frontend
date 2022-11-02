@@ -1,0 +1,171 @@
+@import 'styles/dimensions.scss';
+@import 'styles/colors.scss';
+@import 'styles/_mixins.scss';
+
+.alaUneArticleCard {
+    cursor: pointer;
+
+    a {
+        text-decoration: none;
+    }
+
+    [data-text='header'] {
+        font-size: 12px;
+        font-style: italic;
+    }
+
+    [data-text='author'] {
+        font-weight: 600;
+        font-size: 13px;
+    }
+
+    [data-text='title'] {
+        font-family: Poppins;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    &__overlay {
+        position: relative;
+        left: 0;
+        right: 0;
+        z-index: -1;
+        height: 100%;
+        overflow: hidden;
+        border-radius: $border-radius;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+
+            border-radius: calc(#{$border-radius} + 1px);
+            transition: transform 0.5s ease;
+        }
+    }
+
+    &__cover {
+        border-radius: $border-radius;
+        overflow: hidden;
+
+        width: 100%;
+        height: 100%;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+
+            aspect-ratio: 16 / 9;
+            border-radius: $border-radius;
+            transition: transform 0.5s ease;
+        }
+
+        &:hover img {
+            transform: scale(1.2);
+        }
+    }
+
+    [data-priority='FIRST'] {
+        z-index: 0;
+        height: 33rem;
+        background: $bg-primary-dark;
+
+        &:hover {
+            [class~='ant-card-body'] {
+                background: $bg-primary-dark90;
+            }
+            img {
+                transform: scale(1.2);
+            }
+        }
+
+        [class~='ant-card-body'] {
+            padding: 0;
+            height: 100%;
+            border-radius: $border-radius;
+
+            background: $bg-primary-dark;
+            transition: background ease-in-out 0.2s;
+        }
+
+        .alaUneArticleCard__content {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            @include cardContentPadding;
+
+            display: flex;
+            flex-flow: column;
+            justify-content: space-between;
+
+            &__header {
+                display: flex;
+                justify-content: space-between;
+            }
+        }
+
+        [class~='ant-typography'] {
+            color: $white;
+        }
+    }
+
+    [data-priority='SECOND'] {
+        height: 33rem;
+        [class~='ant-card-body'] {
+            padding: 0;
+        }
+
+        [class~='ant-card-cover'] {
+            @include cardContentPadding;
+        }
+
+        .alaUneArticleCard__header {
+            padding: 0 calc(#{$padding} * 1.2);
+        }
+
+        .alaUneArticleCard__content {
+            @include cardContentPadding;
+            padding-top: 2.35rem;
+        }
+    }
+
+    &[data-theme='light'] {
+        [data-priority='SECOND'] {
+            background: $white;
+            [class~='ant-typography'] {
+                color: $dark;
+            }
+        }
+    }
+
+    &[data-theme='dark'] {
+        [class~='ant-btn']:hover {
+            border-color: $white;
+            color: $white;
+        }
+
+        [data-priority='SECOND'] {
+            background: $bg-primary-dark90;
+            [class~='ant-typography'] {
+                color: $white;
+            }
+        }
+
+        [data-priority='FIRST'] {
+            [class~='ant-typography'] {
+                color: $white;
+            }
+        }
+    }
+
+    @include mediaXS {
+        [data-priority='FIRST'] {
+            height: 28rem;
+        }
+        [data-priority='SECOND'] {
+            height: unset;
+        }
+    }
+}

@@ -1,0 +1,41 @@
+@import 'styles/_mixins.scss';
+@import 'styles/colors.scss';
+@import 'styles/dimensions.scss';
+
+.subscribeNewsLetter {
+    padding: calc(#{$padding} * 2.5);
+    border-radius: $border-radius;
+
+    background: $news-letter url('/bg-subscribe.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    [data-title='true'] {
+        font-family: Poppins;
+    }
+
+    [data-desc='true'] {
+        font-size: 14pt !important;
+    }
+
+    @include mediaXS {
+        padding: $padding;
+        background: $news-letter;
+
+        [class~='ant-form-item'] {
+            margin-bottom: 1rem;
+        }
+
+        [data-title='true'] {
+            text-align: center;
+            font-size: 24pt;
+        }
+
+        [data-desc='true'] {
+            display: inline-block;
+            text-align: center;
+            font-size: 12pt !important;
+        }
+    }
+}
