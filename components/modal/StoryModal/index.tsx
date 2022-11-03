@@ -34,7 +34,7 @@ const StoryModal: FC = () => {
             closeIcon={<CloseCircleOutlined />}
         >
             <div className={styles.storyPopup__content}>
-                <Stories stories={stories} width="100%" loop />
+                <Stories stories={stories} width="100%" loop defaultInterval={30000} />
             </div>
         </Modal>
     );

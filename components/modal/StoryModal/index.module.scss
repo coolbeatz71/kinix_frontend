@@ -10,16 +10,14 @@
         align-items: center;
         justify-content: center;
 
-        // top: -10px;
         right: 10px;
-        // background: $white;
         border-radius: 100%;
 
         width: calc(#{$padding} * 1.2);
         height: calc(#{$padding} * 1.2);
 
         [class~='ant-modal-close-x'] {
-            line-height: 4.2;
+            line-height: 4.15;
         }
 
         [class~='anticon'] {
@@ -60,6 +58,12 @@
                 width: 100% !important;
                 height: 480px !important;
                 margin-top: $padding !important;
+
+                & > div:first-of-type {
+                    & > div {
+                        height: 100% !important;
+                    }
+                }
             }
         }
         img {
