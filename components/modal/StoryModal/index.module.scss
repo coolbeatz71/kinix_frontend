@@ -74,4 +74,18 @@
             object-fit: fill;
         }
     }
+
+    &__seeMore {
+        height: 100%;
+
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+        justify-content: center;
+
+        background: rgba($color: $dark-black, $alpha: 0.85);
+
+        -webkit-backdrop-filter: saturate(180%) blur(30px);
+        backdrop-filter: saturate(180%) blur(30px);
+    }
 }

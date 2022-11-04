@@ -1,7 +1,8 @@
 import React, { FC } from 'react';
-import { Grid, Modal } from 'antd';
+import { Button, Grid, Modal } from 'antd';
 import Stories from 'react-insta-stories';
 import { CloseCircleOutlined } from 'icons';
+import { IUnknownObject } from '@interfaces/app';
 import { Story } from 'react-insta-stories/dist/interfaces';
 
 import styles from './index.module.scss';
@@ -20,6 +21,21 @@ const StoryModal: FC = () => {
         {
             url: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4',
             type: 'video',
+            seeMoreCollapsed: ({ toggleMore }) => (
+                <div className="d-flex justify-content-center">
+                    <Button size="large" onClick={() => toggleMore(true)}>
+                        Read more
+                    </Button>
+                </div>
+            ),
+            seeMore: ({ close }: IUnknownObject) => (
+                <div className={styles.storyPopup__seeMore}>
+                    <h2>Just checking the see more feature.</h2>
+                    <Button danger size="large" ghost onClick={close}>
+                        Close
+                    </Button>
+                </div>
+            ),
         },
     ];
     return (
