@@ -10,8 +10,10 @@ const ReadMoreButton: FC<IReadMoreButtonProps> = ({ onClick }) => {
     const { t } = useTranslation();
 
     return (
-        <div className="d-flex justify-content-center mb-3">
-            <Button onClick={onClick}>{t('readMore')}</Button>
+        <div className="d-flex justify-content-center">
+            <Button data-read-more onClick={onClick}>
+                {t('readMore')}
+            </Button>
         </div>
     );
 };

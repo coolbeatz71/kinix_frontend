@@ -16,7 +16,7 @@ const StoryModal: FC = () => {
     const stories: Story[] = [
         {
             seeMoreCollapsed: ({ toggleMore }) => <ReadMoreButton onClick={() => toggleMore(true)} />,
-            url: 'http://res.cloudinary.com/kiinox/image/upload/v1663347328/stories/ab6761610000e5eb6d1dac9cd0d24eee082f5410_qxufxq.jpg',
+            url: 'https://picsum.photos/1200/1200',
             seeMore: ({ close }: IUnknownObject) => (
                 <StorySeeMore
                     onClose={close}
@@ -25,13 +25,26 @@ const StoryModal: FC = () => {
                     title="Ça vient de tomber, les nouvelle certifications"
                     subtitle="Certification pour Damso, Gims, Ninho et Tiakola."
                     body={`Ce 29 octobre 2022 FALLY IPUPA va livrer le concert de sa carrière au stade des martyrs de
-                    Kinshasa, les billets sont deja en vente dans les stations services de la ville , les banderoles
-                    et les pancartes sont affichés partout dans la ville.`}
+                Kinshasa, les billets sont deja en vente dans les stations services de la ville , les banderoles
+                et les pancartes sont affichés partout dans la ville.`}
                 />
             ),
         },
         {
+            seeMoreCollapsed: ({ toggleMore }) => <ReadMoreButton onClick={() => toggleMore(true)} />,
             url: 'http://res.cloudinary.com/kiinox/image/upload/v1665595979/stories/308360477_648982183256748_479402517382652513_n_btfbb4.jpg',
+            seeMore: ({ close }: IUnknownObject) => (
+                <StorySeeMore
+                    onClose={close}
+                    legend="People"
+                    className={styles.storyPopup__seeMore}
+                    title="Ça vient de tomber, les nouvelle certifications"
+                    subtitle="Certification pour Damso, Gims, Ninho et Tiakola."
+                    body={`Ce 29 octobre 2022 FALLY IPUPA va livrer le concert de sa carrière au stade des martyrs de
+                Kinshasa, les billets sont deja en vente dans les stations services de la ville , les banderoles
+                et les pancartes sont affichés partout dans la ville.`}
+                />
+            ),
         },
         {
             type: 'video',
