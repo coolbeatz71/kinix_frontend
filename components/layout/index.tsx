@@ -16,7 +16,6 @@ import useDarkLight from '@hooks/useDarkLight';
 import { ICurrentUser } from '@interfaces/user';
 import { PRIMARY, WARNING } from '@constants/styles';
 import getPlatformUrl from '@helpers/getPlatformUrl';
-import StoryModal from '@components/modal/StoryModal';
 import getLocalUserData from '@helpers/getLocalUserData';
 import CategoriesContext from '@context/video-categories';
 import getCurrentUserAction from 'redux/user/getCurrentUser';
@@ -132,8 +131,6 @@ const Layout: FC<ILayoutProps> = ({
                 <link rel="mask-icon" href="/safari-pinned-tab.svg" color={PRIMARY} />
                 <meta name="msapplication-TileColor" content={WARNING} />
             </Head>
-
-            <StoryModal />
 
             {lg && <DynamicDarkModeToggler />}
 

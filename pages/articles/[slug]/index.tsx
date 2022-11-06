@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { NextPage } from 'next';
 import dynamic from 'next/dynamic';
 import isEmpty from 'lodash/isEmpty';
@@ -9,6 +9,7 @@ import { IArticle } from '@interfaces/api';
 import ServerPropsType from '@interfaces/serverProps';
 import SingleArticleContainer from '@containers/SingleArticle';
 
+const DynamicStoryModal = dynamic(() => import('@components/modal/StoryModal'));
 const DynamicServerError = dynamic(() => import('@components/common/ServerError'));
 
 const SingleArticlePage: NextPage<ServerPropsType> = ({ error, data }) => {
@@ -25,7 +26,10 @@ const SingleArticlePage: NextPage<ServerPropsType> = ({ error, data }) => {
             {!isEmpty(error) ? (
                 <DynamicServerError error={error} onRefresh={() => reload()} />
             ) : (
-                <SingleArticleContainer article={data as IArticle} />
+                <Fragment>
+                    <DynamicStoryModal />
+                    <SingleArticleContainer article={data as IArticle} />
+                </Fragment>
             )}
         </Layout>
     );

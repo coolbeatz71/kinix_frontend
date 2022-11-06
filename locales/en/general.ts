@@ -69,4 +69,5 @@ export const general = {
     profilePicture: 'Profile picture',
     cancel: 'Cancel',
     modifyImage: 'Edit image',
+    visitNow: 'Visit Now',
 };

@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import Style from 'style-it';
 import Image from 'next/image';
+import { useTranslation } from 'react-i18next';
 import { AndroidFilled, AppleFilled } from 'icons';
 import { Button, Col, Row, Tag, Typography, Grid, Space } from 'antd';
 
@@ -38,6 +39,7 @@ const SliderContent: FC<ISliderContentProps> = ({
     androidLink,
     iosLink,
 }) => {
+    const { t } = useTranslation();
     const { md } = useBreakpoint();
     const carouselRightContent = Style.it(
         `
@@ -88,7 +90,7 @@ const SliderContent: FC<ISliderContentProps> = ({
                     </Space>
                 ) : (
                     <Button size="large" href={redirectUrl} target="_blank">
-                        {buttonText || 'Visit Now'}
+                        {buttonText || t('visitNow')}
                     </Button>
                 ))}
         </Col>,
