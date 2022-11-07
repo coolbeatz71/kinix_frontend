@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import Style from 'style-it';
 import Image from 'next/image';
-import { Button, Col, Row, Tag, Typography, Grid, Space } from 'antd';
 import { AndroidFilled, AppleFilled } from 'icons';
+import { Button, Col, Row, Tag, Typography, Grid, Space } from 'antd';
 
 import styles from './../index.module.scss';
 
