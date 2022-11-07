@@ -70,4 +70,8 @@ export const general = {
     cancel: 'Cancel',
     modifyImage: 'Edit image',
     visitNow: 'Visit Now',
+    newsletterTitle: 'Subscribe and Stay Informed',
+    newsletterSubtitle: `Sign up for our weekly newsletter to get the latest news, updates and amazing offers delivered
+    directly in your inbox.`,
+    enterEmail: 'Enter your email',
 };
