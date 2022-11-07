@@ -5524,6 +5524,11 @@ react-infinite-scroll-hook@^4.0.3:
   dependencies:
     react-intersection-observer-hook "^2.0.4"
 
+react-insta-stories@^2.4.2:
+  version "2.4.2"
+  resolved "https://registry.yarnpkg.com/react-insta-stories/-/react-insta-stories-2.4.2.tgz#66f87d32e95a108328135ad0849c3ab7ed57d2fb"
+  integrity sha512-6X19bfa02uvHt3HA5VkLWee2vHef90gfRVYrZwC7WrQ3/bTcDWTdj6mGuw7W+HL/MxB99D7UUYM/ABFeA8CrxQ==
+
 react-intersection-observer-hook@^2.0.4:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/react-intersection-observer-hook/-/react-intersection-observer-hook-2.0.4.tgz#1ea00ab07f7bb859a5cc924f612862a63faf3b24"
