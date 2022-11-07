@@ -18,7 +18,7 @@
     }
 
     [class~='ant-card-cover'] {
-        margin: calc(#{$padding} / 1.5);
+        margin: calc(#{$padding} * 0.67);
         margin-bottom: 0;
 
         display: flex;
@@ -45,7 +45,7 @@
         justify-content: space-between;
 
         [class~='ant-card-body'] {
-            padding: calc(#{$padding} / 1.5);
+            padding: calc(#{$padding} * 0.67);
         }
     }
 

@@ -9,7 +9,7 @@
     }
 
     [class~='ant-skeleton-button'] {
-        height: calc(#{$padding} / 2);
+        height: calc(#{$padding} * 0.5);
     }
 
     &[data-theme='dark'] {

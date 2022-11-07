@@ -38,4 +38,24 @@
             font-size: 12pt !important;
         }
     }
+
+    @include mediaMaxMD {
+        padding: $padding;
+        background: $news-letter;
+
+        [class~='ant-form-item'] {
+            margin-bottom: 1rem;
+        }
+
+        [data-title='true'] {
+            font-size: 24pt;
+            text-align: center;
+        }
+
+        [data-desc='true'] {
+            text-align: center;
+            display: inline-block;
+            font-size: 12pt !important;
+        }
+    }
 }

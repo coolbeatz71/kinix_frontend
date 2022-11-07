@@ -41,7 +41,7 @@
         [class~='ant-modal-close'] {
             width: $modal-padding;
             height: calc(#{$modal-padding} * 0.66);
-            margin-top: calc(#{$padding} / 2);
+            margin-top: calc(#{$padding} * 0.5);
 
             @include mediaMaxLG {
                 width: calc(#{$padding} * 2);
@@ -59,7 +59,7 @@
 
             text-align: center;
             background-color: transparent;
-            padding: calc(#{$padding} / 2) $modal-padding;
+            padding: calc(#{$padding} * 0.5) $modal-padding;
 
             @include mediaMaxLG {
                 padding: $padding calc(#{$padding} * 2);

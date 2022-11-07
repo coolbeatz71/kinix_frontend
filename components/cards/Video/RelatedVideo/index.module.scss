@@ -15,7 +15,7 @@
         display: flex;
         flex-flow: column;
         justify-content: space-between;
-        padding: calc(#{$padding} / 1.5);
+        padding: calc(#{$padding} * 0.67);
 
         [data-title='true'] {
             height: 3rem;
@@ -34,7 +34,7 @@
     }
 
     &__cover {
-        padding: calc(#{$padding} / 1.5);
+        padding: calc(#{$padding} * 0.67);
         padding-right: 0;
 
         display: flex;

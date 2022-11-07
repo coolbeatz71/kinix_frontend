@@ -47,7 +47,7 @@
                 padding: $padding;
             }
             &[data-sidenav-close='true'] {
-                padding: calc(#{$content-padding} / 1.4) $content-padding;
+                padding: calc(#{$content-padding} * 0.714) $content-padding;
             }
 
             @include mediaXS {
