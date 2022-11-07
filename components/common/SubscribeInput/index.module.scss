@@ -10,6 +10,11 @@ $btn-width: 200px;
         border-bottom-left-radius: 0;
         border-top-left-radius: 0;
         width: calc(#{$btn-width / 1.8});
+        padding: calc(#{$padding / 1.15});
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     [class~='ant-input'] {

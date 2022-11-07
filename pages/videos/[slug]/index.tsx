@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { NextPage } from 'next';
 import dynamic from 'next/dynamic';
 import isEmpty from 'lodash/isEmpty';
@@ -10,6 +10,7 @@ import ServerPropsType from '@interfaces/serverProps';
 import SingleVideoContainer from '@containers/SingleVideo';
 import getYoutubeVideoThumbnail from '@helpers/getYoutubeVideoThumbail';
 
+const DynamicStoryModal = dynamic(() => import('@components/modal/StoryModal'));
 const DynamicServerError = dynamic(() => import('@components/common/ServerError'));
 
 const SingleVideoPage: NextPage<ServerPropsType> = ({ error, data }) => {
@@ -28,7 +29,10 @@ const SingleVideoPage: NextPage<ServerPropsType> = ({ error, data }) => {
             {!isEmpty(error) ? (
                 <DynamicServerError error={error} onRefresh={() => reload()} />
             ) : (
-                <SingleVideoContainer video={data as IVideo} />
+                <Fragment>
+                    <DynamicStoryModal />
+                    <SingleVideoContainer video={data as IVideo} />
+                </Fragment>
             )}
         </Layout>
     );

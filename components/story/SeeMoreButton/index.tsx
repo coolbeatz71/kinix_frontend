@@ -6,16 +6,16 @@ export interface IReadMoreButtonProps {
     onClick: () => void;
 }
 
-const ReadMoreButton: FC<IReadMoreButtonProps> = ({ onClick }) => {
+const SeeMoreButton: FC<IReadMoreButtonProps> = ({ onClick }) => {
     const { t } = useTranslation();
 
     return (
         <div className="d-flex justify-content-center">
-            <Button data-read-more onClick={onClick}>
+            <Button data-read-more onClick={onClick} type="text">
                 {t('readMore')}
             </Button>
         </div>
     );
 };
 
-export default ReadMoreButton;
+export default SeeMoreButton;

@@ -75,6 +75,7 @@
         }
 
         [data-read-more='true'] {
+            color: $light;
             border-color: $white;
             box-shadow: 0 0 3rem $black !important;
             &:hover {
@@ -92,7 +93,7 @@
         align-items: center;
         justify-content: space-between;
 
-        padding: 1rem;
+        padding: $padding;
 
         border-radius: $border-radius;
         background: rgba($color: $dark-black, $alpha: 0.9);
@@ -101,7 +102,6 @@
         backdrop-filter: saturate(180%) blur(50px);
 
         [data-legend='true'] {
-            color: $white;
             font-weight: 700;
             text-align: center;
             margin-bottom: $padding;
