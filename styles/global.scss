@@ -55,7 +55,7 @@ textarea {
 }
 
 [data-content-padding] {
-    padding: calc(#{$content-padding} / 2) 0;
+    padding: calc(#{$content-padding} * 0.5) 0;
 }
 
 .react-horizontal-scrolling-menu--scroll-container::-webkit-scrollbar {

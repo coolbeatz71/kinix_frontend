@@ -9,7 +9,7 @@
     margin-right: calc(#{$padding} * 2);
 
     &__button {
-        margin-bottom: calc(#{$padding} / 2);
+        margin-bottom: calc(#{$padding} * 0.5);
 
         width: 2.5rem;
         height: 2.5rem;
@@ -58,7 +58,7 @@
         align-items: flex-start;
 
         &__button {
-            margin-bottom: calc(#{$padding} / 2);
+            margin-bottom: calc(#{$padding} * 0.5);
 
             width: 2.2rem;
             height: 2.2rem;
