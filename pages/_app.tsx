@@ -23,6 +23,8 @@ import 'styles/404.scss';
 import 'styles/global.scss';
 import 'styles/nprogress.scss';
 
+import 'antd/dist/antd.less';
+
 type AppPropsWithError = AppProps & { err: unknown } & IUnknownObject;
 
 const config = {
