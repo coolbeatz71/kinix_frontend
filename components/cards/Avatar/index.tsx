@@ -14,7 +14,6 @@ import { MAX_FILE_SIZE } from '@constants/app';
 import { getBgColor } from '@helpers/getBgColor';
 import getNotification from '@helpers/getNotification';
 import updateAvatarAction, { resetUpdateAvatarAction } from '@redux/auth/updateAvatar';
-import 'antd/lib/slider/style';
 
 import styles from './index.module.scss';
 
