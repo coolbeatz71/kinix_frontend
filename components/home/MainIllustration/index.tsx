@@ -24,9 +24,9 @@ const { useBreakpoint } = Grid;
 const { Title, Text } = Typography;
 
 const HomeIllustration: FC = () => {
-    const { md } = useBreakpoint();
     const { t } = useTranslation();
     const { value } = useDarkLight();
+    const { md, sm, lg } = useBreakpoint();
     const [animationData, setAnimationData] = useState<IUnknownObject[]>([]);
 
     useEffect(() => {
@@ -47,7 +47,7 @@ const HomeIllustration: FC = () => {
     return (
         <div className={styles.illustration} data-theme={value}>
             <Row justify="space-between">
-                <Col xs={24} sm={24} md={10} className={styles.illustration__legend}>
+                <Col xs={24} sm={24} md={12} lg={10} className={styles.illustration__legend}>
                     <Title className={styles.illustration__legend__text}>
                         {t('mainLegendOne')} {t('mainLegendTwo')}
                     </Title>
@@ -63,9 +63,9 @@ const HomeIllustration: FC = () => {
                             <Button
                                 danger
                                 block={!md}
-                                size="large"
                                 type="primary"
                                 icon={<YoutubeFilled />}
+                                size={sm && md ? 'small' : 'middle'}
                                 onClick={() => window?.open(YOUTUBE_URL, '_blank')}
                             >
                                 {t('subscribe')}
@@ -74,7 +74,7 @@ const HomeIllustration: FC = () => {
                     </Row>
                 </Col>
                 {md && (
-                    <Col xs={24} sm={24} md={14}>
+                    <Col xs={24} sm={24} md={12} lg={14}>
                         <Carousel
                             autoplay
                             speed={2000}
@@ -95,9 +95,9 @@ const HomeIllustration: FC = () => {
                                 animationData.map((animation, i) => (
                                     <DynamicLottieAnimation
                                         key={i}
-                                        width="512px"
-                                        height="512px"
                                         animation={animation}
+                                        width={md && sm && !lg ? '320px' : '512px'}
+                                        height={md && sm && !lg ? '320px' : '512px'}
                                     />
                                 ))
                             )}

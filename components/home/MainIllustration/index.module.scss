@@ -41,11 +41,12 @@
         justify-content: center;
 
         &__text {
-            @include preventTextSelection;
-            font-weight: 900 !important;
             font-family: Poppins;
-            font-size: 3.5rem !important;
+            @include preventTextSelection;
+
             line-height: 1.5 !important;
+            font-weight: 900 !important;
+            font-size: 3.5rem !important;
         }
 
         &__subscribe {
@@ -57,8 +58,8 @@
             margin-top: $content-padding;
 
             &__text {
+                font-size: 11pt;
                 font-weight: 700;
-                font-size: 17px;
                 @include preventTextSelection;
             }
 
@@ -95,10 +96,10 @@
                 margin-top: $padding;
 
                 &__text {
-                    font-size: 1.2rem;
+                    font-size: 12pt;
                     display: flex;
-                    justify-content: center;
                     margin-bottom: 1rem;
+                    justify-content: center;
                 }
 
                 [class~='ant-btn'] {
@@ -111,11 +112,59 @@
 
     @include mediaSM {
         &__legend {
+            &__text {
+                text-align: center;
+                font-size: 32pt !important;
+            }
+
+            &__subscribe {
+                display: flex;
+                justify-content: center;
+
+                margin: auto;
+                width: 70% !important;
+                margin-top: $padding !important;
+
+                &__text {
+                    display: flex;
+                    margin-bottom: 1rem;
+                    justify-content: center;
+                    font-size: 12pt !important;
+                }
+
+                [class~='ant-btn'] {
+                    display: flex;
+                    justify-content: center;
+                }
+            }
         }
     }
 
-    @include mediaLG {
+    @include mediaMD {
         &__legend {
+            display: flex;
+            flex-flow: column;
+            justify-content: space-around;
+
+            &__text {
+                text-align: left;
+                font-size: 25pt !important;
+            }
+
+            &__subscribe {
+                margin-top: 1rem;
+                width: 100% !important;
+
+                &__text {
+                    margin-bottom: 0 !important;
+                    font-size: 10pt !important;
+                }
+            }
+        }
+
+        &__slider {
+            width: 320px;
+            height: 320px;
         }
     }
 }
