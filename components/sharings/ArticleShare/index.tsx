@@ -1,5 +1,7 @@
-import React, { FC } from 'react';
-import { Button } from 'antd';
+import { FC } from 'react';
+
+import Button from 'antd/lib/button';
+
 import useDarkLight from '@hooks/useDarkLight';
 import { IShareType, shareList } from '@constants/social';
 import SocialShare from '@components/sharings/SocialShare';

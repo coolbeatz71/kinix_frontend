@@ -1,11 +1,15 @@
-import React, { FC, Fragment, useEffect, useState } from 'react';
+import { FC, Fragment, useEffect, useState } from 'react';
 import dayjs from 'dayjs';
 import Link from 'next/link';
 import Image from 'next/image';
 import isEmpty from 'lodash/isEmpty';
 import truncate from 'lodash/truncate';
 import isBoolean from 'lodash/isBoolean';
-import { Card, Button, Grid } from 'antd';
+
+import Card from 'antd/lib/card';
+import Grid from 'antd/lib/grid';
+import Button from 'antd/lib/button';
+
 import { PlayCircleTwoTone } from 'icons';
 import useDarkLight from '@hooks/useDarkLight';
 import EnumRole from '@interfaces/role';

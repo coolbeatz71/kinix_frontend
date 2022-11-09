@@ -1,5 +1,8 @@
-import React, { FC, useEffect, useState } from 'react';
-import { Grid, Modal } from 'antd';
+import { FC, useEffect, useState } from 'react';
+
+import Grid from 'antd/lib/grid';
+import Modal from 'antd/lib/modal';
+
 import dynamic from 'next/dynamic';
 import isEmpty from 'lodash/isEmpty';
 import { useSelector } from 'react-redux';

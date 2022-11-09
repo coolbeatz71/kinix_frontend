@@ -1,8 +1,11 @@
-import React, { FC } from 'react';
-import { Affix, Button } from 'antd';
+import { FC } from 'react';
 import { BsFillSunFill, BsMoonStarsFill } from 'react-icons/bs';
-import styles from './index.module.scss';
 import useDarkLight from '@hooks/useDarkLight';
+
+import Affix from 'antd/lib/affix';
+import Button from 'antd/lib/button';
+
+import styles from './index.module.scss';
 
 const DarkModeToggler: FC = () => {
     const { value, toggle } = useDarkLight();

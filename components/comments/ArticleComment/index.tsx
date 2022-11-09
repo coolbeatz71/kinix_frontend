@@ -1,8 +1,16 @@
-import React, { FC, useState } from 'react';
+import { FC, useState } from 'react';
 import dynamic from 'next/dynamic';
 import { useTranslation } from 'react-i18next';
-import { Avatar, Button, Col, List, Row, Tooltip, Modal } from 'antd';
 import { EditFilled, DeleteFilled, ExclamationCircleOutlined, UserOutlined } from 'icons';
+
+import Row from 'antd/lib/row';
+import Col from 'antd/lib/col';
+import List from 'antd/lib/list';
+import Modal from 'antd/lib/modal';
+import Button from 'antd/lib/button';
+import Avatar from 'antd/lib/avatar';
+import Tooltip from 'antd/lib/tooltip';
+
 import { IComment } from '@interfaces/api';
 import getPayload from '@helpers/getPayload';
 import { useAppDispatch } from '@redux/store';

@@ -1,9 +1,6 @@
-import { PhoneNumberUtil } from 'google-libphonenumber';
 import { Rule } from 'antd/lib/form';
 import i18n from '@locales/index';
 import { required } from '@helpers/validators';
-import countryList from '@constants/country-list';
-import { ICountryObject } from '@interfaces/countryObject';
 
 export const countryNameValidator = (name: string): Rule[] => [required(name)];
 
@@ -25,17 +22,7 @@ export const phonePartialValidator = (name: string, phoneDialCode: string | unde
                 return Promise.reject(new Error(i18n.t('invalidPhoneCodeErr')));
             }
 
-            const fullPhoneNumber = `${phoneDialCode}${value}`;
-            const country = countryList.find((ct: ICountryObject) => ct.dialCode === phoneDialCode);
-
-            const isoCode = country?.isoCode;
-
-            return PhoneNumberUtil.getInstance().isValidNumberForRegion(
-                PhoneNumberUtil.getInstance().parse(fullPhoneNumber, isoCode),
-                isoCode,
-            )
-                ? Promise.resolve()
-                : Promise.reject(new Error(i18n.t('invalidRegionErr', { name })));
+            return Promise.resolve();
         },
     },
 ];

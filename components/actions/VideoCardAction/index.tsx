@@ -1,7 +1,11 @@
-import React, { FC, Fragment, ReactElement, useState } from 'react';
+import { FC, Fragment, ReactElement, useState } from 'react';
 import dynamic from 'next/dynamic';
 import { EllipsisOutlined } from 'icons';
-import { Button, Dropdown, Menu } from 'antd';
+
+import Menu from 'antd/lib/menu';
+import Button from 'antd/lib/button';
+import Dropdown from 'antd/lib/dropdown';
+
 import useDarkLight from '@hooks/useDarkLight';
 
 const DynamicPlaylistModal = dynamic(() => import('@components/modal/PlaylistModal'));

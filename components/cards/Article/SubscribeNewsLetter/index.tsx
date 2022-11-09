@@ -1,5 +1,9 @@
-import React, { FC } from 'react';
-import { Row, Col, Typography } from 'antd';
+import { FC } from 'react';
+
+import Row from 'antd/lib/row';
+import Col from 'antd/lib/col';
+import Typography from 'antd/lib/typography';
+
 import { useTranslation } from 'react-i18next';
 import SubscribeInput from '@components/common/SubscribeInput';
 

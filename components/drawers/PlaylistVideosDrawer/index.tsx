@@ -1,17 +1,22 @@
-import React, { FC, useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import numeral from 'numeral';
 import dynamic from 'next/dynamic';
-import { Col, Drawer, Row, Skeleton } from 'antd';
 import { useSelector } from 'react-redux';
 import { CloseCircleOutlined } from 'icons';
 import { useTranslation } from 'react-i18next';
+
+import Col from 'antd/lib/col';
+import Row from 'antd/lib/row';
+import Drawer from 'antd/lib/drawer';
+import Skeleton from 'antd/lib/skeleton';
+
 import { IPlaylist } from '@interfaces/api';
 import { IRootState } from '@redux/reducers';
 import { useAppDispatch } from '@redux/store';
 import getAllPlaylistsDetailsAction from '@redux/playlists/details';
+import { resetRemoveVideoFromPlaylistAction } from '@redux/playlists/removeVideo';
 
 import styles from './index.module.scss';
-import { resetRemoveVideoFromPlaylistAction } from '@redux/playlists/removeVideo';
 
 const DynamicErrorAlert = dynamic(() => import('@components/common/ErrorAlert'));
 const DynamicPlaylistVideosList = dynamic(() => import('@components/lists/PlaylistVideosList'));

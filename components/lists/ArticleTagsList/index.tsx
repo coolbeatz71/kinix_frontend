@@ -1,6 +1,9 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import Link from 'next/link';
-import { Space, Tag } from 'antd';
+
+import Tag from 'antd/lib/tag';
+import Space from 'antd/lib/space';
+
 import { ALL_ARTICLES_PATH } from '@constants/paths';
 
 import styles from './index.module.scss';

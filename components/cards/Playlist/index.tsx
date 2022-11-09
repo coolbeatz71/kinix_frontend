@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import dayjs from 'dayjs';
 import numeral from 'numeral';
 import Image from 'next/image';
@@ -8,7 +8,16 @@ import truncate from 'lodash/truncate';
 import upperFirst from 'lodash/upperFirst';
 import { useTranslation } from 'react-i18next';
 import { DeleteFilled, ExclamationCircleOutlined } from 'icons';
-import { Button, Card, Col, message, Modal, Row, Tooltip, Typography } from 'antd';
+
+import Row from 'antd/lib/row';
+import Col from 'antd/lib/col';
+import Card from 'antd/lib/card';
+import Modal from 'antd/lib/modal';
+import Button from 'antd/lib/button';
+import message from 'antd/lib/message';
+import Tooltip from 'antd/lib/tooltip';
+import Typography from 'antd/lib/typography';
+
 import { IPlaylist } from '@interfaces/api';
 import getPayload from '@helpers/getPayload';
 import { useAppDispatch } from '@redux/store';

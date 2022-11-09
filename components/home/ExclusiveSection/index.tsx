@@ -1,11 +1,19 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import Style from 'style-it';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import truncate from 'lodash/truncate';
 import { useTranslation } from 'react-i18next';
-import { Button, Col, Row, Space, Tag, Typography, Grid } from 'antd';
 import { CaretRightFilled, ShareAltOutlined } from 'icons';
+
+import Row from 'antd/lib/row';
+import Col from 'antd/lib/col';
+import Tag from 'antd/lib/tag';
+import Grid from 'antd/lib/grid';
+import Space from 'antd/lib/space';
+import Button from 'antd/lib/button';
+import Typography from 'antd/lib/typography';
+
 import { IVideo } from '@interfaces/api';
 import useDarkLight from '@hooks/useDarkLight';
 import { PRIMARY, SKY_BLUE } from '@constants/styles';

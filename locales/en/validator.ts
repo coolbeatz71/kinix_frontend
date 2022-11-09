@@ -7,5 +7,4 @@ export const validator = {
     passwordMismatchErr: 'Password and confirm password must be identical',
     invalidFormatErr: '{{value}} has an invalid format',
     invalidPhoneCodeErr: 'Country code is invalid',
-    invalidRegionErr: '{{name}} is invalid for the chosen region',
 };

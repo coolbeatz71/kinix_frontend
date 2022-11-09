@@ -1,7 +1,11 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import dayjs from 'dayjs';
-import { Breadcrumb, Col, Row } from 'antd';
 import { useTranslation } from 'react-i18next';
+
+import Row from 'antd/lib/row';
+import Col from 'antd/lib/col';
+import Breadcrumb from 'antd/lib/breadcrumb';
+
 import useDarkLight from '@hooks/useDarkLight';
 
 import styles from './index.module.scss';

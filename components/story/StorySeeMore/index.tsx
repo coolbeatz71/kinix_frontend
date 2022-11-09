@@ -1,8 +1,11 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import isEmpty from 'lodash/isEmpty';
 import upperFirst from 'lodash/upperFirst';
-import { Button, Tag, Typography } from 'antd';
 import { useTranslation } from 'react-i18next';
+
+import Tag from 'antd/lib/tag';
+import Button from 'antd/lib/button';
+import Typography from 'antd/lib/typography';
 
 const { Text, Title, Paragraph } = Typography;
 

@@ -1,7 +1,12 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import dynamic from 'next/dynamic';
 import { useTranslation } from 'react-i18next';
-import { Button, Form, FormInstance, Input } from 'antd';
+
+import Form from 'antd/lib/form';
+import Input from 'antd/lib/input';
+import Button from 'antd/lib/button';
+import { FormInstance } from 'antd/lib/form/Form';
+
 import { IComment } from '@interfaces/api';
 import { commentValidator } from './validators';
 import { ICommentData } from '@interfaces/comments';

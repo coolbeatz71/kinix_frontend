@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import dayjs from 'dayjs';
 import en from 'dayjs/locale/en';
 import fr from 'dayjs/locale/fr';
@@ -18,19 +18,19 @@ import CategoriesContext from '@context/video-categories';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
-import 'styles/coreui.min.css';
 import 'styles/404.scss';
 import 'styles/global.scss';
 import 'styles/nprogress.scss';
+import 'styles/coreui.min.css';
 
 import 'antd/dist/antd.less';
 
 type AppPropsWithError = AppProps & { err: unknown } & IUnknownObject;
 
 const config = {
-    trickle: false,
-    easing: 'ease',
     speed: 800,
+    easing: 'ease',
+    trickle: false,
 };
 
 const { withRedux } = Wrapper;

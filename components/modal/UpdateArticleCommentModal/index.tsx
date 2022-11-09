@@ -1,5 +1,8 @@
-import React, { FC, useState, useEffect } from 'react';
-import { Form, Modal } from 'antd';
+import { FC, useState, useEffect } from 'react';
+
+import Form from 'antd/lib/form';
+import Modal from 'antd/lib/modal';
+
 import dynamic from 'next/dynamic';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';

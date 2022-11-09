@@ -1,4 +1,4 @@
-import React, { FC, Fragment, ReactElement } from 'react';
+import { FC, Fragment, ReactElement } from 'react';
 import dynamic from 'next/dynamic';
 import { IVideo } from '@interfaces/api';
 import useDarkLight from '@hooks/useDarkLight';

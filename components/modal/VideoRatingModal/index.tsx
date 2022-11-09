@@ -1,9 +1,14 @@
-import React, { FC, Fragment, useEffect, useState } from 'react';
+import { FC, Fragment, useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
 import { useSelector } from 'react-redux';
 import { CloseCircleOutlined } from 'icons';
 import { useTranslation } from 'react-i18next';
-import { Button, Modal, Rate, Typography } from 'antd';
+
+import Rate from 'antd/lib/rate';
+import Modal from 'antd/lib/modal';
+import Button from 'antd/lib/button';
+import Typography from 'antd/lib/typography';
+
 import getPayload from '@helpers/getPayload';
 import { IRootState } from '@redux/reducers';
 import { useAppDispatch } from '@redux/store';

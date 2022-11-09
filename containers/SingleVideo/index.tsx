@@ -1,8 +1,12 @@
-import React, { FC, Fragment, useEffect } from 'react';
+import { FC, Fragment, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import isEmpty from 'lodash/isEmpty';
-import { Col, Grid, Row } from 'antd';
 import { useSelector } from 'react-redux';
+
+import Row from 'antd/lib/row';
+import Col from 'antd/lib/col';
+import Grid from 'antd/lib/grid';
+
 import { IVideo } from '@interfaces/api';
 import { IRootState } from '@redux/reducers';
 import { useAppDispatch } from '@redux/store';

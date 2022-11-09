@@ -1,11 +1,15 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import dayjs from 'dayjs';
 import locales from 'locales/';
 import en from 'dayjs/locale/en';
 import fr from 'dayjs/locale/fr';
 import dynamic from 'next/dynamic';
 import upperFirst from 'lodash/upperFirst';
-import { Button, Dropdown, Menu } from 'antd';
+
+import Menu from 'antd/lib/menu';
+import Button from 'antd/lib/button';
+import Dropdown from 'antd/lib/dropdown';
+
 import api from 'services/axios';
 import { isServer } from '@constants/app';
 import useDarkLight from '@hooks/useDarkLight';

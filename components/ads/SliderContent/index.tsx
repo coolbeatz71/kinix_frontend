@@ -1,9 +1,16 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import Style from 'style-it';
 import Image from 'next/image';
 import { useTranslation } from 'react-i18next';
 import { AndroidFilled, AppleFilled } from 'icons';
-import { Button, Col, Row, Tag, Typography, Grid, Space } from 'antd';
+
+import Col from 'antd/lib/col';
+import Row from 'antd/lib/row';
+import Tag from 'antd/lib/tag';
+import Grid from 'antd/lib/grid';
+import Space from 'antd/lib/space';
+import Button from 'antd/lib/button';
+import Typography from 'antd/lib/typography';
 
 import styles from './../index.module.scss';
 

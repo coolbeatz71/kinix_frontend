@@ -1,5 +1,6 @@
 export enum EnumEmptyDataType {
-    CONTENT = 'CONTENT',
     SEARCH = 'SEARCH',
     LYRICS = 'LYRICS',
+    CONTENT = 'CONTENT',
+    BOOKMARK = 'BOOKMARK',
 }

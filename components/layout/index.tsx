@@ -1,13 +1,16 @@
-import React, { FC, ReactElement, useCallback, useContext, useEffect, useState } from 'react';
+import { FC, ReactElement, useCallback, useContext, useEffect, useState } from 'react';
 import Head from 'next/head';
 import dynamic from 'next/dynamic';
 import isEmpty from 'lodash/isEmpty';
 import toLower from 'lodash/toLower';
-import upperFirst from 'lodash/upperFirst';
 import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
+import upperFirst from 'lodash/upperFirst';
 import { useTranslation } from 'react-i18next';
-import { Layout as AntLayout, Grid } from 'antd';
+
+import Grid from 'antd/lib/grid';
+import AntLayout from 'antd/lib/layout';
+
 import { IRootState } from '@redux/reducers';
 import { useAppDispatch } from '@redux/store';
 import Header from '@components/layout/Header';

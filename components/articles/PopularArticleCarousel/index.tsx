@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react';
+import { FC, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import Carousel from 'nuka-carousel';
 import { useSelector } from 'react-redux';

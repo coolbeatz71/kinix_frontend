@@ -1,8 +1,13 @@
-import React, { FC, ReactNode, useState } from 'react';
+import { FC, ReactNode, useState } from 'react';
 import dynamic from 'next/dynamic';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { Button, Col, Popover, Row } from 'antd';
+
+import Row from 'antd/lib/row';
+import Col from 'antd/lib/col';
+import Button from 'antd/lib/button';
+import Popover from 'antd/lib/popover';
+
 import SummaryBody from '../SummaryBody';
 import SummaryHeader from '../SummaryHeader';
 import IRateSummary from '@interfaces/rates';

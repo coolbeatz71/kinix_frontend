@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import dayjs from 'dayjs';
 import numeral from 'numeral';
 import dynamic from 'next/dynamic';
@@ -8,8 +8,14 @@ import { FaShare } from 'react-icons/fa';
 import { useSelector } from 'react-redux';
 import upperFirst from 'lodash/upperFirst';
 import { useTranslation } from 'react-i18next';
-import { Col, Row, Typography, Spin, Button } from 'antd';
 import { LoadingOutlined } from 'icons';
+
+import Row from 'antd/lib/row';
+import Col from 'antd/lib/col';
+import Spin from 'antd/lib/spin';
+import Button from 'antd/lib/button';
+import Typography from 'antd/lib/typography';
+
 import { IVideo } from '@interfaces/api';
 import { IRootState } from '@redux/reducers';
 import { useAppDispatch } from '@redux/store';

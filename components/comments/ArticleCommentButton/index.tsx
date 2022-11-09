@@ -1,11 +1,13 @@
-import React, { FC, useState, useEffect } from 'react';
+import { FC, useState, useEffect } from 'react';
 import numeral from 'numeral';
-import { Button } from 'antd';
 import isEmpty from 'lodash/isEmpty';
+
+import Button from 'antd/lib/button';
+
+import { CommentOutlined } from 'icons';
 import { useSelector } from 'react-redux';
 import { IRootState } from '@redux/reducers';
 import useDarkLight from '@hooks/useDarkLight';
-import { CommentOutlined } from 'icons';
 
 import styles from './index.module.scss';
 

@@ -1,6 +1,11 @@
-import React, { FC, useState } from 'react';
-import { Button, Form, Input, message } from 'antd';
+import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+
+import Form from 'antd/lib/form';
+import Input from 'antd/lib/input';
+import Button from 'antd/lib/button';
+import message from 'antd/lib/message';
+
 import { titleValidator } from './validator';
 import getPayload from '@helpers/getPayload';
 import { useAppDispatch } from '@redux/store';

@@ -1,11 +1,18 @@
-import React, { FC, Fragment, useState, useEffect } from 'react';
+import { FC, Fragment, useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import isEmpty from 'lodash/isEmpty';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { CloseCircleOutlined, PlusOutlined } from 'icons';
-import { Button, Empty, message, Modal, RadioChangeEvent, Result } from 'antd';
 import { RiPlayListAddFill } from 'react-icons/ri';
+import { CloseCircleOutlined, PlusOutlined } from 'icons';
+
+import Empty from 'antd/lib/empty';
+import Modal from 'antd/lib/modal';
+import Result from 'antd/lib/result';
+import Button from 'antd/lib/button';
+import message from 'antd/lib/message';
+import { RadioChangeEvent } from 'antd/lib/radio/interface';
+
 import getPayload from '@helpers/getPayload';
 import { IRootState } from '@redux/reducers';
 import { useAppDispatch } from '@redux/store';

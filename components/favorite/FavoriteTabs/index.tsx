@@ -1,6 +1,8 @@
 import { FC, useState, useEffect } from 'react';
-import { Tabs } from 'antd';
 import Link from 'next/link';
+
+import Tabs from 'antd/lib/tabs';
+
 import dynamic from 'next/dynamic';
 import toLower from 'lodash/toLower';
 import { useRouter } from 'next/router';

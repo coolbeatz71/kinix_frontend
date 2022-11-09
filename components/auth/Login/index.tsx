@@ -1,9 +1,13 @@
-import React, { FC, useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { Button, Divider, Form, Input } from 'antd';
-import SocialLogin from '../SocialLogin';
+
+import Form from 'antd/lib/form';
+import Input from 'antd/lib/input';
+import Button from 'antd/lib/button';
+import Divider from 'antd/lib/divider';
+
 import { IRootState } from 'redux/reducers';
 import { useAppDispatch } from 'redux/store';
 import { ILoginData } from '@interfaces/auth';
@@ -11,11 +15,12 @@ import { BTN_STYLES } from '@constants/styles';
 import { IUnknownObject } from '@interfaces/app';
 import AuthModal from '@components/modal/AuthModal';
 import { CHECK_CONFIRM_EMAIL } from '@constants/api';
-import AccountConfirmation from '../AccountConfirmation';
+import SocialLogin from '@components/auth/SocialLogin';
 import { EnumAuthContext } from '@constants/auth-context';
 import FloatTextInput from '@components/common/TextInput';
 import { showAuthDialogAction } from 'redux/auth/showDialog';
 import loginAction, { resetLoginAction } from 'redux/auth/login';
+import AccountConfirmation from '@components/auth/AccountConfirmation';
 import emailUserNameValidator, { passwordValidator } from './validation';
 
 const DynamicErrorAlert = dynamic(() => import('@components/common/ErrorAlert'));

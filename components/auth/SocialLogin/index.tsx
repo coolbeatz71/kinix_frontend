@@ -1,8 +1,12 @@
-import React, { FC, useState } from 'react';
+import { FC, useState } from 'react';
 import dynamic from 'next/dynamic';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { Button, message, Skeleton } from 'antd';
+
+import Button from 'antd/lib/button';
+import message from 'antd/lib/message';
+import Skeleton from 'antd/lib/skeleton';
+
 import { IResolveParams } from 'reactjs-social-login';
 import { GoogleOutlined, FacebookFilled } from 'icons';
 import getPayload from '@helpers/getPayload';

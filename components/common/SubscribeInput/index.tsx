@@ -1,6 +1,12 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Button, Col, Form, Grid, Input, Row } from 'antd';
+
+import Row from 'antd/lib/row';
+import Col from 'antd/lib/col';
+import Form from 'antd/lib/form';
+import Grid from 'antd/lib/grid';
+import Input from 'antd/lib/input';
+import Button from 'antd/lib/button';
 
 import styles from './index.module.scss';
 

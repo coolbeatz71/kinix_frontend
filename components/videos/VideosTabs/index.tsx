@@ -1,5 +1,7 @@
-import React, { FC } from 'react';
-import { Tabs } from 'antd';
+import { FC } from 'react';
+
+import Tabs from 'antd/lib/tabs';
+
 import dynamic from 'next/dynamic';
 import toLower from 'lodash/toLower';
 import { useTranslation } from 'react-i18next';

@@ -1,8 +1,14 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import truncate from 'lodash/truncate';
 import upperFirst from 'lodash/upperFirst';
 import { BellFilled, UserOutlined } from 'icons';
-import { Space, Button, Badge, Dropdown, Avatar } from 'antd';
+
+import Badge from 'antd/lib/badge';
+import Space from 'antd/lib/space';
+import Avatar from 'antd/lib/avatar';
+import Button from 'antd/lib/button';
+import Dropdown from 'antd/lib/dropdown';
+
 import { ICurrentUser } from '@interfaces/user';
 import { getBgColor } from '@helpers/getBgColor';
 import UserProfileMenu from '@components/common/UserProfileMenu';

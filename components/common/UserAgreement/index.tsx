@@ -1,6 +1,8 @@
 import { FC } from 'react';
-import { Form, Typography } from 'antd';
 import { useTranslation } from 'react-i18next';
+
+import Form from 'antd/lib/form';
+import Typography from 'antd/lib/typography';
 
 const { Item } = Form;
 const { Text } = Typography;

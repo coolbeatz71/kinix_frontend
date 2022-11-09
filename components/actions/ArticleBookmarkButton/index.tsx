@@ -1,5 +1,8 @@
-import React, { FC, useEffect, useState } from 'react';
-import { Button, message } from 'antd';
+import { FC, useEffect, useState } from 'react';
+
+import Button from 'antd/lib/button';
+import message from 'antd/lib/message';
+
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { BsBookmarkPlus } from 'react-icons/bs';

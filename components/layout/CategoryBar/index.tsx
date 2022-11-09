@@ -1,10 +1,17 @@
-import React, { FC, ReactElement, useState } from 'react';
+import { FC, ReactElement, useState } from 'react';
 import { DownOutlined } from 'icons';
 import { useRouter } from 'next/router';
 import upperFirst from 'lodash/upperFirst';
 import { useTranslation } from 'react-i18next';
+
+import Row from 'antd/lib/row';
+import Col from 'antd/lib/col';
+import Grid from 'antd/lib/grid';
+import Menu from 'antd/lib/menu';
+import Button from 'antd/lib/button';
+import Dropdown from 'antd/lib/dropdown';
+
 import { IUnknownObject } from '@interfaces/app';
-import { Row, Grid, Dropdown, Button, Col, Menu } from 'antd';
 import { ALL_VIDEOS_PATH } from '@constants/paths';
 import SearchInput from '@components/common/SearchInput';
 import { ICategoryType } from '@context/video-categories';

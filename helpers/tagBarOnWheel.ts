@@ -1,4 +1,4 @@
-import React, { ContextType } from 'react';
+import { ContextType } from 'react';
 import { VisibilityContext } from 'react-horizontal-scrolling-menu';
 
 type scrollVisibilityApiType = ContextType<typeof VisibilityContext>;

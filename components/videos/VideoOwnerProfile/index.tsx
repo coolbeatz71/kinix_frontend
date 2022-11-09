@@ -1,5 +1,8 @@
-import React, { FC, Fragment } from 'react';
-import { Avatar, Space, Typography } from 'antd';
+import { FC, Fragment } from 'react';
+
+import Space from 'antd/lib/space';
+import Avatar from 'antd/lib/avatar';
+import Typography from 'antd/lib/typography';
 
 const { Text } = Typography;
 
