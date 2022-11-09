@@ -1,15 +1,21 @@
-import React, { FC, useEffect } from 'react';
+import { FC, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { Button, Card, Form, Input, Typography } from 'antd';
+
+import Form from 'antd/lib/form';
+import Card from 'antd/lib/card';
+import Input from 'antd/lib/input';
+import Button from 'antd/lib/button';
+import Typography from 'antd/lib/typography';
+
 import { IRootState } from '@redux/reducers';
 import getPayload from '@helpers/getPayload';
 import { useAppDispatch } from '@redux/store';
 import { required } from '@helpers/validators';
-import { BTN_STYLES, isDark } from '@constants/styles';
 import useDarkLight from '@hooks/useDarkLight';
 import getNotification from '@helpers/getNotification';
+import { BTN_STYLES, isDark } from '@constants/styles';
 import { newPasswordMatchValidator, newPasswordValidator } from './validator';
 import changePasswordAction, { resetChangePasswordAction } from '@redux/auth/changePassword';
 

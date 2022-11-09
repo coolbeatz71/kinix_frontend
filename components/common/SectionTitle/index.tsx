@@ -1,7 +1,12 @@
-import React, { FC, ReactElement } from 'react';
-import { Button, Col, Row, Typography } from 'antd';
+import { FC, ReactElement } from 'react';
 import Link from 'next/link';
 import { useTranslation } from 'react-i18next';
+
+import Col from 'antd/lib/col';
+import Row from 'antd/lib/row';
+import Button from 'antd/lib/button';
+import Typography from 'antd/lib/typography';
+
 import { isDark } from '@constants/styles';
 import useDarkLight from '@hooks/useDarkLight';
 

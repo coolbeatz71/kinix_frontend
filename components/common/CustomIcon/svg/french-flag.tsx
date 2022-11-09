@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 
 const FrenchFlagSvg: FC = () => (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 55.2 38.4">

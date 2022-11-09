@@ -1,11 +1,16 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import Link from 'next/link';
 import truncate from 'lodash/truncate';
 import upperFirst from 'lodash/upperFirst';
-import { Avatar, Col, Row, Typography } from 'antd';
 import { SettingOutlined, UserOutlined } from 'icons';
-import { SETTING_PATH } from '@constants/paths';
+
+import Col from 'antd/lib/col';
+import Row from 'antd/lib/row';
+import Avatar from 'antd/lib/avatar';
+import Typography from 'antd/lib/typography';
+
 import useDarkLight from '@hooks/useDarkLight';
+import { SETTING_PATH } from '@constants/paths';
 import { getBgColor } from '@helpers/getBgColor';
 
 import styles from './index.module.scss';
@@ -27,9 +32,9 @@ const UserAvatar: FC<IUserAvatarProps> = ({ userName, avatar, onClick }) => {
             <Col span={2}>
                 <Avatar
                     data-avatar
+                    src={avatar}
                     size={avatarSize}
                     icon={<UserOutlined />}
-                    src={avatar}
                     style={{
                         backgroundColor: getBgColor(userName),
                     }}

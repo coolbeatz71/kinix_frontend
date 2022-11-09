@@ -1,5 +1,11 @@
-import React, { FC } from 'react';
-import { Card, Col, Grid, Row, Skeleton } from 'antd';
+import { FC } from 'react';
+
+import Row from 'antd/lib/row';
+import Col from 'antd/lib/col';
+import Card from 'antd/lib/card';
+import Grid from 'antd/lib/grid';
+import Skeleton from 'antd/lib/skeleton';
+
 import useDarkLight from '@hooks/useDarkLight';
 
 import styles from './index.module.scss';

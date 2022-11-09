@@ -1,10 +1,17 @@
-import React, { FC, useEffect } from 'react';
-import { Avatar, Col, Menu, Row, Typography, Spin } from 'antd';
-import { UserOutlined, SettingOutlined, LogoutOutlined, LoadingOutlined } from 'icons';
+import { FC, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
+import { UserOutlined, SettingOutlined, LogoutOutlined, LoadingOutlined } from 'icons';
+
+import Col from 'antd/lib/col';
+import Row from 'antd/lib/row';
+import Spin from 'antd/lib/spin';
+import Menu from 'antd/lib/menu';
+import Avatar from 'antd/lib/avatar';
+import Typography from 'antd/lib/typography';
+
 import useDarkLight from '@hooks/useDarkLight';
 import { IRootState } from '@redux/reducers';
 import logoutAction from '@redux/auth/logout';

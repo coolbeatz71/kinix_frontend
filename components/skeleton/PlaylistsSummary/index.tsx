@@ -1,5 +1,8 @@
-import React, { FC, Fragment } from 'react';
-import { Col, Row, Skeleton } from 'antd';
+import { FC, Fragment } from 'react';
+
+import Col from 'antd/lib/col';
+import Row from 'antd/lib/row';
+import Skeleton from 'antd/lib/skeleton';
 
 const PlaylistsSummarySkeleton: FC = () => (
     <Fragment>

@@ -1,5 +1,8 @@
-import React, { FC } from 'react';
-import { Col, Row, Skeleton } from 'antd';
+import { FC } from 'react';
+
+import Col from 'antd/lib/col';
+import Row from 'antd/lib/row';
+import Skeleton from 'antd/lib/skeleton';
 
 const SectionTitleSkeleton: FC = () => (
     <Row justify="space-between" align="middle" className="my-5">

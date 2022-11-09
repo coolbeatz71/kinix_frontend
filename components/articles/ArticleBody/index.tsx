@@ -1,16 +1,23 @@
-import React, { FC, Fragment, ReactElement, useCallback, useEffect, useState } from 'react';
-import { BackTop, Col, Row, Typography, Grid, Affix } from 'antd';
+import { FC, Fragment, ReactElement, useCallback, useEffect, useState } from 'react';
+
+import Col from 'antd/lib/col';
+import Row from 'antd/lib/row';
+import Grid from 'antd/lib/grid';
+import Affix from 'antd/lib/affix';
+import BackTop from 'antd/lib/back-top';
+import Typography from 'antd/lib/typography';
+
 import { IArticle } from '@interfaces/api';
 import useDarkLight from '@hooks/useDarkLight';
 import { IUnknownObject } from '@interfaces/app';
 import { ALL_ARTICLES_PATH } from '@constants/paths';
 import getPlatformUrl from '@helpers/getPlatformUrl';
+import ArticleShare from '@components/sharings/ArticleShare';
 import ArticleHeader from '@components/articles/ArticleHeader';
 import ArticleTagsList from '@components/lists/ArticleTagsList';
-import SingleArticleAction from '@components/actions/SingleArticleAction';
-import ArticleShare from '@components/sharings/ArticleShare';
 import PopularArticleList from '@components/lists/PopularArticleList';
 import RelatedArticleList from '@components/lists/RelatedArticleList';
+import SingleArticleAction from '@components/actions/SingleArticleAction';
 
 import styles from './index.module.scss';
 

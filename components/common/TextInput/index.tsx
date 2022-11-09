@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { cloneElement, FC, ReactElement, useRef, useState } from 'react';
+import { cloneElement, FC, ReactElement, useRef, useState } from 'react';
 import styles from './index.module.scss';
 
 interface IFloatTextInputProps {

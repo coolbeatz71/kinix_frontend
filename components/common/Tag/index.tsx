@@ -1,5 +1,7 @@
-import React, { FC, useContext } from 'react';
-import { Tag as AntTag } from 'antd';
+import { FC, useContext } from 'react';
+
+import AntTag from 'antd/lib/tag';
+
 import { useTranslation } from 'react-i18next';
 import { VisibilityContext } from 'react-horizontal-scrolling-menu';
 

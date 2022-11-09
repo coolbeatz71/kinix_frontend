@@ -1,5 +1,8 @@
-import React, { FC, Fragment, useCallback, useEffect } from 'react';
-import { Col, Row } from 'antd';
+import { FC, Fragment, useCallback, useEffect } from 'react';
+
+import Row from 'antd/lib/row';
+import Col from 'antd/lib/col';
+
 import dynamic from 'next/dynamic';
 import isEmpty from 'lodash/isEmpty';
 import { useSelector } from 'react-redux';
@@ -40,7 +43,7 @@ const BookmarksList: FC = () => {
             ) : loading ? (
                 <DynamicBookmarksListSkeleton />
             ) : isEmpty(bookmarks?.rows) ? (
-                <EmptyData type={EnumEmptyDataType.CONTENT} desc={t('noBookmarksFound')} />
+                <EmptyData type={EnumEmptyDataType.BOOKMARK} desc={t('noBookmarksFound')} />
             ) : (
                 <Row align="middle" gutter={[32, 24]}>
                     {bookmarks?.rows?.map((bookmark: IBookmark) => (

@@ -1,5 +1,7 @@
-import React, { FC } from 'react';
-import { Button } from 'antd';
+import { FC } from 'react';
+
+import Button from 'antd/lib/button';
+
 import { useTranslation } from 'react-i18next';
 
 export interface IReadMoreButtonProps {

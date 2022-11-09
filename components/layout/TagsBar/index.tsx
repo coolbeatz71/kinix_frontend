@@ -1,6 +1,10 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import dynamic from 'next/dynamic';
-import { Col, Row, Skeleton } from 'antd';
+
+import Row from 'antd/lib/row';
+import Col from 'antd/lib/col';
+import Skeleton from 'antd/lib/skeleton';
+
 import Tag from '@components/common/Tag';
 import useDarkLight from '@hooks/useDarkLight';
 import onWheel, { getId } from '@helpers/tagBarOnWheel';

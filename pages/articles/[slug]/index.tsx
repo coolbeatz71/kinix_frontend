@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import { Fragment } from 'react';
 import { NextPage } from 'next';
 import dynamic from 'next/dynamic';
 import isEmpty from 'lodash/isEmpty';

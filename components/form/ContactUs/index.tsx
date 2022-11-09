@@ -1,7 +1,14 @@
-import React, { FC, Fragment, useState } from 'react';
+import { FC, Fragment, useState } from 'react';
 import { send } from '@emailjs/browser';
-import { Button, Form, Grid, Input, message, Typography } from 'antd';
 import { useTranslation } from 'react-i18next';
+
+import Grid from 'antd/lib/grid';
+import Form from 'antd/lib/form';
+import Input from 'antd/lib/input';
+import Button from 'antd/lib/button';
+import message from 'antd/lib/message';
+import Typography from 'antd/lib/typography';
+
 import { namesValidator } from './validator';
 import { required } from '@helpers/validators';
 import useDarkLight from '@hooks/useDarkLight';

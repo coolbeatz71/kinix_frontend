@@ -1,5 +1,8 @@
-import React, { FC } from 'react';
-import { Space, Button } from 'antd';
+import { FC } from 'react';
+
+import Space from 'antd/lib/space';
+import Button from 'antd/lib/button';
+
 import { useDispatch } from 'react-redux';
 import { isDark } from '@constants/styles';
 import { useTranslation } from 'react-i18next';

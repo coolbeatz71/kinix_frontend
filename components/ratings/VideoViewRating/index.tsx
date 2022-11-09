@@ -1,7 +1,9 @@
-import React, { FC, useState } from 'react';
-import { Button } from 'antd';
+import { FC, useState } from 'react';
 import { nanoid } from 'nanoid';
 import dynamic from 'next/dynamic';
+
+import Button from 'antd/lib/button';
+
 import useDarkLight from '@hooks/useDarkLight';
 import StarRatingComponent from 'react-star-rating-component';
 

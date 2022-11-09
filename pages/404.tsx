@@ -1,12 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { NextPage } from 'next';
 import dynamic from 'next/dynamic';
 import isEmpty from 'lodash/isEmpty';
 import { HomeOutlined } from 'icons';
-import { Button, Typography } from 'antd';
 import { useTranslation } from 'react-i18next';
+
+import Button from 'antd/lib/button';
+import Typography from 'antd/lib/typography';
+
 import { HOME_PATH } from '@constants/paths';
 import { IUnknownObject } from '@interfaces/app';
 

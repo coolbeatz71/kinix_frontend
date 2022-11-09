@@ -1,6 +1,8 @@
 import { FC, Fragment, ReactElement } from 'react';
 import qs from 'query-string';
-import { message } from 'antd';
+
+import message from 'antd/lib/message';
+
 import { useTranslation } from 'react-i18next';
 import copyToClipboard from '@helpers/copyToClipboard';
 

@@ -1,8 +1,16 @@
-import React, { FC, useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { List, Row, Col, Button, Modal, message, Tooltip } from 'antd';
 import { DeleteFilled, ExclamationCircleOutlined } from 'icons';
+
+import Row from 'antd/lib/row';
+import Col from 'antd/lib/col';
+import List from 'antd/lib/list';
+import Modal from 'antd/lib/modal';
+import Button from 'antd/lib/button';
+import message from 'antd/lib/message';
+import Tooltip from 'antd/lib/tooltip';
+
 import { IRootState } from '@redux/reducers';
 import getPayload from '@helpers/getPayload';
 import { useAppDispatch } from '@redux/store';

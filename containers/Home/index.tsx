@@ -1,4 +1,4 @@
-import React, { Fragment, FC, useCallback, useEffect } from 'react';
+import { Fragment, FC, useCallback, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import { useSelector } from 'react-redux';
 import { RiFocusLine } from 'react-icons/ri';

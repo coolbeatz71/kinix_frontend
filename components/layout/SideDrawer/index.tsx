@@ -1,4 +1,4 @@
-import React, { FC, useState, ReactNode, Key, Fragment } from 'react';
+import { FC, useState, ReactNode, Key, Fragment } from 'react';
 import clsx from 'clsx';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
@@ -6,7 +6,15 @@ import { useRouter } from 'next/router';
 import { useTranslation } from 'react-i18next';
 import { HomeFilled, MenuOutlined } from 'icons';
 import { BsFillSunFill, BsMoonStarsFill } from 'react-icons/bs';
-import { Menu, Drawer, Divider, Row, Col, Button, Space } from 'antd';
+
+import Row from 'antd/lib/row';
+import Col from 'antd/lib/col';
+import Menu from 'antd/lib/menu';
+import Space from 'antd/lib/space';
+import Drawer from 'antd/lib/drawer';
+import Button from 'antd/lib/button';
+import Divider from 'antd/lib/divider';
+
 import { HOME_PATH } from '@constants/paths';
 import useDarkLight from '@hooks/useDarkLight';
 import { ICurrentUser } from '@interfaces/user';

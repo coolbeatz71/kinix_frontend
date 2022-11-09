@@ -1,7 +1,9 @@
-import React, { FC, useState, useEffect } from 'react';
+import { FC, useState, useEffect } from 'react';
 import numeral from 'numeral';
-import { Button } from 'antd';
 import dynamic from 'next/dynamic';
+
+import Button from 'antd/lib/button';
+
 import { useSelector } from 'react-redux';
 import { ShareAltOutlined } from 'icons';
 import { IRootState } from '@redux/reducers';

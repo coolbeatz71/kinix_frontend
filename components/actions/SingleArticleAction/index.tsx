@@ -1,11 +1,16 @@
-import React, { FC, useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import numeral from 'numeral';
 import dynamic from 'next/dynamic';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { BsBookmarkPlus } from 'react-icons/bs';
 import { RiBookmark3Fill } from 'react-icons/ri';
-import { Button, Col, message, Row } from 'antd';
+
+import Row from 'antd/lib/row';
+import Col from 'antd/lib/col';
+import Button from 'antd/lib/button';
+import message from 'antd/lib/message';
+
 import { CommentOutlined, HeartOutlined, HeartFilled } from 'icons';
 import { IArticle } from '@interfaces/api';
 import { IRootState } from '@redux/reducers';

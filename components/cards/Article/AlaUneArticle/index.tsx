@@ -1,15 +1,19 @@
-import React, { FC, Fragment } from 'react';
+import { FC, Fragment } from 'react';
 import Link from 'next/link';
 import dayjs from 'dayjs';
 import Image from 'next/image';
 import truncate from 'lodash/truncate';
-import { useTranslation } from 'react-i18next';
-import useDarkLight from '@hooks/useDarkLight';
-import { IArticle } from '@interfaces/api';
-import { Button, Card, Typography } from 'antd';
-import { EnumAlaUnePriority } from '@constants/alaune-article';
 import { ClockCircleOutlined } from 'icons';
+import { useTranslation } from 'react-i18next';
+
+import Card from 'antd/lib/card';
+import Button from 'antd/lib/button';
+import Typography from 'antd/lib/typography';
+
+import { IArticle } from '@interfaces/api';
+import useDarkLight from '@hooks/useDarkLight';
 import { ALL_ARTICLES_PATH } from '@constants/paths';
+import { EnumAlaUnePriority } from '@constants/alaune-article';
 
 import styles from './index.module.scss';
 

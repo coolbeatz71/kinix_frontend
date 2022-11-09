@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import Icon from '@ant-design/icons';
 
 import HamburgerMenuSvg from './svg/hamburger-menu';

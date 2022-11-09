@@ -1,6 +1,9 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import numeral from 'numeral';
-import { Col, Row } from 'antd';
+
+import Row from 'antd/lib/row';
+import Col from 'antd/lib/col';
+
 import IRateSummary from '@interfaces/rates';
 
 export interface ISummaryHeaderProps {

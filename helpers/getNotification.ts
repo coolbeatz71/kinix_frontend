@@ -1,6 +1,8 @@
-import { INotificationStatus } from '@interfaces/notification';
-import { notification } from 'antd';
 import { ReactNode } from 'react';
+
+import notification from 'antd/lib/notification';
+
+import { INotificationStatus } from '@interfaces/notification';
 
 const getNotification = (status: INotificationStatus, description: ReactNode, message = 'Youpi!'): void =>
     notification[status]({

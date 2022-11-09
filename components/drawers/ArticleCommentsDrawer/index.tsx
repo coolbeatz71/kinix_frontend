@@ -1,10 +1,15 @@
-import React, { FC, useCallback, useEffect } from 'react';
+import { FC, useCallback, useEffect } from 'react';
 import numeral from 'numeral';
 import dynamic from 'next/dynamic';
 import { useSelector } from 'react-redux';
-import { Col, Drawer, Form, Row } from 'antd';
-import { useTranslation } from 'react-i18next';
 import { CloseCircleOutlined } from 'icons';
+import { useTranslation } from 'react-i18next';
+
+import Col from 'antd/lib/col';
+import Row from 'antd/lib/row';
+import Form from 'antd/lib/form';
+import Drawer from 'antd/lib/drawer';
+
 import { IArticle } from '@interfaces/api';
 import { IRootState } from '@redux/reducers';
 import getPayload from '@helpers/getPayload';

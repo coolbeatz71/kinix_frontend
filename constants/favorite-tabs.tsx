@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
 import { LikeFilled, ShareAltOutlined, StarFilled } from 'icons';
 import { RiBookmark3Fill, RiPlayList2Fill } from 'react-icons/ri';
 import {
