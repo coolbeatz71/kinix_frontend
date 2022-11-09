@@ -65,7 +65,7 @@ const HomeIllustration: FC = () => {
                                 block={!md}
                                 type="primary"
                                 icon={<YoutubeFilled />}
-                                size={sm && md ? 'small' : 'middle'}
+                                size={sm && md && !lg ? 'small' : 'large'}
                                 onClick={() => window?.open(YOUTUBE_URL, '_blank')}
                             >
                                 {t('subscribe')}

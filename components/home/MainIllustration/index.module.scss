@@ -58,7 +58,7 @@
             margin-top: $content-padding;
 
             &__text {
-                font-size: 11pt;
+                font-size: 12pt;
                 font-weight: 700;
                 @include preventTextSelection;
             }
@@ -148,7 +148,7 @@
 
             &__text {
                 text-align: left;
-                font-size: 25pt !important;
+                font-size: 26pt !important;
             }
 
             &__subscribe {

@@ -57,6 +57,10 @@
             @include mediaSM {
                 padding: calc(#{$mobile-content-padding} * 2) !important;
             }
+
+            @include mediaMD {
+                padding: calc(#{$mobile-content-padding} * 2) !important;
+            }
         }
     }
 }
