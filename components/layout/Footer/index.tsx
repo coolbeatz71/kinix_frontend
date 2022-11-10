@@ -1,8 +1,17 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import Link from 'next/link';
 import { useTranslation } from 'react-i18next';
 import { MdLocationOn, MdPhone, MdEmail } from 'react-icons/md';
-import { Col, Layout, Row, Typography, Anchor, Divider, Space, Grid } from 'antd';
+
+import Row from 'antd/lib/row';
+import Col from 'antd/lib/col';
+import Grid from 'antd/lib/grid';
+import Space from 'antd/lib/space';
+import Layout from 'antd/lib/layout';
+import Anchor from 'antd/lib/anchor';
+import Divider from 'antd/lib/divider';
+import Typography from 'antd/lib/typography';
+
 import useDarkLight from '@hooks/useDarkLight';
 import { APP_AUTHOR } from '@constants/platform';
 import ContactUsForm from '@components/form/ContactUs';

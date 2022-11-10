@@ -1,18 +1,25 @@
-import React, { FC, ReactNode, useEffect, useState } from 'react';
+import { FC, ReactNode, useEffect, useState } from 'react';
 import Image from 'next/image';
 import dynamic from 'next/dynamic';
 import truncate from 'lodash/truncate';
 import { useSelector } from 'react-redux';
-import { Button, Card, Form, Input, Select, Typography } from 'antd';
 import { useTranslation } from 'react-i18next';
+
+import Form from 'antd/lib/form';
+import Card from 'antd/lib/card';
+import Input from 'antd/lib/input';
+import Button from 'antd/lib/button';
+import Select from 'antd/lib/select';
+import Typography from 'antd/lib/typography';
+
 import { IUser } from '@interfaces/api';
 import getPayload from '@helpers/getPayload';
 import { IRootState } from '@redux/reducers';
 import { IUserData } from '@interfaces/user';
 import { useAppDispatch } from '@redux/store';
-import { BTN_STYLES, isDark } from '@constants/styles';
 import useDarkLight from '@hooks/useDarkLight';
 import countryList from '@constants/country-list';
+import { BTN_STYLES, isDark } from '@constants/styles';
 import getNotification from '@helpers/getNotification';
 import { ICountryObject } from '@interfaces/countryObject';
 import { countryNameValidator, phonePartialValidator } from './validator';

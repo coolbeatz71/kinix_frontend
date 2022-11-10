@@ -1,11 +1,17 @@
-import React, { FC, useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import numeral from 'numeral';
 import Image from 'next/image';
 import isEmpty from 'lodash/isEmpty';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { HeartFilled, HeartOutlined } from 'icons';
-import { Col, Grid, message, Row, Typography } from 'antd';
+
+import Col from 'antd/lib/col';
+import Row from 'antd/lib/row';
+import Grid from 'antd/lib/grid';
+import message from 'antd/lib/message';
+import Typography from 'antd/lib/typography';
+
 import getPayload from '@helpers/getPayload';
 import { IRootState } from '@redux/reducers';
 import { useAppDispatch } from '@redux/store';

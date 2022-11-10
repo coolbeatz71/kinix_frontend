@@ -223,7 +223,7 @@
                 }
 
                 & > li {
-                    line-height: calc(#{$header-height} / 2);
+                    line-height: calc(#{$header-height} * 0.5);
                     margin-right: 0.5rem !important;
                 }
             }
@@ -335,8 +335,8 @@
             background-repeat: no-repeat;
             background-position: left center;
 
-            height: calc(#{$min-sidenav-width} / 1.6);
-            width: calc(#{$max-sidenav-width} / 1.8);
+            width: calc(#{$max-sidenav-width} * 0.56);
+            height: calc(#{$min-sidenav-width} * 0.625);
         }
     }
 

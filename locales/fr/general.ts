@@ -69,4 +69,9 @@ export const general = {
     profilePicture: 'Photo de profil',
     cancel: 'Annuler',
     modifyImage: 'Modifier image',
+    visitNow: 'Visiter',
+    newsletterTitle: 'Abonnez-vous et Restez informé',
+    newsletterSubtitle: `Inscrivez-vous à notre bulletin hebdomadaire pour recevoir les dernières nouvelles, et offres incroyables
+    directement sur votre boîte de réception.`,
+    enterEmail: 'Entrer votre email',
 };

@@ -1,6 +1,9 @@
-import React, { FC, useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import numeral from 'numeral';
-import { Button, message } from 'antd';
+
+import Button from 'antd/lib/button';
+import message from 'antd/lib/message';
+
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { HeartFilled, HeartOutlined } from 'icons';

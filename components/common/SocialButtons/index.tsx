@@ -1,5 +1,8 @@
-import React, { FC } from 'react';
-import { Button, Space } from 'antd';
+import { FC } from 'react';
+
+import Space from 'antd/lib/space';
+import Button from 'antd/lib/button';
+
 import socialList from '@constants/social';
 
 interface ISocialButtonsProps {

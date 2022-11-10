@@ -1,8 +1,10 @@
-import React, { ChangeEventHandler, FC, KeyboardEventHandler } from 'react';
-import { Input } from 'antd';
-import { useTranslation } from 'react-i18next';
-import { SearchOutlined } from 'icons';
+import { ChangeEventHandler, FC, KeyboardEventHandler } from 'react';
+
+import Input from 'antd/lib/input';
 import { SizeType } from 'antd/lib/config-provider/SizeContext';
+
+import { SearchOutlined } from 'icons';
+import { useTranslation } from 'react-i18next';
 import useDarkLight from '@hooks/useDarkLight';
 
 import styles from './index.module.scss';

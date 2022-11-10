@@ -1,13 +1,17 @@
-import React, { FC, Fragment, useState } from 'react';
-import dynamic from 'next/dynamic';
+import { FC, Fragment, useState } from 'react';
 import dayjs from 'dayjs';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Card, Typography } from 'antd';
+import dynamic from 'next/dynamic';
+
+import Card from 'antd/lib/card';
+import Typography from 'antd/lib/typography';
+
 import isEmpty from 'lodash/isEmpty';
 import truncate from 'lodash/truncate';
-import { useTranslation } from 'react-i18next';
 import { ClockCircleOutlined } from 'icons';
+import { useTranslation } from 'react-i18next';
+
 import { IArticle } from '@interfaces/api';
 import useDarkLight from '@hooks/useDarkLight';
 import { ALL_ARTICLES_PATH } from '@constants/paths';

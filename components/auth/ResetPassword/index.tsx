@@ -1,6 +1,11 @@
-import React, { FC, useEffect } from 'react';
+import { FC, useEffect } from 'react';
 import dynamic from 'next/dynamic';
-import { Button, Divider, Form, Input } from 'antd';
+
+import Form from 'antd/lib/form';
+import Input from 'antd/lib/input';
+import Button from 'antd/lib/button';
+import Divider from 'antd/lib/divider';
+
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import getPayload from '@helpers/getPayload';

@@ -1,10 +1,13 @@
-import React, { FC } from 'react';
-import { Col, Row } from 'antd';
+import { FC } from 'react';
 import isEmpty from 'lodash/isEmpty';
-import EmptyData from '../EmptyData';
 import { useTranslation } from 'react-i18next';
-import { EnumEmptyDataType } from '@constants/empty-data-type';
+
+import Col from 'antd/lib/col';
+import Row from 'antd/lib/row';
+
 import useDarkLight from '@hooks/useDarkLight';
+import EmptyData from '@components/common/EmptyData';
+import { EnumEmptyDataType } from '@constants/empty-data-type';
 
 import styles from './index.module.scss';
 

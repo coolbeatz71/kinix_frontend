@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 
 const LikedHeartSvg: FC = () => (
     <svg width="1em" height="1em" fill="currentColor" viewBox="0 0 1024 1024">

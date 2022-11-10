@@ -1,5 +1,5 @@
-import React, { FC } from 'react';
-import { Alert } from 'antd';
+import { FC } from 'react';
+import Alert from 'antd/lib/alert';
 import { IUnknownObject } from '@interfaces/app';
 
 import styles from './index.module.scss';

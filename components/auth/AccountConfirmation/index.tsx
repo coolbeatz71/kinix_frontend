@@ -1,8 +1,15 @@
-import React, { FC, useEffect, useState, Fragment } from 'react';
+import { FC, useEffect, useState, Fragment } from 'react';
 import dynamic from 'next/dynamic';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { Button, Col, Form, Input, Row, Typography } from 'antd';
+
+import Row from 'antd/lib/row';
+import Col from 'antd/lib/col';
+import Form from 'antd/lib/form';
+import Input from 'antd/lib/input';
+import Button from 'antd/lib/button';
+import Typography from 'antd/lib/typography';
+
 import otpValidator from './validator';
 import { IRootState } from '@redux/reducers';
 import getPayload from '@helpers/getPayload';

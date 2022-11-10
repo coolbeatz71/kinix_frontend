@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react';
+import { FC, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import { useSelector } from 'react-redux';
 import { IArticle } from '@interfaces/api';

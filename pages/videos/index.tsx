@@ -1,14 +1,22 @@
-import React from 'react';
+import { Fragment } from 'react';
 import { NextPage } from 'next';
+import dynamic from 'next/dynamic';
+import { useTranslation } from 'react-i18next';
+
 import Layout from '@components/layout';
 import VideoContainer from '@containers/Videos';
-import { useTranslation } from 'react-i18next';
+
+const DynamicStoryModal = dynamic(() => import('@components/modal/StoryModal'));
 
 const VideosPage: NextPage = () => {
     const { t } = useTranslation();
+
     return (
         <Layout title={t('videos')} showFooter={false} isVideoCategory>
-            <VideoContainer />
+            <Fragment>
+                <VideoContainer />
+                <DynamicStoryModal />
+            </Fragment>
         </Layout>
     );
 };

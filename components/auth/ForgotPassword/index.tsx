@@ -1,6 +1,11 @@
-import React, { FC, useEffect } from 'react';
+import { FC, useEffect } from 'react';
 import dynamic from 'next/dynamic';
-import { Button, Divider, Form, Input } from 'antd';
+
+import Form from 'antd/lib/form';
+import Input from 'antd/lib/input';
+import Button from 'antd/lib/button';
+import Divider from 'antd/lib/divider';
+
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import getPayload from '@helpers/getPayload';
@@ -8,11 +13,11 @@ import { IRootState } from '@redux/reducers';
 import { useAppDispatch } from '@redux/store';
 import { BTN_STYLES } from '@constants/styles';
 import AuthModal from '@components/modal/AuthModal';
-import { emailValidator } from '../SignUp/validator';
 import getNotification from '@helpers/getNotification';
 import { EnumAuthContext } from '@constants/auth-context';
 import FloatTextInput from '@components/common/TextInput';
 import { showAuthDialogAction } from '@redux/auth/showDialog';
+import { emailValidator } from '@components/auth/SignUp/validator';
 import forgotPasswordAction, { resetForgotPasswordAction } from '@redux/auth/forgotPassword';
 
 const DynamicErrorAlert = dynamic(() => import('@components/common/ErrorAlert'));

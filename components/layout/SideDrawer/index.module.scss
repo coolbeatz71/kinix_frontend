@@ -118,7 +118,7 @@
             background-repeat: no-repeat;
             width: $min-sidenav-width;
             background-size: $logo-bg-size;
-            background-position: calc(#{$padding} / 2);
+            background-position: calc(#{$padding} * 0.5);
         }
 
         [class~='hamburger-menu'] {

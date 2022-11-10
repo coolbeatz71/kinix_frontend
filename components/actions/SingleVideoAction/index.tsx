@@ -1,9 +1,16 @@
-import React, { FC, useState } from 'react';
+import { FC, useState } from 'react';
 import numeral from 'numeral';
 import dynamic from 'next/dynamic';
 import { useTranslation } from 'react-i18next';
 import { RiPlayListAddFill } from 'react-icons/ri';
-import { Button, Col, Rate, Row, Space, Tooltip } from 'antd';
+
+import Col from 'antd/lib/col';
+import Row from 'antd/lib/row';
+import Rate from 'antd/lib/rate';
+import Space from 'antd/lib/space';
+import Button from 'antd/lib/button';
+import Tooltip from 'antd/lib/tooltip';
+
 import { CommentOutlined, LikeOutlined } from 'icons';
 import { IVideo } from '@interfaces/api';
 import { IItemsEntity } from '@interfaces/youtube';

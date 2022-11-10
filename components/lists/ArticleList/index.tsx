@@ -1,6 +1,9 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import dynamic from 'next/dynamic';
-import { Col, Row } from 'antd';
+
+import Row from 'antd/lib/row';
+import Col from 'antd/lib/col';
+
 import isEmpty from 'lodash/isEmpty';
 import { useTranslation } from 'react-i18next';
 import { IArticle } from '@interfaces/api';

@@ -1,10 +1,17 @@
-import React, { FC, useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import Image from 'next/image';
 import dynamic from 'next/dynamic';
 import isEmpty from 'lodash/isEmpty';
 import { YoutubeFilled } from 'icons';
 import { useTranslation } from 'react-i18next';
-import { Row, Col, Typography, Button, Carousel, Grid } from 'antd';
+
+import Row from 'antd/lib/row';
+import Col from 'antd/lib/col';
+import Grid from 'antd/lib/grid';
+import Button from 'antd/lib/button';
+import Carousel from 'antd/lib/carousel';
+import Typography from 'antd/lib/typography';
+
 import useDarkLight from '@hooks/useDarkLight';
 import { IUnknownObject } from 'interfaces/app';
 import { YOUTUBE_URL } from '@constants/social';

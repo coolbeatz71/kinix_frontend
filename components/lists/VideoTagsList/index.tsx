@@ -1,5 +1,7 @@
-import React, { FC } from 'react';
-import { Tag } from 'antd';
+import { FC } from 'react';
+
+import Tag from 'antd/lib/tag';
+
 import Link from 'next/link';
 import { ALL_VIDEOS_PATH } from '@constants/paths';
 

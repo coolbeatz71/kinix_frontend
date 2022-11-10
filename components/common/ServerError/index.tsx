@@ -1,6 +1,9 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import Image from 'next/image';
-import { Result, Button } from 'antd';
+
+import Result from 'antd/lib/result';
+import Button from 'antd/lib/button';
+
 import { useTranslation } from 'react-i18next';
 import useDarkLight from '@hooks/useDarkLight';
 import { IUnknownObject } from '@interfaces/app';

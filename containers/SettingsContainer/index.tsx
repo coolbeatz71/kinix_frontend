@@ -1,5 +1,8 @@
-import React, { FC, useEffect } from 'react';
-import { Col, Row } from 'antd';
+import { FC, useEffect } from 'react';
+
+import Row from 'antd/lib/row';
+import Col from 'antd/lib/col';
+
 import isEmpty from 'lodash/isEmpty';
 import { useSelector } from 'react-redux';
 import { IUser } from '@interfaces/api';

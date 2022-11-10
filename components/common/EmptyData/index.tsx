@@ -1,8 +1,12 @@
-import React, { FC } from 'react';
-import { Button, Empty } from 'antd';
-import { EnumEmptyDataType } from '@constants/empty-data-type';
-import styles from './index.module.scss';
+import { FC } from 'react';
+
+import Empty from 'antd/lib/empty';
+import Button from 'antd/lib/button';
+
 import useDarkLight from '@hooks/useDarkLight';
+import { EnumEmptyDataType } from '@constants/empty-data-type';
+
+import styles from './index.module.scss';
 
 export interface IEmptyDataProps {
     desc: string;
@@ -23,6 +27,8 @@ const EmptyData: FC<IEmptyDataProps> = ({ type, desc, hasButton = false, buttonT
                 return '/feedback/empty-search.svg';
             case EnumEmptyDataType.LYRICS:
                 return '/feedback/empty-search.svg';
+            case EnumEmptyDataType.BOOKMARK:
+                return '/feedback/empty-bookmark.svg';
             default:
                 return '/feedback/empty-search.svg';
         }

@@ -1,13 +1,19 @@
-import React, { FC, useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import dayjs from 'dayjs';
-import Image from 'next/image';
 import Link from 'next/link';
+import Image from 'next/image';
 import isEmpty from 'lodash/isEmpty';
 import truncate from 'lodash/truncate';
 import isBoolean from 'lodash/isBoolean';
 import { PlayCircleTwoTone } from 'icons';
 import StarRatingComponent from 'react-star-rating-component';
-import { Button, Card, Col, Grid, Row, Typography } from 'antd';
+
+import Col from 'antd/lib/col';
+import Row from 'antd/lib/row';
+import Grid from 'antd/lib/grid';
+import Card from 'antd/lib/card';
+import Button from 'antd/lib/button';
+import Typography from 'antd/lib/typography';
 
 import { IVideo } from '@interfaces/api';
 import { WARNING } from '@constants/styles';
@@ -55,10 +61,10 @@ const RelatedVideoCard: FC<IRelatedVideoCardProps> = ({ video, bordered = false 
                         <Link href={link} passHref>
                             <div className="overlay" style={overLayStyles}>
                                 <Button
-                                    icon={<PlayCircleTwoTone twoToneColor={WARNING} />}
                                     type="text"
                                     size="large"
                                     shape="circle"
+                                    icon={<PlayCircleTwoTone twoToneColor={WARNING} />}
                                 />
                             </div>
                         </Link>

@@ -1,10 +1,18 @@
-import React, { FC, useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import ImgCrop from 'antd-img-crop';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import uploadImageCloudinary from 'services/cloudinary';
 import { EditOutlined, LoadingOutlined, UserOutlined } from 'icons';
-import { Avatar, Button, Typography, Upload, message, Spin, Card } from 'antd';
+
+import Spin from 'antd/lib/spin';
+import Card from 'antd/lib/card';
+import Upload from 'antd/lib/upload';
+import Button from 'antd/lib/button';
+import Avatar from 'antd/lib/avatar';
+import message from 'antd/lib/message';
+import Typography from 'antd/lib/typography';
+
 import { isDark } from '@constants/styles';
 import getPayload from '@helpers/getPayload';
 import { IRootState } from '@redux/reducers';
@@ -14,7 +22,6 @@ import { MAX_FILE_SIZE } from '@constants/app';
 import { getBgColor } from '@helpers/getBgColor';
 import getNotification from '@helpers/getNotification';
 import updateAvatarAction, { resetUpdateAvatarAction } from '@redux/auth/updateAvatar';
-import 'antd/lib/slider/style';
 
 import styles from './index.module.scss';
 

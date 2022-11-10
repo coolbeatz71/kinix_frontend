@@ -1,9 +1,14 @@
-import React, { FC, useState, ReactNode, Key, Fragment } from 'react';
+import { FC, useState, ReactNode, Key, Fragment } from 'react';
 import Link from 'next/link';
 import { HomeFilled } from 'icons';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'react-i18next';
-import { Divider, Layout, Menu, Grid } from 'antd';
+
+import Menu from 'antd/lib/menu';
+import Grid from 'antd/lib/grid';
+import Layout from 'antd/lib/layout';
+import Divider from 'antd/lib/divider';
+
 import Logo from '@components/common/Logo';
 import { HOME_PATH } from '@constants/paths';
 import useDarkLight from '@hooks/useDarkLight';

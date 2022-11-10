@@ -1,6 +1,8 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import dayjs from 'dayjs';
-import { List } from 'antd';
+
+import List from 'antd/lib/list';
+
 import { useSelector } from 'react-redux';
 import { IRootState } from '@redux/reducers';
 import { IComment, IArticle } from '@interfaces/api';

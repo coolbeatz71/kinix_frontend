@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
 import isEmpty from 'lodash/isEmpty';
 import { useSelector } from 'react-redux';

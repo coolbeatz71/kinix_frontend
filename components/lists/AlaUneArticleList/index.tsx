@@ -1,5 +1,8 @@
-import React, { FC } from 'react';
-import { Col, Row } from 'antd';
+import { FC } from 'react';
+
+import Row from 'antd/lib/row';
+import Col from 'antd/lib/col';
+
 import { IArticle } from '@interfaces/api';
 import { EnumAlaUnePriority } from '@constants/alaune-article';
 import AlaUneArticleCard from '@components/cards/Article/AlaUneArticle';

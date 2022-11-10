@@ -1,7 +1,12 @@
-import React, { FC } from 'react';
-import { Col, Divider, Row, Typography } from 'antd';
-import VideoViewRating from '../VideoViewRating';
+import { FC } from 'react';
+
+import Row from 'antd/lib/row';
+import Col from 'antd/lib/col';
+import Divider from 'antd/lib/divider';
+import Typography from 'antd/lib/typography';
+
 import useDarkLight from '@hooks/useDarkLight';
+import VideoViewRating from '../VideoViewRating';
 
 import styles from './index.module.scss';
 

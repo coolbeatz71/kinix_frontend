@@ -1,6 +1,10 @@
-import React, { FC, ReactNode, useEffect } from 'react';
+import { FC, ReactNode, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { Button, message, Popover } from 'antd';
+
+import Button from 'antd/lib/button';
+import message from 'antd/lib/message';
+import Popover from 'antd/lib/popover';
+
 import { IRootState } from '@redux/reducers';
 import getPayload from '@helpers/getPayload';
 import { useAppDispatch } from '@redux/store';

@@ -1,5 +1,6 @@
-import React, { FC } from 'react';
-import { Skeleton } from 'antd';
+import { FC } from 'react';
+
+import Skeleton from 'antd/lib/skeleton';
 
 const RatingSummarySkeleton: FC = () => (
     <div className="d-flex flex-column">

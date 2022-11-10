@@ -1,7 +1,10 @@
-import React, { cloneElement, CSSProperties, FC, Fragment, ReactElement, useEffect, useState } from 'react';
+import { cloneElement, CSSProperties, FC, Fragment, ReactElement, useEffect, useState } from 'react';
 import Head from 'next/head';
-import { Modal, Typography } from 'antd';
 import { CloseCircleOutlined } from 'icons';
+
+import Modal from 'antd/lib/modal';
+import Typography from 'antd/lib/typography';
+
 import { APP_NAME } from '@constants/platform';
 
 import styles from './index.module.scss';

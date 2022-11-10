@@ -1,18 +1,18 @@
-import React, { FC, useEffect } from 'react';
+import { FC, useEffect } from 'react';
 import isEmpty from 'lodash/isEmpty';
 import Carousel from 'nuka-carousel';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { IAds } from '@interfaces/api';
 import { PRIMARY } from '@constants/styles';
-import SliderContent from './SliderContent';
+import SliderContent from '../SliderContent';
 import { IRootState } from '@redux/reducers';
 import getAllAdsAction from '@redux/ads/all';
 import { useAppDispatch } from '@redux/store';
 import { IUnknownObject } from '@interfaces/app';
 import { getBgColor } from '@helpers/getBgColor';
 
-import styles from './index.module.scss';
+import styles from './../index.module.scss';
 
 const AdsCarousel: FC = () => {
     const { t } = useTranslation();

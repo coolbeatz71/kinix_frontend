@@ -1,6 +1,9 @@
-import React, { FC } from 'react';
-import { Col, Row } from 'antd';
+import { FC } from 'react';
 import dynamic from 'next/dynamic';
+
+import Row from 'antd/lib/row';
+import Col from 'antd/lib/col';
+
 import { EnumAlaUnePriority } from '@constants/alaune-article';
 
 const DynamicAlaUneArticleCardSkeleton = dynamic(() => import('../AlaUneArticleCard'));

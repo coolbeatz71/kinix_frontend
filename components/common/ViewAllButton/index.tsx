@@ -1,6 +1,9 @@
-import React, { FC } from 'react';
-import { Row, Button } from 'antd';
+import { FC } from 'react';
 import Link from 'next/link';
+
+import Row from 'antd/lib/row';
+import Button from 'antd/lib/button';
+
 import { useTranslation } from 'react-i18next';
 
 interface IViewAllButtonProps {

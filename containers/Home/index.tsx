@@ -1,15 +1,23 @@
-import React, { Fragment, FC, useCallback, useEffect } from 'react';
+import { Fragment, FC, useCallback, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import { useSelector } from 'react-redux';
-import { useTranslation } from 'react-i18next';
-import { IRootState } from '@redux/reducers';
 import { RiFocusLine } from 'react-icons/ri';
-import { useAppDispatch } from '@redux/store';
+import { useTranslation } from 'react-i18next';
 import { BsFillSpeakerFill } from 'react-icons/bs';
 import { FaMicrophoneAlt, FaPodcast } from 'react-icons/fa';
 import { BulbFilled, VideoCameraFilled, FireFilled } from 'icons';
+import {
+    LEFOCUS_PATH,
+    PODCAST_PATH,
+    FLEXBEATZ_PATH,
+    INTERVIEW_PATH,
+    ALL_VIDEOS_PATH,
+    MUSIC_VIDEO_PATH,
+} from '@constants/paths';
+import { IRootState } from '@redux/reducers';
+import { useAppDispatch } from '@redux/store';
 import getVideosFeedAction from '@redux/videos/feed';
-import AdsCarousel from '@components/home/AdsCarousel';
+import AdsCarousel from '@components/ads/AdsCarousel';
 import HomeVideoSection from '@components/home/VideoSection';
 import HomeIllustration from '@components/home/MainIllustration';
 import AlaUneArticleSection from '@components/home/AlaUneArticleSection';
@@ -48,10 +56,10 @@ const HomeContainer: FC = () => {
                     <div className="my-5">
                         <HomeVideoSection
                             icon={<BulbFilled />}
-                            linkHasMore="/videos?"
                             title={t('discovery')}
                             videos={videos?.discovery}
                             loading={loading && !fetched}
+                            linkHasMore={ALL_VIDEOS_PATH}
                         />
                     </div>
 
@@ -59,19 +67,19 @@ const HomeContainer: FC = () => {
                         <HomeVideoSection
                             title={t('popular')}
                             icon={<FireFilled />}
-                            linkHasMore="/videos?"
                             videos={videos?.popular}
                             loading={loading && !fetched}
+                            linkHasMore={ALL_VIDEOS_PATH}
                         />
                     </div>
 
                     <div className="my-5">
                         <HomeVideoSection
-                            linkHasMore="/videos?"
                             title={t('musicVideos')}
                             videos={videos?.musicVideo}
                             icon={<VideoCameraFilled />}
                             loading={loading && !fetched}
+                            linkHasMore={MUSIC_VIDEO_PATH}
                         />
                     </div>
 
@@ -79,8 +87,8 @@ const HomeContainer: FC = () => {
                         <HomeVideoSection
                             isExclusive
                             title="FlexBeatz"
-                            linkHasMore="/videos?"
                             videos={videos?.flexBeatz}
+                            linkHasMore={FLEXBEATZ_PATH}
                             icon={<BsFillSpeakerFill />}
                             loading={loading && !fetched}
                             sessionDetails={{
@@ -96,8 +104,8 @@ const HomeContainer: FC = () => {
                         <HomeVideoSection
                             title="Podcast"
                             icon={<FaPodcast />}
-                            linkHasMore="/videos?"
                             videos={videos?.podcast}
+                            linkHasMore={PODCAST_PATH}
                             loading={loading && !fetched}
                         />
                     </div>
@@ -106,9 +114,9 @@ const HomeContainer: FC = () => {
                         <HomeVideoSection
                             isExclusive
                             title="Interview"
-                            linkHasMore="/videos?"
                             icon={<FaMicrophoneAlt />}
                             videos={videos?.interview}
+                            linkHasMore={INTERVIEW_PATH}
                             loading={loading && !fetched}
                             sessionDetails={{
                                 link: '/videos?',
@@ -124,8 +132,8 @@ const HomeContainer: FC = () => {
                             isExclusive
                             title="LeFocus"
                             icon={<RiFocusLine />}
-                            linkHasMore="/videos?"
                             videos={videos?.leFocus}
+                            linkHasMore={LEFOCUS_PATH}
                             loading={loading && !fetched}
                             sessionDetails={{
                                 link: '/videos?',

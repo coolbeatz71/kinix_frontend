@@ -1,15 +1,18 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import dayjs from 'dayjs';
+import Link from 'next/link';
 import truncate from 'lodash/truncate';
-import { Card, Typography } from 'antd';
-import { useTranslation } from 'react-i18next';
-import useDarkLight from '@hooks/useDarkLight';
-import { IArticle } from '@interfaces/api';
 import { ClockCircleOutlined } from 'icons';
+import { useTranslation } from 'react-i18next';
+
+import Card from 'antd/lib/card';
+import Typography from 'antd/lib/typography';
+
+import { IArticle } from '@interfaces/api';
+import useDarkLight from '@hooks/useDarkLight';
+import { ALL_ARTICLES_PATH } from '@constants/paths';
 
 import styles from './index.module.scss';
-import Link from 'next/link';
-import { ALL_ARTICLES_PATH } from '@constants/paths';
 
 const { Title, Paragraph, Text } = Typography;
 

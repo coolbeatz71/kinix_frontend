@@ -1,9 +1,12 @@
-import React, { FC } from 'react';
-import { Col, Row } from 'antd';
+import { FC } from 'react';
 import dynamic from 'next/dynamic';
+
+import Row from 'antd/lib/row';
+import Col from 'antd/lib/col';
+
 import isEmpty from 'lodash/isEmpty';
-import { useTranslation } from 'react-i18next';
 import { IVideo } from '@interfaces/api';
+import { useTranslation } from 'react-i18next';
 import { EnumEmptyDataType } from '@constants/empty-data-type';
 
 const DynamicEmptyData = dynamic(() => import('@components/common/EmptyData'));

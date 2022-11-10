@@ -1,9 +1,15 @@
-import React, { FC, useState } from 'react';
-import { Button, Col, Layout, Row, Grid } from 'antd';
+import { FC, useState } from 'react';
+
+import Row from 'antd/lib/row';
+import Col from 'antd/lib/col';
+import Grid from 'antd/lib/grid';
+import Layout from 'antd/lib/layout';
+import Button from 'antd/lib/button';
+
 import dynamic from 'next/dynamic';
 import isEmpty from 'lodash/isEmpty';
-import { BsFillGridFill } from 'react-icons/bs';
 import { MenuOutlined } from 'icons';
+import { BsFillGridFill } from 'react-icons/bs';
 import Logo from '@components/common/Logo';
 import useDarkLight from '@hooks/useDarkLight';
 import { ICurrentUser } from '@interfaces/user';

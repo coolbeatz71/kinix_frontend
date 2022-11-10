@@ -7,6 +7,7 @@ export { default as FacebookFilled } from '@ant-design/icons/FacebookFilled';
 export { default as GoogleOutlined } from '@ant-design/icons/GoogleOutlined';
 export { default as ClockCircleOutlined } from '@ant-design/icons/ClockCircleOutlined';
 export { default as CloseCircleOutlined } from '@ant-design/icons/CloseCircleOutlined';
+export { default as CloseSquareOutlined } from '@ant-design/icons/CloseSquareOutlined';
 export { default as PlayCircleTwoTone } from '@ant-design/icons/PlayCircleTwoTone';
 export { default as UserOutlined } from '@ant-design/icons/UserOutlined';
 export { default as ExclamationCircleOutlined } from '@ant-design/icons/ExclamationCircleOutlined';
