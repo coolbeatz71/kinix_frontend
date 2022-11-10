@@ -1,15 +1,16 @@
-import { FC, useState } from 'react';
+import React, { FC, Fragment } from 'react';
 
 import Row from 'antd/lib/row';
 import Col from 'antd/lib/col';
 import Grid from 'antd/lib/grid';
+import Space from 'antd/lib/space';
 import Layout from 'antd/lib/layout';
 import Button from 'antd/lib/button';
 
 import dynamic from 'next/dynamic';
 import isEmpty from 'lodash/isEmpty';
 import { MenuOutlined } from 'icons';
-import { BsFillGridFill } from 'react-icons/bs';
+
 import Logo from '@components/common/Logo';
 import useDarkLight from '@hooks/useDarkLight';
 import { ICurrentUser } from '@interfaces/user';
@@ -19,6 +20,9 @@ import SocialButtons from '@components/common/SocialButtons';
 import UserAuthSection from '@components/layout/UserAuthSection';
 import LanguageDropDown from '@components/layout/LanguageDropDown';
 import { CategoryServerPropsType } from '@context/video-categories';
+import UserMobileDropDown from '@components/layout/UserMobileDropDown';
+import SocialButtonDropDown from '@components/common/SocialButtonDropDown';
+import NotificationDropDown from '@components/layout/NotificationDropDown';
 
 const DynamicLoginModal = dynamic(() => import('@components/auth/Login'));
 const DynamicSignUpModal = dynamic(() => import('@components/auth/SignUp'));
@@ -59,8 +63,6 @@ const Header: FC<IHeaderProps> = ({
     const { value } = useDarkLight();
     const { lg, md } = useBreakpoint();
 
-    const [openDropdown, setOpenDropdown] = useState(false);
-
     const userLang: 'en' | 'fr' | string = getLanguage();
 
     const openSideDrawer = (): void => setOpenSideDrawer(true);
@@ -97,7 +99,7 @@ const Header: FC<IHeaderProps> = ({
             <DynamicForgotPasswordModal />
 
             <Row align="middle" className={styles.header__row} justify="space-between">
-                <Col xs={12} sm={12} lg={1} className="p-0">
+                <Col xs={12} sm={12} md={4} lg={1} className="p-0">
                     <Button
                         type="text"
                         icon={<MenuOutlined />}
@@ -114,9 +116,21 @@ const Header: FC<IHeaderProps> = ({
                 )}
 
                 {md && (
-                    <Col xs={18} sm={18} lg={7}>
+                    <Col xs={18} sm={18} md={12} lg={7}>
                         {!isVideoCategory && <DynamicSearchInput />}
                     </Col>
+                )}
+
+                {md && !lg && (
+                    <Fragment>
+                        <Col className="d-flex justify-content-end">
+                            <LanguageDropDown userLang={userLang} />
+                        </Col>
+
+                        <Col className="d-flex justify-content-end">
+                            <SocialButtonDropDown />
+                        </Col>
+                    </Fragment>
                 )}
 
                 {lg && (
@@ -135,8 +149,6 @@ const Header: FC<IHeaderProps> = ({
                                 {currentUser?.isLoggedIn && (
                                     <DynamicUserProfileDropDown
                                         currentUser={currentUser}
-                                        openDropdown={openDropdown}
-                                        setOpenDropdown={setOpenDropdown}
                                         className={styles.header__row__profile}
                                     />
                                 )}
@@ -146,8 +158,11 @@ const Header: FC<IHeaderProps> = ({
                 )}
 
                 {!lg && (
-                    <Col xs={12} sm={12} className="d-flex justify-content-end">
-                        <Button ghost type="primary" icon={<BsFillGridFill />} />
+                    <Col xs={12} sm={12} md={4} className="d-flex justify-content-end">
+                        <Space size="large">
+                            {currentUser?.isLoggedIn && <NotificationDropDown />}
+                            <UserMobileDropDown currentUser={currentUser} />
+                        </Space>
                     </Col>
                 )}
             </Row>

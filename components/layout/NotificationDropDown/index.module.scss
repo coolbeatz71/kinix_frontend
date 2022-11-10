@@ -1,0 +1,13 @@
+@import 'styles/colors.scss';
+
+.notification {
+    [class~='anticon-bell'] {
+        font-size: 15pt;
+    }
+
+    &[data-theme='dark'] {
+        [class~='anticon-bell'] {
+            color: $white;
+        }
+    }
+}

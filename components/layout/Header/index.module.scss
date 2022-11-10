@@ -287,63 +287,6 @@
         }
     }
 
-    @include mediaMaxLG {
-        [data-search-col] {
-            width: 64px;
-            position: relative;
-            height: 32px;
-
-            [class~='ant-input-affix-wrapper'] {
-                position: absolute;
-                top: 0;
-                bottom: 0;
-                right: 20px;
-                width: 40px;
-                padding: 4px 12px;
-                [class~='ant-input-suffix'] {
-                    display: none;
-                }
-                &[class~='ant-input-affix-wrapper-focused'] {
-                    width: calc(33.33vw - (#{$content-padding} + 20px));
-                    @include mediaMaxLG {
-                        width: calc(50vw - (#{$content-padding} + 20px));
-                    }
-                    @include mediaMaxMD {
-                        width: calc(100vw - (#{$padding} * 1.8));
-                    }
-                    [class~='ant-input-suffix'] {
-                        display: flex;
-                    }
-                }
-            }
-        }
-
-        &[data-theme='light'] {
-            .header__row__logo {
-                background-image: url('/logo/large_light.svg') !important;
-            }
-        }
-
-        &[data-theme='dark'] {
-            .header__row__logo {
-                background-image: url('/logo/large_dark.svg') !important;
-            }
-        }
-
-        .header__row__logo {
-            background-size: cover !important;
-            background-repeat: no-repeat;
-            background-position: left center;
-
-            width: calc(#{$max-sidenav-width} * 0.56);
-            height: calc(#{$min-sidenav-width} * 0.625);
-        }
-    }
-
-    @include mediaMD {
-        padding: 0 $mobile-content-padding !important;
-    }
-
     @include mediaXS {
         width: 100%;
 
@@ -352,7 +295,7 @@
         align-content: center;
         justify-content: space-between;
 
-        padding: $mobile-content-padding !important;
+        padding: 0 $mobile-content-padding !important;
 
         [class~='hamburger-menu'] {
             [class~='anticon'] {
@@ -409,13 +352,20 @@
     }
 
     @include mediaSM {
-        padding: calc(#{$mobile-content-padding} * 2) !important;
+        width: 100%;
 
         display: flex;
-        align-content: center;
         align-items: center;
+        align-content: center;
         justify-content: space-between;
-        width: 100%;
+
+        padding: 0 calc(#{$mobile-content-padding} * 2) !important;
+
+        [class~='hamburger-menu'] {
+            [class~='anticon'] {
+                font-size: 18pt;
+            }
+        }
 
         &[data-is-category='true'] {
             height: calc(#{$header-height} * 1.8) !important;
@@ -462,6 +412,70 @@
         &__row__logo {
             width: $min-sidenav-width;
             margin-left: 1.2rem;
+        }
+    }
+
+    @include mediaMD {
+        width: 100%;
+        padding: 0 calc(#{$mobile-content-padding} * 2) !important;
+
+        [class~='hamburger-menu'] {
+            [class~='anticon'] {
+                font-size: 18pt;
+            }
+        }
+    }
+
+    @include mediaMaxLG {
+        [data-search-col] {
+            width: 64px;
+            position: relative;
+            height: 32px;
+
+            [class~='ant-input-affix-wrapper'] {
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                right: 20px;
+                width: 40px;
+                padding: 4px 12px;
+                [class~='ant-input-suffix'] {
+                    display: none;
+                }
+                &[class~='ant-input-affix-wrapper-focused'] {
+                    width: calc(33.33vw - (#{$content-padding} + 20px));
+                    @include mediaMaxLG {
+                        width: calc(50vw - (#{$content-padding} + 20px));
+                    }
+                    @include mediaMaxMD {
+                        width: calc(100vw - (#{$padding} * 1.8));
+                    }
+                    [class~='ant-input-suffix'] {
+                        display: flex;
+                    }
+                }
+            }
+        }
+
+        &[data-theme='light'] {
+            .header__row__logo {
+                background-image: url('/logo/large_light.svg') !important;
+            }
+        }
+
+        &[data-theme='dark'] {
+            .header__row__logo {
+                background-image: url('/logo/large_dark.svg') !important;
+            }
+        }
+
+        .header__row__logo {
+            background-size: cover !important;
+            background-repeat: no-repeat;
+            background-position: left center;
+
+            width: calc(#{$max-sidenav-width} * 0.56);
+            height: calc(#{$min-sidenav-width} * 0.625);
         }
     }
 }
