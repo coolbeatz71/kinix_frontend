@@ -15,16 +15,20 @@ interface IAlaUneArticleListProps {
 const AlaUneArticleList: FC<IAlaUneArticleListProps> = ({ articles }) => {
     return (
         <Row gutter={[16, 48]}>
-            <Col xs={24} sm={24} md={8}>
+            <Col xs={24} sm={24} md={24} lg={8}>
                 {articles[0] && <AlaUneArticleCard article={articles[0]} priority={EnumAlaUnePriority.FIRST} />}
             </Col>
-            <Col xs={24} sm={24} md={8}>
+            <Col xs={24} sm={24} md={12} lg={8}>
                 {articles[1] && <AlaUneArticleCard article={articles[1]} priority={EnumAlaUnePriority.SECOND} />}
             </Col>
-            <Col xs={24} sm={24} md={8}>
-                {articles.slice(2).map((article) => (
-                    <TrendingArticleCard key={article.slug} article={article} />
-                ))}
+            <Col xs={24} sm={24} md={12} lg={8}>
+                <Row justify="space-between" gutter={[0, 24]}>
+                    {articles.slice(2).map((article) => (
+                        <Col key={article.slug} span={24}>
+                            <TrendingArticleCard article={article} />
+                        </Col>
+                    ))}
+                </Row>
             </Col>
         </Row>
     );

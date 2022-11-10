@@ -43,13 +43,13 @@ const TrendingArticleCard: FC<ITrendingArticleProps> = ({ article }) => {
                         <Title level={5} data-text="title">
                             <Link passHref href={link}>
                                 {truncate(article?.title, {
-                                    length: 48,
+                                    length: 32,
                                 })}
                             </Link>
                         </Title>
                         <Paragraph data-text="description">
                             {truncate(article?.summary, {
-                                length: 102,
+                                length: 80,
                             })}
                         </Paragraph>
                     </div>

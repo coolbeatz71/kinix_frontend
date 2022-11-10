@@ -3,6 +3,7 @@
 @import 'styles/_mixins.scss';
 
 .alaUneArticleCard {
+    height: 100%;
     cursor: pointer;
 
     a {
@@ -69,7 +70,7 @@
 
     [data-priority='FIRST'] {
         z-index: 0;
-        height: 33rem;
+        height: 100%;
         background: $bg-primary-dark;
 
         &:hover {
@@ -112,12 +113,18 @@
     }
 
     [data-priority='SECOND'] {
-        height: 33rem;
+        height: 100%;
         [class~='ant-card-body'] {
             padding: 0;
+            height: 50%;
+
+            display: flex;
+            flex-flow: column;
+            justify-content: flex-end;
         }
 
         [class~='ant-card-cover'] {
+            height: 50%;
             @include cardContentPadding;
         }
 
@@ -166,6 +173,21 @@
         }
         [data-priority='SECOND'] {
             height: unset;
+        }
+    }
+
+    @include mediaMD {
+        [data-priority='FIRST'] {
+            height: 33rem;
+            [data-text='title'] {
+                width: 80%;
+                font-size: 32pt;
+            }
+            [data-text='description'] {
+                width: 80%;
+                font-size: 12pt;
+                margin-bottom: $padding;
+            }
         }
     }
 }

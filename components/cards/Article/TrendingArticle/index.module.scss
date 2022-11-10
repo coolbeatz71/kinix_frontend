@@ -3,8 +3,8 @@
 @import 'styles/_mixins.scss';
 
 .trendingArticleCard {
+    height: 100%;
     cursor: pointer;
-    margin-bottom: 1.3rem;
     border-radius: $border-radius;
 
     [class~='ant-card-body'] {
@@ -33,6 +33,7 @@
 
         [data-text='title'] {
             font-family: Poppins;
+            height: 2rem;
             &:hover {
                 text-decoration: underline;
             }
@@ -42,6 +43,7 @@
         }
 
         [data-text='description'] {
+            height: 3rem;
             margin-bottom: 0;
         }
     }
@@ -61,6 +63,19 @@
         }
         [class~='ant-typography'] {
             color: $white;
+        }
+    }
+
+    @include mediaMD {
+        .trendingArticleCard {
+            &__header {
+                padding: 0 calc(#{$padding} * 0.6);
+                margin-top: calc(#{$padding} * 0.6);
+            }
+
+            &__content {
+                padding: calc(#{$padding} * 0.6);
+            }
         }
     }
 }
