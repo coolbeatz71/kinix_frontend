@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import { FC, useState } from 'react';
 import { UserOutlined } from 'icons';
 import { BsFillGridFill } from 'react-icons/bs';
 
