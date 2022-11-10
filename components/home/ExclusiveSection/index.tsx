@@ -35,9 +35,10 @@ export interface IExclusiveSectionProps {
 }
 
 const ExclusiveSection: FC<IExclusiveSectionProps> = ({ tag, title, desc, imgSrc, link, videos }) => {
-    const { md } = useBreakpoint();
-    const { value } = useDarkLight();
     const { t } = useTranslation();
+    const { value } = useDarkLight();
+    const { md, lg, sm } = useBreakpoint();
+
     const isDark = value === 'dark';
 
     const colStyles = !isDark
@@ -59,7 +60,6 @@ const ExclusiveSection: FC<IExclusiveSectionProps> = ({ tag, title, desc, imgSrc
             height: 100%;
             background: linear-gradient(to right, ${!isDark ? PRIMARY : SKY_BLUE}, transparent);
         }
-
         .right::before {
             content: '';
             position: absolute;
@@ -105,7 +105,11 @@ const ExclusiveSection: FC<IExclusiveSectionProps> = ({ tag, title, desc, imgSrc
                 </Col>
                 {md && rightContent}
             </Row>
-            <Row gutter={md ? [48, 0] : undefined} className={styles.exclusive__bottom} style={colStyles}>
+            <Row
+                style={colStyles}
+                className={styles.exclusive__bottom}
+                gutter={lg ? [48, 0] : (md || sm) && !lg ? [48, 48] : undefined}
+            >
                 {videos?.map((video) => (
                     <Col xs={24} sm={12} md={12} lg={8} xl={6} key={video?.slug}>
                         <DynamicVideoCardVertical video={video} isExclusive />

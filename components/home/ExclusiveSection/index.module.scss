@@ -178,27 +178,118 @@
 
     @include mediaXS {
         &__top {
+            height: 20rem;
             &__left {
+                height: 20rem;
                 border-radius: $border-radius;
                 border-bottom-left-radius: 0;
                 border-bottom-right-radius: 0;
 
-                padding: $mobile-content-padding !important;
-                justify-content: center;
+                padding: calc(#{$padding} * 1.2) !important;
+                justify-content: space-between;
 
                 [data-title='true'] {
-                    font-size: 2.8rem;
-                    margin-bottom: 1rem !important;
-                    margin-top: 1rem !important;
+                    font-size: 25pt;
+
+                    margin: 1rem 0 !important;
+                }
+
+                [data-desc='true'] {
+                    font-size: 11pt;
+                }
+
+                [data-watch-now='true'] {
+                    padding: 1rem !important;
                 }
             }
         }
 
         &__bottom {
-            padding: $mobile-content-padding !important;
+            padding: calc(#{$padding} * 1.2) !important;
 
             [class^='VideoCardVertical'] {
                 margin-bottom: 2.5rem;
+            }
+        }
+    }
+
+    @include mediaSM {
+        &__top {
+            height: 20rem;
+            &__left {
+                height: 20rem;
+                border-radius: $border-radius;
+                border-bottom-left-radius: 0;
+                border-bottom-right-radius: 0;
+
+                padding: calc(#{$padding} * 1.2) !important;
+                justify-content: space-between;
+
+                [data-title='true'] {
+                    font-size: 2.8rem;
+                }
+
+                [data-watch-now='true'] {
+                    padding: 1rem !important;
+                    [class~='anticon'] {
+                        font-size: 15pt;
+                    }
+                    span {
+                        font-size: 11pt;
+                    }
+                }
+            }
+        }
+
+        &__bottom {
+            padding: calc(#{$padding} * 0.18);
+            padding-top: $padding;
+            padding-bottom: calc(#{$padding} * 1.2);
+
+            [class~='ant-col'] {
+                padding-left: $padding !important;
+            }
+        }
+    }
+
+    @include mediaMD {
+        &__top {
+            height: 22.5rem;
+            &__left {
+                height: 22.5rem;
+                padding: calc(#{$padding} * 1.2);
+                padding-right: calc(#{$padding} * 0.5);
+
+                [data-title='true'] {
+                    font-size: 22.5pt;
+                }
+
+                [data-desc='true'] {
+                    font-size: 11pt;
+                }
+
+                [data-watch-now='true'] {
+                    padding: 1rem !important;
+                    [class~='anticon'] {
+                        font-size: 15pt;
+                    }
+                    span {
+                        font-size: 10pt;
+                    }
+                }
+            }
+
+            [class~='right'] {
+                height: 22.5rem;
+            }
+        }
+        &__bottom {
+            padding: calc(#{$padding} * 0.18);
+            padding-top: $padding;
+            padding-bottom: calc(#{$padding} * 1.2);
+
+            [class~='ant-col'] {
+                padding-left: $padding !important;
             }
         }
     }
