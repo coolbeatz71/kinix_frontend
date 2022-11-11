@@ -43,14 +43,22 @@
             height: calc(#{$modal-padding} * 0.66);
             margin-top: calc(#{$padding} * 0.5);
 
-            @include mediaMaxLG {
-                width: calc(#{$padding} * 2);
-            }
-
             [class~='ant-modal-close-x'] {
                 height: 100%;
                 width: 100%;
                 line-height: calc(#{$modal-padding} * 0.66);
+            }
+
+            @include mediaMaxLG {
+                width: calc(#{$padding} * 2);
+            }
+
+            @include mediaXS {
+                [class~='ant-modal-close-x'] {
+                    height: 100%;
+                    width: 100%;
+                    line-height: $padding;
+                }
             }
         }
 
@@ -60,10 +68,6 @@
             text-align: center;
             background-color: transparent;
             padding: calc(#{$padding} * 0.5) $modal-padding;
-
-            @include mediaMaxLG {
-                padding: $padding calc(#{$padding} * 2);
-            }
 
             [class~='ant-modal-title'] {
                 height: calc(#{$modal-padding} * 0.66);
@@ -75,12 +79,31 @@
                     line-height: inherit;
                 }
             }
+            @include mediaMaxLG {
+                padding: $padding calc(#{$padding} * 2);
+            }
+
+            @include mediaXS {
+                padding: 1rem !important;
+                [class~='ant-typography'] {
+                    font-size: 18pt;
+                }
+
+                [class~='ant-modal-title'] {
+                    height: $padding;
+                    line-height: $padding;
+                }
+            }
         }
         [class~='ant-modal-body'] {
             padding: calc(#{$padding} * 1.2) $modal-padding;
 
             @include mediaMaxLG {
                 padding: calc(#{$padding} * 2);
+            }
+
+            @include mediaXS {
+                padding: 1rem !important;
             }
         }
     }
