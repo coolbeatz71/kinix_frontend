@@ -22,7 +22,7 @@ const SingleVideoPage: NextPage<ServerPropsType> = ({ error, video }) => {
 
     return (
         <Layout
-            isArticle
+            isVideo
             image={videoThumbnail}
             showFooter={isEmpty(error)}
             description={(video as IVideo)?.link}
