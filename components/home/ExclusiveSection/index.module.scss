@@ -178,9 +178,9 @@
 
     @include mediaXS {
         &__top {
-            height: 20rem;
+            height: 25rem;
             &__left {
-                height: 20rem;
+                height: 25rem;
                 border-radius: $border-radius;
                 border-bottom-left-radius: 0;
                 border-bottom-right-radius: 0;
@@ -215,9 +215,9 @@
 
     @include mediaSM {
         &__top {
-            height: 20rem;
+            height: 25rem;
             &__left {
-                height: 20rem;
+                height: 25rem;
                 border-radius: $border-radius;
                 border-bottom-left-radius: 0;
                 border-bottom-right-radius: 0;
@@ -243,7 +243,6 @@
 
         &__bottom {
             padding: calc(#{$padding} * 0.18);
-            padding-top: $padding;
             padding-bottom: calc(#{$padding} * 1.2);
 
             [class~='ant-col'] {

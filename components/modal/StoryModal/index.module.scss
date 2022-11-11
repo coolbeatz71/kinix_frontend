@@ -1,4 +1,5 @@
 @import 'styles/colors.scss';
+@import 'styles/_mixins.scss';
 @import 'styles/dimensions.scss';
 
 .storyPopup {
@@ -127,6 +128,44 @@
             color: $light;
             text-align: center;
             line-height: 1.8;
+        }
+    }
+
+    @include mediaXS {
+        height: 32rem;
+        border-radius: $border-radius;
+
+        [class~='ant-modal-body'],
+        [class~='ant-modal-content'] {
+            height: 100%;
+        }
+
+        [class~='ant-modal-body'] {
+            padding: 1rem;
+            border-radius: $border-radius;
+        }
+
+        .storyPopup__content {
+            height: 100%;
+        }
+    }
+
+    @include mediaSM {
+        height: 45rem;
+        border-radius: $border-radius;
+
+        [class~='ant-modal-body'],
+        [class~='ant-modal-content'] {
+            height: 100%;
+        }
+
+        [class~='ant-modal-body'] {
+            padding: 1rem;
+            border-radius: $border-radius;
+        }
+
+        .storyPopup__content {
+            height: 100%;
         }
     }
 }
