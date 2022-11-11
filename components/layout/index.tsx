@@ -38,6 +38,7 @@ interface ILayoutProps {
     title?: string;
     baseUrl?: string;
     isHome?: boolean;
+    isVideo?: boolean;
     isArticle?: boolean;
     description?: string;
     showFooter?: boolean;
@@ -55,6 +56,7 @@ const Layout: FC<ILayoutProps> = ({
     baseUrl: _baseUrl,
     showHeader = true,
     showFooter = true,
+    isVideo = false,
     isArticle = false,
     isHome: _isHome = false,
     isVideoCategory = false,
@@ -115,7 +117,7 @@ const Layout: FC<ILayoutProps> = ({
                 <meta property="og:description" content={_description} key="og:desc" />
                 <meta property="og:url" content={_url} key="og:url" />
 
-                {!isArticle && <meta name="twitter:site" content={APP_TWITTER_HANDLE} />}
+                {(!isArticle || !isVideo) && <meta name="twitter:site" content={APP_TWITTER_HANDLE} />}
 
                 <meta name="twitter:card" content="summary_large_image" key="twitter:card" />
                 <meta name="twitter:title" content={_title} key="twitter:title" />
