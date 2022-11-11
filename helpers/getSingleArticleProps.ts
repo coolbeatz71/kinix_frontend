@@ -1,19 +1,17 @@
-import { GetServerSidePropsContext } from 'next';
-import { IUnknownObject } from '@interfaces/app';
+import { NextPageContext } from 'next';
 import api from 'services/axios';
 
-export const getSingleArticleProps = async (context: GetServerSidePropsContext): Promise<IUnknownObject> => {
-    const article = { slug: context?.query.slug };
+export const getSingleArticleProps = async (context: NextPageContext): Promise<never> => {
+    let error = null;
+    let article = { slug: context?.query.slug };
     try {
-        const { data } = await api.get(`/articles/${article?.slug}`);
-        return {
-            props: { data },
-        };
-    } catch (error) {
-        return {
-            props: { error } as unknown as never,
-        };
+        const _article = await api.get(`/articles/${article?.slug}`);
+        article = _article.data;
+    } catch (_error) {
+        error = _error;
     }
+
+    return { error, article } as never;
 };
 
 export default getSingleArticleProps;

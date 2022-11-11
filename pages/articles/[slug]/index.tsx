@@ -8,33 +8,35 @@ import Layout from '@components/layout';
 import { IArticle } from '@interfaces/api';
 import ServerPropsType from '@interfaces/serverProps';
 import SingleArticleContainer from '@containers/SingleArticle';
+import getSingleArticleProps from '@helpers/getSingleArticleProps';
 
 const DynamicStoryModal = dynamic(() => import('@components/modal/StoryModal'));
 const DynamicServerError = dynamic(() => import('@components/common/ServerError'));
 
-const SingleArticlePage: NextPage<ServerPropsType> = ({ error, data }) => {
+const SingleArticlePage: NextPage<ServerPropsType> = ({ error, article }) => {
     const { t } = useTranslation();
     const { reload } = useRouter();
 
     return (
         <Layout
+            isArticle
             showFooter={isEmpty(error)}
-            image={(data as IArticle)?.images?.[0]}
-            description={(data as IArticle)?.summary}
-            title={(data as IArticle)?.title || t('articles')}
+            image={(article as IArticle)?.images?.[0]}
+            description={(article as IArticle)?.summary}
+            title={(article as IArticle)?.title || t('articles')}
         >
             {!isEmpty(error) ? (
                 <DynamicServerError error={error} onRefresh={() => reload()} />
             ) : (
                 <Fragment>
                     <DynamicStoryModal />
-                    <SingleArticleContainer article={data as IArticle} />
+                    <SingleArticleContainer article={article as IArticle} />
                 </Fragment>
             )}
         </Layout>
     );
 };
 
-export default SingleArticlePage;
+SingleArticlePage.getInitialProps = getSingleArticleProps;
 
-export { default as getServerSideProps } from 'helpers/getSingleArticleProps';
+export default SingleArticlePage;
