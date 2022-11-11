@@ -37,8 +37,7 @@ const AlaUneArticleSection: FC<IAlaUneArticleSectionProps> = ({ limit, canViewAl
             ) : (
                 <DynamicAlaUneArticleList articles={articles as IArticle[]} />
             )}
-
-            {canViewAll && fetched && <DynamicViewAllButton link={ALL_ARTICLES_PATH} />}
+            <div className="mt-3">{canViewAll && fetched && <DynamicViewAllButton link={ALL_ARTICLES_PATH} />}</div>
         </div>
     );
 };

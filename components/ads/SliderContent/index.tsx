@@ -47,7 +47,7 @@ const SliderContent: FC<ISliderContentProps> = ({
     iosLink,
 }) => {
     const { t } = useTranslation();
-    const { md } = useBreakpoint();
+    const { md, lg } = useBreakpoint();
     const carouselRightContent = Style.it(
         `
         .right::after {
@@ -60,17 +60,21 @@ const SliderContent: FC<ISliderContentProps> = ({
             background: linear-gradient(to right, ${bgColor}, transparent);
         }
         `,
-        <Col span={12} className="right">
+        <Col xs={24} sm={24} md={12} className="right">
             <Image src={image} alt={title} layout="fill" priority />
         </Col>,
     );
 
     const carouselLeftContent = Style.it(
-        `
+        lg || md
+            ? `
         .left {
             background: ${bgColor} !important;
-        }
-        `,
+        }`
+            : `.left {
+            background: linear-gradient(45deg, rgba(0, 0, 0, 1) 20%, ${bgColor} 56%, transparent 100%), url(${image}) no-repeat;
+            background-size: cover;
+        }`,
         <Col xs={24} sm={24} md={12} className={`${styles.adsCarousel__left} left`}>
             <div>
                 <Tag data-legend>{legend}</Tag>
@@ -85,18 +89,18 @@ const SliderContent: FC<ISliderContentProps> = ({
                 (isAppAds ? (
                     <Space>
                         <a href={iosLink} rel="noreferrer noopener">
-                            <Button size="large" target="_blank" ghost icon={<AppleFilled />}>
+                            <Button size={lg ? 'large' : 'middle'} target="_blank" ghost icon={<AppleFilled />}>
                                 App Store
                             </Button>
                         </a>
                         <a href={androidLink} rel="noreferrer noopener">
-                            <Button size="large" target="_blank" icon={<AndroidFilled />}>
+                            <Button size={lg ? 'large' : 'middle'} target="_blank" icon={<AndroidFilled />}>
                                 Google Play
                             </Button>
                         </a>
                     </Space>
                 ) : (
-                    <Button size="large" href={redirectUrl} target="_blank">
+                    <Button size={lg ? 'large' : 'middle'} href={redirectUrl} target="_blank">
                         {buttonText || t('visitNow')}
                     </Button>
                 ))}

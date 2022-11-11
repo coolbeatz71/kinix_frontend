@@ -12,13 +12,13 @@ const DynamicTrendingArticleSkeleton = dynamic(() => import('../TrendingArticleC
 const AlaUneArticleListSkeleton: FC = () => {
     return (
         <Row gutter={[16, 48]}>
-            <Col xs={24} sm={24} md={8}>
+            <Col xs={24} sm={24} md={24} lg={8}>
                 <DynamicAlaUneArticleCardSkeleton priority={EnumAlaUnePriority.FIRST} />
             </Col>
-            <Col xs={24} sm={24} md={8}>
+            <Col xs={24} sm={24} md={12} lg={8}>
                 <DynamicAlaUneArticleCardSkeleton priority={EnumAlaUnePriority.SECOND} />
             </Col>
-            <Col xs={24} sm={24} md={8}>
+            <Col xs={24} sm={24} md={12} lg={8}>
                 <DynamicTrendingArticleSkeleton />
                 <DynamicTrendingArticleSkeleton />
                 <DynamicTrendingArticleSkeleton />

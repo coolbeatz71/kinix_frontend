@@ -79,4 +79,16 @@
             font-size: 16pt !important;
         }
     }
+
+    @include mediaSM {
+        h3 {
+            font-size: 18pt !important;
+        }
+    }
+
+    @include mediaMD {
+        h3 {
+            font-size: 20pt !important;
+        }
+    }
 }

@@ -2,33 +2,23 @@
 @import '/styles/_mixins.scss';
 @import 'styles/dimensions.scss';
 
-.language {
-    [class~='anticon'] {
-        width: 1rem;
-    }
-
-    [data-lang='true'] {
-        line-height: 0;
-        font-weight: 700;
-    }
-
-    &__menu {
+.userMobileDropdown {
+    &__authMenu {
         [class~='ant-dropdown-menu-item'] {
-            display: flex;
-            margin: 0.2rem 0.4rem;
-            border-radius: $border-radius;
+            margin: 0.5rem;
 
-            [class~='ant-dropdown-menu-title-content'] {
+            [class~='ant-btn'] {
+                padding-right: $padding;
+
                 display: flex;
                 align-items: center;
+                justify-content: flex-start;
 
-                line-height: 0.1;
-                margin: 0.4rem 0;
-            }
+                font-weight: 700;
 
-            [class~='anticon'] {
-                width: 1.2rem;
-                margin-right: 0.5rem;
+                [class~='anticon'] {
+                    width: 1.2rem;
+                }
             }
         }
 
