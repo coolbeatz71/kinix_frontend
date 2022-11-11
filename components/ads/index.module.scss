@@ -132,6 +132,27 @@
         }
     }
 
+    @include mediaSM {
+        height: 30rem;
+        .adsCarousel__left {
+            height: 30rem;
+            padding: $padding;
+            justify-content: space-between;
+
+            [data-title='true'] {
+                font-size: 30pt;
+            }
+
+            [data-subtitle='true'] {
+                font-size: 12.5pt;
+            }
+
+            [data-body='true'] {
+                font-size: 12pt;
+            }
+        }
+    }
+
     @include mediaMD {
         height: 22rem;
 
