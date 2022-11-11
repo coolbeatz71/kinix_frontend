@@ -14,7 +14,7 @@ export const general = {
     followUsTwo: 'les dernières mises à jour sur nos progrès',
     contactUs: 'Contactez-nous',
     sendMessage: 'Envoyer Message',
-    allRightReserved: 'Tous les droits sont réservés.',
+    allRightReserved: 'Tout droits réservés.',
     home: 'Accueil',
     videos: 'Vidéos',
     articles: 'Articles',
