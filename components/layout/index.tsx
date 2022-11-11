@@ -11,7 +11,6 @@ import { useTranslation } from 'react-i18next';
 import Grid from 'antd/lib/grid';
 import AntLayout from 'antd/lib/layout';
 
-import SideDrawer from './SideDrawer';
 import { IRootState } from '@redux/reducers';
 import { useAppDispatch } from '@redux/store';
 import Header from '@components/layout/Header';
@@ -27,6 +26,7 @@ import { APP_AUTHOR, APP_NAME, APP_TWITTER_HANDLE } from '@constants/platform';
 
 const DynamicFooter = dynamic(() => import('./Footer'));
 const DynamicSideNav = dynamic(() => import('./SideNav'));
+const DynamicSideDrawer = dynamic(() => import('./SideDrawer'));
 const DynamicDarkModeToggler = dynamic(() => import('@components/common/DarkModeToggler'));
 
 import styles from './index.module.scss';
@@ -145,7 +145,7 @@ const Layout: FC<ILayoutProps> = ({
                     currentUser={(userLocalData || userData) as ICurrentUser}
                 />
             ) : (
-                <SideDrawer
+                <DynamicSideDrawer
                     open={openSideDrawer}
                     setOpen={setOpenSideDrawer}
                     currentUser={(userLocalData || userData) as ICurrentUser}
