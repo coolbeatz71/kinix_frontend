@@ -1,0 +1,50 @@
+@import 'styles/colors.scss';
+@import 'styles/dimensions.scss';
+
+.shareDropdown {
+    &__menu {
+        [class~='ant-dropdown-menu-item'] {
+            color: $white;
+            margin: 0.5rem;
+            border-radius: $border-radius;
+
+            &[data-platform='twitter'] {
+                background: $twitter;
+            }
+            &[data-platform='instagram'] {
+                background: $instagram;
+            }
+            &[data-platform='facebook'] {
+                background: $facebook;
+            }
+            &[data-platform='youtube'] {
+                background: $youtube;
+            }
+
+            [class~='ant-dropdown-menu-title-content'] {
+                line-height: 0;
+                margin: 0.3rem 0;
+                font-weight: 600;
+
+                display: flex;
+                align-items: center;
+            }
+
+            [class~='anticon'] {
+                width: 2rem;
+                font-size: 12pt;
+                margin-right: 0.2rem;
+            }
+        }
+
+        &[data-theme='dark'] {
+            background: $black;
+            [class~='ant-dropdown-menu-item'] {
+                color: $white;
+                &:hover {
+                    background: $primary;
+                }
+            }
+        }
+    }
+}

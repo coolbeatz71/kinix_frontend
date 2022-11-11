@@ -28,15 +28,15 @@ export interface IFooterProps {
 }
 
 export const Footer: FC<IFooterProps> = ({ isSidenavClose }) => {
-    const { md } = useBreakpoint();
     const { t } = useTranslation();
     const { value } = useDarkLight();
+    const { md, lg } = useBreakpoint();
 
     return (
         <div className={styles.footer} data-theme={value}>
             <AntFooter className={styles.footer__content} data-sidenav-close={isSidenavClose}>
                 <Row justify="space-between" data-row>
-                    <Col xs={24} sm={24} md={10} className={styles.footer__content__address}>
+                    <Col xs={24} sm={24} md={12} lg={10} className={styles.footer__content__address}>
                         <div>
                             <Title level={3} data-title>
                                 {t('address')}
@@ -69,19 +69,22 @@ export const Footer: FC<IFooterProps> = ({ isSidenavClose }) => {
                             </Row>
                         </div>
                     </Col>
-                    <Col xs={24} sm={24} md={14} className={styles.footer__content__contact}>
+                    <Col xs={24} sm={24} md={12} lg={14} className={styles.footer__content__contact}>
                         <ContactUsForm className={styles.footer__content__contact__form} />
                     </Col>
                 </Row>
                 <Divider />
                 <Row justify="space-between" className={styles.footer__content__copyright}>
-                    <Col xs={24} sm={24} md={12} data-copyright-container>
+                    <Col xs={24} sm={24} md={12} lg={12} data-copyright-container>
                         <Text data-copyright>
                             © 2022 {APP_AUTHOR}. {t('allRightReserved')}
                         </Text>
                     </Col>
-                    <Col xs={24} sm={24} md={12} data-links>
-                        <Space size={24} className={`d-flex ${md ? 'justify-content-end' : 'justify-content-between'}`}>
+                    <Col xs={24} sm={24} md={12} lg={12} data-links>
+                        <Space
+                            size={md && !lg ? 16 : 24}
+                            className={`d-flex ${md ? 'justify-content-end' : 'justify-content-between'}`}
+                        >
                             <Link href="">{t('termsOfService')}</Link>
                             <Link href="">{t('privacyPolicies')}</Link>
                             <Link href="">{t('security')}</Link>

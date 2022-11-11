@@ -1,34 +1,32 @@
 import { FC, useState } from 'react';
 import { UserOutlined } from 'icons';
-import truncate from 'lodash/truncate';
-import upperFirst from 'lodash/upperFirst';
+import { BsFillGridFill } from 'react-icons/bs';
 
-import Space from 'antd/lib/space';
-import Avatar from 'antd/lib/avatar';
 import Button from 'antd/lib/button';
+import Avatar from 'antd/lib/avatar';
 import Dropdown from 'antd/lib/dropdown';
 
 import { ICurrentUser } from '@interfaces/user';
 import { getBgColor } from '@helpers/getBgColor';
-import NotificationDropDown from '../NotificationDropDown';
 import UserProfileMenu from '@components/common/UserProfileMenu';
+import UserAuthMobileMenu from '@components/layout/UserAuthMobileMenu';
 
-export interface IUserProfileDropDownProps {
-    className: string;
+import styles from './index.module.scss';
+
+export interface IUserMobileDropDownProps {
     currentUser: ICurrentUser;
 }
 
-const UserProfileDropDown: FC<IUserProfileDropDownProps> = ({ className, currentUser }) => {
+const UserMobileDropDown: FC<IUserMobileDropDownProps> = ({ currentUser }) => {
     const [openDropdown, setOpenDropdown] = useState(false);
 
     return (
-        <Space size={48}>
-            <NotificationDropDown />
-            <Dropdown
-                open={openDropdown}
-                className={className}
-                placement="bottomLeft"
-                overlay={
+        <Dropdown
+            open={openDropdown}
+            placement="bottomLeft"
+            className={styles.userMobileDropdown}
+            overlay={
+                currentUser?.isLoggedIn ? (
                     <UserProfileMenu
                         email={currentUser.email}
                         avatar={currentUser.image}
@@ -36,14 +34,21 @@ const UserProfileDropDown: FC<IUserProfileDropDownProps> = ({ className, current
                         setOpenDropdown={setOpenDropdown}
                         phoneNumber={currentUser.phoneNumber}
                     />
-                }
-            >
+                ) : (
+                    <UserAuthMobileMenu
+                        openDropdown={openDropdown}
+                        setOpenDropdown={setOpenDropdown}
+                        className={styles.userMobileDropdown__authMenu}
+                    />
+                )
+            }
+        >
+            {currentUser?.isLoggedIn ? (
                 <Button
                     type="link"
                     onClick={() => setOpenDropdown(!openDropdown)}
                     icon={
                         <Avatar
-                            size="small"
                             icon={<UserOutlined />}
                             src={currentUser.image}
                             style={{
@@ -51,16 +56,12 @@ const UserProfileDropDown: FC<IUserProfileDropDownProps> = ({ className, current
                             }}
                         />
                     }
-                >
-                    {upperFirst(
-                        truncate(currentUser.userName, {
-                            length: 10,
-                        }),
-                    )}
-                </Button>
-            </Dropdown>
-        </Space>
+                />
+            ) : (
+                <Button ghost type="primary" icon={<BsFillGridFill />} onClick={() => setOpenDropdown(!openDropdown)} />
+            )}
+        </Dropdown>
     );
 };
 
-export default UserProfileDropDown;
+export default UserMobileDropDown;

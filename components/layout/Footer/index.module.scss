@@ -242,7 +242,7 @@
 
             &__copyright {
                 margin-top: calc(#{$mobile-content-padding} * 0.5);
-                padding: $mobile-content-padding calc(#{$content-padding} * 2);
+                padding: $mobile-content-padding calc(#{$content-padding});
                 [data-copyright-container='true'] {
                     display: flex;
                     justify-content: center;
@@ -251,7 +251,34 @@
                 [data-copyright='true'] {
                     font-weight: 600;
                     text-align: center;
-                    font-size: 13pt;
+                    font-size: 12pt;
+                }
+            }
+        }
+    }
+
+    @include mediaMD {
+        &__content {
+            padding: calc(#{$padding} * 1.2) !important;
+
+            [data-title='true'] {
+                font-size: 15pt;
+                margin-bottom: $padding;
+            }
+
+            &__contact {
+                padding-left: 0 !important;
+            }
+
+            &__copyright {
+                [data-copyright='true'] {
+                    font-size: 10pt !important;
+                }
+
+                [data-links='true'] {
+                    * {
+                        font-size: 10pt !important;
+                    }
                 }
             }
         }
