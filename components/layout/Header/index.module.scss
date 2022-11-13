@@ -457,6 +457,10 @@
             width: $min-sidenav-width;
             margin-left: 1.2rem;
         }
+
+        &__row__largeSearch {
+            padding: 0 calc(#{$mobile-content-padding} * 2) !important;
+        }
     }
 
     @include mediaMD {

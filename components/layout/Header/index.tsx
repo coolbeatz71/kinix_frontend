@@ -131,7 +131,8 @@ const Header: FC<IHeaderProps> = ({
                         className="hamburger-menu"
                         onClick={lg ? handleToggle : openSideDrawer}
                     />
-                    {(xs || sm) && (
+
+                    {(xs || sm) && !md && !lg && (
                         <Button
                             type="text"
                             size="large"
@@ -141,17 +142,30 @@ const Header: FC<IHeaderProps> = ({
                             icon={<IoSearchCircleOutline className="anticon" />}
                         />
                     )}
+
                     {!xs && !sm && !md && <Logo canRedirect className={styles.header__row__logo} />}
                 </Col>
 
-                <Row data-visible={openLargeSearch} className={styles.header__row__largeSearch}>
-                    <Col span={2}>
-                        <Button danger type="primary" icon={<RiDeleteBack2Fill />} onClick={onCloseLargeSearchInput} />
-                    </Col>
-                    <Col span={22}>
-                        <DynamicSearchInput autoFocus isCategory inputRef={searchInputRef as Ref<InputRef>} />
-                    </Col>
-                </Row>
+                {(xs || sm) && !md && !lg && (
+                    <Row
+                        justify="end"
+                        data-visible={openLargeSearch}
+                        onBlur={onCloseLargeSearchInput}
+                        className={styles.header__row__largeSearch}
+                    >
+                        <Col span={2} className="p-0">
+                            <Button
+                                danger
+                                type="primary"
+                                icon={<RiDeleteBack2Fill />}
+                                onClick={onCloseLargeSearchInput}
+                            />
+                        </Col>
+                        <Col span={22} className="ps-1">
+                            <DynamicSearchInput autoFocus isCategory inputRef={searchInputRef as Ref<InputRef>} />
+                        </Col>
+                    </Row>
+                )}
 
                 {lg && !open && (
                     <Col xs={2} sm={2} lg={5}>
@@ -165,7 +179,7 @@ const Header: FC<IHeaderProps> = ({
                     </Col>
                 )}
 
-                {md && !lg && (
+                {!xs && !sm && md && !lg && (
                     <Fragment>
                         <Col className="d-flex justify-content-end">
                             <LanguageDropDown userLang={userLang} />
@@ -180,12 +194,14 @@ const Header: FC<IHeaderProps> = ({
                 {lg && (
                     <Col span={10} className="d-flex flex-row-reverse">
                         <Row justify="space-between" gutter={[32, 0]}>
-                            <Col span={4} className="d-flex justify-content-end">
-                                <LanguageDropDown userLang={userLang} />
-                            </Col>
-                            <Col span={10} className="d-flex justify-content-end">
-                                <SocialButtons className={styles.header__row__social} />
-                            </Col>
+                            <Fragment>
+                                <Col span={4} className="d-flex justify-content-end">
+                                    <LanguageDropDown userLang={userLang} />
+                                </Col>
+                                <Col span={10} className="d-flex justify-content-end">
+                                    <SocialButtons className={styles.header__row__social} />
+                                </Col>
+                            </Fragment>
 
                             <Col span={10} className="d-flex justify-content-end ps-0">
                                 {!currentUser?.isLoggedIn && <UserAuthSection />}
@@ -203,7 +219,9 @@ const Header: FC<IHeaderProps> = ({
 
                 {!lg && (
                     <Col xs={12} sm={12} md={4} className="d-flex justify-content-end">
-                        <Space size="large">
+                        <Space size="middle">
+                            <SocialButtonDropDown />
+                            <LanguageDropDown userLang={userLang} />
                             {currentUser?.isLoggedIn && <NotificationDropDown />}
                             <UserMobileDropDown currentUser={currentUser} />
                         </Space>
