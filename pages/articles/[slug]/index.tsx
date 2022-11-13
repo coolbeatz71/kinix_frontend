@@ -8,12 +8,11 @@ import Layout from '@components/layout';
 import { IArticle } from '@interfaces/api';
 import ServerPropsType from '@interfaces/serverProps';
 import SingleArticleContainer from '@containers/SingleArticle';
-import getSingleArticleProps from '@helpers/getSingleArticleProps';
 
 const DynamicStoryModal = dynamic(() => import('@components/modal/StoryModal'));
 const DynamicServerError = dynamic(() => import('@components/common/ServerError'));
 
-const SingleArticlePage: NextPage<ServerPropsType> = ({ error, article }) => {
+const SingleArticlePage: NextPage<ServerPropsType> = ({ error, data: article }) => {
     const { t } = useTranslation();
     const { reload } = useRouter();
 
@@ -37,6 +36,6 @@ const SingleArticlePage: NextPage<ServerPropsType> = ({ error, article }) => {
     );
 };
 
-SingleArticlePage.getInitialProps = getSingleArticleProps;
-
 export default SingleArticlePage;
+
+export { default as getServerSideProps } from 'helpers/getSingleArticleProps';
