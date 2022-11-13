@@ -17,6 +17,8 @@ export const form = {
     dontHaveAccount: "Vous n'avez pas de compte? S'inscrire",
     alreadyHaveAccount: 'Vous avez déjà un compte? Connexion',
     byClickingCreateAccount: 'En cliquant sur "Créer un compte", vous acceptez nos',
+    conditions: 'Conditions',
+    privacy: 'Confidentialité',
     termsOfService: "Conditions d'utilisation",
     privacyPolicies: 'Politiques de confidentialité',
     writeMessageHere: 'Ecrivez votre message ici',
