@@ -8,13 +8,12 @@ import Layout from '@components/layout';
 import { IVideo } from '@interfaces/api';
 import ServerPropsType from '@interfaces/serverProps';
 import SingleVideoContainer from '@containers/SingleVideo';
-import getSingleVideoProps from '@helpers/getSingleVideoProps';
 import getYoutubeVideoThumbnail from '@helpers/getYoutubeVideoThumbail';
 
 const DynamicStoryModal = dynamic(() => import('@components/modal/StoryModal'));
 const DynamicServerError = dynamic(() => import('@components/common/ServerError'));
 
-const SingleVideoPage: NextPage<ServerPropsType> = ({ error, video }) => {
+const SingleVideoPage: NextPage<ServerPropsType> = ({ error, data: video }) => {
     const { t } = useTranslation();
     const { reload } = useRouter();
 
@@ -40,6 +39,6 @@ const SingleVideoPage: NextPage<ServerPropsType> = ({ error, video }) => {
     );
 };
 
-SingleVideoPage.getInitialProps = getSingleVideoProps;
-
 export default SingleVideoPage;
+
+export { default as getServerSideProps } from 'helpers/getSingleVideoProps';
