@@ -1,4 +1,4 @@
-import { FC, Fragment } from 'react';
+import React, { FC, Fragment, useState, useEffect, useRef, Ref } from 'react';
 
 import Row from 'antd/lib/row';
 import Col from 'antd/lib/col';
@@ -6,10 +6,13 @@ import Grid from 'antd/lib/grid';
 import Space from 'antd/lib/space';
 import Layout from 'antd/lib/layout';
 import Button from 'antd/lib/button';
+import { InputRef } from 'antd/lib/input';
 
 import dynamic from 'next/dynamic';
 import isEmpty from 'lodash/isEmpty';
 import { MenuOutlined } from 'icons';
+import { RiDeleteBack2Fill } from 'react-icons/ri';
+import { IoSearchCircleOutline } from 'react-icons/io5';
 
 import Logo from '@components/common/Logo';
 import useDarkLight from '@hooks/useDarkLight';
@@ -61,7 +64,11 @@ const Header: FC<IHeaderProps> = ({
     setOpenSideDrawer,
 }) => {
     const { value } = useDarkLight();
-    const { lg, md } = useBreakpoint();
+    const searchInputRef = useRef<InputRef>();
+    const { lg, md, sm, xs } = useBreakpoint();
+
+    const [openLargeSearch, setOpenLargeSearch] = useState(false);
+    const [openSmallSearch, setOpenSmallSearch] = useState((xs || sm) && !md);
 
     const userLang: 'en' | 'fr' | string = getLanguage();
 
@@ -83,6 +90,24 @@ const Header: FC<IHeaderProps> = ({
     };
 
     const isSidenavClose = !open || collapsed;
+
+    useEffect(() => {
+        if (openLargeSearch) {
+            setTimeout(() => {
+                searchInputRef?.current?.focus();
+            }, 50);
+        }
+    }, [openLargeSearch]);
+
+    const onOpenLargeSearchInput = (): void => {
+        setOpenLargeSearch(true);
+        setOpenSmallSearch(false);
+    };
+
+    const onCloseLargeSearchInput = (): void => {
+        setOpenSmallSearch(true);
+        setOpenLargeSearch(false);
+    };
 
     return (
         <AntHeader
@@ -106,8 +131,27 @@ const Header: FC<IHeaderProps> = ({
                         className="hamburger-menu"
                         onClick={lg ? handleToggle : openSideDrawer}
                     />
-                    {!md && <Logo canRedirect className={styles.header__row__logo} />}
+                    {(xs || sm) && (
+                        <Button
+                            type="text"
+                            size="large"
+                            data-visible={openSmallSearch}
+                            onClick={onOpenLargeSearchInput}
+                            className={styles.header__row__smallSearch}
+                            icon={<IoSearchCircleOutline className="anticon" />}
+                        />
+                    )}
+                    {!xs && !sm && !md && <Logo canRedirect className={styles.header__row__logo} />}
                 </Col>
+
+                <Row data-visible={openLargeSearch} className={styles.header__row__largeSearch}>
+                    <Col span={2}>
+                        <Button danger type="primary" icon={<RiDeleteBack2Fill />} onClick={onCloseLargeSearchInput} />
+                    </Col>
+                    <Col span={22}>
+                        <DynamicSearchInput autoFocus isCategory inputRef={searchInputRef as Ref<InputRef>} />
+                    </Col>
+                </Row>
 
                 {lg && !open && (
                     <Col xs={2} sm={2} lg={5}>
