@@ -111,10 +111,12 @@
 
             [data-legend='true'] {
                 font-size: 8pt;
+                line-height: 0;
+                padding: 0.5rem;
             }
 
             [data-title='true'] {
-                font-size: 24pt;
+                font-size: 20pt;
             }
 
             [data-subtitle='true'] {
@@ -126,7 +128,7 @@
             }
 
             [class~='ant-btn'] {
-                padding: calc(#{$padding} * 0.8) !important;
+                padding: calc(#{$padding} * 0.65) !important;
                 margin-top: 0 !important;
             }
         }
@@ -140,7 +142,7 @@
             justify-content: space-between;
 
             [data-title='true'] {
-                font-size: 30pt;
+                font-size: 28pt;
             }
 
             [data-subtitle='true'] {
