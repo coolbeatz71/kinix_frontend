@@ -30,6 +30,12 @@
     }
 }
 
+@mixin mediaXL {
+    @media (min-width: $xxl-size) {
+        @content;
+    }
+}
+
 @mixin mediaMinMD {
     @media screen and (min-width: #{$md-size}) {
         @content;
