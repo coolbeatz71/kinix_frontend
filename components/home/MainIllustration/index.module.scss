@@ -167,4 +167,28 @@
             height: 320px;
         }
     }
+
+    @include mediaLG {
+        &__legend {
+            &__text {
+                font-size: 34pt !important;
+            }
+
+            &__subscribe {
+                width: 95%;
+            }
+        }
+    }
+
+    @include mediaXL {
+        &__legend {
+            &__text {
+                font-size: 3.5vw !important;
+            }
+
+            &__subscribe {
+                width: 95%;
+            }
+        }
+    }
 }

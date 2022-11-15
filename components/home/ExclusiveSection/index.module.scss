@@ -292,4 +292,28 @@
             }
         }
     }
+
+    @include mediaLG {
+        &__top {
+            height: 22.5rem;
+            &__left {
+                height: 22.5rem;
+                padding: calc(#{$padding} * 1.2);
+                padding-right: calc(#{$padding} * 0.5);
+            }
+
+            [class~='right'] {
+                height: 22.5rem;
+            }
+        }
+        &__bottom {
+            padding: calc(#{$padding} * 0.18);
+            padding-top: $padding;
+            padding-bottom: calc(#{$padding} * 2);
+
+            [class~='ant-col'] {
+                padding-left: $padding !important;
+            }
+        }
+    }
 }

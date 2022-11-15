@@ -46,6 +46,24 @@
         }
     }
 
+    @include mediaXS {
+        [class~='anticon'] {
+            & > span {
+                width: 1rem !important;
+                height: 1rem !important;
+            }
+        }
+    }
+
+    @include mediaSM {
+        [class~='anticon'] {
+            & > span {
+                width: 1rem !important;
+                height: 1rem !important;
+            }
+        }
+    }
+
     @include mediaMD {
         [class~='anticon'] {
             & > span {

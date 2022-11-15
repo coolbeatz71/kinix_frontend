@@ -61,6 +61,10 @@
             @include mediaMD {
                 padding: calc(#{$mobile-content-padding} * 2) !important;
             }
+
+            @include mediaLG {
+                padding: calc(#{$mobile-content-padding} * 2) !important;
+            }
         }
     }
 }
