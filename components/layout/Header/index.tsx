@@ -168,7 +168,7 @@ const Header: FC<IHeaderProps> = ({
                 )}
 
                 {lg && !open && (
-                    <Col xs={2} sm={2} lg={5}>
+                    <Col xs={2} sm={2} md={2} lg={2} xl={3} xxl={5}>
                         <Logo canRedirect className={styles.header__row__logo} />
                     </Col>
                 )}
@@ -192,7 +192,7 @@ const Header: FC<IHeaderProps> = ({
                 )}
 
                 {lg && (
-                    <Col span={10} className="d-flex flex-row-reverse">
+                    <Col span={11} className="d-flex flex-row-reverse">
                         <Row justify="space-between" gutter={[32, 0]}>
                             <Fragment>
                                 <Col span={4} className="d-flex justify-content-end">

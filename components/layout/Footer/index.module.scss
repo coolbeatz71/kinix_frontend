@@ -301,4 +301,14 @@
             }
         }
     }
+
+    @include mediaLG {
+        &__content {
+            padding: calc(#{$padding} * 1.2) !important;
+
+            &__contact {
+                padding-left: calc(#{$content-padding} * 1.5) !important;
+            }
+        }
+    }
 }

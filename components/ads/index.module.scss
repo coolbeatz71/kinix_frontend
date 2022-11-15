@@ -116,15 +116,15 @@
             }
 
             [data-title='true'] {
-                font-size: 20pt;
+                font-size: 18pt;
             }
 
             [data-subtitle='true'] {
-                font-size: 12pt;
+                font-size: 11pt;
             }
 
             [data-body='true'] {
-                font-size: 11pt;
+                font-size: 10pt;
             }
 
             [class~='ant-btn'] {
@@ -187,6 +187,52 @@
                 span {
                     font-size: 9pt;
                 }
+            }
+        }
+    }
+
+    @include mediaLG {
+        height: 25rem;
+
+        [class~='right'] {
+            height: 25rem;
+        }
+        .adsCarousel__left {
+            height: 25rem;
+            padding: calc(#{$padding} * 1.2);
+            padding-right: 0;
+
+            [data-legend='true'] {
+                font-size: 8pt;
+            }
+
+            [data-title='true'] {
+                font-size: 25pt;
+            }
+
+            [data-subtitle='true'] {
+                font-size: 12pt;
+            }
+
+            [data-body='true'] {
+                font-size: 10pt;
+            }
+
+            [class~='ant-btn'] {
+                padding: 1rem !important;
+                span {
+                    font-size: 9pt;
+                }
+            }
+        }
+    }
+
+    @include mediaXL {
+        .adsCarousel__left {
+            padding-right: 0;
+
+            [data-title='true'] {
+                font-size: 28pt;
             }
         }
     }

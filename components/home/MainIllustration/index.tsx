@@ -47,7 +47,7 @@ const HomeIllustration: FC = () => {
     return (
         <div className={styles.illustration} data-theme={value}>
             <Row justify="space-between">
-                <Col xs={24} sm={24} md={11} lg={10} className={styles.illustration__legend}>
+                <Col xs={24} sm={24} md={11} lg={11} xl={10} className={styles.illustration__legend}>
                     <Title className={styles.illustration__legend__text}>
                         {t('mainLegendOne')} {t('mainLegendTwo')}
                     </Title>
@@ -74,7 +74,7 @@ const HomeIllustration: FC = () => {
                     </Row>
                 </Col>
                 {md && (
-                    <Col xs={24} sm={24} md={13} lg={14}>
+                    <Col xs={24} sm={24} md={13} lg={13} xl={14}>
                         <Carousel
                             autoplay
                             speed={2000}

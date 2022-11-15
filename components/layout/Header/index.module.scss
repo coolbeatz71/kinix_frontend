@@ -474,7 +474,8 @@
         }
     }
 
-    @include mediaMaxLG {
+    @include mediaLG {
+        padding: 0 calc(#{$mobile-content-padding} * 2) !important;
         [data-search-col] {
             width: 64px;
             position: relative;

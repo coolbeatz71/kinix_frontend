@@ -25,12 +25,12 @@
 }
 
 @mixin mediaXL {
-    @media (min-width: $xl-size) {
+    @media (min-width: $xl-size) and (max-width: $xxl-size) {
         @content;
     }
 }
 
-@mixin mediaXL {
+@mixin mediaXXL {
     @media (min-width: $xxl-size) {
         @content;
     }
