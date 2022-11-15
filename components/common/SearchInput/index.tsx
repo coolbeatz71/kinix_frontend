@@ -1,6 +1,6 @@
-import { ChangeEventHandler, FC, KeyboardEventHandler } from 'react';
+import { ChangeEventHandler, FC, KeyboardEventHandler, Ref } from 'react';
 
-import Input from 'antd/lib/input';
+import Input, { InputRef } from 'antd/lib/input';
 import { SizeType } from 'antd/lib/config-provider/SizeContext';
 
 import { SearchOutlined } from 'icons';
@@ -13,18 +13,22 @@ const { Search } = Input;
 
 export interface ISearchInputProps {
     size?: SizeType;
+    autoFocus?: boolean;
     allowClear?: boolean;
     isCategory?: boolean;
     value?: string | string[];
+    inputRef?: Ref<InputRef> | undefined;
     onChange?: ChangeEventHandler<HTMLInputElement> | undefined;
     onKeyPress?: KeyboardEventHandler<HTMLInputElement> | undefined;
 }
 
 const SearchInput: FC<ISearchInputProps> = ({
+    inputRef,
     onChange,
     onKeyPress,
     value = '',
     size = 'middle',
+    autoFocus = false,
     allowClear = true,
     isCategory = false,
 }) => {
@@ -37,7 +41,9 @@ const SearchInput: FC<ISearchInputProps> = ({
                 <Input
                     size={size}
                     value={value}
+                    ref={inputRef}
                     onChange={onChange}
+                    autoFocus={autoFocus}
                     allowClear={allowClear}
                     onKeyPress={onKeyPress}
                     placeholder={t('search')}
@@ -47,7 +53,9 @@ const SearchInput: FC<ISearchInputProps> = ({
                 <Search
                     size={size}
                     value={value}
+                    ref={inputRef}
                     onChange={onChange}
+                    autoFocus={autoFocus}
                     allowClear={allowClear}
                     onKeyPress={onKeyPress}
                     enterButton={t('search')}

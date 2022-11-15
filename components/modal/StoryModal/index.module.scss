@@ -148,6 +148,17 @@
         .storyPopup__content {
             height: 100%;
         }
+
+        .storyPopup__seeMore {
+            padding: 1rem;
+            [data-title='true'] {
+                font-size: 18pt;
+            }
+
+            [data-body='true'] {
+                font-size: 10pt;
+            }
+        }
     }
 
     @include mediaSM {
@@ -166,6 +177,17 @@
 
         .storyPopup__content {
             height: 100%;
+        }
+
+        .storyPopup__seeMore {
+            padding: 1rem;
+            [data-title='true'] {
+                font-size: 20pt;
+            }
+
+            [data-body='true'] {
+                font-size: 11pt;
+            }
         }
     }
 }

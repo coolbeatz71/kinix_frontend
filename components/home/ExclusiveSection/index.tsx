@@ -108,7 +108,7 @@ const ExclusiveSection: FC<IExclusiveSectionProps> = ({ tag, title, desc, imgSrc
             <Row
                 style={colStyles}
                 className={styles.exclusive__bottom}
-                gutter={lg ? [48, 0] : (md || sm) && !lg ? [48, 48] : undefined}
+                gutter={lg ? [48, 32] : (md || sm) && !lg ? [48, 48] : undefined}
             >
                 {videos?.map((video) => (
                     <Col xs={24} sm={12} md={12} lg={8} xl={6} key={video?.slug}>

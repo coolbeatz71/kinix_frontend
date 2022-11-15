@@ -225,10 +225,13 @@
                 [data-copyright='true'] {
                     font-weight: 600;
                     text-align: center;
-                    font-size: 12pt;
+                    font-size: 10pt;
                 }
 
                 [data-links='true'] {
+                    a {
+                        font-size: 10pt;
+                    }
                     [class~='ant-space-item'] {
                         text-align: center;
                     }
@@ -261,6 +264,9 @@
                 }
 
                 [data-links='true'] {
+                    a {
+                        font-size: 11pt;
+                    }
                     [class~='ant-space-item'] {
                         text-align: center;
                     }
@@ -292,6 +298,16 @@
                         font-size: 10pt !important;
                     }
                 }
+            }
+        }
+    }
+
+    @include mediaLG {
+        &__content {
+            padding: calc(#{$padding} * 1.2) !important;
+
+            &__contact {
+                padding-left: calc(#{$content-padding} * 1.5) !important;
             }
         }
     }

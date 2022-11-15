@@ -3,6 +3,7 @@ import { UserOutlined } from 'icons';
 import truncate from 'lodash/truncate';
 import upperFirst from 'lodash/upperFirst';
 
+import Grid from 'antd/lib/grid';
 import Space from 'antd/lib/space';
 import Avatar from 'antd/lib/avatar';
 import Button from 'antd/lib/button';
@@ -13,16 +14,19 @@ import { getBgColor } from '@helpers/getBgColor';
 import NotificationDropDown from '../NotificationDropDown';
 import UserProfileMenu from '@components/common/UserProfileMenu';
 
+const { useBreakpoint } = Grid;
+
 export interface IUserProfileDropDownProps {
     className: string;
     currentUser: ICurrentUser;
 }
 
 const UserProfileDropDown: FC<IUserProfileDropDownProps> = ({ className, currentUser }) => {
+    const { lg } = useBreakpoint();
     const [openDropdown, setOpenDropdown] = useState(false);
 
     return (
-        <Space size={48}>
+        <Space size={lg ? 24 : 48}>
             <NotificationDropDown />
             <Dropdown
                 open={openDropdown}
