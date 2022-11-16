@@ -1,4 +1,5 @@
 export const favorite = {
+    myFavorite: 'Mes favoris',
     myPlaylists: 'Mes playlistes vidéos',
     myBookmarks: 'Mes articles favoris',
     mySharedVideos: 'Mes vidéos partagées',

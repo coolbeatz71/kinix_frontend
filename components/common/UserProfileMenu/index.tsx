@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { UserOutlined, SettingOutlined, LogoutOutlined, LoadingOutlined } from 'icons';
+import { UserOutlined, SettingOutlined, LogoutOutlined, LoadingOutlined, StarOutlined } from 'icons';
 
 import Col from 'antd/lib/col';
 import Row from 'antd/lib/row';
@@ -12,13 +12,13 @@ import Menu from 'antd/lib/menu';
 import Avatar from 'antd/lib/avatar';
 import Typography from 'antd/lib/typography';
 
-import useDarkLight from '@hooks/useDarkLight';
 import { IRootState } from '@redux/reducers';
 import logoutAction from '@redux/auth/logout';
 import { useAppDispatch } from '@redux/store';
+import useDarkLight from '@hooks/useDarkLight';
 import { getBgColor } from '@helpers/getBgColor';
 import getNotification from '@helpers/getNotification';
-import { HOME_PATH, SETTING_PATH } from '@constants/paths';
+import { FAVORITE_PATH, HOME_PATH, SETTING_PATH } from '@constants/paths';
 
 import styles from './index.module.scss';
 
@@ -70,6 +70,9 @@ const UserProfileMenu: FC<IUserProfileMenuProps> = ({ avatar, email, phoneNumber
                     <Text data-phone>{phoneNumber}</Text>
                 </Col>
             </Row>
+            <Item icon={<StarOutlined />} key="favorite">
+                <Link href={FAVORITE_PATH}>{t('myFavorite')}</Link>
+            </Item>
             <Item icon={<SettingOutlined />} key="settings">
                 <Link href={SETTING_PATH}>{t('settings')}</Link>
             </Item>

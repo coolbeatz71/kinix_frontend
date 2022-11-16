@@ -44,7 +44,7 @@ const SharedVideosList: FC = () => {
             ) : (
                 <Row align="middle" gutter={[32, 24]}>
                     {shares?.rows?.map((share: IShare) => (
-                        <Col key={share.id} xs={24} sm={24} md={12} lg={8}>
+                        <Col key={share.id} xs={24} sm={24} md={12} lg={12} xl={8}>
                             <DynamicRelatedVideoCard video={share.video as IVideo} />
                         </Col>
                     ))}

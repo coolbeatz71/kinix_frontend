@@ -44,7 +44,7 @@ const LikedArticlesList: FC = () => {
             ) : (
                 <Row align="middle" gutter={[32, 24]}>
                     {likes?.rows?.map((articles: ILike) => (
-                        <Col key={articles.id} xs={24} sm={24} md={12} lg={8}>
+                        <Col key={articles.id} xs={24} sm={24} md={12} lg={12} xl={8}>
                             <DynamicRelatedArticleCard article={articles.article as IArticle} />
                         </Col>
                     ))}

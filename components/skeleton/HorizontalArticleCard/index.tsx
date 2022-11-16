@@ -15,21 +15,21 @@ const HorizontalArticleCardSkeleton: FC = () => {
     return (
         <div data-theme={value} className={styles.horizontalArticleSkeleton}>
             <Card bordered={false}>
-                <Row justify="space-between" gutter={[24, 0]}>
-                    <Col span={8} className={styles.horizontalArticleSkeleton__image}>
+                <Row justify="space-between" gutter={[12, 0]}>
+                    <Col span={10} className={styles.horizontalArticleSkeleton__image}>
                         <Skeleton.Image />
                     </Col>
-                    <Col span={16}>
-                        <Row justify="space-between" gutter={48} className="mb-4">
-                            <Col span={12}>
+                    <Col span={14}>
+                        <Row justify="space-between" className="mb-4">
+                            <Col span={10}>
                                 <Skeleton.Button active block size="small" />
                             </Col>
-                            <Col span={8}>
+                            <Col span={10}>
                                 <Skeleton.Button active block size="small" />
                             </Col>
                         </Row>
                         <Row justify="space-between">
-                            <Skeleton.Button active style={{ width: 200 }} size="small" />
+                            <Skeleton.Button active size="small" />
                             <Skeleton.Button active block size="small" />
                             <Skeleton.Button active block size="small" />
                         </Row>
