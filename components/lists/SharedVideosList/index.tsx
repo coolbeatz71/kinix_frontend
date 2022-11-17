@@ -42,7 +42,7 @@ const SharedVideosList: FC = () => {
             ) : isEmpty(shares?.rows) ? (
                 <EmptyData type={EnumEmptyDataType.CONTENT} desc={t('noSharesFound')} />
             ) : (
-                <Row align="middle" gutter={[32, 24]}>
+                <Row align="middle" gutter={[32, 0]}>
                     {shares?.rows?.map((share: IShare) => (
                         <Col key={share.id} xs={24} sm={24} md={12} lg={12} xl={8}>
                             <DynamicRelatedVideoCard video={share.video as IVideo} />

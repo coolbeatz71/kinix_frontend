@@ -49,7 +49,7 @@ const BookmarksList: FC = () => {
             ) : isEmpty(bookmarks?.rows) ? (
                 <EmptyData type={EnumEmptyDataType.BOOKMARK} desc={t('noBookmarksFound')} />
             ) : (
-                <Row align="middle" gutter={[lg ? 32 : 24, 24]}>
+                <Row align="middle" gutter={[lg ? 32 : 24, 0]}>
                     {bookmarks?.rows?.map((bookmark: IBookmark) => (
                         <Col key={bookmark.id} xs={24} sm={24} md={12} lg={12} xl={8}>
                             <DynamicRelatedArticleCard article={bookmark.article as IArticle} />

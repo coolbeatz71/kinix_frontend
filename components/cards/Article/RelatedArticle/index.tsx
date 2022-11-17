@@ -8,6 +8,7 @@ import { ClockCircleOutlined } from 'icons';
 import Row from 'antd/lib/row';
 import Col from 'antd/lib/col';
 import Card from 'antd/lib/card';
+import Tooltip from 'antd/lib/tooltip';
 import Typography from 'antd/lib/typography';
 
 import { IArticle } from '@interfaces/api';
@@ -47,11 +48,13 @@ const RelatedArticleCard: FC<IRelatedArticleProps> = ({ article }) => {
                                 </div>
                             </div>
                             <div className={styles.relatedArticleCard__content}>
-                                <Title level={5} data-text="title">
-                                    {truncate(article.title, {
-                                        length: 60,
-                                    })}
-                                </Title>
+                                <Tooltip title={article.title} placement="topRight">
+                                    <Title level={5} data-text="title">
+                                        {truncate(article.title, {
+                                            length: 48,
+                                        })}
+                                    </Title>
+                                </Tooltip>
                             </div>
                         </Col>
                     </Row>

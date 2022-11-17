@@ -6,21 +6,20 @@
     padding: $padding;
     border-radius: $border-radius;
 
+    [class~='ant-card-body'] {
+        padding: 0 !important;
+    }
+
     &[data-theme='light'] {
         background: $light50;
     }
 
     &[data-theme='dark'] {
+        border: 1px solid $light10;
         background: $bg-primary-dark50;
     }
 
-    @include mediaXS {
-        padding: 1rem;
-    }
-    @include mediaSM {
-        padding: 1rem;
-    }
-    @include mediaMD {
-        padding: 1rem;
+    @include mediaMaxLG {
+        padding: calc(#{$padding} * 0.5);
     }
 }

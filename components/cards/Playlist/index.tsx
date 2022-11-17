@@ -15,6 +15,7 @@ import Card from 'antd/lib/card';
 import Modal from 'antd/lib/modal';
 import Button from 'antd/lib/button';
 import message from 'antd/lib/message';
+import Grid from 'antd/lib/grid';
 import Tooltip from 'antd/lib/tooltip';
 import Typography from 'antd/lib/typography';
 
@@ -31,6 +32,7 @@ const DynamicPlaylistVideosDrawer = dynamic(() => import('@components/drawers/Pl
 import styles from './index.module.scss';
 
 const { confirm } = Modal;
+const { useBreakpoint } = Grid;
 const { Title, Text } = Typography;
 
 export interface IPlaylistCardProps {
@@ -41,6 +43,7 @@ const PlaylistCard: FC<IPlaylistCardProps> = ({ playlist }) => {
     const { t } = useTranslation();
     const { value } = useDarkLight();
     const dispatch = useAppDispatch();
+    const { md, xs } = useBreakpoint();
     const defaultCover = playlist?.videos?.[0]?.link || '';
 
     const [cover, setCover] = useState<string>(defaultCover);
@@ -89,8 +92,8 @@ const PlaylistCard: FC<IPlaylistCardProps> = ({ playlist }) => {
                 setOpenDrawer={setOpenVideoListModal}
             />
             <Card bordered={false} hoverable>
-                <Row justify="space-between" gutter={24}>
-                    <Col span={12} className={styles.playlistCard__cover}>
+                <Row justify="space-between">
+                    <Col xs={12} sm={12} md={12} lg={10} className={styles.playlistCard__cover}>
                         {!isEmpty(playlist?.videos?.[0].link) && (
                             <div
                                 onClick={() => setOpenVideoListModal(true)}
@@ -111,12 +114,14 @@ const PlaylistCard: FC<IPlaylistCardProps> = ({ playlist }) => {
                             </div>
                         )}
                     </Col>
-                    <Col span={12} data-body>
-                        <Title level={5} data-title className="pe-4" onClick={() => setOpenVideoListModal(true)}>
-                            {truncate(playlist.title, {
-                                length: 45,
-                            })}
-                        </Title>
+                    <Col xs={12} sm={12} md={12} lg={14} data-body>
+                        <Tooltip placement="topRight" title={playlist.title}>
+                            <Title level={5} data-title onClick={() => setOpenVideoListModal(true)}>
+                                {truncate(playlist.title, {
+                                    length: 45,
+                                })}
+                            </Title>
+                        </Tooltip>
 
                         <div className="d-flex flex-column">
                             <Text data-created-at>
@@ -124,21 +129,22 @@ const PlaylistCard: FC<IPlaylistCardProps> = ({ playlist }) => {
                                 {upperFirst(dayjs(playlist?.createdAt).format('MMM MM, YYYY'))}
                             </Text>
                             <Text data-created-at>
-                                <strong>{t('lastUpdate')}</strong> {upperFirst(dayjs(playlist?.updatedAt).fromNow())}
+                                <strong>{t('updatedAt')}</strong> {upperFirst(dayjs(playlist?.updatedAt).fromNow())}
                             </Text>
                             <Text data-videos>{videosLength ? `${numOfVideos} ${plural}` : t('noVideos')}</Text>
                         </div>
 
-                        <div className="mt-3 d-flex justify-content-end pe-4">
+                        <div className="mt- d-flex justify-content-end">
                             <Tooltip title={t('deletePlaylist')} placement="topRight">
                                 <Button
                                     ghost
                                     danger
                                     icon={<DeleteFilled />}
                                     onClick={showDeleteConfirm}
-                                    className="d-flex align-items-center"
+                                    size={md ? 'middle' : 'small'}
+                                    className="d-flex align-items-center justify-content-center"
                                 >
-                                    {t('delete')}
+                                    {xs ? '' : t('delete')}
                                 </Button>
                             </Tooltip>
                         </div>
