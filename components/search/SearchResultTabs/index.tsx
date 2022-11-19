@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import dynamic from 'next/dynamic';
 import toLower from 'lodash/toLower';
+import isEmpty from 'lodash/isEmpty';
 import { useTranslation } from 'react-i18next';
 
 import Tabs from 'antd/lib/tabs';
@@ -18,46 +19,42 @@ const DynamicVideosResult = dynamic(() => import('./../VideosResult'));
 const DynamicArticlesResult = dynamic(() => import('./../ArticlesResult'));
 
 export interface ISearchResultTabsProps {
-    loading: boolean;
     isArticle?: boolean;
     data: ISearchResult;
 }
 
-const SearchResultTabs: FC<ISearchResultTabsProps> = ({ isArticle = false, loading, data }) => {
+const SearchResultTabs: FC<ISearchResultTabsProps> = ({ isArticle = false, data }) => {
     const { t } = useTranslation();
     const { value } = useDarkLight();
     const activeSection = searchResultTabs[isArticle ? 1 : 0].title?.toLowerCase();
 
     const getTabsContent = (title: string): JSX.Element => {
+        const videos = !isEmpty(data) ? data.videos?.videos : [];
+        const articles = !isEmpty(data) ? data.articles?.articles : [];
+
         switch (title) {
-            case EnumSearchResultTabTitle.ARTICLES:
-                return <DynamicArticlesResult articles={data.articles.articles} />;
             case EnumSearchResultTabTitle.VIDEOS:
-                return <DynamicVideosResult videos={data.videos.videos} />;
+                return <DynamicVideosResult videos={data?.videos?.videos} />;
+            case EnumSearchResultTabTitle.ARTICLES:
+                return <DynamicArticlesResult articles={data?.articles?.articles} />;
             default:
-                return <DynamicAllResult />;
+                return <DynamicAllResult data={[...articles, ...videos]} />;
         }
     };
 
     const getResultCount = (title: string): number => {
         switch (title) {
             case EnumSearchResultTabTitle.ARTICLES:
-                return data.articles.count;
+                return data?.articles?.count;
             case EnumSearchResultTabTitle.VIDEOS:
-                return data.videos.count;
+                return data?.videos?.count;
             default:
-                return data.videos.count + data.articles.count;
+                return data?.videos?.count + data?.articles?.count;
         }
     };
 
     return (
-        <Tabs
-            type="card"
-            data-theme={value}
-            activeKey={activeSection}
-            defaultActiveKey={activeSection}
-            className={styles.searchResultTabs}
-        >
+        <Tabs type="card" data-theme={value} defaultActiveKey={activeSection} className={styles.searchResultTabs}>
             {searchResultTabs.map((tab) => (
                 <TabPane
                     key={toLower(tab.title)}

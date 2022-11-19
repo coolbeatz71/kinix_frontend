@@ -1,0 +1,135 @@
+@import 'styles/dimensions.scss';
+@import 'styles/colors.scss';
+
+.searchResultCard {
+    cursor: pointer;
+    margin-bottom: $padding;
+    border-radius: $border-radius;
+
+    [class~='ant-card-body'] {
+        padding: 0;
+        height: 100%;
+    }
+
+    [data-body='true'] {
+        display: flex;
+        flex-flow: column;
+        justify-content: space-between;
+        padding: $padding 0;
+    }
+
+    &__cover {
+        padding: 0;
+        &__image {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            left: 0;
+
+            img {
+                object-fit: cover;
+                aspect-ratio: 16 / 9;
+                border-radius: $border-radius;
+
+                border-top-right-radius: 0;
+                border-bottom-right-radius: 0;
+            }
+        }
+    }
+
+    &__header {
+        padding: 0 $padding;
+
+        [data-text='header'] {
+            font-size: 12px;
+        }
+
+        [class~='ant-tag'] {
+            font-weight: 600;
+            margin-right: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            max-width: calc(#{$padding} * 3);
+        }
+    }
+
+    &__content {
+        padding: $padding;
+        padding-top: 0.8rem;
+        padding-bottom: 0;
+
+        [data-text='title'] {
+            height: 4rem;
+            font-size: 15pt;
+            margin-bottom: 0;
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    &__footer {
+        padding: 0 $padding;
+
+        display: flex;
+        justify-content: flex-end;
+
+        [class~='ant-btn'] {
+            padding: 0;
+            margin-left: 1rem;
+
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+
+            [class~='anticon'] {
+                font-size: 16pt;
+            }
+
+            [data-count='true'] {
+                margin-left: 5px;
+                font-size: 12pt;
+            }
+        }
+    }
+
+    &[data-theme='light'] {
+        [class~='ant-card'] {
+            background: $white;
+        }
+        [class~='ant-typography'] {
+            color: $black;
+        }
+        [data-text='header'] {
+            color: $dark;
+        }
+        [class~='ant-tag'] {
+            color: $dark !important;
+        }
+
+        .searchResultCard__footer {
+            [class~='ant-btn'] {
+                color: $dark;
+            }
+        }
+    }
+
+    &[data-theme='dark'] {
+        [class~='ant-card'] {
+            background: $bg-primary-dark90;
+        }
+        [class~='ant-typography'] {
+            color: $white;
+        }
+        [data-text='header'] {
+            color: $light;
+        }
+
+        .searchResultCard__footer {
+            [class~='ant-btn'] {
+                color: $light;
+            }
+        }
+    }
+}

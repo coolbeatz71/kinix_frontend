@@ -2,6 +2,7 @@
 @import 'styles/dimensions.scss';
 
 .searchResultTabs {
+    margin-top: calc(#{$padding} * 2);
     [class~='ant-tabs-nav'] {
         margin-bottom: $padding;
     }

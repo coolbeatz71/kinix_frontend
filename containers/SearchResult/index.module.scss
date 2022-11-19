@@ -1,12 +1,42 @@
 @import 'styles/colors.scss';
+@import 'styles/dimensions.scss';
 
 .searchResults {
     display: flex;
     justify-content: center;
 
+    border-radius: $border-radius;
+    padding: calc(#{$content-padding} * 0.5) $padding;
+
     [data-title='true'] {
         text-align: center;
         font-family: Poppins;
+
+        [data-result='true'] {
+            font-size: 18pt;
+        }
+    }
+
+    &[data-theme='light'] {
+        background: $light50;
+        [data-title='true'] {
+            color: $dark;
+
+            [data-result='true'] {
+                color: $primary;
+            }
+        }
+    }
+
+    &[data-theme='dark'] {
+        background: $bg-primary-dark50;
+        [data-title='true'] {
+            color: $light;
+
+            [data-result='true'] {
+                color: $white;
+            }
+        }
     }
 
     &__content {
