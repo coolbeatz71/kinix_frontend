@@ -1,7 +1,5 @@
-import React, { FC } from 'react';
-import dynamic from 'next/dynamic';
+import { FC } from 'react';
 import toLower from 'lodash/toLower';
-import isEmpty from 'lodash/isEmpty';
 import { useTranslation } from 'react-i18next';
 
 import Tabs from 'antd/lib/tabs';
@@ -9,14 +7,13 @@ import TabPane from 'antd/lib/tabs/TabPane';
 
 import useDarkLight from '@hooks/useDarkLight';
 import { ISearchResult } from '@interfaces/api';
+import AllResult from '@components/search/AllResult';
+import VideosResult from '@components/search/VideosResult';
 import searchResultTabs from '@constants/search-result-tabs';
+import ArticlesResult from '@components/search/ArticlesResult';
 import EnumSearchResultTabTitle from '@interfaces/searchResultTabs';
 
 import styles from './index.module.scss';
-
-const DynamicAllResult = dynamic(() => import('./../AllResult'));
-const DynamicVideosResult = dynamic(() => import('./../VideosResult'));
-const DynamicArticlesResult = dynamic(() => import('./../ArticlesResult'));
 
 export interface ISearchResultTabsProps {
     isArticle?: boolean;
@@ -29,16 +26,13 @@ const SearchResultTabs: FC<ISearchResultTabsProps> = ({ isArticle = false, data 
     const activeSection = searchResultTabs[isArticle ? 1 : 0].title?.toLowerCase();
 
     const getTabsContent = (title: string): JSX.Element => {
-        const videos = !isEmpty(data) ? data.videos?.videos : [];
-        const articles = !isEmpty(data) ? data.articles?.articles : [];
-
         switch (title) {
             case EnumSearchResultTabTitle.VIDEOS:
-                return <DynamicVideosResult videos={data?.videos?.videos} />;
+                return <VideosResult videos={data?.videos?.videos} />;
             case EnumSearchResultTabTitle.ARTICLES:
-                return <DynamicArticlesResult articles={data?.articles?.articles} />;
+                return <ArticlesResult articles={data?.articles?.articles} />;
             default:
-                return <DynamicAllResult data={[...articles, ...videos]} />;
+                return <AllResult data={data} />;
         }
     };
 

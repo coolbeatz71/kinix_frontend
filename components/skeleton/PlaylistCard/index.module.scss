@@ -1,4 +1,5 @@
 @import 'styles/colors.scss';
+@import 'styles/_mixins.scss';
 @import 'styles/dimensions.scss';
 
 .playlistSkeleton {
@@ -42,6 +43,19 @@
     &[data-theme='dark'] {
         [class~='ant-card-body'] {
             background-color: $primary;
+        }
+    }
+
+    @include mediaXS {
+        .playlistSkeleton__body {
+            padding: calc(#{$padding} * 0.67);
+            padding-right: 1rem !important;
+        }
+    }
+    @include mediaSM {
+        .playlistSkeleton__body {
+            padding: calc(#{$padding} * 0.67);
+            padding-right: 1rem !important;
         }
     }
 }

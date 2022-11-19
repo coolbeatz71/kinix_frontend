@@ -1,12 +1,11 @@
 @import 'styles/colors.scss';
+@import 'styles/_mixins.scss';
 @import 'styles/dimensions.scss';
 
 .searchResults {
     display: flex;
     justify-content: center;
-
     border-radius: $border-radius;
-    padding: calc(#{$content-padding} * 0.5) $padding;
 
     [data-title='true'] {
         text-align: center;
@@ -16,7 +15,6 @@
             font-size: 18pt;
         }
     }
-
     &[data-theme='light'] {
         background: $light50;
         [data-title='true'] {
@@ -27,7 +25,6 @@
             }
         }
     }
-
     &[data-theme='dark'] {
         background: $bg-primary-dark50;
         [data-title='true'] {
@@ -40,13 +37,43 @@
     }
 
     &__content {
-        display: block;
-        [class~='infinite-scroll-component'] {
-            overflow-x: hidden !important;
+        min-height: 80vh;
+        padding: calc(#{$content-padding} * 0.5) $padding;
+
+        [class~='ant-empty'] {
+            padding: 0 !important;
+        }
+        &__data {
+            display: block;
+            [class~='infinite-scroll-component'] {
+                overflow-x: hidden !important;
+            }
+
+            [class~='ant-alert-message'] {
+                color: $white;
+            }
+        }
+    }
+
+    @include mediaXS {
+        [data-title='true'] {
+            font-size: 15pt !important;
         }
 
-        [class~='ant-alert-message'] {
-            color: $white;
+        .searchResults__content {
+            padding-left: calc(#{$padding} * 0.5);
+            padding-right: calc(#{$padding} * 0.5);
+        }
+    }
+
+    @include mediaSM {
+        [data-title='true'] {
+            font-size: 15pt !important;
+        }
+
+        .searchResults__content {
+            padding-left: calc(#{$padding} * 0.5);
+            padding-right: calc(#{$padding} * 0.5);
         }
     }
 }

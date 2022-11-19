@@ -1,4 +1,5 @@
 @import 'styles/colors.scss';
+@import 'styles/_mixins.scss';
 @import 'styles/dimensions.scss';
 
 .searchResultTabs {
@@ -15,6 +16,9 @@
     }
 
     &[data-theme='light'] {
+        [class~='anticon-ellipsis'] {
+            color: $primary !important;
+        }
         [class~='ant-tabs-tab-active'] {
             * {
                 color: $white !important;
@@ -24,6 +28,9 @@
     }
 
     &[data-theme='dark'] {
+        [class~='anticon-ellipsis'] {
+            color: $white;
+        }
         [class~='ant-tabs-nav']::before {
             border-color: $light20;
         }
@@ -39,6 +46,22 @@
                 color: $primary !important;
             }
             background: $white !important;
+        }
+    }
+
+    @include mediaXS {
+        margin-top: $padding !important;
+
+        [class='ant-tabs-content-holder'] {
+            padding: 0;
+        }
+    }
+
+    @include mediaSM {
+        margin-top: $padding !important;
+
+        [class='ant-tabs-content-holder'] {
+            padding: 0;
         }
     }
 }

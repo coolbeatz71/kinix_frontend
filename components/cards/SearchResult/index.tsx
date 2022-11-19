@@ -1,4 +1,4 @@
-import React, { FC, Fragment } from 'react';
+import { FC, Fragment } from 'react';
 import dayjs from 'dayjs';
 import Link from 'next/link';
 import numeral from 'numeral';
@@ -13,6 +13,7 @@ import Col from 'antd/lib/col';
 import Tag from 'antd/lib/tag';
 import Card from 'antd/lib/card';
 import Rate from 'antd/lib/rate';
+import Grid from 'antd/lib/grid';
 import Button from 'antd/lib/button';
 import Typography from 'antd/lib/typography';
 
@@ -24,6 +25,7 @@ import getYoutubeVideoThumbnail from '@helpers/getYoutubeVideoThumbail';
 
 import styles from './index.module.scss';
 
+const { useBreakpoint } = Grid;
 const { Title, Text } = Typography;
 
 export interface ISearchResultCardProps {
@@ -32,6 +34,7 @@ export interface ISearchResultCardProps {
 
 const SearchResultCardCard: FC<ISearchResultCardProps> = ({ data }) => {
     const { t } = useTranslation();
+    const { md } = useBreakpoint();
     const { value } = useDarkLight();
 
     const isArticle = Object.prototype.hasOwnProperty.call(data, 'reads');
@@ -50,7 +53,7 @@ const SearchResultCardCard: FC<ISearchResultCardProps> = ({ data }) => {
             <div data-theme={value} className={styles.searchResultCard}>
                 <Card bordered={false} hoverable>
                     <Row justify="space-between">
-                        <Col span={9} className={styles.searchResultCard__cover}>
+                        <Col xs={10} sm={10} md={9} className={styles.searchResultCard__cover}>
                             <div className={styles.searchResultCard__cover__image}>
                                 <Image
                                     priority
@@ -60,7 +63,7 @@ const SearchResultCardCard: FC<ISearchResultCardProps> = ({ data }) => {
                                 />
                             </div>
                         </Col>
-                        <Col span={15} data-body>
+                        <Col xs={14} sm={14} md={15} data-body>
                             <div className={styles.searchResultCard__header}>
                                 <Tag
                                     className="mb-3"
@@ -71,10 +74,12 @@ const SearchResultCardCard: FC<ISearchResultCardProps> = ({ data }) => {
                                 </Tag>
                                 <div className="d-flex justify-content-between">
                                     {isArticle ? <Text data-text="header">{t('byRedaction')}</Text> : <div />}
-                                    <Text data-text="header" className="d-flex align-items-center">
-                                        <ClockCircleOutlined />
-                                        &nbsp; {dayjs(data?.createdAt).fromNow()}
-                                    </Text>
+                                    {md && (
+                                        <Text data-text="header" className="d-flex align-items-center">
+                                            <ClockCircleOutlined />
+                                            &nbsp; {dayjs(data?.createdAt).fromNow()}
+                                        </Text>
+                                    )}
                                 </div>
                             </div>
                             <div className={styles.searchResultCard__content}>

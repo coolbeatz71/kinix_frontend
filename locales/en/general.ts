@@ -36,6 +36,7 @@ export const general = {
     noLyricsUploaded: 'No lyrics was provided on this video',
     noRatingFound: 'No rating was found on this video.',
     noContentFound: 'No content was found for this request.',
+    noSearchResultFound: 'No result found for this search.',
     noBookmarksFound: 'No bookmarked article was found.',
     noPlaylistFound: 'No playlist  was found.',
     noSharesFound: 'No shared video was found.',

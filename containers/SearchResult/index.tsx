@@ -1,4 +1,4 @@
-import React, { FC, Fragment, useEffect } from 'react';
+import { FC, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
 import truncate from 'lodash/truncate';
@@ -14,13 +14,12 @@ import { useAppDispatch } from '@redux/store';
 import useDarkLight from '@hooks/useDarkLight';
 import { ISearchResult } from '@interfaces/api';
 import searchContentAction from '@redux/search/all';
-import SearchResultTabs from '@components/search/SearchResultTabs';
 
 import styles from './index.module.scss';
 
 const DynamicServerError = dynamic(() => import('@components/common/ServerError'));
-const DynamicSectionTitleSkeleton = dynamic(() => import('@components/skeleton/SectionTitle'));
-const DynamicPlaylistsListSkeleton = dynamic(() => import('@components/skeleton/PlaylistsList'));
+const DynamicSearchResultTabs = dynamic(() => import('@components/search/SearchResultTabs'));
+const DynamicSearchResultList = dynamic(() => import('@components/skeleton/SearchResultList'));
 
 const { Title } = Typography;
 
@@ -39,26 +38,25 @@ const SearchResultContainer: FC = () => {
     return (
         <Row className={styles.searchResults} justify="center" data-theme={value}>
             {error ? (
-                <DynamicServerError
-                    error={error}
-                    onRefresh={() => {
-                        dispatch(searchContentAction({ q: query?.search as string }));
-                    }}
-                />
+                <Col xs={24}>
+                    <DynamicServerError
+                        error={error}
+                        onRefresh={() => {
+                            dispatch(searchContentAction({ q: query?.search as string }));
+                        }}
+                    />
+                </Col>
             ) : (
-                <Col xs={24} sm={24} md={16} lg={14}>
+                <Col xs={24} sm={24} md={22} lg={18} xl={14} className={styles.searchResults__content}>
                     <Title level={2} data-title>
                         {t('searchResultTitle')} <br />
                         <span data-result>« {truncate(query?.search as string, { length: 24 })} »</span>
                     </Title>
 
                     {loading ? (
-                        <Fragment>
-                            <DynamicSectionTitleSkeleton />
-                            <DynamicPlaylistsListSkeleton isSearchResult />
-                        </Fragment>
+                        <DynamicSearchResultList />
                     ) : (
-                        <SearchResultTabs data={data as ISearchResult} isArticle={query?.article === 'true'} />
+                        <DynamicSearchResultTabs data={data as ISearchResult} isArticle={query?.article === 'true'} />
                     )}
                 </Col>
             )}

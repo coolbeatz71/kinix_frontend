@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
 import { RiArticleLine } from 'react-icons/ri';
 import { MenuUnfoldOutlined, VideoCameraFilled } from 'icons';
 import EnumSearchResultTabTitle from '@interfaces/searchResultTabs';
