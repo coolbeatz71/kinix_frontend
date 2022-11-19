@@ -5,6 +5,7 @@ export const HOME_PATH = '/';
 
 export const ALL_VIDEOS_PATH = '/videos';
 export const ALL_ARTICLES_PATH = '/articles';
+export const SEARCH_RESULTS_PATH = '/results';
 export const SETTING_PATH = '/account/settings';
 
 export const PODCAST_PATH = `/videos?category=${EnumVideoCategory.PODCAST.toLowerCase()}`;

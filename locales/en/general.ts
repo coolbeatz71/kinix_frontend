@@ -74,4 +74,5 @@ export const general = {
     newsletterSubtitle: `Sign up for our weekly newsletter to get the latest news, updates and amazing offers delivered
     directly in your inbox.`,
     enterEmail: 'Enter your email',
+    searchResults: 'Search results',
 };

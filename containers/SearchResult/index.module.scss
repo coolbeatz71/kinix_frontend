@@ -1,0 +1,13 @@
+@import 'styles/colors.scss';
+
+.searchResults {
+    display: block;
+
+    [class~='infinite-scroll-component'] {
+        overflow-x: hidden !important;
+    }
+
+    [class~='ant-alert-message'] {
+        color: $white;
+    }
+}

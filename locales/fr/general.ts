@@ -74,4 +74,5 @@ export const general = {
     newsletterSubtitle: `Inscrivez-vous à notre bulletin hebdomadaire pour recevoir les dernières nouvelles, et offres incroyables
     directement sur votre boîte de réception.`,
     enterEmail: 'Entrer votre email',
+    searchResults: 'Resultats recherche',
 };

@@ -3,6 +3,7 @@ import ads from './ads';
 import user from './user';
 import auth from './auth';
 import likes from './likes';
+import search from './search';
 import story from './stories';
 import videos from './videos';
 import ratings from './ratings';
@@ -18,6 +19,7 @@ export const rootReducer = combineReducers({
     auth,
     likes,
     story,
+    search,
     videos,
     sharing,
     ratings,
