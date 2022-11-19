@@ -1,13 +1,22 @@
 @import 'styles/colors.scss';
 
 .searchResults {
-    display: block;
+    display: flex;
+    justify-content: center;
 
-    [class~='infinite-scroll-component'] {
-        overflow-x: hidden !important;
+    [data-title='true'] {
+        text-align: center;
+        font-family: Poppins;
     }
 
-    [class~='ant-alert-message'] {
-        color: $white;
+    &__content {
+        display: block;
+        [class~='infinite-scroll-component'] {
+            overflow-x: hidden !important;
+        }
+
+        [class~='ant-alert-message'] {
+            color: $white;
+        }
     }
 }

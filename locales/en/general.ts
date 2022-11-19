@@ -75,4 +75,5 @@ export const general = {
     directly in your inbox.`,
     enterEmail: 'Enter your email',
     searchResults: 'Search results',
+    searchResultTitle: 'Search results for',
 };
