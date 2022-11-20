@@ -14,7 +14,7 @@ const { Item } = Form;
 const { useBreakpoint } = Grid;
 
 const SubscribeInput: FC = () => {
-    const { md } = useBreakpoint();
+    const { lg } = useBreakpoint();
     const { t } = useTranslation();
 
     return (
@@ -26,7 +26,7 @@ const SubscribeInput: FC = () => {
                     </Item>
                 </Col>
                 <Col span={8}>
-                    <Button htmlType="submit" block={!md}>
+                    <Button htmlType="submit" block={!lg}>
                         {t('subscribe')}
                     </Button>
                 </Col>

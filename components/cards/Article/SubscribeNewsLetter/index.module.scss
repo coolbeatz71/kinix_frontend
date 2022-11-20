@@ -20,7 +20,8 @@
     }
 
     @include mediaXS {
-        padding: $padding;
+        padding: 1rem !important;
+        padding-top: $padding !important;
         background: $news-letter;
 
         [class~='ant-form-item'] {
@@ -39,7 +40,7 @@
         }
     }
 
-    @include mediaMaxMD {
+    @include mediaMD {
         padding: $padding;
         background: $news-letter;
 
@@ -56,6 +57,11 @@
             text-align: center;
             display: inline-block;
             font-size: 12pt !important;
+        }
+
+        [class~='ant-form'] {
+            display: flex;
+            justify-content: center;
         }
     }
 }
