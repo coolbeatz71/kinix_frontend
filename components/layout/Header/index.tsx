@@ -163,7 +163,7 @@ const Header: FC<IHeaderProps> = ({
                         onClick={lg ? handleToggle : openSideDrawer}
                     />
 
-                    {(xs || sm) && !md && !lg && (
+                    {(xs || sm) && !md && !lg && !isVideoCategory && (
                         <Button
                             type="text"
                             size="large"
@@ -211,17 +211,15 @@ const Header: FC<IHeaderProps> = ({
                     </Col>
                 )}
 
-                {md && (
+                {md && !isVideoCategory && (
                     <Col xs={18} sm={18} md={12} lg={7}>
-                        {!isVideoCategory && (
-                            <DynamicSearchInput
-                                autoFocus
-                                value={search}
-                                onChange={onSearchChange}
-                                onKeyPress={onSearchKeyPress}
-                                onSearch={() => onSearch({ search })}
-                            />
-                        )}
+                        <DynamicSearchInput
+                            autoFocus
+                            value={search}
+                            onChange={onSearchChange}
+                            onKeyPress={onSearchKeyPress}
+                            onSearch={() => onSearch({ search })}
+                        />
                     </Col>
                 )}
 
@@ -238,7 +236,7 @@ const Header: FC<IHeaderProps> = ({
                 )}
 
                 {lg && (
-                    <Col span={11} className="d-flex flex-row-reverse">
+                    <Col span={isVideoCategory ? 18 : 11} className="d-flex flex-row-reverse">
                         <Row justify="space-between" gutter={[32, 0]}>
                             <Fragment>
                                 <Col span={4} className="d-flex justify-content-end">

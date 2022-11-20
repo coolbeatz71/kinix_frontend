@@ -14,9 +14,12 @@ const { Search } = Input;
 export interface ISearchInputProps {
     size?: SizeType;
     noButton?: boolean;
+    onBlur?: () => void;
     autoFocus?: boolean;
     allowClear?: boolean;
+    onFocus?: () => void;
     onSearch?: () => void;
+    dataExpanded?: boolean;
     value?: string | string[];
     inputRef?: Ref<InputRef> | undefined;
     onChange?: ChangeEventHandler<HTMLInputElement> | undefined;
@@ -24,26 +27,31 @@ export interface ISearchInputProps {
 }
 
 const SearchInput: FC<ISearchInputProps> = ({
-    inputRef,
+    onBlur,
+    onFocus,
     onChange,
     onSearch,
+    inputRef,
     onKeyPress,
     value = '',
     size = 'middle',
     noButton = false,
     autoFocus = false,
     allowClear = true,
+    dataExpanded = false,
 }) => {
     const { t } = useTranslation();
     const { value: darkLight } = useDarkLight();
 
     return (
-        <div data-theme={darkLight} className={styles.search}>
+        <div data-theme={darkLight} className={styles.search} data-expanded={dataExpanded}>
             {noButton ? (
                 <Input
                     size={size}
                     value={value}
                     ref={inputRef}
+                    onBlur={onBlur}
+                    onFocus={onFocus}
                     onChange={onChange}
                     autoFocus={autoFocus}
                     allowClear={allowClear}
@@ -56,6 +64,8 @@ const SearchInput: FC<ISearchInputProps> = ({
                     size={size}
                     value={value}
                     ref={inputRef}
+                    onBlur={onBlur}
+                    onFocus={onFocus}
                     onSearch={onSearch}
                     onChange={onChange}
                     autoFocus={autoFocus}

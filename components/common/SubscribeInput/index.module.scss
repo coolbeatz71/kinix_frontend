@@ -29,7 +29,8 @@
         }
     }
 
-    @include mediaMaxMD {
+    @include mediaMD {
+        width: 70%;
         display: flex;
         margin: 0 $padding;
     }

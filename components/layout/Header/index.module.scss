@@ -23,6 +23,7 @@
         }
         [data-row-category='true'] {
             height: $header-height;
+            padding-bottom: 0 !important;
         }
     }
     &[data-scroll='scrolled'] {
@@ -339,7 +340,7 @@
         align-content: center;
         justify-content: space-between;
 
-        padding: 0 $mobile-content-padding !important;
+        padding: $mobile-content-padding !important;
 
         [class~='hamburger-menu'] {
             [class~='anticon'] {
@@ -348,10 +349,21 @@
         }
 
         &[data-is-category='true'] {
+            padding: $mobile-content-padding !important;
             height: calc(#{$header-height} * 1.8) !important;
 
             .header__row__categories {
                 padding-bottom: 0 !important;
+            }
+
+            [data-expanded='true'] {
+                position: fixed;
+                left: 0;
+                right: 0;
+                bottom: $mobile-content-padding;
+                padding: 0 $mobile-content-padding;
+
+                transition: all 0.1s linear;
             }
         }
 
@@ -403,7 +415,7 @@
         align-content: center;
         justify-content: space-between;
 
-        padding: 0 calc(#{$mobile-content-padding} * 2) !important;
+        padding: 0.7rem calc(#{$mobile-content-padding} * 2) !important;
 
         [class~='hamburger-menu'] {
             [class~='anticon'] {
@@ -465,7 +477,12 @@
 
     @include mediaMD {
         width: 100%;
-        padding: 0 calc(#{$mobile-content-padding} * 2) !important;
+        padding: 0.7rem calc(#{$mobile-content-padding} * 2) !important;
+
+        &[data-is-category='true'] {
+            padding-top: 0.8rem !important;
+            padding-bottom: 0.8rem !important;
+        }
 
         [class~='hamburger-menu'] {
             [class~='anticon'] {
@@ -475,7 +492,7 @@
     }
 
     @include mediaLG {
-        padding: 0 calc(#{$mobile-content-padding} * 2) !important;
+        padding: 0.7rem calc(#{$mobile-content-padding} * 2) !important;
         [data-search-col] {
             width: 64px;
             position: relative;
