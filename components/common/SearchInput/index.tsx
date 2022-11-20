@@ -13,9 +13,10 @@ const { Search } = Input;
 
 export interface ISearchInputProps {
     size?: SizeType;
+    noButton?: boolean;
     autoFocus?: boolean;
     allowClear?: boolean;
-    isCategory?: boolean;
+    onSearch?: () => void;
     value?: string | string[];
     inputRef?: Ref<InputRef> | undefined;
     onChange?: ChangeEventHandler<HTMLInputElement> | undefined;
@@ -25,19 +26,20 @@ export interface ISearchInputProps {
 const SearchInput: FC<ISearchInputProps> = ({
     inputRef,
     onChange,
+    onSearch,
     onKeyPress,
     value = '',
     size = 'middle',
+    noButton = false,
     autoFocus = false,
     allowClear = true,
-    isCategory = false,
 }) => {
     const { t } = useTranslation();
     const { value: darkLight } = useDarkLight();
 
     return (
         <div data-theme={darkLight} className={styles.search}>
-            {isCategory ? (
+            {noButton ? (
                 <Input
                     size={size}
                     value={value}
@@ -54,6 +56,7 @@ const SearchInput: FC<ISearchInputProps> = ({
                     size={size}
                     value={value}
                     ref={inputRef}
+                    onSearch={onSearch}
                     onChange={onChange}
                     autoFocus={autoFocus}
                     allowClear={allowClear}

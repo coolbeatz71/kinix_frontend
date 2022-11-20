@@ -185,4 +185,16 @@ export interface IAdsPlan {
     createdAt?: string;
     updatedAt?: string;
 }
+
 export type IStoryPlan = IAdsPlan;
+
+export interface ISearchResult {
+    articles: {
+        count: number;
+        articles: IArticle[];
+    };
+    videos: {
+        count: number;
+        videos: IVideo[];
+    };
+}

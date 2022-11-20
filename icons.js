@@ -44,3 +44,4 @@ export { default as EditOutlined } from '@ant-design/icons/EditOutlined';
 export { default as LoginOutlined } from '@ant-design/icons/LoginOutlined';
 export { default as UserAddOutlined } from '@ant-design/icons/UserAddOutlined';
 export { default as ArrowLeftOutlined } from '@ant-design/icons/ArrowLeftOutlined';
+export { default as MenuUnfoldOutlined } from '@ant-design/icons/MenuUnfoldOutlined';

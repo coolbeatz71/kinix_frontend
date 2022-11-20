@@ -95,10 +95,10 @@ const CategoryBar: FC<ICategoryBarProps> = ({ categories, baseUrl = ALL_VIDEOS_P
             </Col>
             <Col span={spanBreakpoint} data-search-col={scrolled !== '' ? 'scrolled' : ''}>
                 <SearchInput
-                    isCategory
+                    noButton
+                    size="middle"
                     value={search}
                     allowClear={lg}
-                    size="middle"
                     onChange={(e) => {
                         setSearch(e.target.value);
                         if (e.type !== 'change') navigate({ search: '' });
