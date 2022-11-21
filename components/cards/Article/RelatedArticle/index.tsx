@@ -51,7 +51,7 @@ const RelatedArticleCard: FC<IRelatedArticleProps> = ({ article }) => {
                                 <Tooltip title={article.title} placement="topRight">
                                     <Title level={5} data-text="title">
                                         {truncate(article.title, {
-                                            length: 48,
+                                            length: 40,
                                         })}
                                     </Title>
                                 </Tooltip>

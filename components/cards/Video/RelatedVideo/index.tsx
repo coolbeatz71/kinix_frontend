@@ -89,7 +89,7 @@ const RelatedVideoCard: FC<IRelatedVideoCardProps> = ({ video, bordered = false 
                             <Title level={5} data-title>
                                 <Link href={link} passHref>
                                     {truncate(video.title, {
-                                        length: 48,
+                                        length: 40,
                                     })}
                                 </Link>
                             </Title>
