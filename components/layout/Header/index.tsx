@@ -1,4 +1,4 @@
-import React, { FC, Fragment, useState, useEffect, useRef, Ref } from 'react';
+import { FC, Fragment, useState, useEffect, useRef, Ref } from 'react';
 
 import Row from 'antd/lib/row';
 import Col from 'antd/lib/col';
@@ -11,12 +11,14 @@ import { InputRef } from 'antd/lib/input';
 import dynamic from 'next/dynamic';
 import isEmpty from 'lodash/isEmpty';
 import { MenuOutlined } from 'icons';
+import { useRouter } from 'next/router';
 import { RiDeleteBack2Fill } from 'react-icons/ri';
 import { IoSearchCircleOutline } from 'react-icons/io5';
 
 import Logo from '@components/common/Logo';
 import useDarkLight from '@hooks/useDarkLight';
 import { ICurrentUser } from '@interfaces/user';
+import { IUnknownObject } from '@interfaces/app';
 import { getLanguage } from '@helpers/getLanguage';
 import getSideNavWidth from '@helpers/getSideNavWidth';
 import SocialButtons from '@components/common/SocialButtons';
@@ -24,6 +26,7 @@ import UserAuthSection from '@components/layout/UserAuthSection';
 import LanguageDropDown from '@components/layout/LanguageDropDown';
 import { CategoryServerPropsType } from '@context/video-categories';
 import UserMobileDropDown from '@components/layout/UserMobileDropDown';
+import { ALL_ARTICLES_PATH, SEARCH_RESULTS_PATH } from '@constants/paths';
 import SocialButtonDropDown from '@components/common/SocialButtonDropDown';
 import NotificationDropDown from '@components/layout/NotificationDropDown';
 
@@ -66,6 +69,10 @@ const Header: FC<IHeaderProps> = ({
     const { value } = useDarkLight();
     const searchInputRef = useRef<InputRef>();
     const { lg, md, sm, xs } = useBreakpoint();
+    const { pathname, query, push } = useRouter();
+
+    const isArticlePath = pathname === ALL_ARTICLES_PATH;
+    const [search, setSearch] = useState<string>((query?.search as string) || '');
 
     const [openLargeSearch, setOpenLargeSearch] = useState(false);
     const [openSmallSearch, setOpenSmallSearch] = useState((xs || sm) && !md);
@@ -109,6 +116,30 @@ const Header: FC<IHeaderProps> = ({
         setOpenLargeSearch(false);
     };
 
+    const onSearchChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+        setSearch(e.target.value);
+        if (e.type !== 'change') onSearch({ search: '' });
+    };
+    const onSearchKeyPress = (e: React.KeyboardEvent<HTMLInputElement>): void => {
+        const isSearchEmpty = [null, '', undefined].includes(search);
+        if (e.key === 'Enter') {
+            if (isSearchEmpty) setSearch('');
+            else onSearch({ search });
+        }
+    };
+    const onSearch = (data: IUnknownObject): void => {
+        const query: IUnknownObject = {};
+
+        Object.keys(data).map((key) => {
+            query[key] = data[key];
+        });
+
+        push({
+            pathname: SEARCH_RESULTS_PATH,
+            query: { ...query, article: isArticlePath },
+        });
+    };
+
     return (
         <AntHeader
             data-theme={value}
@@ -132,7 +163,7 @@ const Header: FC<IHeaderProps> = ({
                         onClick={lg ? handleToggle : openSideDrawer}
                     />
 
-                    {(xs || sm) && !md && !lg && (
+                    {(xs || sm) && !md && !lg && !isVideoCategory && (
                         <Button
                             type="text"
                             size="large"
@@ -162,7 +193,14 @@ const Header: FC<IHeaderProps> = ({
                             />
                         </Col>
                         <Col span={22} className="ps-1">
-                            <DynamicSearchInput autoFocus isCategory inputRef={searchInputRef as Ref<InputRef>} />
+                            <DynamicSearchInput
+                                noButton
+                                autoFocus
+                                value={search}
+                                onChange={onSearchChange}
+                                onKeyPress={onSearchKeyPress}
+                                inputRef={searchInputRef as Ref<InputRef>}
+                            />
                         </Col>
                     </Row>
                 )}
@@ -173,9 +211,15 @@ const Header: FC<IHeaderProps> = ({
                     </Col>
                 )}
 
-                {md && (
+                {md && !isVideoCategory && (
                     <Col xs={18} sm={18} md={12} lg={7}>
-                        {!isVideoCategory && <DynamicSearchInput />}
+                        <DynamicSearchInput
+                            autoFocus
+                            value={search}
+                            onChange={onSearchChange}
+                            onKeyPress={onSearchKeyPress}
+                            onSearch={() => onSearch({ search })}
+                        />
                     </Col>
                 )}
 
@@ -192,7 +236,7 @@ const Header: FC<IHeaderProps> = ({
                 )}
 
                 {lg && (
-                    <Col span={11} className="d-flex flex-row-reverse">
+                    <Col span={isVideoCategory ? 18 : 11} className="d-flex flex-row-reverse">
                         <Row justify="space-between" gutter={[32, 0]}>
                             <Fragment>
                                 <Col span={4} className="d-flex justify-content-end">

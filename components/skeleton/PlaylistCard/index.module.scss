@@ -1,4 +1,5 @@
 @import 'styles/colors.scss';
+@import 'styles/_mixins.scss';
 @import 'styles/dimensions.scss';
 
 .playlistSkeleton {
@@ -19,6 +20,13 @@
             width: 100%;
             height: 100%;
         }
+
+        [class~='ant-skeleton-image'] {
+            border-radius: $border-radius;
+
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+        }
     }
 
     &__body {
@@ -35,6 +43,19 @@
     &[data-theme='dark'] {
         [class~='ant-card-body'] {
             background-color: $primary;
+        }
+    }
+
+    @include mediaXS {
+        .playlistSkeleton__body {
+            padding: calc(#{$padding} * 0.67);
+            padding-right: 1rem !important;
+        }
+    }
+    @include mediaSM {
+        .playlistSkeleton__body {
+            padding: calc(#{$padding} * 0.67);
+            padding-right: 1rem !important;
         }
     }
 }

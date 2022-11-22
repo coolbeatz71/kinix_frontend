@@ -36,6 +36,7 @@ export const general = {
     noLyricsUploaded: 'No lyrics was provided on this video',
     noRatingFound: 'No rating was found on this video.',
     noContentFound: 'No content was found for this request.',
+    noSearchResultFound: 'No result found for this search.',
     noBookmarksFound: 'No bookmarked article was found.',
     noPlaylistFound: 'No playlist  was found.',
     noSharesFound: 'No shared video was found.',
@@ -74,4 +75,6 @@ export const general = {
     newsletterSubtitle: `Sign up for our weekly newsletter to get the latest news, updates and amazing offers delivered
     directly in your inbox.`,
     enterEmail: 'Enter your email',
+    searchResults: 'Search results',
+    searchResultTitle: 'Search results for',
 };

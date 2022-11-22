@@ -12,6 +12,7 @@ export const navigation = {
     ratedVideo: 'Rated videos',
     playlists: 'Playlists',
     article: 'Article',
+    video: 'Video',
     interview: 'Interview',
     podcast: 'Podcast',
     lefocus: 'LeFocus',

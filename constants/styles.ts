@@ -6,6 +6,9 @@ export const ERROR = '#ef476f';
 export const WARNING = '#f07f34';
 export const SUCCESS = '#1dd3b0';
 
+export const VIDEO_COLOR = '#d4380d80';
+export const ARTICLE_COLOR = '#00ffff80';
+
 export const FACEBOOK = '#4267b2';
 
 export const BTN_STYLES = 'd-flex align-items-center justify-content-center';

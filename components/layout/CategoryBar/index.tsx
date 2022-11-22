@@ -1,5 +1,6 @@
 import { FC, ReactElement, useState } from 'react';
 import { DownOutlined } from 'icons';
+import isEmpty from 'lodash/isEmpty';
 import { useRouter } from 'next/router';
 import upperFirst from 'lodash/upperFirst';
 import { useTranslation } from 'react-i18next';
@@ -31,10 +32,11 @@ const CategoryBar: FC<ICategoryBarProps> = ({ categories, baseUrl = ALL_VIDEOS_P
     const { push } = useRouter();
     const { query } = useRouter();
     const { t } = useTranslation();
-    const { lg, md } = useBreakpoint();
+    const { lg, md, xs, sm } = useBreakpoint();
 
-    const spanBreakpoint = md && scrolled !== '' ? 6 : 7;
-    const sizeBreakpoint = md && scrolled !== '' ? 'small' : 'middle';
+    const [isExpanded, setIsExpanded] = useState(false);
+
+    const spanBreakpoint = md && scrolled !== '' ? 7 : 8;
 
     const category = query?.category as string;
     const [search, setSearch] = useState<string>((query?.search as string) || '');
@@ -68,7 +70,7 @@ const CategoryBar: FC<ICategoryBarProps> = ({ categories, baseUrl = ALL_VIDEOS_P
                 overlayStyle={{ position: 'fixed' }}
                 overlayClassName={styles.categoryBar__dropdown}
             >
-                <Button type="primary" size={sizeBreakpoint} ghost={`${category}` === baseUrl}>
+                <Button type="primary" ghost={`${category}` === baseUrl}>
                     {t(category || 'all')} <DownOutlined />
                 </Button>
             </Dropdown>
@@ -76,7 +78,7 @@ const CategoryBar: FC<ICategoryBarProps> = ({ categories, baseUrl = ALL_VIDEOS_P
 
     return (
         <Row align="middle" justify="space-between" gutter={[39, 0]} className={styles.categoryBar}>
-            <Col flex={1} span={15}>
+            <Col flex={1} xs={9} sm={10} md={12} lg={15}>
                 <Wrapper>
                     <Menu
                         mode="horizontal"
@@ -93,12 +95,19 @@ const CategoryBar: FC<ICategoryBarProps> = ({ categories, baseUrl = ALL_VIDEOS_P
                     </Menu>
                 </Wrapper>
             </Col>
-            <Col span={spanBreakpoint} data-search-col={scrolled !== '' ? 'scrolled' : ''}>
+            <Col xs={15} sm={14} md={12} lg={spanBreakpoint} data-search-col={scrolled !== '' ? 'scrolled' : ''}>
                 <SearchInput
-                    isCategory
+                    noButton
+                    size="middle"
                     value={search}
                     allowClear={lg}
-                    size="middle"
+                    dataExpanded={isExpanded}
+                    onFocus={() => {
+                        if (xs && !sm && !lg) setIsExpanded(true);
+                    }}
+                    onBlur={() => {
+                        if (xs && !sm && !lg && isEmpty(search)) setIsExpanded(false);
+                    }}
                     onChange={(e) => {
                         setSearch(e.target.value);
                         if (e.type !== 'change') navigate({ search: '' });

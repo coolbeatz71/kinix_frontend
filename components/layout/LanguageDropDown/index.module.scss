@@ -5,11 +5,12 @@
 .language {
     [class~='anticon'] {
         width: 1rem;
+        height: 1rem;
     }
 
     [data-lang='true'] {
-        line-height: 0;
         font-weight: 700;
+        line-height: 0;
     }
 
     &__menu {
@@ -65,11 +66,23 @@
     }
 
     @include mediaMD {
+        [data-lang='true'] {
+            font-weight: 700;
+            line-height: 1.5px;
+        }
+
         [class~='anticon'] {
             & > span {
                 width: 1rem !important;
                 height: 1rem !important;
             }
+        }
+    }
+
+    @include mediaLG {
+        [data-lang='true'] {
+            font-weight: 700;
+            line-height: 1.5px;
         }
     }
 }
