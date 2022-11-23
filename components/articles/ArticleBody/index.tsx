@@ -31,7 +31,7 @@ export interface IArticleBodyProps {
 
 const ArticleBody: FC<IArticleBodyProps> = ({ article, related }) => {
     const { value } = useDarkLight();
-    const { lg, md } = useBreakpoint();
+    const { xs, sm, md, lg } = useBreakpoint();
     const [scrolled, setScrolled] = useState<string>('');
     const sharedLink = `${getPlatformUrl()}${ALL_ARTICLES_PATH}/${article.slug}`;
 
@@ -44,7 +44,7 @@ const ArticleBody: FC<IArticleBodyProps> = ({ article, related }) => {
 
     const scrollHandler = useCallback(() => {
         if (lg) setScrolled(window.pageYOffset > 640 && window.pageYOffset < 1500 ? 'over' : '');
-        else setScrolled(window.pageYOffset < 1500 ? 'over' : '');
+        else setScrolled(window.pageYOffset < 1200 ? 'over' : '');
     }, [lg]);
 
     useEffect(() => {
@@ -61,12 +61,20 @@ const ArticleBody: FC<IArticleBodyProps> = ({ article, related }) => {
     return (
         <Fragment>
             <Row data-theme={value} justify="space-between" className={styles.articleBody}>
-                <Col xs={3} sm={2} lg={5}>
-                    <ActionWrapper>
+                {(xs || sm) && !md && (
+                    <Col span={24} className={styles.articleBody__share}>
                         <ArticleShare link={sharedLink} title={article.title} />
-                    </ActionWrapper>
-                </Col>
-                <Col xs={21} sm={22} lg={11} className={styles.articleBody__content}>
+                    </Col>
+                )}
+
+                {md && (
+                    <Col xs={3} sm={2} md={2} lg={3} xl={5}>
+                        <ActionWrapper>
+                            <ArticleShare link={sharedLink} title={article.title} />
+                        </ActionWrapper>
+                    </Col>
+                )}
+                <Col xs={24} sm={24} md={22} lg={13} xl={11} className={styles.articleBody__content}>
                     <ArticleHeader createdAt={article.createdAt as string} />
                     <div>
                         <Paragraph data-summary>{article.summary}</Paragraph>
@@ -84,18 +92,20 @@ const ArticleBody: FC<IArticleBodyProps> = ({ article, related }) => {
                     </Col>
                 )}
 
-                {md && !lg && (
-                    <Col sm={24} lg={8}>
-                        <ArticleTagsList tags={article.tags} />
-                    </Col>
+                {(xs || sm || md) && !lg && (
+                    <Fragment>
+                        <Col md={2} lg={5}></Col>
+                        <Col xs={24} sm={24} md={22} lg={8} xl={8}>
+                            <ArticleTagsList tags={article.tags} />
+                        </Col>
+                    </Fragment>
                 )}
             </Row>
 
-            {lg && (
-                <Row className="mt-5">
-                    <PopularArticleList />
-                </Row>
-            )}
+            <Row className="mt-5">
+                <div className="mb-4">{(xs || sm) && !md && <RelatedArticleList articles={related} />}</div>
+                <PopularArticleList />
+            </Row>
         </Fragment>
     );
 };

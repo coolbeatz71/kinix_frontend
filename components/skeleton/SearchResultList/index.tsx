@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic';
-import React, { FC, Fragment } from 'react';
+import { FC, Fragment } from 'react';
 
 const DynamicSectionTitleSkeleton = dynamic(() => import('@components/skeleton/SectionTitle'));
 const DynamicPlaylistsListSkeleton = dynamic(() => import('@components/skeleton/PlaylistsList'));

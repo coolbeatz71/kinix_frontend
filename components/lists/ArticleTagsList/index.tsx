@@ -14,7 +14,7 @@ export interface IArticleTagsProps {
 
 const ArticleTagsList: FC<IArticleTagsProps> = ({ tags }) => (
     <div className={styles.articleTags}>
-        <Space>
+        <Space size={[12, 0]}>
             {tags?.map((tag) => {
                 const link = `${ALL_ARTICLES_PATH}?tag=${tag}`;
                 return (
