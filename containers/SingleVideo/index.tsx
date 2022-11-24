@@ -68,8 +68,8 @@ const SingleVideoContainer: FC<ISingleVideoContainerProps> = ({ video }) => {
                             <DynamicVideosTabs lyrics={video.lyrics as string} />
                         </div>
                     </Col>
-                    {lg && !isEmpty(related) && (
-                        <Col lg={8} className="ps-3">
+                    {!isEmpty(related) && (
+                        <Col xs={24} sm={24} lg={8} className={lg ? 'ps-3' : 'mt-4'}>
                             <DynamicRelatedVideoList videos={related as IVideo[]} />
                         </Col>
                     )}

@@ -1,14 +1,18 @@
 @import 'styles/colors.scss';
+@import 'styles/dimensions.scss';
 
 .tagsList {
     a {
         text-decoration: none;
     }
-    [class~='ant-tag']:hover,
-    [class~='ant-tag']:active {
-        a {
-            color: $link;
-            text-decoration: underline;
+    [class~='ant-tag'] {
+        margin-bottom: calc(#{$padding} * 0.25);
+        &:hover,
+        &:active {
+            a {
+                color: $link;
+                text-decoration: underline;
+            }
         }
     }
 }

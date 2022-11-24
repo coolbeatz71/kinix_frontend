@@ -7,6 +7,7 @@ import { RiPlayListAddFill } from 'react-icons/ri';
 import Col from 'antd/lib/col';
 import Row from 'antd/lib/row';
 import Rate from 'antd/lib/rate';
+import Grid from 'antd/lib/grid';
 import Space from 'antd/lib/space';
 import Button from 'antd/lib/button';
 import Tooltip from 'antd/lib/tooltip';
@@ -18,6 +19,7 @@ import { IItemsEntity } from '@interfaces/youtube';
 const DynamicVideoCardAction = dynamic(() => import('../VideoCardAction'));
 const DynamicVideoRatingModal = dynamic(() => import('@components/modal/VideoRatingModal'));
 
+const { useBreakpoint } = Grid;
 export interface ISingleVideoActionProps {
     video: IVideo;
     youtubeVideoEntity: IItemsEntity;
@@ -25,6 +27,7 @@ export interface ISingleVideoActionProps {
 
 const SingleVideoAction: FC<ISingleVideoActionProps> = ({ video, youtubeVideoEntity }) => {
     const { avgRate } = video;
+    const { md } = useBreakpoint();
     const { t } = useTranslation();
     const likesCount = youtubeVideoEntity?.statistics?.likeCount;
     const commentsCount = youtubeVideoEntity?.statistics?.commentCount;
@@ -37,26 +40,28 @@ const SingleVideoAction: FC<ISingleVideoActionProps> = ({ video, youtubeVideoEnt
 
     return (
         <Row justify="space-between" align="middle">
-            <Col span={12} className="d-flex align-content-center">
+            <Col xs={24} sm={24} md={12} className="d-flex align-content-center">
                 <Rate value={Number(avgRate)} onChange={() => setOpenRatingModal(true)} />
             </Col>
-            <Space className="d-flex justify-content-end">
-                <Tooltip title={t('likesFromYoutube')} placement="topRight">
-                    <Button data-like type="text" icon={<LikeOutlined />}>
-                        <span data-count>{Number(likesCount) > 0 && likes}</span>
-                    </Button>
-                </Tooltip>
-                <Tooltip title={t('commentsFromYoutube')} placement="topRight">
-                    <Button data-comment type="text" icon={<CommentOutlined />}>
-                        <span data-count>{Number(commentsCount) > 0 && comments}</span>
-                    </Button>
-                </Tooltip>
-                <DynamicVideoCardAction videoId={video?.id as number} context="standalone">
-                    <Button data-playlist type="link" icon={<RiPlayListAddFill />}>
-                        <span data-count>{Number(video.playlistsCount) > 0 && playlists}</span>
-                    </Button>
-                </DynamicVideoCardAction>
-            </Space>
+            <Col xs={24} sm={24} md={12} className={`d-flex ${md ? 'justify-content-end' : 'justify-content-start'}`}>
+                <Space className="d-flex justify-content-end">
+                    <Tooltip title={t('likesFromYoutube')} placement="topRight">
+                        <Button data-like type="text" icon={<LikeOutlined />}>
+                            <span data-count>{Number(likesCount) > 0 && likes}</span>
+                        </Button>
+                    </Tooltip>
+                    <Tooltip title={t('commentsFromYoutube')} placement="topRight">
+                        <Button data-comment type="text" icon={<CommentOutlined />}>
+                            <span data-count>{Number(commentsCount) > 0 && comments}</span>
+                        </Button>
+                    </Tooltip>
+                    <DynamicVideoCardAction videoId={video?.id as number} context="standalone">
+                        <Button data-playlist type="link" icon={<RiPlayListAddFill />}>
+                            <span data-count>{Number(video.playlistsCount) > 0 && playlists}</span>
+                        </Button>
+                    </DynamicVideoCardAction>
+                </Space>
+            </Col>
             <DynamicVideoRatingModal slug={video.slug} openModal={openRatingModal} setOpenModal={setOpenRatingModal} />
         </Row>
     );

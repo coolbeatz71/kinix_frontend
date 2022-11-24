@@ -58,7 +58,7 @@ const RelatedVideoCard: FC<IRelatedVideoCardProps> = ({ video, bordered = false 
         >
             <Card bordered={bordered} hoverable>
                 <Row justify="space-between">
-                    <Col span={9} className={styles.relatedVideoCard__cover}>
+                    <Col span={9} md={8} lg={10} xl={9} className={styles.relatedVideoCard__cover}>
                         <Link href={link} passHref>
                             <div className="overlay" style={overLayStyles}>
                                 <Button
@@ -84,7 +84,7 @@ const RelatedVideoCard: FC<IRelatedVideoCardProps> = ({ video, bordered = false 
                             </div>
                         )}
                     </Col>
-                    <Col span={15} data-body>
+                    <Col span={15} md={16} lg={14} xl={15} data-body>
                         <Tooltip title={video.title} placement="topRight">
                             <Title level={5} data-title>
                                 <Link href={link} passHref>
