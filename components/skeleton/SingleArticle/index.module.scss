@@ -1,8 +1,63 @@
+@import 'styles/_mixins.scss';
+@import 'styles/dimensions.scss';
+
 .articleSkeleton {
     &__image {
-        height: 35rem;
+        width: 100% !important;
+        height: 35rem !important;
         span {
             height: 100% !important;
+        }
+    }
+
+    &__body {
+        margin-top: $padding;
+        &__image {
+            height: 25rem !important;
+            width: 100% !important;
+        }
+    }
+
+    @include mediaXS {
+        &__image {
+            height: 15rem !important;
+        }
+
+        &__body {
+            &__image {
+                height: 12rem !important;
+                margin-bottom: $padding;
+                margin-top: calc(#{$padding} * 0.5);
+            }
+        }
+    }
+
+    @include mediaSM {
+        &__image {
+            height: 20rem !important;
+        }
+
+        &__body {
+            &__image {
+                height: 15rem !important;
+                margin-bottom: $padding;
+                margin-top: calc(#{$padding} * 0.5);
+            }
+        }
+    }
+
+    @include mediaMD {
+        &__image {
+            height: 22rem !important;
+        }
+
+        &__body {
+            &__image {
+                height: 20rem !important;
+
+                margin-bottom: $padding;
+                margin-top: calc(#{$padding} * 0.5);
+            }
         }
     }
 }
