@@ -72,9 +72,7 @@ const VideoPlayer: FC<IVideoPlayerProps> = ({ youtubeVideo, video }) => {
     }, [dispatch]);
 
     const ActionWrapper: FC<{ children: ReactElement }> = ({ children }) => (
-        <div className="w-100">
-            {(xs || sm) && !md ? <Affix offsetTop={HEADER_HEIGHT}>{children}</Affix> : children}
-        </div>
+        <Fragment>{(xs || sm) && !md ? <Affix offsetTop={HEADER_HEIGHT}>{children}</Affix> : children}</Fragment>
     );
 
     return (
