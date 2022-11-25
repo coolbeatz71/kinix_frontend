@@ -197,7 +197,6 @@
         0% {
             background-position: -468px 0;
         }
-
         100% {
             background-position: 468px 0;
         }
@@ -217,8 +216,8 @@
             .videoPlayer__footer {
                 height: 0;
                 opacity: 0;
-                visibility: hidden;
                 z-index: -1000;
+                visibility: hidden;
                 transition: all ease-in-out 0.2s;
             }
         }
@@ -246,9 +245,9 @@
             }
 
             button {
-                padding: 0 !important;
                 display: flex;
                 align-items: center;
+                padding: 0 !important;
                 justify-content: center;
 
                 &[data-like='true'],
@@ -301,18 +300,18 @@
         [class~='ant-affix'] {
             left: 0 !important;
             right: 0 !important;
-            width: 100% !important;
             height: 0 !important;
+            width: 100% !important;
 
             iframe {
                 border-radius: 0 !important;
             }
 
             .videoPlayer__footer {
-                opacity: 0;
                 height: 0;
-                visibility: hidden;
+                opacity: 0;
                 z-index: -1000;
+                visibility: hidden;
                 transition: all ease-in-out 0.2s;
             }
         }
