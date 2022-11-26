@@ -1,4 +1,5 @@
 @import 'styles/colors.scss';
+@import 'styles/_mixins.scss';
 @import 'styles/dimensions.scss';
 
 .playlistCard {
@@ -11,22 +12,22 @@
         display: flex;
         flex-flow: column;
         justify-content: space-between;
-        padding: $padding;
+        padding: calc(#{$padding} * 0.8);
 
         [data-title='true'] {
             height: 3.5rem;
-            font-size: 14pt;
+            font-size: 13pt;
             font-weight: 700;
             &:hover {
                 text-decoration: underline;
             }
         }
         [data-videos] {
-            font-size: 10pt;
+            font-size: 9pt;
             font-style: italic;
         }
         [data-created-at='true'] {
-            font-size: 11pt;
+            font-size: 10pt;
         }
     }
 
@@ -46,43 +47,6 @@
                 border-radius: $border-radius;
                 border-top-right-radius: 0;
                 border-bottom-right-radius: 0;
-            }
-        }
-
-        [class~='overlay'] {
-            cursor: pointer;
-            position: absolute;
-            z-index: 1;
-            transition: opacity ease-in-out 0.2s;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            [class~='ant-btn'] {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                padding: 1.5rem;
-
-                [class~='anticon'] {
-                    font-size: 1.5rem;
-                    background: $warning;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    border-radius: 80px;
-                    box-shadow: 0px 0px 60px $primary;
-
-                    svg {
-                        path {
-                            fill: $warning;
-                            &:last-of-type {
-                                fill: $white;
-                            }
-                        }
-                    }
-                }
             }
         }
     }
@@ -110,6 +74,57 @@
         }
         [data-created-at='true'] {
             color: $light50;
+        }
+    }
+
+    @include mediaXS {
+        [data-body='true'] {
+            padding: calc(#{$padding} * 0.5);
+            [data-title='true'] {
+                font-size: 11pt;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                height: $padding;
+            }
+
+            [data-videos] {
+                font-size: 7pt;
+            }
+            [data-created-at='true'] {
+                font-size: 8pt;
+            }
+        }
+    }
+
+    @include mediaSM {
+        [data-body='true'] {
+            [data-title='true'] {
+                font-size: 15pt;
+                white-space: nowrap;
+            }
+
+            [data-videos] {
+                font-size: 10pt;
+            }
+            [data-created-at='true'] {
+                font-size: 1qpt;
+            }
+        }
+    }
+
+    @include mediaMD {
+        [data-body='true'] {
+            [data-title='true'] {
+                font-size: 15pt;
+            }
+
+            [data-videos] {
+                font-size: 10pt;
+            }
+            [data-created-at='true'] {
+                font-size: 1qpt;
+            }
         }
     }
 }

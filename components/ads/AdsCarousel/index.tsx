@@ -40,7 +40,7 @@ const AdsCarousel: FC = () => {
     return (
         <div className={styles.adsCarousel}>
             <Carousel wrapAround withoutControls autoplay autoplayInterval={25000} transitionMode="fade">
-                {[...defaultSlide, ...data].map((slider) => (
+                {[...defaultSlide, ...(data || [])]?.map((slider) => (
                     <div key={slider.title}>
                         <SliderContent
                             body={slider.body}

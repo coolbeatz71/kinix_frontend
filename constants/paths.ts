@@ -14,8 +14,9 @@ export const FLEXBEATZ_PATH = `/videos?category=${EnumVideoCategory.FLEXBEATZ.to
 export const INTERVIEW_PATH = `/videos?category=${EnumVideoCategory.INTERVIEW.toLowerCase()}`;
 export const MUSIC_VIDEO_PATH = `/videos?category=${EnumVideoCategory.MUSIC_VIDEO.toLowerCase()}`;
 
-export const USER_VIDEOS_PLAYLIST_PATH = `/account/favorite?section=${EnumFavoriteTabTitle.PLAYLIST.toLowerCase()}`;
-export const USER_VIDEOS_RATED_PATH = `/account/favorite?section=${EnumFavoriteTabTitle.RATED_VIDEO.toLowerCase()}`;
-export const USER_VIDEOS_SHARED_PATH = `/account/favorite?section=${EnumFavoriteTabTitle.SHARED_VIDEO.toLowerCase()}`;
-export const USER_ARTICLES_BOOKMARK_PATH = `/account/favorite?section=${EnumFavoriteTabTitle.BOOKMARKS.toLowerCase()}`;
-export const USER_ARTICLES_LIKED_PATH = `/account/favorite?section=${EnumFavoriteTabTitle.LIKED_ARTICLE.toLowerCase()}`;
+export const FAVORITE_PATH = '/account/favorite';
+export const USER_VIDEOS_PLAYLIST_PATH = `${FAVORITE_PATH}?section=${EnumFavoriteTabTitle.PLAYLIST.toLowerCase()}`;
+export const USER_VIDEOS_RATED_PATH = `${FAVORITE_PATH}?section=${EnumFavoriteTabTitle.RATED_VIDEO.toLowerCase()}`;
+export const USER_VIDEOS_SHARED_PATH = `${FAVORITE_PATH}?section=${EnumFavoriteTabTitle.SHARED_VIDEO.toLowerCase()}`;
+export const USER_ARTICLES_BOOKMARK_PATH = `${FAVORITE_PATH}?section=${EnumFavoriteTabTitle.BOOKMARKS.toLowerCase()}`;
+export const USER_ARTICLES_LIKED_PATH = `${FAVORITE_PATH}?section=${EnumFavoriteTabTitle.LIKED_ARTICLE.toLowerCase()}`;

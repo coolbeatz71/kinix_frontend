@@ -13,6 +13,7 @@ import Row from 'antd/lib/row';
 import Grid from 'antd/lib/grid';
 import Card from 'antd/lib/card';
 import Button from 'antd/lib/button';
+import Tooltip from 'antd/lib/tooltip';
 import Typography from 'antd/lib/typography';
 
 import { IVideo } from '@interfaces/api';
@@ -84,13 +85,15 @@ const RelatedVideoCard: FC<IRelatedVideoCardProps> = ({ video, bordered = false 
                         )}
                     </Col>
                     <Col span={15} data-body>
-                        <Title level={5} data-title>
-                            <Link href={link} passHref>
-                                {truncate(video.title, {
-                                    length: 60,
-                                })}
-                            </Link>
-                        </Title>
+                        <Tooltip title={video.title} placement="topRight">
+                            <Title level={5} data-title>
+                                <Link href={link} passHref>
+                                    {truncate(video.title, {
+                                        length: 40,
+                                    })}
+                                </Link>
+                            </Title>
+                        </Tooltip>
                         <div className="d-flex flex-column">
                             <Text data-ratings>
                                 <StarRatingComponent name="rate-video" starCount={5} value={Number(video.avgRate)} />

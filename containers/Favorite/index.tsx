@@ -1,15 +1,16 @@
-import { FC } from 'react';
+import React, { FC } from 'react';
 import useDarkLight from '@hooks/useDarkLight';
 import FavoriteTabs from '@components/favorite/FavoriteTabs';
 
 import styles from './index.module.scss';
+import Card from 'antd/lib/card';
 
 const FavoriteContainer: FC = () => {
     const { value } = useDarkLight();
     return (
-        <div data-theme={value} className={styles.favorites}>
+        <Card bordered data-theme={value} className={styles.favorites}>
             <FavoriteTabs />
-        </div>
+        </Card>
     );
 };
 

@@ -1,4 +1,5 @@
 @import 'styles/colors.scss';
+@import 'styles/mixins.scss';
 @import 'styles/dimensions.scss';
 
 .avatarCard {
@@ -39,11 +40,15 @@
     }
 
     &[data-theme='dark'] {
-        border-color: $light20;
+        border-color: $light10;
         background: $bg-primary-dark50;
 
         [data-title='true'] {
             color: $white;
         }
+    }
+
+    @include mediaMD {
+        padding: 0 $padding;
     }
 }

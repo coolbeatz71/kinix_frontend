@@ -2,6 +2,7 @@ import { FC, Fragment, useCallback, useEffect } from 'react';
 
 import Row from 'antd/lib/row';
 import Col from 'antd/lib/col';
+import Grid from 'antd/lib/grid';
 
 import dynamic from 'next/dynamic';
 import isEmpty from 'lodash/isEmpty';
@@ -15,12 +16,15 @@ import SectionTitle from '@components/common/SectionTitle';
 import { EnumEmptyDataType } from '@constants/empty-data-type';
 import getUserBookmarksAction from '@redux/bookmarks/userBookmarks';
 
+const { useBreakpoint } = Grid;
+
 const DynamicServerError = dynamic(() => import('@components/common/ServerError'));
 const DynamicRelatedArticleCard = dynamic(() => import('@components/cards/Article/RelatedArticle'));
 const DynamicBookmarksListSkeleton = dynamic(() => import('@components/skeleton/FavoriteArticlesList'));
 
 const BookmarksList: FC = () => {
     const { t } = useTranslation();
+    const { lg } = useBreakpoint();
     const dispatch = useAppDispatch();
     const { loading, data: bookmarks, error } = useSelector(({ bookmarks: { user } }: IRootState) => user);
 
@@ -45,9 +49,9 @@ const BookmarksList: FC = () => {
             ) : isEmpty(bookmarks?.rows) ? (
                 <EmptyData type={EnumEmptyDataType.BOOKMARK} desc={t('noBookmarksFound')} />
             ) : (
-                <Row align="middle" gutter={[32, 24]}>
+                <Row align="middle" gutter={[lg ? 32 : 24, 0]}>
                     {bookmarks?.rows?.map((bookmark: IBookmark) => (
-                        <Col key={bookmark.id} xs={24} sm={24} md={12} lg={8}>
+                        <Col key={bookmark.id} xs={24} sm={24} md={12} lg={12} xl={8}>
                             <DynamicRelatedArticleCard article={bookmark.article as IArticle} />
                         </Col>
                     ))}

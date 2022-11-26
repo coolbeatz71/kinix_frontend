@@ -42,9 +42,9 @@ const RatedVideosList: FC = () => {
             ) : isEmpty(rates?.rows) ? (
                 <EmptyData type={EnumEmptyDataType.CONTENT} desc={t('noRatesFound')} />
             ) : (
-                <Row align="middle" gutter={[32, 24]}>
+                <Row align="middle" gutter={[32, 0]}>
                     {rates?.rows?.map((rate: IRate) => (
-                        <Col key={rate.id} xs={24} sm={24} md={12} lg={8}>
+                        <Col key={rate.id} xs={24} sm={24} md={12} lg={12} xl={8}>
                             <DynamicRelatedVideoCard video={rate.video as IVideo} />
                         </Col>
                     ))}
