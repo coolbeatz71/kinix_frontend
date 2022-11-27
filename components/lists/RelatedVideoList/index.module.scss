@@ -1,0 +1,21 @@
+@import 'styles/colors.scss';
+@import 'styles/_mixins.scss';
+@import 'styles/dimensions.scss';
+
+.relatedVideoList {
+    @include mediaMD {
+        border-radius: $border-radius;
+        padding: calc(#{$padding} * 1.5) calc(#{$content-padding} * 2.5);
+        padding-left: calc(#{$padding} * 1.5);
+
+        &[data-theme='light'] {
+            background: $light20;
+            border: 1px solid $dark10;
+        }
+
+        &[data-theme='dark'] {
+            border: 1px solid $light10;
+            background: $bg-primary-dark50;
+        }
+    }
+}

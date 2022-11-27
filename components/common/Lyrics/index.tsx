@@ -23,7 +23,7 @@ const Lyrics: FC<ILyricsProps> = ({ content }) => {
         <EmptyData type={EnumEmptyDataType.LYRICS} desc={t('noLyricsUploaded')} />
     ) : (
         <Row data-theme={value} className={styles.lyrics}>
-            <Col sm={24} md={24} lg={12}>
+            <Col xs={24} sm={24} md={124} lg={16} xl={12}>
                 <div data-text dangerouslySetInnerHTML={{ __html: content }} />
             </Col>
         </Row>

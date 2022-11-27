@@ -204,6 +204,124 @@
     }
 
     @include mediaXS {
+        [class~='ant-affix'] {
+            left: 0 !important;
+            right: 0 !important;
+            width: 100% !important;
+            height: 0 !important;
+
+            iframe {
+                border-radius: 0 !important;
+            }
+
+            .videoPlayer__footer {
+                height: 0;
+                opacity: 0;
+                visibility: hidden;
+                z-index: -1000;
+                transition: all ease-in-out 0.2s;
+            }
+        }
+
+        &__container {
+            position: relative;
+            padding-top: 65.25%;
+        }
+
+        &__footer {
+            padding: 0.8rem 1rem;
+
+            [data-title='true'] {
+                margin-top: 0.8rem !important;
+                font-size: 12pt;
+                font-weight: 600;
+            }
+
+            [data-views='true'] {
+                font-size: 10pt;
+            }
+
+            [class~='dv-star-rating-star'] {
+                font-size: 14pt;
+            }
+
+            button {
+                padding: 0 !important;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                &[data-like='true'],
+                &[data-playlist='true'],
+                &[data-comment='true'] {
+                    margin-left: 0 !important;
+                    margin-right: 1rem !important;
+                }
+
+                &[data-playlist='true'] {
+                    margin: 0 !important;
+                }
+
+                [data-count='true'] {
+                    font-size: 12pt;
+                    margin-right: 0.2rem;
+                    margin-left: 0;
+                }
+
+                &[data-share-button='true'] {
+                    padding: 0.5rem !important;
+                }
+
+                [class~='anticon'] {
+                    font-size: 12pt;
+                }
+
+                &[class~='ant-btn-icon-only'] {
+                    svg {
+                        font-size: 13pt;
+                    }
+                }
+            }
+
+            [class~='ant-divider'] {
+                margin: 0.8rem 0;
+            }
+
+            [data-channel='true'] {
+                font-size: 10pt;
+            }
+
+            [data-subscribers='true'] {
+                font-size: 9pt;
+            }
+        }
+    }
+
+    @include mediaSM {
+        [class~='ant-affix'] {
+            left: 0 !important;
+            right: 0 !important;
+            width: 100% !important;
+            height: 0 !important;
+
+            iframe {
+                border-radius: 0 !important;
+            }
+
+            .videoPlayer__footer {
+                opacity: 0;
+                height: 0;
+                visibility: hidden;
+                z-index: -1000;
+                transition: all ease-in-out 0.2s;
+            }
+        }
+
+        &__container {
+            position: relative;
+            padding-top: 65.25%;
+        }
+
         &__footer {
             padding: 0.8rem 1rem;
 
@@ -224,17 +342,28 @@
             button {
                 padding: 0 !important;
                 display: flex;
-                justify-content: center;
                 align-items: center;
+                justify-content: center;
 
                 &[data-like='true'],
+                &[data-playlist='true'],
                 &[data-comment='true'] {
-                    margin-right: 0.5rem;
+                    margin-left: 0 !important;
+                    margin-right: 1rem !important;
+                }
+
+                &[data-playlist='true'] {
+                    margin: 0 !important;
                 }
 
                 [data-count='true'] {
                     font-size: 12pt;
                     margin-right: 0.2rem;
+                    margin-left: 0;
+                }
+
+                &[data-share-button='true'] {
+                    padding: 0.65rem !important;
                 }
 
                 [class~='anticon'] {

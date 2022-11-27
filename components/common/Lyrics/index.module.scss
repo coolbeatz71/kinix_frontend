@@ -3,6 +3,8 @@
 .lyrics {
     [data-text='true'] {
         font-size: 12.5pt;
+        white-space: pre-wrap;
+        overflow-wrap: break-word;
     }
 
     &[data-theme='light'] {
