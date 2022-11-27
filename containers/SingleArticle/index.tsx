@@ -1,11 +1,14 @@
 import { FC, Fragment, useEffect } from 'react';
+
+import Grid from 'antd/lib/grid';
+
 import dynamic from 'next/dynamic';
 import isEmpty from 'lodash/isEmpty';
 import { useSelector } from 'react-redux';
-import { IArticle, IUser } from '@interfaces/api';
 import { IRootState } from '@redux/reducers';
 import { useAppDispatch } from '@redux/store';
 import useDarkLight from '@hooks/useDarkLight';
+import { IArticle, IUser } from '@interfaces/api';
 import getUserLikesAction from '@redux/likes/userLikes';
 import getRelatedArticlesAction from '@redux/articles/related';
 import getUserBookmarksAction from '@redux/bookmarks/userBookmarks';
@@ -15,11 +18,14 @@ const DynamicArticleBody = dynamic(() => import('@components/articles/ArticleBod
 const DynamicArticleCover = dynamic(() => import('@components/articles/ArticleCover'));
 const DynamicSingleArticleSkeleton = dynamic(() => import('@components/skeleton/SingleArticle'));
 
+const { useBreakpoint } = Grid;
+
 export interface ISingleArticleContainerProps {
     article: IArticle;
 }
 
 const SingleArticleContainer: FC<ISingleArticleContainerProps> = ({ article }) => {
+    const { lg } = useBreakpoint();
     const { value } = useDarkLight();
     const dispatch = useAppDispatch();
 
@@ -51,7 +57,7 @@ const SingleArticleContainer: FC<ISingleArticleContainerProps> = ({ article }) =
                 <div data-theme={value}>
                     <DynamicArticleCover article={article} user={user as IUser} />
 
-                    <div className="mt-5">
+                    <div className={lg ? 'mt-5' : 'mt-4'}>
                         <DynamicArticleBody article={article} related={related as IArticle[]} />
                     </div>
                 </div>

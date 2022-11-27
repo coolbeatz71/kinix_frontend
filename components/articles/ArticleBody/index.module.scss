@@ -3,6 +3,18 @@
 @import 'styles/_mixins.scss';
 
 .articleBody {
+    &__share {
+        & > div {
+            flex-flow: row !important;
+
+            & > * {
+                margin-top: calc(#{$padding} * 0.25);
+                margin-bottom: calc(#{$padding} * 0.5);
+
+                margin-right: calc(#{$padding} * 0.5);
+            }
+        }
+    }
     &__content {
         padding-left: 0;
         padding-right: calc(#{$padding} * 2);
@@ -87,8 +99,12 @@
             padding-left: 0;
 
             [data-article-body='true'] {
-                line-height: 1.6;
-                font-size: 11.5pt;
+                line-height: 1.8;
+                font-size: 12pt;
+            }
+
+            [data-summary='true'] {
+                line-height: 1.65;
             }
         }
     }
@@ -97,6 +113,15 @@
         &__content {
             padding-left: 0;
             padding-right: 0;
+
+            [data-article-body='true'] {
+                line-height: 1.8;
+                font-size: 12pt;
+            }
+
+            [data-summary='true'] {
+                line-height: 1.65;
+            }
         }
     }
 }
