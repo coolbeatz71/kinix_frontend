@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import { BsFillSpeakerFill } from 'react-icons/bs';
 import { FaMicrophoneAlt, FaPodcast } from 'react-icons/fa';
-import { VideoCameraFilled, LikeFilled, ShareAltOutlined, StarFilled } from 'icons';
+import { VideoCameraFilled } from 'icons';
 import { RiPlayList2Fill, RiFocusLine, RiBookmark3Fill, RiArticleLine } from 'react-icons/ri';
 import {
     PODCAST_PATH,
@@ -10,9 +10,6 @@ import {
     INTERVIEW_PATH,
     MUSIC_VIDEO_PATH,
     ALL_ARTICLES_PATH,
-    USER_VIDEOS_RATED_PATH,
-    USER_VIDEOS_SHARED_PATH,
-    USER_ARTICLES_LIKED_PATH,
     USER_VIDEOS_PLAYLIST_PATH,
     USER_ARTICLES_BOOKMARK_PATH,
 } from './paths';
@@ -69,21 +66,6 @@ export const FAVORITE_SECTIONS: ISideNavSection[] = [
         icon: <RiBookmark3Fill />,
         text: 'bookmarks',
         href: USER_ARTICLES_BOOKMARK_PATH,
-    },
-    {
-        icon: <LikeFilled />,
-        text: 'likedArticle',
-        href: USER_ARTICLES_LIKED_PATH,
-    },
-    {
-        icon: <ShareAltOutlined />,
-        text: 'sharedVideo',
-        href: USER_VIDEOS_SHARED_PATH,
-    },
-    {
-        icon: <StarFilled />,
-        text: 'ratedVideo',
-        href: USER_VIDEOS_RATED_PATH,
     },
 ];
 
