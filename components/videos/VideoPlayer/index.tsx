@@ -108,7 +108,7 @@ const VideoPlayer: FC<IVideoPlayerProps> = ({ youtubeVideo, video }) => {
                                     <DynamicVideoTagsList tags={video.tags} />
                                 </Col>
                             )}
-                            <Col xs={24} sm={24} md={8} className="d-flex justify-content-end">
+                            <Col xs={24} sm={24} md={8} className="d-flex justify-content-start">
                                 <DynamicSharePopover
                                     slug={video.slug}
                                     link={sharedLink}
@@ -117,11 +117,11 @@ const VideoPlayer: FC<IVideoPlayerProps> = ({ youtubeVideo, video }) => {
                                     setOpen={setOpenSharePopover}
                                 >
                                     <Button
+                                        ghost
                                         data-share-button
                                         icon={<FaShare />}
-                                        size={(xs || sm) && !md ? 'middle' : 'small'}
                                         type={isDark ? 'default' : 'primary'}
-                                        ghost
+                                        size={(xs || sm) && !md ? 'middle' : 'small'}
                                     >
                                         {t('share')}
                                     </Button>

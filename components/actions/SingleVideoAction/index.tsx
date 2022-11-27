@@ -40,10 +40,15 @@ const SingleVideoAction: FC<ISingleVideoActionProps> = ({ video, youtubeVideoEnt
 
     return (
         <Row justify="space-between" align="middle">
-            <Col xs={24} sm={24} md={12} className="d-flex align-content-center">
+            <Col
+                xs={24}
+                sm={24}
+                md={12}
+                className={`d-flex align-content-center ${md ? 'justify-content-start' : 'justify-content-end'}`}
+            >
                 <Rate value={Number(avgRate)} onChange={() => setOpenRatingModal(true)} />
             </Col>
-            <Col xs={24} sm={24} md={12} className={`d-flex ${md ? 'justify-content-end' : 'justify-content-start'}`}>
+            <Col xs={24} sm={24} md={12} className="justify-content-end">
                 <Space className="d-flex justify-content-end">
                     <Tooltip title={t('likesFromYoutube')} placement="topRight">
                         <Button data-like type="text" icon={<LikeOutlined />}>
