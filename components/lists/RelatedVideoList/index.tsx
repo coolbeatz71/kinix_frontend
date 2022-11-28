@@ -7,7 +7,10 @@ import dynamic from 'next/dynamic';
 import isEmpty from 'lodash/isEmpty';
 import { useTranslation } from 'react-i18next';
 import { IVideo } from '@interfaces/api';
+import useDarkLight from '@hooks/useDarkLight';
 import { CONTENT_LIMIT } from '@constants/app';
+
+import styles from './index.module.scss';
 
 const DynamicSectionTitle = dynamic(() => import('@components/common/SectionTitle'));
 const DynamicRelatedVideoCard = dynamic(() => import('@components/cards/Video/RelatedVideo'));
@@ -18,10 +21,11 @@ interface IRelatedVideoListProps {
 
 const RelatedVideoList: FC<IRelatedVideoListProps> = ({ videos }) => {
     const { t } = useTranslation();
+    const { value } = useDarkLight();
     const related = videos.slice(0, CONTENT_LIMIT);
 
     return (
-        <Row>
+        <Row data-theme={value} className={styles.relatedVideoList}>
             {!isEmpty(related) && (
                 <Fragment>
                     <Col span={24}>

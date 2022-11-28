@@ -1,15 +1,25 @@
 @import 'styles/colors.scss';
+@import 'styles/_mixins.scss';
 @import 'styles/dimensions.scss';
 
 .favorites {
     padding: $padding;
     border-radius: $border-radius;
 
+    [class~='ant-card-body'] {
+        padding: 0 !important;
+    }
+
     &[data-theme='light'] {
         background: $light50;
     }
 
     &[data-theme='dark'] {
+        border: 1px solid $light10;
         background: $bg-primary-dark50;
+    }
+
+    @include mediaMaxLG {
+        padding: calc(#{$padding} * 0.5);
     }
 }

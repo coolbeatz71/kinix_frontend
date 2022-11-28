@@ -91,7 +91,7 @@ const ArticleCover: FC<IArticleCoverProps> = ({ user, article }) => {
             </div>
             <Row justify="space-between" align="middle" className={styles.articleCover__content}>
                 {lg && (
-                    <Col md={24} lg={3} className={styles.articleCover__content__like}>
+                    <Col md={24} lg={4} xl={4} xxl={3} className={styles.articleCover__content__like}>
                         {likeOwner ? (
                             <HeartFilled data-is-my-like={Boolean(likeOwner)} onClick={() => unlikeArticle()} />
                         ) : (
@@ -103,7 +103,7 @@ const ArticleCover: FC<IArticleCoverProps> = ({ user, article }) => {
                         </Text>
                     </Col>
                 )}
-                <Col md={24} lg={21} className={styles.articleCover__content__title}>
+                <Col md={24} lg={20} xl={20} xxl={21} className={styles.articleCover__content__title}>
                     <Title>{article.title}</Title>
                 </Col>
                 {!lg && (

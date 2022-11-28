@@ -101,7 +101,7 @@
     }
 
     @include mediaXS {
-        height: 20rem;
+        height: 18rem;
 
         &__content {
             flex-flow: column;
@@ -110,24 +110,24 @@
             &__title {
                 padding-right: 0;
                 margin-bottom: 1rem;
+                padding-left: calc(#{$padding} * 0.5);
 
                 [class~='ant-typography'] {
                     border: 0;
-                    font-size: 20pt;
+                    padding: 0;
+                    font-size: 16pt;
                     font-weight: 700;
                     line-height: 1.5;
-                    padding: 0;
                 }
             }
             &__like {
                 width: 100%;
                 justify-content: flex-start;
             }
-
             &__action {
                 width: 100%;
-                padding-top: 1rem !important;
                 align-items: center;
+                padding-top: $padding !important;
 
                 border-top: 1px solid $light20;
 
@@ -153,9 +153,13 @@
 
                     [data-read='true'] {
                         color: $white;
-                        font-size: 10.5pt;
+                        font-size: 10pt;
                     }
                 }
+            }
+
+            [class~='anticon'] {
+                font-size: 16pt !important;
             }
         }
     }
@@ -164,19 +168,25 @@
         height: 18rem;
 
         &__content {
-            flex-flow: column;
+            display: flex;
+            align-items: flex-end;
             padding: calc(#{$mobile-content-padding} * 2);
+
+            [class~='anticon'] {
+                font-size: 16.5pt !important;
+            }
 
             &__title {
                 padding-right: 0;
-                margin-bottom: 1rem;
+                margin-bottom: $padding;
+                padding-left: calc(#{$padding} * 0.5);
 
                 [class~='ant-typography'] {
                     border: 0;
+                    padding: 0;
                     font-size: 22pt;
                     font-weight: 700;
                     line-height: 1.5;
-                    padding: 0;
                 }
             }
             &__like {
@@ -208,7 +218,7 @@
 
                     [data-like='true'],
                     [data-comment='true'] {
-                        align-items: flex-end !important;
+                        align-items: center !important;
                     }
                 }
 
@@ -220,6 +230,149 @@
                         color: $white;
                         font-size: 12pt;
                     }
+                }
+            }
+        }
+    }
+
+    @include mediaMD {
+        height: 22rem;
+        &__content {
+            display: flex;
+            align-items: flex-end;
+            padding: calc(#{$mobile-content-padding} * 2);
+
+            [class~='anticon'] {
+                font-size: 18pt !important;
+            }
+
+            &__title {
+                padding-right: 0;
+                margin-bottom: $padding;
+                padding-left: calc(#{$padding} * 0.5);
+
+                [class~='ant-typography'] {
+                    border: 0;
+                    padding: 0;
+                    font-size: 25pt;
+                    font-weight: 700;
+                    line-height: 1.5;
+                }
+            }
+            &__like {
+                width: 100%;
+                justify-content: flex-start;
+            }
+
+            &__action {
+                width: 100%;
+                align-items: center;
+                padding-top: $padding !important;
+
+                border-top: 1px solid $light20;
+
+                [class~='ant-row'] {
+                    border: 0 !important;
+                    margin: 0 !important;
+                    padding: 0 !important;
+                    justify-content: flex-start !important;
+                }
+
+                &__left {
+                    button {
+                        color: $white !important;
+                        &:hover {
+                            color: $light !important;
+                        }
+                    }
+
+                    [data-like='true'],
+                    [data-comment='true'] {
+                        align-items: center !important;
+                    }
+                }
+
+                &__right {
+                    display: flex;
+                    justify-content: flex-end;
+
+                    [data-read='true'] {
+                        color: $white;
+                        font-size: 12pt;
+                    }
+                }
+            }
+        }
+    }
+
+    @include mediaLG {
+        height: 32rem;
+        &__content {
+            padding: calc(#{$content-padding} * 1.2);
+
+            &__title {
+                padding-right: 0 !important;
+
+                [class~='ant-typography'] {
+                    font-size: 30pt !important;
+                }
+            }
+
+            &__like {
+                padding-right: 1rem;
+                text-align: end !important;
+
+                [data-likes-value='true'] {
+                    font-size: 13.5pt;
+                }
+
+                [data-read='true'] {
+                    font-size: 12px;
+                }
+
+                [class~='anticon'] {
+                    font-size: 42pt !important;
+                }
+            }
+        }
+    }
+
+    @include mediaXL {
+        &__content {
+            padding: calc(#{$content-padding} * 1.2);
+
+            &__title {
+                padding-right: $content-padding;
+
+                [class~='ant-typography'] {
+                    font-size: 30pt !important;
+                }
+            }
+
+            &__like {
+                padding-right: 1rem;
+                text-align: end !important;
+
+                [data-likes-value='true'] {
+                    font-size: 13.5pt;
+                }
+
+                [data-read='true'] {
+                    font-size: 13px;
+                }
+
+                [class~='anticon'] {
+                    font-size: 48pt !important;
+                }
+            }
+        }
+    }
+
+    @include mediaXXL {
+        &__content {
+            &__title {
+                [class~='ant-typography'] {
+                    font-size: 52pt !important;
                 }
             }
         }

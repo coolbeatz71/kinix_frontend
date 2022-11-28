@@ -13,6 +13,7 @@ import Row from 'antd/lib/row';
 import Grid from 'antd/lib/grid';
 import Card from 'antd/lib/card';
 import Button from 'antd/lib/button';
+import Tooltip from 'antd/lib/tooltip';
 import Typography from 'antd/lib/typography';
 
 import { IVideo } from '@interfaces/api';
@@ -57,7 +58,7 @@ const RelatedVideoCard: FC<IRelatedVideoCardProps> = ({ video, bordered = false 
         >
             <Card bordered={bordered} hoverable>
                 <Row justify="space-between">
-                    <Col span={9} className={styles.relatedVideoCard__cover}>
+                    <Col span={9} md={8} lg={10} xl={9} className={styles.relatedVideoCard__cover}>
                         <Link href={link} passHref>
                             <div className="overlay" style={overLayStyles}>
                                 <Button
@@ -83,14 +84,16 @@ const RelatedVideoCard: FC<IRelatedVideoCardProps> = ({ video, bordered = false 
                             </div>
                         )}
                     </Col>
-                    <Col span={15} data-body>
-                        <Title level={5} data-title>
-                            <Link href={link} passHref>
-                                {truncate(video.title, {
-                                    length: 60,
-                                })}
-                            </Link>
-                        </Title>
+                    <Col span={15} md={16} lg={14} xl={15} data-body>
+                        <Tooltip title={video.title} placement="topRight">
+                            <Title level={5} data-title>
+                                <Link href={link} passHref>
+                                    {truncate(video.title, {
+                                        length: 40,
+                                    })}
+                                </Link>
+                            </Title>
+                        </Tooltip>
                         <div className="d-flex flex-column">
                             <Text data-ratings>
                                 <StarRatingComponent name="rate-video" starCount={5} value={Number(video.avgRate)} />

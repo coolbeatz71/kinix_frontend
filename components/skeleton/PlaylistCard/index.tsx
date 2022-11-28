@@ -25,7 +25,7 @@ const PlaylistCardSkeleton: FC = () => {
                     </Col>
                     <Col span={14} className={styles.playlistSkeleton__body}>
                         <Row justify="space-between" gutter={[0, 12]}>
-                            <Skeleton.Button active block size="small" />
+                            <Skeleton.Button active block size="small" style={{ width: '95%' }} />
                             {md && <Skeleton.Button active style={{ width: 200 }} size="small" />}
                         </Row>
                         <Row className={md ? 'mt-5' : 'mt-3'} gutter={[0, 12]} data-description align="middle">

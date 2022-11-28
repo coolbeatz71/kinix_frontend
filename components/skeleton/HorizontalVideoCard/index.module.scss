@@ -24,6 +24,8 @@
     &__image {
         [class~='ant-skeleton-image'] {
             border-radius: $border-radius;
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
         }
         [class~='ant-skeleton-element'],
         [class~='ant-skeleton-image'] {

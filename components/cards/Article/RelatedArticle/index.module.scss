@@ -1,5 +1,6 @@
-@import 'styles/dimensions.scss';
 @import 'styles/colors.scss';
+@import 'styles/_mixins.scss';
+@import 'styles/dimensions.scss';
 
 .relatedArticleCard {
     cursor: pointer;
@@ -78,6 +79,22 @@
         }
         [data-text='header'] {
             color: $light;
+        }
+    }
+
+    @include mediaXS {
+        [data-text='title'] {
+            font-size: 10pt;
+        }
+    }
+    @include mediaSM {
+        [data-text='title'] {
+            font-size: 10.5pt;
+        }
+    }
+    @include mediaMD {
+        [data-text='title'] {
+            font-size: 10.5pt;
         }
     }
 }

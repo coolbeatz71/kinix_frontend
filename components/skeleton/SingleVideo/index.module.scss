@@ -1,3 +1,4 @@
+@import 'styles/_mixins.scss';
 @import 'styles/dimensions.scss';
 
 .videoSkeleton {
@@ -24,6 +25,24 @@
         margin-bottom: 1.1rem;
         span {
             height: 100% !important;
+        }
+    }
+
+    @include mediaXS {
+        &__player {
+            height: 12rem !important;
+        }
+    }
+
+    @include mediaSM {
+        &__player {
+            height: 20rem !important;
+        }
+    }
+
+    @include mediaMD {
+        &__player {
+            height: 25rem !important;
         }
     }
 }

@@ -12,7 +12,7 @@ export interface IPlaylistsListSkeletonProps {
 const PlaylistsListSkeleton: FC<IPlaylistsListSkeletonProps> = ({ isSearchResult = false }) => (
     <Row align="middle" gutter={[32, 32]}>
         {Array.from(Array(6).keys()).map((i) => (
-            <Col key={i} xs={24} sm={24} md={isSearchResult ? 24 : 12}>
+            <Col key={i} xs={24} sm={24} md={24} lg={isSearchResult ? 24 : 12}>
                 <PlaylistCardSkeleton />
             </Col>
         ))}
