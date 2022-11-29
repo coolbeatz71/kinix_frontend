@@ -1,10 +1,10 @@
 import { FC, useState } from 'react';
 import { UserOutlined } from 'icons';
-import { BsFillGridFill } from 'react-icons/bs';
 
 import Button from 'antd/lib/button';
 import Avatar from 'antd/lib/avatar';
 import Dropdown from 'antd/lib/dropdown';
+import { MdAccountCircle } from 'react-icons/md';
 
 import { ICurrentUser } from '@interfaces/user';
 import { getBgColor } from '@helpers/getBgColor';
@@ -58,7 +58,12 @@ const UserMobileDropDown: FC<IUserMobileDropDownProps> = ({ currentUser }) => {
                     }
                 />
             ) : (
-                <Button ghost type="primary" icon={<BsFillGridFill />} onClick={() => setOpenDropdown(!openDropdown)} />
+                <Button
+                    ghost
+                    type="primary"
+                    icon={<MdAccountCircle />}
+                    onClick={() => setOpenDropdown(!openDropdown)}
+                />
             )}
         </Dropdown>
     );
